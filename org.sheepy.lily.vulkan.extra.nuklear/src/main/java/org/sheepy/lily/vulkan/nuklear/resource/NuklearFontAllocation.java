@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
 import org.lwjgl.nuklear.NkUserFont;
-import org.sheepy.lily.core.api.allocation.IAllocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
-import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -23,7 +23,7 @@ import java.util.Map;
 @ModelExtender(scope = NuklearFont.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(features = NuklearPackage.NUKLEAR_FONT__FONT_IMAGE, type = IFontImageAllocation.class)
-public final class NuklearFontAllocation implements IAllocation
+public final class NuklearFontAllocation implements IExtender
 {
 	public final Map<Font, NkUserFont> fontMap;
 	private final List<NkFontLoader> fontLoaders;

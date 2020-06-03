@@ -2,8 +2,7 @@ package org.sheepy.lily.game.core.allocation;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
-import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 import org.sheepy.lily.core.api.allocation.IAllocationContext;
 import org.sheepy.lily.core.api.allocation.IAllocationManager;
 import org.sheepy.lily.core.api.notification.util.ModelObserver;
@@ -15,7 +14,7 @@ import java.util.Deque;
 import java.util.List;
 import java.util.function.Consumer;
 
-public final class ModelAllocator implements IAllocable<IAllocationContext>
+public final class ModelAllocator
 {
 	private final ILilyEObject root;
 	private final List<ModelObserver> observers;
@@ -30,7 +29,6 @@ public final class ModelAllocator implements IAllocable<IAllocationContext>
 		observers = List.copyOf(buildObservers(featureLists, this::resourceChanged));
 	}
 
-	@Override
 	public void allocate(final org.sheepy.lily.core.api.allocation.IAllocationContext context)
 	{
 		for (final var observer : observers)
@@ -41,7 +39,6 @@ public final class ModelAllocator implements IAllocable<IAllocationContext>
 		update(context);
 	}
 
-	@Override
 	public void free(final IAllocationContext context)
 	{
 		freeInternal(context);
@@ -49,6 +46,26 @@ public final class ModelAllocator implements IAllocable<IAllocationContext>
 		for (final var observer : observers)
 		{
 			observer.stopObserve(root);
+		}
+	}
+
+	public void update(final IAllocationContext context)
+	{
+		while (toFree.isEmpty() == false)
+		{
+			final var object = toFree.removeLast();
+			IAllocationManager.INSTANCE.free(object, context);
+		}
+
+		for (int i = objects.size() - 1; i >= 0; i--)
+		{
+			final var object = objects.get(i);
+			IAllocationManager.INSTANCE.cleanup(object, context);
+		}
+		for (int i = 0; i < objects.size(); i++)
+		{
+			final var object = objects.get(i);
+			IAllocationManager.INSTANCE.ensureAllocation(object, context);
 		}
 	}
 
@@ -77,29 +94,16 @@ public final class ModelAllocator implements IAllocable<IAllocationContext>
 		final List<ModelObserver> res = new ArrayList<>();
 		for (final var featureList : featureLists)
 		{
-			res.add(new ModelObserver(listener, featureList));
+			final int size = featureList.size();
+			final int[] referenceIds = new int[size];
+			for (int i = 0; i < size; i++)
+			{
+				referenceIds[i] = featureList.get(i).getFeatureID();
+			}
+
+			res.add(new ModelObserver(listener, referenceIds));
 		}
 		return res;
-	}
-
-	public void update(final org.sheepy.lily.core.api.allocation.IAllocationContext context)
-	{
-		while (toFree.isEmpty() == false)
-		{
-			final var object = toFree.removeLast();
-			object.adapt(IAllocationManager.class).free(context);
-		}
-
-		for (int i = objects.size() - 1; i >= 0; i--)
-		{
-			final var object = objects.get(i);
-			object.adapt(IAllocationManager.class).cleanup(context);
-		}
-		for (int i = 0; i < objects.size(); i++)
-		{
-			final var object = objects.get(i);
-			object.adapt(IAllocationManager.class).ensureAllocation(context);
-		}
 	}
 
 	private void freeInternal(final IAllocationContext context)
@@ -107,12 +111,12 @@ public final class ModelAllocator implements IAllocable<IAllocationContext>
 		while (toFree.isEmpty() == false)
 		{
 			final var object = toFree.removeLast();
-			object.adapt(IAllocationManager.class).free(context);
+			IAllocationManager.INSTANCE.free(object, context);
 		}
 		for (int i = objects.size() - 1; i >= 0; i--)
 		{
 			final var object = objects.get(i);
-			object.adapt(IAllocationManager.class).free(context);
+			IAllocationManager.INSTANCE.free(object, context);
 		}
 	}
 }

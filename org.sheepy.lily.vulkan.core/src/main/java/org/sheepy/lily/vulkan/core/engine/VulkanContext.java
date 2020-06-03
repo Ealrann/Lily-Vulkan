@@ -14,7 +14,6 @@ import org.sheepy.lily.vulkan.core.device.loader.PhysicalDeviceSelector;
 import org.sheepy.lily.vulkan.core.engine.extension.EDeviceExtension;
 import org.sheepy.lily.vulkan.core.engine.extension.EInstanceExtension;
 import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
-import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 import org.sheepy.lily.vulkan.core.execution.queue.QueueManager;
 import org.sheepy.lily.vulkan.core.instance.VulkanInstance;
@@ -177,7 +176,7 @@ public final class VulkanContext extends GameAllocationContext implements IVulka
 										   .collect(Collectors.toList());
 
 			final var queueList = new ArrayList<>(queueTypes);
-			queueList.add(VulkanEngineAllocationRoot.ENGINE_QUEUE_TYPE);
+			queueList.add(EQueueType.Compute);
 			final var queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, queueList, dummySurface);
 			final var logicalDevice = new LogicalDevice(physicalDevice, queueManager, vkFeatures);
 			logicalDevice.allocate(stack);

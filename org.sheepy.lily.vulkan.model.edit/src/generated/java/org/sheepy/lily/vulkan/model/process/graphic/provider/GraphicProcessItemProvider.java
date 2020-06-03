@@ -67,6 +67,7 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__EXECUTION_RECORDER);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__ATTACHMENT_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES);
 		}
@@ -129,6 +130,7 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		switch (notification.getFeatureID(GraphicProcess.class))
 		{
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+			case GraphicPackage.GRAPHIC_PROCESS__EXECUTION_RECORDER:
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -153,6 +155,11 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 			(createChildParameter
 				(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION,
 				 GraphicFactory.eINSTANCE.createGraphicConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHIC_PROCESS__EXECUTION_RECORDER,
+				 GraphicFactory.eINSTANCE.createGraphicExecutionRecorder()));
 
 		newChildDescriptors.add
 			(createChildParameter

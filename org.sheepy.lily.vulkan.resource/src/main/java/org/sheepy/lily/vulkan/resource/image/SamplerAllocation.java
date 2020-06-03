@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.resource.ISamplerAllocation;
@@ -19,7 +19,7 @@ public class SamplerAllocation implements ISamplerAllocation
 	public SamplerAllocation(Sampler sampler, IVulkanContext context)
 	{
 		final var image = sampler.getImage();
-		imageAdapter = image != null ? image.allocationHandle(IVkImageAllocation.class).get() : null;
+		imageAdapter = image != null ? image.adapt(IVkImageAllocation.class) : null;
 
 		if (imageAdapter != null)
 		{

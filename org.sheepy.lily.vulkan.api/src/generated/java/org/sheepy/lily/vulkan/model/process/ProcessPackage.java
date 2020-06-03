@@ -1479,6 +1479,34 @@ public interface ProcessPackage extends EPackage
 	int PROCESS_CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionRecorderImpl <em>Execution Recorder</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionRecorderImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExecutionRecorder()
+	 * @generated
+	 */
+	int PROCESS_EXECUTION_RECORDER = 21;
+
+	/**
+	 * The number of structural features of the '<em>Execution Recorder</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXECUTION_RECORDER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Execution Recorder</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXECUTION_RECORDER_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2195,6 +2223,16 @@ public interface ProcessPackage extends EPackage
 	EClass getProcessConfiguration();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder <em>Execution Recorder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Execution Recorder</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder
+	 * @generated
+	 */
+	EClass getProcessExecutionRecorder();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2795,6 +2833,16 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EClass PROCESS_CONFIGURATION = eINSTANCE.getProcessConfiguration();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionRecorderImpl <em>Execution Recorder</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionRecorderImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExecutionRecorder()
+		 * @generated
+		 */
+		EClass PROCESS_EXECUTION_RECORDER = eINSTANCE.getProcessExecutionRecorder();
 
 	}
 

@@ -1,12 +1,7 @@
 package org.sheepy.lily.vulkan.core.resource.image;
 
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorImageInfo;
-import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
@@ -14,6 +9,11 @@ import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 
 public class VkImageArrayDescriptor implements IVkDescriptor
 {
@@ -25,32 +25,25 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 	private long[] imageViewPtrs;
 	private boolean changed = true;
 
-	public VkImageArrayDescriptor(	int maxSize,
-									EImageLayout imageLayout,
-									EDescriptorType descriptorType,
-									List<EShaderStage> shaderStages)
+	public VkImageArrayDescriptor(int maxSize,
+								  EImageLayout imageLayout,
+								  EDescriptorType descriptorType,
+								  List<EShaderStage> shaderStages)
 	{
 		this(maxSize, new long[0], imageLayout, descriptorType, shaderStages);
 	}
 
-	public VkImageArrayDescriptor(	int maxSize,
-									long[] imageViewPtrs,
-									EImageLayout imageLayout,
-									EDescriptorType descriptorType,
-									List<EShaderStage> shaderStages)
+	public VkImageArrayDescriptor(int maxSize,
+								  long[] imageViewPtrs,
+								  EImageLayout imageLayout,
+								  EDescriptorType descriptorType,
+								  List<EShaderStage> shaderStages)
 	{
 		this.maxSize = maxSize;
 		this.imageViewPtrs = imageViewPtrs;
 		this.imageLayout = imageLayout != null ? imageLayout.getValue() : 0;
 		this.descriptorType = descriptorType.getValue();
 		this.shaderStages = VulkanModelUtil.getEnumeratedFlag(shaderStages);
-	}
-
-	@Override
-	public void fillPoolSize(VkDescriptorPoolSize poolSize)
-	{
-		poolSize.type(descriptorType);
-		poolSize.descriptorCount(maxSize);
 	}
 
 	@Override
@@ -88,12 +81,6 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 		changed = false;
 	}
 
-	@Override
-	public boolean isEmpty()
-	{
-		return imageViewPtrs.length == 0;
-	}
-
 	public void updateViewPtrs(long[] viewPtrs)
 	{
 		if (viewPtrs.length > maxSize)
@@ -103,6 +90,12 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 
 		this.imageViewPtrs = viewPtrs;
 		changed = true;
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		return imageViewPtrs.length == 0;
 	}
 
 	public long[] getViewPtrs()
@@ -119,14 +112,7 @@ public class VkImageArrayDescriptor implements IVkDescriptor
 	@Override
 	public String toString()
 	{
-		return "VkImageArrayDescriptor [imageViewAddress="
-				+ imageViewPtrs
-				+ ", descriptorType="
-				+ descriptorType
-				+ ", shaderStages="
-				+ shaderStages
-				+ ", imageLayout="
-				+ imageLayout
-				+ "]";
+		return "VkImageArrayDescriptor{" + "maxSize=" + maxSize + ", descriptorType=" + descriptorType + ", shaderStages=" + shaderStages + ", imageLayout=" + imageLayout + ", imageViewPtrs=" + Arrays
+				.toString(imageViewPtrs) + ", changed=" + changed + '}';
 	}
 }

@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.core.execution;
 
-import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.core.api.extender.IExtender;
 
-public interface IExecutionRecorders extends IAllocation
+public interface IExecutionRecorders extends IExtender
 {
 	Integer acquire();
 	IExecutionRecorder prepare(int index);

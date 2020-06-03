@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 
@@ -28,6 +29,7 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getSourceEngine <em>Source Engine</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl#getExecutionRecorder <em>Execution Recorder</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +65,16 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	 * @ordered
 	 */
 	protected ComputeConfiguration configuration;
+
+	/**
+	 * The cached value of the '{@link #getExecutionRecorder() <em>Execution Recorder</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExecutionRecorder()
+	 * @generated
+	 * @ordered
+	 */
+	protected ComputeExecutionRecorder executionRecorder;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -236,6 +248,56 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	 * @generated
 	 */
 	@Override
+	public ComputeExecutionRecorder getExecutionRecorder()
+	{
+		return executionRecorder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExecutionRecorder(ComputeExecutionRecorder newExecutionRecorder, NotificationChain msgs)
+	{
+		ComputeExecutionRecorder oldExecutionRecorder = executionRecorder;
+		executionRecorder = newExecutionRecorder;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER, oldExecutionRecorder, newExecutionRecorder);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setExecutionRecorder(ComputeExecutionRecorder newExecutionRecorder)
+	{
+		if (newExecutionRecorder != executionRecorder)
+		{
+			NotificationChain msgs = null;
+			if (executionRecorder != null)
+				msgs = ((InternalEObject)executionRecorder).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER, null, msgs);
+			if (newExecutionRecorder != null)
+				msgs = ((InternalEObject)newExecutionRecorder).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER, null, msgs);
+			msgs = basicSetExecutionRecorder(newExecutionRecorder, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER, newExecutionRecorder, newExecutionRecorder));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -244,6 +306,8 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 				return basicSetPipelinePkg(null, msgs);
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
 				return basicSetConfiguration(null, msgs);
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER:
+				return basicSetExecutionRecorder(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -265,6 +329,8 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 				return basicGetSourceEngine();
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
 				return getConfiguration();
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER:
+				return getExecutionRecorder();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -287,6 +353,9 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 				return;
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
 				setConfiguration((ComputeConfiguration)newValue);
+				return;
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER:
+				setExecutionRecorder((ComputeExecutionRecorder)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -311,6 +380,9 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
 				setConfiguration((ComputeConfiguration)null);
 				return;
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER:
+				setExecutionRecorder((ComputeExecutionRecorder)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -331,6 +403,8 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 				return sourceEngine != null;
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
 				return configuration != null;
+			case ComputePackage.COMPUTE_PROCESS__EXECUTION_RECORDER:
+				return executionRecorder != null;
 		}
 		return super.eIsSet(featureID);
 	}

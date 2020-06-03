@@ -1,12 +1,12 @@
 package org.sheepy.lily.vulkan.process.binding;
 
-import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.vulkan.model.binding.IConfigurationTask;
 import org.sheepy.lily.vulkan.model.binding.IContextConfiguration;
 import org.sheepy.lily.vulkan.process.binding.task.IConfigureTaskAdapter;
 
-public abstract class AbstractContextConfigurationAdapter implements IAdapter
+public abstract class AbstractContextConfigurationAdapter implements IExtender
 {
 	protected final IContextConfiguration config;
 

@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAllocation;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineAllocation;
+import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineRecordable;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -40,7 +40,7 @@ public class NuklearPushConstantsAdapter implements IPipelineTaskAllocation<Nukl
 	public void record(NuklearPushConstants pushConstant, IRecordContext context)
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, AbstractPipeline.class);
-		final var pipelineAdapter = pipeline.<IVkPipelineAllocation<?>>adaptNotNullGeneric(IPipelineAdapter.class);
+		final var pipelineAdapter = pipeline.<IVkPipelineRecordable<?>>adaptNotNullGeneric(IPipelineAdapter.class);
 		final long layoutId = pipelineAdapter.getVkPipelineLayout().getId();
 		final var commandBuffer = ((RecordContext) context).commandBuffer;
 

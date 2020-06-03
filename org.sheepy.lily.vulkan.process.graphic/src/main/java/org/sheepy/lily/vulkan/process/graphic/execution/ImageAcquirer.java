@@ -13,16 +13,9 @@ import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 public final class ImageAcquirer
 {
 	private static final String FAILED_ACQUIRE_IMAGE = "[Acquire] Failed to acquire next image";
-
-	/**
-	 * This is just -1L, but it is nicer as a symbolic constant.
-	 */
-	protected static final long UINT64_MAX = 0xFFFFFFFFFFFFFFFFL;
-
-	private final int[] nextImageArray = new int[1];
-
 	private final static long TIMEOUT_NS = (long) 1e8;
 
+	private final int[] nextImageArray = new int[1];
 	private final VkDevice vkDevice;
 	private final long semaphorePtr;
 	private final long swapChainPtr;

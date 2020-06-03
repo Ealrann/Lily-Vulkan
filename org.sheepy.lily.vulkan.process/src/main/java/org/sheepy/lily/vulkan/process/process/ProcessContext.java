@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.process.process;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;

@@ -6,8 +6,8 @@ import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VK10;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket.EReservationStatus;
@@ -136,7 +136,7 @@ public final class FontImageAllocation implements IFontImageAllocation
 			{
 				cdata = STBTTPackedchar.calloc(codepointMap.codepointCount);
 
-				final var transferBufferAdapter = transferBuffer.allocationHandle(TransferBufferAllocation.class).get();
+				final var transferBufferAdapter = transferBuffer.adapt(TransferBufferAllocation.class);
 				final long memSize = BASE_FONTIMAGE_WIDTH * BASE_FONTIMAGE_HEIGHT;
 				final var ticket = transferBufferAdapter.reserveMemory(memSize);
 

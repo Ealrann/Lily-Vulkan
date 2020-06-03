@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.api.resource.buffer;
 
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 
-public interface IConstantBufferUpdater extends IAdapter
+public interface IConstantBufferUpdater extends IExtender
 {
 	void beforePush(ConstantBuffer buffer);
 }

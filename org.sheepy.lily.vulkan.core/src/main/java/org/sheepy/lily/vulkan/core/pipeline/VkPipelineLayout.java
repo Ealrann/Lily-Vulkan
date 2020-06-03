@@ -5,7 +5,6 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.lwjgl.vulkan.VkPushConstantRange;
-import org.sheepy.lily.core.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
@@ -17,7 +16,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class VkPipelineLayout implements IAllocable<IVulkanContext>
+public final class VkPipelineLayout
 {
 	private static final String CREATION_ERROR = "Failed to create pipeline layout";
 
@@ -32,7 +31,6 @@ public final class VkPipelineLayout implements IAllocable<IVulkanContext>
 		this.constantRanges = List.copyOf(constantRanges);
 	}
 
-	@Override
 	public void allocate(IVulkanContext context)
 	{
 		final var stack = context.stack();
@@ -119,7 +117,6 @@ public final class VkPipelineLayout implements IAllocable<IVulkanContext>
 		return ranges;
 	}
 
-	@Override
 	public void free(IVulkanContext context)
 	{
 		final var vkDevice = context.getVkDevice();

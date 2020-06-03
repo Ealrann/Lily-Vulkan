@@ -3,21 +3,25 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 import org.lwjgl.vulkan.VkViewport;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.api.execution.IRecordContext;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
-import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
 
 import static org.lwjgl.vulkan.VK10.vkCmdSetViewport;
 
 @ModelExtender(scope = SetViewport.class)
-@Adapter(singleton = true)
-public class SetViewportAdapter implements IPipelineTaskAdapter<SetViewport>
+@Adapter
+public final class SetViewportAdapter implements IPipelineTaskRecorder
 {
 	private final VkViewport.Buffer viewportRect = VkViewport.create(1);
+	private final SetViewport task;
+
+	private SetViewportAdapter(SetViewport task)
+	{
+		this.task = task;
+	}
 
 	@Override
-	public void record(SetViewport task, IRecordContext context)
+	public void record(RecordContext context)
 	{
 		final float x = task.getX();
 		final float y = task.getY();
@@ -25,7 +29,7 @@ public class SetViewportAdapter implements IPipelineTaskAdapter<SetViewport>
 		final float h = task.getHeight();
 		final float minDepth = task.getMinDepth();
 		final float maxDepth = task.getMaxDepth();
-		final var commandBuffer = ((RecordContext) context).commandBuffer;
+		final var commandBuffer = context.commandBuffer;
 
 		viewportRect.get(0).set(x, y, w, h, minDepth, maxDepth);
 

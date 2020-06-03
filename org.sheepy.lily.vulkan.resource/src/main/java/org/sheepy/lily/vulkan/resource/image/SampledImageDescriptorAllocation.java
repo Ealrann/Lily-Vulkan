@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
-import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
-import org.sheepy.lily.core.api.allocation.up.annotation.UpdateDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.sheepy.lily.core.api.allocation.annotation.UpdateDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;

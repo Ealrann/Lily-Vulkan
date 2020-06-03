@@ -2,11 +2,11 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
-import org.sheepy.lily.core.api.allocation.IAllocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
-import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainAllocation;
@@ -28,7 +28,6 @@ import org.sheepy.vulkan.model.enumeration.EPresentMode;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -39,7 +38,7 @@ import static org.lwjgl.vulkan.VK10.*;
 @ModelExtender(scope = SwapchainConfiguration.class)
 @Allocation(context = ProcessContext.class)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
-public final class SwapChainAllocation implements ISwapChainAllocation, IAllocation
+public final class SwapChainAllocation implements ISwapChainAllocation, IExtender
 {
 	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
 	private static boolean first = true;
@@ -172,10 +171,10 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IAllocat
 	}
 
 	@Override
-	public List<Long> getSwapChainImages()
+	public long getImagePtr(int index)
 	{
 		final var swapImageAdapter = swapImageAttachment.adapt(SwapImageAttachmentAdapter.class);
-		return swapImageAdapter.getImagePtrs();
+		return swapImageAdapter.getImagePtr(index);
 	}
 
 	@Override

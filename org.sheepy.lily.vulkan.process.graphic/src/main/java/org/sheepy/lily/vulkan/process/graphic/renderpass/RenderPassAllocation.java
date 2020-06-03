@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
-import org.sheepy.lily.core.api.allocation.IAllocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.*;
+import org.sheepy.lily.core.api.allocation.annotation.*;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.core.graphic.IRenderPass;
@@ -18,11 +18,11 @@ import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 @ModelExtender(scope = RenderPass.class)
 @Allocation(context = ProcessContext.class)
-@AllocationChild(features = GraphicPackage.RENDER_PASS__ATTACHMENTS, type = IExtraAttachmentAllocation.class)
+@AllocationChild(features = GraphicPackage.RENDER_PASS__ATTACHMENTS)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, type = SwapChainAllocation.class)
 @AllocationDependency(features = GraphicPackage.RENDER_PASS__ATTACHMENTS, type = IExtraAttachmentAllocation.class)
-public final class RenderPassAllocation implements IRenderPass, IAllocation
+public final class RenderPassAllocation implements IRenderPass, IExtender
 {
 	private final List<IExtraAttachmentAllocation> extraAttachments;
 	private final long renderPassPtr;

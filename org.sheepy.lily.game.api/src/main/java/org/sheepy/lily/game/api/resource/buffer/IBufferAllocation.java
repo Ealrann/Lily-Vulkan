@@ -1,10 +1,10 @@
 package org.sheepy.lily.game.api.resource.buffer;
 
-import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.core.api.extender.IExtender;
 
 import java.nio.ByteBuffer;
 
-public interface IBufferAllocation extends IAllocation
+public interface IBufferAllocation extends IExtender
 {
 	long getPtr();
 	long getMemoryPtr();

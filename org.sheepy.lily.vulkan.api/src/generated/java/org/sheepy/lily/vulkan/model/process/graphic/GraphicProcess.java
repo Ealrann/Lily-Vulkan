@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getExecutionRecorder <em>Execution Recorder</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getAttachmentPkg <em>Attachment Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getSubpasses <em>Subpasses</em>}</li>
  * </ul>
@@ -48,6 +49,28 @@ public interface GraphicProcess extends AbstractProcess, Maintainable<GraphicPro
 	 * @generated
 	 */
 	void setConfiguration(GraphicConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Execution Recorder</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Execution Recorder</em>' containment reference.
+	 * @see #setExecutionRecorder(GraphicExecutionRecorder)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_ExecutionRecorder()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	GraphicExecutionRecorder getExecutionRecorder();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getExecutionRecorder <em>Execution Recorder</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Execution Recorder</em>' containment reference.
+	 * @see #getExecutionRecorder()
+	 * @generated
+	 */
+	void setExecutionRecorder(GraphicExecutionRecorder value);
 
 	/**
 	 * Returns the value of the '<em><b>Attachment Pkg</b></em>' containment reference.

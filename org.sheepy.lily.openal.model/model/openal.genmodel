@@ -2,8 +2,8 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
     modelDirectory="/org.sheepy.lily.openal.model/src/generated/java"
     editDirectory="/org.sheepy.lily.openal.model.edit/src/generated/java" modelPluginID="org.sheepy.lily.openal.model"
-    modelName="Openal" rootExtendsInterface="org.sheepy.lily.core.api.adapter.ILilyEObject"
-    rootExtendsClass="org.sheepy.lily.core.api.adapter.LilyEObject" importerID="org.eclipse.emf.importer.ecore"
+    modelName="Openal" rootExtendsInterface="org.sheepy.lily.core.api.model.ILilyEObject"
+    rootExtendsClass="org.sheepy.lily.core.api.model.LilyEObject" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//resource ../../org.sheepy.lily.core.model/model/Lily.genmodel#//variable"
     operationReflection="true" importOrganizing="true" cleanup="true">
   <foreignModel>openal.ecore</foreignModel>

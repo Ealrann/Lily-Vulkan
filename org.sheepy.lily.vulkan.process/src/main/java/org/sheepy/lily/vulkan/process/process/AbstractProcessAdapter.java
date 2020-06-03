@@ -2,17 +2,9 @@ package org.sheepy.lily.vulkan.process.process;
 
 import org.eclipse.emf.ecore.EReference;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.allocation.IAllocable;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
-import org.sheepy.lily.core.api.allocation.IAllocationService;
-import org.sheepy.lily.core.api.allocation.IRootAllocator;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.CompositeModelExplorer;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.game.core.allocation.GenericAllocator;
-import org.sheepy.lily.game.core.allocation.ModelAllocator;
 import org.sheepy.lily.game.core.allocation.ModelStaticAllocator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPoolAllocation;
@@ -20,87 +12,35 @@ import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder;
 import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractProcessAdapter implements InternalProcessAdapter, IAllocable<IVulkanContext>
+public abstract class AbstractProcessAdapter implements InternalProcessAdapter
 {
 	protected final AbstractProcess process;
 	protected ProcessContext context;
 
-	private final ModelStaticAllocator processAllocator;
-	private final GenericAllocator<ProcessContext> resourceAllocator;
-	private final ModelAllocator resourceAllocator2;
-	private final ModelAllocator descriptorPoolAllocator;
-	private final GenericAllocator<ProcessContext> pipelineAllocator;
+	private final ModelStaticAllocator allocator;
 
-	protected IAllocationConfigurator config;
-	private IRootAllocator<IVulkanContext> allocator;
 	private long startPrepareNs = 0;
 	private IExecutionRecorders recorders = null;
 
 	public AbstractProcessAdapter(AbstractProcess process)
 	{
 		this.process = process;
-
-		final var resourceFeatures = getResourceFeatureLists();
-		processAllocator = new ModelStaticAllocator(getProcessConfiguration());
-		resourceAllocator = new GenericAllocator<>(resourceFeatures);
-		resourceAllocator2 = new ModelAllocator(process, resourceFeatures);
-		descriptorPoolAllocator = new ModelAllocator(process, getDescriptorPoolFeatureLists());
-		pipelineAllocator = new GenericAllocator<>(getPipelineFeatureLists());
-	}
-
-	@Load
-	private void load()
-	{
-		resourceAllocator.start(process);
-		pipelineAllocator.start(process);
-	}
-
-	@Dispose
-	private void dispose()
-	{
-		pipelineAllocator.stop(process);
-		resourceAllocator.stop(process);
+		allocator = new ModelStaticAllocator(process);
 	}
 
 	@Override
-	public void configureAllocation(IAllocationConfigurator config, IVulkanContext context)
-	{
-		this.config = config;
-		config.setChildrenContext(this.context);
-
-		final List<IAllocable<?>> allocationChildren = new ArrayList<>();
-
-		allocationChildren.add(processAllocator);
-		allocationChildren.add(resourceAllocator.getAllocable());
-		allocationChildren.add(resourceAllocator2);
-		allocationChildren.add(descriptorPoolAllocator);
-		allocationChildren.add(pipelineAllocator.getAllocable());
-
-		config.addChildren(allocationChildren);
-	}
-
-	@Override
-	public void allocate(IVulkanContext context)
-	{
-	}
-
-	@Override
-	public void free(IVulkanContext context)
-	{
-	}
-
-	@Override
-	public void start(final IVulkanContext vulkanContext, final IRootAllocator<IVulkanContext> rootAllocator)
+	public void start(final IVulkanContext vulkanContext)
 	{
 		context = new ProcessContext(vulkanContext, getExecutionQueueType(), isResetAllowed(), process);
-		allocator = IAllocationService.INSTANCE.createAllocator(rootAllocator, this, context);
-		allocator.allocate();
+
+		context.beforeChildrenAllocation();
+		allocator.allocate(context);
+		context.afterChildrenAllocation();
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 		{
@@ -112,15 +52,14 @@ public abstract class AbstractProcessAdapter implements InternalProcessAdapter, 
 	public void stop(IVulkanContext vulkanContext)
 	{
 		waitIdle();
-		allocator.free();
-		allocator = null;
+		allocator.free(context);
 		context.free(vulkanContext);
 		context = null;
 	}
 
 	private IExecutionRecorders getRecorders()
 	{
-		return getProcessConfiguration().allocationHandle(IExecutionRecorders.class).get();
+		return getProcessExecutionRecorder().adapt(IExecutionRecorders.class);
 	}
 
 	@Override
@@ -169,7 +108,7 @@ public abstract class AbstractProcessAdapter implements InternalProcessAdapter, 
 
 	private Integer acquireNextPlayer()
 	{
-		final var recorders = getProcessConfiguration().allocationHandle(IExecutionRecorders.class).get();
+		final var recorders = getProcessExecutionRecorder().adapt(IExecutionRecorders.class);
 		final Integer next = recorders.acquire();
 		return next;
 	}
@@ -212,7 +151,7 @@ public abstract class AbstractProcessAdapter implements InternalProcessAdapter, 
 																							  DescriptorPool.class);
 		for (var descriptorPool : pools)
 		{
-			final var descriptorPoolAllocation = descriptorPool.allocationHandle(DescriptorPoolAllocation.class).get();
+			final var descriptorPoolAllocation = descriptorPool.adapt(DescriptorPoolAllocation.class);
 			descriptorPoolAllocation.prepare();
 			if (descriptorPoolAllocation.hasChanged())
 			{
@@ -236,35 +175,19 @@ public abstract class AbstractProcessAdapter implements InternalProcessAdapter, 
 
 	private boolean prepareAllocation()
 	{
-		if (pipelineAllocator.isDirty() || resourceAllocator.isDirty())
-		{
-			waitIdle();
-		}
-
 		context.beforeChildrenAllocation();
-		processAllocator.update(context);
-		resourceAllocator2.update(context);
-		descriptorPoolAllocator.update(context);
+		allocator.update(context);
 		context.afterChildrenAllocation();
 
 		boolean recorderDirty = false;
-		final var recorders = getProcessConfiguration().allocationHandle(IExecutionRecorders.class).get();
+		final var recorders = getProcessExecutionRecorder().adapt(IExecutionRecorders.class);
 		if (this.recorders != recorders)
 		{
 			this.recorders = recorders;
 			recorderDirty = true;
 		}
 
-		if (allocator.isAllocationDirty() || recorderDirty)
-		{
-			waitIdle();
-			allocator.reloadDirtyElements();
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return recorderDirty;
 	}
 
 	protected boolean isResetAllowed()
@@ -284,8 +207,6 @@ public abstract class AbstractProcessAdapter implements InternalProcessAdapter, 
 		return context.getQueue().isShared() == false;
 	}
 
-	protected abstract List<List<EReference>> getPipelineFeatureLists();
-	protected abstract ProcessConfiguration getProcessConfiguration();
-	protected abstract List<List<EReference>> getResourceFeatureLists();
+	protected abstract ProcessExecutionRecorder getProcessExecutionRecorder();
 	protected abstract List<List<EReference>> getDescriptorPoolFeatureLists();
 }

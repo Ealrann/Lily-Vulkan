@@ -14,9 +14,15 @@ public interface IRecordable
 {
 	void record(RecordContext context);
 
-	boolean shouldRecord(ECommandStage stage);
-	boolean isActive();
-	boolean isRecordNeeded(int index);
+	default boolean isRecordDirty(int index)
+	{
+		return false;
+	}
+
+	default boolean isActive()
+	{
+		return true;
+	}
 
 	default void update(int index)
 	{

@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;

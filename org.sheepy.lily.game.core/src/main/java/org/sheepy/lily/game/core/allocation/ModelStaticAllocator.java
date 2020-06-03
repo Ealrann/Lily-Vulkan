@@ -1,11 +1,10 @@
 package org.sheepy.lily.game.core.allocation;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
-import org.sheepy.lily.core.api.allocation.IAllocable;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 import org.sheepy.lily.core.api.allocation.IAllocationContext;
 import org.sheepy.lily.core.api.allocation.IAllocationManager;
 
-public final class ModelStaticAllocator implements IAllocable<IAllocationContext>
+public final class ModelStaticAllocator
 {
 	private final ILilyEObject target;
 
@@ -15,13 +14,11 @@ public final class ModelStaticAllocator implements IAllocable<IAllocationContext
 		this.target = target;
 	}
 
-	@Override
 	public void allocate(final IAllocationContext context)
 	{
 		update(context);
 	}
 
-	@Override
 	public void free(final IAllocationContext context)
 	{
 		freeInternal(context);
@@ -29,13 +26,13 @@ public final class ModelStaticAllocator implements IAllocable<IAllocationContext
 
 	public void update(final IAllocationContext context)
 	{
-		final var allocationManager = target.adapt(IAllocationManager.class);
-		allocationManager.ensureAllocation(context);
-		allocationManager.cleanup(context);
+		final var manager = IAllocationManager.INSTANCE;
+		manager.ensureAllocation(target, context);
+		manager.cleanup(target, context);
 	}
 
 	private void freeInternal(final IAllocationContext context)
 	{
-		target.adapt(IAllocationManager.class).free(context);
+		IAllocationManager.INSTANCE.free(target, context);
 	}
 }

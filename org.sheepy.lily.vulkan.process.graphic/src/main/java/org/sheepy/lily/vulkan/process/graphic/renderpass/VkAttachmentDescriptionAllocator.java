@@ -45,7 +45,7 @@ public final class VkAttachmentDescriptionAllocator
 	{
 		if (attachment instanceof ExtraAttachment)
 		{
-			final var adapter = attachment.allocationHandle(IExtraAttachmentAllocation.class).get();
+			final var adapter = attachment.adapt(IExtraAttachmentAllocation.class);
 			return adapter.getImageFormat();
 		}
 		else

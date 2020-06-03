@@ -4,14 +4,14 @@ import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkUserFont;
 import org.lwjgl.nuklear.Nuklear;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.game.api.window.IWindow;
 
 import java.util.Map;
 
-public interface IPanelAdapter extends IAdapter
+public interface IPanelAdapter extends IExtender
 {
 	boolean layout(UIContext context);
 	boolean isHovered();

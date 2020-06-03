@@ -28,6 +28,7 @@ import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
@@ -80,6 +81,13 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	private EClass computeConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass computeExecutionRecorderEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -233,6 +241,17 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
+	public EReference getComputeProcess_ExecutionRecorder()
+	{
+		return (EReference)computeProcessEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getComputePipeline()
 	{
 		return computePipelineEClass;
@@ -310,6 +329,17 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getComputeExecutionRecorder()
+	{
+		return computeExecutionRecorderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ComputeFactory getComputeFactory()
 	{
 		return (ComputeFactory)getEFactoryInstance();
@@ -339,6 +369,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		createEReference(computeProcessEClass, COMPUTE_PROCESS__PIPELINE_PKG);
 		createEReference(computeProcessEClass, COMPUTE_PROCESS__SOURCE_ENGINE);
 		createEReference(computeProcessEClass, COMPUTE_PROCESS__CONFIGURATION);
+		createEReference(computeProcessEClass, COMPUTE_PROCESS__EXECUTION_RECORDER);
 
 		computePipelineEClass = createEClass(COMPUTE_PIPELINE);
 		createEReference(computePipelineEClass, COMPUTE_PIPELINE__SHADER);
@@ -349,6 +380,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		createEAttribute(dispatchTaskEClass, DISPATCH_TASK__WORKGROUP_COUNT_Z);
 
 		computeConfigurationEClass = createEClass(COMPUTE_CONFIGURATION);
+
+		computeExecutionRecorderEClass = createEClass(COMPUTE_EXECUTION_RECORDER);
 	}
 
 	/**
@@ -395,12 +428,14 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computePipelineEClass.getEGenericSuperTypes().add(g1);
 		dispatchTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		computeConfigurationEClass.getESuperTypes().add(theProcessPackage.getProcessConfiguration());
+		computeExecutionRecorderEClass.getESuperTypes().add(theProcessPackage.getProcessExecutionRecorder());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComputeProcess_PipelinePkg(), theProcessPackage.getPipelinePkg(), null, "pipelinePkg", null, 0, 1, ComputeProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComputeProcess_SourceEngine(), theApplicationPackage.getIEngine(), null, "sourceEngine", null, 0, 1, ComputeProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComputeProcess_Configuration(), this.getComputeConfiguration(), null, "configuration", null, 1, 1, ComputeProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputeProcess_ExecutionRecorder(), this.getComputeExecutionRecorder(), null, "executionRecorder", null, 1, 1, ComputeProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComputePipeline_Shader(), theVulkanResourcePackage.getShader(), null, "shader", null, 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -411,6 +446,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		initEAttribute(getDispatchTask_WorkgroupCountZ(), ecorePackage.getEInt(), "workgroupCountZ", "1", 0, 1, DispatchTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computeConfigurationEClass, ComputeConfiguration.class, "ComputeConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(computeExecutionRecorderEClass, ComputeExecutionRecorder.class, "ComputeExecutionRecorder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

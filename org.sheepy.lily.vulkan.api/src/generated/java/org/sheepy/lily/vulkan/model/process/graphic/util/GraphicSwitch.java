@@ -23,6 +23,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
@@ -98,6 +99,14 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				GraphicConfiguration graphicConfiguration = (GraphicConfiguration)theEObject;
 				T1 result = caseGraphicConfiguration(graphicConfiguration);
 				if (result == null) result = caseProcessConfiguration(graphicConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER:
+			{
+				GraphicExecutionRecorder graphicExecutionRecorder = (GraphicExecutionRecorder)theEObject;
+				T1 result = caseGraphicExecutionRecorder(graphicExecutionRecorder);
+				if (result == null) result = caseProcessExecutionRecorder(graphicExecutionRecorder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -424,6 +433,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseGraphicConfiguration(GraphicConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseGraphicExecutionRecorder(GraphicExecutionRecorder object)
 	{
 		return null;
 	}
@@ -984,6 +1009,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseProcessConfiguration(ProcessConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseProcessExecutionRecorder(ProcessExecutionRecorder object)
 	{
 		return null;
 	}

@@ -82,7 +82,9 @@ public final class EngineBuilder
 		loadColorAttachment();
 		graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
 		graphicProcess.setConfiguration(configuration);
+		graphicProcess.setExecutionRecorder(GraphicFactory.eINSTANCE.createGraphicExecutionRecorder());
 		graphicProcess.setCadence(buildCadence(FRAME_COUNT));
+		graphicProcess.setResetAllowed(true);
 
 		engine.getProcesses().add(barrierProcess);
 		engine.getProcesses().add(lifeProcess);
@@ -110,8 +112,14 @@ public final class EngineBuilder
 		lifeProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		pixelProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 
+		lifeProcess.setResetAllowed(true);
+		pixelProcess.setResetAllowed(true);
+
 		lifeProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
 		pixelProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
+
+		lifeProcess.setExecutionRecorder(ComputeFactory.eINSTANCE.createComputeExecutionRecorder());
+		pixelProcess.setExecutionRecorder(ComputeFactory.eINSTANCE.createComputeExecutionRecorder());
 
 		createBarrierProcess();
 
@@ -150,10 +158,8 @@ public final class EngineBuilder
 
 		lifeDescriptorSet1.getDescriptors().add(boardBuffer1Descriptor);
 		lifeDescriptorSet1.getDescriptors().add(boardBuffer2Descriptor);
-		lifeDescriptorSet1.getDescriptors().add(boardImageDescriptor);
 		lifeDescriptorSet2.getDescriptors().add(boardBuffer2Descriptor);
 		lifeDescriptorSet2.getDescriptors().add(boardBuffer1Descriptor);
-		lifeDescriptorSet2.getDescriptors().add(boardImageDescriptor);
 		pixelDescriptorSet1.getDescriptors().add(boardBuffer2Descriptor);
 		pixelDescriptorSet1.getDescriptors().add(boardImageDescriptor);
 		pixelDescriptorSet2.getDescriptors().add(boardBuffer1Descriptor);
@@ -207,7 +213,9 @@ public final class EngineBuilder
 	{
 		barrierProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		barrierProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
+		barrierProcess.setExecutionRecorder(ComputeFactory.eINSTANCE.createComputeExecutionRecorder());
 		barrierProcess.setPipelinePkg(ProcessFactory.eINSTANCE.createPipelinePkg());
+		barrierProcess.setResetAllowed(true);
 
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		final var pipeline = ProcessFactory.eINSTANCE.createPipeline();

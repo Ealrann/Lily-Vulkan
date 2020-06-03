@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.util.NotificationListenerDeployer;
-import org.sheepy.lily.core.api.allocation.up.annotation.*;
+import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -19,17 +19,14 @@ import java.util.function.Consumer;
 
 @ModelExtender(scope = CompositeBuffer.class)
 @Allocation(context = ExecutionContext.class)
-@AllocationChild(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, type = BufferPartAllocation.class)
+@AllocationChild(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS)
 @AllocationDependency(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, type = BufferPartAllocation.class)
 public final class CompositeBufferAllocation implements ICompositeBufferAllocation
 {
 	private final Consumer<Notification> sizeListener = this::partResized;
-	private final NotificationListenerDeployer sizeListenerDeployer = new NotificationListenerDeployer(List.of(
-			VulkanResourcePackage.Literals.COMPOSITE_BUFFER__PARTS,
-			VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER),
+	private final NotificationListenerDeployer sizeListenerDeployer = new NotificationListenerDeployer(new int[]{VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER},
 																									   sizeListener,
 																									   VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
-
 	private final CompositeBuffer compositeBuffer;
 	private final ExecutionContext context;
 	private final List<BufferPartAllocation> partAllocations;
@@ -73,7 +70,7 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 		}
 	}
 
-	@Dirty
+	@DirtyAllocation
 	public boolean isDirty()
 	{
 		return dirty;
@@ -89,8 +86,7 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 	@Override
 	public void recordFlush(EFlushMode mode, TransferBuffer transferBuffer, List<BufferPart> parts)
 	{
-		final var transferBufferAdapter = transferBuffer.allocationHandle(TransferBufferAllocation.class).get();
-
+		final var transferBufferAdapter = transferBuffer.adapt(TransferBufferAllocation.class);
 		final List<BufferPartAllocation> partsToFlush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
 

@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.api.resource.buffer;
 
-import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.nio.ByteBuffer;
 
-public interface ITransferBufferAllocation extends IAllocation
+public interface ITransferBufferAllocation extends IExtender
 {
 	IMemoryTicket reserveMemory(long size);
 	void releaseTicket(IMemoryTicket ticket);
@@ -23,7 +23,7 @@ public interface ITransferBufferAllocation extends IAllocation
 			SUCCESS,
 			FLUSHED,
 			FAIL__NO_SPACE_LEFT,
-			ERROR__REQUEST_TOO_BIG;
+			ERROR__REQUEST_TOO_BIG
 		}
 	}
 }

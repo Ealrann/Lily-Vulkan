@@ -3,11 +3,11 @@ package org.sheepy.lily.vulkan.demo.adapter;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.cadence.Tick;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Scene;
@@ -19,7 +19,7 @@ import java.nio.FloatBuffer;
 
 @ModelExtender(scope = ConstantBuffer.class, name = CameraConstantAdapter.DEMO_CAMERA)
 @Adapter(lazy = false)
-public class CameraConstantAdapter implements IAdapter
+public class CameraConstantAdapter implements IExtender
 {
 	public static final String DEMO_CAMERA = "DemoCameraPushConstant";
 	public static final int SIZE_OF = SizeOf.MATRIX4F;

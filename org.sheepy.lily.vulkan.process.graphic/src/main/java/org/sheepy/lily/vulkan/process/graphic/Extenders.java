@@ -2,18 +2,20 @@ package org.sheepy.lily.vulkan.process.graphic;
 
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
-import org.sheepy.lily.vulkan.process.graphic.barrier.SwapImageBarrierAdapter;
-import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecorders;
+import org.sheepy.lily.vulkan.process.graphic.barrier.SwapImageBarrierAllocation;
+import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecordersAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAllocation;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineRecorder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassRecordableAllocation;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.*;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.viewport.CinemaViewportAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.viewport.ViewportAdapter;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicConfigurationAllocation;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAllocation;
 import org.sheepy.lily.vulkan.process.graphic.renderpass.RenderPassAllocation;
 import org.sheepy.lily.vulkan.process.graphic.resource.AttachmentDescriptorAllocation;
 import org.sheepy.lily.vulkan.process.graphic.resource.ColorAttachmentAllocation;
@@ -30,16 +32,17 @@ public class Extenders implements IExtenderProvider
 	public List<Class<? extends IExtender>> classifiers()
 	{
 		return List.of(GraphicProcessAdapter.class,
-					   GraphicsPipelineAllocation.class,
+					   GraphicProcessAllocation.class,
+					   GraphicsPipelineRecorder.class,
 					   DepthAttachmentAllocation.class,
-					   SwapImageBarrierAdapter.class,
-					   BlitToSwapImageAllocation.class,
-					   BlitTaskAllocation.class,
-					   DrawIndexedAdapter.class,
-					   DrawAdapter.class,
-					   BindIndexBufferAdapter.class,
-					   BindVertexBuferAdapter.class,
-					   SetScissorAdapter.class,
+					   SwapImageBarrierAllocation.class,
+					   BlitToSwapImageRecorder.class,
+					   BlitTaskRecorder.class,
+					   DrawIndexedRecorder.class,
+					   DrawRecorder.class,
+					   BindIndexBufferRecorder.class,
+					   BindVertexBuferRecorder.class,
+					   SetScissorRecorder.class,
 					   SetViewportAdapter.class,
 					   SwapImageAttachmentAdapter.class,
 					   BackgroundImageSubpassProvider.class,
@@ -53,7 +56,8 @@ public class Extenders implements IExtenderProvider
 					   RenderPassAllocation.class,
 					   ImageViewAllocation.class,
 					   FramebufferAllocation.class,
-					   GraphicExecutionRecorders.class,
+					   GraphicExecutionRecordersAllocation.class,
+					   GraphicConfigurationAllocation.class,
 					   SubpassRecordableAllocation.class);
 	}
 }

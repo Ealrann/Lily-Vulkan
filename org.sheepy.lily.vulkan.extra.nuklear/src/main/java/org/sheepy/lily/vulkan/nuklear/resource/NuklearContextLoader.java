@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
 import org.lwjgl.BufferUtils;
-import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.IImage;
@@ -19,7 +19,7 @@ import java.util.List;
 
 @ModelExtender(scope = NuklearContext.class)
 @Adapter(singleton = true, lazy = false)
-public final class NuklearContextLoader implements IAdapter
+public final class NuklearContextLoader implements IExtender
 {
 	@Load
 	private static void updateImageDescriptorArray(final NuklearContext nuklearContext)

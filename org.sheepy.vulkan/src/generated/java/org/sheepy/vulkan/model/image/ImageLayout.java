@@ -4,7 +4,7 @@ package org.sheepy.vulkan.model.image;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;

@@ -1,8 +1,8 @@
 package org.sheepy.lily.game.api.audio;
 
-import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.core.api.extender.IExtender;
 
-public interface IAudioAllocation extends IAllocation
+public interface IAudioAllocation extends IExtender
 {
 	IAudioHandle play(AudioConfiguration config);
 

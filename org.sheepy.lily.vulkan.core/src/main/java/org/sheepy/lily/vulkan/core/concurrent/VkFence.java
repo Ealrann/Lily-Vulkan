@@ -8,7 +8,7 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkFence implements IFenceView, IFence
+public final class VkFence implements IFenceView, IFence
 {
 	private final VkDevice vkDevice;
 	private final long ptr;

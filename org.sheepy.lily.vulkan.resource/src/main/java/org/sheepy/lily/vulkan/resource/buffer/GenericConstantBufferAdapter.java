@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.cadence.Tick;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.variable.IModelVariableAdapter;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @ModelExtender(scope = GenericConstantBuffer.class)
 @Adapter(lazy = false)
-public final class GenericConstantBufferAdapter implements IAdapter
+public final class GenericConstantBufferAdapter implements IExtender
 {
 	private final GenericConstantBuffer constantBuffer;
 	private final List<AdaptedVariableEntry<?>> adaptedVariables = new ArrayList<>();
@@ -30,13 +30,12 @@ public final class GenericConstantBufferAdapter implements IAdapter
 	{
 		this.constantBuffer = constantBuffer;
 
-		observatory.explore(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG)
-				   .explore(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES, IModelVariable.class)
+		observatory.explore(VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG)
+				   .explore(VariablePackage.MODEL_VARIABLE_PKG__VARIABLES, IModelVariable.class)
 				   .gather(this::addEntry, this::removeEntry)
 				   .adaptNotifier(IModelVariableAdapter.notifierClass())
 				   .listenNoParam(() -> valueDirty = true, IModelVariableAdapter.Features.Value);
-		observatory.explore(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES,
-							IModelVariable.class)
+		observatory.explore(VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES, IModelVariable.class)
 				   .gather(this::addEntry, this::removeEntry)
 				   .adaptNotifier(IModelVariableAdapter.notifierClass())
 				   .listenNoParam(() -> valueDirty = true, IModelVariableAdapter.Features.Value);

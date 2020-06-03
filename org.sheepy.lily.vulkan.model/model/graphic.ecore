@@ -21,6 +21,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageViews" eType="#//ImageViews"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicExecutionRecorder" eSuperTypes="process.ecore#//ProcessExecutionRecorder"/>
   <eClassifiers xsi:type="ecore:EClass" name="ColorDomain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EFormat"
@@ -159,6 +160,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="GraphicProcess">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
         eType="#//GraphicConfiguration" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executionRecorder" lowerBound="1"
+        eType="#//GraphicExecutionRecorder" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentPkg" lowerBound="1"
         eType="#//AttachmentPkg" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subpasses" upperBound="-1"

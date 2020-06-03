@@ -150,4 +150,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessConfiguration" abstract="true"
       interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessExecutionRecorder"/>
 </ecore:EPackage>

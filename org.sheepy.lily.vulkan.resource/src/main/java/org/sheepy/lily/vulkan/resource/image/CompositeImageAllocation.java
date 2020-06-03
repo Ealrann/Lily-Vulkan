@@ -6,10 +6,10 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageCopy;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
-import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -113,7 +113,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 								  final VkImageBlit.Buffer blitRegion,
 								  final ImageInlay inlay)
 	{
-		final var imageInlayAdapter = inlay.getImage().allocationHandle(IVkImageAllocation.class).get();
+		final var imageInlayAdapter = inlay.getImage().adapt(IVkImageAllocation.class);
 		final var vkImageInlay = imageInlayAdapter.getVkImage();
 		final var imageInlayPtr = imageInlayAdapter.getImagePtr();
 		final var size = inlay.getSize();

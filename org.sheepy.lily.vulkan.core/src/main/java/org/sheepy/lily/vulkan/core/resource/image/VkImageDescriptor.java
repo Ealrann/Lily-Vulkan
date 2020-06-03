@@ -39,13 +39,6 @@ public class VkImageDescriptor implements IVkDescriptor
 	}
 
 	@Override
-	public void fillPoolSize(VkDescriptorPoolSize poolSize)
-	{
-		poolSize.type(descriptorType);
-		poolSize.descriptorCount(1);
-	}
-
-	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
 		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);

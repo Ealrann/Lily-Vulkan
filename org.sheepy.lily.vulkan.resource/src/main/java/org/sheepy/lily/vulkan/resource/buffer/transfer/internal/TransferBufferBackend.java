@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.internal;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAllocation.IRecordContext;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket.EReservationStatus;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
@@ -168,9 +167,8 @@ public final class TransferBufferBackend
 		}
 
 		@Override
-		public void flush(IRecordContext context)
+		public void flush(RecordContext recordContext)
 		{
-			final var recordContext = (RecordContext) context;
 			final var commandBuffer = recordContext.commandBuffer;
 
 			try (final MemoryStack stack = MemoryStack.stackPush())

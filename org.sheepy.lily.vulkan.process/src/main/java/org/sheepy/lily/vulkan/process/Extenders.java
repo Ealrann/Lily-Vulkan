@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.process;
 
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
-import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAdapter;
-import org.sheepy.lily.vulkan.process.barrier.ImageBarrierAdapter;
+import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAllocation;
+import org.sheepy.lily.vulkan.process.barrier.ImageBarrierAllocation;
 import org.sheepy.lily.vulkan.process.binding.BindingConfigurationAdapter;
 import org.sheepy.lily.vulkan.process.binding.IndexConfigurationAdapter;
 import org.sheepy.lily.vulkan.process.binding.task.ConfigureBindAdapter;
@@ -12,8 +12,8 @@ import org.sheepy.lily.vulkan.process.binding.task.ConfigureCompositeBufferBarri
 import org.sheepy.lily.vulkan.process.binding.task.ConfigurePrepareCompositeAdapter;
 import org.sheepy.lily.vulkan.process.cadence.SwapBindingsTaskAdapter;
 import org.sheepy.lily.vulkan.process.descriptor.DescriptorSetAllocation;
-import org.sheepy.lily.vulkan.process.pipeline.CompositePipelineAllocation;
-import org.sheepy.lily.vulkan.process.pipeline.PipelineAllocation;
+import org.sheepy.lily.vulkan.process.pipeline.CompositePipelineRecorder;
+import org.sheepy.lily.vulkan.process.pipeline.PipelineRecorder;
 import org.sheepy.lily.vulkan.process.pipeline.task.*;
 
 import java.util.List;
@@ -23,25 +23,25 @@ public class Extenders implements IExtenderProvider
 	@Override
 	public List<Class<? extends IExtender>> classifiers()
 	{
-		return List.<Class<? extends IExtender>>of(PipelineBarrierAdapter.class,
-					   PushConstantBufferAdapter.class,
+		return List.of(PipelineBarrierRecorder.class,
+					   PushConstantBufferRecorder.class,
 					   DescriptorSetAllocation.class,
-					   BufferBarrierAdapter.class,
-					   ImageBarrierAdapter.class,
-					   PipelineAllocation.class,
-					   BindDescriptorSetsAdapter.class,
-					   CompositeTaskAdapter.class,
-					   FlushTransferBufferTaskAdapter.class,
-					   CopyBufferTaskAdapter.class,
-					   PrepareCompositeTransferAdapter.class,
+					   BufferBarrierAllocation.class,
+					   ImageBarrierAllocation.class,
+					   PipelineRecorder.class,
+					   BindDescriptorSetsRecorder.class,
+					   CompositeTaskRecorder.class,
+					   FlushTransferBufferTaskRecorder.class,
+					   CopyBufferTaskRecorder.class,
+					   PrepareCompositeTransferRecorder.class,
 					   SwapBindingsTaskAdapter.class,
-					   RotateConfigurationAdapter.class,
+					   RotateConfigurationRecorder.class,
 					   ConfigureBindAdapter.class,
 					   BindingConfigurationAdapter.class,
 					   IndexConfigurationAdapter.class,
 					   ConfigureCompositeBufferBarrierAdapter.class,
 					   ConfigurePrepareCompositeAdapter.class,
 					   ConfigureBufferDescriptorAdapter.class,
-					   CompositePipelineAllocation.class);
+					   CompositePipelineRecorder.class);
 	}
 }

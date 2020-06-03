@@ -140,6 +140,15 @@ public interface ProcessFactory extends EFactory
 	SwapBindingsTask createSwapBindingsTask();
 
 	/**
+	 * Returns a new object of class '<em>Execution Recorder</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Execution Recorder</em>'.
+	 * @generated
+	 */
+	ProcessExecutionRecorder createProcessExecutionRecorder();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

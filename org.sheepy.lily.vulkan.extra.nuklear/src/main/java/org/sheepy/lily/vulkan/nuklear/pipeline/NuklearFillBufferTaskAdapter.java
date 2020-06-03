@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline;
 
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -25,7 +24,8 @@ import static org.lwjgl.nuklear.Nuklear.*;
 @ModelExtender(scope = NuklearFillBufferTask.class)
 @Adapter
 public final class NuklearFillBufferTaskAdapter implements IPipelineTaskAllocation<NuklearFillBufferTask>,
-														   IAllocableAdapter<IProcessContext>
+														   IAllocable<T>,
+														   org.sheepy.lily.core.api.extender.IExtender
 {
 	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 

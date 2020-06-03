@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.core.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation;
+import org.sheepy.lily.vulkan.core.execution.IRecordable;
 
 import java.util.function.Consumer;
 
@@ -16,7 +16,7 @@ public interface InternalTransferBufferAllocation extends ITransferBufferAllocat
 
 	interface IFlushRecorder
 	{
-		void flush(IRecordContext context);
+		void flush(IRecordable.RecordContext context);
 	}
 
 	interface IDataFlowCommand

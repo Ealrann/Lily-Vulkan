@@ -16,10 +16,10 @@ public final class RenderPassAdapter
 	private RenderPassAdapter(RenderPass renderPass, IObservatoryBuilder observatory)
 	{
 		this.renderPass = renderPass;
-		observatory.explore(GraphicPackage.Literals.GRAPHIC_PROCESS__SUBPASSES)
-				   .explore(GraphicPackage.Literals.SUBPASS__ATTACHMENT_REF_PKG)
-				   .explore(GraphicPackage.Literals.ATTACHMENT_REF_PKG__ATTACHMENT_REFS)
-				   .explore(GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT, ExtraAttachment.class)
+		observatory.explore(GraphicPackage.GRAPHIC_PROCESS__SUBPASSES)
+				   .explore(GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG)
+				   .explore(GraphicPackage.ATTACHMENT_REF_PKG__ATTACHMENT_REFS)
+				   .explore(GraphicPackage.ATTACHMENT_REF__ATTACHMENT, ExtraAttachment.class)
 				   .gather(this::addAttachment, this::removeAttachment);
 	}
 

@@ -1,36 +1,27 @@
 package org.sheepy.lily.vulkan.process.graphic.resource;
 
-import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
-import org.sheepy.lily.vulkan.core.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
-
-import java.nio.IntBuffer;
-import java.nio.LongBuffer;
-import java.util.List;
 
 import static org.lwjgl.vulkan.KHRSwapchain.vkGetSwapchainImagesKHR;
 
 @ModelExtender(scope = SwapImageAttachment.class)
 @Adapter
-public final class SwapImageAttachmentAdapter implements IAdapter
+public final class SwapImageAttachmentAdapter implements IExtender
 {
-	private List<Long> swapChainImages = null;
+	private long[] swapChainImages = null;
 
 	public void allocate(final IVulkanContext context, long swapChainPtr)
 	{
-		final var stack = context.stack();
 		final var vkDevice = context.getVkDevice();
-
-		final IntBuffer pImageCount = stack.mallocInt(1);
+		final int[] pImageCount = new int[1];
 		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, null);
-		final int swapImageCount = pImageCount.get(0);
-		final LongBuffer pSwapchainImages = stack.mallocLong(swapImageCount);
-		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, pSwapchainImages);
-
-		swapChainImages = List.copyOf(VulkanBufferUtils.toList(pSwapchainImages));
+		final int swapImageCount = pImageCount[0];
+		swapChainImages = new long[swapImageCount];
+		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, swapChainImages);
 	}
 
 	public void free()
@@ -40,11 +31,11 @@ public final class SwapImageAttachmentAdapter implements IAdapter
 
 	public int getImageCount()
 	{
-		return swapChainImages != null ? swapChainImages.size() : 0;
+		return swapChainImages != null ? swapChainImages.length : 0;
 	}
 
-	public List<Long> getImagePtrs()
+	public long getImagePtr(int index)
 	{
-		return swapChainImages;
+		return swapChainImages[index];
 	}
 }

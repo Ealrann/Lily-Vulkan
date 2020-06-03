@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.core.descriptor;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.sheepy.lily.core.api.allocation.IAllocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.*;
+import org.sheepy.lily.core.api.allocation.annotation.*;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
@@ -17,9 +17,9 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = DescriptorPool.class)
 @Allocation(context = ExecutionContext.class)
-@AllocationChild(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS, type = IDescriptorSetAllocation.class)
+@AllocationChild(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS)
 @AllocationDependency(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS, type = IDescriptorSetAllocation.class)
-public final class DescriptorPoolAllocation implements IAllocation
+public final class DescriptorPoolAllocation implements IExtender
 {
 	private static final String FAILED_TO_CREATE_DESCRIPTOR_POOL = "Failed to create descriptor pool";
 

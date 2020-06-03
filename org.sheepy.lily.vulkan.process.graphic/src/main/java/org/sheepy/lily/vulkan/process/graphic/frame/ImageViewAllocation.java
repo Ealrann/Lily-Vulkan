@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
-import org.sheepy.lily.core.api.allocation.IAllocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.AllocationDependency;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
-import org.sheepy.lily.core.api.allocation.up.annotation.InjectDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
@@ -22,7 +22,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 @Allocation(context = ProcessContext.class)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, type = SwapChainAllocation.class)
-public final class ImageViewAllocation implements IImageViewManager, IAllocation
+public final class ImageViewAllocation implements IImageViewManager, IExtender
 {
 	private static final int IMAGE_ASPECT = VK_IMAGE_ASPECT_COLOR_BIT;
 
@@ -34,13 +34,14 @@ public final class ImageViewAllocation implements IImageViewManager, IAllocation
 	{
 		final var device = context.getVkDevice();
 		final var colorFormat = surfaceAllocation.getColorDomain().format;
-		final var swapImages = swapChainAllocation.getSwapChainImages();
+		final int imageCount = swapChainAllocation.getImageCount();
 
-		final List<VkImageView> vkImageViewsTmp = new ArrayList<>(swapImages.size());
-		for (final long imageId : swapImages)
+		final List<VkImageView> vkImageViewsTmp = new ArrayList<>(imageCount);
+		for (int i = 0; i < imageCount; i++)
 		{
+			final long imagePtr = swapChainAllocation.getImagePtr(i);
 			final var imageView = new VkImageView(IMAGE_ASPECT);
-			imageView.allocate(device, imageId, 1, colorFormat);
+			imageView.allocate(device, imagePtr, 1, colorFormat);
 			vkImageViewsTmp.add(imageView);
 		}
 

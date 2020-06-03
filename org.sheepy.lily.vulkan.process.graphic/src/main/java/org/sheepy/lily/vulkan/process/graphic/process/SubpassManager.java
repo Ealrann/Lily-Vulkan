@@ -26,10 +26,11 @@ public class SubpassManager
 	public SubpassManager(GraphicProcess process)
 	{
 		this.process = process;
-		observatory = IObservatoryBuilder.newObservatoryBuilder()
-										 .explore(ApplicationPackage.Literals.SCENE__COMPOSITORS, ICompositor.class)
-										 .gatherBulk(this::installCompositors, this::uninstallCompositors)
-										 .build();
+
+		final var observatoryBuilder = IObservatoryBuilder.newObservatoryBuilder();
+		observatoryBuilder.explore(ApplicationPackage.SCENE__COMPOSITORS, ICompositor.class)
+						  .gatherBulk(this::installCompositors, this::uninstallCompositors);
+		observatory = observatoryBuilder.build();
 	}
 
 	public void start(final IVulkanApiContext context)

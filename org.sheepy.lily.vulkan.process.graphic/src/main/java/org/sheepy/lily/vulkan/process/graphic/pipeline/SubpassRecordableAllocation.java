@@ -1,9 +1,12 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import org.sheepy.lily.core.api.allocation.up.annotation.*;
+import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableAllocation;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineRecordable;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -11,36 +14,51 @@ import java.util.List;
 
 @ModelExtender(scope = Subpass.class)
 @Allocation
-@AllocationChild(features = ProcessPackage.COMPOSITE_PIPELINE__PIPELINES, type = IRecordableAllocation.class)
-@AllocationDependency(features = ProcessPackage.COMPOSITE_PIPELINE__PIPELINES, type = IRecordableAllocation.class)
-public final class SubpassRecordableAllocation implements IRecordableAllocation
+@AllocationChild(features = {GraphicPackage.SUBPASS__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
+@AllocationChild(features = {GraphicPackage.SUBPASS__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
+@AllocationChild(features = {GraphicPackage.SUBPASS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES})
+@AllocationDependency(features = {GraphicPackage.SUBPASS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IPipelineRecordable.class)
+public final class SubpassRecordableAllocation implements IPipelineRecordable
 {
 	private final Subpass subpass;
 
-	private List<IRecordableAllocation> recordables;
+	private List<IPipelineRecordable> recordables;
 	private boolean dirty = true;
 
 	private SubpassRecordableAllocation(Subpass subpass,
-										@InjectDependency(index = 0) List<IRecordableAllocation> recordables)
+										@InjectDependency(index = 0) List<IPipelineRecordable> recordables)
 	{
 		this.subpass = subpass;
 		this.recordables = recordables;
 	}
 
 	@UpdateDependency(index = 0)
-	private void updateRecordables(List<IRecordableAllocation> recordables)
+	private void updateRecordables(List<IPipelineRecordable> recordables)
 	{
 		this.recordables = recordables;
 		this.dirty = true;
 	}
 
+	public int getSubpassIndex()
+	{
+		return subpass.getSubpassIndex();
+	}
+
+	@Override
+	public void update(final int index)
+	{
+		for (var pipeline : recordables)
+		{
+			pipeline.update(index);
+		}
+	}
+
 	@Override
 	public void record(final RecordContext context)
 	{
-		final var pipelines = subpass.getPipelinePkg().getPipelines();
-		for (var pipeline : pipelines)
+		for (var pipeline : recordables)
 		{
-			pipeline.allocationHandle(IRecordableAllocation.class).get().record(context);
+			pipeline.record(context);
 		}
 	}
 
@@ -64,7 +82,7 @@ public final class SubpassRecordableAllocation implements IRecordableAllocation
 	}
 
 	@Override
-	public boolean isRecordNeeded(final int index)
+	public boolean isRecordDirty(final int index)
 	{
 		return dirty || areRecordablesDirty(index);
 	}
@@ -73,7 +91,7 @@ public final class SubpassRecordableAllocation implements IRecordableAllocation
 	{
 		for (var recordable : recordables)
 		{
-			if (recordable.isRecordNeeded(index))
+			if (recordable.isRecordDirty(index))
 			{
 				return true;
 			}

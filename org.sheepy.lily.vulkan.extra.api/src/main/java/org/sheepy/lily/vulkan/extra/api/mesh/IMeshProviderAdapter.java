@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.extra.api.mesh;
 
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.extender.IExtender;
 
-public interface IMeshProviderAdapter extends IAdapter
+public interface IMeshProviderAdapter extends IExtender
 {
 //	IMeshObject getMesh();
 //	List<IVkDescriptor> getDescriptors();

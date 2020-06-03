@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.core.util;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -22,10 +22,6 @@ public final class InstanceCountUtil
 	private static int getSwapImageCount(ILilyEObject source)
 	{
 		final var process = (GraphicProcess) ModelUtil.findParent(source, AbstractProcess.class);
-		return process.getConfiguration()
-					  .getSwapchainConfiguration()
-					  .allocationHandle(ISwapChainAllocation.class)
-					  .get()
-					  .getImageCount();
+		return process.getConfiguration().getSwapchainConfiguration().adapt(ISwapChainAllocation.class).getImageCount();
 	}
 }

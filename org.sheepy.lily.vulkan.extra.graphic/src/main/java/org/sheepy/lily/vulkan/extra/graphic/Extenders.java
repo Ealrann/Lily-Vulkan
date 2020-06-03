@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.extra.graphic;
 
-import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.GenericRendererMaintainerAdapter;

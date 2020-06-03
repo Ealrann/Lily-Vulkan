@@ -31,6 +31,8 @@ public class Extenders implements IExtenderProvider
 					   StaticImageAllocation.class,
 					   BufferPartAllocation.class,
 					   BufferDescriptorAllocation.class,
+					   BufferDescriptorAdapter.class,
+					   ImageDescriptorAdapter.class,
 					   ImageDescriptorAllocation.class,
 					   SampledImageDescriptorAllocation.class,
 					   ImageArrayDescriptorAllocation.class,

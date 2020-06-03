@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model.pipeline;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 
 /**
  * <!-- begin-user-doc -->

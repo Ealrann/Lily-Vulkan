@@ -1,12 +1,10 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.INotificationListener;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;
@@ -27,7 +25,7 @@ public final class LabelAdapter extends Notifier<ITextWidgetAdapter.Features> im
 																						 ITextWidgetAdapter
 {
 	private final Label label;
-	private final INotificationListener textListener = this::textChanged;
+	private final Runnable textListener = this::textChanged;
 
 	private boolean dirty = true;
 	private ByteBuffer textBuffer;
@@ -43,17 +41,17 @@ public final class LabelAdapter extends Notifier<ITextWidgetAdapter.Features> im
 	private void load()
 	{
 		reloadText();
-		label.addListener(textListener, UiPackage.LABEL__TEXT);
+		label.listenNoParam(textListener, UiPackage.LABEL__TEXT);
 	}
 
 	@Dispose
 	private void dispose()
 	{
-		label.removeListener(textListener, UiPackage.LABEL__TEXT);
+		label.sulkNoParam(textListener, UiPackage.LABEL__TEXT);
 		freeBuffer();
 	}
 
-	private void textChanged(Notification notification)
+	private void textChanged()
 	{
 		freeBuffer();
 		reloadText();

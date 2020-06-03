@@ -11,7 +11,7 @@ import java.nio.ByteBuffer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkComputePipeline extends VkPipeline<ProcessContext>
+public class VkComputePipeline extends VkPipeline
 {
 	private static final String FAILED_TO_CREATE_COMPUTE_PIPELINE = "Failed to create compute pipeline";
 	private final VkPipelineLayout pipelineLayout;
@@ -29,7 +29,6 @@ public class VkComputePipeline extends VkPipeline<ProcessContext>
 		this.specializationData = specializationData;
 	}
 
-	@Override
 	public void allocate(ProcessContext context)
 	{
 		final var stack = context.stack();
@@ -52,7 +51,6 @@ public class VkComputePipeline extends VkPipeline<ProcessContext>
 		pipelinePtr = pPipelineId.get(0);
 	}
 
-	@Override
 	public void free(ProcessContext context)
 	{
 		final var device = context.getVkDevice();

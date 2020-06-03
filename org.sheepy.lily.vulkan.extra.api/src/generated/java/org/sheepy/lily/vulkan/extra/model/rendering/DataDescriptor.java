@@ -4,7 +4,7 @@ package org.sheepy.lily.vulkan.extra.model.rendering;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.sheepy.lily.core.api.adapter.ILilyEObject;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;

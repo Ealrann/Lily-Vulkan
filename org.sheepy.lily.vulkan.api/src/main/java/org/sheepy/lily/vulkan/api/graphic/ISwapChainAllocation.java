@@ -1,12 +1,10 @@
 package org.sheepy.lily.vulkan.api.graphic;
 
-import org.sheepy.lily.core.api.allocation.IAllocation;
+import org.sheepy.lily.core.api.extender.IExtender;
 
-import java.util.List;
-
-public interface ISwapChainAllocation extends IAllocation
+public interface ISwapChainAllocation extends IExtender
 {
-	List<Long> getSwapChainImages();
 	long getPtr();
+	long getImagePtr(int index);
 	int getImageCount();
 }

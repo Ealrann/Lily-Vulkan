@@ -68,6 +68,7 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 			case ComputePackage.COMPUTE_PIPELINE: return createComputePipeline();
 			case ComputePackage.DISPATCH_TASK: return createDispatchTask();
 			case ComputePackage.COMPUTE_CONFIGURATION: return createComputeConfiguration();
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER: return createComputeExecutionRecorder();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -119,6 +120,18 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	{
 		ComputeConfigurationImpl computeConfiguration = new ComputeConfigurationImpl();
 		return computeConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ComputeExecutionRecorder createComputeExecutionRecorder()
+	{
+		ComputeExecutionRecorderImpl computeExecutionRecorder = new ComputeExecutionRecorderImpl();
+		return computeExecutionRecorder;
 	}
 
 	/**

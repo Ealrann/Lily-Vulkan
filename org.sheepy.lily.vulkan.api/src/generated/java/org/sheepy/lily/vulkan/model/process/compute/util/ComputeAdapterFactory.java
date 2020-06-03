@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.*;
@@ -107,6 +108,11 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 				return createComputeConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseComputeExecutionRecorder(ComputeExecutionRecorder object)
+			{
+				return createComputeExecutionRecorderAdapter();
+			}
+			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
 			{
 				return createIResourceContainerAdapter();
@@ -160,6 +166,11 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseProcessConfiguration(ProcessConfiguration object)
 			{
 				return createProcessConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseProcessExecutionRecorder(ProcessExecutionRecorder object)
+			{
+				return createProcessExecutionRecorderAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -238,6 +249,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createComputeConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder <em>Execution Recorder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder
+	 * @generated
+	 */
+	public Adapter createComputeExecutionRecorderAdapter()
 	{
 		return null;
 	}
@@ -403,6 +429,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createProcessConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder <em>Execution Recorder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder
+	 * @generated
+	 */
+	public Adapter createProcessExecutionRecorderAdapter()
 	{
 		return null;
 	}

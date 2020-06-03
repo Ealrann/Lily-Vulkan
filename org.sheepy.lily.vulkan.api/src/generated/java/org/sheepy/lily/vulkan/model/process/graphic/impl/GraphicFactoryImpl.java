@@ -66,6 +66,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 		switch (eClass.getClassifierID())
 		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION: return createGraphicConfiguration();
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER: return createGraphicExecutionRecorder();
 			case GraphicPackage.COLOR_DOMAIN: return createColorDomain();
 			case GraphicPackage.PHYSICAL_SURFACE: return createPhysicalSurface();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION: return createSwapchainConfiguration();
@@ -146,6 +147,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicConfigurationImpl graphicConfiguration = new GraphicConfigurationImpl();
 		return graphicConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GraphicExecutionRecorder createGraphicExecutionRecorder()
+	{
+		GraphicExecutionRecorderImpl graphicExecutionRecorder = new GraphicExecutionRecorderImpl();
+		return graphicExecutionRecorder;
 	}
 
 	/**

@@ -3,10 +3,10 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.lily.core.api.allocation.IAllocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.up.annotation.Dirty;
-import org.sheepy.lily.core.api.allocation.up.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.DirtyAllocation;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.graphic.IPhysicalSurfaceAllocation;
@@ -25,7 +25,7 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @ModelExtender(scope = PhysicalSurface.class)
 @Allocation(context = ProcessContext.class)
-public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocation, IAllocation
+public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocation, IExtender
 {
 	private final ISurfaceListener dirtyListener = this::setDirty;
 	private final VkColorDomain colorDomain;
@@ -152,7 +152,7 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 		return surface;
 	}
 
-	@Dirty
+	@DirtyAllocation
 	public boolean isDirty()
 	{
 		return dirty;

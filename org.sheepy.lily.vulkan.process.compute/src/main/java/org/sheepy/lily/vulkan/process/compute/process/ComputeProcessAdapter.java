@@ -3,11 +3,9 @@ package org.sheepy.lily.vulkan.process.compute.process;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
@@ -18,33 +16,6 @@ import java.util.List;
 @Adapter
 public class ComputeProcessAdapter extends AbstractProcessAdapter
 {
-	private static final List<EReference> PIPELINE__FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-																	   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
-	private static final List<EReference> COMPOSITE_PIPELINE__FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-																				 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																				 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES);
-	private static final List<EReference> RESOURCE_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																	  ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EReference> PIPELINE_RESOURCE_FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-																			   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																			   VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																			   ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EReference> COMPOSITE_PIPELINE_RESOURCE_FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-																						 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																						 ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
-																						 VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-																						 ResourcePackage.Literals.RESOURCE_PKG__RESOURCES);
-	private static final List<EReference> DESCRIPTOR_FEATURES = List.of(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																		VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-	private static final List<EReference> PIPELINE_DESCRIPTOR_FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-																				 ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																				 VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																				 VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
-	private static final List<EReference> COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
-																						   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-																						   ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
-																						   VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
-																						   VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 	private static final List<EReference> DERSCRIPTOR_POOL_FEATURES = List.of(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_POOL);
 	private static final List<EReference> PIPELINE_DERSCRIPTOR_POOL_FEATURES = List.of(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG,
 																					   ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
@@ -72,23 +43,6 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter
 	}
 
 	@Override
-	protected List<List<EReference>> getPipelineFeatureLists()
-	{
-		return List.of(PIPELINE__FEATURES, COMPOSITE_PIPELINE__FEATURES);
-	}
-
-	@Override
-	protected List<List<EReference>> getResourceFeatureLists()
-	{
-		return List.of(RESOURCE_FEATURES,
-					   PIPELINE_RESOURCE_FEATURES,
-					   COMPOSITE_PIPELINE_RESOURCE_FEATURES,
-					   DESCRIPTOR_FEATURES,
-					   PIPELINE_DESCRIPTOR_FEATURES,
-					   COMPOSITE_PIPELINE_DESCRIPTOR_FEATURES);
-	}
-
-	@Override
 	protected List<List<EReference>> getDescriptorPoolFeatureLists()
 	{
 		return List.of(DERSCRIPTOR_POOL_FEATURES,
@@ -97,8 +51,8 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter
 	}
 
 	@Override
-	protected ProcessConfiguration getProcessConfiguration()
+	protected ComputeExecutionRecorder getProcessExecutionRecorder()
 	{
-		return ((ComputeProcess) process).getConfiguration();
+		return ((ComputeProcess) process).getExecutionRecorder();
 	}
 }

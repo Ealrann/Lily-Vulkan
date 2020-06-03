@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.core.barrier;
 
 import org.lwjgl.system.NativeResource;
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.extender.IExtender;
 
-public interface IBarrierAdapter<T extends NativeResource> extends IAdapter
+public interface IBarrierAdapter<T extends NativeResource> extends IExtender
 {
 	void update(int index);
 	VkBarrier<T> getBackend();

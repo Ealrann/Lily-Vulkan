@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IAllocableAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
@@ -30,8 +29,7 @@ import java.util.function.Consumer;
 
 @ModelExtender(scope = NuklearLayoutTask.class)
 @Adapter(lazy = false)
-public final class NuklearLayoutTaskAdapter implements IPipelineTaskAllocation<NuklearLayoutTask>,
-													   IAllocableAdapter<IProcessContext>
+public final class NuklearLayoutTaskAdapter implements IPipelineTaskAllocation<NuklearLayoutTask>, IAllocable<T>, org.sheepy.lily.core.api.extender.IExtender
 {
 	private final NuklearLayoutTask task;
 	private final Consumer<Vector2ic> resizeListener = this::onResize;
@@ -60,7 +58,7 @@ public final class NuklearLayoutTaskAdapter implements IPipelineTaskAllocation<N
 				   .explore(UiPackage.Literals.UI__CURRENT_UI_PAGE)
 				   .explore(UiPackage.Literals.UI_PAGE__PANELS)
 				   .adapt(IPanelAdapter.class)
-				   .gather(this::addPanelAdapter, this::removePanelAdapter);
+				   .gatherAdaptation(this::addPanelAdapter, this::removePanelAdapter);
 	}
 
 	private void addPanelAdapter(IPanelAdapter adapter)
