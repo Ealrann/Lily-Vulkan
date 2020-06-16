@@ -30,7 +30,9 @@ public abstract class AbstractBlitTaskRecorder implements IPipelineTaskRecorder
 	private final VkImage clearTexture;
 	private final AbstractBlitTask blitTask;
 
-	public AbstractBlitTaskRecorder(AbstractBlitTask blitTask, ProcessContext context, IVkImageAllocation srcImage,
+	public AbstractBlitTaskRecorder(AbstractBlitTask blitTask,
+									ProcessContext context,
+									IVkImageAllocation srcImage,
 									Vector2ic dstSize)
 	{
 		this.blitTask = blitTask;
@@ -42,14 +44,14 @@ public abstract class AbstractBlitTaskRecorder implements IPipelineTaskRecorder
 		final int viewHeight = dstSize.y();
 		final float scale = Math.min((float) viewWidth / imageInfo.width, (float) viewHeight / imageInfo.height);
 
-		final int dstWidth = (int) (scale * imageInfo.width);
-		final int dstHeight = (int) (scale * imageInfo.height);
+		final int dstWidth = Math.round(scale * imageInfo.width);
+		final int dstHeight = Math.round(scale * imageInfo.height);
 
 		int xOffset = 0;
 		int yOffset = 0;
 		if (dstWidth < viewWidth)
 		{
-			xOffset = (viewWidth - dstWidth) / 2;
+			xOffset = Math.round((viewWidth - dstWidth) / 2f);
 
 			if (xOffset >= 2)
 			{
@@ -65,7 +67,7 @@ public abstract class AbstractBlitTaskRecorder implements IPipelineTaskRecorder
 		}
 		else if (dstHeight < viewHeight)
 		{
-			yOffset = (viewHeight - dstHeight) / 2;
+			yOffset = Math.round((viewHeight - dstHeight) / 2f);
 
 			if (yOffset >= 2)
 			{

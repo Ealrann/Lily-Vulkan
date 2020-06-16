@@ -2,11 +2,14 @@ package org.sheepy.lily.vulkan.process.process;
 
 import org.eclipse.emf.ecore.EReference;
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.allocation.IAllocationService;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.ProvideContext;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.CompositeModelExplorer;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.game.core.allocation.ModelStaticAllocator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
+import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.core.descriptor.DescriptorPoolAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
@@ -17,44 +20,33 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 
 import java.util.List;
 
-public abstract class AbstractProcessAdapter implements InternalProcessAdapter
+public abstract class AbstractProcessAllocation implements IProcessAdapter
 {
 	protected final AbstractProcess process;
-	protected ProcessContext context;
-
-	private final ModelStaticAllocator allocator;
+	protected final IVulkanContext vulkanContext;
+	protected final ProcessContext context;
 
 	private long startPrepareNs = 0;
 	private IExecutionRecorders recorders = null;
 
-	public AbstractProcessAdapter(AbstractProcess process)
+	public AbstractProcessAllocation(AbstractProcess process, IVulkanContext vulkanContext)
 	{
 		this.process = process;
-		allocator = new ModelStaticAllocator(process);
+		this.vulkanContext = vulkanContext;
+		final var executionQueueType = process.adapt(InternalProcessAdapter.class).getExecutionQueueType();
+		context = new ProcessContext(vulkanContext, executionQueueType, isResetAllowed(), process);
 	}
 
-	@Override
-	public void start(final IVulkanContext vulkanContext)
+	@ProvideContext
+	private ProcessContext provideContext()
 	{
-		context = new ProcessContext(vulkanContext, getExecutionQueueType(), isResetAllowed(), process);
-
-		context.beforeChildrenAllocation();
-		allocator.allocate(context);
-		context.afterChildrenAllocation();
-
-		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
-		{
-			printAllocationTree();
-		}
+		return context;
 	}
 
-	@Override
-	public void stop(IVulkanContext vulkanContext)
+	@Free
+	private void free()
 	{
-		waitIdle();
-		allocator.free(context);
 		context.free(vulkanContext);
-		context = null;
 	}
 
 	private IExecutionRecorders getRecorders()
@@ -175,11 +167,10 @@ public abstract class AbstractProcessAdapter implements InternalProcessAdapter
 
 	private boolean prepareAllocation()
 	{
-		context.beforeChildrenAllocation();
-		allocator.update(context);
-		context.afterChildrenAllocation();
-
 		boolean recorderDirty = false;
+
+		IAllocationService.INSTANCE.ensureAllocation(process, vulkanContext);
+
 		final var recorders = getProcessExecutionRecorder().adapt(IExecutionRecorders.class);
 		if (this.recorders != recorders)
 		{
@@ -193,12 +184,6 @@ public abstract class AbstractProcessAdapter implements InternalProcessAdapter
 	protected boolean isResetAllowed()
 	{
 		return process.isResetAllowed();
-	}
-
-	private void printAllocationTree()
-	{
-		System.out.println(process.eClass().getName() + " " + process.getName() + " Allocation tree:");
-		System.out.println(allocator.toString());
 	}
 
 	@Override

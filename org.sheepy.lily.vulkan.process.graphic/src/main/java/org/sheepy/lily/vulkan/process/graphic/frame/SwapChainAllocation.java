@@ -2,10 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
-import org.sheepy.lily.core.api.allocation.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
-import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
@@ -17,10 +14,8 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.process.graphic.frame.util.PresentationModeSelector;
-import org.sheepy.lily.vulkan.process.graphic.resource.SwapImageAttachmentAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
@@ -37,15 +32,14 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = SwapchainConfiguration.class)
 @Allocation(context = ProcessContext.class)
+@AllocationChild(features = GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
 public final class SwapChainAllocation implements ISwapChainAllocation, IExtender
 {
 	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
 	private static boolean first = true;
-
-	private final SwapImageAttachment swapImageAttachment;
 	private final long swapChainPtr;
-	private final int swapImageCount;
+	private final long[] swapChainImages;
 	private final IntBuffer indices;
 
 	public SwapChainAllocation(SwapchainConfiguration configuration,
@@ -53,8 +47,6 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IExtende
 							   @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation)
 	{
 		assert surfaceAllocation.isPresentable();
-
-		swapImageAttachment = configuration.getColorAttachment();
 
 		final var graphicConfiguration = (GraphicConfiguration) configuration.eContainer();
 		final var extent = surfaceAllocation.getExtent();
@@ -105,9 +97,11 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IExtende
 		Logger.check(FAILED_TO_CREATE_SWAP_CHAIN, () -> vkCreateSwapchainKHR(vkDevice, createInfo, null, pSwapChain));
 		swapChainPtr = pSwapChain.get(0);
 
-		final var swapImageAdapter = swapImageAttachment.adapt(SwapImageAttachmentAdapter.class);
-		swapImageAdapter.allocate(context, swapChainPtr);
-		swapImageCount = swapImageAdapter.getImageCount();
+		final int[] pImageCount = new int[1];
+		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, null);
+		final int swapImageCount = pImageCount[0];
+		swapChainImages = new long[swapImageCount];
+		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, swapChainImages);
 
 		if (first && DebugUtil.DEBUG_ENABLED)
 		{
@@ -120,7 +114,6 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IExtende
 	public void free(ProcessContext context)
 	{
 		vkDestroySwapchainKHR(context.getVkDevice(), swapChainPtr, null);
-		swapImageAttachment.adapt(SwapImageAttachmentAdapter.class).free();
 		if (indices != null) MemoryUtil.memFree(indices);
 	}
 
@@ -158,7 +151,7 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IExtende
 		final String presentationName = presentMode.getName();
 		final String message = String.format("Swapchain created:\n\t- PresentationMode: %s\n\t- Number of images: %d",
 											 presentationName,
-											 swapImageCount);
+											 swapChainImages.length);
 		System.out.println(message);
 	}
 
@@ -173,14 +166,13 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IExtende
 	@Override
 	public long getImagePtr(int index)
 	{
-		final var swapImageAdapter = swapImageAttachment.adapt(SwapImageAttachmentAdapter.class);
-		return swapImageAdapter.getImagePtr(index);
+		return swapChainImages[index];
 	}
 
 	@Override
 	public int getImageCount()
 	{
-		return swapImageCount;
+		return swapChainImages.length;
 	}
 
 	@Override

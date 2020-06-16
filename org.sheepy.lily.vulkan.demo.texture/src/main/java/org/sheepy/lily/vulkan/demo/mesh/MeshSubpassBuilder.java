@@ -40,7 +40,7 @@ public final class MeshSubpassBuilder
 
 		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachment(process.getColorAttachment());
+		colorRef.setAttachment(process.getConfiguration().getSwapchainConfiguration().getColorAttachment());
 		attachmentRefPkg.getAttachmentRefs().add(colorRef);
 
 		if (meshConfiguration.depth)

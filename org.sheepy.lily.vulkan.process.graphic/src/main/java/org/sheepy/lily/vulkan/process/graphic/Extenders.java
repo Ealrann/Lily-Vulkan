@@ -8,6 +8,7 @@ import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAllocation;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineRecorder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassRecordableAllocation;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.*;
@@ -20,7 +21,6 @@ import org.sheepy.lily.vulkan.process.graphic.renderpass.RenderPassAllocation;
 import org.sheepy.lily.vulkan.process.graphic.resource.AttachmentDescriptorAllocation;
 import org.sheepy.lily.vulkan.process.graphic.resource.ColorAttachmentAllocation;
 import org.sheepy.lily.vulkan.process.graphic.resource.DepthAttachmentAllocation;
-import org.sheepy.lily.vulkan.process.graphic.resource.SwapImageAttachmentAdapter;
 import org.sheepy.lily.vulkan.process.graphic.scene.BackgroundImageSubpassProvider;
 import org.sheepy.lily.vulkan.process.graphic.scene.ScreenEffectSubpassProvider;
 
@@ -31,9 +31,10 @@ public class Extenders implements IExtenderProvider
 	@Override
 	public List<Class<? extends IExtender>> classifiers()
 	{
-		return List.of(GraphicProcessAdapter.class,
-					   GraphicProcessAllocation.class,
+		return List.of(GraphicProcessAllocation.class,
+					   GraphicProcessAdapter.class,
 					   GraphicsPipelineRecorder.class,
+					   GraphicsPipelineAllocation.class,
 					   DepthAttachmentAllocation.class,
 					   SwapImageBarrierAllocation.class,
 					   BlitToSwapImageRecorder.class,
@@ -44,7 +45,6 @@ public class Extenders implements IExtenderProvider
 					   BindVertexBuferRecorder.class,
 					   SetScissorRecorder.class,
 					   SetViewportAdapter.class,
-					   SwapImageAttachmentAdapter.class,
 					   BackgroundImageSubpassProvider.class,
 					   ScreenEffectSubpassProvider.class,
 					   AttachmentDescriptorAllocation.class,

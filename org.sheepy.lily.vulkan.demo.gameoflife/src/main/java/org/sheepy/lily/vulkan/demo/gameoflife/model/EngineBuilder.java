@@ -174,6 +174,15 @@ public final class EngineBuilder
 		pixelBindingConfiguration.getDescriptorsSets().add(pixelDescriptorSet2);
 		lifeBindingConfiguration.setDescriptorSetStride(1);
 
+		final var lifeDescriptorPool = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
+		lifeDescriptorPool.getDescriptorSets().add(lifeDescriptorSet1);
+		lifeDescriptorPool.getDescriptorSets().add(lifeDescriptorSet2);
+		final var pixelDescriptorPool = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
+		pixelDescriptorPool.getDescriptorSets().add(pixelDescriptorSet1);
+		pixelDescriptorPool.getDescriptorSets().add(pixelDescriptorSet2);
+		lifeProcess.setDescriptorPool(lifeDescriptorPool);
+		pixelProcess.setDescriptorPool(pixelDescriptorPool);
+
 		final var lifePipeline = createPipeline(lifeShader, lifeBindingConfiguration);
 		final var pixelPipeline = createPipeline(life2pixelShader, pixelBindingConfiguration);
 
@@ -260,13 +269,9 @@ public final class EngineBuilder
 		taskPkg.getTasks().add(bindTask);
 		taskPkg.getTasks().add(dispatch);
 
-		final var descriptorPool = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
-		descriptorPool.getDescriptorSets().addAll(bindingConfiguration.getDescriptorsSets());
-
 		pipeline.getLayout().addAll(bindingConfiguration.getDescriptorsSets());
 		pipeline.setShader(shader);
 		pipeline.setStage(ECommandStage.COMPUTE);
-		pipeline.setDescriptorPool(descriptorPool);
 
 		return pipeline;
 	}

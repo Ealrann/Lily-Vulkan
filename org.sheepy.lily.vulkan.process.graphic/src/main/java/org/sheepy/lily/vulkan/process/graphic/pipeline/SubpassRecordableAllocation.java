@@ -1,6 +1,8 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import org.sheepy.lily.core.api.allocation.annotation.*;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
+import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineRecordable;
@@ -17,26 +19,23 @@ import java.util.List;
 @AllocationChild(features = {GraphicPackage.SUBPASS__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
 @AllocationChild(features = {GraphicPackage.SUBPASS__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
 @AllocationChild(features = {GraphicPackage.SUBPASS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES})
-@AllocationDependency(features = {GraphicPackage.SUBPASS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IPipelineRecordable.class)
 public final class SubpassRecordableAllocation implements IPipelineRecordable
 {
 	private final Subpass subpass;
 
-	private List<IPipelineRecordable> recordables;
-	private boolean dirty = true;
+	private List<IPipelineRecordable> recordables = List.of();
+	private boolean needRecord = true;
 
-	private SubpassRecordableAllocation(Subpass subpass,
-										@InjectDependency(index = 0) List<IPipelineRecordable> recordables)
+	private SubpassRecordableAllocation(Subpass subpass)
 	{
 		this.subpass = subpass;
-		this.recordables = recordables;
 	}
 
-	@UpdateDependency(index = 0)
+	@InjectChildren(index = 2, type = IPipelineRecordable.class)
 	private void updateRecordables(List<IPipelineRecordable> recordables)
 	{
 		this.recordables = recordables;
-		this.dirty = true;
+		this.needRecord = true;
 	}
 
 	public int getSubpassIndex()
@@ -84,7 +83,7 @@ public final class SubpassRecordableAllocation implements IPipelineRecordable
 	@Override
 	public boolean isRecordDirty(final int index)
 	{
-		return dirty || areRecordablesDirty(index);
+		return needRecord || areRecordablesDirty(index);
 	}
 
 	private boolean areRecordablesDirty(final int index)

@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkPhysicalDevice;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.annotation.DirtyAllocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -30,16 +30,17 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	private final ISurfaceListener dirtyListener = this::setDirty;
 	private final VkColorDomain colorDomain;
 	private final Vector2ic extent;
-
 	private final Capabilities capabilities;
 	private final VulkanQueue presentQueue;
 	private final VkSurface surface;
-
-	private boolean dirty = false;
+	private final IAllocationConfigurator allocationConfigurator;
 	private final LogicalDevice logicalDevice;
 
-	private PhysicalSurfaceAllocation(PhysicalSurface physicalSurface, ProcessContext context)
+	private PhysicalSurfaceAllocation(PhysicalSurface physicalSurface,
+									  IAllocationConfigurator allocationConfigurator,
+									  ProcessContext context)
 	{
+		this.allocationConfigurator = allocationConfigurator;
 		logicalDevice = context.getLogicalDevice();
 		final var vkPhysicalDevice = context.getVkPhysicalDevice();
 		final var vkInstance = context.getVkInstance();
@@ -71,6 +72,19 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 		}
 	}
 
+	@Free
+	public void free(ProcessContext context)
+	{
+		final var window = context.getWindow();
+
+		window.sulkNoParam(dirtyListener, IWindow.Features.Size);
+		window.sulk(dirtyListener, IWindow.Features.SurfaceDeprecated);
+		surface.removeListener(dirtyListener);
+
+		capabilities.free();
+		surface.free();
+	}
+
 	private VkColorDomain loadColorDomain(VkPhysicalDevice device, ColorDomain colorDomain)
 	{
 		final var colorDomains = new ColorDomains(device, surface);
@@ -86,19 +100,6 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 		{
 			return vkColorDomain;
 		}
-	}
-
-	@Free
-	public void free(ProcessContext context)
-	{
-		final var window = context.getWindow();
-
-		window.sulkNoParam(dirtyListener, IWindow.Features.Size);
-		window.sulk(dirtyListener, IWindow.Features.SurfaceDeprecated);
-		surface.removeListener(dirtyListener);
-
-		capabilities.free();
-		surface.free();
 	}
 
 	@Override
@@ -152,16 +153,10 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 		return surface;
 	}
 
-	@DirtyAllocation
-	public boolean isDirty()
-	{
-		return dirty;
-	}
-
 	@Override
 	public void setDirty()
 	{
-		this.dirty = true;
+		allocationConfigurator.setAllocationObsolete();
 		logicalDevice.returnQueue(presentQueue);
 	}
 

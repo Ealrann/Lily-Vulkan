@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.process.execution;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.execution.*;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
@@ -18,7 +19,9 @@ public abstract class AbstractExecutionRecorderAllocation implements IExecutionR
 
 	private boolean dirty = true;
 
-	public AbstractExecutionRecorderAllocation(AbstractCommandBuffer commandBuffer, Submission submission, int index)
+	public AbstractExecutionRecorderAllocation(AbstractCommandBuffer commandBuffer,
+											   Submission submission,
+											   int index)
 	{
 		this.commandBuffer = commandBuffer;
 		this.submission = submission;
@@ -27,6 +30,8 @@ public abstract class AbstractExecutionRecorderAllocation implements IExecutionR
 
 	public void free(ExecutionContext context)
 	{
+		//TODO remove this wait...
+		waitIdle();
 		commandBuffer.free(context);
 		submission.free();
 	}

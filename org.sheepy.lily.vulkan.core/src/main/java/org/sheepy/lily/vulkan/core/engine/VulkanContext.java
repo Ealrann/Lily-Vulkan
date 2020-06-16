@@ -47,11 +47,9 @@ public final class VulkanContext extends GameAllocationContext implements IVulka
 
 	void free()
 	{
-		logicalDevice.free();
-
 		if (window != null) window.close();
 		if (window != null) window.destroy();
-
+		logicalDevice.free();
 		physicalDevice.free();
 		vulkanInstance.free();
 	}
@@ -118,7 +116,6 @@ public final class VulkanContext extends GameAllocationContext implements IVulka
 			final var extensionRequirement = extRequirementBuilder.build();
 
 			final var vkInstance = createInstance(instanceName, extensionRequirement, stack);
-			if (!headless) window.open();
 
 			final var dummySurface = window != null ? window.createSurface(vkInstance.getVkInstance()) : null;
 			final var physicalDevice = pickPhysicalDevice(stack,

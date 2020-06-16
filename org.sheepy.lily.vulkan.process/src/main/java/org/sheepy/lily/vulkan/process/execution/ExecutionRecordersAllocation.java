@@ -20,13 +20,13 @@ public abstract class ExecutionRecordersAllocation implements IExecutionRecorder
 
 	protected ExecutionRecordersAllocation(List<? extends IRecordable> recordables, List<ECommandStage> stages)
 	{
-		this.recordables = new ArrayList<>(recordables);
+		this.recordables = List.copyOf(recordables);
 		this.stages = List.copyOf(stages);
 	}
 
 	protected void updateRecordables(List<? extends IRecordable> recordables)
 	{
-		this.recordables = new ArrayList<>(recordables);
+		this.recordables = List.copyOf(recordables);
 	}
 
 	protected static List<VkSemaphore> gatherSinalSemaphores(AbstractProcess process)

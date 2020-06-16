@@ -1,10 +1,13 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.EnumSet;
@@ -13,23 +16,34 @@ import java.util.stream.Collectors;
 
 public final class TaskPipelineManager implements IRecordable
 {
-	protected final AbstractPipeline pipeline;
-	private List<IPipelineTaskRecorder> tasks;
+	private static final ModelExplorer TASK_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG,
+																				 ProcessPackage.Literals.TASK_PKG__TASKS));
+	private final AbstractPipeline pipeline;
 
+	private List<IPipelineTaskRecorder> tasks = List.of();
 	private boolean recordNeeded = true;
-	private EnumSet<ECommandStage> stages;
+	private boolean tasksChanged = true;
+	private EnumSet<ECommandStage> stages = EnumSet.noneOf(ECommandStage.class);
 
-	public TaskPipelineManager(AbstractPipeline pipeline, List<IPipelineTaskRecorder> tasks)
+	public TaskPipelineManager(AbstractPipeline pipeline, IObservatoryBuilder observatory)
 	{
 		this.pipeline = pipeline;
-		this.tasks = tasks;
-		updateStages();
+		observatory.explore(ProcessPackage.TASK_PIPELINE__TASK_PKG)
+				   .explore(ProcessPackage.TASK_PKG__TASKS)
+				   .adapt(IPipelineTaskRecorder.class)
+				   .gatherAdaptation(this::taskChanged, this::taskChanged);
 	}
 
-	public void updateTasks(List<IPipelineTaskRecorder> tasks)
+	private void taskChanged(Object nothing)
 	{
-		this.tasks = tasks;
+		tasksChanged = true;
+	}
+
+	private void updateTasks()
+	{
+		tasks = TASK_EXPLORER.exploreAdapt(pipeline, IPipelineTaskRecorder.class);
 		updateStages();
+		tasksChanged = false;
 		recordNeeded = true;
 	}
 
@@ -42,6 +56,11 @@ public final class TaskPipelineManager implements IRecordable
 	@Override
 	public void update(int index)
 	{
+		if (tasksChanged)
+		{
+			updateTasks();
+		}
+
 		for (int i = 0; i < tasks.size(); i++)
 		{
 			final var task = tasks.get(i);
@@ -80,7 +99,7 @@ public final class TaskPipelineManager implements IRecordable
 		}
 	}
 
-	protected void recordInternal(RecordContext context)
+	private void recordInternal(RecordContext context)
 	{
 		final var pipelineStage = pipeline.getStage();
 		final var currentStage = context.stage;

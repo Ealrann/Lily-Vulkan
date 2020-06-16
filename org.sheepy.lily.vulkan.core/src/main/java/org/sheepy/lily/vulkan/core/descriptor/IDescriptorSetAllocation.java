@@ -17,6 +17,4 @@ public interface IDescriptorSetAllocation extends IExtender
 
 	int descriptorCount();
 	void fillPoolSizes(VkDescriptorPoolSize.Buffer poolSizes);
-	void allocate(ExecutionContext context, long ptr);
-	void free(ExecutionContext context);
 }

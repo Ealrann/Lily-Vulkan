@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import org.eclipse.emf.common.notify.Notification;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.util.NotificationListenerDeployer;
+import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
@@ -28,17 +29,19 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 																									   sizeListener,
 																									   VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
 	private final CompositeBuffer compositeBuffer;
+	private final IAllocationConfigurator configurator;
 	private final ExecutionContext context;
 	private final List<BufferPartAllocation> partAllocations;
 
 	private GPUBufferBackend bufferBackend;
-	private boolean dirty = false;
 
 	public CompositeBufferAllocation(CompositeBuffer compositeBuffer,
+									 IAllocationConfigurator configurator,
 									 ExecutionContext context,
 									 @InjectDependency(index = 0) List<BufferPartAllocation> partAllocations)
 	{
 		this.compositeBuffer = compositeBuffer;
+		this.configurator = configurator;
 		this.context = context;
 		this.partAllocations = List.copyOf(partAllocations);
 
@@ -62,18 +65,12 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 		final var allocation = resolvePartAllocation(part);
 		if (allocation.needResize())
 		{
-			dirty = true;
+			configurator.setAllocationObsolete();
 			if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 			{
 				System.out.println("Need resize of composite buffer " + compositeBuffer.getName());
 			}
 		}
-	}
-
-	@DirtyAllocation
-	public boolean isDirty()
-	{
-		return dirty;
 	}
 
 	@Free
@@ -135,7 +132,7 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 				return bufferPartAllocation;
 			}
 		}
-		return null;
+		throw new AssertionError("Buffer part is not contained in this CompositeBuffer");
 	}
 
 	private void createBufferBackend(long size, int usage)

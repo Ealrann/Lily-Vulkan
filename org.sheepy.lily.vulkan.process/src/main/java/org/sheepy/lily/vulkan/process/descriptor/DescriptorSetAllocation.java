@@ -5,13 +5,16 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.*;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.descriptor.DescriptorPoolAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -23,7 +26,7 @@ import java.util.List;
 import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = DescriptorSet.class)
-@Allocation
+@Allocation(context = ExecutionContext.class)
 @AllocationDependency(features = VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS, type = IDescriptorAllocation.class)
 public final class DescriptorSetAllocation implements IDescriptorSetAllocation
 {
@@ -33,22 +36,21 @@ public final class DescriptorSetAllocation implements IDescriptorSetAllocation
 	private final DescriptorSet descriptorSet;
 	private final List<IDescriptorAllocation> descriptors;
 	private final Deque<IDescriptorAllocation> dirtyDescriptors = new ArrayDeque<>();
-
-	private long descriptorSetPtr;
-	private long layoutPtr;
-	private VkDevice device;
-	private LongBuffer bDescriptorSet;
+	private final long descriptorSetPtr;
+	private final long layoutPtr;
+	private final VkDevice device;
+	private final LongBuffer bDescriptorSet;
 
 	public DescriptorSetAllocation(DescriptorSet descriptorSet,
+								   ExecutionContext context,
 								   @InjectDependency(index = 0) List<IDescriptorAllocation> descriptorAllocations)
 	{
+		final var descriptorPool = (DescriptorPool) descriptorSet.eContainer();
+		final var descriptorPoolPtr = descriptorPool.adapt(DescriptorPoolAllocation.class).getPtr();
+
 		this.descriptorSet = descriptorSet;
 		descriptors = List.copyOf(descriptorAllocations);
-	}
 
-	@Override
-	public void allocate(ExecutionContext context, long descriptorPoolPtr)
-	{
 		final var stack = context.stack();
 		device = context.getVkDevice();
 
@@ -83,7 +85,7 @@ public final class DescriptorSetAllocation implements IDescriptorSetAllocation
 		updateDescriptorSet(stack, true);
 	}
 
-	@Override
+	@Free
 	public void free(ExecutionContext context)
 	{
 		final var device = context.getVkDevice();

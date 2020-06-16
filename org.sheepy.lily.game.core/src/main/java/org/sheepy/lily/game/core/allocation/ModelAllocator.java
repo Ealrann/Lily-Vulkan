@@ -2,9 +2,9 @@ package org.sheepy.lily.game.core.allocation;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.lily.core.api.model.ILilyEObject;
 import org.sheepy.lily.core.api.allocation.IAllocationContext;
-import org.sheepy.lily.core.api.allocation.IAllocationManager;
+import org.sheepy.lily.core.api.allocation.IAllocationService;
+import org.sheepy.lily.core.api.model.ILilyEObject;
 import org.sheepy.lily.core.api.notification.util.ModelObserver;
 import org.sheepy.lily.core.api.notification.util.NotificationUnifier;
 
@@ -36,7 +36,11 @@ public final class ModelAllocator
 			observer.startObserve(root);
 		}
 		started = true;
-		update(context);
+		for (int i = 0; i < objects.size(); i++)
+		{
+			final var object = objects.get(i);
+			IAllocationService.INSTANCE.ensureAllocation(object, context);
+		}
 	}
 
 	public void free(final IAllocationContext context)
@@ -46,26 +50,6 @@ public final class ModelAllocator
 		for (final var observer : observers)
 		{
 			observer.stopObserve(root);
-		}
-	}
-
-	public void update(final IAllocationContext context)
-	{
-		while (toFree.isEmpty() == false)
-		{
-			final var object = toFree.removeLast();
-			IAllocationManager.INSTANCE.free(object, context);
-		}
-
-		for (int i = objects.size() - 1; i >= 0; i--)
-		{
-			final var object = objects.get(i);
-			IAllocationManager.INSTANCE.cleanup(object, context);
-		}
-		for (int i = 0; i < objects.size(); i++)
-		{
-			final var object = objects.get(i);
-			IAllocationManager.INSTANCE.ensureAllocation(object, context);
 		}
 	}
 
@@ -111,12 +95,12 @@ public final class ModelAllocator
 		while (toFree.isEmpty() == false)
 		{
 			final var object = toFree.removeLast();
-			IAllocationManager.INSTANCE.free(object, context);
+			IAllocationService.INSTANCE.free(object, context);
 		}
 		for (int i = objects.size() - 1; i >= 0; i--)
 		{
 			final var object = objects.get(i);
-			IAllocationManager.INSTANCE.free(object, context);
+			IAllocationService.INSTANCE.free(object, context);
 		}
 	}
 }

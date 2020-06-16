@@ -3,8 +3,6 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
-import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
-import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.barrier.*;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
@@ -26,26 +24,29 @@ import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
 @ModelExtender(scope = PipelineBarrier.class)
 @Allocation(context = ProcessContext.class)
 @AllocationChild(features = ProcessPackage.PIPELINE_BARRIER__BARRIERS)
-@AllocationDependency(features = ProcessPackage.PIPELINE_BARRIER__BARRIERS, type = IBarrierAdapter.class)
 public final class PipelineBarrierRecorder implements IPipelineTaskRecorder
 {
 	private final PipelineBarrier pipelineBarrier;
+	private final ProcessContext context;
 	private final int srcStage;
 	private final int dstStage;
-	private final List<IBarrierAdapter<?>> barriers;
-	private final VkImageBarriers imageBarrierInfos;
-	private final VkBufferBarriers bufferBarrierInfos;
 
-	public PipelineBarrierRecorder(PipelineBarrier pipelineBarrier,
-								   ProcessContext context,
-								   @InjectDependency(index = 0) List<IBarrierAdapter<?>> barriers)
+	private List<IBarrierAdapter<?>> barrierAllocations;
+	private VkImageBarriers imageBarrierInfos;
+	private VkBufferBarriers bufferBarrierInfos;
+	private boolean loaded = false;
+
+	public PipelineBarrierRecorder(PipelineBarrier pipelineBarrier, ProcessContext context)
 	{
 		this.pipelineBarrier = pipelineBarrier;
-		this.barriers = barriers;
+		this.context = context;
 
 		srcStage = pipelineBarrier.getSrcStage().getValue();
 		dstStage = pipelineBarrier.getDstStage().getValue();
+	}
 
+	private void load()
+	{
 		final var logicalDevice = context.getLogicalDevice();
 		final var srcQueue = pipelineBarrier.getSrcQueue();
 		final var dstQueue = pipelineBarrier.getDstQueue();
@@ -56,7 +57,15 @@ public final class PipelineBarrierRecorder implements IPipelineTaskRecorder
 		final List<VkBarrier<VkImageMemoryBarrier>> imageBarriers = new ArrayList<>();
 		final List<VkBufferBarrier> bufferBarriers = new ArrayList<>();
 
-		for (final var barrier : barriers)
+		final var pipelineBarriers = pipelineBarrier.getBarriers();
+		barrierAllocations = new ArrayList<>(pipelineBarriers.size());
+		for (final var barrier : pipelineBarriers)
+		{
+			final var barrierAllocation = barrier.adapt(IBarrierAdapter.class);
+			barrierAllocations.add(barrierAllocation);
+		}
+
+		for (final var barrier : this.barrierAllocations)
 		{
 			if (barrier instanceof IImageBarrierAdapter barrierAdapter)
 			{
@@ -70,6 +79,8 @@ public final class PipelineBarrierRecorder implements IPipelineTaskRecorder
 
 		imageBarrierInfos = new VkImageBarriers(srcQueueIndex, dstQueueIndex, imageBarriers);
 		bufferBarrierInfos = new VkBufferBarriers(srcQueueIndex, dstQueueIndex, bufferBarriers);
+
+		loaded = true;
 	}
 
 	@Override
@@ -81,7 +92,12 @@ public final class PipelineBarrierRecorder implements IPipelineTaskRecorder
 	@Override
 	public void update(int index)
 	{
-		for (final var barrier : barriers)
+		if (loaded == false)
+		{
+			load();
+		}
+
+		for (final var barrier : barrierAllocations)
 		{
 			barrier.update(index);
 		}

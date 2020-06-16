@@ -1,41 +1,33 @@
 package org.sheepy.lily.vulkan.process.graphic.resource;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
-
-import static org.lwjgl.vulkan.KHRSwapchain.vkGetSwapchainImagesKHR;
-
-@ModelExtender(scope = SwapImageAttachment.class)
-@Adapter
-public final class SwapImageAttachmentAdapter implements IExtender
-{
-	private long[] swapChainImages = null;
-
-	public void allocate(final IVulkanContext context, long swapChainPtr)
-	{
-		final var vkDevice = context.getVkDevice();
-		final int[] pImageCount = new int[1];
-		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, null);
-		final int swapImageCount = pImageCount[0];
-		swapChainImages = new long[swapImageCount];
-		vkGetSwapchainImagesKHR(vkDevice, swapChainPtr, pImageCount, swapChainImages);
-	}
-
-	public void free()
-	{
-		swapChainImages = null;
-	}
-
-	public int getImageCount()
-	{
-		return swapChainImages != null ? swapChainImages.length : 0;
-	}
-
-	public long getImagePtr(int index)
-	{
-		return swapChainImages[index];
-	}
-}
+import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
+import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
+//
+//@ModelExtender(scope = SwapImageAttachment.class)
+//@Allocation
+//@AllocationDependency(parent = SwapchainConfiguration.class, type = SwapChainAllocation.class)
+//public final class SwapImageAttachmentAdapter implements IExtender
+//{
+//	private final SwapChainAllocation swapChain;
+//
+//	private SwapImageAttachmentAdapter(@InjectDependency(index = 0) SwapChainAllocation swapChain)
+//	{
+//		this.swapChain = swapChain;
+//	}
+//
+//	public int getImageCount()
+//	{
+//		return swapChain.getImageCount();
+//	}
+//
+//	public long getImagePtr(int index)
+//	{
+//		return swapChain.getImagePtr(index);
+//	}
+//}

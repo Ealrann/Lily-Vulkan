@@ -17,7 +17,6 @@ import java.util.List;
 
 @ModelExtender(scope = ComputeExecutionRecorder.class)
 @Allocation(context = ProcessContext.class)
-@AllocationChild(parent = ComputeProcess.class, features = {ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES})
 @AllocationDependency(parent = ComputeProcess.class, features = {ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IRecordableExtender.class)
 public final class ComputeExecutionRecordersAllocation extends ExecutionRecordersAllocation implements IExtender
 {
@@ -32,7 +31,6 @@ public final class ComputeExecutionRecordersAllocation extends ExecutionRecorder
 
 		final var computeContext = context;
 		final var process = computeContext.getProcess();
-
 		final var waitForEmitters = gatherWaitDatas(process);
 		final var signals = gatherSinalSemaphores(process);
 		final var commandBuffer = new ComputeCommandBuffer(context);

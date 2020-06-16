@@ -3,7 +3,9 @@ package org.sheepy.lily.vulkan.core.descriptor;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.sheepy.lily.core.api.allocation.annotation.*;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -11,32 +13,37 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
-import java.util.List;
-
 import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = DescriptorPool.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationChild(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS)
-@AllocationDependency(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS, type = IDescriptorSetAllocation.class)
 public final class DescriptorPoolAllocation implements IExtender
 {
 	private static final String FAILED_TO_CREATE_DESCRIPTOR_POOL = "Failed to create descriptor pool";
 
-	private final List<IDescriptorSetAllocation> descriptorSets;
 	private final long ptr;
+	private final DescriptorPool descriptorPool;
 	private boolean hasChanged = false;
 
-	public DescriptorPoolAllocation(ExecutionContext context,
-									@InjectDependency(index = 0) List<IDescriptorSetAllocation> descriptorSets)
+	public DescriptorPoolAllocation(DescriptorPool descriptorPool, ExecutionContext context)
 	{
+		this.descriptorPool = descriptorPool;
+		final var descriptorSets = descriptorPool.getDescriptorSets();
 		final var vkDevice = context.getVkDevice();
 		final int descriptorSetCount = descriptorSets.size();
 		int poolSize = 0;
 		for (int i = 0; i < descriptorSetCount; i++)
 		{
 			final var descriptorSet = descriptorSets.get(i);
-			poolSize += descriptorSet.descriptorCount();
+			for (final var descriptor : descriptorSet.getDescriptors())
+			{
+				final var adapter = descriptor.adapt(IDescriptorAdapter.class);
+				if (adapter.sizeInPool() >= 0)
+				{
+					poolSize++;
+				}
+			}
 		}
 
 		if (poolSize > 0)
@@ -45,7 +52,17 @@ public final class DescriptorPoolAllocation implements IExtender
 			for (int i = 0; i < descriptorSetCount; i++)
 			{
 				final var descriptorSet = descriptorSets.get(i);
-				descriptorSet.fillPoolSizes(poolSizes);
+				for (final var descriptor : descriptorSet.getDescriptors())
+				{
+					final var adapter = descriptor.adapt(IDescriptorAdapter.class);
+					final int sizeInPool = adapter.sizeInPool();
+					if (sizeInPool >= 0)
+					{
+						final var p = poolSizes.get();
+						p.type(descriptor.getType().getValue());
+						p.descriptorCount(sizeInPool);
+					}
+				}
 			}
 			poolSizes.flip();
 
@@ -58,28 +75,22 @@ public final class DescriptorPoolAllocation implements IExtender
 			Logger.check(FAILED_TO_CREATE_DESCRIPTOR_POOL,
 						 () -> vkCreateDescriptorPool(vkDevice, poolInfo, null, aDescriptor));
 			ptr = aDescriptor[0];
-
-			for (int i = 0; i < descriptorSetCount; i++)
-			{
-				final var descriptorSet = descriptorSets.get(i);
-				descriptorSet.allocate(context, ptr);
-			}
 		}
 		else
 		{
 			ptr = 0;
 		}
-
-		this.descriptorSets = List.copyOf(descriptorSets);
 	}
 
 	public void prepare()
 	{
+		final var descriptorSets = descriptorPool.getDescriptorSets();
 		for (int i = 0; i < descriptorSets.size(); i++)
 		{
 			final var descriptorSet = descriptorSets.get(i);
-			descriptorSet.prepare();
-			hasChanged |= descriptorSet.hasChanged();
+			final var descriptorSetAllocation = descriptorSet.adapt(IDescriptorSetAllocation.class);
+			descriptorSetAllocation.prepare();
+			hasChanged |= descriptorSetAllocation.hasChanged();
 		}
 	}
 
@@ -92,10 +103,12 @@ public final class DescriptorPoolAllocation implements IExtender
 	{
 		if (hasChanged)
 		{
+			final var descriptorSets = descriptorPool.getDescriptorSets();
 			for (int i = 0; i < descriptorSets.size(); i++)
 			{
 				final var descriptorSet = descriptorSets.get(i);
-				descriptorSet.updateDescriptorSet(stack);
+				final var descriptorSetAllocation = descriptorSet.adapt(IDescriptorSetAllocation.class);
+				descriptorSetAllocation.updateDescriptorSet(stack);
 			}
 			hasChanged = false;
 		}
@@ -105,13 +118,6 @@ public final class DescriptorPoolAllocation implements IExtender
 	public void free(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
-
-		for (int i = 0; i < descriptorSets.size(); i++)
-		{
-			final var descriptorSet = descriptorSets.get(i);
-			descriptorSet.free(context);
-		}
-
 		vkDestroyDescriptorPool(vkDevice, ptr, null);
 	}
 

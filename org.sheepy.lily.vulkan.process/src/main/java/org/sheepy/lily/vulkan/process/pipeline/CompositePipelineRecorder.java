@@ -1,8 +1,10 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
-import org.sheepy.lily.core.api.allocation.annotation.*;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
+import org.sheepy.lily.core.api.util.ModelExplorer;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineRecordable;
 import org.sheepy.lily.vulkan.model.process.CompositePipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -13,26 +15,26 @@ import java.util.List;
 @ModelExtender(scope = CompositePipeline.class)
 @Allocation
 @AllocationChild(features = ProcessPackage.COMPOSITE_PIPELINE__PIPELINES)
-@AllocationDependency(features = ProcessPackage.COMPOSITE_PIPELINE__PIPELINES, type = IPipelineRecordable.class)
 public class CompositePipelineRecorder implements IPipelineRecordable
 {
+	private static final ModelExplorer PIPELINES_EXPLORER = new ModelExplorer(List.of(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES));
 	private final CompositePipeline pipeline;
-	private List<IPipelineRecordable> recordables;
+
+	private List<IPipelineRecordable> recordables = List.of();
 	private boolean dirty = false;
 
-	public CompositePipelineRecorder(CompositePipeline pipeline,
-									 IObservatoryBuilder observatory,
-									 @InjectDependency(index = 0) List<IPipelineRecordable> recordables)
+	public CompositePipelineRecorder(CompositePipeline pipeline, IObservatoryBuilder observatory)
 	{
 		this.pipeline = pipeline;
-		this.recordables = recordables;
 		observatory.listenNoParam(() -> dirty = true, ProcessPackage.COMPOSITE_PIPELINE__REPEAT);
+		observatory.explore(ProcessPackage.COMPOSITE_PIPELINE__PIPELINES)
+				   .adapt(IPipelineRecordable.class)
+				   .listenAdaptationNoParam(this::updateRecordables);
 	}
 
-	@UpdateDependency(index = 0)
-	private void updateRecordables(List<IPipelineRecordable> recordables)
+	private void updateRecordables()
 	{
-		this.recordables = recordables;
+		this.recordables = PIPELINES_EXPLORER.exploreAdapt(pipeline, IPipelineRecordable.class);
 		dirty = true;
 	}
 
