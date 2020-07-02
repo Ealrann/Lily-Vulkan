@@ -5,10 +5,10 @@ import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.model.TestResourceFactory.ResourceContainer;
-import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -21,20 +21,16 @@ public class GrowEngineFactory
 
 	public static IEngine build()
 	{
-		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
+		final var engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 		final var resourceContainer = TestResourceFactory.build(PART_COUNT);
 		final var process = createComputeProcessPool(resourceContainer);
-
 		final var pipeline = createPipeline();
-		process.getPipelinePkg().getPipelines().add(pipeline);
-
-		final var taskManager = new TaskManager(resourceContainer, PART_COUNT);
-		taskManager.install(pipeline.getTaskPkg().getTasks());
-		process.getExtensionPkg().getExtensions().add(taskManager.indexConfiguration);
-
+		final var taskManager = new TaskManager(resourceContainer);
 		final var cadence = buildCadence(process, MAX_COUNT);
-		process.setCadence(cadence);
 
+		process.getPipelinePkg().getPipelines().add(pipeline);
+		taskManager.install(pipeline.getTaskPkg().getTasks());
+		process.setCadence(cadence);
 		engine.getProcesses().add(process);
 
 		return engine;
@@ -71,6 +67,9 @@ public class GrowEngineFactory
 	{
 		final ComputeProcess process = ComputeFactory.eINSTANCE.createComputeProcess();
 		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
+		final ComputeExecutionManager computeExecutionManager = ComputeFactory.eINSTANCE.createComputeExecutionManager();
+		computeExecutionManager.setIndexCount(PART_COUNT);
+		process.setExecutionManager(computeExecutionManager);
 
 		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		process.setPipelinePkg(pipelinePkg);

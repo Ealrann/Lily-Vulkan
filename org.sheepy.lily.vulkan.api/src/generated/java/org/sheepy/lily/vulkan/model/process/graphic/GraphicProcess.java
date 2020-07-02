@@ -17,7 +17,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getExecutionRecorder <em>Execution Recorder</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getExecutionManager <em>Execution Manager</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getAttachmentPkg <em>Attachment Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getSubpasses <em>Subpasses</em>}</li>
  * </ul>
@@ -51,26 +51,26 @@ public interface GraphicProcess extends AbstractProcess, Maintainable<GraphicPro
 	void setConfiguration(GraphicConfiguration value);
 
 	/**
-	 * Returns the value of the '<em><b>Execution Recorder</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Execution Manager</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Execution Recorder</em>' containment reference.
-	 * @see #setExecutionRecorder(GraphicExecutionRecorder)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_ExecutionRecorder()
+	 * @return the value of the '<em>Execution Manager</em>' containment reference.
+	 * @see #setExecutionManager(GraphicExecutionManager)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_ExecutionManager()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	GraphicExecutionRecorder getExecutionRecorder();
+	GraphicExecutionManager getExecutionManager();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getExecutionRecorder <em>Execution Recorder</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getExecutionManager <em>Execution Manager</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Execution Recorder</em>' containment reference.
-	 * @see #getExecutionRecorder()
+	 * @param value the new value of the '<em>Execution Manager</em>' containment reference.
+	 * @see #getExecutionManager()
 	 * @generated
 	 */
-	void setExecutionRecorder(GraphicExecutionRecorder value);
+	void setExecutionManager(GraphicExecutionManager value);
 
 	/**
 	 * Returns the value of the '<em><b>Attachment Pkg</b></em>' containment reference.

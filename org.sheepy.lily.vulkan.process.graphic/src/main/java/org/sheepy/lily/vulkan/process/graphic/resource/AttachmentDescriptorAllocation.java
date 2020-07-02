@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.allocation.annotation.UpdateDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
@@ -28,12 +27,6 @@ public final class AttachmentDescriptorAllocation implements IDescriptorAllocati
 												  EImageLayout.SHADER_READ_ONLY_OPTIMAL,
 												  descriptor.getType(),
 												  descriptor.getShaderStages());
-	}
-
-	@UpdateDependency(index = 0)
-	public void updateView(IVkImageAllocation imageAllocation)
-	{
-		vkDescriptor.updateViewPtr(imageAllocation.getViewPtr());
 	}
 
 	@Override

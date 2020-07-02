@@ -23,21 +23,9 @@ public class ImageArrayDescriptorAllocation implements IDescriptorAllocation
 	public ImageArrayDescriptorAllocation(ImageArrayDescriptor descriptor,
 										  @InjectDependency(index = 0) List<IVkImageAllocation> imageAllocations)
 	{
-		final var images = descriptor.getImages();
 		final var initialLayout = descriptor.getInitialLayout();
-		vkDescriptor = new VkImageArrayDescriptor(images.size(),
-												  initialLayout,
-												  descriptor.getType(),
-												  descriptor.getShaderStages());
-
-		final long[] viewPtrs = new long[images.size()];
-		for (int i = 0; i < imageAllocations.size(); i++)
-		{
-			final var imageAllocation = imageAllocations.get(i);
-			viewPtrs[i] = imageAllocation.getViewPtr();
-		}
-
-		vkDescriptor.updateViewPtrs(viewPtrs);
+		final long[] viewPtrs = imageAllocations.stream().mapToLong(IVkImageAllocation::getViewPtr).toArray();
+		vkDescriptor = new VkImageArrayDescriptor(viewPtrs, initialLayout, descriptor.getType());
 	}
 
 	@Override

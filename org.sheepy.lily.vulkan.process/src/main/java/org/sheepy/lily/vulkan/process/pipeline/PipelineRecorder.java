@@ -1,52 +1,40 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
+import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineRecordable;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
+import java.util.List;
+
 @ModelExtender(scope = Pipeline.class)
-@Adapter
+@Allocation
+@AllocationDependency(features = {ProcessPackage.PIPELINE__TASK_PKG, ProcessPackage.TASK_PKG__TASKS}, type = IPipelineTaskRecorder.class)
 public final class PipelineRecorder implements IPipelineRecordable
 {
 	private final TaskPipelineManager taskManager;
 	private final Pipeline pipeline;
 
-	private boolean recordNeeded = true;
-
-	private PipelineRecorder(Pipeline pipeline, IObservatoryBuilder observatory)
+	private PipelineRecorder(Pipeline pipeline, @InjectDependency(index = 0) List<IPipelineTaskRecorder> recorders)
 	{
 		this.pipeline = pipeline;
-		taskManager = new TaskPipelineManager(pipeline, observatory);
-		observatory.listen(this::pipelineEnabledChange, ProcessPackage.PIPELINE__ENABLED);
-	}
-
-	private void pipelineEnabledChange(Notification notification)
-	{
-		if (notification.getOldBooleanValue() != notification.getNewBooleanValue())
-		{
-			recordNeeded = true;
-		}
+		taskManager = new TaskPipelineManager(pipeline, recorders);
 	}
 
 	@Override
-	public void update(final int index)
-	{
-		taskManager.update(index);
-	}
-
-	@Override
-	public void record(final RecordContext context)
+	public void record(final IRecordable.RecordContext context)
 	{
 		if (isActive())
 		{
 			taskManager.record(context);
 		}
-		recordNeeded = false;
 	}
 
 	@Override
@@ -59,11 +47,5 @@ public final class PipelineRecorder implements IPipelineRecordable
 	public boolean isActive()
 	{
 		return pipeline.isEnabled();
-	}
-
-	@Override
-	public boolean isRecordDirty(final int index)
-	{
-		return recordNeeded || taskManager.isRecordDirty(index);
 	}
 }

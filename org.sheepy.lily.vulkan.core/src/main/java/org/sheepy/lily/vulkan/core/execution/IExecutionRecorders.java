@@ -1,12 +1,12 @@
 package org.sheepy.lily.vulkan.core.execution;
 
 import org.sheepy.lily.core.api.extender.IExtender;
+import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 
 public interface IExecutionRecorders extends IExtender
 {
-	Integer acquire();
-	IExecutionRecorder prepare(int index);
+	IExecutionPlayer acquire();
 	void checkFence();
 	void waitIdle();
-	void invalidate();
+	int getExecutionCount();
 }

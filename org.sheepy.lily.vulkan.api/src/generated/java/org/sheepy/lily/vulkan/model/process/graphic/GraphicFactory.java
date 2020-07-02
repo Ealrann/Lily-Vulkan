@@ -32,6 +32,15 @@ public interface GraphicFactory extends EFactory
 	GraphicConfiguration createGraphicConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Execution Manager</em>'.
+	 * @generated
+	 */
+	GraphicExecutionManager createGraphicExecutionManager();
+
+	/**
 	 * Returns a new object of class '<em>Execution Recorder</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -2,10 +2,9 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -22,7 +21,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getMode <em>Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#isPrepareDuringUpdate <em>Prepare During Update</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getBufferReference <em>Buffer Reference</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getTransferBuffer <em>Transfer Buffer</em>}</li>
  * </ul>
  *
@@ -130,16 +129,26 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 	void setStage(ECommandStage value);
 
 	/**
-	 * Returns the value of the '<em><b>Parts</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.BufferPart}.
+	 * Returns the value of the '<em><b>Buffer Reference</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parts</em>' reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_Parts()
-	 * @model required="true"
+	 * @return the value of the '<em>Buffer Reference</em>' containment reference.
+	 * @see #setBufferReference(IBufferReference)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_BufferReference()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<BufferPart> getParts();
+	IBufferReference getBufferReference();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getBufferReference <em>Buffer Reference</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Buffer Reference</em>' containment reference.
+	 * @see #getBufferReference()
+	 * @generated
+	 */
+	void setBufferReference(IBufferReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Transfer Buffer</b></em>' reference.

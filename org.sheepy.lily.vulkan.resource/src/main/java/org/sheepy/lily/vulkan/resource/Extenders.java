@@ -3,7 +3,12 @@ package org.sheepy.lily.vulkan.resource;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.resource.buffer.*;
+import org.sheepy.lily.vulkan.resource.buffer.reference.CircularBufferReferenceAllocation;
+import org.sheepy.lily.vulkan.resource.buffer.reference.FixedBufferReferenceAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
+import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPoolAllocation;
+import org.sheepy.lily.vulkan.resource.descriptor.DescriptorSetAllocation;
+import org.sheepy.lily.vulkan.resource.descriptor.DescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.resource.file.LocalResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
@@ -34,6 +39,7 @@ public class Extenders implements IExtenderProvider
 					   BufferDescriptorAdapter.class,
 					   ImageDescriptorAdapter.class,
 					   ImageDescriptorAllocation.class,
+					   SampledImageDescriptorAdapter.class,
 					   SampledImageDescriptorAllocation.class,
 					   ImageArrayDescriptorAllocation.class,
 					   SamplerDescriptorAllocation.class,
@@ -41,6 +47,11 @@ public class Extenders implements IExtenderProvider
 					   ModuleResourceAdapter.class,
 					   StringModuleResourceAdapter.class,
 					   FontImageAllocation.class,
-					   GenericConstantBufferAdapter.class);
+					   GenericConstantBufferAdapter.class,
+					   DescriptorPoolAllocation.class,
+					   DescriptorSetLayoutAllocation.class,
+					   DescriptorSetAllocation.class,
+					   FixedBufferReferenceAllocation.class,
+					   CircularBufferReferenceAllocation.class);
 	}
 }

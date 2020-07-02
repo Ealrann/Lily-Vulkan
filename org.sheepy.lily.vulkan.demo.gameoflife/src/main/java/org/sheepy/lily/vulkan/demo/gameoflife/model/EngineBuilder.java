@@ -11,13 +11,8 @@ import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
-import org.sheepy.lily.vulkan.model.binding.BindingConfiguration;
-import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
+import org.sheepy.lily.vulkan.model.process.compute.*;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
@@ -82,7 +77,7 @@ public final class EngineBuilder
 		loadColorAttachment();
 		graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
 		graphicProcess.setConfiguration(configuration);
-		graphicProcess.setExecutionRecorder(GraphicFactory.eINSTANCE.createGraphicExecutionRecorder());
+		graphicProcess.setExecutionManager(GraphicFactory.eINSTANCE.createGraphicExecutionManager());
 		graphicProcess.setCadence(buildCadence(FRAME_COUNT));
 		graphicProcess.setResetAllowed(true);
 
@@ -118,8 +113,12 @@ public final class EngineBuilder
 		lifeProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
 		pixelProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
 
-		lifeProcess.setExecutionRecorder(ComputeFactory.eINSTANCE.createComputeExecutionRecorder());
-		pixelProcess.setExecutionRecorder(ComputeFactory.eINSTANCE.createComputeExecutionRecorder());
+		final ComputeExecutionManager lifeExecutionManager = ComputeFactory.eINSTANCE.createComputeExecutionManager();
+		final ComputeExecutionManager pixelExecutionManager = ComputeFactory.eINSTANCE.createComputeExecutionManager();
+		lifeExecutionManager.setIndexCount(2);
+		pixelExecutionManager.setIndexCount(1);
+		lifeProcess.setExecutionManager(lifeExecutionManager);
+		pixelProcess.setExecutionManager(pixelExecutionManager);
 
 		createBarrierProcess();
 
@@ -165,15 +164,6 @@ public final class EngineBuilder
 		pixelDescriptorSet2.getDescriptors().add(boardBuffer1Descriptor);
 		pixelDescriptorSet2.getDescriptors().add(boardImageDescriptor);
 
-		final var lifeBindingConfiguration = BindingFactory.eINSTANCE.createBindingConfiguration();
-		lifeBindingConfiguration.getDescriptorsSets().add(lifeDescriptorSet1);
-		lifeBindingConfiguration.getDescriptorsSets().add(lifeDescriptorSet2);
-		lifeBindingConfiguration.setDescriptorSetStride(1);
-		final var pixelBindingConfiguration = BindingFactory.eINSTANCE.createBindingConfiguration();
-		pixelBindingConfiguration.getDescriptorsSets().add(pixelDescriptorSet1);
-		pixelBindingConfiguration.getDescriptorsSets().add(pixelDescriptorSet2);
-		lifeBindingConfiguration.setDescriptorSetStride(1);
-
 		final var lifeDescriptorPool = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
 		lifeDescriptorPool.getDescriptorSets().add(lifeDescriptorSet1);
 		lifeDescriptorPool.getDescriptorSets().add(lifeDescriptorSet2);
@@ -183,13 +173,8 @@ public final class EngineBuilder
 		lifeProcess.setDescriptorPool(lifeDescriptorPool);
 		pixelProcess.setDescriptorPool(pixelDescriptorPool);
 
-		final var lifePipeline = createPipeline(lifeShader, lifeBindingConfiguration);
-		final var pixelPipeline = createPipeline(life2pixelShader, pixelBindingConfiguration);
-
-		final var rotateTask = BindingFactory.eINSTANCE.createRotateConfiguration();
-		rotateTask.getConfigurations().add(lifeBindingConfiguration);
-		rotateTask.getConfigurations().add(pixelBindingConfiguration);
-		lifePipeline.getTaskPkg().getTasks().add(rotateTask);
+		final var lifePipeline = createPipeline(lifeShader, lifeDescriptorSet1, lifeDescriptorSet2);
+		final var pixelPipeline = createPipeline(life2pixelShader, pixelDescriptorSet1, pixelDescriptorSet2);
 
 		final var lifePipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		lifePipelinePkg.getPipelines().add(lifePipeline);
@@ -209,11 +194,6 @@ public final class EngineBuilder
 		sharedDescriptors.getDescriptors().add(boardBuffer2Descriptor);
 		sharedDescriptors.getDescriptors().add(boardImageDescriptor);
 
-		lifeProcess.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
-		lifeProcess.getExtensionPkg().getExtensions().add(lifeBindingConfiguration);
-		pixelProcess.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
-		pixelProcess.getExtensionPkg().getExtensions().add(pixelBindingConfiguration);
-
 		lifeProcess.setResetAllowed(true);
 		pixelProcess.setResetAllowed(true);
 	}
@@ -222,7 +202,7 @@ public final class EngineBuilder
 	{
 		barrierProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		barrierProcess.setConfiguration(ComputeFactory.eINSTANCE.createComputeConfiguration());
-		barrierProcess.setExecutionRecorder(ComputeFactory.eINSTANCE.createComputeExecutionRecorder());
+		barrierProcess.setExecutionManager(ComputeFactory.eINSTANCE.createComputeExecutionManager());
 		barrierProcess.setPipelinePkg(ProcessFactory.eINSTANCE.createPipelinePkg());
 		barrierProcess.setResetAllowed(true);
 
@@ -251,25 +231,22 @@ public final class EngineBuilder
 		barrierProcess.setCadence(cadence);
 	}
 
-	private ComputePipeline createPipeline(Shader shader, BindingConfiguration bindingConfiguration)
+	private ComputePipeline createPipeline(Shader shader, DescriptorSet ds1, DescriptorSet ds2)
 	{
 		final var bindTask = ProcessFactory.eINSTANCE.createBindDescriptorSets();
-		final var descriptorSet1 = bindingConfiguration.getDescriptorsSets().get(0);
 		bindTask.setBindPoint(EBindPoint.COMPUTE);
-		bindTask.getDescriptorSets().add(descriptorSet1);
+		bindTask.getDescriptorSets().add(ds1);
+		bindTask.getDescriptorSets().add(ds2);
+		bindTask.setStride(1);
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		final var dispatch = createDispatchTask();
-
-		final var configureBindTask = BindingFactory.eINSTANCE.createConfigureBind();
-		configureBindTask.getBindTasks().add(bindTask);
-		bindingConfiguration.getTasks().add(configureBindTask);
 
 		final var pipeline = ComputeFactory.eINSTANCE.createComputePipeline();
 		pipeline.setTaskPkg(taskPkg);
 		taskPkg.getTasks().add(bindTask);
 		taskPkg.getTasks().add(dispatch);
 
-		pipeline.getLayout().addAll(bindingConfiguration.getDescriptorsSets());
+		pipeline.getLayout().add(ds1);
 		pipeline.setShader(shader);
 		pipeline.setStage(ECommandStage.COMPUTE);
 

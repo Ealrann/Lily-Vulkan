@@ -6,15 +6,17 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.ICompositor;
+import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.util.SubpassUtil;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class SubpassManager
 {
@@ -22,10 +24,13 @@ public class SubpassManager
 	private final Map<ICompositor, Subpass> subpassMap = new HashMap<>();
 	private final GraphicProcess process;
 	private IVulkanApiContext context;
+	private final Scene scene;
 
 	public SubpassManager(GraphicProcess process)
 	{
 		this.process = process;
+		final var application = ModelUtil.getApplication(process);
+		scene = application.getScene();
 
 		final var observatoryBuilder = IObservatoryBuilder.newObservatoryBuilder();
 		observatoryBuilder.explore(ApplicationPackage.SCENE__COMPOSITORS, ICompositor.class)
@@ -36,17 +41,11 @@ public class SubpassManager
 	public void start(final IVulkanApiContext context)
 	{
 		this.context = context;
-		final var application = ModelUtil.getApplication(process);
-		final var scene = application.getScene();
-
 		observatory.observe(scene);
 	}
 
 	public void stop(final IVulkanApiContext context)
 	{
-		final var application = ModelUtil.getApplication(process);
-		final var scene = application.getScene();
-
 		observatory.shut(scene);
 		this.context = null;
 	}
@@ -58,6 +57,7 @@ public class SubpassManager
 			final var compositor = compositors.get(i);
 			setupScenePart(compositor);
 		}
+		resolveAttachments();
 	}
 
 	private void uninstallCompositors(List<ICompositor> compositors)
@@ -65,9 +65,31 @@ public class SubpassManager
 		for (int i = 0; i < compositors.size(); i++)
 		{
 			final var compositor = compositors.get(i);
-			final var subpass = subpassMap.get(compositor);
-			EcoreUtil.delete(subpass);
-			subpassMap.remove(compositor);
+			uninstallScenePart(compositor);
+		}
+		resolveAttachments();
+	}
+
+	private void resolveAttachments()
+	{
+		final var renderPass = process.getConfiguration().getRenderPass();
+		final var newAttachments = process.getSubpasses()
+										  .stream()
+										  .map(Subpass::getAttachmentRefPkg)
+										  .filter(Objects::nonNull)
+										  .map(AttachmentRefPkg::getAttachmentRefs)
+										  .flatMap(List::stream)
+										  .map(AttachmentRef::getAttachment)
+										  .filter(ExtraAttachment.class::isInstance)
+										  .map(ExtraAttachment.class::cast)
+										  .distinct()
+										  .collect(Collectors.toUnmodifiableList());
+
+		final var passAttachments = renderPass.getAttachments();
+		if (!newAttachments.equals(passAttachments))
+		{
+			passAttachments.clear();
+			passAttachments.addAll(newAttachments);
 		}
 	}
 
@@ -81,6 +103,13 @@ public class SubpassManager
 		process.getSubpasses().add(subpass);
 
 		subpassMap.put(part, subpass);
+	}
+
+	private void uninstallScenePart(final ICompositor compositor)
+	{
+		final var subpass = subpassMap.get(compositor);
+		EcoreUtil.delete(subpass);
+		subpassMap.remove(compositor);
 	}
 
 	private static int findAvailableIndex(GraphicProcess process)

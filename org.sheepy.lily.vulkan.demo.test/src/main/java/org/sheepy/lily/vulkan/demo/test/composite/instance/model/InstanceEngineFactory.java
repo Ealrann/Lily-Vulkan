@@ -29,11 +29,10 @@ public class InstanceEngineFactory
 
 		final var pipeline = createPipeline(resourceContainer);
 		process.getPipelinePkg().getPipelines().add(pipeline);
-		pipeline.getLayout().add(resourceContainer.ds);
+		pipeline.getLayout().add(resourceContainer.dSets.get(0));
 
-		final var taskManager = new InstanceTaskManager(resourceContainer, PART_COUNT);
+		final var taskManager = new InstanceTaskManager(resourceContainer);
 		taskManager.install(pipeline.getTaskPkg().getTasks());
-		process.getExtensionPkg().getExtensions().add(taskManager.indexConfiguration);
 
 		final var cadence = buildCadence(process, MAX_COUNT);
 
@@ -63,7 +62,6 @@ public class InstanceEngineFactory
 			countUntil.setTotalCount(frameCount);
 			executeIf.getConditions().add(countUntil);
 			executeIf.getTasks().add(closeApp);
-
 			cadence.getTasks().add(executeIf);
 		}
 
@@ -72,8 +70,11 @@ public class InstanceEngineFactory
 
 	private static ComputeProcess createComputeProcessPool(ResourceContainer resourceContainer)
 	{
-		final ComputeProcess process = ComputeFactory.eINSTANCE.createComputeProcess();
+		final var process = ComputeFactory.eINSTANCE.createComputeProcess();
 		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
+		final var computeExecutionManager = ComputeFactory.eINSTANCE.createComputeExecutionManager();
+		computeExecutionManager.setIndexCount(PART_COUNT);
+		process.setExecutionManager(computeExecutionManager);
 
 		final var partPkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		process.setPipelinePkg(partPkg);
@@ -88,7 +89,7 @@ public class InstanceEngineFactory
 		final var descriptorPkg = VulkanFactory.eINSTANCE.createDescriptorPkg();
 		process.setDescriptorPkg(descriptorPkg);
 		final var descriptorList = descriptorPkg.getDescriptors();
-		descriptorList.addAll(resourceContainer.ds.getDescriptors());
+		descriptorList.addAll(resourceContainer.descriptors);
 
 		process.setResetAllowed(true);
 
@@ -104,7 +105,7 @@ public class InstanceEngineFactory
 		res.setStage(ECommandStage.COMPUTE);
 		final var dsPkg = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
 		res.setDescriptorPool(dsPkg);
-		dsPkg.getDescriptorSets().add(resourceContainer.ds);
+		dsPkg.getDescriptorSets().addAll(resourceContainer.dSets);
 		return res;
 	}
 }

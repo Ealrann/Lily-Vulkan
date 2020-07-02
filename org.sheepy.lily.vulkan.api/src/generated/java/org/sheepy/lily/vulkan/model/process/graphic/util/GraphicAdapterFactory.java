@@ -23,9 +23,10 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
-import org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
@@ -99,6 +100,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseGraphicConfiguration(GraphicConfiguration object)
 			{
 				return createGraphicConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseGraphicExecutionManager(GraphicExecutionManager object)
+			{
+				return createGraphicExecutionManagerAdapter();
 			}
 			@Override
 			public Adapter caseGraphicExecutionRecorder(GraphicExecutionRecorder object)
@@ -281,9 +287,14 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createProcessConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseProcessExecutionRecorder(ProcessExecutionRecorder object)
+			public Adapter caseProcessExecutionManager(ProcessExecutionManager object)
 			{
-				return createProcessExecutionRecorderAdapter();
+				return createProcessExecutionManagerAdapter();
+			}
+			@Override
+			public Adapter caseExecutionRecorder(ExecutionRecorder object)
+			{
+				return createExecutionRecorderAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -402,6 +413,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGraphicConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager <em>Execution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager
+	 * @generated
+	 */
+	public Adapter createGraphicExecutionManagerAdapter()
 	{
 		return null;
 	}
@@ -947,16 +973,31 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder <em>Execution Recorder</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager <em>Execution Manager</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionManager
 	 * @generated
 	 */
-	public Adapter createProcessExecutionRecorderAdapter()
+	public Adapter createProcessExecutionManagerAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ExecutionRecorder
+	 * @generated
+	 */
+	public Adapter createExecutionRecorderAdapter()
 	{
 		return null;
 	}

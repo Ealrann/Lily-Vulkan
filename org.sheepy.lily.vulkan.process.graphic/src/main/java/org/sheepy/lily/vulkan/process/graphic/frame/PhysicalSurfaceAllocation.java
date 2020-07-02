@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.IExtender;
@@ -33,11 +33,11 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	private final Capabilities capabilities;
 	private final VulkanQueue presentQueue;
 	private final VkSurface surface;
-	private final IAllocationConfigurator allocationConfigurator;
+	private final IAllocationState allocationConfigurator;
 	private final LogicalDevice logicalDevice;
 
 	private PhysicalSurfaceAllocation(PhysicalSurface physicalSurface,
-									  IAllocationConfigurator allocationConfigurator,
+									  IAllocationState allocationConfigurator,
 									  ProcessContext context)
 	{
 		this.allocationConfigurator = allocationConfigurator;

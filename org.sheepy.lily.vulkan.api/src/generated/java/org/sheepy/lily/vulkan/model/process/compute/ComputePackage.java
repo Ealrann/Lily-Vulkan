@@ -205,13 +205,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Execution Recorder</b></em>' containment reference.
+	 * The feature id for the '<em><b>Execution Manager</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__EXECUTION_RECORDER = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
+	int COMPUTE_PROCESS__EXECUTION_MANAGER = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -469,6 +469,52 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_CONFIGURATION_OPERATION_COUNT = ProcessPackage.PROCESS_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionManagerImpl <em>Execution Manager</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionManagerImpl
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeExecutionManager()
+	 * @generated
+	 */
+	int COMPUTE_EXECUTION_MANAGER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Recorders</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_EXECUTION_MANAGER__RECORDERS = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Index Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_EXECUTION_MANAGER__INDEX_COUNT = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Execution Manager</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_EXECUTION_MANAGER_FEATURE_COUNT = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Execution Manager</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_EXECUTION_MANAGER_OPERATION_COUNT = ProcessPackage.PROCESS_EXECUTION_MANAGER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionRecorderImpl <em>Execution Recorder</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -476,7 +522,16 @@ public interface ComputePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeExecutionRecorder()
 	 * @generated
 	 */
-	int COMPUTE_EXECUTION_RECORDER = 4;
+	int COMPUTE_EXECUTION_RECORDER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_EXECUTION_RECORDER__INDEX = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
@@ -485,7 +540,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.PROCESS_EXECUTION_RECORDER_FEATURE_COUNT + 0;
+	int COMPUTE_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Execution Recorder</em>' class.
@@ -494,7 +549,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_EXECUTION_RECORDER_OPERATION_COUNT = ProcessPackage.PROCESS_EXECUTION_RECORDER_OPERATION_COUNT + 0;
+	int COMPUTE_EXECUTION_RECORDER_OPERATION_COUNT = ProcessPackage.EXECUTION_RECORDER_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.
@@ -540,15 +595,15 @@ public interface ComputePackage extends EPackage
 	EReference getComputeProcess_Configuration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getExecutionRecorder <em>Execution Recorder</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getExecutionManager <em>Execution Manager</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Execution Recorder</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getExecutionRecorder()
+	 * @return the meta object for the containment reference '<em>Execution Manager</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getExecutionManager()
 	 * @see #getComputeProcess()
 	 * @generated
 	 */
-	EReference getComputeProcess_ExecutionRecorder();
+	EReference getComputeProcess_ExecutionManager();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline <em>Pipeline</em>}'.
@@ -625,6 +680,38 @@ public interface ComputePackage extends EPackage
 	EClass getComputeConfiguration();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager <em>Execution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Execution Manager</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager
+	 * @generated
+	 */
+	EClass getComputeExecutionManager();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getRecorders <em>Recorders</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Recorders</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getRecorders()
+	 * @see #getComputeExecutionManager()
+	 * @generated
+	 */
+	EReference getComputeExecutionManager_Recorders();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getIndexCount <em>Index Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getIndexCount()
+	 * @see #getComputeExecutionManager()
+	 * @generated
+	 */
+	EAttribute getComputeExecutionManager_IndexCount();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder <em>Execution Recorder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -633,6 +720,17 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 */
 	EClass getComputeExecutionRecorder();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder#getIndex <em>Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder#getIndex()
+	 * @see #getComputeExecutionRecorder()
+	 * @generated
+	 */
+	EAttribute getComputeExecutionRecorder_Index();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -693,12 +791,12 @@ public interface ComputePackage extends EPackage
 		EReference COMPUTE_PROCESS__CONFIGURATION = eINSTANCE.getComputeProcess_Configuration();
 
 		/**
-		 * The meta object literal for the '<em><b>Execution Recorder</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Execution Manager</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPUTE_PROCESS__EXECUTION_RECORDER = eINSTANCE.getComputeProcess_ExecutionRecorder();
+		EReference COMPUTE_PROCESS__EXECUTION_MANAGER = eINSTANCE.getComputeProcess_ExecutionManager();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl <em>Pipeline</em>}' class.
@@ -763,6 +861,32 @@ public interface ComputePackage extends EPackage
 		EClass COMPUTE_CONFIGURATION = eINSTANCE.getComputeConfiguration();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionManagerImpl <em>Execution Manager</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionManagerImpl
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeExecutionManager()
+		 * @generated
+		 */
+		EClass COMPUTE_EXECUTION_MANAGER = eINSTANCE.getComputeExecutionManager();
+
+		/**
+		 * The meta object literal for the '<em><b>Recorders</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTE_EXECUTION_MANAGER__RECORDERS = eINSTANCE.getComputeExecutionManager_Recorders();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPUTE_EXECUTION_MANAGER__INDEX_COUNT = eINSTANCE.getComputeExecutionManager_IndexCount();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionRecorderImpl <em>Execution Recorder</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -771,6 +895,14 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EClass COMPUTE_EXECUTION_RECORDER = eINSTANCE.getComputeExecutionRecorder();
+
+		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPUTE_EXECUTION_RECORDER__INDEX = eINSTANCE.getComputeExecutionRecorder_Index();
 
 	}
 

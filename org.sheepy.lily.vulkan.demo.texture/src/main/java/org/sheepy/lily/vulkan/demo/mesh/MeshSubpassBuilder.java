@@ -94,10 +94,6 @@ public final class MeshSubpassBuilder
 		indexBuffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
 		indexBuffer.setData(meshConfiguration.indexData);
 
-		final var transferBuffer = VulkanResourceFactory.eINSTANCE.createTransferBuffer();
-		transferBuffer.setInstanceCount(EInstanceCount.FIT_TO_SWAP_IMAGE_COUNT);
-		transferBuffer.setSize((long) Math.pow(2, 16));
-
 		PushConstantRange pushConstantRange = null;
 		PushConstantBuffer pushConstants = null;
 		ConstantBuffer constantBuffer = null;
@@ -190,7 +186,6 @@ public final class MeshSubpassBuilder
 
 		resourcePkg.getResources().add(vertexShader);
 		resourcePkg.getResources().add(fragmentShader);
-		resourcePkg.getResources().add(transferBuffer);
 		resourcePkg.getResources().add(vertexBuffer);
 		resourcePkg.getResources().add(indexBuffer);
 		if (constantBuffer != null) resourcePkg.getResources().add(constantBuffer);

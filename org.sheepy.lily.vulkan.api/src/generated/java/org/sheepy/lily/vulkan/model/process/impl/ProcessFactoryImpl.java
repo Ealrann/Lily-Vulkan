@@ -77,7 +77,6 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			case ProcessPackage.PROCESS_EXTENSION_PKG: return createProcessExtensionPkg();
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER: return createPrepareCompositeTransfer();
 			case ProcessPackage.SWAP_BINDINGS_TASK: return createSwapBindingsTask();
-			case ProcessPackage.PROCESS_EXECUTION_RECORDER: return createProcessExecutionRecorder();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -237,18 +236,6 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		SwapBindingsTaskImpl swapBindingsTask = new SwapBindingsTaskImpl();
 		return swapBindingsTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ProcessExecutionRecorder createProcessExecutionRecorder()
-	{
-		ProcessExecutionRecorderImpl processExecutionRecorder = new ProcessExecutionRecorderImpl();
-		return processExecutionRecorder;
 	}
 
 	/**

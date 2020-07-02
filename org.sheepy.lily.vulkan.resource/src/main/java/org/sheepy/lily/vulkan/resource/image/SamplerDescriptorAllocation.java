@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.resource.image;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.allocation.annotation.UpdateDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
@@ -23,21 +22,11 @@ public class SamplerDescriptorAllocation implements IDescriptorAllocation
 	public SamplerDescriptorAllocation(SamplerDescriptor descriptor,
 									   @InjectDependency(index = 0) ISamplerAllocation samplerAllocation)
 	{
-		vkDescriptor = new VkImageDescriptor(0,
-											 0,
+		vkDescriptor = new VkImageDescriptor(samplerAllocation.getViewPtr(),
+											 samplerAllocation.getSamplerPtr(),
 											 EImageLayout.GENERAL,
 											 descriptor.getType(),
 											 descriptor.getShaderStages());
-
-		vkDescriptor.updateSamplerPtr(samplerAllocation.getSamplerPtr());
-		vkDescriptor.updateViewPtr(samplerAllocation.getViewPtr());
-	}
-
-	@UpdateDependency(index = 0)
-	private void update(ISamplerAllocation samplerAllocation)
-	{
-		vkDescriptor.updateSamplerPtr(samplerAllocation.getSamplerPtr());
-		vkDescriptor.updateViewPtr(samplerAllocation.getViewPtr());
 	}
 
 	@Override

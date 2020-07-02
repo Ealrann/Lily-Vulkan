@@ -7,6 +7,7 @@ import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
@@ -20,12 +21,12 @@ public final class VkPipelineLayout
 {
 	private static final String CREATION_ERROR = "Failed to create pipeline layout";
 
-	private final List<IDescriptorSetAllocation> descriptorSets;
+	private final List<IDescriptorSetLayoutAllocation> descriptorSets;
 	private final List<PushConstantRange> constantRanges;
 
-	protected long pipelineLayout = -1;
+	private long pipelineLayout = -1;
 
-	public VkPipelineLayout(List<IDescriptorSetAllocation> descriptorSets, List<PushConstantRange> constantRanges)
+	public VkPipelineLayout(List<IDescriptorSetLayoutAllocation> descriptorSets, List<PushConstantRange> constantRanges)
 	{
 		this.descriptorSets = List.copyOf(descriptorSets);
 		this.constantRanges = List.copyOf(constantRanges);

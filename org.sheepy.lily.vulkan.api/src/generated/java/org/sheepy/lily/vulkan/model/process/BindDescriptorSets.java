@@ -17,6 +17,7 @@ import org.sheepy.vulkan.model.enumeration.EBindPoint;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getBindPoint <em>Bind Point</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getStride <em>Stride</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getBindDescriptorSets()
@@ -61,5 +62,28 @@ public interface BindDescriptorSets extends IPipelineTask
 	 * @generated
 	 */
 	void setBindPoint(EBindPoint value);
+
+	/**
+	 * Returns the value of the '<em><b>Stride</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stride</em>' attribute.
+	 * @see #setStride(int)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getBindDescriptorSets_Stride()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getStride();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getStride <em>Stride</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stride</em>' attribute.
+	 * @see #getStride()
+	 * @generated
+	 */
+	void setStride(int value);
 
 } // BindDescriptorSets

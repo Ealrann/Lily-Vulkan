@@ -10,7 +10,7 @@ public interface IProcessAdapter extends IExtender
 	void waitIdle();
 
 	// Can fire the fence listeners (for TransferBuffer Fetch).
-	// TODO really sad that the client need to call that...
+	// TODO really sad that the client needs to call that...
 	void checkFence();
 
 	boolean isMultithreadAllowed();

@@ -9,7 +9,6 @@ import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext.IExecutionIdleListener;
 import org.sheepy.lily.vulkan.core.execution.ISubmission;
 import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
@@ -18,19 +17,15 @@ import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
 
-public class Submission implements ISubmission
+public final class Submission implements ISubmission
 {
-	private static final String FENCE_TIMEOUT = "Fence timeout";
-	private static final long TIMEOUT = TimeUnit.SECONDS.toNanos(60);
 	private static final String FAILED_SUBMIT = "Failed to submit command buffer";
 
-	public final VkFence fence;
-
+	private final FenceManager fences;
 	private final VkQueue queue;
 	private final VkSubmitInfo submitInfo;
 	private final PointerBuffer pCommandBuffers;
@@ -39,23 +34,13 @@ public class Submission implements ISubmission
 	private final IntBuffer waitStages;
 	private final LongBuffer bSignalSemaphores;
 
-	private List<IExecutionIdleListener> listeners;
-
 	public Submission(VkCommandBuffer commandBuffer,
 					  ExecutionContext context,
 					  Collection<WaitData> waitSemaphores,
 					  Collection<VkSemaphore> signalSemaphores,
-					  boolean useFence)
+					  int queuedExecutionCount)
 	{
-		if (useFence)
-		{
-			fence = new VkFence(context.getVkDevice(), true);
-		}
-		else
-		{
-			fence = null;
-		}
-
+		fences = new FenceManager(queuedExecutionCount, context.getVkDevice());
 		queue = context.getQueue().vkQueue;
 
 		if (waitSemaphores.isEmpty() == false)
@@ -64,8 +49,8 @@ public class Submission implements ISubmission
 			waitStages = memAllocInt(waitSemaphores.size());
 			for (final WaitData waitData : waitSemaphores)
 			{
-				bWaitSemaphores.put(waitData.semaphore.getPtr());
-				waitStages.put(waitData.waitStage.getValue());
+				bWaitSemaphores.put(waitData.semaphore().getPtr());
+				waitStages.put(waitData.waitStage().getValue());
 			}
 			bWaitSemaphores.flip();
 			waitStages.flip();
@@ -98,8 +83,7 @@ public class Submission implements ISubmission
 
 	public void free()
 	{
-		if (fence != null) fence.free();
-
+		fences.free();
 		memFree(pCommandBuffers);
 
 		if (waitStages != null) memFree(waitStages);
@@ -113,19 +97,17 @@ public class Submission implements ISubmission
 	@Override
 	public IFenceView submit()
 	{
-		final long fenceId = fence != null ? fence.getPtr() : 0;
-
-		waitIdle();
-
-		if (fence != null) fence.setUsed(true);
-		final var res = vkQueueSubmit(queue, submitInfo, fenceId);
+		final var fence = fences.next();
+		final long fencePtr = fence.getPtr();
+		final var res = vkQueueSubmit(queue, submitInfo, fencePtr);
 
 		Logger.check(res, FAILED_SUBMIT, true);
 
 		if (res != VK_SUCCESS && DebugUtil.DEBUG_ENABLED)
 		{
 			final var status = EVulkanErrorStatus.resolveFromCode(res);
-			System.err.println("[Submit] " + status.message);
+			final String message = status != null ? status.message : "Unknown Error";
+			System.err.println("[Submit] " + message);
 		}
 
 		return fence;
@@ -134,47 +116,18 @@ public class Submission implements ISubmission
 	@Override
 	public void checkFence()
 	{
-		if (fence.isUsed() && fence.isSignaled())
-		{
-			resetFence();
-		}
-	}
-
-	private void resetFence()
-	{
-		if (fence.isUsed())
-		{
-			if (listeners != null)
-			{
-				for (final var listener : listeners)
-				{
-					listener.onExecutionIdle();
-				}
-			}
-			fence.reset();
-		}
+		fences.check();
 	}
 
 	@Override
 	public void waitIdle()
 	{
-		if (fence != null)
-		{
-			if (fence.isUsed() && fence.isSignaled() == false)
-			{
-				if (fence.waitForSignal(TIMEOUT) == false)
-				{
-					Logger.log(FENCE_TIMEOUT, true);
-				}
-			}
-			resetFence();
-		}
+		fences.waitIdle();
 	}
 
-	@Override
-	public void setExecutionIdleListeners(List<IExecutionIdleListener> listeners)
+	public void setNextExecutionListeners(List<VkFence.IFenceListener> listeners)
 	{
-		this.listeners = listeners;
+		fences.setNextExecutionListeners(listeners);
 	}
 
 	@Override
@@ -184,15 +137,9 @@ public class Submission implements ISubmission
 	}
 
 	@Override
-	public boolean isBusy()
+	public boolean isRunning()
 	{
-		boolean res = false;
-
-		if (fence != null)
-		{
-			res = !fence.isSignaled();
-		}
-
-		return res;
+		return fences.isRunning();
 	}
+
 }

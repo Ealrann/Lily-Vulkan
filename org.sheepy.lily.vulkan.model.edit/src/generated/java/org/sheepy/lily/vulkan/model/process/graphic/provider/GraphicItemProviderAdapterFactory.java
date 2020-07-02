@@ -124,6 +124,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GraphicExecutionManagerItemProvider graphicExecutionManagerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGraphicExecutionManagerAdapter()
+	{
+		if (graphicExecutionManagerItemProvider == null)
+		{
+			graphicExecutionManagerItemProvider = new GraphicExecutionManagerItemProvider(this);
+		}
+
+		return graphicExecutionManagerItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

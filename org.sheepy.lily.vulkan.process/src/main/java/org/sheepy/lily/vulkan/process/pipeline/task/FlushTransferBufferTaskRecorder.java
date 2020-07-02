@@ -1,94 +1,57 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.api.execution.IRecordContext;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IFlushRecorder;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @ModelExtender(scope = FlushTransferBufferTask.class)
-@Adapter
+@Allocation
+@AllocationDependency(features = ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER, type = InternalTransferBufferAllocation.class)
 public final class FlushTransferBufferTaskRecorder implements IPipelineTaskRecorder
 {
-	private final TransferBuffer transferBuffer;
+	private final IAllocationState allocationState;
+	private final InternalTransferBufferAllocation transferBuffer;
 	private final FlushTransferBufferTask task;
 
-	private int stagingFlushHistory = 0;
-	private IFlushRecorder record;
+	private boolean needRecord;
 
-	public FlushTransferBufferTaskRecorder(FlushTransferBufferTask task)
+	public FlushTransferBufferTaskRecorder(FlushTransferBufferTask task,
+										   IAllocationState allocationState,
+										   IObservatoryBuilder observatory,
+										   @InjectDependency(index = 0) InternalTransferBufferAllocation transferBuffer)
 	{
-		transferBuffer = task.getTransferBuffer();
 		this.task = task;
+		this.allocationState = allocationState;
+		this.transferBuffer = transferBuffer;
+		this.needRecord = transferBuffer.isEmpty() == false;
+
+		observatory.focus(transferBuffer)
+				   .listenNoParam(this::transferQueueChanged,
+								  InternalTransferBufferAllocation.Features.TransferQueueChange);
 	}
 
-	@Override
-	public void update(int index)
+	private void transferQueueChanged()
 	{
-		if (task.isFlushDuringUpdate())
-		{
-			record();
-		}
+		needRecord = true;
 	}
 
 	@Override
 	public void record(RecordContext context)
 	{
-		if (task.isFlushDuringUpdate() == false)
+		if (needRecord)
 		{
-			record();
-		}
-
-		if (record != null)
-		{
-			setFlushHistory(context);
+			final var record = transferBuffer.recordFlush();
 			record.flush(context);
+			allocationState.setAllocationObsolete();
 		}
-	}
-
-	private void record()
-	{
-		final var pushBufferAdapter = transferBuffer.adapt(InternalTransferBufferAllocation.class);
-		if (pushBufferAdapter.isEmpty() == false)
-		{
-			record = pushBufferAdapter.recordFlush();
-		}
-		else
-		{
-			record = null;
-		}
-	}
-
-	@Override
-	public boolean isRecordDirty(int index)
-	{
-		final var pushBufferAdapter = transferBuffer.adapt(InternalTransferBufferAllocation.class);
-		final boolean previousRecordMadeFlush = getAndClearHistory(index);
-		final boolean somethingToPush = pushBufferAdapter.isEmpty() == false;
-		final boolean somethingToRecord = record != null;
-
-		return somethingToRecord || previousRecordMadeFlush || somethingToPush;
-	}
-
-	private void setFlushHistory(IRecordContext context)
-	{
-		final int flushIndexFlag = 1 << context.index();
-		stagingFlushHistory |= flushIndexFlag;
-	}
-
-	private boolean getAndClearHistory(final int index)
-	{
-		final int flushIndexFlag = 1 << index;
-		final boolean previousRecordMadeFlush = (stagingFlushHistory & flushIndexFlag) != 0;
-		if (previousRecordMadeFlush)
-		{
-			stagingFlushHistory ^= flushIndexFlag;
-		}
-		return previousRecordMadeFlush;
 	}
 
 	@Override

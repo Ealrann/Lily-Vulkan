@@ -18,8 +18,9 @@ public final class ImageAcquirer
 	private final int[] nextImageArray = new int[1];
 	private final VkDevice vkDevice;
 	private final long semaphorePtr;
-	private final long swapChainPtr;
-	private final IPhysicalSurfaceAllocation surfaceManager;
+
+	private long swapChainPtr;
+	private IPhysicalSurfaceAllocation surfaceManager;
 
 	public ImageAcquirer(VkDevice vkDevice,
 						 long semaphorePtr,
@@ -29,7 +30,7 @@ public final class ImageAcquirer
 		this.semaphorePtr = semaphorePtr;
 		this.swapChainPtr = swapChainPtr;
 		this.vkDevice = vkDevice;
-		surfaceManager = surfaceAllocation;
+		this.surfaceManager = surfaceAllocation;
 	}
 
 	public Integer acquireNextImage()
@@ -46,5 +47,15 @@ public final class ImageAcquirer
 			surfaceManager.setDirty();
 			return null;
 		}
+	}
+
+	public void updateSurface(final PhysicalSurfaceAllocation surfaceAllocation)
+	{
+		this.surfaceManager = surfaceAllocation;
+	}
+
+	public void updateSwapChain(long swapChainPtr)
+	{
+		this.swapChainPtr = swapChainPtr;
 	}
 }

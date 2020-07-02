@@ -420,31 +420,6 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProcessExecutionRecorderItemProvider processExecutionRecorderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProcessExecutionRecorderAdapter()
-	{
-		if (processExecutionRecorderItemProvider == null)
-		{
-			processExecutionRecorderItemProvider = new ProcessExecutionRecorderItemProvider(this);
-		}
-
-		return processExecutionRecorderItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

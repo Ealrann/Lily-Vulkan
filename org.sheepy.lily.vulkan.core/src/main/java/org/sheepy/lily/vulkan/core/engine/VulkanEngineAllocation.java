@@ -31,8 +31,6 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 @AllocationChild(features = VulkanPackage.VULKAN_ENGINE__PROCESSES)
 public final class VulkanEngineAllocation implements IVulkanEngineAdapter
 {
-//	private static final String WAIT_IDLE_RELOAD_ENGINE_RESOURCES = "[WaitIdle] Reload engine resources";
-
 	private final List<VkFence> fences = new ArrayList<>();
 	private final VulkanInputManager inputManager;
 	private final VulkanEngine engine;
@@ -87,8 +85,6 @@ public final class VulkanEngineAllocation implements IVulkanEngineAdapter
 	@Override
 	public void step()
 	{
-		updateAllocation();
-
 		for (final var process : engine.getProcesses())
 		{
 			final var cadence = process.getCadence();
@@ -98,28 +94,6 @@ public final class VulkanEngineAllocation implements IVulkanEngineAdapter
 				adapter.run();
 			}
 		}
-	}
-
-	private void updateAllocation()
-	{
-//		executionContext.beforeChildrenAllocation();
-//		resourceAllocator.allocate(executionContext);
-//		executionContext.afterChildrenAllocation();
-//
-//		if (allocator.isAllocationDirty())
-//		{
-//			for (final var process : engine.getProcesses())
-//			{
-//				final var adapter = process.adapt(IProcessAdapter.class);
-//				adapter.waitIdle();
-//				if (DebugUtil.DEBUG_VERBOSE_ENABLED)
-//				{
-//					System.err.println(WAIT_IDLE_RELOAD_ENGINE_RESOURCES);
-//				}
-//			}
-//
-//			allocator.reloadDirtyElements();
-//		}
 	}
 
 	@Free
@@ -178,6 +152,11 @@ public final class VulkanEngineAllocation implements IVulkanEngineAdapter
 		final var vkFence = new VkFence(vkDevice, signaled);
 		fences.add(vkFence);
 		return vkFence;
+	}
+
+	public ExecutionContext getExecutionContext()
+	{
+		return executionContext;
 	}
 
 	@Override

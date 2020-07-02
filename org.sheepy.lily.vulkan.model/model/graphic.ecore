@@ -21,7 +21,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageViews" eType="#//ImageViews"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GraphicExecutionRecorder" eSuperTypes="process.ecore#//ProcessExecutionRecorder"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicExecutionManager" eSuperTypes="process.ecore#//ProcessExecutionManager">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="recorders" upperBound="-1"
+        eType="#//GraphicExecutionRecorder" transient="true" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="property" value="None"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicExecutionRecorder" eSuperTypes="process.ecore#//ExecutionRecorder">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ColorDomain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" unique="false"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EFormat"
@@ -160,8 +170,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="GraphicProcess">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
         eType="#//GraphicConfiguration" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="executionRecorder" lowerBound="1"
-        eType="#//GraphicExecutionRecorder" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executionManager" lowerBound="1"
+        eType="#//GraphicExecutionManager" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentPkg" lowerBound="1"
         eType="#//AttachmentPkg" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subpasses" upperBound="-1"

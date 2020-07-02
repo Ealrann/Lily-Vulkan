@@ -8,6 +8,7 @@ import org.sheepy.lily.vulkan.process.binding.AbstractContextConfigurationAdapte
 
 @ModelExtender(scope = RotateConfiguration.class)
 @Adapter
+@Deprecated
 public final class RotateConfigurationRecorder implements IPipelineTaskRecorder
 {
 	private final RotateConfiguration task;
@@ -20,17 +21,11 @@ public final class RotateConfigurationRecorder implements IPipelineTaskRecorder
 	@Override
 	public void record(RecordContext context)
 	{
-		final var configurations = task.getConfigurations();
-		for (int i = 0; i < configurations.size(); i++)
-		{
-			final var config = configurations.get(i);
-			config.adapt(AbstractContextConfigurationAdapter.class).rotate();
-		}
-	}
-
-	@Override
-	public boolean isRecordDirty(int index)
-	{
-		return task.isForceRecord();
+//		final var configurations = task.getConfigurations();
+//		for (int i = 0; i < configurations.size(); i++)
+//		{
+//			final var config = configurations.get(i);
+//			config.adapt(AbstractContextConfigurationAdapter.class).rotate();
+//		}
 	}
 }

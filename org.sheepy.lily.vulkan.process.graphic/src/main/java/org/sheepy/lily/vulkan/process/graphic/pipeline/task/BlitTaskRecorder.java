@@ -31,12 +31,6 @@ public final class BlitTaskRecorder extends AbstractBlitTaskRecorder
 		return dstImage.getImagePtr();
 	}
 
-	@Override
-	public boolean isRecordDirty(final int index)
-	{
-		return false;
-	}
-
 	private static Vector2ic getDstImageSize(VkImage dstVkImage)
 	{
 		return new Vector2i(dstVkImage.width, dstVkImage.height);

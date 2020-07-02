@@ -202,6 +202,56 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FixedBufferReferenceItemProvider fixedBufferReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFixedBufferReferenceAdapter()
+	{
+		if (fixedBufferReferenceItemProvider == null)
+		{
+			fixedBufferReferenceItemProvider = new FixedBufferReferenceItemProvider(this);
+		}
+
+		return fixedBufferReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CircularBufferReferenceItemProvider circularBufferReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCircularBufferReferenceAdapter()
+	{
+		if (circularBufferReferenceItemProvider == null)
+		{
+			circularBufferReferenceItemProvider = new CircularBufferReferenceItemProvider(this);
+		}
+
+		return circularBufferReferenceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Buffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

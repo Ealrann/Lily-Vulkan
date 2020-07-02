@@ -18,7 +18,7 @@ import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 @ModelExtender(scope = RenderPass.class)
 @Allocation(context = ProcessContext.class)
-@AllocationChild(features = GraphicPackage.RENDER_PASS__ATTACHMENTS)
+@AllocationChild(allocateBeforeParent = true, features = GraphicPackage.RENDER_PASS__ATTACHMENTS)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, type = SwapChainAllocation.class)
 @AllocationDependency(features = GraphicPackage.RENDER_PASS__ATTACHMENTS, type = IExtraAttachmentAllocation.class)

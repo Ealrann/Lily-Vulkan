@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.process.binding.task.ConfigureBufferDescriptorAdap
 import org.sheepy.lily.vulkan.process.binding.task.ConfigureCompositeBufferBarrierAdapter;
 import org.sheepy.lily.vulkan.process.binding.task.ConfigurePrepareCompositeAdapter;
 import org.sheepy.lily.vulkan.process.cadence.SwapBindingsTaskAdapter;
-import org.sheepy.lily.vulkan.process.descriptor.DescriptorSetAllocation;
+import org.sheepy.lily.vulkan.process.pipeline.CompositePipelineAllocation;
 import org.sheepy.lily.vulkan.process.pipeline.CompositePipelineRecorder;
 import org.sheepy.lily.vulkan.process.pipeline.PipelineAllocation;
 import org.sheepy.lily.vulkan.process.pipeline.PipelineRecorder;
@@ -26,11 +26,10 @@ public class Extenders implements IExtenderProvider
 	{
 		return List.of(PipelineBarrierRecorder.class,
 					   PushConstantBufferRecorder.class,
-					   DescriptorSetAllocation.class,
 					   BufferBarrierAllocation.class,
 					   ImageBarrierAllocation.class,
-					   PipelineRecorder.class,
 					   PipelineAllocation.class,
+					   PipelineRecorder.class,
 					   BindDescriptorSetsRecorder.class,
 					   CompositeTaskRecorder.class,
 					   FlushTransferBufferTaskRecorder.class,
@@ -44,6 +43,7 @@ public class Extenders implements IExtenderProvider
 					   ConfigureCompositeBufferBarrierAdapter.class,
 					   ConfigurePrepareCompositeAdapter.class,
 					   ConfigureBufferDescriptorAdapter.class,
+					   CompositePipelineAllocation.class,
 					   CompositePipelineRecorder.class);
 	}
 }

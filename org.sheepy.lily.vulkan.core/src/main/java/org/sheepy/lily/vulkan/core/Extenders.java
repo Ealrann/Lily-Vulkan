@@ -4,7 +4,6 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.core.cadence.RunProcessAdapter;
 import org.sheepy.lily.vulkan.core.cadence.WaitProcessIdleAdapter;
-import org.sheepy.lily.vulkan.core.descriptor.DescriptorPoolAllocation;
 import org.sheepy.lily.vulkan.core.engine.VulkanEngineAllocation;
 import org.sheepy.lily.vulkan.core.variable.MouseLocationAdapter;
 
@@ -18,7 +17,6 @@ public class Extenders implements IExtenderProvider
 		return List.of(VulkanEngineAllocation.class,
 					   WaitProcessIdleAdapter.class,
 					   RunProcessAdapter.class,
-					   MouseLocationAdapter.class,
-					   DescriptorPoolAllocation.class);
+					   MouseLocationAdapter.class);
 	}
 }

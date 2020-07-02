@@ -4,6 +4,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.model.binding.ConfigurePrepareComposite;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
+import org.sheepy.lily.vulkan.model.resource.FixedBufferReference;
 import org.sheepy.lily.vulkan.process.binding.BindConfiguration;
 
 import java.util.ArrayList;
@@ -27,7 +28,9 @@ public final class ConfigurePrepareCompositeAdapter implements IConfigureTaskAda
 			parts.add(compositeBuffer.getParts().get(index));
 		}
 
-		prepareTask.getParts().clear();
-		prepareTask.getParts().addAll(parts);
+		final var bufferRef = (FixedBufferReference) prepareTask.getBufferReference();
+
+		bufferRef.getBuffers().clear();
+		bufferRef.getBuffers().addAll(parts);
 	}
 }

@@ -2,21 +2,19 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -34,7 +32,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#isPrepareDuringUpdate <em>Prepare During Update</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getBufferReference <em>Buffer Reference</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PrepareCompositeTransferImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  * </ul>
  *
@@ -153,14 +151,14 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getParts() <em>Parts</em>}' reference list.
+	 * The cached value of the '{@link #getBufferReference() <em>Buffer Reference</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParts()
+	 * @see #getBufferReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BufferPart> parts;
+	protected IBufferReference bufferReference;
 
 	/**
 	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
@@ -212,7 +210,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	@Override
 	public void setName(String newName)
 	{
-		String oldName = name;
+		final String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__NAME, oldName, name));
@@ -237,7 +235,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	@Override
 	public void setEnabled(boolean newEnabled)
 	{
-		boolean oldEnabled = enabled;
+		final boolean oldEnabled = enabled;
 		enabled = newEnabled;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED, oldEnabled, enabled));
@@ -253,7 +251,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	{
 		if (compositeBuffer != null && ((EObject)compositeBuffer).eIsProxy())
 		{
-			InternalEObject oldCompositeBuffer = (InternalEObject)compositeBuffer;
+			final InternalEObject oldCompositeBuffer = compositeBuffer;
 			compositeBuffer = (CompositeBuffer)eResolveProxy(oldCompositeBuffer);
 			if (compositeBuffer != oldCompositeBuffer)
 			{
@@ -282,7 +280,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	@Override
 	public void setCompositeBuffer(CompositeBuffer newCompositeBuffer)
 	{
-		CompositeBuffer oldCompositeBuffer = compositeBuffer;
+		final CompositeBuffer oldCompositeBuffer = compositeBuffer;
 		compositeBuffer = newCompositeBuffer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER, oldCompositeBuffer, compositeBuffer));
@@ -307,7 +305,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	@Override
 	public void setMode(EFlushMode newMode)
 	{
-		EFlushMode oldMode = mode;
+		final EFlushMode oldMode = mode;
 		mode = newMode == null ? MODE_EDEFAULT : newMode;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE, oldMode, mode));
@@ -332,7 +330,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	@Override
 	public void setPrepareDuringUpdate(boolean newPrepareDuringUpdate)
 	{
-		boolean oldPrepareDuringUpdate = prepareDuringUpdate;
+		final boolean oldPrepareDuringUpdate = prepareDuringUpdate;
 		prepareDuringUpdate = newPrepareDuringUpdate;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE, oldPrepareDuringUpdate, prepareDuringUpdate));
@@ -357,7 +355,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	@Override
 	public void setStage(ECommandStage newStage)
 	{
-		ECommandStage oldStage = stage;
+		final ECommandStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE, oldStage, stage));
@@ -369,13 +367,48 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
-	public EList<BufferPart> getParts()
+	public IBufferReference getBufferReference()
 	{
-		if (parts == null)
+		return bufferReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBufferReference(IBufferReference newBufferReference, NotificationChain msgs)
+	{
+		final IBufferReference oldBufferReference = bufferReference;
+		bufferReference = newBufferReference;
+		if (eNotificationRequired())
 		{
-			parts = new EObjectResolvingEList<BufferPart>(BufferPart.class, this, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS);
+			final ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE, oldBufferReference, newBufferReference);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return parts;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBufferReference(IBufferReference newBufferReference)
+	{
+		if (newBufferReference != bufferReference)
+		{
+			NotificationChain msgs = null;
+			if (bufferReference != null)
+				msgs = ((InternalEObject)bufferReference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE, null, msgs);
+			if (newBufferReference != null)
+				msgs = ((InternalEObject)newBufferReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE, null, msgs);
+			msgs = basicSetBufferReference(newBufferReference, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE, newBufferReference, newBufferReference));
 	}
 
 	/**
@@ -388,7 +421,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	{
 		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
+			final InternalEObject oldTransferBuffer = transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
 			if (transferBuffer != oldTransferBuffer)
 			{
@@ -417,10 +450,26 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	@Override
 	public void setTransferBuffer(TransferBuffer newTransferBuffer)
 	{
-		TransferBuffer oldTransferBuffer = transferBuffer;
+		final TransferBuffer oldTransferBuffer = transferBuffer;
 		transferBuffer = newTransferBuffer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE:
+				return basicSetBufferReference(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -446,8 +495,8 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return isPrepareDuringUpdate();
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				return getStage();
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
-				return getParts();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE:
+				return getBufferReference();
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
 				if (resolve) return getTransferBuffer();
 				return basicGetTransferBuffer();
@@ -460,7 +509,6 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -484,9 +532,8 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				setStage((ECommandStage)newValue);
 				return;
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
-				getParts().clear();
-				getParts().addAll((Collection<? extends BufferPart>)newValue);
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE:
+				setBufferReference((IBufferReference)newValue);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)newValue);
@@ -523,8 +570,8 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				setStage(STAGE_EDEFAULT);
 				return;
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
-				getParts().clear();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE:
+				setBufferReference((IBufferReference)null);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)null);
@@ -555,8 +602,8 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				return prepareDuringUpdate != PREPARE_DURING_UPDATE_EDEFAULT;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				return stage != STAGE_EDEFAULT;
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PARTS:
-				return parts != null && !parts.isEmpty();
+			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE:
+				return bufferReference != null;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
 				return transferBuffer != null;
 		}
@@ -573,7 +620,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	{
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		final StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", enabled: ");

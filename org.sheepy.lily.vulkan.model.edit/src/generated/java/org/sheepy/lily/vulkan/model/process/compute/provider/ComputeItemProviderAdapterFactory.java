@@ -171,6 +171,31 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComputeExecutionManagerItemProvider computeExecutionManagerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComputeExecutionManagerAdapter()
+	{
+		if (computeExecutionManagerItemProvider == null)
+		{
+			computeExecutionManagerItemProvider = new ComputeExecutionManagerItemProvider(this);
+		}
+
+		return computeExecutionManagerItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

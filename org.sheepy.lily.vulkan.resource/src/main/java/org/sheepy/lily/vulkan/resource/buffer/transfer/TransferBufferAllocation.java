@@ -4,6 +4,7 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
 import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
@@ -13,15 +14,20 @@ import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFa
 import org.sheepy.lily.vulkan.resource.buffer.transfer.internal.TransferBufferBackend;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
+import java.util.List;
+
 @ModelExtender(scope = TransferBuffer.class)
 @Allocation(context = ExecutionContext.class)
-public class TransferBufferAllocation implements InternalTransferBufferAllocation
+public class TransferBufferAllocation extends Notifier<InternalTransferBufferAllocation.Features> implements
+																								  InternalTransferBufferAllocation
 {
 	private final TransferBufferBackend backendBuffer;
 	private final VkDevice vkDevice;
 
 	public TransferBufferAllocation(TransferBuffer transferBuffer, ExecutionContext context)
 	{
+		super(List.of(Features.TransferQueueChange));
+
 		this.vkDevice = context.getVkDevice();
 		final long size = transferBuffer.getSize();
 		final int instanceCount = InstanceCountUtil.getInstanceCount(transferBuffer, transferBuffer.getInstanceCount());
@@ -63,12 +69,14 @@ public class TransferBufferAllocation implements InternalTransferBufferAllocatio
 																	  srcStage,
 																	  srcAccess);
 		backendBuffer.addTransferCommand(pushCommand);
+		notify(Features.TransferQueueChange);
 	}
 
 	@Override
 	public void addTransferCommand(IDataFlowCommand command)
 	{
 		backendBuffer.addTransferCommand(command);
+		notify(Features.TransferQueueChange);
 	}
 
 	@Override
@@ -80,6 +88,8 @@ public class TransferBufferAllocation implements InternalTransferBufferAllocatio
 	@Override
 	public IFlushRecorder recordFlush()
 	{
-		return backendBuffer.recordFlush(vkDevice);
+		final var flushRecorder = backendBuffer.recordFlush(vkDevice);
+		notify(Features.TransferQueueChange);
+		return flushRecorder;
 	}
 }

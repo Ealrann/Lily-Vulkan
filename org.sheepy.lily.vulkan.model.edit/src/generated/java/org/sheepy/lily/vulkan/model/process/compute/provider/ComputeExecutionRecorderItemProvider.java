@@ -10,9 +10,21 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
-import org.sheepy.lily.vulkan.model.process.provider.ProcessExecutionRecorderItemProvider;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder} object.
@@ -21,7 +33,13 @@ import org.sheepy.lily.vulkan.model.process.provider.ProcessExecutionRecorderIte
  * @generated
  */
 public class ComputeExecutionRecorderItemProvider 
-	extends ProcessExecutionRecorderItemProvider
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -47,8 +65,32 @@ public class ComputeExecutionRecorderItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addIndexPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Index feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIndexPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ComputeExecutionRecorder_index_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ComputeExecutionRecorder_index_feature", "_UI_ComputeExecutionRecorder_type"),
+				 ComputePackage.Literals.COMPUTE_EXECUTION_RECORDER__INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -72,7 +114,8 @@ public class ComputeExecutionRecorderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_ComputeExecutionRecorder_type");
+		ComputeExecutionRecorder computeExecutionRecorder = (ComputeExecutionRecorder)object;
+		return getString("_UI_ComputeExecutionRecorder_type") + " " + computeExecutionRecorder.getIndex();
 	}
 
 
@@ -87,6 +130,13 @@ public class ComputeExecutionRecorderItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ComputeExecutionRecorder.class))
+		{
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

@@ -1,44 +1,39 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.vulkan.core.pipeline.IVkPipelineRecordable;
-import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
-import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineRecordable;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.process.pipeline.TaskPipelineManager;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
+import java.util.List;
+
 @ModelExtender(scope = GraphicsPipeline.class)
-@Adapter
-public final class GraphicsPipelineRecorder implements IVkPipelineRecordable
+@Allocation(context = ProcessContext.class)
+@AllocationDependency(features = {GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, ProcessPackage.TASK_PKG__TASKS}, type = IPipelineTaskRecorder.class)
+public final class GraphicsPipelineRecorder implements IPipelineRecordable
 {
 	private final GraphicsPipeline pipeline;
 	private final TaskPipelineManager taskManager;
 
-	private GraphicsPipelineAllocation pipelineAllocation;
-	private boolean recordNeeded = false;
-
-	public GraphicsPipelineRecorder(GraphicsPipeline pipeline, IObservatoryBuilder observatory)
+	public GraphicsPipelineRecorder(GraphicsPipeline pipeline,
+									IAllocationState config,
+									IObservatoryBuilder observatory,
+									@InjectDependency(index = 0) List<IPipelineTaskRecorder> recorders)
 	{
 		this.pipeline = pipeline;
-		taskManager = new TaskPipelineManager(pipeline, observatory);
-
-		observatory.listenNoParam(() -> recordNeeded = true, ProcessPackage.ABSTRACT_PIPELINE__ENABLED);
-		observatory.adapt(GraphicsPipelineAllocation.class).listenAdaptation(this::updateAllocation);
-	}
-
-	private void updateAllocation(GraphicsPipelineAllocation oldAllocation, GraphicsPipelineAllocation newAllocation)
-	{
-		this.pipelineAllocation = newAllocation;
-	}
-
-	@Override
-	public void update(final int index)
-	{
-		taskManager.update(index);
+		taskManager = new TaskPipelineManager(pipeline, recorders);
+		observatory.listenNoParam(config::setAllocationObsolete, ProcessPackage.ABSTRACT_PIPELINE__ENABLED);
 	}
 
 	@Override
@@ -48,14 +43,13 @@ public final class GraphicsPipelineRecorder implements IVkPipelineRecordable
 		{
 			final var pipelineStage = pipeline.getStage();
 			final var currentStage = context.stage;
-			final var vkPipeline = pipelineAllocation.getVkPipeline();
+			final var vkPipeline = pipeline.adapt(IPipelineAllocation.class).getVkPipeline();
 			if (vkPipeline != null && pipelineStage == currentStage)
 			{
 				vkPipeline.bindPipeline(context.commandBuffer);
 			}
 			taskManager.record(context);
 		}
-		recordNeeded = false;
 	}
 
 	@Override
@@ -68,23 +62,5 @@ public final class GraphicsPipelineRecorder implements IVkPipelineRecordable
 	public boolean isActive()
 	{
 		return pipeline.isEnabled();
-	}
-
-	@Override
-	public boolean isRecordDirty(final int index)
-	{
-		return recordNeeded || taskManager.isRecordDirty(index);
-	}
-
-	@Override
-	public VkPipelineLayout getVkPipelineLayout()
-	{
-		return pipelineAllocation.getVkPipelineLayout();
-	}
-
-	@Override
-	public VkPipeline getVkPipeline()
-	{
-		return pipelineAllocation.getVkPipeline();
 	}
 }

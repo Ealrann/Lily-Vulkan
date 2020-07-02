@@ -3,14 +3,13 @@ package org.sheepy.lily.vulkan.process.graphic;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.process.graphic.barrier.SwapImageBarrierAllocation;
-import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecordersAllocation;
+import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionManagerAllocation;
+import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecorderAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAllocation;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineRecorder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassRecordableAllocation;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.*;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.*;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.viewport.CinemaViewportAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.viewport.ViewportAdapter;
@@ -33,8 +32,9 @@ public class Extenders implements IExtenderProvider
 	{
 		return List.of(GraphicProcessAllocation.class,
 					   GraphicProcessAdapter.class,
-					   GraphicsPipelineRecorder.class,
+					   GraphicsPipelineAllocationNode.class,
 					   GraphicsPipelineAllocation.class,
+					   GraphicsPipelineRecorder.class,
 					   DepthAttachmentAllocation.class,
 					   SwapImageBarrierAllocation.class,
 					   BlitToSwapImageRecorder.class,
@@ -56,8 +56,10 @@ public class Extenders implements IExtenderProvider
 					   RenderPassAllocation.class,
 					   ImageViewAllocation.class,
 					   FramebufferAllocation.class,
-					   GraphicExecutionRecordersAllocation.class,
+					   GraphicExecutionManagerAllocation.class,
+					   GraphicExecutionRecorderAllocation.class,
 					   GraphicConfigurationAllocation.class,
-					   SubpassRecordableAllocation.class);
+					   SubpassAllocation.class,
+					   SubpassRecorder.class);
 	}
 }

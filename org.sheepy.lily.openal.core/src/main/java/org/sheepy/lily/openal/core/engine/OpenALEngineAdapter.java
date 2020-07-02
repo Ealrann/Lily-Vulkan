@@ -1,5 +1,6 @@
 package org.sheepy.lily.openal.core.engine;
 
+import org.sheepy.lily.core.api.allocation.IAllocationInstance;
 import org.sheepy.lily.core.api.allocation.IAllocationService;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
@@ -23,12 +24,14 @@ public final class OpenALEngineAdapter implements IEngineAdapter
 	private final ISoundContext context;
 	private final GameAllocationContext allocationContext;
 	private final OpenALEngine engine;
+	private final IAllocationInstance<IEngineAdapter> engineAllocation;
 
 	private OpenALEngineAdapter(OpenALEngine engine)
 	{
 		this.engine = engine;
 		allocationContext = new GameAllocationContext();
 		context = ISoundContext.newContext();
+		engineAllocation = IAllocationService.INSTANCE.allocate(engine, allocationContext, IEngineAdapter.class);
 	}
 
 	@ProvideContext
@@ -37,10 +40,23 @@ public final class OpenALEngineAdapter implements IEngineAdapter
 		return allocationContext;
 	}
 
+	@Tick(frequency = 10, clock = ETickerClock.RealWorld)
+	private void updateHandles()
+	{
+		context.updateHandles();
+	}
+
 	@Free
 	public void stop()
 	{
+		engineAllocation.free(allocationContext);
 		context.destroy();
+	}
+
+	@Override
+	public void step()
+	{
+		engineAllocation.update(allocationContext);
 	}
 
 	@Override
@@ -51,22 +67,5 @@ public final class OpenALEngineAdapter implements IEngineAdapter
 	public ISoundContext getContext()
 	{
 		return context;
-	}
-
-	@Tick(frequency = 10, clock = ETickerClock.RealWorld)
-	private void updateHandles()
-	{
-		context.updateHandles();
-	}
-
-	@Override
-	public void step()
-	{
-		updateAllocation();
-	}
-
-	private void updateAllocation()
-	{
-		IAllocationService.INSTANCE.ensureAllocation(engine, null);
 	}
 }

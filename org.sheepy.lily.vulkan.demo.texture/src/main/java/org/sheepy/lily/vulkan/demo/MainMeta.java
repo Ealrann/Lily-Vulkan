@@ -16,7 +16,7 @@ public class MainMeta
 {
 	public static void main(String[] args)
 	{
-		DebugUtil.DEBUG_ENABLED = true;
+		DebugUtil.parseMainArgs(args);
 
 		final var frame = new AtomicInteger(0);
 		final var index = new AtomicInteger(0);

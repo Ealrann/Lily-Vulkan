@@ -43,6 +43,7 @@ public final class MeshEngineFactory
 		graphicConfiguration.setRenderPass(renderPass);
 
 		final var graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
+		graphicProcess.setExecutionManager(GraphicFactory.eINSTANCE.createGraphicExecutionManager());
 		graphicProcess.setResetAllowed(true);
 		graphicProcess.setConfiguration(graphicConfiguration);
 		graphicProcess.setCadence(buildCadence(graphicProcess));

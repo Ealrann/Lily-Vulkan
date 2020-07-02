@@ -1,7 +1,10 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket.EReservationStatus;
@@ -11,6 +14,8 @@ import org.sheepy.lily.vulkan.core.resource.buffer.IBufferPartAllocation;
 import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
@@ -26,6 +31,7 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 	public final BufferDataProvider dataProvider;
 	public final BufferPart bufferPart;
 
+	private final IAllocationState allocationState;
 	private final int usage;
 	private final int accessBeforePush;
 	private final int accessBeforeFetch;
@@ -43,9 +49,13 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 	private MemoryTicket memTicket;
 	private TransferBufferAllocation transferBuffer;
 
-	private BufferPartAllocation(BufferPart bufferPart, ExecutionContext context)
+	private BufferPartAllocation(BufferPart bufferPart,
+								 ExecutionContext context,
+								 IAllocationState allocationState,
+								 IObservatoryBuilder observatory)
 	{
 		this.bufferPart = bufferPart;
+		this.allocationState = allocationState;
 
 		assert bufferPart.getDataProvider() != null;
 
@@ -62,6 +72,22 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
 		alignment = Math.max(adapter.minAlignment(), physicalDevice.getBufferAlignement(usage));
+
+		observatory.explore(VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER)
+				   .listenNoParam(this::sizeChanged, VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
+	}
+
+	private void sizeChanged()
+	{
+		if (needResize())
+		{
+			allocationState.setAllocationObsolete();
+			if (DebugUtil.DEBUG_VERBOSE_ENABLED)
+			{
+				final var compositeBuffer = (CompositeBuffer) bufferPart.eContainer();
+				System.out.println("Need resize of composite buffer " + compositeBuffer.getName());
+			}
+		}
 	}
 
 	private static int computeUsage(BufferDataProvider dataProvider)
@@ -112,8 +138,7 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 
 	public void releaseMemory()
 	{
-		if (memTicket.getReservationStatus() == EReservationStatus.SUCCESS ||
-			memTicket.getReservationStatus() == EReservationStatus.FLUSHED)
+		if (memTicket.getReservationStatus() == EReservationStatus.SUCCESS || memTicket.getReservationStatus() == EReservationStatus.FLUSHED)
 		{
 			transferBuffer.releaseTicket(memTicket);
 		}

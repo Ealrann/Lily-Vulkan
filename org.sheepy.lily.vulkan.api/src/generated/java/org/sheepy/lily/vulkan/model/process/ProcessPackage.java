@@ -948,13 +948,22 @@ public interface ProcessPackage extends EPackage
 	int BIND_DESCRIPTOR_SETS__BIND_POINT = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Stride</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_DESCRIPTOR_SETS__STRIDE = IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Bind Descriptor Sets</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BIND_DESCRIPTOR_SETS_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int BIND_DESCRIPTOR_SETS_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Bind Descriptor Sets</em>' class.
@@ -1131,22 +1140,13 @@ public interface ProcessPackage extends EPackage
 	int FLUSH_TRANSFER_BUFFER_TASK__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Flush During Update</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE = IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Flush Transfer Buffer Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
+	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Flush Transfer Buffer Task</em>' class.
@@ -1369,13 +1369,13 @@ public interface ProcessPackage extends EPackage
 	int PREPARE_COMPOSITE_TRANSFER__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Parts</b></em>' reference list.
+	 * The feature id for the '<em><b>Buffer Reference</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREPARE_COMPOSITE_TRANSFER__PARTS = IPIPELINE_TASK_FEATURE_COUNT + 4;
+	int PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE = IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
@@ -1479,14 +1479,42 @@ public interface ProcessPackage extends EPackage
 	int PROCESS_CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionRecorderImpl <em>Execution Recorder</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl <em>Execution Manager</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionRecorderImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExecutionRecorder()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExecutionManager()
 	 * @generated
 	 */
-	int PROCESS_EXECUTION_RECORDER = 21;
+	int PROCESS_EXECUTION_MANAGER = 21;
+
+	/**
+	 * The number of structural features of the '<em>Execution Manager</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXECUTION_MANAGER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Execution Manager</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXECUTION_MANAGER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.ExecutionRecorder
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getExecutionRecorder()
+	 * @generated
+	 */
+	int EXECUTION_RECORDER = 22;
 
 	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
@@ -1495,7 +1523,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_EXECUTION_RECORDER_FEATURE_COUNT = 0;
+	int EXECUTION_RECORDER_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of operations of the '<em>Execution Recorder</em>' class.
@@ -1504,7 +1532,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_EXECUTION_RECORDER_OPERATION_COUNT = 0;
+	int EXECUTION_RECORDER_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
@@ -1935,6 +1963,17 @@ public interface ProcessPackage extends EPackage
 	EAttribute getBindDescriptorSets_BindPoint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getStride <em>Stride</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stride</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getStride()
+	 * @see #getBindDescriptorSets()
+	 * @generated
+	 */
+	EAttribute getBindDescriptorSets_Stride();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PushConstant <em>Push Constant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2007,17 +2046,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getFlushTransferBufferTask_Stage();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#isFlushDuringUpdate <em>Flush During Update</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Flush During Update</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#isFlushDuringUpdate()
-	 * @see #getFlushTransferBufferTask()
-	 * @generated
-	 */
-	EAttribute getFlushTransferBufferTask_FlushDuringUpdate();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask <em>Copy Buffer Task</em>}'.
@@ -2159,15 +2187,15 @@ public interface ProcessPackage extends EPackage
 	EAttribute getPrepareCompositeTransfer_Stage();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getParts <em>Parts</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getBufferReference <em>Buffer Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Parts</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getParts()
+	 * @return the meta object for the containment reference '<em>Buffer Reference</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getBufferReference()
 	 * @see #getPrepareCompositeTransfer()
 	 * @generated
 	 */
-	EReference getPrepareCompositeTransfer_Parts();
+	EReference getPrepareCompositeTransfer_BufferReference();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getTransferBuffer <em>Transfer Buffer</em>}'.
@@ -2223,14 +2251,24 @@ public interface ProcessPackage extends EPackage
 	EClass getProcessConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder <em>Execution Recorder</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager <em>Execution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Execution Manager</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionManager
+	 * @generated
+	 */
+	EClass getProcessExecutionManager();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Execution Recorder</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder
+	 * @see org.sheepy.lily.vulkan.model.process.ExecutionRecorder
 	 * @generated
 	 */
-	EClass getProcessExecutionRecorder();
+	EClass getExecutionRecorder();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2601,6 +2639,14 @@ public interface ProcessPackage extends EPackage
 		EAttribute BIND_DESCRIPTOR_SETS__BIND_POINT = eINSTANCE.getBindDescriptorSets_BindPoint();
 
 		/**
+		 * The meta object literal for the '<em><b>Stride</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIND_DESCRIPTOR_SETS__STRIDE = eINSTANCE.getBindDescriptorSets_Stride();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2661,14 +2707,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute FLUSH_TRANSFER_BUFFER_TASK__STAGE = eINSTANCE.getFlushTransferBufferTask_Stage();
-
-		/**
-		 * The meta object literal for the '<em><b>Flush During Update</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE = eINSTANCE.getFlushTransferBufferTask_FlushDuringUpdate();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl <em>Copy Buffer Task</em>}' class.
@@ -2783,12 +2821,12 @@ public interface ProcessPackage extends EPackage
 		EAttribute PREPARE_COMPOSITE_TRANSFER__STAGE = eINSTANCE.getPrepareCompositeTransfer_Stage();
 
 		/**
-		 * The meta object literal for the '<em><b>Parts</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Buffer Reference</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PREPARE_COMPOSITE_TRANSFER__PARTS = eINSTANCE.getPrepareCompositeTransfer_Parts();
+		EReference PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE = eINSTANCE.getPrepareCompositeTransfer_BufferReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
@@ -2835,14 +2873,24 @@ public interface ProcessPackage extends EPackage
 		EClass PROCESS_CONFIGURATION = eINSTANCE.getProcessConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionRecorderImpl <em>Execution Recorder</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl <em>Execution Manager</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionRecorderImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExecutionRecorder()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExecutionManager()
 		 * @generated
 		 */
-		EClass PROCESS_EXECUTION_RECORDER = eINSTANCE.getProcessExecutionRecorder();
+		EClass PROCESS_EXECUTION_MANAGER = eINSTANCE.getProcessExecutionManager();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.ExecutionRecorder
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getExecutionRecorder()
+		 * @generated
+		 */
+		EClass EXECUTION_RECORDER = eINSTANCE.getExecutionRecorder();
 
 	}
 

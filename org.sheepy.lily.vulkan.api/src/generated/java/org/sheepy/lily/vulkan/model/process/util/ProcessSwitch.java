@@ -265,10 +265,17 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PROCESS_EXECUTION_RECORDER:
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER:
 			{
-				ProcessExecutionRecorder processExecutionRecorder = (ProcessExecutionRecorder)theEObject;
-				T1 result = caseProcessExecutionRecorder(processExecutionRecorder);
+				ProcessExecutionManager processExecutionManager = (ProcessExecutionManager)theEObject;
+				T1 result = caseProcessExecutionManager(processExecutionManager);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.EXECUTION_RECORDER:
+			{
+				ExecutionRecorder executionRecorder = (ExecutionRecorder)theEObject;
+				T1 result = caseExecutionRecorder(executionRecorder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -613,6 +620,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseProcessExecutionManager(ProcessExecutionManager object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -623,7 +646,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseProcessExecutionRecorder(ProcessExecutionRecorder object)
+	public T1 caseExecutionRecorder(ExecutionRecorder object)
 	{
 		return null;
 	}

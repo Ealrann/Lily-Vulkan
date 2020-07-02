@@ -71,7 +71,6 @@ public class FlushTransferBufferTaskItemProvider
 			addEnabledPropertyDescriptor(object);
 			addTransferBufferPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
-			addFlushDuringUpdatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -169,29 +168,6 @@ public class FlushTransferBufferTaskItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Flush During Update feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFlushDuringUpdatePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FlushTransferBufferTask_flushDuringUpdate_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FlushTransferBufferTask_flushDuringUpdate_feature", "_UI_FlushTransferBufferTask_type"),
-				 ProcessPackage.Literals.FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns FlushTransferBufferTask.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -236,7 +212,6 @@ public class FlushTransferBufferTaskItemProvider
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
-			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__FLUSH_DURING_UPDATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

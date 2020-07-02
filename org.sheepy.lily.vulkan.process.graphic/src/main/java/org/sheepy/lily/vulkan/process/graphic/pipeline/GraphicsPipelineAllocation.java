@@ -1,17 +1,17 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.core.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
+import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
+import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
 import org.sheepy.lily.vulkan.core.resource.IShaderAllocation;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.VkInputStateDescriptor.VkAttributeDescription;
@@ -25,14 +25,10 @@ import java.util.stream.Collectors;
 
 @ModelExtender(scope = GraphicsPipeline.class)
 @Allocation(context = ProcessContext.class)
-@AllocationChild(features = {GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
-@AllocationChild(features = {GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
-@AllocationChild(features = {GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_POOL})
-@AllocationChild(features = {GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG, ProcessPackage.TASK_PKG__TASKS})
 @AllocationDependency(features = GraphicPackage.GRAPHICS_PIPELINE__SHADERS, type = IShaderAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS}, type = RenderPassAllocation.class)
-public final class GraphicsPipelineAllocation implements IExtender
+public final class GraphicsPipelineAllocation implements IPipelineAllocation
 {
 	private final VkGraphicsPipeline vkPipeline;
 	private final VkPipelineLayout vkPipelineLayout;
@@ -46,7 +42,7 @@ public final class GraphicsPipelineAllocation implements IExtender
 		final var pushConstantRanges = pipeline.getPushConstantRanges();
 		final var sets = pipeline.getLayout()
 								 .stream()
-								 .map(set -> set.adapt(IDescriptorSetAllocation.class))
+								 .map(set -> set.adapt(IDescriptorSetLayoutAllocation.class))
 								 .collect(Collectors.toUnmodifiableList());
 
 		vkPipelineLayout = new VkPipelineLayout(sets, pushConstantRanges);
@@ -117,11 +113,13 @@ public final class GraphicsPipelineAllocation implements IExtender
 		return new VkInputStateDescriptor(bindings);
 	}
 
+	@Override
 	public VkPipelineLayout getVkPipelineLayout()
 	{
 		return vkPipelineLayout;
 	}
 
+	@Override
 	public VkPipeline getVkPipeline()
 	{
 		return vkPipeline;

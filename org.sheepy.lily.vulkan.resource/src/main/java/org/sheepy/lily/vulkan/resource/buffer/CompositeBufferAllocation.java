@@ -1,12 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.util.NotificationListenerDeployer;
-import org.sheepy.lily.core.api.allocation.IAllocationConfigurator;
 import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
@@ -16,68 +11,32 @@ import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 @ModelExtender(scope = CompositeBuffer.class)
 @Allocation(context = ExecutionContext.class)
-@AllocationChild(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS)
+@AllocationChild(allocateBeforeParent = true, reportStateToParent = true, features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS)
 @AllocationDependency(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, type = BufferPartAllocation.class)
 public final class CompositeBufferAllocation implements ICompositeBufferAllocation
 {
-	private final Consumer<Notification> sizeListener = this::partResized;
-	private final NotificationListenerDeployer sizeListenerDeployer = new NotificationListenerDeployer(new int[]{VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER},
-																									   sizeListener,
-																									   VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE);
-	private final CompositeBuffer compositeBuffer;
-	private final IAllocationConfigurator configurator;
 	private final ExecutionContext context;
 	private final List<BufferPartAllocation> partAllocations;
+	private final GPUBufferBackend bufferBackend;
 
-	private GPUBufferBackend bufferBackend;
-
-	public CompositeBufferAllocation(CompositeBuffer compositeBuffer,
-									 IAllocationConfigurator configurator,
-									 ExecutionContext context,
+	public CompositeBufferAllocation(ExecutionContext context,
 									 @InjectDependency(index = 0) List<BufferPartAllocation> partAllocations)
 	{
-		this.compositeBuffer = compositeBuffer;
-		this.configurator = configurator;
 		this.context = context;
 		this.partAllocations = List.copyOf(partAllocations);
 
-		sizeListenerDeployer.startDeploy(compositeBuffer);
-
 		final var usageSize = alignData();
 		final long size = Math.max(usageSize.position, 1);
-		createBufferBackend(size, usageSize.usage);
-	}
-
-	@Dispose
-	public void dispose()
-	{
-		sizeListenerDeployer.stopDeploy(compositeBuffer);
-	}
-
-	private void partResized(Notification notification)
-	{
-		final var provider = (BufferDataProvider) notification.getNotifier();
-		final var part = (BufferPart) provider.eContainer();
-		final var allocation = resolvePartAllocation(part);
-		if (allocation.needResize())
-		{
-			configurator.setAllocationObsolete();
-			if (DebugUtil.DEBUG_VERBOSE_ENABLED)
-			{
-				System.out.println("Need resize of composite buffer " + compositeBuffer.getName());
-			}
-		}
+		this.bufferBackend = createBufferBackend(size, usageSize.usage);
 	}
 
 	@Free
 	public void free(ExecutionContext context)
 	{
 		bufferBackend.free(context);
-		bufferBackend = null;
 	}
 
 	@Override
@@ -135,17 +94,18 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 		throw new AssertionError("Buffer part is not contained in this CompositeBuffer");
 	}
 
-	private void createBufferBackend(long size, int usage)
+	private GPUBufferBackend createBufferBackend(long size, int usage)
 	{
 		final var info = new BufferInfo(size, usage, false);
 		final var bufferBuilder = new GPUBufferBackend.Builder(info, false);
-		bufferBackend = bufferBuilder.build(context);
+		final var bufferBackend = bufferBuilder.build(context);
 
 		for (int i = 0; i < partAllocations.size(); i++)
 		{
 			final var partAdapter = partAllocations.get(i);
 			partAdapter.updateBuffer(bufferBackend.getAddress());
 		}
+		return bufferBackend;
 	}
 
 	private UsageSize alignData()

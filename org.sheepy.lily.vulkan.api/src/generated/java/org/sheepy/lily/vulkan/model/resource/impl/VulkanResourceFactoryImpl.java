@@ -71,6 +71,8 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.DESCRIPTOR_POOL: return createDescriptorPool();
 			case VulkanResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER: return createGenericConstantBuffer();
+			case VulkanResourcePackage.FIXED_BUFFER_REFERENCE: return createFixedBufferReference();
+			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE: return createCircularBufferReference();
 			case VulkanResourcePackage.BUFFER: return createBuffer();
 			case VulkanResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
 			case VulkanResourcePackage.BUFFER_PART: return createBufferPart();
@@ -107,6 +109,8 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		switch (eDataType.getClassifierID())
 		{
+			case VulkanResourcePackage.ECONTEXT_INDEX:
+				return createEContextIndexFromString(eDataType, initialValue);
 			case VulkanResourcePackage.EFLUSH_MODE:
 				return createEFlushModeFromString(eDataType, initialValue);
 			case VulkanResourcePackage.BYTE_BUFFER:
@@ -126,6 +130,8 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		switch (eDataType.getClassifierID())
 		{
+			case VulkanResourcePackage.ECONTEXT_INDEX:
+				return convertEContextIndexToString(eDataType, instanceValue);
 			case VulkanResourcePackage.EFLUSH_MODE:
 				return convertEFlushModeToString(eDataType, instanceValue);
 			case VulkanResourcePackage.BYTE_BUFFER:
@@ -181,6 +187,30 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		GenericConstantBufferImpl genericConstantBuffer = new GenericConstantBufferImpl();
 		return genericConstantBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FixedBufferReference createFixedBufferReference()
+	{
+		FixedBufferReferenceImpl fixedBufferReference = new FixedBufferReferenceImpl();
+		return fixedBufferReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CircularBufferReference createCircularBufferReference()
+	{
+		CircularBufferReferenceImpl circularBufferReference = new CircularBufferReferenceImpl();
+		return circularBufferReference;
 	}
 
 	/**
@@ -433,6 +463,28 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		ImageArrayDescriptorImpl imageArrayDescriptor = new ImageArrayDescriptorImpl();
 		return imageArrayDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EContextIndex createEContextIndexFromString(EDataType eDataType, String initialValue)
+	{
+		EContextIndex result = EContextIndex.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEContextIndexToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

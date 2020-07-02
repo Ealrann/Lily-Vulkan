@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.allocation.annotation.UpdateDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
@@ -24,16 +23,7 @@ public final class BufferDescriptorAllocation implements IDescriptorAllocation
 		vkDescriptor = new VkBufferDescriptor(bufferAllocation.getPtr(),
 											  bufferAllocation.getBindSize(),
 											  bufferAllocation.getBindOffset(),
-											  descriptor.getType(),
-											  descriptor.getShaderStages());
-	}
-
-	@UpdateDependency(index = 0)
-	private void update(IBufferAllocation bufferAdapter)
-	{
-		vkDescriptor.updateBufferPtr(bufferAdapter.getPtr());
-		vkDescriptor.updateSize(bufferAdapter.getBindSize());
-		vkDescriptor.updateOffset(bufferAdapter.getBindOffset());
+											  descriptor.getType());
 	}
 
 	@Override

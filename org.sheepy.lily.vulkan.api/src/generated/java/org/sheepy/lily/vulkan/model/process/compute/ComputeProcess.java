@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.model.process.PipelinePkg;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getSourceEngine <em>Source Engine</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getExecutionRecorder <em>Execution Recorder</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getExecutionManager <em>Execution Manager</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputeProcess()
@@ -95,23 +95,23 @@ public interface ComputeProcess extends AbstractProcess
 	void setConfiguration(ComputeConfiguration value);
 
 	/**
-	 * Returns the value of the '<em><b>Execution Recorder</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Execution Manager</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Execution Recorder</em>' containment reference.
-	 * @see #setExecutionRecorder(ComputeExecutionRecorder)
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputeProcess_ExecutionRecorder()
+	 * @return the value of the '<em>Execution Manager</em>' containment reference.
+	 * @see #setExecutionManager(ComputeExecutionManager)
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputeProcess_ExecutionManager()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ComputeExecutionRecorder getExecutionRecorder();
+	ComputeExecutionManager getExecutionManager();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getExecutionRecorder <em>Execution Recorder</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess#getExecutionManager <em>Execution Manager</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Execution Recorder</em>' containment reference.
-	 * @see #getExecutionRecorder()
+	 * @param value the new value of the '<em>Execution Manager</em>' containment reference.
+	 * @see #getExecutionManager()
 	 * @generated
 	 */
-	void setExecutionRecorder(ComputeExecutionRecorder value);} // ComputeProcess
+	void setExecutionManager(ComputeExecutionManager value);} // ComputeProcess

@@ -16,9 +16,10 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
-import org.sheepy.lily.vulkan.model.process.ProcessExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.*;
@@ -128,11 +129,19 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER:
+			{
+				ComputeExecutionManager computeExecutionManager = (ComputeExecutionManager)theEObject;
+				T1 result = caseComputeExecutionManager(computeExecutionManager);
+				if (result == null) result = caseProcessExecutionManager(computeExecutionManager);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER:
 			{
 				ComputeExecutionRecorder computeExecutionRecorder = (ComputeExecutionRecorder)theEObject;
 				T1 result = caseComputeExecutionRecorder(computeExecutionRecorder);
-				if (result == null) result = caseProcessExecutionRecorder(computeExecutionRecorder);
+				if (result == null) result = caseExecutionRecorder(computeExecutionRecorder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -200,6 +209,22 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseComputeConfiguration(ComputeConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseComputeExecutionManager(ComputeExecutionManager object)
 	{
 		return null;
 	}
@@ -397,6 +422,22 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseProcessExecutionManager(ProcessExecutionManager object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Execution Recorder</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -407,7 +448,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseProcessExecutionRecorder(ProcessExecutionRecorder object)
+	public T1 caseExecutionRecorder(ExecutionRecorder object)
 	{
 		return null;
 	}

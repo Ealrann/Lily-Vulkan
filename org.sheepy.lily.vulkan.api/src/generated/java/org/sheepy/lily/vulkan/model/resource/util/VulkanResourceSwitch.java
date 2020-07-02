@@ -129,6 +129,29 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanResourcePackage.IBUFFER_REFERENCE:
+			{
+				IBufferReference iBufferReference = (IBufferReference)theEObject;
+				T result = caseIBufferReference(iBufferReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.FIXED_BUFFER_REFERENCE:
+			{
+				FixedBufferReference fixedBufferReference = (FixedBufferReference)theEObject;
+				T result = caseFixedBufferReference(fixedBufferReference);
+				if (result == null) result = caseIBufferReference(fixedBufferReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE:
+			{
+				CircularBufferReference circularBufferReference = (CircularBufferReference)theEObject;
+				T result = caseCircularBufferReference(circularBufferReference);
+				if (result == null) result = caseIBufferReference(circularBufferReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case VulkanResourcePackage.BUFFER:
 			{
 				Buffer buffer = (Buffer)theEObject;
@@ -422,6 +445,54 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIBuffer(IBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IBuffer Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IBuffer Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIBufferReference(IBufferReference object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fixed Buffer Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fixed Buffer Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFixedBufferReference(FixedBufferReference object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Circular Buffer Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Circular Buffer Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCircularBufferReference(CircularBufferReference object)
 	{
 		return null;
 	}
