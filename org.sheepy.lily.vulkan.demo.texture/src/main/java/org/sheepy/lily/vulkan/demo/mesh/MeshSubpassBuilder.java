@@ -171,7 +171,7 @@ public final class MeshSubpassBuilder
 		drawIndexed.setIndexCount(meshConfiguration.indexCount);
 
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
-		graphicPipeline.setTaskPkg(taskPkg);
+		graphicPipeline.getTaskPkgs().add(taskPkg);
 
 		final var taskList = taskPkg.getTasks();
 		final var bindDescriptorSets = ProcessFactory.eINSTANCE.createBindDescriptorSets();

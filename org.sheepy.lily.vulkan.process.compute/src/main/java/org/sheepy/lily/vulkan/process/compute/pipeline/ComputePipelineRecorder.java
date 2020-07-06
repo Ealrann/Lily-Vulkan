@@ -6,12 +6,10 @@ import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineRecordable;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.lily.vulkan.process.pipeline.TaskPipelineManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -19,17 +17,21 @@ import java.util.List;
 
 @ModelExtender(scope = ComputePipeline.class)
 @Allocation(context = ProcessContext.class)
-@AllocationDependency(features = {ComputePackage.COMPUTE_PIPELINE__TASK_PKG, ProcessPackage.TASK_PKG__TASKS}, type = IPipelineTaskRecorder.class)
-public final class ComputePipelineRecorder implements IPipelineRecordable
+@AllocationDependency(type = IPipelineAllocation.class)
+@AllocationDependency(features = ComputePackage.COMPUTE_PIPELINE__TASK_PKGS, type = IRecordableExtender.class)
+public final class ComputePipelineRecorder implements IRecordableExtender
 {
 	private final ComputePipeline pipeline;
-	private final TaskPipelineManager taskManager;
+	private final VkPipeline vkPipeline;
+	private final List<IRecordableExtender> recorders;
 
 	private ComputePipelineRecorder(ComputePipeline pipeline,
-									@InjectDependency(index = 0) List<IPipelineTaskRecorder> recorders)
+									@InjectDependency(index = 0) IPipelineAllocation pipelineAllocation,
+									@InjectDependency(index = 1) List<IRecordableExtender> recorders)
 	{
 		this.pipeline = pipeline;
-		taskManager = new TaskPipelineManager(pipeline, recorders);
+		this.vkPipeline = pipelineAllocation.getVkPipeline();
+		this.recorders = recorders;
 	}
 
 	@Override
@@ -37,25 +39,19 @@ public final class ComputePipelineRecorder implements IPipelineRecordable
 	{
 		if (isActive())
 		{
-			final var pipelineStage = pipeline.getStage();
 			final var currentStage = context.stage;
-			final var vkPipeline = pipeline.adapt(IPipelineAllocation.class).getVkPipeline();
-			if (vkPipeline != null && pipelineStage == currentStage)
+			if (vkPipeline != null && currentStage == ECommandStage.MAIN)
 			{
 				vkPipeline.bindPipeline(context.commandBuffer);
 			}
-			taskManager.record(context);
+			for (final var recorder : recorders)
+			{
+				recorder.record(context);
+			}
 		}
 	}
 
-	@Override
-	public boolean shouldRecord(final ECommandStage stage)
-	{
-		return pipeline.getStage() == stage || taskManager.shouldRecord(stage);
-	}
-
-	@Override
-	public boolean isActive()
+	private boolean isActive()
 	{
 		return pipeline.isEnabled();
 	}

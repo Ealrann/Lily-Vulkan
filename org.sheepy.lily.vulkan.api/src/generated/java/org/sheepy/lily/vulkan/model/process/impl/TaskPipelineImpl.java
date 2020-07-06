@@ -2,14 +2,18 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.model.resource.ResourcePkg;
 
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
@@ -30,7 +34,7 @@ import org.sheepy.lily.vulkan.model.process.TaskPkg;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl#getTaskPkg <em>Task Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl#getTaskPkgs <em>Task Pkgs</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,14 +62,14 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	protected DescriptorPkg descriptorPkg;
 
 	/**
-	 * The cached value of the '{@link #getTaskPkg() <em>Task Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getTaskPkgs() <em>Task Pkgs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTaskPkg()
+	 * @see #getTaskPkgs()
 	 * @generated
 	 * @ordered
 	 */
-	protected TaskPkg taskPkg;
+	protected EList<TaskPkg> taskPkgs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,48 +198,13 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	 * @generated
 	 */
 	@Override
-	public TaskPkg getTaskPkg()
+	public EList<TaskPkg> getTaskPkgs()
 	{
-		return taskPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTaskPkg(TaskPkg newTaskPkg, NotificationChain msgs)
-	{
-		TaskPkg oldTaskPkg = taskPkg;
-		taskPkg = newTaskPkg;
-		if (eNotificationRequired())
+		if (taskPkgs == null)
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.TASK_PIPELINE__TASK_PKG, oldTaskPkg, newTaskPkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			taskPkgs = new EObjectContainmentEList<TaskPkg>(TaskPkg.class, this, ProcessPackage.TASK_PIPELINE__TASK_PKGS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTaskPkg(TaskPkg newTaskPkg)
-	{
-		if (newTaskPkg != taskPkg)
-		{
-			NotificationChain msgs = null;
-			if (taskPkg != null)
-				msgs = ((InternalEObject)taskPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.TASK_PIPELINE__TASK_PKG, null, msgs);
-			if (newTaskPkg != null)
-				msgs = ((InternalEObject)newTaskPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.TASK_PIPELINE__TASK_PKG, null, msgs);
-			msgs = basicSetTaskPkg(newTaskPkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.TASK_PIPELINE__TASK_PKG, newTaskPkg, newTaskPkg));
+		return taskPkgs;
 	}
 
 	/**
@@ -252,8 +221,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 				return basicSetResourcePkg(null, msgs);
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				return basicSetDescriptorPkg(null, msgs);
-			case ProcessPackage.TASK_PIPELINE__TASK_PKG:
-				return basicSetTaskPkg(null, msgs);
+			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
+				return ((InternalEList<?>)getTaskPkgs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -272,8 +241,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 				return getResourcePkg();
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				return getDescriptorPkg();
-			case ProcessPackage.TASK_PIPELINE__TASK_PKG:
-				return getTaskPkg();
+			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
+				return getTaskPkgs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -283,6 +252,7 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -294,8 +264,9 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
 				return;
-			case ProcessPackage.TASK_PIPELINE__TASK_PKG:
-				setTaskPkg((TaskPkg)newValue);
+			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
+				getTaskPkgs().clear();
+				getTaskPkgs().addAll((Collection<? extends TaskPkg>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -317,8 +288,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
 				return;
-			case ProcessPackage.TASK_PIPELINE__TASK_PKG:
-				setTaskPkg((TaskPkg)null);
+			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
+				getTaskPkgs().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -338,8 +309,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 				return resourcePkg != null;
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				return descriptorPkg != null;
-			case ProcessPackage.TASK_PIPELINE__TASK_PKG:
-				return taskPkg != null;
+			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
+				return taskPkgs != null && !taskPkgs.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

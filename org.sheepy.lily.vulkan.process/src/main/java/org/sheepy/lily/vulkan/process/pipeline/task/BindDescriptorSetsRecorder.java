@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -17,7 +17,7 @@ import java.util.List;
 @ModelExtender(scope = BindDescriptorSets.class)
 @Allocation
 @AllocationDependency(features = ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS, type = IDescriptorSetAllocation.class)
-public final class BindDescriptorSetsRecorder implements IPipelineTaskRecorder
+public final class BindDescriptorSetsRecorder implements IRecordableExtender
 {
 	private final BindDescriptorSets task;
 	private final List<IDescriptorSetAllocation> descriptorSets;

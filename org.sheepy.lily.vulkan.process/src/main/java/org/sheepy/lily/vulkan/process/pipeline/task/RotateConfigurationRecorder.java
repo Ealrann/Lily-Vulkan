@@ -2,14 +2,13 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.binding.RotateConfiguration;
-import org.sheepy.lily.vulkan.process.binding.AbstractContextConfigurationAdapter;
 
 @ModelExtender(scope = RotateConfiguration.class)
 @Adapter
 @Deprecated
-public final class RotateConfigurationRecorder implements IPipelineTaskRecorder
+public final class RotateConfigurationRecorder implements IRecordableExtender
 {
 	private final RotateConfiguration task;
 

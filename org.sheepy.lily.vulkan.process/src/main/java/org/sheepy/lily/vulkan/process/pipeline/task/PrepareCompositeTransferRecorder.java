@@ -6,12 +6,11 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAllocation;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.resource.buffer.ICompositeBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ import java.util.List;
 @Allocation
 @AllocationChild(allocateBeforeParent = true, features = ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE)
 @AllocationDependency(features = ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE, type = IBufferReferenceAllocation.class)
-public final class PrepareCompositeTransferRecorder implements IPipelineTaskRecorder
+public final class PrepareCompositeTransferRecorder implements IRecordableExtender
 {
 	private final PrepareCompositeTransfer task;
 	private final IBufferReferenceAllocation bufferReferenceAllocation;
@@ -43,11 +42,5 @@ public final class PrepareCompositeTransferRecorder implements IPipelineTaskReco
 																							  context.indexCount);
 
 		adapter.recordFlush(mode, task.getTransferBuffer(), buffers);
-	}
-
-	@Override
-	public ECommandStage getStage()
-	{
-		return task.getStage();
 	}
 }

@@ -3,7 +3,6 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +13,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSrcBuffer <em>Src Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getDstBuffer <em>Dst Buffer</em>}</li>
@@ -69,32 +67,6 @@ public interface CopyBufferTask extends IPipelineTask
 	 * @generated
 	 */
 	void setDstBuffer(IBuffer value);
-
-	/**
-	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
-	 * The default value is <code>"Transfer"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECommandStage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see #setStage(ECommandStage)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getCopyBufferTask_Stage()
-	 * @model default="Transfer" required="true"
-	 * @generated
-	 */
-	ECommandStage getStage();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getStage <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see #getStage()
-	 * @generated
-	 */
-	void setStage(ECommandStage value);
 
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

@@ -49,9 +49,10 @@ public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvid
 		refineSubpass(supportTransfer, subpass, toSwap);
 
 		final var blitPipeline = (Pipeline) pipelines.get(0);
-		final var pipelineBarrier = (PipelineBarrier) blitPipeline.getTaskPkg().getTasks().get(0);
+		final var tasks = blitPipeline.getTaskPkgs().get(0).getTasks();
+		final var pipelineBarrier = (PipelineBarrier) tasks.get(0);
 		imageBarrier = (ImageBarrier) pipelineBarrier.getBarriers().get(0);
-		blit = (AbstractBlitTask) blitPipeline.getTaskPkg().getTasks().get(1);
+		blit = (AbstractBlitTask) tasks.get(1);
 		blit.setClearColor(part.getClearColor());
 		blit.setFilter(switch (part.getSampling())
 							   {

@@ -26,7 +26,7 @@ import java.util.List;
 @AllocationDependency(parent = ComputeProcess.class, features = {ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IRecordableExtender.class)
 public final class ComputeExecutionRecorderAllocation implements IExecutionPlayer, IExtender
 {
-	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER, ECommandStage.COMPUTE);
+	private static final List<ECommandStage> stages = List.of(ECommandStage.MAIN);
 
 	private final ComputeCommandBuffer commandBuffer;
 	private final Submission submission;

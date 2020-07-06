@@ -3,14 +3,14 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 import org.lwjgl.vulkan.VkViewport;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
 
 import static org.lwjgl.vulkan.VK10.vkCmdSetViewport;
 
 @ModelExtender(scope = SetViewport.class)
 @Adapter
-public final class SetViewportAdapter implements IPipelineTaskRecorder
+public final class SetViewportAdapter implements IRecordableExtender
 {
 	private final VkViewport.Buffer viewportRect = VkViewport.create(1);
 	private final SetViewport task;

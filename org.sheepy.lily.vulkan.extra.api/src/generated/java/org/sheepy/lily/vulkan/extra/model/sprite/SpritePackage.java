@@ -88,15 +88,6 @@ public interface SpritePackage extends EPackage
 	int SPRITE_RENDERER__ENABLED = RenderingPackage.GENERIC_RENDERER__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__STAGE = RenderingPackage.GENERIC_RENDERER__STAGE;
-
-	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -115,13 +106,13 @@ public interface SpritePackage extends EPackage
 	int SPRITE_RENDERER__DESCRIPTOR_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Task Pkgs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__TASK_PKG = RenderingPackage.GENERIC_RENDERER__TASK_PKG;
+	int SPRITE_RENDERER__TASK_PKGS = RenderingPackage.GENERIC_RENDERER__TASK_PKGS;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.

@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
@@ -19,7 +19,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
 @ModelExtender(scope = PushConstantBuffer.class)
 @Allocation
-public final class PushConstantBufferRecorder implements IPipelineTaskRecorder
+public final class PushConstantBufferRecorder implements IRecordableExtender
 {
 	private final PushConstantBuffer task;
 	private final ConstantBuffer buffer;

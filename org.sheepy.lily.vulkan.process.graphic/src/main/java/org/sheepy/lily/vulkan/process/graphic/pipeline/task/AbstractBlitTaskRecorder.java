@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
@@ -15,7 +15,7 @@ import org.sheepy.vulkan.model.image.ImageFactory;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public abstract class AbstractBlitTaskRecorder implements IPipelineTaskRecorder
+public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 {
 	private static final int FORMAT = EFormat.R8G8B8A8_UNORM_VALUE;
 	private static final IVkImageBuilder clearTextureBuilder = new VkImageBuilder(1, 1, FORMAT).usage(

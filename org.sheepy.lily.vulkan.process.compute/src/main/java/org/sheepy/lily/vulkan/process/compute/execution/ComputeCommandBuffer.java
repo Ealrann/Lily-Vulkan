@@ -36,7 +36,7 @@ public class ComputeCommandBuffer extends AbstractCommandBuffer
 	@Override
 	public void start(ECommandStage stage)
 	{
-		if (stage == ECommandStage.TRANSFER)
+		if (stage == ECommandStage.MAIN)
 		{
 			Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo), FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
 		}
@@ -45,7 +45,7 @@ public class ComputeCommandBuffer extends AbstractCommandBuffer
 	@Override
 	public void end(ECommandStage stage)
 	{
-		if (stage == ECommandStage.COMPUTE)
+		if (stage == ECommandStage.MAIN)
 		{
 			Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
 		}

@@ -15,7 +15,6 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +27,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FlushTransferBufferTaskImpl#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,26 +82,6 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	 * @ordered
 	 */
 	protected TransferBuffer transferBuffer;
-
-	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.TRANSFER;
-
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -227,31 +205,6 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	 * @generated
 	 */
 	@Override
-	public ECommandStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStage(ECommandStage newStage)
-	{
-		ECommandStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE, oldStage, stage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -263,8 +216,6 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER:
 				if (resolve) return getTransferBuffer();
 				return basicGetTransferBuffer();
-			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
-				return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -287,9 +238,6 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 				return;
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)newValue);
-				return;
-			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
-				setStage((ECommandStage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -314,9 +262,6 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)null);
 				return;
-			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -337,8 +282,6 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER:
 				return transferBuffer != null;
-			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__STAGE:
-				return stage != STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -358,8 +301,6 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
-		result.append(", stage: ");
-		result.append(stage);
 		result.append(')');
 		return result.toString();
 	}

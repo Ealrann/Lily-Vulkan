@@ -4,8 +4,6 @@ package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.vulkan.model.barrier.Barrier;
-
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -22,7 +20,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstStage <em>Dst Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getRecordDuringStage <em>Record During Stage</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPipelineBarrier()
@@ -136,31 +133,5 @@ public interface PipelineBarrier extends IPipelineTask
 	 * @generated
 	 */
 	void setDstQueue(AbstractProcess value);
-
-	/**
-	 * Returns the value of the '<em><b>Record During Stage</b></em>' attribute.
-	 * The default value is <code>"Inherited"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECommandStage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Record During Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see #setRecordDuringStage(ECommandStage)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPipelineBarrier_RecordDuringStage()
-	 * @model default="Inherited" required="true"
-	 * @generated
-	 */
-	ECommandStage getRecordDuringStage();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getRecordDuringStage <em>Record During Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Record During Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see #getRecordDuringStage()
-	 * @generated
-	 */
-	void setRecordDuringStage(ECommandStage value);
 
 } // PipelineBarrier

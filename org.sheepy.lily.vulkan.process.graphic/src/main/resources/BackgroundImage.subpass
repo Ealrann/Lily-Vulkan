@@ -13,8 +13,8 @@
     </extraAttachments>
   </attachmentPkg>
   <pipelinePkg>
-    <pipelines xsi:type="process:Pipeline" name="Blit to Swap" stage="Transfer">
-      <taskPkg>
+    <pipelines xsi:type="process:Pipeline" name="Blit to Swap">
+      <taskPkgs stage="PreRender">
         <tasks xsi:type="process:PipelineBarrier" dstStage="TRANSFER_BIT">
           <barriers xsi:type="resource:ImageBarrier" name="Src Image Barrier" dstLayout="TRANSFER_SRC_OPTIMAL">
             <dstAccessMask>TRANSFER_READ_BIT</dstAccessMask>
@@ -24,10 +24,10 @@
           </barriers>
         </tasks>
         <tasks xsi:type="graphic:BlitToSwapImage"/>
-      </taskPkg>
+      </taskPkgs>
     </pipelines>
-    <pipelines xsi:type="process:Pipeline" name="Blit to Image" stage="Transfer">
-      <taskPkg>
+    <pipelines xsi:type="process:Pipeline" name="Blit to Image">
+      <taskPkgs stage="PreRender">
         <tasks xsi:type="process:PipelineBarrier" dstStage="TRANSFER_BIT">
           <barriers xsi:type="resource:ImageBarrier" name="Src Image Barrier" dstLayout="TRANSFER_SRC_OPTIMAL">
             <dstAccessMask>TRANSFER_READ_BIT</dstAccessMask>
@@ -37,7 +37,7 @@
           </barriers>
         </tasks>
         <tasks xsi:type="graphic:BlitTask"/>
-      </taskPkg>
+      </taskPkgs>
     </pipelines>
     <pipelines xsi:type="graphic:GraphicsPipeline" name=" Compatibility" layout="//@pipelinePkg/@pipelines.2/@descriptorPool/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.2/@resourcePkg/@resources.0 //@pipelinePkg/@pipelines.2/@resourcePkg/@resources.1">
       <resourcePkg>
@@ -53,15 +53,15 @@
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
       </descriptorPkg>
-      <taskPkg>
-        <tasks xsi:type="process:PipelineBarrier" name="SwapToTransfer" dstStage="TRANSFER_BIT" recordDuringStage="PreRender">
+      <taskPkgs stage="PreRender">
+        <tasks xsi:type="process:PipelineBarrier" name="SwapToTransfer" dstStage="TRANSFER_BIT">
           <barriers xsi:type="graphic:SwapImageBarrier" dstLayout="TRANSFER_DST_OPTIMAL">
             <dstAccessMask>TRANSFER_WRITE_BIT</dstAccessMask>
           </barriers>
         </tasks>
         <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.2/@descriptorPool/@descriptorSets.0"/>
         <tasks xsi:type="graphic:Draw" vertexCount="3"/>
-      </taskPkg>
+      </taskPkgs>
       <descriptorPool>
         <descriptorSets descriptors="//@pipelinePkg/@pipelines.2/@descriptorPkg/@descriptors.0"/>
       </descriptorPool>

@@ -14,11 +14,6 @@ public interface IRecordable
 {
 	void record(RecordContext context);
 
-	default boolean isActive()
-	{
-		return true;
-	}
-
 	final class RecordContext implements IRecordContext
 	{
 		public final VkCommandBuffer commandBuffer;

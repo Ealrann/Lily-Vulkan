@@ -310,22 +310,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__ENABLED = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE__STAGE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Abstract Pipeline</em>' class.
@@ -365,15 +356,6 @@ public interface ProcessPackage extends EPackage
 	int TASK_PIPELINE__ENABLED = ABSTRACT_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_PIPELINE__STAGE = ABSTRACT_PIPELINE__STAGE;
-
-	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -392,13 +374,13 @@ public interface ProcessPackage extends EPackage
 	int TASK_PIPELINE__DESCRIPTOR_PKG = ABSTRACT_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Task Pkgs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_PIPELINE__TASK_PKG = ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
+	int TASK_PIPELINE__TASK_PKGS = ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Task Pipeline</em>' class.
@@ -447,15 +429,6 @@ public interface ProcessPackage extends EPackage
 	int VK_PIPELINE__ENABLED = TASK_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VK_PIPELINE__STAGE = TASK_PIPELINE__STAGE;
-
-	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,13 +447,13 @@ public interface ProcessPackage extends EPackage
 	int VK_PIPELINE__DESCRIPTOR_PKG = TASK_PIPELINE__DESCRIPTOR_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Task Pkgs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VK_PIPELINE__TASK_PKG = TASK_PIPELINE__TASK_PKG;
+	int VK_PIPELINE__TASK_PKGS = TASK_PIPELINE__TASK_PKGS;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.
@@ -556,13 +529,22 @@ public interface ProcessPackage extends EPackage
 	int TASK_PKG__TASKS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_PKG__STAGE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Task Pkg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_PKG_FEATURE_COUNT = 1;
+	int TASK_PKG_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Task Pkg</em>' class.
@@ -602,15 +584,6 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE__ENABLED = TASK_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE__STAGE = TASK_PIPELINE__STAGE;
-
-	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -629,13 +602,13 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE__DESCRIPTOR_PKG = TASK_PIPELINE__DESCRIPTOR_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Task Pkgs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE__TASK_PKG = TASK_PIPELINE__TASK_PKG;
+	int PIPELINE__TASK_PKGS = TASK_PIPELINE__TASK_PKGS;
 
 	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
@@ -682,15 +655,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int COMPOSITE_PIPELINE__ENABLED = ABSTRACT_PIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PIPELINE__STAGE = ABSTRACT_PIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Pipelines</b></em>' containment reference list.
@@ -802,22 +766,13 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BARRIER__DST_QUEUE = IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Record During Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER__RECORD_DURING_STAGE = IPIPELINE_TASK_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Pipeline Barrier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 6;
+	int PIPELINE_BARRIER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Pipeline Barrier</em>' class.
@@ -1131,22 +1086,13 @@ public interface ProcessPackage extends EPackage
 	int FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLUSH_TRANSFER_BUFFER_TASK__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Flush Transfer Buffer Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int FLUSH_TRANSFER_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Flush Transfer Buffer Task</em>' class.
@@ -1186,22 +1132,13 @@ public interface ProcessPackage extends EPackage
 	int COPY_BUFFER_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COPY_BUFFER_TASK__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COPY_BUFFER_TASK__SIZE = IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int COPY_BUFFER_TASK__SIZE = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Src Buffer</b></em>' reference.
@@ -1210,7 +1147,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COPY_BUFFER_TASK__SRC_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int COPY_BUFFER_TASK__SRC_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dst Buffer</b></em>' reference.
@@ -1219,7 +1156,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COPY_BUFFER_TASK__DST_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 3;
+	int COPY_BUFFER_TASK__DST_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Copy Buffer Task</em>' class.
@@ -1228,7 +1165,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COPY_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 4;
+	int COPY_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Copy Buffer Task</em>' class.
@@ -1360,22 +1297,13 @@ public interface ProcessPackage extends EPackage
 	int PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREPARE_COMPOSITE_TRANSFER__STAGE = IPIPELINE_TASK_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Buffer Reference</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE = IPIPELINE_TASK_FEATURE_COUNT + 4;
+	int PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
@@ -1384,7 +1312,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 5;
+	int PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Prepare Composite Transfer</em>' class.
@@ -1393,7 +1321,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREPARE_COMPOSITE_TRANSFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 6;
+	int PREPARE_COMPOSITE_TRANSFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Prepare Composite Transfer</em>' class.
@@ -1674,17 +1602,6 @@ public interface ProcessPackage extends EPackage
 	EAttribute getAbstractPipeline_Enabled();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getStage <em>Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getStage()
-	 * @see #getAbstractPipeline()
-	 * @generated
-	 */
-	EAttribute getAbstractPipeline_Stage();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.TaskPipeline <em>Task Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1695,15 +1612,15 @@ public interface ProcessPackage extends EPackage
 	EClass getTaskPipeline();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.TaskPipeline#getTaskPkg <em>Task Pkg</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.TaskPipeline#getTaskPkgs <em>Task Pkgs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Task Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.TaskPipeline#getTaskPkg()
+	 * @return the meta object for the containment reference list '<em>Task Pkgs</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.TaskPipeline#getTaskPkgs()
 	 * @see #getTaskPipeline()
 	 * @generated
 	 */
-	EReference getTaskPipeline_TaskPkg();
+	EReference getTaskPipeline_TaskPkgs();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.VkPipeline <em>Vk Pipeline</em>}'.
@@ -1779,6 +1696,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getTaskPkg_Tasks();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.TaskPkg#getStage <em>Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.TaskPkg#getStage()
+	 * @see #getTaskPkg()
+	 * @generated
+	 */
+	EAttribute getTaskPkg_Stage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Pipeline <em>Pipeline</em>}'.
@@ -1886,17 +1814,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getPipelineBarrier_DstQueue();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getRecordDuringStage <em>Record During Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Record During Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getRecordDuringStage()
-	 * @see #getPipelineBarrier()
-	 * @generated
-	 */
-	EAttribute getPipelineBarrier_RecordDuringStage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CompositeTask <em>Composite Task</em>}'.
@@ -2037,17 +1954,6 @@ public interface ProcessPackage extends EPackage
 	EReference getFlushTransferBufferTask_TransferBuffer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getStage <em>Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask#getStage()
-	 * @see #getFlushTransferBufferTask()
-	 * @generated
-	 */
-	EAttribute getFlushTransferBufferTask_Stage();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask <em>Copy Buffer Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2078,17 +1984,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getCopyBufferTask_DstBuffer();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getStage <em>Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.CopyBufferTask#getStage()
-	 * @see #getCopyBufferTask()
-	 * @generated
-	 */
-	EAttribute getCopyBufferTask_Stage();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CopyBufferTask#getSize <em>Size</em>}'.
@@ -2174,17 +2069,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getPrepareCompositeTransfer_PrepareDuringUpdate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage()
-	 * @see #getPrepareCompositeTransfer()
-	 * @generated
-	 */
-	EAttribute getPrepareCompositeTransfer_Stage();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getBufferReference <em>Buffer Reference</em>}'.
@@ -2407,14 +2291,6 @@ public interface ProcessPackage extends EPackage
 		EAttribute ABSTRACT_PIPELINE__ENABLED = eINSTANCE.getAbstractPipeline_Enabled();
 
 		/**
-		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_PIPELINE__STAGE = eINSTANCE.getAbstractPipeline_Stage();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl <em>Task Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2425,12 +2301,12 @@ public interface ProcessPackage extends EPackage
 		EClass TASK_PIPELINE = eINSTANCE.getTaskPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Task Pkg</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Task Pkgs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TASK_PIPELINE__TASK_PKG = eINSTANCE.getTaskPipeline_TaskPkg();
+		EReference TASK_PIPELINE__TASK_PKGS = eINSTANCE.getTaskPipeline_TaskPkgs();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl <em>Vk Pipeline</em>}' class.
@@ -2491,6 +2367,14 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference TASK_PKG__TASKS = eINSTANCE.getTaskPkg_Tasks();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TASK_PKG__STAGE = eINSTANCE.getTaskPkg_Stage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl <em>Pipeline</em>}' class.
@@ -2577,14 +2461,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PIPELINE_BARRIER__DST_QUEUE = eINSTANCE.getPipelineBarrier_DstQueue();
-
-		/**
-		 * The meta object literal for the '<em><b>Record During Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PIPELINE_BARRIER__RECORD_DURING_STAGE = eINSTANCE.getPipelineBarrier_RecordDuringStage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl <em>Composite Task</em>}' class.
@@ -2701,14 +2577,6 @@ public interface ProcessPackage extends EPackage
 		EReference FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER = eINSTANCE.getFlushTransferBufferTask_TransferBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FLUSH_TRANSFER_BUFFER_TASK__STAGE = eINSTANCE.getFlushTransferBufferTask_Stage();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl <em>Copy Buffer Task</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2733,14 +2601,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference COPY_BUFFER_TASK__DST_BUFFER = eINSTANCE.getCopyBufferTask_DstBuffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COPY_BUFFER_TASK__STAGE = eINSTANCE.getCopyBufferTask_Stage();
 
 		/**
 		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
@@ -2811,14 +2671,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE = eINSTANCE.getPrepareCompositeTransfer_PrepareDuringUpdate();
-
-		/**
-		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PREPARE_COMPOSITE_TRANSFER__STAGE = eINSTANCE.getPrepareCompositeTransfer_Stage();
 
 		/**
 		 * The meta object literal for the '<em><b>Buffer Reference</b></em>' containment reference feature.

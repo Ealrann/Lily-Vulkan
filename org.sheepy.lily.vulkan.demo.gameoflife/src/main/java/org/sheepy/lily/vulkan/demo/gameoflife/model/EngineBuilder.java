@@ -211,8 +211,7 @@ public final class EngineBuilder
 
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 		final var pipeline = ProcessFactory.eINSTANCE.createPipeline();
-		pipeline.setTaskPkg(taskPkg);
-		pipeline.setStage(ECommandStage.COMPUTE);
+		pipeline.getTaskPkgs().add(taskPkg);
 
 		final var pipelineBarrier = ProcessFactory.eINSTANCE.createPipelineBarrier();
 		final var imageBarrier = VulkanResourceFactory.eINSTANCE.createImageBarrier();
@@ -225,7 +224,7 @@ public final class EngineBuilder
 		pipelineBarrier.getBarriers().add(imageBarrier);
 
 		barrierProcess.getPipelinePkg().getPipelines().add(pipeline);
-		pipeline.getTaskPkg().getTasks().add(pipelineBarrier);
+		taskPkg.getTasks().add(pipelineBarrier);
 
 		final var cadence = CadenceFactory.eINSTANCE.createCadence();
 		final var runBarrierProcess = VulkanFactory.eINSTANCE.createRunProcess();
@@ -245,13 +244,12 @@ public final class EngineBuilder
 		final var dispatch = createDispatchTask();
 
 		final var pipeline = ComputeFactory.eINSTANCE.createComputePipeline();
-		pipeline.setTaskPkg(taskPkg);
+		pipeline.getTaskPkgs().add(taskPkg);
 		taskPkg.getTasks().add(bindTask);
 		taskPkg.getTasks().add(dispatch);
 
 		pipeline.getLayout().add(ds1);
 		pipeline.setShader(shader);
-		pipeline.setStage(ECommandStage.COMPUTE);
 
 		return pipeline;
 	}

@@ -40,12 +40,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="AbstractPipeline" abstract="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" unique="false" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
-        defaultValueLiteral="Render"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskPipeline" abstract="true" eSuperTypes="#//AbstractPipeline vulkan.ecore#//IResourceContainer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="taskPkg" eType="#//TaskPkg"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskPkgs" upperBound="-1"
+        eType="#//TaskPkg" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VkPipeline" abstract="true" eSuperTypes="#//TaskPipeline">
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" eType="ecore:EClass resource.ecore#//DescriptorPool"
@@ -60,6 +58,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="TaskPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
         eType="#//IPipelineTask" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
+        defaultValueLiteral="Main"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pipeline" eSuperTypes="#//TaskPipeline"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompositePipeline" eSuperTypes="#//AbstractPipeline">
@@ -78,9 +78,6 @@
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="srcQueue" eType="#//AbstractProcess"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dstQueue" eType="#//AbstractProcess"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="recordDuringStage" lowerBound="1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
-        defaultValueLiteral="Inherited"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="repeatCount" unique="false"
@@ -111,12 +108,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="FlushTransferBufferTask" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
         eType="ecore:EClass resource.ecore#//TransferBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
-        defaultValueLiteral="Transfer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CopyBufferTask" eSuperTypes="#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
-        defaultValueLiteral="Transfer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="srcBuffer" lowerBound="1"
@@ -136,8 +129,6 @@
         defaultValueLiteral="PUSH"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prepareDuringUpdate" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stage" lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//ECommandStage"
-        defaultValueLiteral="Transfer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
         eType="ecore:EClass resource.ecore#//IBufferReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"

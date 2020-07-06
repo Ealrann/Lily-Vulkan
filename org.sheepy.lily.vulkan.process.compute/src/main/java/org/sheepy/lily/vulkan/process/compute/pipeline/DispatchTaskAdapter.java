@@ -2,14 +2,14 @@ package org.sheepy.lily.vulkan.process.compute.pipeline;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 
 import static org.lwjgl.vulkan.VK10.vkCmdDispatch;
 
 @ModelExtender(scope = DispatchTask.class)
 @Adapter
-public final class DispatchTaskAdapter implements IPipelineTaskRecorder
+public final class DispatchTaskAdapter implements IRecordableExtender
 {
 	private final DispatchTask task;
 

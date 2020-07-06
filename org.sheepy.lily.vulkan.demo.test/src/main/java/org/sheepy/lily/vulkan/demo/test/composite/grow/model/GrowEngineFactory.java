@@ -11,7 +11,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class GrowEngineFactory
 {
@@ -29,7 +28,7 @@ public class GrowEngineFactory
 		final var cadence = buildCadence(process, MAX_COUNT);
 
 		process.getPipelinePkg().getPipelines().add(pipeline);
-		taskManager.install(pipeline.getTaskPkg().getTasks());
+		taskManager.install(pipeline.getTaskPkgs().get(0).getTasks());
 		process.setCadence(cadence);
 		engine.getProcesses().add(process);
 
@@ -89,8 +88,7 @@ public class GrowEngineFactory
 	{
 		final var res = ProcessFactory.eINSTANCE.createPipeline();
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
-		res.setTaskPkg(taskPkg);
-		res.setStage(ECommandStage.TRANSFER);
+		res.getTaskPkgs().add(taskPkg);
 		return res;
 	}
 }

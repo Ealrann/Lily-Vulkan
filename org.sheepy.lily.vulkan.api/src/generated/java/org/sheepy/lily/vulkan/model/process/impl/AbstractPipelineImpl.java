@@ -11,8 +11,6 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Abstract Pipeline</b></em>'.
@@ -23,7 +21,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,26 +66,6 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.RENDER;
-
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,31 +144,6 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	 * @generated
 	 */
 	@Override
-	public ECommandStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStage(ECommandStage newStage)
-	{
-		ECommandStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__STAGE, oldStage, stage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -200,8 +152,6 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 				return getName();
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				return isEnabled();
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,9 +171,6 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				setEnabled((Boolean)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				setStage((ECommandStage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -245,9 +192,6 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -266,8 +210,6 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				return stage != STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -287,8 +229,6 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
-		result.append(", stage: ");
-		result.append(stage);
 		result.append(')');
 		return result.toString();
 	}

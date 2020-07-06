@@ -35,7 +35,6 @@ public class TaskManager
 		prepareFetch.setTransferBuffer(resourceContainer.transferBuffer);
 		prepareFetch.setBufferReference(fetchbufferReference);
 		fetchTask.setTransferBuffer(resourceContainer.transferBuffer);
-		fetchTask.setStage(ECommandStage.TRANSFER);
 	}
 
 	public void install(List<IPipelineTask> tasks)

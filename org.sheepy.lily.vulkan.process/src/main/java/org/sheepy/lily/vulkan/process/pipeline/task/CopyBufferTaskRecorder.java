@@ -7,10 +7,9 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import static org.lwjgl.vulkan.VK10.vkCmdCopyBuffer;
 
@@ -18,7 +17,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdCopyBuffer;
 @Allocation
 @AllocationDependency(features = ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, type = IBufferAllocation.class)
 @AllocationDependency(features = ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER, type = IBufferAllocation.class)
-public final class CopyBufferTaskRecorder implements IPipelineTaskRecorder
+public final class CopyBufferTaskRecorder implements IRecordableExtender
 {
 	private final VkBufferCopy.Buffer copyInfo;
 	private final CopyBufferTask task;
@@ -69,11 +68,5 @@ public final class CopyBufferTaskRecorder implements IPipelineTaskRecorder
 
 		srcBuffer.flush();
 		vkCmdCopyBuffer(commandBuffer, scrPtr, dstPtr, copyInfo);
-	}
-
-	@Override
-	public ECommandStage getStage()
-	{
-		return task.getStage();
 	}
 }

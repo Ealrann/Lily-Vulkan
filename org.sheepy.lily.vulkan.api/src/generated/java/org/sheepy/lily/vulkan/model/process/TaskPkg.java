@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.api.model.ILilyEObject;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +16,7 @@ import org.sheepy.lily.core.api.model.ILilyEObject;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.TaskPkg#getTasks <em>Tasks</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.TaskPkg#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getTaskPkg()
@@ -35,5 +37,31 @@ public interface TaskPkg extends ILilyEObject
 	 * @generated
 	 */
 	EList<IPipelineTask> getTasks();
+
+	/**
+	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
+	 * The default value is <code>"Main"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECommandStage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
+	 * @see #setStage(ECommandStage)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getTaskPkg_Stage()
+	 * @model default="Main" required="true"
+	 * @generated
+	 */
+	ECommandStage getStage();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.TaskPkg#getStage <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stage</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
+	 * @see #getStage()
+	 * @generated
+	 */
+	void setStage(ECommandStage value);
 
 } // TaskPkg

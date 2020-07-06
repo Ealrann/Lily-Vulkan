@@ -483,17 +483,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAbstractPipeline_Stage()
-	{
-		return (EAttribute)abstractPipelineEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getTaskPipeline()
 	{
 		return taskPipelineEClass;
@@ -505,7 +494,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getTaskPipeline_TaskPkg()
+	public EReference getTaskPipeline_TaskPkgs()
 	{
 		return (EReference)taskPipelineEClass.getEStructuralFeatures().get(0);
 	}
@@ -585,6 +574,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EReference getTaskPkg_Tasks()
 	{
 		return (EReference)taskPkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTaskPkg_Stage()
+	{
+		return (EAttribute)taskPkgEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -695,17 +695,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EReference getPipelineBarrier_DstQueue()
 	{
 		return (EReference)pipelineBarrierEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getPipelineBarrier_RecordDuringStage()
-	{
-		return (EAttribute)pipelineBarrierEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -857,17 +846,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFlushTransferBufferTask_Stage()
-	{
-		return (EAttribute)flushTransferBufferTaskEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getCopyBufferTask()
 	{
 		return copyBufferTaskEClass;
@@ -881,7 +859,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getCopyBufferTask_SrcBuffer()
 	{
-		return (EReference)copyBufferTaskEClass.getEStructuralFeatures().get(2);
+		return (EReference)copyBufferTaskEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -892,18 +870,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getCopyBufferTask_DstBuffer()
 	{
-		return (EReference)copyBufferTaskEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCopyBufferTask_Stage()
-	{
-		return (EAttribute)copyBufferTaskEClass.getEStructuralFeatures().get(0);
+		return (EReference)copyBufferTaskEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -914,7 +881,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getCopyBufferTask_Size()
 	{
-		return (EAttribute)copyBufferTaskEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)copyBufferTaskEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1000,20 +967,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPrepareCompositeTransfer_Stage()
-	{
-		return (EAttribute)prepareCompositeTransferEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getPrepareCompositeTransfer_BufferReference()
 	{
-		return (EReference)prepareCompositeTransferEClass.getEStructuralFeatures().get(4);
+		return (EReference)prepareCompositeTransferEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1024,7 +980,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getPrepareCompositeTransfer_TransferBuffer()
 	{
-		return (EReference)prepareCompositeTransferEClass.getEStructuralFeatures().get(5);
+		return (EReference)prepareCompositeTransferEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1140,10 +1096,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		abstractPipelineEClass = createEClass(ABSTRACT_PIPELINE);
 		createEAttribute(abstractPipelineEClass, ABSTRACT_PIPELINE__ENABLED);
-		createEAttribute(abstractPipelineEClass, ABSTRACT_PIPELINE__STAGE);
 
 		taskPipelineEClass = createEClass(TASK_PIPELINE);
-		createEReference(taskPipelineEClass, TASK_PIPELINE__TASK_PKG);
+		createEReference(taskPipelineEClass, TASK_PIPELINE__TASK_PKGS);
 
 		vkPipelineEClass = createEClass(VK_PIPELINE);
 		createEReference(vkPipelineEClass, VK_PIPELINE__DESCRIPTOR_POOL);
@@ -1153,6 +1108,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		taskPkgEClass = createEClass(TASK_PKG);
 		createEReference(taskPkgEClass, TASK_PKG__TASKS);
+		createEAttribute(taskPkgEClass, TASK_PKG__STAGE);
 
 		pipelineEClass = createEClass(PIPELINE);
 
@@ -1166,7 +1122,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(pipelineBarrierEClass, PIPELINE_BARRIER__DST_STAGE);
 		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__SRC_QUEUE);
 		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__DST_QUEUE);
-		createEAttribute(pipelineBarrierEClass, PIPELINE_BARRIER__RECORD_DURING_STAGE);
 
 		compositeTaskEClass = createEClass(COMPOSITE_TASK);
 		createEAttribute(compositeTaskEClass, COMPOSITE_TASK__REPEAT_COUNT);
@@ -1185,10 +1140,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		flushTransferBufferTaskEClass = createEClass(FLUSH_TRANSFER_BUFFER_TASK);
 		createEReference(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER);
-		createEAttribute(flushTransferBufferTaskEClass, FLUSH_TRANSFER_BUFFER_TASK__STAGE);
 
 		copyBufferTaskEClass = createEClass(COPY_BUFFER_TASK);
-		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__STAGE);
 		createEAttribute(copyBufferTaskEClass, COPY_BUFFER_TASK__SIZE);
 		createEReference(copyBufferTaskEClass, COPY_BUFFER_TASK__SRC_BUFFER);
 		createEReference(copyBufferTaskEClass, COPY_BUFFER_TASK__DST_BUFFER);
@@ -1202,7 +1155,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__COMPOSITE_BUFFER);
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__MODE);
 		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE);
-		createEAttribute(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__STAGE);
 		createEReference(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE);
 		createEReference(prepareCompositeTransferEClass, PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER);
 
@@ -1245,8 +1197,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		VulkanResourcePackage theVulkanResourcePackage = (VulkanResourcePackage)EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
-		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		PipelinePackage thePipelinePackage = (PipelinePackage)EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
+		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
 		MaintainerPackage theMaintainerPackage = (MaintainerPackage)EPackage.Registry.INSTANCE.getEPackage(MaintainerPackage.eNS_URI);
 		CadencePackage theCadencePackage = (CadencePackage)EPackage.Registry.INSTANCE.getEPackage(CadencePackage.eNS_URI);
@@ -1296,10 +1248,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(abstractPipelineEClass, AbstractPipeline.class, "AbstractPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractPipeline_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAbstractPipeline_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Render", 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskPipelineEClass, TaskPipeline.class, "TaskPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTaskPipeline_TaskPkg(), this.getTaskPkg(), null, "taskPkg", null, 0, 1, TaskPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTaskPipeline_TaskPkgs(), this.getTaskPkg(), null, "taskPkgs", null, 0, -1, TaskPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vkPipelineEClass, VkPipeline.class, "VkPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVkPipeline_DescriptorPool(), theVulkanResourcePackage.getDescriptorPool(), null, "descriptorPool", null, 0, 1, VkPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1309,6 +1260,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(taskPkgEClass, TaskPkg.class, "TaskPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTaskPkg_Tasks(), this.getIPipelineTask(), null, "tasks", null, 0, -1, TaskPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTaskPkg_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Main", 1, 1, TaskPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pipelineEClass, Pipeline.class, "Pipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1322,7 +1274,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getPipelineBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(), "dstStage", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPipelineBarrier_RecordDuringStage(), theEnumerationPackage.getECommandStage(), "recordDuringStage", "Inherited", 1, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeTaskEClass, CompositeTask.class, "CompositeTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCompositeTask_RepeatCount(), ecorePackage.getEInt(), "repeatCount", "1", 0, 1, CompositeTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1341,10 +1292,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(flushTransferBufferTaskEClass, FlushTransferBufferTask.class, "FlushTransferBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlushTransferBufferTask_TransferBuffer(), theVulkanResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFlushTransferBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, FlushTransferBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(copyBufferTaskEClass, CopyBufferTask.class, "CopyBufferTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCopyBufferTask_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCopyBufferTask_Size(), ecorePackage.getELong(), "size", null, 0, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCopyBufferTask_SrcBuffer(), theVulkanResourcePackage.getIBuffer(), null, "srcBuffer", null, 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCopyBufferTask_DstBuffer(), theVulkanResourcePackage.getIBuffer(), null, "dstBuffer", null, 1, 1, CopyBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1358,7 +1307,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getPrepareCompositeTransfer_CompositeBuffer(), theVulkanResourcePackage.getCompositeBuffer(), null, "compositeBuffer", null, 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPrepareCompositeTransfer_Mode(), theVulkanResourcePackage.getEFlushMode(), "mode", "PUSH", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPrepareCompositeTransfer_PrepareDuringUpdate(), ecorePackage.getEBoolean(), "prepareDuringUpdate", "false", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPrepareCompositeTransfer_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Transfer", 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPrepareCompositeTransfer_BufferReference(), theVulkanResourcePackage.getIBufferReference(), null, "bufferReference", null, 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPrepareCompositeTransfer_TransferBuffer(), theVulkanResourcePackage.getTransferBuffer(), null, "transferBuffer", null, 1, 1, PrepareCompositeTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

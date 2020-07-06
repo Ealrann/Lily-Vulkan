@@ -95,12 +95,9 @@
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBorderColor/INT_OPAQUE_WHITE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//ECommandStage">
-      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/Transfer"/>
-      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/Compute"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/Main"/>
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/PreRender"/>
-      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/Render"/>
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/PostRender"/>
-      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/Inherited"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EAttachmentLoadOp">
       <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAttachmentLoadOp/LOAD"/>

@@ -73,7 +73,6 @@ public class PrepareCompositeTransferItemProvider
 			addCompositeBufferPropertyDescriptor(object);
 			addModePropertyDescriptor(object);
 			addPrepareDuringUpdatePropertyDescriptor(object);
-			addStagePropertyDescriptor(object);
 			addTransferBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -195,29 +194,6 @@ public class PrepareCompositeTransferItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Stage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PrepareCompositeTransfer_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PrepareCompositeTransfer_stage_feature", "_UI_PrepareCompositeTransfer_type"),
-				 ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Transfer Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -319,7 +295,6 @@ public class PrepareCompositeTransferItemProvider
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__ENABLED:
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__MODE:
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__PREPARE_DURING_UPDATE:
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE:

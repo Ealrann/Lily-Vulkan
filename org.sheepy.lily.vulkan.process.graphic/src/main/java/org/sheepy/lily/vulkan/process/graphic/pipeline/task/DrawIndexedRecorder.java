@@ -2,14 +2,14 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 
 import static org.lwjgl.vulkan.VK10.vkCmdDrawIndexed;
 
 @ModelExtender(scope = DrawIndexed.class)
 @Adapter
-public final class DrawIndexedRecorder implements IPipelineTaskRecorder
+public final class DrawIndexedRecorder implements IRecordableExtender
 {
 	private final DrawIndexed task;
 

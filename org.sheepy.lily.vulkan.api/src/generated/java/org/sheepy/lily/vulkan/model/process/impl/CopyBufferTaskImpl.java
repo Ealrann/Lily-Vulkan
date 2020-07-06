@@ -14,7 +14,6 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getSrcBuffer <em>Src Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CopyBufferTaskImpl#getDstBuffer <em>Dst Buffer</em>}</li>
@@ -75,26 +73,6 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.TRANSFER;
-
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -226,7 +204,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	{
 		if (srcBuffer != null && ((EObject)srcBuffer).eIsProxy())
 		{
-			InternalEObject oldSrcBuffer = (InternalEObject)srcBuffer;
+			InternalEObject oldSrcBuffer = srcBuffer;
 			srcBuffer = (IBuffer)eResolveProxy(oldSrcBuffer);
 			if (srcBuffer != oldSrcBuffer)
 			{
@@ -271,7 +249,7 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	{
 		if (dstBuffer != null && ((EObject)dstBuffer).eIsProxy())
 		{
-			InternalEObject oldDstBuffer = (InternalEObject)dstBuffer;
+			InternalEObject oldDstBuffer = dstBuffer;
 			dstBuffer = (IBuffer)eResolveProxy(oldDstBuffer);
 			if (dstBuffer != oldDstBuffer)
 			{
@@ -304,31 +282,6 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 		dstBuffer = newDstBuffer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER, oldDstBuffer, dstBuffer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ECommandStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStage(ECommandStage newStage)
-	{
-		ECommandStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -399,8 +352,6 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 				return getName();
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				return isEnabled();
-			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
-				return getStage();
 			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
 				return getSize();
 			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
@@ -428,9 +379,6 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 				return;
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				setEnabled((Boolean)newValue);
-				return;
-			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
-				setStage((ECommandStage)newValue);
 				return;
 			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
 				setSize((Long)newValue);
@@ -461,9 +409,6 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
-			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
 			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
 				unsetSize();
 				return;
@@ -491,8 +436,6 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
-				return stage != STAGE_EDEFAULT;
 			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
 				return isSetSize();
 			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
@@ -518,8 +461,6 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
-		result.append(", stage: ");
-		result.append(stage);
 		result.append(", size: ");
 		if (sizeESet) result.append(size); else result.append("<unset>");
 		result.append(')');

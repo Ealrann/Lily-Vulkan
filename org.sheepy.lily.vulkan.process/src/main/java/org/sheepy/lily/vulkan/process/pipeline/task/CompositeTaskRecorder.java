@@ -6,23 +6,22 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.process.IProcessContext;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.List;
 
 @ModelExtender(scope = CompositeTask.class)
 @Allocation(context = IProcessContext.class)
 @AllocationChild(allocateBeforeParent = true, features = ProcessPackage.COMPOSITE_TASK__TASKS)
-@AllocationDependency(features = ProcessPackage.COMPOSITE_TASK__TASKS, type = IPipelineTaskRecorder.class)
-public class CompositeTaskRecorder implements IPipelineTaskRecorder
+@AllocationDependency(features = ProcessPackage.COMPOSITE_TASK__TASKS, type = IRecordableExtender.class)
+public class CompositeTaskRecorder implements IRecordableExtender
 {
 	private final CompositeTask task;
-	private final List<IPipelineTaskRecorder> children;
+	private final List<IRecordableExtender> children;
 
-	public CompositeTaskRecorder(CompositeTask task, @InjectDependency(index = 0) List<IPipelineTaskRecorder> recorders)
+	public CompositeTaskRecorder(CompositeTask task, @InjectDependency(index = 0) List<IRecordableExtender> recorders)
 	{
 		this.task = task;
 		this.children = recorders;
@@ -41,11 +40,5 @@ public class CompositeTaskRecorder implements IPipelineTaskRecorder
 				child.record(recordContext);
 			}
 		}
-	}
-
-	@Override
-	public ECommandStage getStage()
-	{
-		return ECommandStage.INHERITED;
 	}
 }

@@ -11,14 +11,13 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.barrier.IBarrierAllocation;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAllocation;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAllocation;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,9 +29,8 @@ import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
 @Allocation(context = ProcessContext.class)
 @AllocationChild(allocateBeforeParent = true, features = ProcessPackage.PIPELINE_BARRIER__BARRIERS)
 @AllocationDependency(features = ProcessPackage.PIPELINE_BARRIER__BARRIERS, type = IBarrierAllocation.class)
-public final class PipelineBarrierRecorder implements IPipelineTaskRecorder
+public final class PipelineBarrierRecorder implements IRecordableExtender
 {
-	private final PipelineBarrier pipelineBarrier;
 	private final int srcStage;
 	private final int dstStage;
 	private final List<IImageBarrierAllocation> imageBarriers;
@@ -45,8 +43,6 @@ public final class PipelineBarrierRecorder implements IPipelineTaskRecorder
 								   ProcessContext context,
 								   @InjectDependency(index = 0) List<IBarrierAllocation<?>> barrierAllocations)
 	{
-		this.pipelineBarrier = pipelineBarrier;
-
 		srcStage = pipelineBarrier.getSrcStage().getValue();
 		dstStage = pipelineBarrier.getDstStage().getValue();
 
@@ -68,12 +64,6 @@ public final class PipelineBarrierRecorder implements IPipelineTaskRecorder
 								 .filter(barrierType::isInstance)
 								 .map(barrierType::cast)
 								 .collect(Collectors.toUnmodifiableList());
-	}
-
-	@Override
-	public ECommandStage getStage()
-	{
-		return pipelineBarrier.getRecordDuringStage();
 	}
 
 	@Override

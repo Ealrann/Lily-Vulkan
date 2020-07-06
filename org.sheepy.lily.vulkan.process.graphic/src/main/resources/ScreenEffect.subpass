@@ -16,13 +16,13 @@
   </descriptorPkg>
   <pipelinePkg>
     <pipelines xsi:type="graphic:GraphicsPipeline" layout="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0" shaders="//@resourcePkg/@resources.0 //@resourcePkg/@resources.1">
-      <taskPkg>
+      <taskPkgs>
         <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0"/>
         <tasks xsi:type="process:PushConstantBuffer" buffer="//@resourcePkg/@resources.2">
           <stages>FRAGMENT_BIT</stages>
         </tasks>
         <tasks xsi:type="graphic:Draw" vertexCount="3"/>
-      </taskPkg>
+      </taskPkgs>
       <descriptorPool>
         <descriptorSets name="SwapDS" descriptors="//@descriptorPkg/@descriptors.0"/>
       </descriptorPool>

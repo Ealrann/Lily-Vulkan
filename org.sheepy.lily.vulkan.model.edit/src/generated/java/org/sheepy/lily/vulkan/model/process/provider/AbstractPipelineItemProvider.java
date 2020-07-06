@@ -68,7 +68,6 @@ public class AbstractPipelineItemProvider
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
-			addStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -120,29 +119,6 @@ public class AbstractPipelineItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Stage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractPipeline_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractPipeline_stage_feature", "_UI_AbstractPipeline_type"),
-				 ProcessPackage.Literals.ABSTRACT_PIPELINE__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -174,7 +150,6 @@ public class AbstractPipelineItemProvider
 		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

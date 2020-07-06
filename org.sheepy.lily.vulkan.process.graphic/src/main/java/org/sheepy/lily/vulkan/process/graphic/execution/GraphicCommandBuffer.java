@@ -79,9 +79,9 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 	{
 		switch (stage)
 		{
-			case TRANSFER -> Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
-										  FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
-			case RENDER -> vkCmdBeginRenderPass(vkCommandBuffer, renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
+			case PRE_RENDER -> Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
+											FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
+			case MAIN -> vkCmdBeginRenderPass(vkCommandBuffer, renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 	{
 		switch (stage)
 		{
-			case RENDER -> vkCmdEndRenderPass(vkCommandBuffer);
+			case MAIN -> vkCmdEndRenderPass(vkCommandBuffer);
 			case POST_RENDER -> Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
 		}
 	}

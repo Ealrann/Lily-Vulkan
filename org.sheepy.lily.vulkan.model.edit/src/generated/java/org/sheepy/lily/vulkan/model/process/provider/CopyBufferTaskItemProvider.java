@@ -68,7 +68,6 @@ public class CopyBufferTaskItemProvider
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
-			addStagePropertyDescriptor(object);
 			addSizePropertyDescriptor(object);
 			addSrcBufferPropertyDescriptor(object);
 			addDstBufferPropertyDescriptor(object);
@@ -118,29 +117,6 @@ public class CopyBufferTaskItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Stage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CopyBufferTask_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CopyBufferTask_stage_feature", "_UI_CopyBufferTask_type"),
-				 ProcessPackage.Literals.COPY_BUFFER_TASK__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -258,7 +234,6 @@ public class CopyBufferTaskItemProvider
 		{
 			case ProcessPackage.COPY_BUFFER_TASK__NAME:
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
-			case ProcessPackage.COPY_BUFFER_TASK__STAGE:
 			case ProcessPackage.COPY_BUFFER_TASK__SIZE:
 			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

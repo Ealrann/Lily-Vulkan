@@ -51,12 +51,9 @@
     <eLiterals name="INT_OPAQUE_WHITE" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ECommandStage">
-    <eLiterals name="Transfer"/>
-    <eLiterals name="Compute" value="1"/>
-    <eLiterals name="PreRender" value="2"/>
-    <eLiterals name="Render" value="3"/>
-    <eLiterals name="PostRender" value="4"/>
-    <eLiterals name="Inherited" value="-1"/>
+    <eLiterals name="Main"/>
+    <eLiterals name="PreRender" value="1"/>
+    <eLiterals name="PostRender" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EAttachmentLoadOp">
     <eLiterals name="LOAD"/>

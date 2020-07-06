@@ -20,26 +20,14 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum ECommandStage implements Enumerator
 {
 	/**
-	 * The '<em><b>Transfer</b></em>' literal object.
+	 * The '<em><b>Main</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRANSFER_VALUE
+	 * @see #MAIN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRANSFER(0, "Transfer", "Transfer"),
-
-	/**
-	 * The '<em><b>Compute</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPUTE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPUTE(1, "Compute", "Compute"),
-
-	/**
+	MAIN(0, "Main", "Main"), /**
 	 * The '<em><b>Pre Render</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,17 +35,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	PRE_RENDER(2, "PreRender", "PreRender"),
-
-	/**
-	 * The '<em><b>Render</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RENDER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RENDER(3, "Render", "Render"),
+	PRE_RENDER(1, "PreRender", "PreRender"),
 
 	/**
 	 * The '<em><b>Post Render</b></em>' literal object.
@@ -67,37 +45,18 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	POST_RENDER(4, "PostRender", "PostRender"), /**
-	 * The '<em><b>Inherited</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INHERITED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INHERITED(-1, "Inherited", "Inherited");
+	POST_RENDER(2, "PostRender", "PostRender");
 
 	/**
-	 * The '<em><b>Transfer</b></em>' literal value.
+	 * The '<em><b>Main</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRANSFER
-	 * @model name="Transfer"
+	 * @see #MAIN
+	 * @model name="Main"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRANSFER_VALUE = 0;
-
-	/**
-	 * The '<em><b>Compute</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPUTE
-	 * @model name="Compute"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COMPUTE_VALUE = 1;
+	public static final int MAIN_VALUE = 0;
 
 	/**
 	 * The '<em><b>Pre Render</b></em>' literal value.
@@ -108,18 +67,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRE_RENDER_VALUE = 2;
-
-	/**
-	 * The '<em><b>Render</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RENDER
-	 * @model name="Render"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RENDER_VALUE = 3;
+	public static final int PRE_RENDER_VALUE = 1;
 
 	/**
 	 * The '<em><b>Post Render</b></em>' literal value.
@@ -130,18 +78,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POST_RENDER_VALUE = 4;
-
-	/**
-	 * The '<em><b>Inherited</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INHERITED
-	 * @model name="Inherited"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INHERITED_VALUE = -1;
+	public static final int POST_RENDER_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>ECommand Stage</b></em>' enumerators.
@@ -151,12 +88,9 @@ public enum ECommandStage implements Enumerator
 	 */
 	private static final ECommandStage[] VALUES_ARRAY = new ECommandStage[]
 		{
-			TRANSFER,
-			COMPUTE,
+			MAIN,
 			PRE_RENDER,
-			RENDER,
 			POST_RENDER,
-			INHERITED,
 		};
 
 	/**
@@ -221,12 +155,9 @@ public enum ECommandStage implements Enumerator
 	{
 		switch (value)
 		{
-			case TRANSFER_VALUE: return TRANSFER;
-			case COMPUTE_VALUE: return COMPUTE;
+			case MAIN_VALUE: return MAIN;
 			case PRE_RENDER_VALUE: return PRE_RENDER;
-			case RENDER_VALUE: return RENDER;
 			case POST_RENDER_VALUE: return POST_RENDER;
-			case INHERITED_VALUE: return INHERITED;
 		}
 		return null;
 	}

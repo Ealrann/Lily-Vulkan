@@ -304,10 +304,9 @@
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//AbstractPipeline">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractPipeline/enabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractPipeline/stage"/>
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//TaskPipeline">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//TaskPipeline/taskPkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//TaskPipeline/taskPkgs"/>
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//VkPipeline">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//VkPipeline/descriptorPool"/>
@@ -317,6 +316,7 @@
     </genClasses>
     <genClasses ecoreClass="process.ecore#//TaskPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//TaskPkg/tasks"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//TaskPkg/stage"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//Pipeline"/>
     <genClasses ecoreClass="process.ecore#//CompositePipeline">
@@ -329,7 +329,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/dstStage"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/srcQueue"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PipelineBarrier/dstQueue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PipelineBarrier/recordDuringStage"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//CompositeTask">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CompositeTask/repeatCount"/>
@@ -348,10 +347,8 @@
     </genClasses>
     <genClasses ecoreClass="process.ecore#//FlushTransferBufferTask">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//FlushTransferBufferTask/transferBuffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//FlushTransferBufferTask/stage"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//CopyBufferTask">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/stage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/size"/>
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/srcBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/dstBuffer"/>
@@ -364,7 +361,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PrepareCompositeTransfer/compositeBuffer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/mode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/prepareDuringUpdate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//PrepareCompositeTransfer/stage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//PrepareCompositeTransfer/bufferReference"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//PrepareCompositeTransfer/transferBuffer"/>
     </genClasses>

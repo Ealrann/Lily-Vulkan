@@ -75,7 +75,7 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
-			childrenFeatures.add(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG);
+			childrenFeatures.add(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKGS);
 		}
 		return childrenFeatures;
 	}
@@ -126,7 +126,7 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 		{
 			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
-			case ProcessPackage.TASK_PIPELINE__TASK_PKG:
+			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -157,7 +157,7 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKG,
+				(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKGS,
 				 ProcessFactory.eINSTANCE.createTaskPkg()));
 	}
 

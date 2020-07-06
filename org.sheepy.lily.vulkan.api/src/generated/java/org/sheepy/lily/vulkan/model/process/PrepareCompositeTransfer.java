@@ -6,7 +6,6 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +19,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getCompositeBuffer <em>Composite Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getMode <em>Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#isPrepareDuringUpdate <em>Prepare During Update</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getBufferReference <em>Buffer Reference</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getTransferBuffer <em>Transfer Buffer</em>}</li>
  * </ul>
@@ -101,32 +99,6 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 	 * @generated
 	 */
 	void setPrepareDuringUpdate(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
-	 * The default value is <code>"Transfer"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECommandStage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see #setStage(ECommandStage)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_Stage()
-	 * @model default="Transfer" required="true"
-	 * @generated
-	 */
-	ECommandStage getStage();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getStage <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see #getStage()
-	 * @generated
-	 */
-	void setStage(ECommandStage value);
 
 	/**
 	 * Returns the value of the '<em><b>Buffer Reference</b></em>' containment reference.

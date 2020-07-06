@@ -451,15 +451,6 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_RENDERER__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
-
-	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -478,13 +469,13 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__DESCRIPTOR_PKG = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Task Pkgs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__TASK_PKG = GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG;
+	int GENERIC_RENDERER__TASK_PKGS = GraphicPackage.GRAPHICS_PIPELINE__TASK_PKGS;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.

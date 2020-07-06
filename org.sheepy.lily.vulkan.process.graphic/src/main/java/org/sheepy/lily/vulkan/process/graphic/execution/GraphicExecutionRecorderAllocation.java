@@ -42,10 +42,8 @@ import static org.lwjgl.vulkan.VK10.vkCmdNextSubpass;
 @AllocationDependency(parent = GraphicProcess.class, features = GraphicPackage.GRAPHIC_PROCESS__SUBPASSES, type = IRecordableExtender.class)
 public final class GraphicExecutionRecorderAllocation implements IExecutionPlayer, IExtender
 {
-	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
-															  ECommandStage.COMPUTE,
-															  ECommandStage.PRE_RENDER,
-															  ECommandStage.RENDER,
+	private static final List<ECommandStage> stages = List.of(ECommandStage.PRE_RENDER,
+															  ECommandStage.MAIN,
 															  ECommandStage.POST_RENDER);
 
 	private final GraphicCommandBuffer commandBuffer;
@@ -53,7 +51,6 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 	private final GraphicProcess process;
 	private final PresentSubmission presentSubmission;
 	private final VkSemaphore presentSemaphore;
-
 	private final GenericExecutionRecorder executionRecorder;
 	private final IAllocationState config;
 
@@ -137,7 +134,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 
 		while (current < subpassCount)
 		{
-			if (stage == ECommandStage.RENDER && current != 0)
+			if (stage == ECommandStage.MAIN && current != 0)
 			{
 				vkCmdNextSubpass(vkCommandBuffer, VK_SUBPASS_CONTENTS_INLINE);
 			}

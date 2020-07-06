@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,6 +20,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -28,6 +30,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.TaskPkg} object.
@@ -62,8 +65,32 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 		{
 			super.getPropertyDescriptors(object);
 
+			addStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Stage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TaskPkg_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TaskPkg_stage_feature", "_UI_TaskPkg_type"),
+				 ProcessPackage.Literals.TASK_PKG__STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -120,7 +147,11 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_TaskPkg_type");
+		ECommandStage labelValue = ((TaskPkg)object).getStage();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_TaskPkg_type") :
+			getString("_UI_TaskPkg_type") + " " + label;
 	}
 
 	/**
@@ -137,6 +168,9 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 
 		switch (notification.getFeatureID(TaskPkg.class))
 		{
+			case ProcessPackage.TASK_PKG__STAGE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case ProcessPackage.TASK_PKG__TASKS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
