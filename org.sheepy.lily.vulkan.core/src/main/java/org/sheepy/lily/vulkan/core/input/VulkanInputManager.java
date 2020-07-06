@@ -127,9 +127,12 @@ public final class VulkanInputManager extends Notifier<IInputManager.Features> i
 
 	public void disconnect()
 	{
-		window.sulkNoParam(load, IWindow.Features.Open);
-		dispose();
-		this.window = null;
+		if (window != null)
+		{
+			window.sulkNoParam(load, IWindow.Features.Open);
+			dispose();
+			this.window = null;
+		}
 	}
 
 	private void load()
@@ -154,7 +157,7 @@ public final class VulkanInputManager extends Notifier<IInputManager.Features> i
 	@Override
 	public void pollInputs()
 	{
-		if (window.isOpenned())
+		if (window != null && window.isOpenned())
 		{
 			updateMouseLocation();
 			glfwPollEvents();

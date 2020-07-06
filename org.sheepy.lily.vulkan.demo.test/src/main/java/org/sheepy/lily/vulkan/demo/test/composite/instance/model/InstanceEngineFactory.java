@@ -12,7 +12,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class InstanceEngineFactory
 {
@@ -32,7 +31,7 @@ public class InstanceEngineFactory
 		pipeline.getLayout().add(resourceContainer.dSets.get(0));
 
 		final var taskManager = new InstanceTaskManager(resourceContainer);
-		taskManager.install(pipeline.getTaskPkg().getTasks());
+		taskManager.install(pipeline.getTaskPkgs().get(0).getTasks());
 
 		final var cadence = buildCadence(process, MAX_COUNT);
 
@@ -100,9 +99,8 @@ public class InstanceEngineFactory
 	{
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
-		res.setTaskPkg(taskPkg);
+		res.getTaskPkgs().add(taskPkg);
 		res.setShader(resourceContainer.shader);
-		res.setStage(ECommandStage.COMPUTE);
 		final var dsPkg = VulkanResourceFactory.eINSTANCE.createDescriptorPool();
 		res.setDescriptorPool(dsPkg);
 		dsPkg.getDescriptorSets().addAll(resourceContainer.dSets);

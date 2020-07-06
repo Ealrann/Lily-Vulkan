@@ -6,7 +6,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 import org.sheepy.lily.vulkan.model.resource.*;
 import org.sheepy.vulkan.model.enumeration.EBindPoint;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.util.List;
@@ -44,7 +43,6 @@ public class InstanceTaskManager
 		preparePush.setBufferReference(pushbufferReference);
 
 		pushTask.setTransferBuffer(resourceContainer.transferBuffer);
-		pushTask.setStage(ECommandStage.TRANSFER);
 
 		readBarrier.setBuffers(readbufferReference);
 		writeBarrier.setBuffers(writehbufferReference);
@@ -70,7 +68,6 @@ public class InstanceTaskManager
 		prepareFetch.setBufferReference(fetchbufferReference);
 
 		fetchTask.setTransferBuffer(resourceContainer.transferBuffer);
-		fetchTask.setStage(ECommandStage.COMPUTE);
 	}
 
 	private static CircularBufferReference newCircularBufferReference(final List<BufferPart> parts,
