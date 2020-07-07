@@ -94,6 +94,10 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case VulkanResourcePackage.SHADER: return createShader();
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
+			case VulkanResourcePackage.MEMORY_CHUNK: return createMemoryChunk();
+			case VulkanResourcePackage.STATIC_BUFFER: return createStaticBuffer();
+			case VulkanResourcePackage.DATA_BUFFER: return createDataBuffer();
+			case VulkanResourcePackage.CIRCULAR_BUFFER: return createCircularBuffer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -463,6 +467,54 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		ImageArrayDescriptorImpl imageArrayDescriptor = new ImageArrayDescriptorImpl();
 		return imageArrayDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MemoryChunk createMemoryChunk()
+	{
+		MemoryChunkImpl memoryChunk = new MemoryChunkImpl();
+		return memoryChunk;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StaticBuffer createStaticBuffer()
+	{
+		StaticBufferImpl staticBuffer = new StaticBufferImpl();
+		return staticBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DataBuffer createDataBuffer()
+	{
+		DataBufferImpl dataBuffer = new DataBufferImpl();
+		return dataBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CircularBuffer createCircularBuffer()
+	{
+		CircularBufferImpl circularBuffer = new CircularBufferImpl();
+		return circularBuffer;
 	}
 
 	/**

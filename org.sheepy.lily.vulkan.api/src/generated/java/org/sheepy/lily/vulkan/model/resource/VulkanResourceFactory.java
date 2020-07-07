@@ -266,6 +266,42 @@ public interface VulkanResourceFactory extends EFactory
 	ImageArrayDescriptor createImageArrayDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>Memory Chunk</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Memory Chunk</em>'.
+	 * @generated
+	 */
+	MemoryChunk createMemoryChunk();
+
+	/**
+	 * Returns a new object of class '<em>Static Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Static Buffer</em>'.
+	 * @generated
+	 */
+	StaticBuffer createStaticBuffer();
+
+	/**
+	 * Returns a new object of class '<em>Data Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Buffer</em>'.
+	 * @generated
+	 */
+	DataBuffer createDataBuffer();
+
+	/**
+	 * Returns a new object of class '<em>Circular Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Circular Buffer</em>'.
+	 * @generated
+	 */
+	CircularBuffer createCircularBuffer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

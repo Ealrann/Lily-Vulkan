@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.buffer.memory;
+package org.sheepy.lily.vulkan.resource.memorychunk.util;
 
 import java.util.LinkedList;
 import java.util.List;

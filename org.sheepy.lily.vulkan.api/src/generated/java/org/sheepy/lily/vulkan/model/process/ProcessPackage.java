@@ -1463,6 +1463,70 @@ public interface ProcessPackage extends EPackage
 	int EXECUTION_RECORDER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl <em>Fetch Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getFetchBuffer()
+	 * @generated
+	 */
+	int FETCH_BUFFER = 23;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FETCH_BUFFER__NAME = IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FETCH_BUFFER__ENABLED = IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Buffer Reference</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FETCH_BUFFER__BUFFER_REFERENCE = IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Data Provider</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FETCH_BUFFER__DATA_PROVIDER = IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Fetch Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FETCH_BUFFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Fetch Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FETCH_BUFFER_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2155,6 +2219,38 @@ public interface ProcessPackage extends EPackage
 	EClass getExecutionRecorder();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.FetchBuffer <em>Fetch Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fetch Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.FetchBuffer
+	 * @generated
+	 */
+	EClass getFetchBuffer();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.FetchBuffer#getBufferReference <em>Buffer Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Buffer Reference</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.FetchBuffer#getBufferReference()
+	 * @see #getFetchBuffer()
+	 * @generated
+	 */
+	EReference getFetchBuffer_BufferReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.FetchBuffer#getDataProvider <em>Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Data Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.FetchBuffer#getDataProvider()
+	 * @see #getFetchBuffer()
+	 * @generated
+	 */
+	EReference getFetchBuffer_DataProvider();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2743,6 +2839,32 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EClass EXECUTION_RECORDER = eINSTANCE.getExecutionRecorder();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl <em>Fetch Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getFetchBuffer()
+		 * @generated
+		 */
+		EClass FETCH_BUFFER = eINSTANCE.getFetchBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Buffer Reference</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FETCH_BUFFER__BUFFER_REFERENCE = eINSTANCE.getFetchBuffer_BufferReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Provider</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FETCH_BUFFER__DATA_PROVIDER = eINSTANCE.getFetchBuffer_DataProvider();
 
 	}
 

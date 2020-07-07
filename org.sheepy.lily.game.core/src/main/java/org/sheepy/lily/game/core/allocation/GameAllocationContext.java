@@ -19,14 +19,14 @@ public class GameAllocationContext implements IGameAllocationContext
 		stackPop();
 	}
 
-	private MemoryStack stackPush()
+	public MemoryStack stackPush()
 	{
 		assert stack == null;
 		stack = MemoryStack.stackPush();
 		return stack;
 	}
 
-	private void stackPop()
+	public void stackPop()
 	{
 		if (stack != null)
 		{

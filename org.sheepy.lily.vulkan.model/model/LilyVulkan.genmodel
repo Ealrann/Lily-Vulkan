@@ -371,6 +371,10 @@
     <genClasses image="false" ecoreClass="process.ecore#//ProcessConfiguration"/>
     <genClasses ecoreClass="process.ecore#//ProcessExecutionManager"/>
     <genClasses image="false" ecoreClass="process.ecore#//ExecutionRecorder"/>
+    <genClasses ecoreClass="process.ecore#//FetchBuffer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//FetchBuffer/bufferReference"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//FetchBuffer/dataProvider"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="VulkanResource" basePackage="org.sheepy.lily.vulkan.model"
       resource="XMI" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -423,6 +427,7 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//CompositeBuffer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/parts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeBuffer/transferBuffer"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferPart">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferPart/dataProvider"/>
@@ -508,6 +513,28 @@
     <genClasses ecoreClass="resource.ecore#//ImageArrayDescriptor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageArrayDescriptor/images"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageArrayDescriptor/initialLayout"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//MemoryChunk">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//MemoryChunk/parts"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="resource.ecore#//IMemoryChunkPart"/>
+    <genClasses ecoreClass="resource.ecore#//StaticBuffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticBuffer/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticBuffer/usages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticBuffer/initWithZero"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//DataBuffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//DataBuffer/usages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//DataBuffer/data"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//CircularBuffer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CircularBuffer/dataProvider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/usages"/>
+      <genFeatures createChild="false" propertyDescription="Every push in this buffer will write on the next instance, and update the descriptor acordingly"
+          ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/instanceCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/growFactor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/growThreshold"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/size"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"

@@ -1,36 +1,59 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.sheepy.lily.core.api.allocation.annotation.*;
+import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.ICompositeBufferAllocation;
-import org.sheepy.lily.vulkan.model.resource.*;
+import org.sheepy.lily.vulkan.model.resource.BufferPart;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ModelExtender(scope = CompositeBuffer.class)
 @Allocation(context = ExecutionContext.class)
-@AllocationChild(allocateBeforeParent = true, reportStateToParent = true, features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS)
-@AllocationDependency(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS, type = BufferPartAllocation.class)
+@AllocationChild(features = VulkanResourcePackage.COMPOSITE_BUFFER__PARTS)
+@AllocationDependency(features = VulkanResourcePackage.COMPOSITE_BUFFER__TRANSFER_BUFFER, type = TransferBufferAllocation.class)
 public final class CompositeBufferAllocation implements ICompositeBufferAllocation
 {
 	private final ExecutionContext context;
-	private final List<BufferPartAllocation> partAllocations;
+	private final TransferBufferAllocation transferBufferAllocation;
 	private final GPUBufferBackend bufferBackend;
 
+	private List<BufferPartAllocation> partAllocations;
+
 	public CompositeBufferAllocation(ExecutionContext context,
-									 @InjectDependency(index = 0) List<BufferPartAllocation> partAllocations)
+									 @InjectDependency(index = 0) List<BufferPartAllocation> partAllocations,
+									 @InjectDependency(index = 1) TransferBufferAllocation transferBufferAllocation)
 	{
 		this.context = context;
 		this.partAllocations = List.copyOf(partAllocations);
+		this.transferBufferAllocation = transferBufferAllocation;
 
 		final var usageSize = alignData();
 		final long size = Math.max(usageSize.position, 1);
 		this.bufferBackend = createBufferBackend(size, usageSize.usage);
+
+		update();
+	}
+
+	@InjectChildren(index = 0, type = BufferPartAllocation.class)
+	private void updateChildren(List<BufferPartAllocation> partAllocations)
+	{
+		this.partAllocations = partAllocations;
+	}
+
+	@Tick
+	private void update()
+	{
+		recordFlushInternal(EFlushMode.PUSH, partAllocations);
 	}
 
 	@Free
@@ -40,21 +63,27 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 	}
 
 	@Override
-	public void recordFlush(EFlushMode mode, TransferBuffer transferBuffer, List<BufferPart> parts)
+	public void recordFlush(EFlushMode mode, List<BufferPart> parts)
 	{
-		final var transferBufferAdapter = transferBuffer.adapt(TransferBufferAllocation.class);
+		final var partAllocations = parts.stream()
+										 .map(this::resolvePartAllocation)
+										 .collect(Collectors.toUnmodifiableList());
+
+		recordFlushInternal(mode, partAllocations);
+	}
+
+	private void recordFlushInternal(final EFlushMode mode, final List<BufferPartAllocation> partAllocations)
+	{
 		final List<BufferPartAllocation> partsToFlush = new ArrayList<>();
 		boolean reservationSuccessfull = true;
 
-		for (final var part : parts)
+		for (final var partAllocation : partAllocations)
 		{
-			final var partAllocation = resolvePartAllocation(part);
-
 			if (mode == EFlushMode.FETCH || partAllocation.needPush())
 			{
 				partsToFlush.add(partAllocation);
 
-				if (partAllocation.reserveMemory(transferBufferAdapter) == false)
+				if (partAllocation.reserveMemory(transferBufferAllocation) == false)
 				{
 					reservationSuccessfull = false;
 					break;

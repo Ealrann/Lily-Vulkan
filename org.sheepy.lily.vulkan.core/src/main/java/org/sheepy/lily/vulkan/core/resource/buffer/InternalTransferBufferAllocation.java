@@ -7,6 +7,7 @@ import org.sheepy.lily.core.api.notification.IFeatures;
 import org.sheepy.lily.core.api.notification.INotifier;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation;
 import org.sheepy.lily.vulkan.core.execution.IRecordable;
+import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
 
 import java.util.function.Consumer;
 
@@ -25,19 +26,5 @@ public interface InternalTransferBufferAllocation extends ITransferBufferAllocat
 	interface IFlushRecorder
 	{
 		void flush(IRecordable.RecordContext context);
-	}
-
-	interface IDataFlowCommand
-	{
-		IMemoryTicket getMemoryTicket();
-		EFlowType getFlowType();
-		void execute(MemoryStack stack, VkCommandBuffer commandBuffer);
-		Consumer<IMemoryTicket> getPostAction();
-	}
-
-	enum EFlowType
-	{
-		PUSH,
-		FETCH
 	}
 }

@@ -28,6 +28,7 @@ public class Extenders implements IExtenderProvider
 					   PipelineAllocation.class,
 					   TaskPkgAllocation.class,
 					   TaskPkgRecorder.class,
+					   FetchBufferRecorder.class,
 					   PipelineRecorder.class,
 					   BindDescriptorSetsRecorder.class,
 					   CompositeTaskRecorder.class,

@@ -14,6 +14,7 @@ module org.sheepy.lily.vulkan.api {
 	exports org.sheepy.lily.vulkan.api.input;
 	exports org.sheepy.lily.vulkan.api.process;
 	exports org.sheepy.lily.vulkan.api.resource.buffer;
+	exports org.sheepy.lily.vulkan.api.resource.transfer;
 	exports org.sheepy.lily.vulkan.api.util;
 	exports org.sheepy.lily.vulkan.api.view;
 

@@ -1,30 +1,30 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.function.Consumer;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket;
+import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.EFlowType;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IDataFlowCommand;
-import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
+import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
+import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
+import java.util.function.Consumer;
+
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER;
+import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
+
 public final class FetchCommand implements IDataFlowCommand
 {
-	private final MemoryTicket ticket;
+	private final IMemoryTicket ticket;
 	private final long srcBuffer;
 	private final long srcOffset;
 	private final Consumer<IMemoryTicket> transferDone;
 	private final EPipelineStage srcStage;
 	private final int srcAccess;
 
-	public FetchCommand(MemoryTicket ticket,
+	public FetchCommand(IMemoryTicket ticket,
 						long srcBuffer,
 						long srcOffset,
 						EPipelineStage srcStage,
@@ -78,13 +78,7 @@ public final class FetchCommand implements IDataFlowCommand
 
 		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barriers, null);
 
-		BufferUtils.copyBuffer(	stack,
-								commandBuffer,
-								srcBuffer,
-								srcOffset,
-								trgBuffer,
-								trgOffset,
-								size);
+		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, srcOffset, trgBuffer, trgOffset, size);
 
 		final var targethostBarrier = VkBufferMemoryBarrier.callocStack(1, stack);
 		targethostBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
@@ -94,17 +88,17 @@ public final class FetchCommand implements IDataFlowCommand
 		targethostBarrier.srcAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
 		targethostBarrier.dstAccessMask(EAccess.HOST_READ_BIT_VALUE | EAccess.HOST_WRITE_BIT_VALUE);
 
-		vkCmdPipelineBarrier(	commandBuffer,
-								EPipelineStage.TRANSFER_BIT_VALUE,
-								EPipelineStage.HOST_BIT_VALUE,
-								0,
-								null,
-								targethostBarrier,
-								null);
+		vkCmdPipelineBarrier(commandBuffer,
+							 EPipelineStage.TRANSFER_BIT_VALUE,
+							 EPipelineStage.HOST_BIT_VALUE,
+							 0,
+							 null,
+							 targethostBarrier,
+							 null);
 	}
 
 	@Override
-	public MemoryTicket getMemoryTicket()
+	public IMemoryTicket getMemoryTicket()
 	{
 		return ticket;
 	}

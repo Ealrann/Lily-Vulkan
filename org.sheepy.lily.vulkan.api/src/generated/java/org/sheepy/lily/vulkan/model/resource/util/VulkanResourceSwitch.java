@@ -365,6 +365,55 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanResourcePackage.MEMORY_CHUNK:
+			{
+				MemoryChunk memoryChunk = (MemoryChunk)theEObject;
+				T result = caseMemoryChunk(memoryChunk);
+				if (result == null) result = caseIResource(memoryChunk);
+				if (result == null) result = caseLNamedElement(memoryChunk);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.IMEMORY_CHUNK_PART:
+			{
+				IMemoryChunkPart iMemoryChunkPart = (IMemoryChunkPart)theEObject;
+				T result = caseIMemoryChunkPart(iMemoryChunkPart);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.STATIC_BUFFER:
+			{
+				StaticBuffer staticBuffer = (StaticBuffer)theEObject;
+				T result = caseStaticBuffer(staticBuffer);
+				if (result == null) result = caseIBuffer(staticBuffer);
+				if (result == null) result = caseIMemoryChunkPart(staticBuffer);
+				if (result == null) result = caseIResource(staticBuffer);
+				if (result == null) result = caseLNamedElement(staticBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.DATA_BUFFER:
+			{
+				DataBuffer dataBuffer = (DataBuffer)theEObject;
+				T result = caseDataBuffer(dataBuffer);
+				if (result == null) result = caseIBuffer(dataBuffer);
+				if (result == null) result = caseIMemoryChunkPart(dataBuffer);
+				if (result == null) result = caseIResource(dataBuffer);
+				if (result == null) result = caseLNamedElement(dataBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.CIRCULAR_BUFFER:
+			{
+				CircularBuffer circularBuffer = (CircularBuffer)theEObject;
+				T result = caseCircularBuffer(circularBuffer);
+				if (result == null) result = caseIBuffer(circularBuffer);
+				if (result == null) result = caseIMemoryChunkPart(circularBuffer);
+				if (result == null) result = caseIResource(circularBuffer);
+				if (result == null) result = caseLNamedElement(circularBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -845,6 +894,86 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImageArrayDescriptor(ImageArrayDescriptor object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Memory Chunk</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Memory Chunk</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMemoryChunk(MemoryChunk object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IMemory Chunk Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IMemory Chunk Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIMemoryChunkPart(IMemoryChunkPart object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Static Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Static Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStaticBuffer(StaticBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataBuffer(DataBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Circular Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Circular Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCircularBuffer(CircularBuffer object)
 	{
 		return null;
 	}

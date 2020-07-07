@@ -1,35 +1,35 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.function.Consumer;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket;
+import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.EFlowType;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IDataFlowCommand;
-import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
+import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
+import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
+import java.util.function.Consumer;
+
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER;
+import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
+
 public final class PushCommand implements IDataFlowCommand
 {
-	private final MemoryTicket ticket;
+	private final IMemoryTicket ticket;
 	private final long trgBuffer;
 	private final long trgOffset;
 	private final Consumer<IMemoryTicket> transferDone;
 	private final EPipelineStage srcStage;
 	private final int srcAccess;
 
-	public PushCommand(	MemoryTicket ticket,
-						long trgBuffer,
-						long trgOffset,
-						EPipelineStage srcStage,
-						int srcAccess,
-						Consumer<IMemoryTicket> transferDone)
+	public PushCommand(IMemoryTicket ticket,
+					   long trgBuffer,
+					   long trgOffset,
+					   EPipelineStage srcStage,
+					   int srcAccess,
+					   Consumer<IMemoryTicket> transferDone)
 	{
 		assert srcStage != null;
 		assert trgBuffer > 0;
@@ -78,17 +78,11 @@ public final class PushCommand implements IDataFlowCommand
 
 		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barriers, null);
 
-		BufferUtils.copyBuffer(	stack,
-								commandBuffer,
-								srcBuffer,
-								srcOffset,
-								trgBuffer,
-								trgOffset,
-								size);
+		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, srcOffset, trgBuffer, trgOffset, size);
 	}
 
 	@Override
-	public MemoryTicket getMemoryTicket()
+	public IMemoryTicket getMemoryTicket()
 	{
 		return ticket;
 	}

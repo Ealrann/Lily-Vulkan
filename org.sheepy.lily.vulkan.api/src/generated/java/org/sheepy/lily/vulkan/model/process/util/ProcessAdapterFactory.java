@@ -197,6 +197,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createExecutionRecorderAdapter();
 			}
 			@Override
+			public Adapter caseFetchBuffer(FetchBuffer object)
+			{
+				return createFetchBufferAdapter();
+			}
+			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
 			{
 				return createIResourceContainerAdapter();
@@ -588,6 +593,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createExecutionRecorderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.FetchBuffer <em>Fetch Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.FetchBuffer
+	 * @generated
+	 */
+	public Adapter createFetchBufferAdapter()
 	{
 		return null;
 	}

@@ -4,19 +4,19 @@ import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.demo.test.composite.grow.model.TestResourceFactory.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
+import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 
 public class GrowEngineFactory
 {
 	public static int MAX_COUNT = 200;
 
-	private static final int PART_COUNT = 10;
+	public static final int PART_COUNT = 10;
 
 	public static IEngine build()
 	{
@@ -40,12 +40,8 @@ public class GrowEngineFactory
 		final var runProcess = VulkanFactory.eINSTANCE.createRunProcess();
 		runProcess.setProcess(process);
 
-		final var waitIdle = VulkanFactory.eINSTANCE.createWaitProcessIdle();
-		waitIdle.setProcess(process);
-
 		final var cadence = CadenceFactory.eINSTANCE.createCadence();
 		cadence.getTasks().add(runProcess);
-		cadence.getTasks().add(waitIdle);
 
 		if (frameCount > 0)
 		{
@@ -62,10 +58,9 @@ public class GrowEngineFactory
 		return cadence;
 	}
 
-	private static ComputeProcess createComputeProcessPool(ResourceContainer resourceContainer)
+	private static ComputeProcess createComputeProcessPool(MemoryChunk memoryChunk)
 	{
 		final ComputeProcess process = ComputeFactory.eINSTANCE.createComputeProcess();
-		process.setExtensionPkg(ProcessFactory.eINSTANCE.createProcessExtensionPkg());
 		final ComputeExecutionManager computeExecutionManager = ComputeFactory.eINSTANCE.createComputeExecutionManager();
 		computeExecutionManager.setIndexCount(PART_COUNT);
 		process.setExecutionManager(computeExecutionManager);
@@ -76,8 +71,7 @@ public class GrowEngineFactory
 		final var resourcePkg = ResourceFactory.eINSTANCE.createResourcePkg();
 		process.setResourcePkg(resourcePkg);
 		final var resourceList = resourcePkg.getResources();
-		resourceList.add(resourceContainer.transferBuffer);
-		resourceList.add(resourceContainer.compositeBuffer);
+		resourceList.add(memoryChunk);
 
 		process.setResetAllowed(true);
 

@@ -2,60 +2,37 @@ package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.adapter.TestDataProviderAdapter;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 class TestResourceFactory
 {
-	public static ResourceContainer build(int partCount)
+	public static MemoryChunk build(int partCount)
 	{
-		final var transferBuffer = buildTransferBuffer();
-		final var compositeBuffer = buildCompositeBuffer(partCount);
-
-		return new ResourceContainer(transferBuffer, compositeBuffer);
+		return buildMemoryChunk(partCount);
 	}
 
-	public static final class ResourceContainer
+	private static MemoryChunk buildMemoryChunk(int partCount)
 	{
-		public final TransferBuffer transferBuffer;
-		public final CompositeBuffer compositeBuffer;
-
-		public ResourceContainer(TransferBuffer transferBuffer, CompositeBuffer compositeBuffer)
-		{
-			this.transferBuffer = transferBuffer;
-			this.compositeBuffer = compositeBuffer;
-		}
-	}
-
-	private static TransferBuffer buildTransferBuffer()
-	{
-		final var res = VulkanResourceFactory.eINSTANCE.createTransferBuffer();
-		res.setSize(TestDataProviderAdapter.MAX_SIZE);
-		res.setUsedToFetch(true);
-		return res;
-	}
-
-	private static CompositeBuffer buildCompositeBuffer(int partCount)
-	{
-		final var res = VulkanResourceFactory.eINSTANCE.createCompositeBuffer();
+		final var res = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
 
 		final var provider = VulkanResourceFactory.eINSTANCE.createBufferDataProvider();
 		provider.setName(TestDataProviderAdapter.NAME);
 		provider.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
 		provider.setStageBeforePush(EPipelineStage.TRANSFER_BIT);
 		provider.setStageBeforeFetch(EPipelineStage.TRANSFER_BIT);
+		provider.getAccessBeforeFetch().add(EAccess.TRANSFER_WRITE_BIT);
 		provider.setUsedToFetch(true);
 
 		final var parts = res.getParts();
 		for (int i = 0; i < partCount; i++)
 		{
-			final var bufferPart = VulkanResourceFactory.eINSTANCE.createBufferPart();
-			bufferPart.setDataProvider(EcoreUtil.copy(provider));
-
-			parts.add(bufferPart);
+			final var circularBuffer = VulkanResourceFactory.eINSTANCE.createCircularBuffer();
+			circularBuffer.setDataProvider(EcoreUtil.copy(provider));
+			parts.add(circularBuffer);
 		}
 
 		return res;

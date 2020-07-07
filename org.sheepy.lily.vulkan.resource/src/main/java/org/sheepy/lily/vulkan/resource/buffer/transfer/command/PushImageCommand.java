@@ -1,26 +1,25 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.List;
-import java.util.function.Consumer;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.EFlowType;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IDataFlowCommand;
+import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
-import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
+import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
+import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
+import java.util.List;
+import java.util.function.Consumer;
+
+import static org.lwjgl.vulkan.VK10.*;
+
 public final class PushImageCommand implements IDataFlowCommand
 {
-	private final MemoryTicket ticket;
+	private final IMemoryTicket ticket;
 	private final VkImage trgImage;
 	private final EPipelineStage srcStage;
 	private final List<EAccess> srcAccess;
@@ -28,7 +27,7 @@ public final class PushImageCommand implements IDataFlowCommand
 	private final List<EAccess> trgAccess;
 	private final EImageLayout trgLayout;
 
-	public PushImageCommand(MemoryTicket ticket,
+	public PushImageCommand(IMemoryTicket ticket,
 							VkImage trgImage,
 							EPipelineStage srcStage,
 							List<EAccess> srcAccess,
@@ -63,14 +62,14 @@ public final class PushImageCommand implements IDataFlowCommand
 		final var blitStage = EPipelineStage.TRANSFER_BIT;
 		final var blitAccess = List.of(EAccess.TRANSFER_WRITE_BIT);
 
-		trgImage.transitionImageLayout(	stack,
-										commandBuffer,
-										srcStage,
-										blitStage,
-										EImageLayout.UNDEFINED,
-										EImageLayout.TRANSFER_DST_OPTIMAL,
-										srcAccess,
-										blitAccess);
+		trgImage.transitionImageLayout(stack,
+									   commandBuffer,
+									   srcStage,
+									   blitStage,
+									   EImageLayout.UNDEFINED,
+									   EImageLayout.TRANSFER_DST_OPTIMAL,
+									   srcAccess,
+									   blitAccess);
 
 		final var barriers = VkBufferMemoryBarrier.callocStack(1, stack);
 		final var hostBarrier = barriers.get(0);
@@ -81,13 +80,7 @@ public final class PushImageCommand implements IDataFlowCommand
 		hostBarrier.srcAccessMask(0);
 		hostBarrier.dstAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
 
-		vkCmdPipelineBarrier(	commandBuffer,
-								srcStage.getValue(),
-								blitStage.getValue(),
-								0,
-								null,
-								barriers,
-								null);
+		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), blitStage.getValue(), 0, null, barriers, null);
 
 		final VkBufferImageCopy.Buffer region = VkBufferImageCopy.calloc(1);
 		region.bufferOffset(ticket.getBufferOffset());
@@ -103,26 +96,22 @@ public final class PushImageCommand implements IDataFlowCommand
 		region.imageExtent().set(trgImage.width, trgImage.height, 1);
 
 		final var dstImageLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
-		vkCmdCopyBufferToImage(	commandBuffer,
-								ticket.getBufferPtr(),
-								trgImage.getPtr(),
-								dstImageLayout,
-								region);
+		vkCmdCopyBufferToImage(commandBuffer, ticket.getBufferPtr(), trgImage.getPtr(), dstImageLayout, region);
 
 		region.free();
 
-		trgImage.transitionImageLayout(	stack,
-										commandBuffer,
-										blitStage,
-										trgStage,
-										EImageLayout.TRANSFER_DST_OPTIMAL,
-										trgLayout,
-										blitAccess,
-										trgAccess);
+		trgImage.transitionImageLayout(stack,
+									   commandBuffer,
+									   blitStage,
+									   trgStage,
+									   EImageLayout.TRANSFER_DST_OPTIMAL,
+									   trgLayout,
+									   blitAccess,
+									   trgAccess);
 	}
 
 	@Override
-	public MemoryTicket getMemoryTicket()
+	public IMemoryTicket getMemoryTicket()
 	{
 		return ticket;
 	}

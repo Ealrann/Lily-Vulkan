@@ -2,7 +2,8 @@ package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
-import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.DataBuffer;
+import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
@@ -10,18 +11,16 @@ public class BoardBufferFactory
 {
 	private static final int TILE_SIZE = EngineBuilder.WORKGROUP_SIDE * EngineBuilder.WORKGROUP_SIDE;
 
-	public static Buffer createBoardBuffer(Board board)
+	public static DataBuffer createBoardBuffer(Board board)
 	{
-		final Buffer res = VulkanResourceFactory.eINSTANCE.createBuffer();
+		final DataBuffer res = VulkanResourceFactory.eINSTANCE.createDataBuffer();
 
 		final int width = board.getWidth();
 		final int height = board.getHeight();
 		final int size = width * height;
 		final int byteSize = size * Integer.BYTES;
-
 		final int widthInTiles = width / EngineBuilder.WORKGROUP_SIDE;
 
-		res.setSize(byteSize);
 		res.getUsages().add(EBufferUsage.STORAGE_BUFFER_BIT);
 		res.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
 		res.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);

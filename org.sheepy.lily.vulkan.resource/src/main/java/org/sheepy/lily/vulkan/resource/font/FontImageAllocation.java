@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.ui.Font;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket.EReservationStatus;
+import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.font.IFontImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
@@ -21,7 +21,6 @@ import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
 import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
-import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.lily.vulkan.resource.font.util.CodepointMap;
@@ -140,7 +139,7 @@ public final class FontImageAllocation implements IFontImageAllocation
 				final long memSize = BASE_FONTIMAGE_WIDTH * BASE_FONTIMAGE_HEIGHT;
 				final var ticket = transferBufferAdapter.reserveMemory(memSize);
 
-				if (ticket.getReservationStatus() == EReservationStatus.SUCCESS)
+				if (ticket.getReservationStatus() == IMemoryTicket.EReservationStatus.SUCCESS)
 				{
 					final var bitmap = ticket.toBuffer();
 
@@ -173,7 +172,7 @@ public final class FontImageAllocation implements IFontImageAllocation
 						nextInstance();
 					}
 					final var image = images[instance];
-					final var command = DataFlowCommandFactory.newPushImageCommand((MemoryTicket) ticket,
+					final var command = DataFlowCommandFactory.newPushImageCommand(ticket,
 																				   image,
 																				   EPipelineStage.TOP_OF_PIPE_BIT,
 																				   List.of(EAccess.UNDEFINED),

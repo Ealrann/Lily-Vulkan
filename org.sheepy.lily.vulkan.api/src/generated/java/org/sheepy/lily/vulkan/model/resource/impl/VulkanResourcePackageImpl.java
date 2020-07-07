@@ -55,10 +55,12 @@ import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
+import org.sheepy.lily.vulkan.model.resource.CircularBuffer;
 import org.sheepy.lily.vulkan.model.resource.CircularBufferReference;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.CompositeImage;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.resource.DataBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.EContextIndex;
@@ -69,17 +71,20 @@ import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageInlay;
+import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.StaticBuffer;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
@@ -312,6 +317,41 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass imageArrayDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass memoryChunkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iMemoryChunkPartEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass staticBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass circularBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -764,6 +804,17 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	public EReference getCompositeBuffer_Parts()
 	{
 		return (EReference)compositeBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeBuffer_TransferBuffer()
+	{
+		return (EReference)compositeBufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1476,6 +1527,193 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EClass getMemoryChunk()
+	{
+		return memoryChunkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMemoryChunk_Parts()
+	{
+		return (EReference)memoryChunkEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIMemoryChunkPart()
+	{
+		return iMemoryChunkPartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStaticBuffer()
+	{
+		return staticBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStaticBuffer_Size()
+	{
+		return (EAttribute)staticBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStaticBuffer_Usages()
+	{
+		return (EAttribute)staticBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStaticBuffer_InitWithZero()
+	{
+		return (EAttribute)staticBufferEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDataBuffer()
+	{
+		return dataBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataBuffer_Usages()
+	{
+		return (EAttribute)dataBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataBuffer_Data()
+	{
+		return (EAttribute)dataBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCircularBuffer()
+	{
+		return circularBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCircularBuffer_DataProvider()
+	{
+		return (EReference)circularBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCircularBuffer_Usages()
+	{
+		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCircularBuffer_InstanceCount()
+	{
+		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCircularBuffer_GrowFactor()
+	{
+		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCircularBuffer_GrowThreshold()
+	{
+		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCircularBuffer_Size()
+	{
+		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEContextIndex()
 	{
 		return eContextIndexEEnum;
@@ -1573,6 +1811,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		compositeBufferEClass = createEClass(COMPOSITE_BUFFER);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__PARTS);
+		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__TRANSFER_BUFFER);
 
 		bufferPartEClass = createEClass(BUFFER_PART);
 		createEReference(bufferPartEClass, BUFFER_PART__DATA_PROVIDER);
@@ -1658,6 +1897,28 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEReference(imageArrayDescriptorEClass, IMAGE_ARRAY_DESCRIPTOR__IMAGES);
 		createEAttribute(imageArrayDescriptorEClass, IMAGE_ARRAY_DESCRIPTOR__INITIAL_LAYOUT);
 
+		memoryChunkEClass = createEClass(MEMORY_CHUNK);
+		createEReference(memoryChunkEClass, MEMORY_CHUNK__PARTS);
+
+		iMemoryChunkPartEClass = createEClass(IMEMORY_CHUNK_PART);
+
+		staticBufferEClass = createEClass(STATIC_BUFFER);
+		createEAttribute(staticBufferEClass, STATIC_BUFFER__SIZE);
+		createEAttribute(staticBufferEClass, STATIC_BUFFER__USAGES);
+		createEAttribute(staticBufferEClass, STATIC_BUFFER__INIT_WITH_ZERO);
+
+		dataBufferEClass = createEClass(DATA_BUFFER);
+		createEAttribute(dataBufferEClass, DATA_BUFFER__USAGES);
+		createEAttribute(dataBufferEClass, DATA_BUFFER__DATA);
+
+		circularBufferEClass = createEClass(CIRCULAR_BUFFER);
+		createEReference(circularBufferEClass, CIRCULAR_BUFFER__DATA_PROVIDER);
+		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__USAGES);
+		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__INSTANCE_COUNT);
+		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__GROW_FACTOR);
+		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__GROW_THRESHOLD);
+		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__SIZE);
+
 		// Create enums
 		eContextIndexEEnum = createEEnum(ECONTEXT_INDEX);
 		eFlushModeEEnum = createEEnum(EFLUSH_MODE);
@@ -1735,6 +1996,13 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
 		shaderEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		imageArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
+		memoryChunkEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		staticBufferEClass.getESuperTypes().add(this.getIBuffer());
+		staticBufferEClass.getESuperTypes().add(this.getIMemoryChunkPart());
+		dataBufferEClass.getESuperTypes().add(this.getIBuffer());
+		dataBufferEClass.getESuperTypes().add(this.getIMemoryChunkPart());
+		circularBufferEClass.getESuperTypes().add(this.getIBuffer());
+		circularBufferEClass.getESuperTypes().add(this.getIMemoryChunkPart());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1776,6 +2044,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		initEClass(compositeBufferEClass, CompositeBuffer.class, "CompositeBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeBuffer_Parts(), this.getBufferPart(), null, "parts", null, 0, -1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeBuffer_TransferBuffer(), this.getTransferBuffer(), null, "transferBuffer", null, 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferPartEClass, BufferPart.class, "BufferPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferPart_DataProvider(), this.getBufferDataProvider(), null, "dataProvider", null, 1, 1, BufferPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1860,6 +2129,28 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEClass(imageArrayDescriptorEClass, ImageArrayDescriptor.class, "ImageArrayDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImageArrayDescriptor_Images(), theResourcePackage.getIImage(), null, "images", null, 0, -1, ImageArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageArrayDescriptor_InitialLayout(), theEnumerationPackage.getEImageLayout(), "initialLayout", null, 1, 1, ImageArrayDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(memoryChunkEClass, MemoryChunk.class, "MemoryChunk", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMemoryChunk_Parts(), this.getIMemoryChunkPart(), null, "parts", null, 0, -1, MemoryChunk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iMemoryChunkPartEClass, IMemoryChunkPart.class, "IMemoryChunkPart", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(staticBufferEClass, StaticBuffer.class, "StaticBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStaticBuffer_Size(), ecorePackage.getELong(), "size", null, 0, 1, StaticBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStaticBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, StaticBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStaticBuffer_InitWithZero(), ecorePackage.getEBoolean(), "initWithZero", "false", 0, 1, StaticBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dataBufferEClass, DataBuffer.class, "DataBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, DataBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, DataBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(circularBufferEClass, CircularBuffer.class, "CircularBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCircularBuffer_DataProvider(), this.getBufferDataProvider(), null, "dataProvider", null, 1, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCircularBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCircularBuffer_InstanceCount(), theEnumerationPackage.getEInstanceCount(), "instanceCount", null, 1, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCircularBuffer_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCircularBuffer_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCircularBuffer_Size(), ecorePackage.getELong(), "size", "0", 0, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eContextIndexEEnum, EContextIndex.class, "EContextIndex");

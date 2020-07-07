@@ -37,7 +37,7 @@ public interface IRecordable
 			this.stack = stack;
 		}
 
-		public void addListener(VkFence.IFenceListener listener)
+		public void listenExecution(VkFence.IFenceListener listener)
 		{
 			if (listeners.contains(listener) == false)
 			{

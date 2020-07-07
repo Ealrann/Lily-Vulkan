@@ -32,6 +32,7 @@ import org.sheepy.lily.vulkan.model.process.CompositePipeline;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessExtension;
@@ -231,6 +232,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass executionRecorderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fetchBufferEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1055,6 +1063,39 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getFetchBuffer()
+	{
+		return fetchBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFetchBuffer_BufferReference()
+	{
+		return (EReference)fetchBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFetchBuffer_DataProvider()
+	{
+		return (EReference)fetchBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory)getEFactoryInstance();
@@ -1167,6 +1208,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		processExecutionManagerEClass = createEClass(PROCESS_EXECUTION_MANAGER);
 
 		executionRecorderEClass = createEClass(EXECUTION_RECORDER);
+
+		fetchBufferEClass = createEClass(FETCH_BUFFER);
+		createEReference(fetchBufferEClass, FETCH_BUFFER__BUFFER_REFERENCE);
+		createEReference(fetchBufferEClass, FETCH_BUFFER__DATA_PROVIDER);
 	}
 
 	/**
@@ -1230,6 +1275,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		copyBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 		prepareCompositeTransferEClass.getESuperTypes().add(this.getIPipelineTask());
 		swapBindingsTaskEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
+		fetchBufferEClass.getESuperTypes().add(this.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1319,6 +1365,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEClass(processExecutionManagerEClass, ProcessExecutionManager.class, "ProcessExecutionManager", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(executionRecorderEClass, ExecutionRecorder.class, "ExecutionRecorder", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fetchBufferEClass, FetchBuffer.class, "FetchBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFetchBuffer_BufferReference(), theVulkanResourcePackage.getIBufferReference(), null, "bufferReference", null, 1, 1, FetchBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFetchBuffer_DataProvider(), theVulkanResourcePackage.getBufferDataProvider(), null, "dataProvider", null, 1, 1, FetchBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

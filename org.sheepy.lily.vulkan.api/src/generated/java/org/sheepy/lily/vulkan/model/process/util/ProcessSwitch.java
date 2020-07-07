@@ -279,6 +279,15 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ProcessPackage.FETCH_BUFFER:
+			{
+				FetchBuffer fetchBuffer = (FetchBuffer)theEObject;
+				T1 result = caseFetchBuffer(fetchBuffer);
+				if (result == null) result = caseIPipelineTask(fetchBuffer);
+				if (result == null) result = caseLNamedElement(fetchBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -647,6 +656,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseExecutionRecorder(ExecutionRecorder object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fetch Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fetch Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseFetchBuffer(FetchBuffer object)
 	{
 		return null;
 	}

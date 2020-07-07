@@ -144,10 +144,13 @@ public final class EngineBuilder
 		life2pixelShader.setStage(EShaderStage.COMPUTE_BIT);
 
 		final Board board = Board.createTestBoard(size);
-		final Buffer boardBuffer1 = BoardBufferFactory.createBoardBuffer(board);
-		final Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
+		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
+		final var boardBuffer1 = BoardBufferFactory.createBoardBuffer(board);
+		final var boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
 		boardBuffer1.setName("BoardBuffer1");
 		boardBuffer2.setName("BoardBuffer2");
+		memoryChunk.getParts().add(boardBuffer1);
+		memoryChunk.getParts().add(boardBuffer2);
 
 		final var boardBuffer1Descriptor = newDescriptor(boardBuffer1);
 		final var boardBuffer2Descriptor = newDescriptor(boardBuffer2);
@@ -189,8 +192,7 @@ public final class EngineBuilder
 
 		sharedResources.getResources().add(lifeShader);
 		sharedResources.getResources().add(life2pixelShader);
-		sharedResources.getResources().add(boardBuffer1);
-		sharedResources.getResources().add(boardBuffer2);
+		sharedResources.getResources().add(memoryChunk);
 		sharedResources.getResources().add(boardImage);
 
 		sharedDescriptors.getDescriptors().add(boardBuffer1Descriptor);
@@ -301,7 +303,7 @@ public final class EngineBuilder
 		return cadence;
 	}
 
-	private static IDescriptor newDescriptor(Buffer buffer)
+	private static IDescriptor newDescriptor(IBuffer buffer)
 	{
 		final var descriptor = VulkanResourceFactory.eINSTANCE.createBufferDescriptor();
 		descriptor.setType(EDescriptorType.STORAGE_BUFFER);

@@ -6,8 +6,7 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket.EReservationStatus;
+import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.IBufferPartAllocation;
@@ -16,7 +15,7 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
@@ -133,12 +132,12 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 		this.transferBuffer = transferBuffer;
 		memTicket = (MemoryTicket) transferBuffer.reserveMemory(instanceSize);
 
-		return memTicket.getReservationStatus() == EReservationStatus.SUCCESS;
+		return memTicket.getReservationStatus() == IMemoryTicket.EReservationStatus.SUCCESS;
 	}
 
 	public void releaseMemory()
 	{
-		if (memTicket.getReservationStatus() == EReservationStatus.SUCCESS || memTicket.getReservationStatus() == EReservationStatus.FLUSHED)
+		if (memTicket.getReservationStatus() == IMemoryTicket.EReservationStatus.SUCCESS || memTicket.getReservationStatus() == IMemoryTicket.EReservationStatus.FLUSHED)
 		{
 			transferBuffer.releaseTicket(memTicket);
 		}
@@ -146,7 +145,7 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 
 	public void pushProvidedData()
 	{
-		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
+		assert (memTicket.getReservationStatus() == IMemoryTicket.EReservationStatus.SUCCESS);
 
 		final var adapter = dataProvider.adaptNotNull(IBufferDataProviderAdapter.class);
 		adapter.fill(memTicket.toBuffer());
@@ -169,13 +168,13 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 																	  stage,
 																	  accessBeforePush);
 
-//		System.out.println(String.format("[%s] record push %d bytes",
-//										 dataProvider.eClass().getName(),
-//										 memTicket.getSize()));
-//		System.out.println(String.format("\tfrom buffer %d, offset %d",
-//										 memTicket.getBufferPtr(),
-//										 memTicket.getBufferOffset()));
-//		System.out.println(String.format("\tto buffer %d, offset %d", bufferPtr, instanceOffset));
+		System.out.println(String.format("[%s] record push %d bytes",
+										 dataProvider.eClass().getName(),
+										 memTicket.getSize()));
+		System.out.println(String.format("\tfrom buffer %d, offset %d",
+										 memTicket.getBufferPtr(),
+										 memTicket.getBufferOffset()));
+		System.out.println(String.format("\tto buffer %d, offset %d", bufferPtr, instanceOffset));
 
 		transferBuffer.addTransferCommand(pushCommand);
 
@@ -189,7 +188,7 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 
 	public void fetchDeviceData()
 	{
-		assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
+		assert (memTicket.getReservationStatus() == IMemoryTicket.EReservationStatus.SUCCESS);
 
 		final Consumer<IMemoryTicket> transferDone = ticket -> dataProvider.adapt(IBufferDataProviderAdapter.class)
 																		   .fetch(memTicket.toReadBuffer());
@@ -204,13 +203,13 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 																		accessBeforeFetch,
 																		transferDone);
 
-//		System.out.println(String.format("[%s] record fetch %d bytes",
-//										 dataProvider.eClass().getName(),
-//										 memTicket.getSize()));
-//		System.out.println(String.format("\tfrom buffer %d, offset %d", bufferPtr, instanceOffset));
-//		System.out.println(String.format("\tto buffer %d, offset %d",
-//										 memTicket.getBufferPtr(),
-//										 memTicket.getBufferOffset()));
+		System.out.println(String.format("[%s] record fetch %d bytes",
+										 dataProvider.eClass().getName(),
+										 memTicket.getSize()));
+		System.out.println(String.format("\tfrom buffer %d, offset %d", bufferPtr, instanceOffset));
+		System.out.println(String.format("\tto buffer %d, offset %d",
+										 memTicket.getBufferPtr(),
+										 memTicket.getBufferOffset()));
 
 		transferBuffer.addTransferCommand(fetchCommand);
 	}

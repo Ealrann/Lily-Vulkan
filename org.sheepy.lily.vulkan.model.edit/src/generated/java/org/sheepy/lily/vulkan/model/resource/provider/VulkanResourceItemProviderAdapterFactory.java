@@ -777,6 +777,106 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.MemoryChunk} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MemoryChunkItemProvider memoryChunkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.MemoryChunk}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMemoryChunkAdapter()
+	{
+		if (memoryChunkItemProvider == null)
+		{
+			memoryChunkItemProvider = new MemoryChunkItemProvider(this);
+		}
+
+		return memoryChunkItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.StaticBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StaticBufferItemProvider staticBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.StaticBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStaticBufferAdapter()
+	{
+		if (staticBufferItemProvider == null)
+		{
+			staticBufferItemProvider = new StaticBufferItemProvider(this);
+		}
+
+		return staticBufferItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DataBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DataBufferItemProvider dataBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DataBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDataBufferAdapter()
+	{
+		if (dataBufferItemProvider == null)
+		{
+			dataBufferItemProvider = new DataBufferItemProvider(this);
+		}
+
+		return dataBufferItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CircularBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CircularBufferItemProvider circularBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CircularBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCircularBufferAdapter()
+	{
+		if (circularBufferItemProvider == null)
+		{
+			circularBufferItemProvider = new CircularBufferItemProvider(this);
+		}
+
+		return circularBufferItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1036,6 +1136,26 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createShader()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createMemoryChunk()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createStaticBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createDataBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createCircularBuffer()));
 
 				return null;
 			}

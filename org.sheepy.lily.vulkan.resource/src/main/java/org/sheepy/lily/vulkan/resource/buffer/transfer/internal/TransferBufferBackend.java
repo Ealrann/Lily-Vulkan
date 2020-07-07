@@ -2,17 +2,17 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.internal;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation.IMemoryTicket.EReservationStatus;
+import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.EFlowType;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IDataFlowCommand;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IFlushRecorder;
-import org.sheepy.lily.vulkan.resource.buffer.memory.MemorySpaceManager;
-import org.sheepy.lily.vulkan.resource.buffer.memory.MemorySpaceManager.MemorySpace;
-import org.sheepy.lily.vulkan.resource.buffer.memory.MemoryTicket;
+import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
+import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
+import org.sheepy.lily.vulkan.resource.memorychunk.util.MemorySpaceManager;
+import org.sheepy.lily.vulkan.resource.memorychunk.util.MemorySpaceManager.MemorySpace;
+import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public final class TransferBufferBackend
 		final MemoryTicket res;
 		if (size > capacity)
 		{
-			res = newFailTicket(EReservationStatus.ERROR__REQUEST_TOO_BIG);
+			res = newFailTicket(IMemoryTicket.EReservationStatus.ERROR__REQUEST_TOO_BIG);
 		}
 		else
 		{
@@ -57,7 +57,7 @@ public final class TransferBufferBackend
 
 			if (space == null)
 			{
-				res = newFailTicket(EReservationStatus.FAIL__NO_SPACE_LEFT);
+				res = newFailTicket(IMemoryTicket.EReservationStatus.FAIL__NO_SPACE_LEFT);
 			}
 			else
 			{
@@ -81,11 +81,11 @@ public final class TransferBufferBackend
 
 	public void addTransferCommand(IDataFlowCommand command)
 	{
-		if (command.getMemoryTicket().getReservationStatus() == EReservationStatus.FLUSHED)
+		if (command.getMemoryTicket().getReservationStatus() == IMemoryTicket.EReservationStatus.FLUSHED)
 		{
 			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
 		}
-		else if (command.getMemoryTicket().getReservationStatus() != EReservationStatus.SUCCESS)
+		else if (command.getMemoryTicket().getReservationStatus() != IMemoryTicket.EReservationStatus.SUCCESS)
 		{
 			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
 		}
@@ -120,14 +120,14 @@ public final class TransferBufferBackend
 		tickets.clear();
 	}
 
-	private static MemoryTicket newFailTicket(EReservationStatus failure)
+	private static MemoryTicket newFailTicket(IMemoryTicket.EReservationStatus failure)
 	{
 		return new MemoryTicket(failure, null, -1, -1, -1, -1);
 	}
 
 	private MemoryTicket newSuccessTicket(MemorySpace space, long memoryPtr, long bufferOffset, long size)
 	{
-		return new MemoryTicket(EReservationStatus.SUCCESS,
+		return new MemoryTicket(IMemoryTicket.EReservationStatus.SUCCESS,
 								space,
 								bufferBackend.getAddress(),
 								memoryPtr,
@@ -175,7 +175,7 @@ public final class TransferBufferBackend
 			{
 				if (containingFetchCommand)
 				{
-					recordContext.addListener(() -> invalidate(instance));
+					recordContext.listenExecution(() -> invalidate(instance));
 				}
 
 				for (int i = 0; i < commands.size(); i++)
@@ -186,7 +186,7 @@ public final class TransferBufferBackend
 					final var postAction = command.getPostAction();
 					if (postAction != null)
 					{
-						recordContext.addListener(() -> postAction.accept(command.getMemoryTicket()));
+						recordContext.listenExecution(() -> postAction.accept(command.getMemoryTicket()));
 					}
 				}
 			}

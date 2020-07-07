@@ -143,4 +143,10 @@
       interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessExecutionManager" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionRecorder" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FetchBuffer" eSuperTypes="#//IPipelineTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//IBufferReference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
+        eType="ecore:EClass resource.ecore#//BufferDataProvider"/>
+  </eClassifiers>
 </ecore:EPackage>

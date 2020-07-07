@@ -10,7 +10,7 @@ public class CompositeBufferTest
 	@Test
 	public void main()
 	{
-		GrowEngineFactory.MAX_COUNT = 50;
+		GrowEngineFactory.MAX_COUNT = 16;
 		LilyLauncher.launch(MainCompositeBufferTest.buildApplication());
 	}
 }

@@ -238,6 +238,31 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createImageArrayDescriptorAdapter();
 			}
 			@Override
+			public Adapter caseMemoryChunk(MemoryChunk object)
+			{
+				return createMemoryChunkAdapter();
+			}
+			@Override
+			public Adapter caseIMemoryChunkPart(IMemoryChunkPart object)
+			{
+				return createIMemoryChunkPartAdapter();
+			}
+			@Override
+			public Adapter caseStaticBuffer(StaticBuffer object)
+			{
+				return createStaticBufferAdapter();
+			}
+			@Override
+			public Adapter caseDataBuffer(DataBuffer object)
+			{
+				return createDataBufferAdapter();
+			}
+			@Override
+			public Adapter caseCircularBuffer(CircularBuffer object)
+			{
+				return createCircularBufferAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -750,6 +775,81 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImageArrayDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.MemoryChunk <em>Memory Chunk</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.MemoryChunk
+	 * @generated
+	 */
+	public Adapter createMemoryChunkAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart <em>IMemory Chunk Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart
+	 * @generated
+	 */
+	public Adapter createIMemoryChunkPartAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.StaticBuffer <em>Static Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.StaticBuffer
+	 * @generated
+	 */
+	public Adapter createStaticBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DataBuffer <em>Data Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.DataBuffer
+	 * @generated
+	 */
+	public Adapter createDataBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer <em>Circular Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer
+	 * @generated
+	 */
+	public Adapter createCircularBufferAdapter()
 	{
 		return null;
 	}

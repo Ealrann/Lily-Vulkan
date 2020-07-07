@@ -140,6 +140,15 @@ public interface ProcessFactory extends EFactory
 	SwapBindingsTask createSwapBindingsTask();
 
 	/**
+	 * Returns a new object of class '<em>Fetch Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fetch Buffer</em>'.
+	 * @generated
+	 */
+	FetchBuffer createFetchBuffer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
