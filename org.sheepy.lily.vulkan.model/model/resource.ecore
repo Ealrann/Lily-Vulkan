@@ -215,17 +215,11 @@
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CircularBuffer" eSuperTypes="#//IBuffer #//IMemoryChunkPart">
+  <eClassifiers xsi:type="ecore:EClass" name="BufferViewer" eSuperTypes="#//IBuffer #//IMemoryChunkPart">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
         eType="#//BufferDataProvider" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceCount" unique="false"
-        lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EInstanceCount">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="propertyDescription" value="Every push in this buffer will write on the next instance, and update the descriptor acordingly"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="growFactor" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="growThreshold" lowerBound="1"

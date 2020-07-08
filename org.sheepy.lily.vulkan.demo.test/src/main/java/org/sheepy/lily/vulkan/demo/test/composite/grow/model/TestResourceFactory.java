@@ -30,9 +30,9 @@ class TestResourceFactory
 		final var parts = res.getParts();
 		for (int i = 0; i < partCount; i++)
 		{
-			final var circularBuffer = VulkanResourceFactory.eINSTANCE.createCircularBuffer();
-			circularBuffer.setDataProvider(EcoreUtil.copy(provider));
-			parts.add(circularBuffer);
+			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
+			bufferViewer.setDataProvider(EcoreUtil.copy(provider));
+			parts.add(bufferViewer);
 		}
 
 		return res;

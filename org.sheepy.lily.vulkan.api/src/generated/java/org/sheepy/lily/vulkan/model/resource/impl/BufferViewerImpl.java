@@ -19,31 +19,29 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
 
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.CircularBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Circular Buffer</b></em>'.
+ * An implementation of the model object '<em><b>Buffer Viewer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl#getDataProvider <em>Data Provider</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl#getInstanceCount <em>Instance Count</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl#getGrowFactor <em>Grow Factor</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getDataProvider <em>Data Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getGrowFactor <em>Grow Factor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getSize <em>Size</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
+public class BufferViewerImpl extends IResourceImpl implements BufferViewer
 {
 	/**
 	 * The cached value of the '{@link #getDataProvider() <em>Data Provider</em>}' containment reference.
@@ -64,26 +62,6 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	 * @ordered
 	 */
 	protected EList<EBufferUsage> usages;
-
-	/**
-	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EInstanceCount INSTANCE_COUNT_EDEFAULT = EInstanceCount.ONE;
-
-	/**
-	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected EInstanceCount instanceCount = INSTANCE_COUNT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getGrowFactor() <em>Grow Factor</em>}' attribute.
@@ -150,7 +128,7 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CircularBufferImpl()
+	protected BufferViewerImpl()
 	{
 		super();
 	}
@@ -163,7 +141,7 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	@Override
 	protected EClass eStaticClass()
 	{
-		return VulkanResourcePackage.Literals.CIRCULAR_BUFFER;
+		return VulkanResourcePackage.Literals.BUFFER_VIEWER;
 	}
 
 	/**
@@ -188,7 +166,7 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 		dataProvider = newDataProvider;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER, oldDataProvider, newDataProvider);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, oldDataProvider, newDataProvider);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -206,14 +184,14 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 		{
 			NotificationChain msgs = null;
 			if (dataProvider != null)
-				msgs = ((InternalEObject)dataProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER, null, msgs);
+				msgs = ((InternalEObject)dataProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, null, msgs);
 			if (newDataProvider != null)
-				msgs = ((InternalEObject)newDataProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER, null, msgs);
+				msgs = ((InternalEObject)newDataProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, null, msgs);
 			msgs = basicSetDataProvider(newDataProvider, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER, newDataProvider, newDataProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, newDataProvider, newDataProvider));
 	}
 
 	/**
@@ -226,34 +204,9 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, VulkanResourcePackage.CIRCULAR_BUFFER__USAGES);
+			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, VulkanResourcePackage.BUFFER_VIEWER__USAGES);
 		}
 		return usages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EInstanceCount getInstanceCount()
-	{
-		return instanceCount;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInstanceCount(EInstanceCount newInstanceCount)
-	{
-		EInstanceCount oldInstanceCount = instanceCount;
-		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CIRCULAR_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
 	}
 
 	/**
@@ -278,7 +231,7 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 		float oldGrowFactor = growFactor;
 		growFactor = newGrowFactor;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CIRCULAR_BUFFER__GROW_FACTOR, oldGrowFactor, growFactor));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR, oldGrowFactor, growFactor));
 	}
 
 	/**
@@ -303,7 +256,7 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 		float oldGrowThreshold = growThreshold;
 		growThreshold = newGrowThreshold;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CIRCULAR_BUFFER__GROW_THRESHOLD, oldGrowThreshold, growThreshold));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD, oldGrowThreshold, growThreshold));
 	}
 
 	/**
@@ -328,7 +281,7 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 		long oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CIRCULAR_BUFFER__SIZE, oldSize, size));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__SIZE, oldSize, size));
 	}
 
 	/**
@@ -341,7 +294,7 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				return basicSetDataProvider(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -357,17 +310,15 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				return getDataProvider();
-			case VulkanResourcePackage.CIRCULAR_BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
 				return getUsages();
-			case VulkanResourcePackage.CIRCULAR_BUFFER__INSTANCE_COUNT:
-				return getInstanceCount();
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_FACTOR:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 				return getGrowFactor();
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_THRESHOLD:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD:
 				return getGrowThreshold();
-			case VulkanResourcePackage.CIRCULAR_BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -384,23 +335,20 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider)newValue);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__INSTANCE_COUNT:
-				setInstanceCount((EInstanceCount)newValue);
-				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_FACTOR:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 				setGrowFactor((Float)newValue);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_THRESHOLD:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD:
 				setGrowThreshold((Float)newValue);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				setSize((Long)newValue);
 				return;
 		}
@@ -417,22 +365,19 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider)null);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
 				getUsages().clear();
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__INSTANCE_COUNT:
-				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
-				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_FACTOR:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 				setGrowFactor(GROW_FACTOR_EDEFAULT);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_THRESHOLD:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD:
 				setGrowThreshold(GROW_THRESHOLD_EDEFAULT);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
 		}
@@ -449,17 +394,15 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				return dataProvider != null;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__USAGES:
+			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
 				return usages != null && !usages.isEmpty();
-			case VulkanResourcePackage.CIRCULAR_BUFFER__INSTANCE_COUNT:
-				return instanceCount != INSTANCE_COUNT_EDEFAULT;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_FACTOR:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 				return growFactor != GROW_FACTOR_EDEFAULT;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_THRESHOLD:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD:
 				return growThreshold != GROW_THRESHOLD_EDEFAULT;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				return size != SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -478,8 +421,6 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (usages: ");
 		result.append(usages);
-		result.append(", instanceCount: ");
-		result.append(instanceCount);
 		result.append(", growFactor: ");
 		result.append(growFactor);
 		result.append(", growThreshold: ");
@@ -490,4 +431,4 @@ public class CircularBufferImpl extends IResourceImpl implements CircularBuffer
 		return result.toString();
 	}
 
-} //CircularBufferImpl
+} //BufferViewerImpl

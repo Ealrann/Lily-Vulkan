@@ -97,7 +97,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.MEMORY_CHUNK: return createMemoryChunk();
 			case VulkanResourcePackage.STATIC_BUFFER: return createStaticBuffer();
 			case VulkanResourcePackage.DATA_BUFFER: return createDataBuffer();
-			case VulkanResourcePackage.CIRCULAR_BUFFER: return createCircularBuffer();
+			case VulkanResourcePackage.BUFFER_VIEWER: return createBufferViewer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -511,10 +511,10 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public CircularBuffer createCircularBuffer()
+	public BufferViewer createBufferViewer()
 	{
-		CircularBufferImpl circularBuffer = new CircularBufferImpl();
-		return circularBuffer;
+		BufferViewerImpl bufferViewer = new BufferViewerImpl();
+		return bufferViewer;
 	}
 
 	/**

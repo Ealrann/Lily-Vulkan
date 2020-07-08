@@ -527,14 +527,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//DataBuffer/usages"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//DataBuffer/data"/>
     </genClasses>
-    <genClasses ecoreClass="resource.ecore#//CircularBuffer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CircularBuffer/dataProvider"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/usages"/>
-      <genFeatures createChild="false" propertyDescription="Every push in this buffer will write on the next instance, and update the descriptor acordingly"
-          ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/instanceCount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/growFactor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/growThreshold"/>
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBuffer/size"/>
+    <genClasses ecoreClass="resource.ecore#//BufferViewer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferViewer/dataProvider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/usages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/growFactor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/growThreshold"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/size"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"

@@ -18,17 +18,17 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
 
-import org.sheepy.lily.vulkan.model.resource.CircularBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.CircularBuffer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferViewer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CircularBufferItemProvider extends IResourceItemProvider
+public class BufferViewerItemProvider extends IResourceItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -36,7 +36,7 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CircularBufferItemProvider(AdapterFactory adapterFactory)
+	public BufferViewerItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -55,7 +55,6 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 			super.getPropertyDescriptors(object);
 
 			addUsagesPropertyDescriptor(object);
-			addInstanceCountPropertyDescriptor(object);
 			addGrowFactorPropertyDescriptor(object);
 			addGrowThresholdPropertyDescriptor(object);
 		}
@@ -74,32 +73,9 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CircularBuffer_usages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CircularBuffer_usages_feature", "_UI_CircularBuffer_type"),
-				 VulkanResourcePackage.Literals.CIRCULAR_BUFFER__USAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instance Count feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInstanceCountPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CircularBuffer_instanceCount_feature"),
-				 getString("_UI_CircularBuffer_instanceCount_description"),
-				 VulkanResourcePackage.Literals.CIRCULAR_BUFFER__INSTANCE_COUNT,
+				 getString("_UI_BufferViewer_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferViewer_usages_feature", "_UI_BufferViewer_type"),
+				 VulkanResourcePackage.Literals.BUFFER_VIEWER__USAGES,
 				 true,
 				 false,
 				 false,
@@ -120,9 +96,9 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CircularBuffer_growFactor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CircularBuffer_growFactor_feature", "_UI_CircularBuffer_type"),
-				 VulkanResourcePackage.Literals.CIRCULAR_BUFFER__GROW_FACTOR,
+				 getString("_UI_BufferViewer_growFactor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferViewer_growFactor_feature", "_UI_BufferViewer_type"),
+				 VulkanResourcePackage.Literals.BUFFER_VIEWER__GROW_FACTOR,
 				 true,
 				 false,
 				 false,
@@ -143,9 +119,9 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CircularBuffer_growThreshold_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CircularBuffer_growThreshold_feature", "_UI_CircularBuffer_type"),
-				 VulkanResourcePackage.Literals.CIRCULAR_BUFFER__GROW_THRESHOLD,
+				 getString("_UI_BufferViewer_growThreshold_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferViewer_growThreshold_feature", "_UI_BufferViewer_type"),
+				 VulkanResourcePackage.Literals.BUFFER_VIEWER__GROW_THRESHOLD,
 				 true,
 				 false,
 				 false,
@@ -168,7 +144,7 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(VulkanResourcePackage.Literals.CIRCULAR_BUFFER__DATA_PROVIDER);
+			childrenFeatures.add(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER);
 		}
 		return childrenFeatures;
 	}
@@ -188,7 +164,7 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 	}
 
 	/**
-	 * This returns CircularBuffer.gif.
+	 * This returns BufferViewer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -196,7 +172,7 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CircularBuffer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BufferViewer"));
 	}
 
 	/**
@@ -208,10 +184,10 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((CircularBuffer)object).getName();
+		String label = ((BufferViewer)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_CircularBuffer_type") :
-			getString("_UI_CircularBuffer_type") + " " + label;
+			getString("_UI_BufferViewer_type") :
+			getString("_UI_BufferViewer_type") + " " + label;
 	}
 
 
@@ -227,16 +203,15 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CircularBuffer.class))
+		switch (notification.getFeatureID(BufferViewer.class))
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER__USAGES:
-			case VulkanResourcePackage.CIRCULAR_BUFFER__INSTANCE_COUNT:
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_FACTOR:
-			case VulkanResourcePackage.CIRCULAR_BUFFER__GROW_THRESHOLD:
-			case VulkanResourcePackage.CIRCULAR_BUFFER__SIZE:
+			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
+			case VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD:
+			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER__DATA_PROVIDER:
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -257,7 +232,7 @@ public class CircularBufferItemProvider extends IResourceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(VulkanResourcePackage.Literals.CIRCULAR_BUFFER__DATA_PROVIDER,
+				(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
 				 VulkanResourceFactory.eINSTANCE.createBufferDataProvider()));
 	}
 

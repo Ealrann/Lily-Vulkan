@@ -293,13 +293,13 @@ public interface VulkanResourceFactory extends EFactory
 	DataBuffer createDataBuffer();
 
 	/**
-	 * Returns a new object of class '<em>Circular Buffer</em>'.
+	 * Returns a new object of class '<em>Buffer Viewer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Circular Buffer</em>'.
+	 * @return a new object of class '<em>Buffer Viewer</em>'.
 	 * @generated
 	 */
-	CircularBuffer createCircularBuffer();
+	BufferViewer createBufferViewer();
 
 	/**
 	 * Returns the package supported by this factory.

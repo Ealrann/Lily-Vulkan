@@ -56,8 +56,8 @@ public class Extenders implements IExtenderProvider
 					   FixedBufferReferenceAllocation.class,
 					   CircularBufferReferenceAllocation.class,
 					   MemoryChunkAllocation.class,
-					   CircularBufferAdapter.class,
-					   CircularBufferAllocation.class,
+					   BufferViewerAdapter.class,
+					   BufferViewerAllocation.class,
 					   DataBufferAdapter.class,
 					   DataBufferAllocation.class);
 	}

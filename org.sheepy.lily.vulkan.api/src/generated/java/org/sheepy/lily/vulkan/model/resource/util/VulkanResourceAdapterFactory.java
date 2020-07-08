@@ -258,9 +258,9 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createDataBufferAdapter();
 			}
 			@Override
-			public Adapter caseCircularBuffer(CircularBuffer object)
+			public Adapter caseBufferViewer(BufferViewer object)
 			{
-				return createCircularBufferAdapter();
+				return createBufferViewerAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -840,16 +840,16 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer <em>Circular Buffer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BufferViewer <em>Buffer Viewer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferViewer
 	 * @generated
 	 */
-	public Adapter createCircularBufferAdapter()
+	public Adapter createBufferViewerAdapter()
 	{
 		return null;
 	}

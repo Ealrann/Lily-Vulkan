@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.resource.CircularBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 
@@ -18,19 +18,19 @@ public final class TaskManager
 	{
 		this.fetchBuffers = memoryChunk.getParts()
 									   .stream()
-									   .map(CircularBuffer.class::cast)
+									   .map(BufferViewer.class::cast)
 									   .map(TaskManager::buildFetchBuffer)
 									   .collect(Collectors.toUnmodifiableList());
 	}
 
-	private static FetchBuffer buildFetchBuffer(CircularBuffer circularBuffer)
+	private static FetchBuffer buildFetchBuffer(BufferViewer bufferViewer)
 	{
 		final var bufferReference = VulkanResourceFactory.eINSTANCE.createFixedBufferReference();
-		bufferReference.getBuffers().add(circularBuffer);
+		bufferReference.getBuffers().add(bufferViewer);
 
 		final var fetchBuffer = ProcessFactory.eINSTANCE.createFetchBuffer();
 
-		fetchBuffer.setDataProvider(circularBuffer.getDataProvider());
+		fetchBuffer.setDataProvider(bufferViewer.getDataProvider());
 		fetchBuffer.setBufferReference(bufferReference);
 
 		return fetchBuffer;

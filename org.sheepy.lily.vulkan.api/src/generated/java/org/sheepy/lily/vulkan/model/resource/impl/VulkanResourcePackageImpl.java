@@ -55,7 +55,7 @@ import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
-import org.sheepy.lily.vulkan.model.resource.CircularBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.CircularBufferReference;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.CompositeImage;
@@ -351,7 +351,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass circularBufferEClass = null;
+	private EClass bufferViewerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1637,9 +1637,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EClass getCircularBuffer()
+	public EClass getBufferViewer()
 	{
-		return circularBufferEClass;
+		return bufferViewerEClass;
 	}
 
 	/**
@@ -1648,9 +1648,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EReference getCircularBuffer_DataProvider()
+	public EReference getBufferViewer_DataProvider()
 	{
-		return (EReference)circularBufferEClass.getEStructuralFeatures().get(0);
+		return (EReference)bufferViewerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1659,9 +1659,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCircularBuffer_Usages()
+	public EAttribute getBufferViewer_Usages()
 	{
-		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1670,9 +1670,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCircularBuffer_InstanceCount()
+	public EAttribute getBufferViewer_GrowFactor()
 	{
-		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1681,9 +1681,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCircularBuffer_GrowFactor()
+	public EAttribute getBufferViewer_GrowThreshold()
 	{
-		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1692,20 +1692,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCircularBuffer_GrowThreshold()
+	public EAttribute getBufferViewer_Size()
 	{
-		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCircularBuffer_Size()
-	{
-		return (EAttribute)circularBufferEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1911,13 +1900,12 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(dataBufferEClass, DATA_BUFFER__USAGES);
 		createEAttribute(dataBufferEClass, DATA_BUFFER__DATA);
 
-		circularBufferEClass = createEClass(CIRCULAR_BUFFER);
-		createEReference(circularBufferEClass, CIRCULAR_BUFFER__DATA_PROVIDER);
-		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__USAGES);
-		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__INSTANCE_COUNT);
-		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__GROW_FACTOR);
-		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__GROW_THRESHOLD);
-		createEAttribute(circularBufferEClass, CIRCULAR_BUFFER__SIZE);
+		bufferViewerEClass = createEClass(BUFFER_VIEWER);
+		createEReference(bufferViewerEClass, BUFFER_VIEWER__DATA_PROVIDER);
+		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__USAGES);
+		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_FACTOR);
+		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_THRESHOLD);
+		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__SIZE);
 
 		// Create enums
 		eContextIndexEEnum = createEEnum(ECONTEXT_INDEX);
@@ -2001,8 +1989,8 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		staticBufferEClass.getESuperTypes().add(this.getIMemoryChunkPart());
 		dataBufferEClass.getESuperTypes().add(this.getIBuffer());
 		dataBufferEClass.getESuperTypes().add(this.getIMemoryChunkPart());
-		circularBufferEClass.getESuperTypes().add(this.getIBuffer());
-		circularBufferEClass.getESuperTypes().add(this.getIMemoryChunkPart());
+		bufferViewerEClass.getESuperTypes().add(this.getIBuffer());
+		bufferViewerEClass.getESuperTypes().add(this.getIMemoryChunkPart());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2144,13 +2132,12 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getDataBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, DataBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, DataBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(circularBufferEClass, CircularBuffer.class, "CircularBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCircularBuffer_DataProvider(), this.getBufferDataProvider(), null, "dataProvider", null, 1, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCircularBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCircularBuffer_InstanceCount(), theEnumerationPackage.getEInstanceCount(), "instanceCount", null, 1, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCircularBuffer_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCircularBuffer_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCircularBuffer_Size(), ecorePackage.getELong(), "size", "0", 0, 1, CircularBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bufferViewerEClass, BufferViewer.class, "BufferViewer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBufferViewer_DataProvider(), this.getBufferDataProvider(), null, "dataProvider", null, 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferViewer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferViewer_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferViewer_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferViewer_Size(), ecorePackage.getELong(), "size", "0", 0, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eContextIndexEEnum, EContextIndex.class, "EContextIndex");

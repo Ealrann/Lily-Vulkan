@@ -2399,14 +2399,14 @@ public interface VulkanResourcePackage extends EPackage
 	int DATA_BUFFER_OPERATION_COUNT = IBUFFER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl <em>Circular Buffer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl <em>Buffer Viewer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCircularBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferViewer()
 	 * @generated
 	 */
-	int CIRCULAR_BUFFER = 34;
+	int BUFFER_VIEWER = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2415,7 +2415,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER__NAME = IBUFFER__NAME;
+	int BUFFER_VIEWER__NAME = IBUFFER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Data Provider</b></em>' containment reference.
@@ -2424,7 +2424,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER__DATA_PROVIDER = IBUFFER_FEATURE_COUNT + 0;
+	int BUFFER_VIEWER__DATA_PROVIDER = IBUFFER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -2433,16 +2433,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER__USAGES = IBUFFER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CIRCULAR_BUFFER__INSTANCE_COUNT = IBUFFER_FEATURE_COUNT + 2;
+	int BUFFER_VIEWER__USAGES = IBUFFER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
@@ -2451,7 +2442,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER__GROW_FACTOR = IBUFFER_FEATURE_COUNT + 3;
+	int BUFFER_VIEWER__GROW_FACTOR = IBUFFER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
@@ -2460,7 +2451,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER__GROW_THRESHOLD = IBUFFER_FEATURE_COUNT + 4;
+	int BUFFER_VIEWER__GROW_THRESHOLD = IBUFFER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -2469,25 +2460,25 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER__SIZE = IBUFFER_FEATURE_COUNT + 5;
+	int BUFFER_VIEWER__SIZE = IBUFFER_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the '<em>Circular Buffer</em>' class.
+	 * The number of structural features of the '<em>Buffer Viewer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 6;
+	int BUFFER_VIEWER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of operations of the '<em>Circular Buffer</em>' class.
+	 * The number of operations of the '<em>Buffer Viewer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER_OPERATION_COUNT = IBUFFER_OPERATION_COUNT + 0;
+	int BUFFER_VIEWER_OPERATION_COUNT = IBUFFER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.EContextIndex <em>EContext Index</em>}' enum.
@@ -3642,80 +3633,69 @@ public interface VulkanResourcePackage extends EPackage
 	EAttribute getDataBuffer_Data();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer <em>Circular Buffer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BufferViewer <em>Buffer Viewer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Circular Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer
+	 * @return the meta object for class '<em>Buffer Viewer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferViewer
 	 * @generated
 	 */
-	EClass getCircularBuffer();
+	EClass getBufferViewer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer#getDataProvider <em>Data Provider</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getDataProvider <em>Data Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Data Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer#getDataProvider()
-	 * @see #getCircularBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferViewer#getDataProvider()
+	 * @see #getBufferViewer()
 	 * @generated
 	 */
-	EReference getCircularBuffer_DataProvider();
+	EReference getBufferViewer_DataProvider();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer#getUsages <em>Usages</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getUsages <em>Usages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Usages</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer#getUsages()
-	 * @see #getCircularBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferViewer#getUsages()
+	 * @see #getBufferViewer()
 	 * @generated
 	 */
-	EAttribute getCircularBuffer_Usages();
+	EAttribute getBufferViewer_Usages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer#getInstanceCount <em>Instance Count</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Instance Count</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer#getInstanceCount()
-	 * @see #getCircularBuffer()
-	 * @generated
-	 */
-	EAttribute getCircularBuffer_InstanceCount();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer#getGrowFactor <em>Grow Factor</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getGrowFactor <em>Grow Factor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Grow Factor</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer#getGrowFactor()
-	 * @see #getCircularBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferViewer#getGrowFactor()
+	 * @see #getBufferViewer()
 	 * @generated
 	 */
-	EAttribute getCircularBuffer_GrowFactor();
+	EAttribute getBufferViewer_GrowFactor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer#getGrowThreshold <em>Grow Threshold</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getGrowThreshold <em>Grow Threshold</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Grow Threshold</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer#getGrowThreshold()
-	 * @see #getCircularBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferViewer#getGrowThreshold()
+	 * @see #getBufferViewer()
 	 * @generated
 	 */
-	EAttribute getCircularBuffer_GrowThreshold();
+	EAttribute getBufferViewer_GrowThreshold();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CircularBuffer#getSize <em>Size</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getSize <em>Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBuffer#getSize()
-	 * @see #getCircularBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferViewer#getSize()
+	 * @see #getBufferViewer()
 	 * @generated
 	 */
-	EAttribute getCircularBuffer_Size();
+	EAttribute getBufferViewer_Size();
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.resource.EContextIndex <em>EContext Index</em>}'.
@@ -4681,14 +4661,14 @@ public interface VulkanResourcePackage extends EPackage
 		EAttribute DATA_BUFFER__DATA = eINSTANCE.getDataBuffer_Data();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl <em>Circular Buffer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl <em>Buffer Viewer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.CircularBufferImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCircularBuffer()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferViewer()
 		 * @generated
 		 */
-		EClass CIRCULAR_BUFFER = eINSTANCE.getCircularBuffer();
+		EClass BUFFER_VIEWER = eINSTANCE.getBufferViewer();
 
 		/**
 		 * The meta object literal for the '<em><b>Data Provider</b></em>' containment reference feature.
@@ -4696,7 +4676,7 @@ public interface VulkanResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CIRCULAR_BUFFER__DATA_PROVIDER = eINSTANCE.getCircularBuffer_DataProvider();
+		EReference BUFFER_VIEWER__DATA_PROVIDER = eINSTANCE.getBufferViewer_DataProvider();
 
 		/**
 		 * The meta object literal for the '<em><b>Usages</b></em>' attribute list feature.
@@ -4704,15 +4684,7 @@ public interface VulkanResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CIRCULAR_BUFFER__USAGES = eINSTANCE.getCircularBuffer_Usages();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CIRCULAR_BUFFER__INSTANCE_COUNT = eINSTANCE.getCircularBuffer_InstanceCount();
+		EAttribute BUFFER_VIEWER__USAGES = eINSTANCE.getBufferViewer_Usages();
 
 		/**
 		 * The meta object literal for the '<em><b>Grow Factor</b></em>' attribute feature.
@@ -4720,7 +4692,7 @@ public interface VulkanResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CIRCULAR_BUFFER__GROW_FACTOR = eINSTANCE.getCircularBuffer_GrowFactor();
+		EAttribute BUFFER_VIEWER__GROW_FACTOR = eINSTANCE.getBufferViewer_GrowFactor();
 
 		/**
 		 * The meta object literal for the '<em><b>Grow Threshold</b></em>' attribute feature.
@@ -4728,7 +4700,7 @@ public interface VulkanResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CIRCULAR_BUFFER__GROW_THRESHOLD = eINSTANCE.getCircularBuffer_GrowThreshold();
+		EAttribute BUFFER_VIEWER__GROW_THRESHOLD = eINSTANCE.getBufferViewer_GrowThreshold();
 
 		/**
 		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
@@ -4736,7 +4708,7 @@ public interface VulkanResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CIRCULAR_BUFFER__SIZE = eINSTANCE.getCircularBuffer_Size();
+		EAttribute BUFFER_VIEWER__SIZE = eINSTANCE.getBufferViewer_Size();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.EContextIndex <em>EContext Index</em>}' enum.

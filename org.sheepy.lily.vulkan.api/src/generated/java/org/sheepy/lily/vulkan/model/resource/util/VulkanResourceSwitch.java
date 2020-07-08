@@ -403,14 +403,14 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.CIRCULAR_BUFFER:
+			case VulkanResourcePackage.BUFFER_VIEWER:
 			{
-				CircularBuffer circularBuffer = (CircularBuffer)theEObject;
-				T result = caseCircularBuffer(circularBuffer);
-				if (result == null) result = caseIBuffer(circularBuffer);
-				if (result == null) result = caseIMemoryChunkPart(circularBuffer);
-				if (result == null) result = caseIResource(circularBuffer);
-				if (result == null) result = caseLNamedElement(circularBuffer);
+				BufferViewer bufferViewer = (BufferViewer)theEObject;
+				T result = caseBufferViewer(bufferViewer);
+				if (result == null) result = caseIBuffer(bufferViewer);
+				if (result == null) result = caseIMemoryChunkPart(bufferViewer);
+				if (result == null) result = caseIResource(bufferViewer);
+				if (result == null) result = caseLNamedElement(bufferViewer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -963,17 +963,17 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Circular Buffer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer Viewer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Circular Buffer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer Viewer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCircularBuffer(CircularBuffer object)
+	public T caseBufferViewer(BufferViewer object)
 	{
 		return null;
 	}

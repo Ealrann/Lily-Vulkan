@@ -852,28 +852,28 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CircularBuffer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferViewer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CircularBufferItemProvider circularBufferItemProvider;
+	protected BufferViewerItemProvider bufferViewerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CircularBuffer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferViewer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCircularBufferAdapter()
+	public Adapter createBufferViewerAdapter()
 	{
-		if (circularBufferItemProvider == null)
+		if (bufferViewerItemProvider == null)
 		{
-			circularBufferItemProvider = new CircularBufferItemProvider(this);
+			bufferViewerItemProvider = new BufferViewerItemProvider(this);
 		}
 
-		return circularBufferItemProvider;
+		return bufferViewerItemProvider;
 	}
 
 	/**
@@ -1155,7 +1155,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 				newChildDescriptors.add
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createCircularBuffer()));
+						 VulkanResourceFactory.eINSTANCE.createBufferViewer()));
 
 				return null;
 			}
