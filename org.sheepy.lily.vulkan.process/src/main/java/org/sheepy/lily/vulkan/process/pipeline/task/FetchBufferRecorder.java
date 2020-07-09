@@ -20,7 +20,7 @@ import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
+import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 
 @ModelExtender(scope = FetchBuffer.class)
 @Allocation(context = ExecutionContext.class)
@@ -50,6 +50,8 @@ public final class FetchBufferRecorder implements IRecordableExtender
 		final var srcBuffer = bufferReferenceAllocation.getBufferAllocations(context.index, context.indexCount).get(0);
 		final var dataProviderAdapter = task.getDataProvider().adapt(IBufferDataProviderAdapter.class);
 		final var fetcher = new Fetcher(executionContext, srcBuffer, dataProviderAdapter);
+
+		srcBuffer.attach(context);
 
 		fetcher.record(context.commandBuffer);
 		context.listenExecution(fetcher::fetch);
@@ -103,7 +105,7 @@ public final class FetchBufferRecorder implements IRecordableExtender
 
 		private CPUBufferBackend createStagingBuffer(long byteSize)
 		{
-			final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
+			final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 			final var bufferInfo = new BufferInfo(byteSize, usage, false);
 			final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo, true);
 			executionContext.stackPush();

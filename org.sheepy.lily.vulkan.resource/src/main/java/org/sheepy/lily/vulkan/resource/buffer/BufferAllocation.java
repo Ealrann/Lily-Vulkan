@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -55,6 +56,12 @@ public final class BufferAllocation implements IBufferAllocation
 		}
 		bufferBackend.nextInstance(executionManager.getVkDevice());
 		bufferBackend.pushData(executionManager, data);
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		//TODO
 	}
 
 	@Free

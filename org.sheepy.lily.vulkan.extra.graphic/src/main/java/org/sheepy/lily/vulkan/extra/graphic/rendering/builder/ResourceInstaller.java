@@ -100,7 +100,7 @@ public final class ResourceInstaller<T extends Structure>
 			bindDS.getDescriptorSets().add(dynamicBindings.get(part));
 		}
 
-		pipeline.getTaskPkg().getTasks().add(bindDS);
+		pipeline.getTaskPkgs().get(0).getTasks().add(bindDS);
 
 		return new BufferContext(pipeline, buffer, drawCall);
 	}

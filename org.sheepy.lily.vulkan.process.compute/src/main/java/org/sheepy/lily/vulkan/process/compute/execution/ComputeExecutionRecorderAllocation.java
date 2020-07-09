@@ -22,7 +22,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.List;
 
 @ModelExtender(scope = ComputeExecutionRecorder.class)
-@Allocation(context = ProcessContext.class)
+@Allocation(context = ProcessContext.class, reuseDirtyAllocations = true)
 @AllocationDependency(parent = ComputeProcess.class, features = {ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IRecordableExtender.class)
 public final class ComputeExecutionRecorderAllocation implements IExecutionPlayer, IExtender
 {

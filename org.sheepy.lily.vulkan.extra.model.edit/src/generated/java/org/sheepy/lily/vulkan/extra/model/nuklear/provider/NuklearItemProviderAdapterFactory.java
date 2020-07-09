@@ -55,6 +55,7 @@ import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
+import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.lily.vulkan.model.resource.util.VulkanResourceSwitch;
@@ -140,56 +141,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		}
 
 		return nuklearPushConstantsItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NuklearLayoutTaskItemProvider nuklearLayoutTaskItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNuklearLayoutTaskAdapter()
-	{
-		if (nuklearLayoutTaskItemProvider == null)
-		{
-			nuklearLayoutTaskItemProvider = new NuklearLayoutTaskItemProvider(this);
-		}
-
-		return nuklearLayoutTaskItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NuklearFillBufferTaskItemProvider nuklearFillBufferTaskItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNuklearFillBufferTaskAdapter()
-	{
-		if (nuklearFillBufferTaskItemProvider == null)
-		{
-			nuklearFillBufferTaskItemProvider = new NuklearFillBufferTaskItemProvider(this);
-		}
-
-		return nuklearFillBufferTaskItemProvider;
 	}
 
 	/**
@@ -492,8 +443,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	public void dispose()
 	{
 		if (nuklearPushConstantsItemProvider != null) nuklearPushConstantsItemProvider.dispose();
-		if (nuklearLayoutTaskItemProvider != null) nuklearLayoutTaskItemProvider.dispose();
-		if (nuklearFillBufferTaskItemProvider != null) nuklearFillBufferTaskItemProvider.dispose();
 		if (nuklearContextItemProvider != null) nuklearContextItemProvider.dispose();
 		if (nuklearFontItemProvider != null) nuklearFontItemProvider.dispose();
 		if (selectorPanelItemProvider != null) selectorPanelItemProvider.dispose();
@@ -659,16 +608,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 						(ProcessPackage.Literals.TASK_PKG__TASKS,
 						 NuklearFactory.eINSTANCE.createNuklearPushConstants()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.TASK_PKG__TASKS,
-						 NuklearFactory.eINSTANCE.createNuklearLayoutTask()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.TASK_PKG__TASKS,
-						 NuklearFactory.eINSTANCE.createNuklearFillBufferTask()));
-
 				return null;
 			}
  
@@ -684,16 +623,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 					(createChildParameter
 						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
 						 NuklearFactory.eINSTANCE.createNuklearPushConstants()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-						 NuklearFactory.eINSTANCE.createNuklearLayoutTask()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-						 NuklearFactory.eINSTANCE.createNuklearFillBufferTask()));
 
 				return null;
 			}
@@ -799,6 +728,26 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 				return null;
 			}
  
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseBufferViewer(BufferViewer object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
+						 NuklearFactory.eINSTANCE.createNuklearVertexProvider()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
+						 NuklearFactory.eINSTANCE.createNuklearIndexProvider()));
+
+				return null;
+			}
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

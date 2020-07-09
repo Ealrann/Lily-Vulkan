@@ -8,6 +8,7 @@ import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
+import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.DeviceBufferFiller;
@@ -26,10 +27,13 @@ import java.util.List;
 public class MemoryChunkAllocation implements IExtender
 {
 	private final MemoryChunk memoryChunk;
+	private final IAllocationState allocationState;
 	private final ExecutionContext context;
 	private final GPUBufferBackend bufferBackend;
 	private final MemoryInfo memoryInfo;
 	private final DeviceBufferFiller partPusher;
+
+	private final List<Integer> usedInRecords = new ArrayList<>();
 
 	public MemoryChunkAllocation(MemoryChunk memoryChunk,
 								 IAllocationState allocationState,
@@ -37,6 +41,7 @@ public class MemoryChunkAllocation implements IExtender
 								 IObservatoryBuilder observatory)
 	{
 		this.memoryChunk = memoryChunk;
+		this.allocationState = allocationState;
 		this.context = context;
 
 		memoryInfo = new MemoryInfo(buildAlignmentData(memoryChunk));
@@ -46,6 +51,12 @@ public class MemoryChunkAllocation implements IExtender
 		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
 				   .adaptNotifier(IMemoryPartAdapter.class)
 				   .listenNoParam(allocationState::setAllocationObsolete, IMemoryPartAdapter.Features.Size);
+	}
+
+	@Free
+	public void free(ExecutionContext context)
+	{
+		bufferBackend.free(context);
 	}
 
 	public AlignmentData getAlignmentData(IMemoryChunkPart part)
@@ -81,12 +92,6 @@ public class MemoryChunkAllocation implements IExtender
 		}
 	}
 
-	@Free
-	public void free(ExecutionContext context)
-	{
-		bufferBackend.free(context);
-	}
-
 	private GPUBufferBackend createBufferBackend(long size, int usage)
 	{
 		final var info = new BufferInfo(size, usage, false);
@@ -113,6 +118,28 @@ public class MemoryChunkAllocation implements IExtender
 			position += size;
 		}
 		return List.copyOf(tmpData);
+	}
+
+	public void attach(final IRecordContext recordContext)
+	{
+		final Integer code = recordContext.hashCode();
+
+		allocationState.lockAllocation();
+		if (!usedInRecords.contains(code))
+		{
+			usedInRecords.add(code);
+			recordContext.listenExecution(() -> this.executionDone(code));
+		}
+	}
+
+	private void executionDone(Integer code)
+	{
+		assert usedInRecords.contains(code);
+		usedInRecords.remove(code);
+		if (usedInRecords.isEmpty())
+		{
+			allocationState.unlockAllocation();
+		}
 	}
 
 	public static record MemoryInfo(List<AlignmentData>data, long size, int usage)

@@ -49,8 +49,11 @@ public class NuklearContextItemProvider
 
 			addFontPropertyDescriptor(object);
 			addNullTexturePropertyDescriptor(object);
-			addLayoutTaskPropertyDescriptor(object);
 			addImageArrayDescriptorPropertyDescriptor(object);
+			addVertexDataProviderPropertyDescriptor(object);
+			addIndexDataProviderPropertyDescriptor(object);
+			addVertexMemoryChunkPropertyDescriptor(object);
+			addCompositeDrawTaskPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -102,29 +105,6 @@ public class NuklearContextItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Layout Task feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLayoutTaskPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NuklearContext_layoutTask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_layoutTask_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__LAYOUT_TASK,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Image Array Descriptor feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,6 +119,98 @@ public class NuklearContextItemProvider
 				 getString("_UI_NuklearContext_imageArrayDescriptor_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_imageArrayDescriptor_feature", "_UI_NuklearContext_type"),
 				 NuklearPackage.Literals.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Vertex Data Provider feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVertexDataProviderPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NuklearContext_vertexDataProvider_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_vertexDataProvider_feature", "_UI_NuklearContext_type"),
+				 NuklearPackage.Literals.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Index Data Provider feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIndexDataProviderPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NuklearContext_indexDataProvider_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_indexDataProvider_feature", "_UI_NuklearContext_type"),
+				 NuklearPackage.Literals.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Vertex Memory Chunk feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVertexMemoryChunkPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NuklearContext_vertexMemoryChunk_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_vertexMemoryChunk_feature", "_UI_NuklearContext_type"),
+				 NuklearPackage.Literals.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Composite Draw Task feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompositeDrawTaskPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NuklearContext_compositeDrawTask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_compositeDrawTask_feature", "_UI_NuklearContext_type"),
+				 NuklearPackage.Literals.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK,
 				 true,
 				 false,
 				 true,

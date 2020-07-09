@@ -2,43 +2,39 @@ package org.sheepy.lily.vulkan.nuklear.dataprovider;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
-import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAllocation;
 
 import java.nio.ByteBuffer;
-
-import static org.lwjgl.nuklear.Nuklear.nnk_buffer_init_fixed;
+import java.util.List;
 
 @ModelExtender(scope = NuklearVertexProvider.class)
 @Adapter(lazy = false)
-public final class NuklearVertexProviderAdapter implements IBufferDataProviderAdapter
+public final class NuklearVertexProviderAdapter extends Notifier<IBufferDataProviderAdapter.Features> implements
+																									  IBufferDataProviderAdapter
 {
 	public static final int VERTEX_SIZE = 20;
 	public static final long VERTEX_BUFFER_SIZE = (long) Math.pow(2, 18);
 
-	private final NuklearVertexProvider provider;
+	private final ByteBuffer stagingBuffer = MemoryUtil.memAlloc((int) VERTEX_BUFFER_SIZE);
 
-	private NuklearVertexProviderAdapter(NuklearVertexProvider provider)
+	private NuklearVertexProviderAdapter()
 	{
-		this.provider = provider;
+		super(List.of(Features.Size, Features.Data));
 	}
 
-	@Load
-	private static void load(NuklearVertexProvider provider)
+	public ByteBuffer requestUpdate()
 	{
-		provider.setRequestedSize(VERTEX_BUFFER_SIZE);
+		notify(Features.Data);
+		return stagingBuffer;
 	}
 
 	@Override
 	public void fill(ByteBuffer buffer)
 	{
-		final var contextAdapter = provider.getContext().adapt(NuklearContextAllocation.class);
-		final var vbuf = contextAdapter.getVBuf();
-		final long address = MemoryUtil.memAddress(buffer);
-		nnk_buffer_init_fixed(vbuf.address(), address, buffer.capacity());
+		MemoryUtil.memCopy(stagingBuffer, buffer);
 	}
 
 	@Override
@@ -47,9 +43,8 @@ public final class NuklearVertexProviderAdapter implements IBufferDataProviderAd
 	}
 
 	@Override
-	public boolean hasChanged()
+	public long size()
 	{
-		final var contextAdapter = provider.getContext().adapt(NuklearContextAllocation.class);
-		return contextAdapter.isDirty();
+		return VERTEX_BUFFER_SIZE;
 	}
 }

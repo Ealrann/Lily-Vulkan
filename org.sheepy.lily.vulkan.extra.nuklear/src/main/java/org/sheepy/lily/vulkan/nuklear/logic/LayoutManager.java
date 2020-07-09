@@ -98,16 +98,21 @@ public final class LayoutManager
 		}
 	}
 
-	public void update()
+	public boolean update()
 	{
 		if (isLayoutNecessary())
 		{
-			layout();
+			final boolean res = layout();
 			layoutRequested = ELayoutRequest.None;
+			return res;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
-	private void layout()
+	private boolean layout()
 	{
 		final var fontAdapter = font.adapt(NuklearFontAdapter.class);
 		final var fontAllocation = font.adapt(NuklearFontAllocation.class);
@@ -123,9 +128,15 @@ public final class LayoutManager
 			layoutState.layout(panelAdapters, uiContext, extent);
 		}
 
+		return layoutState.isDirty();
+	}
+
+	public void clean()
+	{
 		assert layoutState.hasStartedFrame();
 		nk_clear(nkContext);
 		layoutState.setStartedFrame(false);
+		layoutState.setDirty(false);
 	}
 
 	private boolean isLayoutNecessary()

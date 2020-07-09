@@ -32,6 +32,8 @@ class TestResourceFactory
 		{
 			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
 			bufferViewer.setDataProvider(EcoreUtil.copy(provider));
+			bufferViewer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
+			bufferViewer.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
 			parts.add(bufferViewer);
 		}
 

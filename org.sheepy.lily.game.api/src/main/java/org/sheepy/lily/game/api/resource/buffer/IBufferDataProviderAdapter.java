@@ -21,9 +21,6 @@ public interface IBufferDataProviderAdapter extends IExtender, INotifier<IBuffer
 
 	long size();
 
-	@Deprecated
-	boolean hasChanged();
-
 	default int minAlignment()
 	{
 		return 1;

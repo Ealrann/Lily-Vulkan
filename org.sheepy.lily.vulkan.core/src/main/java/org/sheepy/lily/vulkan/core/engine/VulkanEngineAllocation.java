@@ -9,6 +9,7 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
+import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineUtils;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -117,6 +118,12 @@ public final class VulkanEngineAllocation implements IVulkanEngineAdapter
 	{
 		if (executionContext.getLogicalDevice() != null)
 		{
+			for(final var process : engine.getProcesses())
+			{
+				final var adapter = process.adapt(IProcessAdapter.class);
+				adapter.waitIdle();
+			}
+
 			executionContext.getLogicalDevice().waitIdle();
 		}
 	}

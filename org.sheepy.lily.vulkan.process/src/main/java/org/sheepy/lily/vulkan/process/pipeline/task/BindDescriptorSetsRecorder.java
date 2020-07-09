@@ -39,9 +39,14 @@ public final class BindDescriptorSetsRecorder implements IRecordableExtender
 	{
 		final var commandBuffer = context.commandBuffer;
 		final var descriptorSetsToBind = getDSToBind(context.index, task.getStride());
-
 		final var pipelineAdapter = pipeline.adapt(IPipelineAllocation.class);
 		final var pipelineLayout = pipelineAdapter.getVkPipelineLayout();
+
+		for (final var ds : descriptorSetsToBind)
+		{
+			ds.attach(context);
+		}
+
 		pipelineLayout.bindDescriptors(commandBuffer, descriptorSetsToBind, bindPoint);
 	}
 

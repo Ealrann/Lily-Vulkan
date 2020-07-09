@@ -23,7 +23,7 @@ import java.util.List;
 import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = DescriptorPool.class)
-@Allocation(context = ExecutionContext.class)
+@Allocation(context = ExecutionContext.class, reuseDirtyAllocations = true)
 @AllocationChild(reportStateToParent = true, features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS)
 public final class DescriptorPoolAllocation implements IExtender
 {

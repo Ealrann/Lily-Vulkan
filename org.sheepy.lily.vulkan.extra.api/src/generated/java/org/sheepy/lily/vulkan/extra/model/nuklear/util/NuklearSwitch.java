@@ -93,24 +93,6 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.NUKLEAR_LAYOUT_TASK:
-			{
-				NuklearLayoutTask nuklearLayoutTask = (NuklearLayoutTask)theEObject;
-				T result = caseNuklearLayoutTask(nuklearLayoutTask);
-				if (result == null) result = caseIPipelineTask(nuklearLayoutTask);
-				if (result == null) result = caseLNamedElement(nuklearLayoutTask);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case NuklearPackage.NUKLEAR_FILL_BUFFER_TASK:
-			{
-				NuklearFillBufferTask nuklearFillBufferTask = (NuklearFillBufferTask)theEObject;
-				T result = caseNuklearFillBufferTask(nuklearFillBufferTask);
-				if (result == null) result = caseIPipelineTask(nuklearFillBufferTask);
-				if (result == null) result = caseLNamedElement(nuklearFillBufferTask);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case NuklearPackage.NUKLEAR_CONTEXT:
 			{
 				NuklearContext nuklearContext = (NuklearContext)theEObject;
@@ -196,38 +178,6 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseNuklearPushConstants(NuklearPushConstants object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Layout Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Layout Task</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNuklearLayoutTask(NuklearLayoutTask object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fill Buffer Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fill Buffer Task</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNuklearFillBufferTask(NuklearFillBufferTask object)
 	{
 		return null;
 	}

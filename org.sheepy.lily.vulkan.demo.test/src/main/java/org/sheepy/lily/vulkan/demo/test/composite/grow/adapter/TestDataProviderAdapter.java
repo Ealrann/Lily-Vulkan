@@ -73,7 +73,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 		}
 
 		previousPushs.add(new PushData(previous, pass));
-
 		dirty = false;
 	}
 
@@ -83,11 +82,11 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 		final var intBuffer = buffer.asIntBuffer();
 		final int size = intBuffer.capacity();
 		final var pushDatas = previousPushs.stream()
-										  .filter(p -> p.values.length == size)
+										   .filter(p -> p.values.length == size)
 										   .filter(p -> p.match(buffer.asIntBuffer()))
-										  .collect(Collectors.toUnmodifiableList());
+										   .collect(Collectors.toUnmodifiableList());
 
-		if(pushDatas.size() != 1) throw new AssertionError();
+		if (pushDatas.size() != 1) throw new AssertionError();
 
 		previousPushs.removeAll(pushDatas);
 
@@ -97,12 +96,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	public long size()
 	{
 		return currentSize;
-	}
-
-	@Override
-	public boolean hasChanged()
-	{
-		return dirty;
 	}
 
 	private static record PushData(int[]values, int pass)

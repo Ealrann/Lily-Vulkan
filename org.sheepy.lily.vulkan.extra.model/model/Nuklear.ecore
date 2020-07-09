@@ -7,25 +7,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentDescriptor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearLayoutTask" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/process.ecore#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-        eType="#//NuklearContext" eOpposite="#//NuklearContext/layoutTask"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearFillBufferTask" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/process.ecore#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-        eType="#//NuklearContext"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="drawTask" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/process.ecore#//CompositeTask"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexBuffer" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//CompositeBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="layoutTask" lowerBound="1"
-        eType="#//NuklearLayoutTask"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="font" lowerBound="1" eType="#//NuklearFont"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nullTexture" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//SampledImage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="layoutTask" lowerBound="1"
-        eType="#//NuklearLayoutTask" eOpposite="#//NuklearLayoutTask/context"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageArrayDescriptor" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ImageArrayDescriptor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexDataProvider" lowerBound="1"
+        eType="#//NuklearVertexProvider"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indexDataProvider" lowerBound="1"
+        eType="#//NuklearIndexProvider"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexMemoryChunk" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//MemoryChunk"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeDrawTask" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/process.ecore#//CompositeTask"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
@@ -78,12 +71,6 @@
         eType="ecore:EClass ../../org.sheepy.lily.core.model/model/variable.ecore#//DirectVariableResolver"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearVertexProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BufferDataProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-        eType="#//NuklearContext"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearIndexProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BufferDataProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-        eType="#//NuklearContext"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearVertexProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BufferDataProvider"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearIndexProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BufferDataProvider"/>
 </ecore:EPackage>

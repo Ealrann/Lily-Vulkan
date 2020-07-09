@@ -4,6 +4,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
@@ -26,6 +27,11 @@ public class ImageArrayDescriptorAllocation implements IDescriptorAllocation
 		final var initialLayout = descriptor.getInitialLayout();
 		final long[] viewPtrs = imageAllocations.stream().mapToLong(IVkImageAllocation::getViewPtr).toArray();
 		vkDescriptor = new VkImageArrayDescriptor(viewPtrs, initialLayout, descriptor.getType());
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
 	}
 
 	@Override

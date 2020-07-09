@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.DataBuffer;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
@@ -23,6 +24,7 @@ public class DataBufferAllocation implements IMemoryPartAllocation
 {
 	private final DataBuffer buffer;
 	private final long bufferPtr;
+	private final MemoryChunkAllocation memoryChunkAllocation;
 	private final AlignmentData alignmentData;
 
 	private boolean needPush = true;
@@ -32,6 +34,7 @@ public class DataBufferAllocation implements IMemoryPartAllocation
 	{
 		this.buffer = buffer;
 		bufferPtr = memoryChunkAllocation.getBufferPtr();
+		this.memoryChunkAllocation = memoryChunkAllocation;
 		alignmentData = memoryChunkAllocation.getAlignmentData(buffer);
 	}
 
@@ -40,6 +43,12 @@ public class DataBufferAllocation implements IMemoryPartAllocation
 	{
 		MemoryUtil.memCopy(memAddress(buffer.getData()), dstPtr, alignmentData.size());
 		needPush = false;
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		memoryChunkAllocation.attach(recordContext);
 	}
 
 	@Override

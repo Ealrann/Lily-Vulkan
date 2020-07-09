@@ -1098,17 +1098,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFontImage_InstanceCount()
-	{
-		return (EAttribute)fontImageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getCompositeImage()
 	{
 		return compositeImageEClass;
@@ -1832,7 +1821,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		fontImageEClass = createEClass(FONT_IMAGE);
 		createEReference(fontImageEClass, FONT_IMAGE__FONTS);
-		createEAttribute(fontImageEClass, FONT_IMAGE__INSTANCE_COUNT);
 
 		compositeImageEClass = createEClass(COMPOSITE_IMAGE);
 		createEReference(compositeImageEClass, COMPOSITE_IMAGE__INLAYS);
@@ -2064,7 +2052,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		initEClass(fontImageEClass, FontImage.class, "FontImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFontImage_Fonts(), theUiPackage.getFont(), null, "fonts", null, 0, -1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFontImage_InstanceCount(), theEnumerationPackage.getEInstanceCount(), "instanceCount", null, 1, 1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeImageEClass, CompositeImage.class, "CompositeImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeImage_Inlays(), this.getImageInlay(), null, "inlays", null, 0, -1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

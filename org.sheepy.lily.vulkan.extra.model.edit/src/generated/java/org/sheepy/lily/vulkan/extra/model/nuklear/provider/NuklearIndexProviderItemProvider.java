@@ -8,12 +8,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
-
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.model.resource.provider.BufferDataProviderItemProvider;
 
 /**
@@ -48,32 +44,8 @@ public class NuklearIndexProviderItemProvider extends BufferDataProviderItemProv
 		{
 			super.getPropertyDescriptors(object);
 
-			addContextPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Context feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContextPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NuklearIndexProvider_context_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearIndexProvider_context_feature", "_UI_NuklearIndexProvider_type"),
-				 NuklearPackage.Literals.NUKLEAR_INDEX_PROVIDER__CONTEXT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

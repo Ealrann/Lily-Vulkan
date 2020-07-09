@@ -6,8 +6,6 @@ import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
-import java.util.EventListener;
-
 import static org.lwjgl.vulkan.VK10.*;
 
 public final class VkFence implements IFenceView, IFence
@@ -70,11 +68,5 @@ public final class VkFence implements IFenceView, IFence
 	public void setUsed(boolean used)
 	{
 		this.used = used;
-	}
-
-	@FunctionalInterface
-	public interface IFenceListener extends EventListener
-	{
-		void executionDone();
 	}
 }

@@ -121,8 +121,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="FontImage" eSuperTypes="#//Image">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fonts" upperBound="-1"
         eType="ecore:EClass ../../org.sheepy.lily.core.model/model/ui.ecore#//Font"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceCount" lowerBound="1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EInstanceCount"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeImage" eSuperTypes="#//Image">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inlays" upperBound="-1"

@@ -19,12 +19,14 @@ import static org.lwjgl.vulkan.VK10.vkCmdBindVertexBuffers;
 public final class BindVertexBuferRecorder implements IRecordableExtender
 {
 	private final BindVertexBuffer task;
+	private final List<IBufferAllocation> buffers;
 	private final long[] vertexBuffers;
 	private final long[] offsets;
 
 	private BindVertexBuferRecorder(BindVertexBuffer task, @InjectDependency(index = 0) List<IBufferAllocation> buffers)
 	{
 		this.task = task;
+		this.buffers = buffers;
 
 		final int size = buffers.size();
 		vertexBuffers = new long[size];
@@ -44,6 +46,11 @@ public final class BindVertexBuferRecorder implements IRecordableExtender
 	{
 		final var commandBuffer = context.commandBuffer;
 		final int firstBinding = task.getFirstBinding();
+
+		for (final var buffer : buffers)
+		{
+			buffer.attach(context);
+		}
 
 		vkCmdBindVertexBuffers(commandBuffer, firstBinding, vertexBuffers, offsets);
 	}

@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
@@ -16,7 +16,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdDraw;
 @ModelExtender(scope = RenderDrawTask.class)
 @Allocation
 @AllocationDependency(features = RenderingPackage.RENDER_DRAW_TASK__VERTEX_PROVIDERS, type = IVertexProviderAdapter.class)
-public final class RenderDrawTaskAdapter implements IPipelineTaskRecorder
+public final class RenderDrawTaskAdapter implements IRecordableExtender
 {
 	private final int vertexCount;
 

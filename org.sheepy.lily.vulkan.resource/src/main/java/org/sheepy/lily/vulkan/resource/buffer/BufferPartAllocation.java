@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
@@ -89,6 +90,12 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 		}
 	}
 
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		//TODO
+	}
+
 	private static int computeUsage(BufferDataProvider dataProvider)
 	{
 		final int usage = VulkanModelUtil.getEnumeratedFlag(dataProvider.getUsages());
@@ -124,7 +131,7 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 	public boolean needPush()
 	{
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		return (needPush || adapter.hasChanged()) && instanceSize > 0;
+		return (needPush /**|| adapter.hasChanged()**/) && instanceSize > 0;
 	}
 
 	public boolean reserveMemory(TransferBufferAllocation transferBuffer)

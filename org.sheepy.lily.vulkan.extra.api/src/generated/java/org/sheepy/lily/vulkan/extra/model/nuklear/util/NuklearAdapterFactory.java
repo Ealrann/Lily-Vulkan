@@ -91,16 +91,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createNuklearPushConstantsAdapter();
 			}
 			@Override
-			public Adapter caseNuklearLayoutTask(NuklearLayoutTask object)
-			{
-				return createNuklearLayoutTaskAdapter();
-			}
-			@Override
-			public Adapter caseNuklearFillBufferTask(NuklearFillBufferTask object)
-			{
-				return createNuklearFillBufferTaskAdapter();
-			}
-			@Override
 			public Adapter caseNuklearContext(NuklearContext object)
 			{
 				return createNuklearContextAdapter();
@@ -223,36 +213,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNuklearPushConstantsAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask <em>Layout Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask
-	 * @generated
-	 */
-	public Adapter createNuklearLayoutTaskAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask <em>Fill Buffer Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFillBufferTask
-	 * @generated
-	 */
-	public Adapter createNuklearFillBufferTaskAdapter()
 	{
 		return null;
 	}

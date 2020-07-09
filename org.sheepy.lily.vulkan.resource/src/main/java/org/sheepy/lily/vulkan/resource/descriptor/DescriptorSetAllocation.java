@@ -8,6 +8,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
@@ -50,6 +51,15 @@ public class DescriptorSetAllocation implements IDescriptorSetAllocation
 		layoutPtr = layoutAllocation.getLayoutPtr();
 		descriptorSetPtr = allocateDescriptorSet(descriptorPoolPtr, stack);
 		allocations = descriptorAllocations;
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		for (final var allocation : allocations)
+		{
+			allocation.attach(recordContext);
+		}
 	}
 
 	public void updateDescriptorSet(VkWriteDescriptorSet.Buffer descriptorWrites, MemoryStack stack)

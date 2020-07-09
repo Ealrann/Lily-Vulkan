@@ -33,6 +33,8 @@ public final class BindIndexBufferRecorder implements IRecordableExtender
 		final var indexType = task.getIndexType().getValue();
 		final var commandBuffer = context.commandBuffer;
 
+		buffer.attach(context);
+
 		vkCmdBindIndexBuffer(commandBuffer, indexPtr, indexOffset, indexType);
 	}
 }

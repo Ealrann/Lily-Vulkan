@@ -2,42 +2,45 @@ package org.sheepy.lily.vulkan.nuklear.dataprovider;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
-import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAllocation;
 
 import java.nio.ByteBuffer;
-
-import static org.lwjgl.nuklear.Nuklear.nnk_buffer_init_fixed;
+import java.util.List;
 
 @ModelExtender(scope = NuklearIndexProvider.class)
 @Adapter(lazy = false)
-public final class NuklearIndexProviderAdapter implements IBufferDataProviderAdapter
+public final class NuklearIndexProviderAdapter extends Notifier<IBufferDataProviderAdapter.Features> implements
+																									 IBufferDataProviderAdapter
 {
 	public static final long INDEX_BUFFER_SIZE = (long) Math.pow(2, 16);
 
-	private final NuklearIndexProvider provider;
+	private final ByteBuffer stagingBuffer = MemoryUtil.memAlloc((int) INDEX_BUFFER_SIZE);
 
-	private NuklearIndexProviderAdapter(NuklearIndexProvider provider)
+	private NuklearIndexProviderAdapter()
 	{
-		this.provider = provider;
+		super(List.of(Features.Size, Features.Data));
 	}
 
-	@Load
-	private static void load(NuklearIndexProvider provider)
+	@Dispose
+	private void dispose()
 	{
-		provider.setRequestedSize(INDEX_BUFFER_SIZE);
+		MemoryUtil.memFree(stagingBuffer);
+	}
+
+	public ByteBuffer requestUpdate()
+	{
+		notify(Features.Data);
+		return stagingBuffer;
 	}
 
 	@Override
 	public void fill(ByteBuffer buffer)
 	{
-		final var contextAdapter = provider.getContext().adapt(NuklearContextAllocation.class);
-		final var ebuf = contextAdapter.getEBuf();
-		final long address = MemoryUtil.memAddress(buffer);
-		nnk_buffer_init_fixed(ebuf.address(), address, buffer.capacity());
+		MemoryUtil.memCopy(stagingBuffer, buffer);
 	}
 
 	@Override
@@ -46,9 +49,8 @@ public final class NuklearIndexProviderAdapter implements IBufferDataProviderAda
 	}
 
 	@Override
-	public boolean hasChanged()
+	public long size()
 	{
-		final var contextAdapter = provider.getContext().adapt(NuklearContextAllocation.class);
-		return contextAdapter.isDirty();
+		return INDEX_BUFFER_SIZE;
 	}
 }

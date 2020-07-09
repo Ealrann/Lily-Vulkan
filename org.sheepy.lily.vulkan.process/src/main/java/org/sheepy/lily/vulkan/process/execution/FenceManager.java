@@ -15,7 +15,7 @@ public final class FenceManager
 
 	private final List<FenceWrapper> fences;
 	private int currentFence = -1;
-	private List<VkFence.IFenceListener> listeners = null;
+	private List<Runnable> listeners = null;
 
 	public FenceManager(int count, VkDevice vkDevice)
 	{
@@ -41,6 +41,7 @@ public final class FenceManager
 		res.waitIdle();
 		if (listeners != null)
 		{
+			assert res.listeners == null;
 			res.listeners = listeners;
 			listeners = null;
 		}
@@ -56,7 +57,7 @@ public final class FenceManager
 	public boolean check()
 	{
 		boolean res = true;
-		for(final var fence : fences)
+		for (final var fence : fences)
 		{
 			res &= fence.checkFence();
 		}
@@ -68,15 +69,16 @@ public final class FenceManager
 		return fences.stream().anyMatch(FenceWrapper::isRunning);
 	}
 
-	public void setNextExecutionListeners(final List<VkFence.IFenceListener> listeners)
+	public void setNextExecutionListeners(final List<Runnable> listeners)
 	{
+		assert this.listeners == null;
 		this.listeners = listeners;
 	}
 
 	private static final class FenceWrapper
 	{
 		public final VkFence fence;
-		List<VkFence.IFenceListener> listeners = null;
+		List<Runnable> listeners = null;
 
 		FenceWrapper(VkFence fence)
 		{
@@ -99,7 +101,7 @@ public final class FenceManager
 		{
 			if (fence.isUsed())
 			{
-				if(fence.isSignaled())
+				if (fence.isSignaled())
 				{
 					resetFence();
 					return true;
@@ -124,7 +126,7 @@ public final class FenceManager
 				{
 					for (final var listener : listeners)
 					{
-						listener.executionDone();
+						listener.run();
 					}
 					listeners = null;
 				}

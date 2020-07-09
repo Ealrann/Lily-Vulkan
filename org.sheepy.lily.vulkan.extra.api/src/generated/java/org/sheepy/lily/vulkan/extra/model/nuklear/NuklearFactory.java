@@ -32,24 +32,6 @@ public interface NuklearFactory extends EFactory
 	NuklearPushConstants createNuklearPushConstants();
 
 	/**
-	 * Returns a new object of class '<em>Layout Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Layout Task</em>'.
-	 * @generated
-	 */
-	NuklearLayoutTask createNuklearLayoutTask();
-
-	/**
-	 * Returns a new object of class '<em>Fill Buffer Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fill Buffer Task</em>'.
-	 * @generated
-	 */
-	NuklearFillBufferTask createNuklearFillBufferTask();
-
-	/**
 	 * Returns a new object of class '<em>Context</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

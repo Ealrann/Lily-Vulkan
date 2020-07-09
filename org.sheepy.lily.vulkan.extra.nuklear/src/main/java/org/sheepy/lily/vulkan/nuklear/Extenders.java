@@ -23,7 +23,6 @@ public class Extenders implements IExtenderProvider
 					   VariableLabelAdapter.class,
 					   SliderAdapter.class,
 					   NullTextureLoader.class,
-//					   NuklearFillBufferTaskAdapter.class,
 					   NuklearContextAllocation.class,
 					   NuklearFontAllocation.class,
 					   NuklearPushConstantsAdapter.class,

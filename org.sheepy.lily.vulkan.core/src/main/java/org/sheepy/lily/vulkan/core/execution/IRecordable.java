@@ -2,8 +2,7 @@ package org.sheepy.lily.vulkan.core.execution;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.concurrent.VkFence;
+import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public interface IRecordable
 		public final int indexCount;
 		public final MemoryStack stack;
 
-		private final List<VkFence.IFenceListener> listeners = new ArrayList<>();
+		private final List<Runnable> listeners = new ArrayList<>();
 
 		public RecordContext(VkCommandBuffer commandBuffer,
 							 ECommandStage stage,
@@ -37,7 +36,8 @@ public interface IRecordable
 			this.stack = stack;
 		}
 
-		public void listenExecution(VkFence.IFenceListener listener)
+		@Override
+		public void listenExecution(Runnable listener)
 		{
 			if (listeners.contains(listener) == false)
 			{
@@ -45,7 +45,7 @@ public interface IRecordable
 			}
 		}
 
-		public List<VkFence.IFenceListener> getExecutionListeners()
+		public List<Runnable> getExecutionListeners()
 		{
 			return Collections.unmodifiableList(listeners);
 		}

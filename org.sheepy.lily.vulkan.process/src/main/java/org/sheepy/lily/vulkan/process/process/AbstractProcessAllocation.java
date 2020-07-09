@@ -110,8 +110,7 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 	@Override
 	public void waitIdle()
 	{
-		final var recorders = getRecorders();
-		recorders.waitIdle();
+		runningRecorders.forEach(IExecutionPlayer::waitIdle);
 	}
 
 	protected boolean isResetAllowed()

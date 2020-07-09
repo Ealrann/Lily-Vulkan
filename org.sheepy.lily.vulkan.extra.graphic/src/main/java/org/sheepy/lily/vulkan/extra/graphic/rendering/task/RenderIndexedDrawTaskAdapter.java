@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineTaskRecorder;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask;
@@ -16,7 +16,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdDrawIndexed;
 @Allocation
 @AllocationDependency(features = RenderingPackage.RENDER_INDEXED_DRAW_TASK__STRUCTURE, type = IStructureAdapter.class)
 @AllocationDependency(features = RenderingPackage.RENDER_INDEXED_DRAW_TASK__INDEX_PROVIDER, type = IIndexProviderAdapter.class)
-public final class RenderIndexedDrawTaskAdapter implements IPipelineTaskRecorder
+public final class RenderIndexedDrawTaskAdapter implements IRecordableExtender
 {
 	private final int instanceCount;
 	private final int indexCount;

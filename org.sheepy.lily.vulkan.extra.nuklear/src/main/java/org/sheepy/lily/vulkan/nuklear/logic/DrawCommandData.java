@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.nuklear.draw;
+package org.sheepy.lily.vulkan.nuklear.logic;
 
 import org.lwjgl.nuklear.NkDrawCommand;
 

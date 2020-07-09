@@ -3,8 +3,6 @@
 package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -13,9 +11,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
+import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 
 /**
@@ -28,8 +29,11 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getNullTexture <em>Null Texture</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getLayoutTask <em>Layout Task</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getImageArrayDescriptor <em>Image Array Descriptor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getVertexDataProvider <em>Vertex Data Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getIndexDataProvider <em>Index Data Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getVertexMemoryChunk <em>Vertex Memory Chunk</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getCompositeDrawTask <em>Composite Draw Task</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,16 +61,6 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	protected SampledImage nullTexture;
 
 	/**
-	 * The cached value of the '{@link #getLayoutTask() <em>Layout Task</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLayoutTask()
-	 * @generated
-	 * @ordered
-	 */
-	protected NuklearLayoutTask layoutTask;
-
-	/**
 	 * The cached value of the '{@link #getImageArrayDescriptor() <em>Image Array Descriptor</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,6 +69,46 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @ordered
 	 */
 	protected ImageArrayDescriptor imageArrayDescriptor;
+
+	/**
+	 * The cached value of the '{@link #getVertexDataProvider() <em>Vertex Data Provider</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVertexDataProvider()
+	 * @generated
+	 * @ordered
+	 */
+	protected NuklearVertexProvider vertexDataProvider;
+
+	/**
+	 * The cached value of the '{@link #getIndexDataProvider() <em>Index Data Provider</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndexDataProvider()
+	 * @generated
+	 * @ordered
+	 */
+	protected NuklearIndexProvider indexDataProvider;
+
+	/**
+	 * The cached value of the '{@link #getVertexMemoryChunk() <em>Vertex Memory Chunk</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVertexMemoryChunk()
+	 * @generated
+	 * @ordered
+	 */
+	protected MemoryChunk vertexMemoryChunk;
+
+	/**
+	 * The cached value of the '{@link #getCompositeDrawTask() <em>Composite Draw Task</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompositeDrawTask()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeTask compositeDrawTask;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -193,76 +227,6 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public NuklearLayoutTask getLayoutTask()
-	{
-		if (layoutTask != null && ((EObject)layoutTask).eIsProxy())
-		{
-			InternalEObject oldLayoutTask = layoutTask;
-			layoutTask = (NuklearLayoutTask)eResolveProxy(oldLayoutTask);
-			if (layoutTask != oldLayoutTask)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK, oldLayoutTask, layoutTask));
-			}
-		}
-		return layoutTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NuklearLayoutTask basicGetLayoutTask()
-	{
-		return layoutTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetLayoutTask(NuklearLayoutTask newLayoutTask, NotificationChain msgs)
-	{
-		NuklearLayoutTask oldLayoutTask = layoutTask;
-		layoutTask = newLayoutTask;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK, oldLayoutTask, newLayoutTask);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setLayoutTask(NuklearLayoutTask newLayoutTask)
-	{
-		if (newLayoutTask != layoutTask)
-		{
-			NotificationChain msgs = null;
-			if (layoutTask != null)
-				msgs = ((InternalEObject)layoutTask).eInverseRemove(this, NuklearPackage.NUKLEAR_LAYOUT_TASK__CONTEXT, NuklearLayoutTask.class, msgs);
-			if (newLayoutTask != null)
-				msgs = ((InternalEObject)newLayoutTask).eInverseAdd(this, NuklearPackage.NUKLEAR_LAYOUT_TASK__CONTEXT, NuklearLayoutTask.class, msgs);
-			msgs = basicSetLayoutTask(newLayoutTask, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK, newLayoutTask, newLayoutTask));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ImageArrayDescriptor getImageArrayDescriptor()
 	{
 		if (imageArrayDescriptor != null && ((EObject)imageArrayDescriptor).eIsProxy())
@@ -308,16 +272,29 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NuklearVertexProvider getVertexDataProvider()
 	{
-		switch (featureID)
+		if (vertexDataProvider != null && ((EObject)vertexDataProvider).eIsProxy())
 		{
-			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
-				if (layoutTask != null)
-					msgs = ((InternalEObject)layoutTask).eInverseRemove(this, NuklearPackage.NUKLEAR_LAYOUT_TASK__CONTEXT, NuklearLayoutTask.class, msgs);
-				return basicSetLayoutTask((NuklearLayoutTask)otherEnd, msgs);
+			InternalEObject oldVertexDataProvider = vertexDataProvider;
+			vertexDataProvider = (NuklearVertexProvider)eResolveProxy(oldVertexDataProvider);
+			if (vertexDataProvider != oldVertexDataProvider)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER, oldVertexDataProvider, vertexDataProvider));
+			}
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+		return vertexDataProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NuklearVertexProvider basicGetVertexDataProvider()
+	{
+		return vertexDataProvider;
 	}
 
 	/**
@@ -326,14 +303,147 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public void setVertexDataProvider(NuklearVertexProvider newVertexDataProvider)
 	{
-		switch (featureID)
+		NuklearVertexProvider oldVertexDataProvider = vertexDataProvider;
+		vertexDataProvider = newVertexDataProvider;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER, oldVertexDataProvider, vertexDataProvider));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NuklearIndexProvider getIndexDataProvider()
+	{
+		if (indexDataProvider != null && ((EObject)indexDataProvider).eIsProxy())
 		{
-			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
-				return basicSetLayoutTask(null, msgs);
+			InternalEObject oldIndexDataProvider = indexDataProvider;
+			indexDataProvider = (NuklearIndexProvider)eResolveProxy(oldIndexDataProvider);
+			if (indexDataProvider != oldIndexDataProvider)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER, oldIndexDataProvider, indexDataProvider));
+			}
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return indexDataProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NuklearIndexProvider basicGetIndexDataProvider()
+	{
+		return indexDataProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIndexDataProvider(NuklearIndexProvider newIndexDataProvider)
+	{
+		NuklearIndexProvider oldIndexDataProvider = indexDataProvider;
+		indexDataProvider = newIndexDataProvider;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER, oldIndexDataProvider, indexDataProvider));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MemoryChunk getVertexMemoryChunk()
+	{
+		if (vertexMemoryChunk != null && ((EObject)vertexMemoryChunk).eIsProxy())
+		{
+			InternalEObject oldVertexMemoryChunk = vertexMemoryChunk;
+			vertexMemoryChunk = (MemoryChunk)eResolveProxy(oldVertexMemoryChunk);
+			if (vertexMemoryChunk != oldVertexMemoryChunk)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK, oldVertexMemoryChunk, vertexMemoryChunk));
+			}
+		}
+		return vertexMemoryChunk;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MemoryChunk basicGetVertexMemoryChunk()
+	{
+		return vertexMemoryChunk;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setVertexMemoryChunk(MemoryChunk newVertexMemoryChunk)
+	{
+		MemoryChunk oldVertexMemoryChunk = vertexMemoryChunk;
+		vertexMemoryChunk = newVertexMemoryChunk;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK, oldVertexMemoryChunk, vertexMemoryChunk));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositeTask getCompositeDrawTask()
+	{
+		if (compositeDrawTask != null && ((EObject)compositeDrawTask).eIsProxy())
+		{
+			InternalEObject oldCompositeDrawTask = compositeDrawTask;
+			compositeDrawTask = (CompositeTask)eResolveProxy(oldCompositeDrawTask);
+			if (compositeDrawTask != oldCompositeDrawTask)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK, oldCompositeDrawTask, compositeDrawTask));
+			}
+		}
+		return compositeDrawTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeTask basicGetCompositeDrawTask()
+	{
+		return compositeDrawTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCompositeDrawTask(CompositeTask newCompositeDrawTask)
+	{
+		CompositeTask oldCompositeDrawTask = compositeDrawTask;
+		compositeDrawTask = newCompositeDrawTask;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK, oldCompositeDrawTask, compositeDrawTask));
 	}
 
 	/**
@@ -352,12 +462,21 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
 				if (resolve) return getNullTexture();
 				return basicGetNullTexture();
-			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
-				if (resolve) return getLayoutTask();
-				return basicGetLayoutTask();
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				if (resolve) return getImageArrayDescriptor();
 				return basicGetImageArrayDescriptor();
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
+				if (resolve) return getVertexDataProvider();
+				return basicGetVertexDataProvider();
+			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
+				if (resolve) return getIndexDataProvider();
+				return basicGetIndexDataProvider();
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK:
+				if (resolve) return getVertexMemoryChunk();
+				return basicGetVertexMemoryChunk();
+			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:
+				if (resolve) return getCompositeDrawTask();
+				return basicGetCompositeDrawTask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -378,11 +497,20 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
 				setNullTexture((SampledImage)newValue);
 				return;
-			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
-				setLayoutTask((NuklearLayoutTask)newValue);
-				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				setImageArrayDescriptor((ImageArrayDescriptor)newValue);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
+				setVertexDataProvider((NuklearVertexProvider)newValue);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
+				setIndexDataProvider((NuklearIndexProvider)newValue);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK:
+				setVertexMemoryChunk((MemoryChunk)newValue);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:
+				setCompositeDrawTask((CompositeTask)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -404,11 +532,20 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
 				setNullTexture((SampledImage)null);
 				return;
-			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
-				setLayoutTask((NuklearLayoutTask)null);
-				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				setImageArrayDescriptor((ImageArrayDescriptor)null);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
+				setVertexDataProvider((NuklearVertexProvider)null);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
+				setIndexDataProvider((NuklearIndexProvider)null);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK:
+				setVertexMemoryChunk((MemoryChunk)null);
+				return;
+			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:
+				setCompositeDrawTask((CompositeTask)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -428,10 +565,16 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 				return font != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
 				return nullTexture != null;
-			case NuklearPackage.NUKLEAR_CONTEXT__LAYOUT_TASK:
-				return layoutTask != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				return imageArrayDescriptor != null;
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
+				return vertexDataProvider != null;
+			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
+				return indexDataProvider != null;
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK:
+				return vertexMemoryChunk != null;
+			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:
+				return compositeDrawTask != null;
 		}
 		return super.eIsSet(featureID);
 	}

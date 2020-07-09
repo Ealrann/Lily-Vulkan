@@ -18,7 +18,6 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
-import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
@@ -49,12 +48,9 @@ public final class FontImageAllocation implements IFontImageAllocation
 	private final List<Font> fonts;
 	private final List<FontAllocator> fontAllocators;
 	private final MemoryChunk memory;
-	private final int instanceCount;
-	private final VkImage[] images;
-	private final VkImageView[] views;
+	private final VkImage image;
+	private final VkImageView view;
 
-	private boolean first = true;
-	private int instance = 0;
 	private STBTTPackedchar.Buffer cdata;
 	private CodepointMap codepointMap;
 
@@ -70,37 +66,21 @@ public final class FontImageAllocation implements IFontImageAllocation
 			allocator.allocate(stack);
 		}
 
-		instanceCount = InstanceCountUtil.getInstanceCount(fontImage, fontImage.getInstanceCount());
-
-		images = new VkImage[instanceCount];
-		views = new VkImageView[instanceCount];
-
 		final var builder = new VkImageBuilder(fontImage, BASE_FONTIMAGE_WIDTH, BASE_FONTIMAGE_HEIGHT);
 		final var memoryBuilder = new MemoryChunkBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-		for (int i = 0; i < instanceCount; i++)
-		{
-			final var view = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
-			final var image = builder.build(context, memoryBuilder);
-			images[i] = image;
-			views[i] = view;
-		}
+		view = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
+		image = builder.build(context, memoryBuilder);
 		memory = memoryBuilder.build();
 		memory.allocate(context);
-		for (int i = 0; i < instanceCount; i++)
-		{
-			views[i].allocate(vkDevice, images[i]);
-		}
+		view.allocate(vkDevice, image);
 	}
 
 	@Free
 	public void free(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
-		for (int i = 0; i < instanceCount; i++)
-		{
-			images[i].free(context);
-			views[i].free(vkDevice);
-		}
+		image.free(context);
+		view.free(vkDevice);
 		memory.free(context);
 
 		for (final var allocator : fontAllocators)
@@ -163,15 +143,6 @@ public final class FontImageAllocation implements IFontImageAllocation
 
 					stbtt_PackEnd(pc);
 
-					if (first == true)
-					{
-						first = false;
-					}
-					else
-					{
-						nextInstance();
-					}
-					final var image = images[instance];
 					final var command = DataFlowCommandFactory.newPushImageCommand(ticket,
 																				   image,
 																				   EPipelineStage.TOP_OF_PIPE_BIT,
@@ -204,11 +175,6 @@ public final class FontImageAllocation implements IFontImageAllocation
 		list.add("!?,.+-*/123456789");
 	}
 
-	private void nextInstance()
-	{
-		instance = (instance + 1) % instanceCount;
-	}
-
 	@Override
 	public List<FontAllocator> getAllocators()
 	{
@@ -228,7 +194,7 @@ public final class FontImageAllocation implements IFontImageAllocation
 	@Override
 	public VkImage getVkImage()
 	{
-		return images[instance];
+		return image;
 	}
 
 	@Override
@@ -240,7 +206,7 @@ public final class FontImageAllocation implements IFontImageAllocation
 	@Override
 	public long getViewPtr()
 	{
-		return views[instance].getPtr();
+		return view.getPtr();
 	}
 
 	@Override

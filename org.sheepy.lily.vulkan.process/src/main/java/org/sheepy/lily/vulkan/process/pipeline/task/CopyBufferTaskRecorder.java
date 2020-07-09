@@ -22,6 +22,7 @@ public final class CopyBufferTaskRecorder implements IRecordableExtender
 	private final VkBufferCopy.Buffer copyInfo;
 	private final CopyBufferTask task;
 	private final IBufferAllocation srcBuffer;
+	private final IBufferAllocation dstBuffer;
 	private final long scrPtr;
 	private final long dstPtr;
 
@@ -31,6 +32,7 @@ public final class CopyBufferTaskRecorder implements IRecordableExtender
 	{
 		this.task = task;
 		this.srcBuffer = srcBuffer;
+		this.dstBuffer = dstBuffer;
 		copyInfo = VkBufferCopy.calloc(1);
 
 		final var scrOffset = srcBuffer.getBindOffset();
@@ -65,6 +67,9 @@ public final class CopyBufferTaskRecorder implements IRecordableExtender
 	public void record(RecordContext context)
 	{
 		final var commandBuffer = context.commandBuffer;
+
+		srcBuffer.attach(context);
+		dstBuffer.attach(context);
 
 		srcBuffer.flush();
 		vkCmdCopyBuffer(commandBuffer, scrPtr, dstPtr, copyInfo);
