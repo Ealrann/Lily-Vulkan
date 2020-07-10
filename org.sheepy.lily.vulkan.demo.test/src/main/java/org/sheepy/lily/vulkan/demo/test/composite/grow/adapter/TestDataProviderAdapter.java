@@ -24,7 +24,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	public static final int INITIAL_SIZE = 100000;
 	public static final int GROW_SIZE = 50000;
 
-	private final BufferDataProvider provider;
 	private final Random random;
 
 	public int currentSize = INITIAL_SIZE;
@@ -35,7 +34,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	public TestDataProviderAdapter(BufferDataProvider provider)
 	{
 		super(List.of(Features.Size, Features.Data));
-		this.provider = provider;
 		random = new Random();
 		provider.setRequestedSize(currentSize);
 	}
@@ -45,17 +43,25 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	{
 		if (dirty == false)
 		{
-			currentSize += GROW_SIZE;
-			currentSize = Math.min(MAX_SIZE, currentSize);
-			provider.setRequestedSize(currentSize);
+			if (currentSize != MAX_SIZE)
+			{
+				currentSize += GROW_SIZE;
+				currentSize = Math.min(MAX_SIZE, currentSize);
+				notify(Features.Size, currentSize);
+			}
 
 			notify(Features.Data);
-			notify(Features.Size, currentSize);
 
 			pass++;
 			dirty = true;
 //			System.out.println("pass = " + pass);
 		}
+	}
+
+	@Override
+	public boolean needPush()
+	{
+		return dirty;
 	}
 
 	@Override
@@ -89,7 +95,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 		if (pushDatas.size() != 1) throw new AssertionError();
 
 		previousPushs.removeAll(pushDatas);
-
 	}
 
 	@Override

@@ -80,8 +80,7 @@ public class PhysicalDevice implements IPhysicalDevice
 			{
 				return format;
 			}
-			else if (tiling == VK_IMAGE_TILING_OPTIMAL &&
-					 (formatProperty.optimalTilingFeatures() & features) == features)
+			else if (tiling == VK_IMAGE_TILING_OPTIMAL && (formatProperty.optimalTilingFeatures() & features) == features)
 			{
 				return format;
 			}
@@ -130,7 +129,7 @@ public class PhysicalDevice implements IPhysicalDevice
 		return formatProperty;
 	}
 
-	public long getBufferAlignement(int usage)
+	public long getBufferAlignement(int usage, final boolean coherent)
 	{
 		final var limits = getDeviceProperties().limits();
 		long alignment = 1;
@@ -142,6 +141,10 @@ public class PhysicalDevice implements IPhysicalDevice
 		if ((usage & VK_BUFFER_USAGE_STORAGE_BUFFER_BIT) != 0)
 		{
 			alignment = Math.max(alignment, limits.minStorageBufferOffsetAlignment());
+		}
+		if (coherent == false)
+		{
+			alignment = Math.max(alignment, limits.nonCoherentAtomSize());
 		}
 
 		return alignment;

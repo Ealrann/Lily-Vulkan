@@ -54,6 +54,7 @@ import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
+import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.CircularBufferReference;
@@ -70,6 +71,7 @@ import org.sheepy.lily.vulkan.model.resource.FixedBufferReference;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
+import org.sheepy.lily.vulkan.model.resource.IBufferObject;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart;
 import org.sheepy.lily.vulkan.model.resource.Image;
@@ -331,6 +333,20 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass iMemoryChunkPartEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bufferMemoryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iBufferObjectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1538,9 +1554,53 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EReference getMemoryChunk_TransferBuffer()
+	{
+		return (EReference)memoryChunkEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIMemoryChunkPart()
 	{
 		return iMemoryChunkPartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBufferMemory()
+	{
+		return bufferMemoryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBufferMemory_Buffers()
+	{
+		return (EReference)bufferMemoryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIBufferObject()
+	{
+		return iBufferObjectEClass;
 	}
 
 	/**
@@ -1876,8 +1936,14 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		memoryChunkEClass = createEClass(MEMORY_CHUNK);
 		createEReference(memoryChunkEClass, MEMORY_CHUNK__PARTS);
+		createEReference(memoryChunkEClass, MEMORY_CHUNK__TRANSFER_BUFFER);
 
 		iMemoryChunkPartEClass = createEClass(IMEMORY_CHUNK_PART);
+
+		bufferMemoryEClass = createEClass(BUFFER_MEMORY);
+		createEReference(bufferMemoryEClass, BUFFER_MEMORY__BUFFERS);
+
+		iBufferObjectEClass = createEClass(IBUFFER_OBJECT);
 
 		staticBufferEClass = createEClass(STATIC_BUFFER);
 		createEAttribute(staticBufferEClass, STATIC_BUFFER__SIZE);
@@ -1973,12 +2039,14 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		shaderEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		imageArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		memoryChunkEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		bufferMemoryEClass.getESuperTypes().add(this.getIMemoryChunkPart());
+		bufferMemoryEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		staticBufferEClass.getESuperTypes().add(this.getIBuffer());
-		staticBufferEClass.getESuperTypes().add(this.getIMemoryChunkPart());
+		staticBufferEClass.getESuperTypes().add(this.getIBufferObject());
 		dataBufferEClass.getESuperTypes().add(this.getIBuffer());
-		dataBufferEClass.getESuperTypes().add(this.getIMemoryChunkPart());
+		dataBufferEClass.getESuperTypes().add(this.getIBufferObject());
 		bufferViewerEClass.getESuperTypes().add(this.getIBuffer());
-		bufferViewerEClass.getESuperTypes().add(this.getIMemoryChunkPart());
+		bufferViewerEClass.getESuperTypes().add(this.getIBufferObject());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2107,8 +2175,14 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		initEClass(memoryChunkEClass, MemoryChunk.class, "MemoryChunk", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMemoryChunk_Parts(), this.getIMemoryChunkPart(), null, "parts", null, 0, -1, MemoryChunk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMemoryChunk_TransferBuffer(), this.getTransferBuffer(), null, "transferBuffer", null, 0, 1, MemoryChunk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iMemoryChunkPartEClass, IMemoryChunkPart.class, "IMemoryChunkPart", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(bufferMemoryEClass, BufferMemory.class, "BufferMemory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBufferMemory_Buffers(), this.getIBufferObject(), null, "buffers", null, 0, -1, BufferMemory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iBufferObjectEClass, IBufferObject.class, "IBufferObject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(staticBufferEClass, StaticBuffer.class, "StaticBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStaticBuffer_Size(), ecorePackage.getELong(), "size", null, 0, 1, StaticBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

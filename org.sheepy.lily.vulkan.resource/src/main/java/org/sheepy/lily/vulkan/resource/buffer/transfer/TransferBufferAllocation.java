@@ -9,13 +9,16 @@ import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
 import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
+import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.command.PushCommand;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.internal.TransferBufferBackend;
+import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ModelExtender(scope = TransferBuffer.class)
@@ -58,6 +61,51 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 		backendBuffer.releaseTicket((MemoryTicket) ticket);
 	}
 
+	public boolean pushFillCommands(List<FillCommand> commands)
+	{
+		final List<CommandWrapper> pushCommands = new ArrayList<>();
+		boolean reservationSuccess = true;
+		for (final var command : commands)
+		{
+			final var ticket = reserveMemory(command.size());
+			if (ticket.getReservationStatus() == IMemoryTicket.EReservationStatus.SUCCESS)
+			{
+				final var pushCommand = DataFlowCommandFactory.newPushCommand(ticket,
+																			  command.bufferPtr(),
+																			  command.offset(),
+																			  EPipelineStage.TRANSFER_BIT,
+																			  0);
+				pushCommands.add(new CommandWrapper(pushCommand, command));
+			}
+			else
+			{
+				reservationSuccess = false;
+				break;
+			}
+		}
+
+		if (reservationSuccess)
+		{
+			pushCommands.forEach(this::fillAndAddCommand);
+			notify(Features.TransferQueueChange);
+			return true;
+		}
+		else
+		{
+			pushCommands.stream()
+						.map(CommandWrapper::pushCommand)
+						.map(PushCommand::getMemoryTicket)
+						.forEach(this::releaseTicket);
+			return false;
+		}
+	}
+
+	private void fillAndAddCommand(CommandWrapper command)
+	{
+		command.fillMemory();
+		backendBuffer.addTransferCommand(command.pushCommand);
+	}
+
 	@Override
 	public void newPushCommand(IMemoryTicket ticket,
 							   long trgBuffer,
@@ -65,7 +113,7 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 							   EPipelineStage srcStage,
 							   int srcAccess)
 	{
-		final var pushCommand = DataFlowCommandFactory.newPushCommand((MemoryTicket) ticket,
+		final var pushCommand = DataFlowCommandFactory.newPushCommand(ticket,
 																	  trgBuffer,
 																	  trgOffset,
 																	  srcStage,
@@ -93,5 +141,15 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 		final var flushRecorder = backendBuffer.recordFlush(vkDevice);
 		notify(Features.TransferQueueChange);
 		return flushRecorder;
+	}
+
+	private static record CommandWrapper(PushCommand pushCommand, FillCommand fillCommand)
+	{
+		private void fillMemory()
+		{
+			final var ticket = pushCommand.getMemoryTicket();
+			final var trgPtr = ticket.getMemoryPtr();
+			fillCommand.dataProvider().fillBuffer(trgPtr);
+		}
 	}
 }

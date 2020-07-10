@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.core.resource.buffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
+import org.sheepy.lily.vulkan.core.resource.memory.Memory;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.VulkanDebugUtil;
 
 import java.nio.ByteBuffer;
@@ -22,7 +22,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	private final CPUBufferBackend cpuBackend;
 
 	private long memoryAddress;
-	private MemoryChunk memory;
+	private Memory memory;
 	private int currentInstance = 0;
 	private long currentOffset = 0;
 
@@ -33,14 +33,15 @@ public final class GPUBufferBackend implements IBufferBackend
 		this.cpuBackend = cpuBackend;
 	}
 
-	private void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
+	@Override
+	public void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
 	{
 		memoryAddress = memoryPtr;
 		vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
 		// System.out.println(Long.toHexString(bufferMemoryId));
 	}
 
-	private void linkMemory(final MemoryChunk memory)
+	private void linkMemory(final Memory memory)
 	{
 		this.memory = memory;
 	}
@@ -194,15 +195,14 @@ public final class GPUBufferBackend implements IBufferBackend
 
 		public GPUBufferBackend build(ExecutionContext context)
 		{
-			final var memoryBuilder = new MemoryChunkBuilder(context, DEVICE_LOCAL);
+			final var memoryBuilder = new MemoryBuilder(context, DEVICE_LOCAL);
 			final var res = build(context, memoryBuilder);
-			final var memory = memoryBuilder.build();
-			memory.allocate(context);
+			final var memory = memoryBuilder.build(context);
 			res.linkMemory(memory);
 			return res;
 		}
 
-		public GPUBufferBackend build(ExecutionContext context, MemoryChunkBuilder memoryBuilder)
+		public GPUBufferBackend build(ExecutionContext context, MemoryBuilder memoryBuilder)
 		{
 			info.computeAlignment(context.getPhysicalDevice());
 			final long address = VkBufferAllocator.allocate(context, info);
@@ -214,8 +214,11 @@ public final class GPUBufferBackend implements IBufferBackend
 
 		private CPUBufferBackend createCpuBuffer(ExecutionContext context)
 		{
-			final BufferInfo stagingInfo = new BufferInfo(info.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, info.keptMapped);
-			final var bufferBuilder = new CPUBufferBackend.Builder(stagingInfo, true);
+			final BufferInfo stagingInfo = new BufferInfo(info.size,
+														  VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+														  info.keptMapped,
+														  true);
+			final var bufferBuilder = new CPUBufferBackend.Builder(stagingInfo);
 			return bufferBuilder.build(context);
 		}
 	}

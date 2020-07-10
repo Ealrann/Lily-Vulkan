@@ -25,7 +25,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * @model
  * @generated
  */
-public interface DataBuffer extends IBuffer, IMemoryChunkPart
+public interface DataBuffer extends IBuffer, IBufferObject
 {
 	/**
 	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.

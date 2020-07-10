@@ -802,6 +802,31 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferMemory} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BufferMemoryItemProvider bufferMemoryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferMemory}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBufferMemoryAdapter()
+	{
+		if (bufferMemoryItemProvider == null)
+		{
+			bufferMemoryItemProvider = new BufferMemoryItemProvider(this);
+		}
+
+		return bufferMemoryItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.StaticBuffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

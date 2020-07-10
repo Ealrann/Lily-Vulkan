@@ -18,6 +18,7 @@ class TestResourceFactory
 	private static MemoryChunk buildMemoryChunk(int partCount)
 	{
 		final var res = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
+		final var bufferMemory = VulkanResourceFactory.eINSTANCE.createBufferMemory();
 
 		final var provider = VulkanResourceFactory.eINSTANCE.createBufferDataProvider();
 		provider.setName(TestDataProviderAdapter.NAME);
@@ -27,16 +28,16 @@ class TestResourceFactory
 		provider.getAccessBeforeFetch().add(EAccess.TRANSFER_WRITE_BIT);
 		provider.setUsedToFetch(true);
 
-		final var parts = res.getParts();
 		for (int i = 0; i < partCount; i++)
 		{
 			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
 			bufferViewer.setDataProvider(EcoreUtil.copy(provider));
 			bufferViewer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
 			bufferViewer.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
-			parts.add(bufferViewer);
+			bufferMemory.getBuffers().add(bufferViewer);
 		}
 
+		res.getParts().add(bufferMemory);
 		return res;
 	}
 }

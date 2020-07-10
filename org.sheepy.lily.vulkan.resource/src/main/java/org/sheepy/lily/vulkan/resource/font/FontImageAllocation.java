@@ -16,8 +16,8 @@ import org.sheepy.lily.vulkan.core.resource.font.IFontImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
+import org.sheepy.lily.vulkan.core.resource.memory.Memory;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
@@ -47,7 +47,7 @@ public final class FontImageAllocation implements IFontImageAllocation
 
 	private final List<Font> fonts;
 	private final List<FontAllocator> fontAllocators;
-	private final MemoryChunk memory;
+	private final Memory memory;
 	private final VkImage image;
 	private final VkImageView view;
 
@@ -67,11 +67,10 @@ public final class FontImageAllocation implements IFontImageAllocation
 		}
 
 		final var builder = new VkImageBuilder(fontImage, BASE_FONTIMAGE_WIDTH, BASE_FONTIMAGE_HEIGHT);
-		final var memoryBuilder = new MemoryChunkBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		final var memoryBuilder = new MemoryBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		view = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
 		image = builder.build(context, memoryBuilder);
-		memory = memoryBuilder.build();
-		memory.allocate(context);
+		memory = memoryBuilder.build(context);
 		view.allocate(vkDevice, image);
 	}
 

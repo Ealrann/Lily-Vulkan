@@ -16,6 +16,9 @@ public interface IBufferBackend
 	long mapMemory(VkDevice vkDevice);
 	void unmapMemory(VkDevice vkDevice);
 
+
+	void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size);
+
 	/**
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *

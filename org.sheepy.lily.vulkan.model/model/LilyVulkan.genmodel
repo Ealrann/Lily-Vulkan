@@ -515,8 +515,13 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//MemoryChunk">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//MemoryChunk/parts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//MemoryChunk/transferBuffer"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IMemoryChunkPart"/>
+    <genClasses ecoreClass="resource.ecore#//BufferMemory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferMemory/buffers"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="resource.ecore#//IBufferObject"/>
     <genClasses ecoreClass="resource.ecore#//StaticBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticBuffer/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticBuffer/usages"/>

@@ -16,9 +16,9 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
+import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 import java.nio.ByteBuffer;
@@ -71,7 +71,7 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 		instanceCount = InstanceCountUtil.getInstanceCount(bufferPart, eInstanceCount);
 
 		final var adapter = dataProvider.adapt(IBufferDataProviderAdapter.class);
-		alignment = Math.max(adapter.minAlignment(), physicalDevice.getBufferAlignement(usage));
+		alignment = Math.max(adapter.minAlignment(), physicalDevice.getBufferAlignement(usage, true));
 
 		observatory.explore(VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER)
 				   .listenNoParam(this::sizeChanged, VulkanResourcePackage.BUFFER_DATA_PROVIDER__REQUESTED_SIZE);

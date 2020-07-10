@@ -54,8 +54,8 @@ public class VkTexture
 		final Set<EAccess> srcAccessMask = EnumSet.noneOf(EAccess.class);
 		final Set<EAccess> dstAccessMask = EnumSet.of(EAccess.TRANSFER_WRITE_BIT);
 
-		final var bufferInfo = new BufferInfo(data.remaining(), stagingUsage, false);
-		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo, true);
+		final var bufferInfo = new BufferInfo(data.remaining(), stagingUsage, false, true);
+		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 		final var stagingBuffer = bufferBuilder.build(executionContext);
 		stagingBuffer.pushData(executionContext, data);
 

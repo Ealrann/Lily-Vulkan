@@ -14,6 +14,7 @@ import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.font.FontImageAllocation;
 import org.sheepy.lily.vulkan.resource.image.*;
+import org.sheepy.lily.vulkan.resource.buffer.BufferMemoryAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.MemoryChunkAllocation;
 import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAllocation;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAllocation;
@@ -59,6 +60,7 @@ public class Extenders implements IExtenderProvider
 					   BufferViewerAdapter.class,
 					   BufferViewerAllocation.class,
 					   DataBufferAdapter.class,
-					   DataBufferAllocation.class);
+					   DataBufferAllocation.class,
+					   BufferMemoryAllocation.class);
 	}
 }

@@ -5,8 +5,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
+import org.sheepy.lily.vulkan.core.resource.memory.Memory;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 
 import java.nio.ByteBuffer;
 
@@ -16,23 +16,22 @@ import static org.lwjgl.vulkan.VK10.*;
 public final class CPUBufferBackend implements IBufferBackend
 {
 	public final BufferInfo info;
-	public final boolean coherent;
 	private final long address;
 
 	private long memoryAddress;
-	private MemoryChunk memory;
+	private Memory memory;
 	private long memoryMap = 0;
 	private int currentInstance = 0;
 	private long currentOffset = 0;
 
-	private CPUBufferBackend(BufferInfo info, long address, boolean coherent)
+	private CPUBufferBackend(BufferInfo info, long address)
 	{
 		this.info = info;
-		this.coherent = coherent;
 		this.address = address;
 	}
 
-	private void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
+	@Override
+	public void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
 	{
 		memoryAddress = memoryPtr;
 		vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
@@ -43,7 +42,7 @@ public final class CPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	private void linkMemory(final MemoryChunk memory)
+	private void linkMemory(final Memory memory)
 	{
 		this.memory = memory;
 	}
@@ -137,7 +136,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void flush(MemoryStack stack, VkDevice vkDevice)
 	{
-		if (coherent == false)
+		if (info.coherent == false)
 		{
 			BufferUtils.flush(stack, vkDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 		}
@@ -150,7 +149,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	 */
 	public void flush(MemoryStack stack, VkDevice vkDevice, int instance)
 	{
-		if (coherent == false)
+		if (info.coherent == false)
 		{
 			final long size = info.getInstanceSize();
 			final long offset = getOffset(instance);
@@ -166,7 +165,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void invalidate(MemoryStack stack, VkDevice vkDevice)
 	{
-		if (coherent == false)
+		if (info.coherent == false)
 		{
 			BufferUtils.invalidate(stack, vkDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 		}
@@ -179,7 +178,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	 */
 	public void invalidate(MemoryStack stack, VkDevice vkDevice, int instance)
 	{
-		if (coherent == false)
+		if (info.coherent == false)
 		{
 			final long size = info.getInstanceSize();
 			final long offset = getOffset(instance);
@@ -234,31 +233,28 @@ public final class CPUBufferBackend implements IBufferBackend
 	public static final class Builder
 	{
 		private final BufferInfo info;
-		private final boolean coherent;
 		private final int properties;
 
-		public Builder(BufferInfo info, boolean coherent)
+		public Builder(BufferInfo info)
 		{
 			this.info = info;
-			this.coherent = coherent;
-			this.properties = createPropertyMask(coherent);
+			this.properties = createPropertyMask(info.coherent);
 		}
 
 		public CPUBufferBackend build(ExecutionContext context)
 		{
-			final var memoryBuilder = new MemoryChunkBuilder(context, properties);
+			final var memoryBuilder = new MemoryBuilder(context, properties);
 			final var res = build(context, memoryBuilder);
-			final var memory = memoryBuilder.build();
-			memory.allocate(context);
+			final var memory = memoryBuilder.build(context);
 			res.linkMemory(memory);
 			return res;
 		}
 
-		public CPUBufferBackend build(ExecutionContext context, MemoryChunkBuilder memoryBuilder)
+		public CPUBufferBackend build(ExecutionContext context, MemoryBuilder memoryBuilder)
 		{
 			info.computeAlignment(context.getPhysicalDevice());
 			final long address = VkBufferAllocator.allocate(context, info);
-			final var backend = new CPUBufferBackend(info, address, coherent);
+			final var backend = new CPUBufferBackend(info, address);
 			memoryBuilder.registerBuffer(address, backend::bindBufferMemory);
 			return backend;
 		}

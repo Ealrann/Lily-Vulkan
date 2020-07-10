@@ -1,123 +1,118 @@
 package org.sheepy.lily.vulkan.resource.memorychunk;
 
 import org.sheepy.lily.core.api.allocation.IAllocationState;
-import org.sheepy.lily.core.api.allocation.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
-import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
+import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.DeviceBufferFiller;
-import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
-import org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart;
+import org.sheepy.lily.vulkan.core.resource.memory.Memory;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
+import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.lwjgl.vulkan.VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
 @ModelExtender(scope = MemoryChunk.class)
 @Allocation(context = ExecutionContext.class)
-@AllocationChild(features = VulkanResourcePackage.MEMORY_CHUNK__PARTS)
-public class MemoryChunkAllocation implements IExtender
+@AllocationChild(allocateBeforeParent = true, features = VulkanResourcePackage.MEMORY_CHUNK__PARTS)
+@AllocationDependency(features = VulkanResourcePackage.MEMORY_CHUNK__PARTS, type = IMemoryChunkPartAllocation.class)
+public final class MemoryChunkAllocation implements IExtender
 {
 	private final MemoryChunk memoryChunk;
 	private final IAllocationState allocationState;
-	private final ExecutionContext context;
-	private final GPUBufferBackend bufferBackend;
-	private final MemoryInfo memoryInfo;
-	private final DeviceBufferFiller partPusher;
+	private final List<IMemoryChunkPartAllocation> memoryPartAllocations;
+	private final Memory memory;
+	private final DeviceBufferFiller bufferPusher;
 
 	private final List<Integer> usedInRecords = new ArrayList<>();
 
-	public MemoryChunkAllocation(MemoryChunk memoryChunk,
-								 IAllocationState allocationState,
-								 ExecutionContext context,
-								 IObservatoryBuilder observatory)
+	private MemoryChunkAllocation(MemoryChunk memoryChunk,
+								  ExecutionContext context,
+								  IAllocationState allocationState,
+								  IObservatoryBuilder observatory,
+								  @InjectDependency(index = 0) List<IMemoryChunkPartAllocation> memoryPartAllocations)
 	{
 		this.memoryChunk = memoryChunk;
 		this.allocationState = allocationState;
-		this.context = context;
+		this.memoryPartAllocations = memoryPartAllocations;
+		final var builder = new MemoryBuilder(context, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		for (final var partAllocation : memoryPartAllocations)
+		{
+			final var bufferBackend = partAllocation.getBackend();
+			builder.registerBuffer(bufferBackend.getAddress(), bufferBackend::bindBufferMemory);
+		}
+		this.memory = builder.build(context);
+		bufferPusher = new DeviceBufferFiller(context);
 
-		memoryInfo = new MemoryInfo(buildAlignmentData(memoryChunk));
-		bufferBackend = createBufferBackend(memoryInfo.size, memoryInfo.usage);
-		partPusher = new DeviceBufferFiller(context, bufferBackend.getAddress());
+		for (final var partAllocation : memoryPartAllocations)
+		{
+			final var focus = observatory.focus(partAllocation);
+			focus.listenNoParam(allocationState::requestUpdate, IMemoryChunkPartAllocation.Features.PushRequest);
+			focus.listen(this::attach, IMemoryChunkPartAllocation.Features.Attach);
+		}
 
-		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
-				   .adaptNotifier(IMemoryPartAdapter.class)
-				   .listenNoParam(allocationState::setAllocationObsolete, IMemoryPartAdapter.Features.Size);
+		pushData();
 	}
 
 	@Free
-	public void free(ExecutionContext context)
+	private void free(ExecutionContext context)
 	{
-		bufferBackend.free(context);
+		memory.free(context);
 	}
 
-	public AlignmentData getAlignmentData(IMemoryChunkPart part)
+	@Update
+	private void pushData()
 	{
-		return memoryInfo.data.get(memoryChunk.getParts().indexOf(part));
-	}
+		final var commands = memoryPartAllocations.stream()
+												  .map(IMemoryChunkPartAllocation::gatherPartsToPush)
+												  .flatMap(Collection::stream)
+												  .collect(Collectors.toUnmodifiableList());
 
-	@InjectChildren(index = 0, type = IMemoryPartAllocation.class)
-	private void updateChildren(List<IMemoryPartAllocation> partAllocations)
-	{
-		final List<DeviceBufferFiller.DataProvider> partsToPush = new ArrayList<>();
-		gatherPartsToPush(partAllocations, partsToPush);
-
-		if (partsToPush.isEmpty() == false)
+		if (!commands.isEmpty())
 		{
-			partPusher.fillData(partsToPush);
-		}
-	}
-
-	private void gatherPartsToPush(final List<IMemoryPartAllocation> partAllocations,
-								   final List<DeviceBufferFiller.DataProvider> partsToPush)
-	{
-		for (int i = 0; i < partAllocations.size(); i++)
-		{
-			final var partAllocation = partAllocations.get(i);
-			if (partAllocation.needPush())
+			final boolean pushed = tryPushWithTransferBuffer(commands);
+			if (!pushed)
 			{
-				final var alignmentData = memoryInfo.data.get(i);
-				partsToPush.add(new DeviceBufferFiller.DataProvider(partAllocation::fillData,
-																	alignmentData.offset(),
-																	alignmentData.size()));
+				bufferPusher.fillData(commands);
 			}
 		}
 	}
 
-	private GPUBufferBackend createBufferBackend(long size, int usage)
+	private boolean tryPushWithTransferBuffer(List<FillCommand> commands)
 	{
-		final var info = new BufferInfo(size, usage, false);
-		final var bufferBuilder = new GPUBufferBackend.Builder(info, false);
-		final var bufferBackend = bufferBuilder.build(context);
-		return bufferBackend;
-	}
-
-	public long getBufferPtr()
-	{
-		return bufferBackend.getAddress();
-	}
-
-	private static List<AlignmentData> buildAlignmentData(final MemoryChunk memoryChunk)
-	{
-		int position = 0;
-		final List<AlignmentData> tmpData = new ArrayList<>();
-		for (final var part : memoryChunk.getParts())
+		final var transferBuffer = memoryChunk.getTransferBuffer();
+		if (transferBuffer != null)
 		{
-			final var sizeAdapter = part.adaptNotNull(IMemoryPartAdapter.class);
-
-			final long size = sizeAdapter.getSize(part);
-			tmpData.add(new AlignmentData(position, size, sizeAdapter.getUsage(part)));
-			position += size;
+			final var transferBufferAllocation = transferBuffer.adapt(TransferBufferAllocation.class);
+			final boolean res = transferBufferAllocation.pushFillCommands(commands);
+			if (!res && DebugUtil.DEBUG_ENABLED)
+			{
+				logCompatibilityTransfer();
+			}
+			return res;
 		}
-		return List.copyOf(tmpData);
+		else
+		{
+			return false;
+		}
+	}
+
+	private void logCompatibilityTransfer()
+	{
+		final var message = String.format("Transfer %s in compatibility mode (TransferBuffer full ? )",
+										  memoryChunk.getName());
+		System.out.println(message);
 	}
 
 	public void attach(final IRecordContext recordContext)
@@ -139,24 +134,6 @@ public class MemoryChunkAllocation implements IExtender
 		if (usedInRecords.isEmpty())
 		{
 			allocationState.unlockAllocation();
-		}
-	}
-
-	public static record MemoryInfo(List<AlignmentData>data, long size, int usage)
-	{
-		private MemoryInfo(List<AlignmentData> data)
-		{
-			this(data, totalSize(data), cumulateUsages(data));
-		}
-
-		private static long totalSize(final List<AlignmentData> data)
-		{
-			return data.stream().mapToLong(AlignmentData::size).sum();
-		}
-
-		private static int cumulateUsages(final List<AlignmentData> data)
-		{
-			return data.stream().mapToInt(AlignmentData::usage).reduce((a, b) -> a | b).orElse(0);
 		}
 	}
 }

@@ -4,7 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VK10;
 import org.lwjgl.vulkan.VkImageCreateInfo;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunkBuilder;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -39,15 +39,14 @@ public interface IVkImageBuilder
 		@Override
 		public VkImage build(ExecutionContext context)
 		{
-			final var memoryBuilder = new MemoryChunkBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+			final var memoryBuilder = new MemoryBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 			final var res = build(context, memoryBuilder);
-			final var memory = memoryBuilder.build();
-			memory.allocate(context);
+			final var memory = memoryBuilder.build(context);
 			res.linkMemory(memory);
 			return res;
 		}
 
-		public VkImage build(ExecutionContext context, MemoryChunkBuilder memoryChunkBuilder)
+		public VkImage build(ExecutionContext context, MemoryBuilder memoryBuilder)
 		{
 			final long imagePtr = allocateImage(context);
 			final var res = new VkImage(imagePtr,
@@ -60,7 +59,7 @@ public interface IVkImageBuilder
 										initialLayout(),
 										aspect());
 
-			memoryChunkBuilder.registerImage(imagePtr, (vkDevice, memoryPtr, offset, memorySize) -> {
+			memoryBuilder.registerImage(imagePtr, (vkDevice, memoryPtr, offset, memorySize) -> {
 				res.bindMemory(vkDevice, memoryPtr, offset, memorySize);
 
 				if (fillWith() != null) res.fillWith(context, fillWith());

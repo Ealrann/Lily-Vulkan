@@ -381,12 +381,28 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanResourcePackage.BUFFER_MEMORY:
+			{
+				BufferMemory bufferMemory = (BufferMemory)theEObject;
+				T result = caseBufferMemory(bufferMemory);
+				if (result == null) result = caseIMemoryChunkPart(bufferMemory);
+				if (result == null) result = caseLNamedElement(bufferMemory);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.IBUFFER_OBJECT:
+			{
+				IBufferObject iBufferObject = (IBufferObject)theEObject;
+				T result = caseIBufferObject(iBufferObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case VulkanResourcePackage.STATIC_BUFFER:
 			{
 				StaticBuffer staticBuffer = (StaticBuffer)theEObject;
 				T result = caseStaticBuffer(staticBuffer);
 				if (result == null) result = caseIBuffer(staticBuffer);
-				if (result == null) result = caseIMemoryChunkPart(staticBuffer);
+				if (result == null) result = caseIBufferObject(staticBuffer);
 				if (result == null) result = caseIResource(staticBuffer);
 				if (result == null) result = caseLNamedElement(staticBuffer);
 				if (result == null) result = defaultCase(theEObject);
@@ -397,7 +413,7 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				DataBuffer dataBuffer = (DataBuffer)theEObject;
 				T result = caseDataBuffer(dataBuffer);
 				if (result == null) result = caseIBuffer(dataBuffer);
-				if (result == null) result = caseIMemoryChunkPart(dataBuffer);
+				if (result == null) result = caseIBufferObject(dataBuffer);
 				if (result == null) result = caseIResource(dataBuffer);
 				if (result == null) result = caseLNamedElement(dataBuffer);
 				if (result == null) result = defaultCase(theEObject);
@@ -408,7 +424,7 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				BufferViewer bufferViewer = (BufferViewer)theEObject;
 				T result = caseBufferViewer(bufferViewer);
 				if (result == null) result = caseIBuffer(bufferViewer);
-				if (result == null) result = caseIMemoryChunkPart(bufferViewer);
+				if (result == null) result = caseIBufferObject(bufferViewer);
 				if (result == null) result = caseIResource(bufferViewer);
 				if (result == null) result = caseLNamedElement(bufferViewer);
 				if (result == null) result = defaultCase(theEObject);
@@ -926,6 +942,38 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIMemoryChunkPart(IMemoryChunkPart object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer Memory</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBufferMemory(BufferMemory object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IBuffer Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IBuffer Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIBufferObject(IBufferObject object)
 	{
 		return null;
 	}

@@ -81,15 +81,7 @@ public final class TransferBufferBackend
 
 	public void addTransferCommand(IDataFlowCommand command)
 	{
-		if (command.getMemoryTicket().getReservationStatus() == IMemoryTicket.EReservationStatus.FLUSHED)
-		{
-			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
-		}
-		else if (command.getMemoryTicket().getReservationStatus() != IMemoryTicket.EReservationStatus.SUCCESS)
-		{
-			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
-		}
-
+		assert checkMemoryReservation(command);
 		commands.add(command);
 	}
 
@@ -133,6 +125,19 @@ public final class TransferBufferBackend
 								memoryPtr,
 								bufferOffset,
 								size);
+	}
+
+	private static boolean checkMemoryReservation(final IDataFlowCommand command)
+	{
+		if (command.getMemoryTicket().getReservationStatus() == IMemoryTicket.EReservationStatus.FLUSHED)
+		{
+			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
+		}
+		else if (command.getMemoryTicket().getReservationStatus() != IMemoryTicket.EReservationStatus.SUCCESS)
+		{
+			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
+		}
+		return true;
 	}
 
 	private static final class FlushRecord implements IFlushRecorder
@@ -234,8 +239,8 @@ public final class TransferBufferBackend
 			final int pushUsage = usedToPush ? EBufferUsage.TRANSFER_SRC_BIT_VALUE : 0;
 			final int fetchUsage = usedToFetch ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
 			final int usage = pushUsage | fetchUsage;
-			final var info = new BufferInfo(capacity, usage, true, instanceCount);
-			final var bufferBuilder = new CPUBufferBackend.Builder(info, false);
+			final var info = new BufferInfo(capacity, usage, true, false, instanceCount);
+			final var bufferBuilder = new CPUBufferBackend.Builder(info);
 			final var bufferBackend = bufferBuilder.build(context);
 			return new TransferBufferBackend(bufferBackend);
 		}

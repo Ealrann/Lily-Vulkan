@@ -248,6 +248,16 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createIMemoryChunkPartAdapter();
 			}
 			@Override
+			public Adapter caseBufferMemory(BufferMemory object)
+			{
+				return createBufferMemoryAdapter();
+			}
+			@Override
+			public Adapter caseIBufferObject(IBufferObject object)
+			{
+				return createIBufferObjectAdapter();
+			}
+			@Override
 			public Adapter caseStaticBuffer(StaticBuffer object)
 			{
 				return createStaticBufferAdapter();
@@ -805,6 +815,36 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIMemoryChunkPartAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BufferMemory <em>Buffer Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferMemory
+	 * @generated
+	 */
+	public Adapter createBufferMemoryAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IBufferObject <em>IBuffer Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.IBufferObject
+	 * @generated
+	 */
+	public Adapter createIBufferObjectAdapter()
 	{
 		return null;
 	}

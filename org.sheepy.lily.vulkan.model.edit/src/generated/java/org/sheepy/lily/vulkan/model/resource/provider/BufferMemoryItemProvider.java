@@ -9,24 +9,42 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.core.model.resource.provider.IResourceItemProvider;
+import org.sheepy.lily.core.model.types.TypesPackage;
 
-import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
+import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.MemoryChunk} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferMemory} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MemoryChunkItemProvider extends IResourceItemProvider
+public class BufferMemoryItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -34,7 +52,7 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MemoryChunkItemProvider(AdapterFactory adapterFactory)
+	public BufferMemoryItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -52,30 +70,30 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addTransferBufferPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Transfer Buffer feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTransferBufferPropertyDescriptor(Object object)
+	protected void addNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MemoryChunk_transferBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MemoryChunk_transferBuffer_feature", "_UI_MemoryChunk_type"),
-				 VulkanResourcePackage.Literals.MEMORY_CHUNK__TRANSFER_BUFFER,
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -94,7 +112,7 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS);
+			childrenFeatures.add(VulkanResourcePackage.Literals.BUFFER_MEMORY__BUFFERS);
 		}
 		return childrenFeatures;
 	}
@@ -114,7 +132,7 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 	}
 
 	/**
-	 * This returns MemoryChunk.gif.
+	 * This returns BufferMemory.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,7 +140,7 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MemoryChunk"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BufferMemory"));
 	}
 
 	/**
@@ -134,10 +152,10 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((MemoryChunk)object).getName();
+		String label = ((BufferMemory)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MemoryChunk_type") :
-			getString("_UI_MemoryChunk_type") + " " + label;
+			getString("_UI_BufferMemory_type") :
+			getString("_UI_BufferMemory_type") + " " + label;
 	}
 
 
@@ -153,9 +171,12 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MemoryChunk.class))
+		switch (notification.getFeatureID(BufferMemory.class))
 		{
-			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
+			case VulkanResourcePackage.BUFFER_MEMORY__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case VulkanResourcePackage.BUFFER_MEMORY__BUFFERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -176,8 +197,30 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS,
-				 VulkanResourceFactory.eINSTANCE.createBufferMemory()));
+				(VulkanResourcePackage.Literals.BUFFER_MEMORY__BUFFERS,
+				 VulkanResourceFactory.eINSTANCE.createStaticBuffer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_MEMORY__BUFFERS,
+				 VulkanResourceFactory.eINSTANCE.createDataBuffer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.BUFFER_MEMORY__BUFFERS,
+				 VulkanResourceFactory.eINSTANCE.createBufferViewer()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator()
+	{
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

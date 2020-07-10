@@ -31,7 +31,7 @@ public final class RenderPipelineBuilder
 		range.get(0).setSize(rangeSize + 4);
 
 		pipeline.setDescriptorPkg(VulkanFactory.eINSTANCE.createDescriptorPkg());
-		pipeline.setTaskPkg(ProcessFactory.eINSTANCE.createTaskPkg());
+		pipeline.getTaskPkgs().add(ProcessFactory.eINSTANCE.createTaskPkg());
 		pipeline.setResourcePkg(ResourceFactory.eINSTANCE.createResourcePkg());
 		pipeline.setDescriptorPool(VulkanResourceFactory.eINSTANCE.createDescriptorPool());
 

@@ -199,21 +199,27 @@
   <eClassifiers xsi:type="ecore:EClass" name="MemoryChunk" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
         eType="#//IMemoryChunkPart" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" eType="#//TransferBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IMemoryChunkPart" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StaticBuffer" eSuperTypes="#//IBuffer #//IMemoryChunkPart">
+  <eClassifiers xsi:type="ecore:EClass" name="BufferMemory" eSuperTypes="#//IMemoryChunkPart ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buffers" upperBound="-1"
+        eType="#//IBufferObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IBufferObject" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticBuffer" eSuperTypes="#//IBuffer #//IBufferObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initWithZero" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataBuffer" eSuperTypes="#//IBuffer #//IMemoryChunkPart">
+  <eClassifiers xsi:type="ecore:EClass" name="DataBuffer" eSuperTypes="#//IBuffer #//IBufferObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BufferViewer" eSuperTypes="#//IBuffer #//IMemoryChunkPart">
+  <eClassifiers xsi:type="ecore:EClass" name="BufferViewer" eSuperTypes="#//IBuffer #//IBufferObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
         eType="#//BufferDataProvider" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"

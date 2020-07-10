@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk;
+import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -35,7 +35,7 @@ public final class VkImage
 	public final int aspect;
 
 	private long memoryPtr;
-	private MemoryChunk memory;
+	private Memory memory;
 
 	public static VkImageBuilder newBuilder(int width, int height, int format)
 	{
@@ -69,7 +69,7 @@ public final class VkImage
 		this.aspect = aspect;
 	}
 
-	void linkMemory(MemoryChunk memory)
+	void linkMemory(Memory memory)
 	{
 		this.memory = memory;
 	}
@@ -93,8 +93,8 @@ public final class VkImage
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final var size = data.limit();
 
-		final var bufferInfo = new BufferInfo(size, usage, false);
-		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo, true);
+		final var bufferInfo = new BufferInfo(size, usage, false, true);
+		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 		final var stagingBuffer = bufferBuilder.build(context);
 		stagingBuffer.pushData(context, data);
 

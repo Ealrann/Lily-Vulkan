@@ -24,7 +24,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * @model
  * @generated
  */
-public interface StaticBuffer extends IBuffer, IMemoryChunkPart
+public interface StaticBuffer extends IBuffer, IBufferObject
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

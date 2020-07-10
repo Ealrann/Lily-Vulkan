@@ -36,7 +36,7 @@ public final class BufferAllocation implements IBufferAllocation
 		}
 		else
 		{
-			final var bufferBuilder = new CPUBufferBackend.Builder(info, buffer.isCoherent());
+			final var bufferBuilder = new CPUBufferBackend.Builder(info);
 			bufferBackend = bufferBuilder.build(context);
 		}
 
@@ -113,8 +113,9 @@ public final class BufferAllocation implements IBufferAllocation
 		final var keptMapped = buffer.isKeptMapped();
 		final var eInstanceCount = buffer.getInstanceCount();
 		final int instanceCount = InstanceCountUtil.getInstanceCount(buffer, eInstanceCount);
+		final boolean coherent = buffer.isCoherent();
 
-		return new BufferInfo(size, usage, keptMapped, instanceCount);
+		return new BufferInfo(size, usage, keptMapped, coherent, instanceCount);
 	}
 
 	@Override

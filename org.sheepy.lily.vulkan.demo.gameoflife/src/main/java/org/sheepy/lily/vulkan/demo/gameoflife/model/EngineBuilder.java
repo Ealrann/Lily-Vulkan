@@ -145,12 +145,14 @@ public final class EngineBuilder
 
 		final Board board = Board.createTestBoard(size);
 		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
+		final var bufferMemory = VulkanResourceFactory.eINSTANCE.createBufferMemory();
 		final var boardBuffer1 = BoardBufferFactory.createBoardBuffer(board);
 		final var boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
 		boardBuffer1.setName("BoardBuffer1");
 		boardBuffer2.setName("BoardBuffer2");
-		memoryChunk.getParts().add(boardBuffer1);
-		memoryChunk.getParts().add(boardBuffer2);
+		bufferMemory.getBuffers().add(boardBuffer1);
+		bufferMemory.getBuffers().add(boardBuffer2);
+		memoryChunk.getParts().add(bufferMemory);
 
 		final var boardBuffer1Descriptor = newDescriptor(boardBuffer1);
 		final var boardBuffer2Descriptor = newDescriptor(boardBuffer2);

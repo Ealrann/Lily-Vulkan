@@ -2225,13 +2225,22 @@ public interface VulkanResourcePackage extends EPackage
 	int MEMORY_CHUNK__PARTS = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_CHUNK__TRANSFER_BUFFER = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Memory Chunk</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMORY_CHUNK_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
+	int MEMORY_CHUNK_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Memory Chunk</em>' class.
@@ -2271,6 +2280,80 @@ public interface VulkanResourcePackage extends EPackage
 	int IMEMORY_CHUNK_PART_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferMemoryImpl <em>Buffer Memory</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferMemoryImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferMemory()
+	 * @generated
+	 */
+	int BUFFER_MEMORY = 32;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_MEMORY__NAME = IMEMORY_CHUNK_PART_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Buffers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_MEMORY__BUFFERS = IMEMORY_CHUNK_PART_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Buffer Memory</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_MEMORY_FEATURE_COUNT = IMEMORY_CHUNK_PART_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Buffer Memory</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_MEMORY_OPERATION_COUNT = IMEMORY_CHUNK_PART_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.IBufferObject <em>IBuffer Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.IBufferObject
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIBufferObject()
+	 * @generated
+	 */
+	int IBUFFER_OBJECT = 33;
+
+	/**
+	 * The number of structural features of the '<em>IBuffer Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IBUFFER_OBJECT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IBuffer Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IBUFFER_OBJECT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl <em>Static Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2278,7 +2361,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getStaticBuffer()
 	 * @generated
 	 */
-	int STATIC_BUFFER = 32;
+	int STATIC_BUFFER = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2342,7 +2425,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getDataBuffer()
 	 * @generated
 	 */
-	int DATA_BUFFER = 33;
+	int DATA_BUFFER = 35;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2397,7 +2480,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferViewer()
 	 * @generated
 	 */
-	int BUFFER_VIEWER = 34;
+	int BUFFER_VIEWER = 36;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2479,7 +2562,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getEContextIndex()
 	 * @generated
 	 */
-	int ECONTEXT_INDEX = 35;
+	int ECONTEXT_INDEX = 37;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.EFlushMode <em>EFlush Mode</em>}' enum.
@@ -2489,7 +2572,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getEFlushMode()
 	 * @generated
 	 */
-	int EFLUSH_MODE = 36;
+	int EFLUSH_MODE = 38;
 
 	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
@@ -2499,7 +2582,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 37;
+	int BYTE_BUFFER = 39;
 
 
 	/**
@@ -3528,6 +3611,17 @@ public interface VulkanResourcePackage extends EPackage
 	EReference getMemoryChunk_Parts();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.MemoryChunk#getTransferBuffer <em>Transfer Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Transfer Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.MemoryChunk#getTransferBuffer()
+	 * @see #getMemoryChunk()
+	 * @generated
+	 */
+	EReference getMemoryChunk_TransferBuffer();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart <em>IMemory Chunk Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3536,6 +3630,37 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 */
 	EClass getIMemoryChunkPart();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BufferMemory <em>Buffer Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Buffer Memory</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferMemory
+	 * @generated
+	 */
+	EClass getBufferMemory();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.resource.BufferMemory#getBuffers <em>Buffers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Buffers</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferMemory#getBuffers()
+	 * @see #getBufferMemory()
+	 * @generated
+	 */
+	EReference getBufferMemory_Buffers();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IBufferObject <em>IBuffer Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IBuffer Object</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.IBufferObject
+	 * @generated
+	 */
+	EClass getIBufferObject();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.StaticBuffer <em>Static Buffer</em>}'.
@@ -4563,6 +4688,14 @@ public interface VulkanResourcePackage extends EPackage
 		EReference MEMORY_CHUNK__PARTS = eINSTANCE.getMemoryChunk_Parts();
 
 		/**
+		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEMORY_CHUNK__TRANSFER_BUFFER = eINSTANCE.getMemoryChunk_TransferBuffer();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart <em>IMemory Chunk Part</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4571,6 +4704,34 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EClass IMEMORY_CHUNK_PART = eINSTANCE.getIMemoryChunkPart();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferMemoryImpl <em>Buffer Memory</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferMemoryImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferMemory()
+		 * @generated
+		 */
+		EClass BUFFER_MEMORY = eINSTANCE.getBufferMemory();
+
+		/**
+		 * The meta object literal for the '<em><b>Buffers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BUFFER_MEMORY__BUFFERS = eINSTANCE.getBufferMemory_Buffers();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IBufferObject <em>IBuffer Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.IBufferObject
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIBufferObject()
+		 * @generated
+		 */
+		EClass IBUFFER_OBJECT = eINSTANCE.getIBufferObject();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl <em>Static Buffer</em>}' class.

@@ -7,15 +7,15 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
-import org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart;
+import org.sheepy.lily.vulkan.model.resource.IBufferObject;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryPartAdapter;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAdapter;
 
 import java.util.List;
 
 @ModelExtender(scope = BufferViewer.class)
 @Adapter(lazy = false)
-public final class BufferViewerAdapter extends Notifier<IMemoryPartAdapter.Features> implements IMemoryPartAdapter
+public final class BufferViewerAdapter extends Notifier<IBufferObjectAdapter.Features> implements IBufferObjectAdapter
 {
 	private final BufferViewer bufferViewer;
 	private final IBufferDataProviderAdapter dataProviderAdapter;
@@ -44,13 +44,13 @@ public final class BufferViewerAdapter extends Notifier<IMemoryPartAdapter.Featu
 	}
 
 	@Override
-	public long getSize(final IMemoryChunkPart buffer)
+	public long getSize(final IBufferObject buffer)
 	{
 		return bufferViewer.getSize();
 	}
 
 	@Override
-	public int getUsage(final IMemoryChunkPart buffer)
+	public int getUsage(final IBufferObject buffer)
 	{
 		return VulkanModelUtil.getEnumeratedFlag(bufferViewer.getUsages());
 	}

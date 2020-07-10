@@ -106,8 +106,8 @@ public final class FetchBufferRecorder implements IRecordableExtender
 		private CPUBufferBackend createStagingBuffer(long byteSize)
 		{
 			final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
-			final var bufferInfo = new BufferInfo(byteSize, usage, false);
-			final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo, true);
+			final var bufferInfo = new BufferInfo(byteSize, usage, false, true);
+			final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 			executionContext.stackPush();
 			final var res = bufferBuilder.build(executionContext);
 			executionContext.stackPop();

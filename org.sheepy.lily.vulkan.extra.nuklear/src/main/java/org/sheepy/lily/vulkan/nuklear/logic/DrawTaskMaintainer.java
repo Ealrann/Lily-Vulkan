@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
@@ -44,13 +45,14 @@ public final class DrawTaskMaintainer
 	private void createBindTasks(Vector2ic extent)
 	{
 		final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
-		vertexBinding.setBuffer((IBuffer) vertexBuffer.getParts().get(0));
+		final BufferMemory bufferMemory = (BufferMemory) vertexBuffer.getParts().get(0);
+		vertexBinding.setBuffer((IBuffer) bufferMemory.getBuffers().get(0));
 
 		final var bindVertexBuffer = GraphicFactory.eINSTANCE.createBindVertexBuffer();
 		bindVertexBuffer.getVertexBindings().add(vertexBinding);
 
 		final var bindIndexBuffer = GraphicFactory.eINSTANCE.createBindIndexBuffer();
-		bindIndexBuffer.setBuffer((IBuffer) vertexBuffer.getParts().get(1));
+		bindIndexBuffer.setBuffer((IBuffer) bufferMemory.getBuffers().get(1));
 		bindIndexBuffer.setIndexType(EIndexType.UINT16);
 
 		final var setViewport = GraphicFactory.eINSTANCE.createSetViewport();

@@ -20,6 +20,8 @@ public final class NuklearIndexProviderAdapter extends Notifier<IBufferDataProvi
 
 	private final ByteBuffer stagingBuffer = MemoryUtil.memAlloc((int) INDEX_BUFFER_SIZE);
 
+	private boolean needPush = false;
+
 	private NuklearIndexProviderAdapter()
 	{
 		super(List.of(Features.Size, Features.Data));
@@ -33,6 +35,7 @@ public final class NuklearIndexProviderAdapter extends Notifier<IBufferDataProvi
 
 	public ByteBuffer requestUpdate()
 	{
+		needPush = true;
 		notify(Features.Data);
 		return stagingBuffer;
 	}
@@ -41,11 +44,18 @@ public final class NuklearIndexProviderAdapter extends Notifier<IBufferDataProvi
 	public void fill(ByteBuffer buffer)
 	{
 		MemoryUtil.memCopy(stagingBuffer, buffer);
+		needPush = false;
 	}
 
 	@Override
 	public void fetch(ByteBuffer buffer)
 	{
+	}
+
+	@Override
+	public boolean needPush()
+	{
+		return needPush;
 	}
 
 	@Override

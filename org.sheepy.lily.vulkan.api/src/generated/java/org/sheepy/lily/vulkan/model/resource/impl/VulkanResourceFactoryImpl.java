@@ -95,6 +95,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.SHADER: return createShader();
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
 			case VulkanResourcePackage.MEMORY_CHUNK: return createMemoryChunk();
+			case VulkanResourcePackage.BUFFER_MEMORY: return createBufferMemory();
 			case VulkanResourcePackage.STATIC_BUFFER: return createStaticBuffer();
 			case VulkanResourcePackage.DATA_BUFFER: return createDataBuffer();
 			case VulkanResourcePackage.BUFFER_VIEWER: return createBufferViewer();
@@ -479,6 +480,18 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		MemoryChunkImpl memoryChunk = new MemoryChunkImpl();
 		return memoryChunk;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BufferMemory createBufferMemory()
+	{
+		BufferMemoryImpl bufferMemory = new BufferMemoryImpl();
+		return bufferMemory;
 	}
 
 	/**

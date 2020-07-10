@@ -125,7 +125,7 @@ public final class CompositeBufferAllocation implements ICompositeBufferAllocati
 
 	private GPUBufferBackend createBufferBackend(long size, int usage)
 	{
-		final var info = new BufferInfo(size, usage, false);
+		final var info = new BufferInfo(size, usage, false, true);
 		final var bufferBuilder = new GPUBufferBackend.Builder(info, false);
 		final var bufferBackend = bufferBuilder.build(context);
 

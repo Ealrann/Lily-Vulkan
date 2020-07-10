@@ -5,21 +5,21 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.DummyNotifier;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.DataBuffer;
-import org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart;
-import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryPartAdapter;
+import org.sheepy.lily.vulkan.model.resource.IBufferObject;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAdapter;
 
 @ModelExtender(scope = DataBuffer.class)
 @Adapter(singleton = true)
-public class DataBufferAdapter extends DummyNotifier<IMemoryPartAdapter.Features> implements IMemoryPartAdapter
+public class DataBufferAdapter extends DummyNotifier<IBufferObjectAdapter.Features> implements IBufferObjectAdapter
 {
 	@Override
-	public long getSize(final IMemoryChunkPart buffer)
+	public long getSize(final IBufferObject buffer)
 	{
 		return ((DataBuffer) buffer).getData().capacity();
 	}
 
 	@Override
-	public int getUsage(final IMemoryChunkPart buffer)
+	public int getUsage(final IBufferObject buffer)
 	{
 		return VulkanModelUtil.getEnumeratedFlag(((DataBuffer) buffer).getUsages());
 	}

@@ -81,6 +81,7 @@ public final class MeshSubpassBuilder
 		fragmentShader.setFile(fragmentShaderFile);
 		fragmentShader.setStage(EShaderStage.FRAGMENT_BIT);
 
+		final var bufferMenory = VulkanResourceFactory.eINSTANCE.createBufferMemory();
 		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
 		final var vertexBuffer = VulkanResourceFactory.eINSTANCE.createDataBuffer();
 		vertexBuffer.getUsages().add(EBufferUsage.VERTEX_BUFFER_BIT);
@@ -92,8 +93,9 @@ public final class MeshSubpassBuilder
 		indexBuffer.getUsages().add(EBufferUsage.INDEX_BUFFER_BIT);
 		indexBuffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
 		indexBuffer.setData(meshConfiguration.indexData);
-		memoryChunk.getParts().add(vertexBuffer);
-		memoryChunk.getParts().add(indexBuffer);
+		bufferMenory.getBuffers().add(vertexBuffer);
+		bufferMenory.getBuffers().add(indexBuffer);
+		memoryChunk.getParts().add(bufferMenory);
 
 		PushConstantRange pushConstantRange = null;
 		PushConstantBuffer pushConstants = null;

@@ -5,21 +5,24 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryChunk.MemoryConsumer;
+import org.sheepy.lily.vulkan.core.resource.memory.Memory.MemoryConsumer;
+import org.sheepy.lily.vulkan.core.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class MemoryChunkBuilder
+public final class MemoryBuilder
 {
+	private static final String ALLOC_ERROR = "Failed to allocate buffer";
+
 	public final ExecutionContext context;
 	public final int properties;
 	private final MemoryRequirements memReq;
 	private final List<MemoryConsumer> consumers = new ArrayList<>();
 
-	public MemoryChunkBuilder(ExecutionContext context, int properties)
+	public MemoryBuilder(ExecutionContext context, int properties)
 	{
 		this.context = context;
 		this.properties = properties;
@@ -45,10 +48,23 @@ public final class MemoryChunkBuilder
 		consumers.add(new MemoryConsumer(offset, whenMemoryIsAllocated));
 	}
 
-	public MemoryChunk build()
+	public Memory build(ExecutionContext context)
 	{
 		final var allocInfo = allocateInfo(context.stack());
-		return new MemoryChunk(allocInfo, consumers);
+		final var vkDevice = context.getVkDevice();
+		final long[] aMemoryId = new long[1];
+		Logger.check(ALLOC_ERROR, () -> vkAllocateMemory(vkDevice, allocInfo, null, aMemoryId));
+		final long ptr = aMemoryId[0];
+		long offset = 0;
+		for (int i = 0; i < consumers.size(); i++)
+		{
+			final var memoryConsumer = consumers.get(i);
+			final var size = memoryConsumer.size;
+			memoryConsumer.callBack.finalize(vkDevice, ptr, offset, size);
+			offset += size;
+		}
+
+		return new Memory(ptr);
 	}
 
 	private VkMemoryAllocateInfo allocateInfo(MemoryStack stack)

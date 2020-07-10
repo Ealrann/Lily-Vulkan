@@ -30,7 +30,7 @@ public final class DrawTaskInstaller
 	public IStructurePartDrawSetup install(BufferContext context)
 	{
 		final var pipeline = context.pipeline;
-		final var taskPkg = pipeline.getTaskPkg();
+		final var taskPkg = pipeline.getTaskPkgs().get(0);
 		final var resourcePkg = pipeline.getResourcePkg();
 		final var buffer = context.buffer;
 		final var bufferParts = buffer.getParts();

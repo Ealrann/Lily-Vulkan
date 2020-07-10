@@ -275,6 +275,15 @@ public interface VulkanResourceFactory extends EFactory
 	MemoryChunk createMemoryChunk();
 
 	/**
+	 * Returns a new object of class '<em>Buffer Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Buffer Memory</em>'.
+	 * @generated
+	 */
+	BufferMemory createBufferMemory();
+
+	/**
 	 * Returns a new object of class '<em>Static Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
