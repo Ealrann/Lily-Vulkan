@@ -87,7 +87,6 @@ public class NuklearContextAllocation implements IExtender
 	@Dispose
 	public void dispose()
 	{
-
 		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
 		if (imageDescriptor != null)
 		{
@@ -95,7 +94,7 @@ public class NuklearContextAllocation implements IExtender
 		}
 	}
 
-	@Tick(priority = Integer.MIN_VALUE)
+	@Tick(priority = -10)
 	private void update()
 	{
 		if (layoutManager.update())
@@ -115,7 +114,6 @@ public class NuklearContextAllocation implements IExtender
 
 			final var drawCommands = vertexBaker.buildDrawCommands();
 			drawTaskMaintainer.reloadTasks(drawCommands, window.getSize());
-
 			layoutManager.clean();
 		}
 	}

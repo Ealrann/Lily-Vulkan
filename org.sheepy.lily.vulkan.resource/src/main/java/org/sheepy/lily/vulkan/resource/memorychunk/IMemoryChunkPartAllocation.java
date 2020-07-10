@@ -8,8 +8,8 @@ import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.IBufferBackend;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 
-import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public interface IMemoryChunkPartAllocation extends IExtender, INotifier<IMemoryChunkPartAllocation.Features>
 {
@@ -20,5 +20,19 @@ public interface IMemoryChunkPartAllocation extends IExtender, INotifier<IMemory
 	}
 
 	IBufferBackend getBackend();
-	List<FillCommand> gatherPartsToPush();
+
+	PushData gatherPushData(boolean force, boolean computeSize);
+
+	record PushData(Stream<FillCommand>fillCommands, long size)
+	{
+		public PushData()
+		{
+			this(Stream.empty(), 0);
+		}
+
+		PushData merge(PushData other)
+		{
+			return new PushData(Stream.concat(fillCommands, other.fillCommands), size + other.size);
+		}
+	}
 }

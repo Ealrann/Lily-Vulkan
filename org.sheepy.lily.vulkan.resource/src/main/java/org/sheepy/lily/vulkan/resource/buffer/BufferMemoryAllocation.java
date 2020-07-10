@@ -8,6 +8,7 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.execution.IRecordContext;
+import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
@@ -24,6 +25,7 @@ import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @ModelExtender(scope = BufferMemory.class)
 @Allocation(context = ExecutionContext.class)
@@ -66,25 +68,38 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 	}
 
 	@Override
-	public List<FillCommand> gatherPartsToPush()
+	public PushData gatherPushData(boolean force, boolean computeSize)
 	{
 		final var buffers = bufferMemory.getBuffers();
 		final long bufferPtr = bufferBackend.getAddress();
-		final List<FillCommand> res = new ArrayList<>(buffers.size());
-		for (int i = 0; i < buffers.size(); i++)
+
+		final long size = computeSize ? buffers.stream()
+											   .map(IBufferObjectAllocation::adapt)
+											   .filter(bufferAllocation -> force || bufferAllocation.needPush())
+											   .mapToLong(IBufferAllocation::getBindSize)
+											   .sum() : 0;
+
+		final var stream = IntStream.range(0, buffers.size())
+									.mapToObj(this::newBufferData)
+									.filter(data -> force || data.bufferAllocation.needPush())
+									.map(data -> data.buildFillCommand(bufferPtr));
+
+		return new PushData(stream, size);
+	}
+
+	private BufferData newBufferData(int index)
+	{
+		final var bufferAllocation = bufferMemory.getBuffers().get(index).adapt(IBufferObjectAllocation.class);
+		final var alignmentData = chunkInfo.data.get(index);
+		return new BufferData(bufferAllocation, alignmentData);
+	}
+
+	private static record BufferData(IBufferObjectAllocation bufferAllocation, AlignmentData alignmentData)
+	{
+		public FillCommand buildFillCommand(long bufferPtr)
 		{
-			final var buffer = buffers.get(i);
-			final var bufferAllocation = IBufferObjectAllocation.adapt(buffer);
-			if (bufferAllocation.needPush())
-			{
-				final var alignmentData = chunkInfo.data.get(i);
-				res.add(new FillCommand(bufferAllocation::fillData,
-										bufferPtr,
-										alignmentData.offset(),
-										alignmentData.size()));
-			}
+			return new FillCommand(bufferAllocation::fillData, bufferPtr, alignmentData.offset(), alignmentData.size());
 		}
-		return res;
 	}
 
 	private GPUBufferBackend createBufferBackend(long size, int usage)

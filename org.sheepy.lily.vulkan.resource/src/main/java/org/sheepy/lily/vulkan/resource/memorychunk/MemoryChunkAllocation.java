@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.resource.memorychunk;
 
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.*;
+import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
@@ -11,15 +12,12 @@ import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.DeviceBufferFiller;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
-import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.lwjgl.vulkan.VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
@@ -34,8 +32,10 @@ public final class MemoryChunkAllocation implements IExtender
 	private final List<IMemoryChunkPartAllocation> memoryPartAllocations;
 	private final Memory memory;
 	private final DeviceBufferFiller bufferPusher;
+	private final boolean useTransfer;
 
 	private final List<Integer> usedInRecords = new ArrayList<>();
+	private boolean needTransfer = false;
 
 	private MemoryChunkAllocation(MemoryChunk memoryChunk,
 								  ExecutionContext context,
@@ -54,15 +54,27 @@ public final class MemoryChunkAllocation implements IExtender
 		}
 		this.memory = builder.build(context);
 		bufferPusher = new DeviceBufferFiller(context);
+		useTransfer = memoryChunk.getTransferBuffer() != null;
 
 		for (final var partAllocation : memoryPartAllocations)
 		{
 			final var focus = observatory.focus(partAllocation);
-			focus.listenNoParam(allocationState::requestUpdate, IMemoryChunkPartAllocation.Features.PushRequest);
+			focus.listenNoParam(this::requestUpdate, IMemoryChunkPartAllocation.Features.PushRequest);
 			focus.listen(this::attach, IMemoryChunkPartAllocation.Features.Attach);
 		}
 
-		pushData();
+		if (useTransfer)
+		{
+			needTransfer = true;
+		}
+		else
+		{
+			allocationState.requestUpdate();
+		}
+		pushData(true);
+
+		if (useTransfer) recordTransfer(true);
+		else pushData(true);
 	}
 
 	@Free
@@ -71,47 +83,63 @@ public final class MemoryChunkAllocation implements IExtender
 		memory.free(context);
 	}
 
-	@Update
-	private void pushData()
+	private void requestUpdate()
 	{
-		final var commands = memoryPartAllocations.stream()
-												  .map(IMemoryChunkPartAllocation::gatherPartsToPush)
-												  .flatMap(Collection::stream)
-												  .collect(Collectors.toUnmodifiableList());
-
-		if (!commands.isEmpty())
+		if (useTransfer)
 		{
-			final boolean pushed = tryPushWithTransferBuffer(commands);
-			if (!pushed)
-			{
-				bufferPusher.fillData(commands);
-			}
-		}
-	}
-
-	private boolean tryPushWithTransferBuffer(List<FillCommand> commands)
-	{
-		final var transferBuffer = memoryChunk.getTransferBuffer();
-		if (transferBuffer != null)
-		{
-			final var transferBufferAllocation = transferBuffer.adapt(TransferBufferAllocation.class);
-			final boolean res = transferBufferAllocation.pushFillCommands(commands);
-			if (!res && DebugUtil.DEBUG_ENABLED)
-			{
-				logCompatibilityTransfer();
-			}
-			return res;
+			needTransfer = true;
 		}
 		else
 		{
-			return false;
+			allocationState.requestUpdate();
 		}
 	}
 
-	private void logCompatibilityTransfer()
+	@Tick(priority = -11)
+	private void tick()
 	{
-		final var message = String.format("Transfer %s in compatibility mode (TransferBuffer full ? )",
-										  memoryChunk.getName());
+		if (needTransfer)
+		{
+			recordTransfer(false);
+			needTransfer = false;
+		}
+	}
+
+	@Update
+	private void updateIfUnlocked()
+	{
+		pushData(false);
+	}
+
+	private void pushData(boolean force)
+	{
+		final var commands = streamFillCommands(force, true);
+		bufferPusher.fillData(commands.fillCommands(), commands.size());
+	}
+
+	private IMemoryChunkPartAllocation.PushData streamFillCommands(boolean force, boolean computeSize)
+	{
+		return memoryPartAllocations.stream()
+									.map(p -> p.gatherPushData(force, computeSize))
+									.reduce(IMemoryChunkPartAllocation.PushData::merge)
+									.orElseGet(IMemoryChunkPartAllocation.PushData::new);
+	}
+
+	private void recordTransfer(boolean force)
+	{
+		final var commands = streamFillCommands(force, false);
+		final var transferBuffer = memoryChunk.getTransferBuffer();
+		final var transferBufferAllocation = transferBuffer.adapt(TransferBufferAllocation.class);
+		final boolean res = transferBufferAllocation.pushFillCommands(commands.fillCommands());
+		if (!res && DebugUtil.DEBUG_ENABLED)
+		{
+			logTransferError();
+		}
+	}
+
+	private void logTransferError()
+	{
+		final var message = String.format("Transfer  of %s failed (TransferBuffer full ? )", memoryChunk.getName());
 		System.out.println(message);
 	}
 

@@ -18,16 +18,13 @@ public final class FlushTransferBufferTaskRecorder implements IRecordableExtende
 {
 	private final IAllocationState allocationState;
 	private final InternalTransferBufferAllocation transferBuffer;
-	private final FlushTransferBufferTask task;
 
 	private boolean needRecord;
 
-	public FlushTransferBufferTaskRecorder(FlushTransferBufferTask task,
-										   IAllocationState allocationState,
+	public FlushTransferBufferTaskRecorder(IAllocationState allocationState,
 										   IObservatoryBuilder observatory,
 										   @InjectDependency(index = 0) InternalTransferBufferAllocation transferBuffer)
 	{
-		this.task = task;
 		this.allocationState = allocationState;
 		this.transferBuffer = transferBuffer;
 		this.needRecord = transferBuffer.isEmpty() == false;

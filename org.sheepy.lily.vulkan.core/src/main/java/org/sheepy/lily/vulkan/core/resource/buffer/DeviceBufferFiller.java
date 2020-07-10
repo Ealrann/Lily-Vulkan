@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 
@@ -20,19 +20,9 @@ public final class DeviceBufferFiller
 		this.context = context;
 	}
 
-	public void fillData(List<FillCommand> partsToPush)
+	public void fillData(Stream<FillCommand> partsToPush, long size)
 	{
-		final long size = partsToPush.stream().mapToLong(FillCommand::size).sum();
 		final var stagingBuffer = createStagingBuffer(size);
-		final long stagingPtr = stagingBuffer.mapMemory(context.getVkDevice());
-
-		long position = stagingPtr;
-		for (final var part : partsToPush)
-		{
-			part.dataProvider().fillBuffer(position);
-			position += part.size();
-		}
-
 		final var pushCommand = new VkPushCommand(partsToPush, stagingBuffer);
 		context.execute(pushCommand);
 	}
@@ -47,10 +37,10 @@ public final class DeviceBufferFiller
 
 	private final class VkPushCommand implements ISingleTimeCommand
 	{
-		private final List<FillCommand> partsToPush;
+		private final Stream<FillCommand> partsToPush;
 		private final CPUBufferBackend stagingBuffer;
 
-		public VkPushCommand(List<FillCommand> partsToPush, CPUBufferBackend stagingBuffer)
+		public VkPushCommand(Stream<FillCommand> partsToPush, CPUBufferBackend stagingBuffer)
 		{
 			this.partsToPush = partsToPush;
 			this.stagingBuffer = stagingBuffer;
@@ -59,17 +49,25 @@ public final class DeviceBufferFiller
 		@Override
 		public void execute(ExecutionContext context, ICommandBuffer commandBuffer)
 		{
+			final long stagingPtr = stagingBuffer.mapMemory(context.getVkDevice());
+			long position = stagingPtr;
+
 			final var stack = context.stack();
 			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 			long offset = 0;
 
-			for (final var part : partsToPush)
+			final var it = partsToPush.iterator();
+			while (it.hasNext())
 			{
+				final var part = it.next();
+				part.dataProvider().fillBuffer(position);
+
 				final long partSize = part.size();
 				final long dstOffset = part.offset();
 				final long deviceBufferPtr = part.bufferPtr();
 				fillBuffer(stack, vkCommandBuffer, deviceBufferPtr, offset, dstOffset, partSize);
 				offset += partSize;
+				position += part.size();
 			}
 		}
 

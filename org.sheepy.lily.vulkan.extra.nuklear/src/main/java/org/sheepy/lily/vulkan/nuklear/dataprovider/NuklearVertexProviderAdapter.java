@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.nuklear.dataprovider;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
@@ -25,6 +26,12 @@ public final class NuklearVertexProviderAdapter extends Notifier<IBufferDataProv
 	private NuklearVertexProviderAdapter()
 	{
 		super(List.of(Features.Size, Features.Data));
+	}
+
+	@Dispose
+	private void dispose()
+	{
+		MemoryUtil.memFree(stagingBuffer);
 	}
 
 	public ByteBuffer requestUpdate()

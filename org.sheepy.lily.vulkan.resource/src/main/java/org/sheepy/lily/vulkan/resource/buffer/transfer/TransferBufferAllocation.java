@@ -20,6 +20,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @ModelExtender(scope = TransferBuffer.class)
 @Allocation(context = ExecutionContext.class)
@@ -61,12 +62,14 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 		backendBuffer.releaseTicket((MemoryTicket) ticket);
 	}
 
-	public boolean pushFillCommands(List<FillCommand> commands)
+	public boolean pushFillCommands(Stream<FillCommand> commands)
 	{
 		final List<CommandWrapper> pushCommands = new ArrayList<>();
 		boolean reservationSuccess = true;
-		for (final var command : commands)
+		final var it = commands.iterator();
+		while (it.hasNext())
 		{
+			final var command = it.next();
 			final var ticket = reserveMemory(command.size());
 			if (ticket.getReservationStatus() == IMemoryTicket.EReservationStatus.SUCCESS)
 			{
