@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.buffer.transfer.internal;
+package org.sheepy.lily.vulkan.resource.buffer.transfer.backend;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
@@ -7,12 +7,10 @@ import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation.IFlushRecorder;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.MemorySpaceManager;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.MemorySpaceManager.MemorySpace;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpace;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpaceManager;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 import java.util.ArrayList;
@@ -46,31 +44,28 @@ public final class TransferBufferBackend
 	{
 		assert size > 0;
 
-		final MemoryTicket res;
 		if (size > capacity)
 		{
-			res = newFailTicket(IMemoryTicket.EReservationStatus.ERROR__REQUEST_TOO_BIG);
+			return MemoryTicket.requestToBig();
 		}
 		else
 		{
-			final var space = spaceManager.reserveMemory(size);
-
-			if (space == null)
-			{
-				res = newFailTicket(IMemoryTicket.EReservationStatus.FAIL__NO_SPACE_LEFT);
-			}
-			else
-			{
-				final long position = space.getOffset();
-				final long memoryPtr = bufferBackend.getMemoryMap() + position;
-				final long bufferOffset = bufferBackend.getInstanceOffset() + position;
-
-				res = newSuccessTicket(space, memoryPtr, bufferOffset, size);
-
-				tickets.add(res);
-			}
+			return spaceManager.reserveMemory(size)
+							   .map(space -> buildMemoryTicket(space, size))
+							   .orElseGet(MemoryTicket::noSpaceLeft);
 		}
+	}
 
+	private MemoryTicket buildMemoryTicket(final MemorySpace space, final long size)
+	{
+		final MemoryTicket res;
+		final long position = space.getOffset();
+		final long memoryPtr = bufferBackend.getMemoryMap() + position;
+		final long bufferOffset = bufferBackend.getInstanceOffset() + position;
+
+		res = newSuccessTicket(space, memoryPtr, bufferOffset, size);
+
+		tickets.add(res);
 		return res;
 	}
 
@@ -90,12 +85,12 @@ public final class TransferBufferBackend
 		return commands.isEmpty();
 	}
 
-	public IFlushRecorder recordFlush(VkDevice vkDevice)
+	public void flush(RecordContext context, final VkDevice vkDevice)
 	{
 		final int instance = bufferBackend.getCurrentInstance();
 		final var res = new FlushRecord(vkDevice, bufferBackend, instance, commands);
 		clear(vkDevice);
-		return res;
+		res.flush(context);
 	}
 
 	private void clear(VkDevice vkDevice)
@@ -110,11 +105,6 @@ public final class TransferBufferBackend
 		commands.clear();
 		spaceManager.clear();
 		tickets.clear();
-	}
-
-	private static MemoryTicket newFailTicket(IMemoryTicket.EReservationStatus failure)
-	{
-		return new MemoryTicket(failure, null, -1, -1, -1, -1);
 	}
 
 	private MemoryTicket newSuccessTicket(MemorySpace space, long memoryPtr, long bufferOffset, long size)
@@ -140,7 +130,7 @@ public final class TransferBufferBackend
 		return true;
 	}
 
-	private static final class FlushRecord implements IFlushRecorder
+	private static final class FlushRecord
 	{
 		private final VkDevice vkDevice;
 		private final CPUBufferBackend bufferBackend;
@@ -171,7 +161,6 @@ public final class TransferBufferBackend
 			}
 		}
 
-		@Override
 		public void flush(RecordContext recordContext)
 		{
 			final var commandBuffer = recordContext.commandBuffer;

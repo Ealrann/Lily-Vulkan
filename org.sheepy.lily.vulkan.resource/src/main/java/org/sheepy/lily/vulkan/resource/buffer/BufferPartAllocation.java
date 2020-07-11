@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 import java.nio.ByteBuffer;

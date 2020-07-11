@@ -1,8 +1,8 @@
-package org.sheepy.lily.vulkan.resource.memorychunk.util;
+package org.sheepy.lily.vulkan.resource.buffer.transfer.backend;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.MemorySpaceManager.MemorySpace;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpace;
 
 import java.nio.ByteBuffer;
 
@@ -16,6 +16,21 @@ public final class MemoryTicket implements IMemoryTicket
 	private final long size;
 
 	private EReservationStatus reservationStatus;
+
+	public static MemoryTicket requestToBig()
+	{
+		return emptyTicket(IMemoryTicket.EReservationStatus.ERROR__REQUEST_TOO_BIG);
+	}
+
+	public static MemoryTicket noSpaceLeft()
+	{
+		return emptyTicket(IMemoryTicket.EReservationStatus.FAIL__NO_SPACE_LEFT);
+	}
+
+	public static MemoryTicket emptyTicket(IMemoryTicket.EReservationStatus status)
+	{
+		return new MemoryTicket(status, null, -1, -1, -1, -1);
+	}
 
 	public MemoryTicket(EReservationStatus reservationStatus,
 						MemorySpace memorySpace,

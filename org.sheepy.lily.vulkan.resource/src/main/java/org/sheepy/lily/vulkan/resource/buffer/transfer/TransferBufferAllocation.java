@@ -7,6 +7,7 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
 import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
@@ -14,8 +15,8 @@ import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.PushCommand;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.internal.TransferBufferBackend;
-import org.sheepy.lily.vulkan.resource.memorychunk.util.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.TransferBufferBackend;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.util.ArrayList;
@@ -139,11 +140,10 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 	}
 
 	@Override
-	public IFlushRecorder recordFlush()
+	public void flush(IRecordable.RecordContext context)
 	{
-		final var flushRecorder = backendBuffer.recordFlush(vkDevice);
+		backendBuffer.flush(context, vkDevice);
 		notify(Features.TransferQueueChange);
-		return flushRecorder;
 	}
 
 	private static record CommandWrapper(PushCommand pushCommand, FillCommand fillCommand)

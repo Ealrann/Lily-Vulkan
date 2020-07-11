@@ -44,8 +44,7 @@ public final class FlushTransferBufferTaskRecorder implements IRecordableExtende
 	{
 		if (needRecord)
 		{
-			final var record = transferBuffer.recordFlush();
-			record.flush(context);
+			transferBuffer.flush(context);
 			allocationState.setAllocationObsolete();
 		}
 	}
