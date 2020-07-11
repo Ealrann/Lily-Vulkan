@@ -50,7 +50,6 @@ public class TransferBufferItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSizePropertyDescriptor(object);
-			addInstanceCountPropertyDescriptor(object);
 			addUsedToPushPropertyDescriptor(object);
 			addUsedToFetchPropertyDescriptor(object);
 		}
@@ -76,29 +75,6 @@ public class TransferBufferItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instance Count feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInstanceCountPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TransferBuffer_instanceCount_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TransferBuffer_instanceCount_feature", "_UI_TransferBuffer_type"),
-				 VulkanResourcePackage.Literals.TRANSFER_BUFFER__INSTANCE_COUNT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -192,7 +168,6 @@ public class TransferBufferItemProvider
 		switch (notification.getFeatureID(TransferBuffer.class))
 		{
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
-			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

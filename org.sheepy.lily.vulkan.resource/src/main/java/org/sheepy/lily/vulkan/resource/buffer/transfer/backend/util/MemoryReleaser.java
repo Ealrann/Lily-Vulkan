@@ -15,61 +15,61 @@ public final class MemoryReleaser
 	{
 		final var previousSpace = findPrevious(listIterator);
 		final var nextSpace = findNext(listIterator);
-
-		listIterator.remove();
-
 		final boolean previousNotUsed = previousSpace != null && previousSpace.used == false;
 		final boolean nextNotUsed = nextSpace != null && nextSpace.used == false;
 		final long sizeToRelease = spaceToRelease.getSize();
 
 		if (previousNotUsed && nextNotUsed)
 		{
+			listIterator.remove();
 			previousSpace.size += nextSpace.getSize() + sizeToRelease;
 			listIterator.next();
 			listIterator.remove();
 		}
 		else if (previousNotUsed)
 		{
+			listIterator.remove();
 			previousSpace.size += sizeToRelease;
 		}
 		else if (nextNotUsed)
 		{
+			listIterator.remove();
 			nextSpace.size += sizeToRelease;
 			nextSpace.offset -= sizeToRelease;
 		}
 		else
 		{
-			listIterator.add(new MemorySpace(sizeToRelease, spaceToRelease.getOffset(), false));
+			spaceToRelease.used = false;
 		}
 	}
 
-	private static MemorySpace findPrevious(final ListIterator<MemorySpace> listIterator)
+	private MemorySpace findPrevious(final ListIterator<MemorySpace> listIterator)
 	{
-		final MemorySpace res;
 		if (listIterator.hasPrevious())
 		{
-			res = listIterator.previous();
-			listIterator.next();
+			final var res = listIterator.previous();
+			//noinspection StatementWithEmptyBody
+			while (listIterator.next() != spaceToRelease) ; // go back to initial position
+			return res;
 		}
 		else
 		{
-			res = null;
+			return null;
 		}
-		return res;
 	}
 
-	private static MemorySpace findNext(final ListIterator<MemorySpace> listIterator)
+	private MemorySpace findNext(final ListIterator<MemorySpace> listIterator)
 	{
-		final MemorySpace res;
 		if (listIterator.hasNext())
 		{
-			res = listIterator.next();
-			listIterator.previous();
+			final var res = listIterator.next();
+			//noinspection StatementWithEmptyBody
+			while (listIterator.previous() != spaceToRelease) ; // go back to initial position
+			return res;
 		}
 		else
 		{
-			res = null;
+			return null;
 		}
-		return res;
 	}
 }

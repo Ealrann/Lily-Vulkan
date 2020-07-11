@@ -17,8 +17,8 @@ import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 import java.nio.ByteBuffer;
@@ -167,20 +167,15 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 		}
 
 		final long instanceOffset = getInstanceOffset(instance);
-		final var stage = dataProvider.getStageBeforePush();
 
-		final var pushCommand = DataFlowCommandFactory.newPushCommand(memTicket,
-																	  bufferPtr,
-																	  instanceOffset,
-																	  stage,
-																	  accessBeforePush);
+		final var pushCommand = DataFlowCommandFactory.newPushCommand(memTicket, bufferPtr, instanceOffset);
 
 		System.out.println(String.format("[%s] record push %d bytes",
 										 dataProvider.eClass().getName(),
 										 memTicket.getSize()));
 		System.out.println(String.format("\tfrom buffer %d, offset %d",
 										 memTicket.getBufferPtr(),
-										 memTicket.getBufferOffset()));
+										 memTicket.getOffset()));
 		System.out.println(String.format("\tto buffer %d, offset %d", bufferPtr, instanceOffset));
 
 		transferBuffer.addTransferCommand(pushCommand);
@@ -201,13 +196,10 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 																		   .fetch(memTicket.toReadBuffer());
 
 		final long instanceOffset = getInstanceOffset(instance);
-		final var stage = dataProvider.getStageBeforeFetch();
 
 		final var fetchCommand = DataFlowCommandFactory.newFetchCommand(memTicket,
 																		bufferPtr,
 																		instanceOffset,
-																		stage,
-																		accessBeforeFetch,
 																		transferDone);
 
 		System.out.println(String.format("[%s] record fetch %d bytes",
@@ -216,7 +208,7 @@ public final class BufferPartAllocation implements IBufferPartAllocation
 		System.out.println(String.format("\tfrom buffer %d, offset %d", bufferPtr, instanceOffset));
 		System.out.println(String.format("\tto buffer %d, offset %d",
 										 memTicket.getBufferPtr(),
-										 memTicket.getBufferOffset()));
+										 memTicket.getOffset()));
 
 		transferBuffer.addTransferCommand(fetchCommand);
 	}

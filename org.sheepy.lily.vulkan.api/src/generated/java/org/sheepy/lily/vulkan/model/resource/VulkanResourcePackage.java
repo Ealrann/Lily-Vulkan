@@ -98,22 +98,13 @@ public interface VulkanResourcePackage extends EPackage
 	int TRANSFER_BUFFER__SIZE = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFER_BUFFER__INSTANCE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Used To Push</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER__USED_TO_PUSH = ResourcePackage.IRESOURCE_FEATURE_COUNT + 2;
+	int TRANSFER_BUFFER__USED_TO_PUSH = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Used To Fetch</b></em>' attribute.
@@ -122,7 +113,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER__USED_TO_FETCH = ResourcePackage.IRESOURCE_FEATURE_COUNT + 3;
+	int TRANSFER_BUFFER__USED_TO_FETCH = ResourcePackage.IRESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Transfer Buffer</em>' class.
@@ -131,7 +122,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_BUFFER_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 4;
+	int TRANSFER_BUFFER_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Transfer Buffer</em>' class.
@@ -2607,17 +2598,6 @@ public interface VulkanResourcePackage extends EPackage
 	EAttribute getTransferBuffer_Size();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#getInstanceCount <em>Instance Count</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Instance Count</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.TransferBuffer#getInstanceCount()
-	 * @see #getTransferBuffer()
-	 * @generated
-	 */
-	EAttribute getTransferBuffer_InstanceCount();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToPush <em>Used To Push</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3874,14 +3854,6 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute TRANSFER_BUFFER__SIZE = eINSTANCE.getTransferBuffer_Size();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSFER_BUFFER__INSTANCE_COUNT = eINSTANCE.getTransferBuffer_InstanceCount();
 
 		/**
 		 * The meta object literal for the '<em><b>Used To Push</b></em>' attribute feature.

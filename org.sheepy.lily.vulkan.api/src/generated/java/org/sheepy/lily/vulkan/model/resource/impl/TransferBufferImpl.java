@@ -13,8 +13,6 @@ import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
-import org.sheepy.vulkan.model.enumeration.EInstanceCount;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Transfer Buffer</b></em>'.
@@ -24,7 +22,6 @@ import org.sheepy.vulkan.model.enumeration.EInstanceCount;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#isUsedToPush <em>Used To Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#isUsedToFetch <em>Used To Fetch</em>}</li>
  * </ul>
@@ -52,26 +49,6 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	 * @ordered
 	 */
 	protected long size = SIZE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EInstanceCount INSTANCE_COUNT_EDEFAULT = EInstanceCount.ONE;
-
-	/**
-	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected EInstanceCount instanceCount = INSTANCE_COUNT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isUsedToPush() <em>Used To Push</em>}' attribute.
@@ -165,31 +142,6 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	 * @generated
 	 */
 	@Override
-	public EInstanceCount getInstanceCount()
-	{
-		return instanceCount;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInstanceCount(EInstanceCount newInstanceCount)
-	{
-		EInstanceCount oldInstanceCount = instanceCount;
-		instanceCount = newInstanceCount == null ? INSTANCE_COUNT_EDEFAULT : newInstanceCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isUsedToPush()
 	{
 		return usedToPush;
@@ -246,8 +198,6 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		{
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				return getSize();
-			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
-				return getInstanceCount();
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				return isUsedToPush();
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
@@ -268,9 +218,6 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		{
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize((Long)newValue);
-				return;
-			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
-				setInstanceCount((EInstanceCount)newValue);
 				return;
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				setUsedToPush((Boolean)newValue);
@@ -295,9 +242,6 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
-			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
-				setInstanceCount(INSTANCE_COUNT_EDEFAULT);
-				return;
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				setUsedToPush(USED_TO_PUSH_EDEFAULT);
 				return;
@@ -320,8 +264,6 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		{
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
-			case VulkanResourcePackage.TRANSFER_BUFFER__INSTANCE_COUNT:
-				return instanceCount != INSTANCE_COUNT_EDEFAULT;
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 				return usedToPush != USED_TO_PUSH_EDEFAULT;
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:
@@ -343,8 +285,6 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (size: ");
 		result.append(size);
-		result.append(", instanceCount: ");
-		result.append(instanceCount);
 		result.append(", usedToPush: ");
 		result.append(usedToPush);
 		result.append(", usedToFetch: ");

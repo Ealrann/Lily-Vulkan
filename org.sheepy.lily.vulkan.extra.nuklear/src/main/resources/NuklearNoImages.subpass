@@ -8,7 +8,7 @@
           <usages>Sampled</usages>
           <usages>TransferDst</usages>
         </resources>
-        <resources xsi:type="resource:TransferBuffer" name="" size="2000000" instanceCount="FitToSwapImageCount"/>
+        <resources xsi:type="resource:TransferBuffer" name="" size="2000000"/>
         <resources xsi:type="nuklear:NuklearFont" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1" fontImage="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0"/>
         <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2" nullTexture="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9" vertexDataProvider="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.0/@dataProvider" indexDataProvider="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.1/@dataProvider" vertexMemoryChunk="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6" compositeDrawTask="//@pipelinePkg/@pipelines.0/@taskPkgs.1/@tasks.1"/>
         <resources xsi:type="resource:Shader" name="NkVertex">

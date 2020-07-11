@@ -3,23 +3,22 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
-import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
+import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
-import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class PushImageCommand implements IDataFlowCommand
+public final class PushImageCommand implements DataFlowCommand
 {
-	private final IMemoryTicket ticket;
+	private final MemoryTicket ticket;
 	private final VkImage trgImage;
 	private final EPipelineStage srcStage;
 	private final List<EAccess> srcAccess;
@@ -27,7 +26,7 @@ public final class PushImageCommand implements IDataFlowCommand
 	private final List<EAccess> trgAccess;
 	private final EImageLayout trgLayout;
 
-	public PushImageCommand(IMemoryTicket ticket,
+	public PushImageCommand(MemoryTicket ticket,
 							VkImage trgImage,
 							EPipelineStage srcStage,
 							List<EAccess> srcAccess,
@@ -49,10 +48,11 @@ public final class PushImageCommand implements IDataFlowCommand
 	}
 
 	@Override
-	public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
+	public void execute(final IRecordable.RecordContext recordContext, final VkDevice vkDevice, final MemoryStack stack)
 	{
+		final var commandBuffer = recordContext.commandBuffer;
 		final var srcBuffer = ticket.getBufferPtr();
-		final var srcoffset = ticket.getBufferOffset();
+		final var srcoffset = ticket.getOffset();
 		final var size = ticket.getSize();
 
 		// Submission guarantees the host write being complete, as per
@@ -83,7 +83,7 @@ public final class PushImageCommand implements IDataFlowCommand
 		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), blitStage.getValue(), 0, null, barriers, null);
 
 		final VkBufferImageCopy.Buffer region = VkBufferImageCopy.calloc(1);
-		region.bufferOffset(ticket.getBufferOffset());
+		region.bufferOffset(ticket.getOffset());
 		region.bufferRowLength(0);
 		region.bufferImageHeight(0);
 
@@ -111,7 +111,7 @@ public final class PushImageCommand implements IDataFlowCommand
 	}
 
 	@Override
-	public IMemoryTicket getMemoryTicket()
+	public MemoryTicket getMemoryTicket()
 	{
 		return ticket;
 	}
@@ -120,12 +120,6 @@ public final class PushImageCommand implements IDataFlowCommand
 	public EFlowType getFlowType()
 	{
 		return EFlowType.PUSH;
-	}
-
-	@Override
-	public Consumer<IMemoryTicket> getPostAction()
-	{
-		return null;
 	}
 
 	@Override

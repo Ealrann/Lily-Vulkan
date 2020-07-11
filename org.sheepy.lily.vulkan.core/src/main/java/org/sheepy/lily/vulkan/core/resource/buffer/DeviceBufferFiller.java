@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
@@ -60,9 +61,9 @@ public final class DeviceBufferFiller
 			while (it.hasNext())
 			{
 				final var part = it.next();
-				part.dataProvider().fillBuffer(position);
-
 				final long partSize = part.size();
+				part.dataProvider().fillBuffer(MemoryUtil.memByteBuffer(position, (int) partSize));
+
 				final long dstOffset = part.offset();
 				final long deviceBufferPtr = part.bufferPtr();
 				fillBuffer(stack, vkCommandBuffer, deviceBufferPtr, offset, dstOffset, partSize);

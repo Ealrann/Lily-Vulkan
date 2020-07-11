@@ -1,37 +1,24 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkBufferMemoryBarrier;
-import org.lwjgl.vulkan.VkCommandBuffer;
+import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
+import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
-import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 
 import java.util.function.Consumer;
 
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER;
-import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
-
-public final class FetchCommand implements IDataFlowCommand
+public final class FetchCommand implements DataFlowCommand
 {
-	private final IMemoryTicket ticket;
+	private final MemoryTicket ticket;
 	private final long srcBuffer;
 	private final long srcOffset;
 	private final Consumer<IMemoryTicket> transferDone;
-	private final EPipelineStage srcStage;
-	private final int srcAccess;
 
-	public FetchCommand(IMemoryTicket ticket,
-						long srcBuffer,
-						long srcOffset,
-						EPipelineStage srcStage,
-						int srcAccess,
-						Consumer<IMemoryTicket> transferDone)
+	public FetchCommand(MemoryTicket ticket, long srcBuffer, long srcOffset, Consumer<IMemoryTicket> transferDone)
 	{
-		assert srcStage != null;
 		assert srcBuffer > 0;
 		assert srcOffset >= 0;
 		assert ticket != null;
@@ -39,66 +26,28 @@ public final class FetchCommand implements IDataFlowCommand
 		this.ticket = ticket;
 		this.srcBuffer = srcBuffer;
 		this.srcOffset = srcOffset;
-		this.srcStage = srcStage;
-		this.srcAccess = srcAccess;
 		this.transferDone = transferDone;
 	}
 
 	@Override
-	public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
+	public void execute(IRecordable.RecordContext recordContext, VkDevice vkDevice, MemoryStack stack)
 	{
 		final var trgBuffer = ticket.getBufferPtr();
-		final var trgOffset = ticket.getBufferOffset();
+		final var trgOffset = ticket.getOffset();
 		final var size = ticket.getSize();
+		final var commandBuffer = recordContext.commandBuffer;
 
 		// Submission guarantees the host write being complete, as per
 		// https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#synchronization-submission-host-writes
 		// So no need for a barrier before the transfer
 
-		final var srcStageVal = srcStage.getValue();
-		final var dstStageVal = EPipelineStage.TRANSFER_BIT_VALUE;
-
-		final var barriers = VkBufferMemoryBarrier.callocStack(2, stack);
-
-		final var deviceBarrier = barriers.get(0);
-		deviceBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-		deviceBarrier.buffer(srcBuffer);
-		deviceBarrier.offset(srcOffset);
-		deviceBarrier.size(size);
-		deviceBarrier.srcAccessMask(srcAccess);
-		deviceBarrier.dstAccessMask(EAccess.TRANSFER_READ_BIT_VALUE);
-
-		final var hostBarrier = barriers.get(1);
-		hostBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-		hostBarrier.buffer(trgBuffer);
-		hostBarrier.offset(trgOffset);
-		hostBarrier.size(size);
-		hostBarrier.srcAccessMask(0);
-		hostBarrier.dstAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
-
-		vkCmdPipelineBarrier(commandBuffer, srcStageVal, dstStageVal, 0, null, barriers, null);
-
 		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, srcOffset, trgBuffer, trgOffset, size);
 
-		final var targethostBarrier = VkBufferMemoryBarrier.callocStack(1, stack);
-		targethostBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-		targethostBarrier.buffer(trgBuffer);
-		targethostBarrier.offset(trgOffset);
-		targethostBarrier.size(size);
-		targethostBarrier.srcAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
-		targethostBarrier.dstAccessMask(EAccess.HOST_READ_BIT_VALUE | EAccess.HOST_WRITE_BIT_VALUE);
-
-		vkCmdPipelineBarrier(commandBuffer,
-							 EPipelineStage.TRANSFER_BIT_VALUE,
-							 EPipelineStage.HOST_BIT_VALUE,
-							 0,
-							 null,
-							 targethostBarrier,
-							 null);
+		if (transferDone != null) recordContext.listenExecution(() -> transferDone.accept(ticket));
 	}
 
 	@Override
-	public IMemoryTicket getMemoryTicket()
+	public MemoryTicket getMemoryTicket()
 	{
 		return ticket;
 	}
@@ -107,12 +56,6 @@ public final class FetchCommand implements IDataFlowCommand
 	public EFlowType getFlowType()
 	{
 		return EFlowType.FETCH;
-	}
-
-	@Override
-	public Consumer<IMemoryTicket> getPostAction()
-	{
-		return transferDone;
 	}
 
 	@Override

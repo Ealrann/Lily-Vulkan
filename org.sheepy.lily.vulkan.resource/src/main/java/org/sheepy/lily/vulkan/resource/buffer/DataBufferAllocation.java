@@ -38,9 +38,9 @@ public class DataBufferAllocation implements IBufferObjectAllocation
 	}
 
 	@Override
-	public void fillData(long dstPtr)
+	public void fillData(ByteBuffer trgBuffer)
 	{
-		MemoryUtil.memCopy(memAddress(buffer.getData()), dstPtr, alignmentData.size());
+		MemoryUtil.memCopy(memAddress(buffer.getData()), memAddress(trgBuffer), alignmentData.size());
 		needPush = false;
 	}
 

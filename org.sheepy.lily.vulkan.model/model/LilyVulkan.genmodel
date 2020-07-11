@@ -391,7 +391,6 @@
     <genDataTypes ecoreDataType="resource.ecore#//ByteBuffer"/>
     <genClasses ecoreClass="resource.ecore#//TransferBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/instanceCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/usedToPush"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//TransferBuffer/usedToFetch"/>
     </genClasses>

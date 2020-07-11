@@ -7,8 +7,7 @@ public interface IMemoryTicket
 	EReservationStatus getReservationStatus();
 	long getBufferPtr();
 	long getSize();
-	long getBufferOffset();
-	long getMemoryPtr();
+	long getOffset();
 	ByteBuffer toBuffer();
 	ByteBuffer toReadBuffer();
 
@@ -17,6 +16,7 @@ public interface IMemoryTicket
 		SUCCESS,
 		FLUSHED,
 		FAIL__NO_SPACE_LEFT,
-		ERROR__REQUEST_TOO_BIG
+		ERROR__REQUEST_TOO_BIG,
+		RELEASED
 	}
 }

@@ -1,19 +1,21 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.backend;
 
 import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
+import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpace;
 
 import java.nio.ByteBuffer;
+
+import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE;
 
 public final class MemoryTicket implements IMemoryTicket
 {
 	public final MemorySpace memorySpace;
 
-	private final long bufferPtr;
-	private final long memoryPtr;
-	private final long bufferOffset;
-	private final long size;
+	private final CPUBufferBackend stagingBuffer;
 
 	private EReservationStatus reservationStatus;
 
@@ -29,27 +31,23 @@ public final class MemoryTicket implements IMemoryTicket
 
 	public static MemoryTicket emptyTicket(IMemoryTicket.EReservationStatus status)
 	{
-		return new MemoryTicket(status, null, -1, -1, -1, -1);
+		return new MemoryTicket(status, null, null);
 	}
 
-	public MemoryTicket(EReservationStatus reservationStatus,
-						MemorySpace memorySpace,
-						long bufferPtr,
-						long memoryPtr,
-						long bufferOffset,
-						long size)
+	public MemoryTicket(EReservationStatus reservationStatus, MemorySpace memorySpace, CPUBufferBackend stagingBuffer)
 	{
 		this.reservationStatus = reservationStatus;
 		this.memorySpace = memorySpace;
-		this.bufferPtr = bufferPtr;
-		this.memoryPtr = memoryPtr;
-		this.bufferOffset = bufferOffset;
-		this.size = size;
+		this.stagingBuffer = stagingBuffer;
 	}
 
-	public void invalidate()
+	public void fillMemoryRange(VkMappedMemoryRange memoryRange)
 	{
-		reservationStatus = EReservationStatus.FLUSHED;
+		memoryRange.set(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE,
+						VK_NULL_HANDLE,
+						stagingBuffer.getMemoryAddress(),
+						memorySpace.getOffset(),
+						memorySpace.getSize());
 	}
 
 	@Override
@@ -61,19 +59,14 @@ public final class MemoryTicket implements IMemoryTicket
 	@Override
 	public long getBufferPtr()
 	{
-		return bufferPtr;
-	}
-
-	@Override
-	public long getMemoryPtr()
-	{
-		return memoryPtr;
+		return stagingBuffer.getAddress();
 	}
 
 	@Override
 	public ByteBuffer toBuffer()
 	{
-		return MemoryUtil.memByteBuffer(memoryPtr, (int) size);
+		return MemoryUtil.memByteBuffer(stagingBuffer.getMemoryMap() + memorySpace.getOffset(),
+										(int) memorySpace.getSize());
 	}
 
 	@Override
@@ -84,15 +77,25 @@ public final class MemoryTicket implements IMemoryTicket
 		return res;
 	}
 
-	@Override
-	public long getSize()
+	public void markFlushed()
 	{
-		return size;
+		reservationStatus = EReservationStatus.FLUSHED;
+	}
+
+	public void markReleased()
+	{
+		reservationStatus = EReservationStatus.RELEASED;
 	}
 
 	@Override
-	public long getBufferOffset()
+	public long getSize()
 	{
-		return bufferOffset;
+		return memorySpace.getSize();
+	}
+
+	@Override
+	public long getOffset()
+	{
+		return memorySpace.getOffset();
 	}
 }

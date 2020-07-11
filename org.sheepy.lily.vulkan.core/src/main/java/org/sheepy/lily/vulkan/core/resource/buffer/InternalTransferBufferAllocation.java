@@ -15,7 +15,6 @@ public interface InternalTransferBufferAllocation extends ITransferBufferAllocat
 		Feature<Runnable, Features> TransferQueueChange = Feature.newFeature();
 	}
 
-	void addTransferCommand(IDataFlowCommand command);
 	boolean isEmpty();
 
 	void flush(IRecordable.RecordContext context);

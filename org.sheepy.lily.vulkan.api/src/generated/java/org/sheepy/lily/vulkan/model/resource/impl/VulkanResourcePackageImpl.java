@@ -520,7 +520,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTransferBuffer_InstanceCount()
+	public EAttribute getTransferBuffer_UsedToPush()
 	{
 		return (EAttribute)transferBufferEClass.getEStructuralFeatures().get(1);
 	}
@@ -531,20 +531,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTransferBuffer_UsedToPush()
-	{
-		return (EAttribute)transferBufferEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getTransferBuffer_UsedToFetch()
 	{
-		return (EAttribute)transferBufferEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)transferBufferEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1812,7 +1801,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		// Create classes and their features
 		transferBufferEClass = createEClass(TRANSFER_BUFFER);
 		createEAttribute(transferBufferEClass, TRANSFER_BUFFER__SIZE);
-		createEAttribute(transferBufferEClass, TRANSFER_BUFFER__INSTANCE_COUNT);
 		createEAttribute(transferBufferEClass, TRANSFER_BUFFER__USED_TO_PUSH);
 		createEAttribute(transferBufferEClass, TRANSFER_BUFFER__USED_TO_FETCH);
 
@@ -1995,8 +1983,8 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		// Obtain other dependent packages
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
-		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
+		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
 		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
@@ -2051,7 +2039,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTransferBuffer_Size(), ecorePackage.getELong(), "size", null, 0, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTransferBuffer_InstanceCount(), theEnumerationPackage.getEInstanceCount(), "instanceCount", null, 1, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransferBuffer_UsedToPush(), ecorePackage.getEBoolean(), "usedToPush", "true", 1, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransferBuffer_UsedToFetch(), ecorePackage.getEBoolean(), "usedToFetch", "false", 1, 1, TransferBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

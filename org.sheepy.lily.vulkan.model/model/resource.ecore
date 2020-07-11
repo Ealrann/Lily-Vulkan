@@ -3,8 +3,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="resource" nsURI="org.sheepy.lily.vulkan.model.resource" nsPrefix="resource">
   <eClassifiers xsi:type="ecore:EClass" name="TransferBuffer" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceCount" unique="false"
-        lowerBound="1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EInstanceCount"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedToPush" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedToFetch" lowerBound="1"

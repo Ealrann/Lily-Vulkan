@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
@@ -47,11 +46,10 @@ public final class BufferViewerAllocation implements IBufferObjectAllocation
 	}
 
 	@Override
-	public void fillData(long dstPtr)
+	public void fillData(ByteBuffer buffer)
 	{
 		final var bufferDataProvider = bufferViewer.getDataProvider().adapt(IBufferDataProviderAdapter.class);
-		final var trgBuffer = MemoryUtil.memByteBuffer(dstPtr, (int) getBindSize());
-		bufferDataProvider.fill(trgBuffer);
+		bufferDataProvider.fill(buffer);
 	}
 
 	@Override

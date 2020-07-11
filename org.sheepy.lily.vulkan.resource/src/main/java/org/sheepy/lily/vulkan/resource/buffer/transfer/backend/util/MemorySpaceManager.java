@@ -43,6 +43,8 @@ public final class MemorySpaceManager
 
 	public void releaseMemory(MemorySpace space)
 	{
+		assert memoryMap.contains(space);
+
 		final var releaser = new MemoryReleaser(space);
 		final var listIterator = memoryMap.listIterator(memoryMap.indexOf(space));
 		releaser.release(listIterator);

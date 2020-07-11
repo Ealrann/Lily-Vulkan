@@ -69,9 +69,8 @@ public final class MemoryChunkAllocation implements IExtender
 		}
 		else
 		{
-			allocationState.requestUpdate();
+			pushData(true);
 		}
-		pushData(true);
 
 		if (useTransfer) recordTransfer(true);
 		else pushData(true);

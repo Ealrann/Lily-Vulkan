@@ -9,15 +9,13 @@ import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
-import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
-import org.sheepy.lily.vulkan.core.util.InstanceCountUtil;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.TransferBufferBackend;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommand;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.PushCommand;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.TransferBufferBackend;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +35,10 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 
 		this.vkDevice = context.getVkDevice();
 		final long size = transferBuffer.getSize();
-		final int instanceCount = InstanceCountUtil.getInstanceCount(transferBuffer, transferBuffer.getInstanceCount());
 		final boolean usedToPush = transferBuffer.isUsedToPush();
 		final boolean usedToFetch = transferBuffer.isUsedToFetch();
 
-		final var bufferBuilder = new TransferBufferBackend.Builder(size, instanceCount, usedToPush, usedToFetch);
+		final var bufferBuilder = new TransferBufferBackend.Builder(size, usedToPush, usedToFetch);
 		backendBuffer = bufferBuilder.build(context);
 	}
 
@@ -52,7 +49,7 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 	}
 
 	@Override
-	public IMemoryTicket reserveMemory(long size)
+	public MemoryTicket reserveMemory(long size)
 	{
 		return backendBuffer.reserveMemory(size);
 	}
@@ -76,9 +73,7 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 			{
 				final var pushCommand = DataFlowCommandFactory.newPushCommand(ticket,
 																			  command.bufferPtr(),
-																			  command.offset(),
-																			  EPipelineStage.TRANSFER_BIT,
-																			  0);
+																			  command.offset());
 				pushCommands.add(new CommandWrapper(pushCommand, command));
 			}
 			else
@@ -111,29 +106,6 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 	}
 
 	@Override
-	public void newPushCommand(IMemoryTicket ticket,
-							   long trgBuffer,
-							   long trgOffset,
-							   EPipelineStage srcStage,
-							   int srcAccess)
-	{
-		final var pushCommand = DataFlowCommandFactory.newPushCommand(ticket,
-																	  trgBuffer,
-																	  trgOffset,
-																	  srcStage,
-																	  srcAccess);
-		backendBuffer.addTransferCommand(pushCommand);
-		notify(Features.TransferQueueChange);
-	}
-
-	@Override
-	public void addTransferCommand(IDataFlowCommand command)
-	{
-		backendBuffer.addTransferCommand(command);
-		notify(Features.TransferQueueChange);
-	}
-
-	@Override
 	public boolean isEmpty()
 	{
 		return backendBuffer.isEmpty();
@@ -146,13 +118,18 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 		notify(Features.TransferQueueChange);
 	}
 
+	public void addTransferCommand(final DataFlowCommand command)
+	{
+		backendBuffer.addTransferCommand(command);
+		notify(Features.TransferQueueChange);
+	}
+
 	private static record CommandWrapper(PushCommand pushCommand, FillCommand fillCommand)
 	{
 		private void fillMemory()
 		{
 			final var ticket = pushCommand.getMemoryTicket();
-			final var trgPtr = ticket.getMemoryPtr();
-			fillCommand.dataProvider().fillBuffer(trgPtr);
+			fillCommand.dataProvider().fillBuffer(ticket.toBuffer());
 		}
 	}
 }

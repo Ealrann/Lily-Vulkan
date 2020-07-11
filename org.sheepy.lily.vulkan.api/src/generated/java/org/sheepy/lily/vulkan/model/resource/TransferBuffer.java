@@ -4,8 +4,6 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.core.model.resource.IResource;
 
-import org.sheepy.vulkan.model.enumeration.EInstanceCount;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Transfer Buffer</b></em>'.
@@ -16,7 +14,6 @@ import org.sheepy.vulkan.model.enumeration.EInstanceCount;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#getInstanceCount <em>Instance Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToPush <em>Used To Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#isUsedToFetch <em>Used To Fetch</em>}</li>
  * </ul>
@@ -48,31 +45,6 @@ public interface TransferBuffer extends IResource
 	 * @generated
 	 */
 	void setSize(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Instance Count</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EInstanceCount}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance Count</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
-	 * @see #setInstanceCount(EInstanceCount)
-	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getTransferBuffer_InstanceCount()
-	 * @model unique="false" required="true"
-	 * @generated
-	 */
-	EInstanceCount getInstanceCount();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.TransferBuffer#getInstanceCount <em>Instance Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Instance Count</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EInstanceCount
-	 * @see #getInstanceCount()
-	 * @generated
-	 */
-	void setInstanceCount(EInstanceCount value);
 
 	/**
 	 * Returns the value of the '<em><b>Used To Push</b></em>' attribute.
