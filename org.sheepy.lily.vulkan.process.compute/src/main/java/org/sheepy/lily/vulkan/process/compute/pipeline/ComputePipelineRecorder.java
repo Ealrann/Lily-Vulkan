@@ -5,9 +5,7 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.IRecordable;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
-import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
@@ -17,20 +15,20 @@ import java.util.List;
 
 @ModelExtender(scope = ComputePipeline.class)
 @Allocation(context = ProcessContext.class)
-@AllocationDependency(type = IPipelineAllocation.class)
+@AllocationDependency(type = ComputePipelineAllocation.class)
 @AllocationDependency(features = ComputePackage.COMPUTE_PIPELINE__TASK_PKGS, type = IRecordableExtender.class)
 public final class ComputePipelineRecorder implements IRecordableExtender
 {
 	private final ComputePipeline pipeline;
-	private final VkPipeline vkPipeline;
+	private final ComputePipelineAllocation pipelineAllocation;
 	private final List<IRecordableExtender> recorders;
 
 	private ComputePipelineRecorder(ComputePipeline pipeline,
-									@InjectDependency(index = 0) IPipelineAllocation pipelineAllocation,
+									@InjectDependency(index = 0) ComputePipelineAllocation pipelineAllocation,
 									@InjectDependency(index = 1) List<IRecordableExtender> recorders)
 	{
 		this.pipeline = pipeline;
-		this.vkPipeline = pipelineAllocation.getVkPipeline();
+		this.pipelineAllocation = pipelineAllocation;
 		this.recorders = recorders;
 	}
 
@@ -39,6 +37,7 @@ public final class ComputePipelineRecorder implements IRecordableExtender
 	{
 		if (isActive())
 		{
+			final var vkPipeline = pipelineAllocation.getVkPipeline();
 			final var currentStage = context.stage;
 			if (vkPipeline != null && currentStage == ECommandStage.MAIN)
 			{
@@ -48,6 +47,8 @@ public final class ComputePipelineRecorder implements IRecordableExtender
 			{
 				recorder.record(context);
 			}
+
+			pipelineAllocation.attach(context);
 		}
 	}
 

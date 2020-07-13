@@ -52,7 +52,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 	private final PresentSubmission presentSubmission;
 	private final VkSemaphore presentSemaphore;
 	private final GenericExecutionRecorder executionRecorder;
-	private final IAllocationState config;
+	private final IAllocationState allocationState;
 
 	private List<IRecordableExtender> recordables;
 	private int subpassCount;
@@ -60,14 +60,14 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 
 	public GraphicExecutionRecorderAllocation(GraphicExecutionRecorder recorder,
 											  ProcessContext context,
-											  IAllocationState config,
+											  IAllocationState allocationState,
 											  @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation,
 											  @InjectDependency(index = 1) SwapChainAllocation swapChainAllocation,
 											  @InjectDependency(index = 2) RenderPassAllocation renderPassAllocation,
 											  @InjectDependency(index = 4) FramebufferAllocation framebufferAllocation,
 											  @InjectDependency(index = 5) List<IRecordableExtender> recordables)
 	{
-		this.config = config;
+		this.allocationState = allocationState;
 		final var manager = (GraphicExecutionManager) recorder.eContainer();
 		final var executionManagerAllocation = manager.adapt(GraphicExecutionManagerAllocation.class);
 		final var signals = executionManagerAllocation.getSignals();
@@ -156,7 +156,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 	@Override
 	public IFenceView play()
 	{
-		config.lockAllocation();
+		allocationState.lockAllocation();
 		final var res = submission.submit();
 		presentSubmission.submit();
 		return res;
@@ -180,11 +180,11 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 	public boolean checkFence()
 	{
 		final boolean fenceIsUnlocked = submission.checkFence();
-		if (fenceIsUnlocked && config.isLocked())
+		if (fenceIsUnlocked && allocationState.isLocked())
 		{
-			config.unlockAllocation();
+			allocationState.unlockAllocation();
 		}
-		assert !config.isLocked() == fenceIsUnlocked;
+		assert !allocationState.isLocked() == fenceIsUnlocked;
 		return fenceIsUnlocked;
 	}
 
@@ -192,5 +192,6 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 	public void waitIdle()
 	{
 		submission.waitIdle();
+		checkFence();
 	}
 }

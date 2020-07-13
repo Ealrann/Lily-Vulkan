@@ -5,6 +5,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -16,6 +17,7 @@ import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
@@ -97,7 +99,8 @@ public final class Submission implements ISubmission
 	public IFenceView submit()
 	{
 		final var fence = fences.next();
-		final long fencePtr = fence.getPtr();
+		final long fencePtr = fence.fence.getPtr();
+		fence.notify(EExecutionStatus.Started, false);
 		final var res = vkQueueSubmit(queue, submitInfo, fencePtr);
 
 		Logger.check(res, FAILED_SUBMIT, true);
@@ -107,9 +110,10 @@ public final class Submission implements ISubmission
 			final var status = EVulkanErrorStatus.resolveFromCode(res);
 			final String message = status != null ? status.message : "Unknown Error";
 			System.err.println("[Submit] " + message);
+			fence.notify(EExecutionStatus.Canceled, true);
 		}
 
-		return fence;
+		return fence.fence;
 	}
 
 	@Override
@@ -124,7 +128,7 @@ public final class Submission implements ISubmission
 		fences.waitIdle();
 	}
 
-	public void setNextExecutionListeners(List<Runnable> listeners)
+	public void setNextExecutionListeners(List<Consumer<EExecutionStatus>> listeners)
 	{
 		fences.setNextExecutionListeners(listeners);
 	}

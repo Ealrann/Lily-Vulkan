@@ -1,12 +1,14 @@
 package org.sheepy.lily.vulkan.process.execution;
 
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 public final class FenceManager
 {
@@ -15,7 +17,7 @@ public final class FenceManager
 
 	private final List<FenceWrapper> fences;
 	private int currentFence = -1;
-	private List<Runnable> listeners = null;
+	private List<Consumer<EExecutionStatus>> listeners = null;
 
 	public FenceManager(int count, VkDevice vkDevice)
 	{
@@ -34,19 +36,15 @@ public final class FenceManager
 		fences.forEach(FenceWrapper::free);
 	}
 
-	public VkFence next()
+	FenceWrapper next()
 	{
 		currentFence = (currentFence + 1) % fences.size();
 		final var res = fences.get(currentFence);
 		res.waitIdle();
-		if (listeners != null)
-		{
-			assert res.listeners == null;
-			res.listeners = listeners;
-			listeners = null;
-		}
+		assert res.listeners == null;
+		res.listeners = listeners;
 		res.fence.setUsed(true);
-		return res.fence;
+		return res;
 	}
 
 	public void waitIdle()
@@ -69,16 +67,15 @@ public final class FenceManager
 		return fences.stream().anyMatch(FenceWrapper::isRunning);
 	}
 
-	public void setNextExecutionListeners(final List<Runnable> listeners)
+	public void setNextExecutionListeners(final List<Consumer<EExecutionStatus>> listeners)
 	{
-		assert this.listeners == null;
 		this.listeners = listeners;
 	}
 
-	private static final class FenceWrapper
+	static final class FenceWrapper
 	{
 		public final VkFence fence;
-		List<Runnable> listeners = null;
+		List<Consumer<EExecutionStatus>> listeners = null;
 
 		FenceWrapper(VkFence fence)
 		{
@@ -122,14 +119,7 @@ public final class FenceManager
 			if (fence.isUsed())
 			{
 				fence.reset();
-				if (listeners != null)
-				{
-					for (final var listener : listeners)
-					{
-						listener.run();
-					}
-					listeners = null;
-				}
+				notify(EExecutionStatus.Done, true);
 			}
 		}
 
@@ -148,6 +138,21 @@ public final class FenceManager
 		void free()
 		{
 			fence.free();
+		}
+
+		public void notify(EExecutionStatus status, boolean removeListeners)
+		{
+			if (listeners != null)
+			{
+				for (final var listener : listeners)
+				{
+					listener.accept(status);
+				}
+				if (removeListeners)
+				{
+					listeners = null;
+				}
+			}
 		}
 	}
 }

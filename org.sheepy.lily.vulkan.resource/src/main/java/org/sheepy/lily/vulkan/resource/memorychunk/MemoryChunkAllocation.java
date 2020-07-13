@@ -136,31 +136,14 @@ public final class MemoryChunkAllocation implements IExtender
 		}
 	}
 
+	public void attach(final IRecordContext recordContext)
+	{
+		recordContext.lockAllocationDuringExecution(allocationState);
+	}
+
 	private void logTransferError()
 	{
 		final var message = String.format("Transfer  of %s failed (TransferBuffer full ? )", memoryChunk.getName());
 		System.out.println(message);
-	}
-
-	public void attach(final IRecordContext recordContext)
-	{
-		final Integer code = recordContext.hashCode();
-
-		allocationState.lockAllocation();
-		if (!usedInRecords.contains(code))
-		{
-			usedInRecords.add(code);
-			recordContext.listenExecution(() -> this.executionDone(code));
-		}
-	}
-
-	private void executionDone(Integer code)
-	{
-		assert usedInRecords.contains(code);
-		usedInRecords.remove(code);
-		if (usedInRecords.isEmpty())
-		{
-			allocationState.unlockAllocation();
-		}
 	}
 }

@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -18,10 +19,11 @@ public final class BlitTaskRecorder extends AbstractBlitTaskRecorder
 
 	public BlitTaskRecorder(BlitTask blitTask,
 							ProcessContext context,
+							IAllocationState allocationState,
 							@InjectDependency(index = 0) IVkImageAllocation srcImage,
 							@InjectDependency(index = 1) IVkImageAllocation dstImage)
 	{
-		super(blitTask, context, srcImage, getDstImageSize(dstImage.getVkImage()));
+		super(blitTask, allocationState, context, srcImage, getDstImageSize(dstImage.getVkImage()));
 		this.dstImage = dstImage;
 	}
 

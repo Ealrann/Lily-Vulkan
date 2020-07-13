@@ -112,6 +112,7 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 	public void waitIdle()
 	{
 		submission.waitIdle();
+		checkFence();
 	}
 
 	@Override

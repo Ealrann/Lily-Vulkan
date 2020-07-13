@@ -1,9 +1,11 @@
 package org.sheepy.lily.vulkan.process.graphic.process;
 
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
@@ -17,4 +19,15 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 @AllocationChild(features = GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION)
 public final class GraphicConfigurationAllocation implements IExtender
 {
+	private final IAllocationState allocationState;
+
+	private GraphicConfigurationAllocation(IAllocationState allocationState)
+	{
+		this.allocationState = allocationState;
+	}
+
+	public void attach(final IRecordable.RecordContext context)
+	{
+		context.lockAllocationDuringExecution(allocationState);
+	}
 }

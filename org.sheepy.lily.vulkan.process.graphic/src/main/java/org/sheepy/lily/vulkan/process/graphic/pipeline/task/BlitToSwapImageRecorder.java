@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
@@ -23,11 +24,12 @@ public final class BlitToSwapImageRecorder extends AbstractBlitTaskRecorder
 
 	public BlitToSwapImageRecorder(BlitToSwapImage blitTask,
 								   ProcessContext context,
+								   IAllocationState allocationState,
 								   @InjectDependency(index = 0) IVkImageAllocation srcImage,
 								   @InjectDependency(index = 1) PhysicalSurfaceAllocation surfaceAllocation,
 								   @InjectDependency(index = 2) ImageViewAllocation imageViews)
 	{
-		super(blitTask, context, srcImage, surfaceAllocation.getExtent());
+		super(blitTask, allocationState, context, srcImage, surfaceAllocation.getExtent());
 		this.imageViews = imageViews;
 	}
 

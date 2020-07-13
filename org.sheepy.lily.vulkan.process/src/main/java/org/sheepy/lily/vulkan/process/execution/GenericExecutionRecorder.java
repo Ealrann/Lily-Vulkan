@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.process.execution;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -32,7 +33,7 @@ public final class GenericExecutionRecorder
 
 	public void record(List<ECommandStage> stages)
 	{
-		final List<Runnable> listeners = new ArrayList<>();
+		final List<Consumer<EExecutionStatus>> listeners = new ArrayList<>();
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 
 		try (final var stack = MemoryStack.stackPush())

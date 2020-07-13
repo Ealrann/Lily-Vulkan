@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkImageBlit;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
@@ -29,13 +30,16 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 	private final VkImageBlit.Buffer region;
 	private final VkImage clearTexture;
 	private final AbstractBlitTask blitTask;
+	private final IAllocationState allocationState;
 
 	public AbstractBlitTaskRecorder(AbstractBlitTask blitTask,
+									IAllocationState allocationState,
 									ProcessContext context,
 									IVkImageAllocation srcImage,
 									Vector2ic dstSize)
 	{
 		this.blitTask = blitTask;
+		this.allocationState = allocationState;
 		final var imageInfo = srcImage.getVkImage();
 
 		srcImagePtr = srcImage.getImagePtr();
@@ -150,6 +154,8 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 						   clearRegions,
 						   EFilter.NEAREST_VALUE);
 		}
+
+		context.lockAllocationDuringExecution(allocationState);
 	}
 
 	protected abstract long getDstImagePtr(int index);

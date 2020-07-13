@@ -1,9 +1,11 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
+import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
@@ -19,9 +21,13 @@ public final class ComputePipelineAllocation implements IPipelineAllocation
 {
 	private final VkComputePipeline vkPipeline;
 	private final VkPipelineLayout vkPipelineLayout;
+	private final IAllocationState allocationState;
 
-	private ComputePipelineAllocation(ComputePipeline pipeline, ProcessContext context)
+	private ComputePipelineAllocation(ComputePipeline pipeline,
+									  ProcessContext context,
+									  IAllocationState allocationState)
 	{
+		this.allocationState = allocationState;
 		final var pushConstantRanges = pipeline.getPushConstantRanges();
 		final var sets = pipeline.getLayout()
 								 .stream()
@@ -58,5 +64,10 @@ public final class ComputePipelineAllocation implements IPipelineAllocation
 	public VkPipeline getVkPipeline()
 	{
 		return vkPipeline;
+	}
+
+	public void attach(final IRecordable.RecordContext context)
+	{
+		context.lockAllocationDuringExecution(allocationState);
 	}
 }

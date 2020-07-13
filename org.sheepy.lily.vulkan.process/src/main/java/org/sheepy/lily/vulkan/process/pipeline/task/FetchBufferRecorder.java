@@ -9,6 +9,7 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAllocation;
@@ -94,13 +95,21 @@ public final class FetchBufferRecorder implements IRecordableExtender
 			}
 		}
 
-		private void fetch()
+		private void fetch(EExecutionStatus status)
 		{
-			final var memoryPtr = stagingBuffer.mapMemory(executionContext.getVkDevice());
-			final var fetchBuffer = MemoryUtil.memByteBuffer(memoryPtr, (int) size);
-			dataProviderAdapter.fetch(fetchBuffer);
-			stagingBuffer.unmapMemory(executionContext.getVkDevice());
-			stagingBuffer.free(executionContext);
+			if(status == EExecutionStatus.Done)
+			{
+				final var memoryPtr = stagingBuffer.mapMemory(executionContext.getVkDevice());
+				final var fetchBuffer = MemoryUtil.memByteBuffer(memoryPtr, (int) size);
+				dataProviderAdapter.fetch(fetchBuffer);
+				stagingBuffer.unmapMemory(executionContext.getVkDevice());
+				stagingBuffer.free(executionContext);
+			}
+			else if (status == EExecutionStatus.Canceled)
+			{
+				stagingBuffer.free(executionContext);
+			}
+
 		}
 
 		private CPUBufferBackend createStagingBuffer(long byteSize)

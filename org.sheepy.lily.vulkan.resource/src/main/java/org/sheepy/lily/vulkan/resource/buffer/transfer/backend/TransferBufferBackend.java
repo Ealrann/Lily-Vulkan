@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.backend;
 
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
@@ -22,7 +23,6 @@ public final class TransferBufferBackend
 
 	public final CPUBufferBackend bufferBackend;
 
-	private final List<MemoryTicket> tickets = new ArrayList<>();
 	private final List<DataFlowCommand> commands = new ArrayList<>();
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
@@ -55,9 +55,7 @@ public final class TransferBufferBackend
 
 	private MemoryTicket buildMemoryTicket(final MemorySpace space)
 	{
-		final var ticket = newSuccessTicket(space);
-		tickets.add(ticket);
-		return ticket;
+		return newSuccessTicket(space);
 	}
 
 	public void addTransferCommand(DataFlowCommand command)
@@ -71,20 +69,23 @@ public final class TransferBufferBackend
 		return commands.isEmpty();
 	}
 
-	public void flush(final RecordContext context, final VkDevice vkDevice)
+	public void recordFlush(final RecordContext context, final VkDevice vkDevice)
 	{
 		final var res = new FlushRecord(vkDevice, commands);
 		res.flush(context);
-		final var ticketsToRelease = List.copyOf(tickets);
-		context.listenExecution(() -> releaseTickets(ticketsToRelease));
+
+		final var flushedCommands = List.copyOf(commands);
+		context.listenExecution(status -> executionDone(status, flushedCommands));
+
 		clear();
 	}
 
-	private void releaseTickets(List<MemoryTicket> tickets)
+	private void executionDone(EExecutionStatus status, List<DataFlowCommand> commands)
 	{
-		for (final var ticket : tickets)
+		switch (status)
 		{
-			releaseTicket(ticket);
+			case Done -> commands.stream().map(DataFlowCommand::getMemoryTicket).forEach(this::releaseTicket);
+			case Canceled -> this.commands.addAll(commands);
 		}
 	}
 
@@ -92,19 +93,17 @@ public final class TransferBufferBackend
 	{
 		spaceManager.releaseMemory(ticket.memorySpace);
 		ticket.markReleased();
-		tickets.remove(ticket);
 	}
 
 	private void clear()
 	{
-		for (int i = 0; i < tickets.size(); i++)
+		for (int i = 0; i < commands.size(); i++)
 		{
-			final var ticket = tickets.get(i);
+			final var command = commands.get(i);
+			final var ticket = command.getMemoryTicket();
 			ticket.markFlushed();
 		}
-
 		commands.clear();
-		tickets.clear();
 	}
 
 	private MemoryTicket newSuccessTicket(MemorySpace space)

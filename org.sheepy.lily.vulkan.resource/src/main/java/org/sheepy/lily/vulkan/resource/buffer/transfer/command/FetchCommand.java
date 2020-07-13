@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
@@ -43,7 +44,10 @@ public final class FetchCommand implements DataFlowCommand
 
 		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, srcOffset, trgBuffer, trgOffset, size);
 
-		if (transferDone != null) recordContext.listenExecution(() -> transferDone.accept(ticket));
+		if (transferDone != null)
+		{
+			recordContext.listenExecution(new TransferDone(ticket, transferDone));
+		}
 	}
 
 	@Override
@@ -62,5 +66,26 @@ public final class FetchCommand implements DataFlowCommand
 	public String toString()
 	{
 		return "PipelineFetchCommand [srcBuffer=" + srcBuffer + ", srcOffset=" + srcOffset + "]";
+	}
+
+	private static final class TransferDone implements Consumer<EExecutionStatus>
+	{
+		private final MemoryTicket ticket;
+		private final Consumer<IMemoryTicket> transferDone;
+
+		private TransferDone(final MemoryTicket ticket, final Consumer<IMemoryTicket> transferDone)
+		{
+			this.ticket = ticket;
+			this.transferDone = transferDone;
+		}
+
+		@Override
+		public void accept(final EExecutionStatus status)
+		{
+			if (status == EExecutionStatus.Done)
+			{
+				transferDone.accept(ticket);
+			}
+		}
 	}
 }

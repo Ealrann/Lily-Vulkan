@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IPhysicalSurfaceAllocation;
+import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 
@@ -44,7 +45,11 @@ public final class ImageAcquirer
 			{
 				Logger.check(res, FAILED_ACQUIRE_IMAGE, true);
 			}
-			surfaceManager.setDirty();
+			final var status = EVulkanErrorStatus.resolveFromCode(res);
+			if (status == EVulkanErrorStatus.SUBOPTIMAL_KHR || status == EVulkanErrorStatus.ERROR_SURFACE_LOST_KHR || status == EVulkanErrorStatus.ERROR_OUT_OF_DATE_KHR)
+			{
+				surfaceManager.setDirty();
+			}
 			return null;
 		}
 	}

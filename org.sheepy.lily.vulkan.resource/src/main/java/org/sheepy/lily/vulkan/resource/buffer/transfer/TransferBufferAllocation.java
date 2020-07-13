@@ -114,7 +114,7 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 	@Override
 	public void flush(IRecordable.RecordContext context)
 	{
-		backendBuffer.flush(context, vkDevice);
+		backendBuffer.recordFlush(context, vkDevice);
 		notify(Features.TransferQueueChange);
 	}
 

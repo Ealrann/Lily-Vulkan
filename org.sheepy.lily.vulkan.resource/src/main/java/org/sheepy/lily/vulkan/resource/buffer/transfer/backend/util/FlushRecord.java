@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.execution.IRecordable;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommand;
@@ -77,10 +78,17 @@ public final class FlushRecord
 
 	private static record Invalidator(VkDevice vkDevice, VkMappedMemoryRange.Buffer ranges)
 	{
-		public void invalidate()
+		public void invalidate(EExecutionStatus status)
 		{
-			vkInvalidateMappedMemoryRanges(vkDevice, ranges);
-			free();
+			if (status == EExecutionStatus.Done)
+			{
+				vkInvalidateMappedMemoryRanges(vkDevice, ranges);
+				free();
+			}
+			else if (status == EExecutionStatus.Canceled)
+			{
+				free();
+			}
 		}
 
 		public void free()

@@ -38,6 +38,7 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IExtende
 {
 	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
 	private static boolean first = true;
+
 	private final long swapChainPtr;
 	private final long[] swapChainImages;
 	private final IntBuffer indices;

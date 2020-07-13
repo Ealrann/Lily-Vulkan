@@ -130,7 +130,9 @@ public final class ResourceInstaller<T extends Structure>
 			bufferPart.setDataProvider(copy);
 
 			buffer.getParts().add(bufferPart);
-			prepareTranferTask.getParts().add(bufferPart);
+			final var bufferRef = VulkanResourceFactory.eINSTANCE.createFixedBufferReference();
+			bufferRef.getBuffers().add(bufferPart);
+			prepareTranferTask.setBufferReference(bufferRef);
 		}
 
 		final var container = flushTransferTask.eContainer();

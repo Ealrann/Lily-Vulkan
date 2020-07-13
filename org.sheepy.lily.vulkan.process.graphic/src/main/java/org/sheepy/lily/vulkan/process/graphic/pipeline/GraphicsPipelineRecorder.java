@@ -19,18 +19,22 @@ import java.util.List;
 @ModelExtender(scope = GraphicsPipeline.class)
 @Allocation(context = ProcessContext.class)
 @AllocationDependency(features = GraphicPackage.GRAPHICS_PIPELINE__TASK_PKGS, type = IRecordableExtender.class)
+@AllocationDependency(type = GraphicsPipelineAllocation.class)
 public final class GraphicsPipelineRecorder implements IRecordableExtender
 {
 	private final GraphicsPipeline pipeline;
 	private final List<IRecordableExtender> recorders;
+	private final GraphicsPipelineAllocation pipelineAllocation;
 
 	public GraphicsPipelineRecorder(GraphicsPipeline pipeline,
 									IAllocationState config,
 									IObservatoryBuilder observatory,
-									@InjectDependency(index = 0) List<IRecordableExtender> recorders)
+									@InjectDependency(index = 0) List<IRecordableExtender> recorders,
+									@InjectDependency(index = 1) GraphicsPipelineAllocation pipelineAllocation)
 	{
 		this.pipeline = pipeline;
 		this.recorders = recorders;
+		this.pipelineAllocation = pipelineAllocation;
 		observatory.listenNoParam(config::setAllocationObsolete, ProcessPackage.ABSTRACT_PIPELINE__ENABLED);
 	}
 
@@ -49,6 +53,8 @@ public final class GraphicsPipelineRecorder implements IRecordableExtender
 			{
 				recorder.record(context);
 			}
+
+			pipelineAllocation.attach(context);
 		}
 	}
 

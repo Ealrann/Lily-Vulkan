@@ -55,6 +55,8 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 		capabilities = new Capabilities(vkPhysicalDevice, surface);
 		extent = computeExtent(window);
 		colorDomain = loadColorDomain(vkPhysicalDevice, physicalSurface.getColorDomain());
+
+		System.out.println("ALLOC surface = " + surface.ptr);
 	}
 
 	private Vector2ic computeExtent(Window window)
@@ -75,6 +77,7 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	@Free
 	public void free(ProcessContext context)
 	{
+		System.out.println("FREE surface = " + surface.ptr);
 		final var window = context.getWindow();
 
 		window.sulkNoParam(dirtyListener, IWindow.Features.Size);
@@ -158,6 +161,8 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	{
 		allocationConfigurator.setAllocationObsolete();
 		logicalDevice.returnQueue(presentQueue);
+		// Some driver will refuse to alloc a new swapchain while the current one is in use.
+		logicalDevice.waitIdle();
 	}
 
 	public VulkanQueue getPresentQueue()
