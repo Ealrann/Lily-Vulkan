@@ -15,7 +15,7 @@ public final class PushCommand implements DataFlowCommand
 
 	public PushCommand(MemoryTicket ticket, long trgBuffer, long trgOffset)
 	{
-		assert trgBuffer > 0;
+		assert trgBuffer != 0;
 		assert trgOffset >= 0;
 		assert ticket != null;
 

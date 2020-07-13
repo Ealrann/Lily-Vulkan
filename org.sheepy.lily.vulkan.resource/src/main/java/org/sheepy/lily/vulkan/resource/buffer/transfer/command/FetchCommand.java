@@ -20,7 +20,7 @@ public final class FetchCommand implements DataFlowCommand
 
 	public FetchCommand(MemoryTicket ticket, long srcBuffer, long srcOffset, Consumer<IMemoryTicket> transferDone)
 	{
-		assert srcBuffer > 0;
+		assert srcBuffer != 0;
 		assert srcOffset >= 0;
 		assert ticket != null;
 
