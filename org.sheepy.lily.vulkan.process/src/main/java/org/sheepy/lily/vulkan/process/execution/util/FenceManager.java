@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.execution;
+package org.sheepy.lily.vulkan.process.execution.util;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
@@ -36,7 +36,7 @@ public final class FenceManager
 		fences.forEach(FenceWrapper::free);
 	}
 
-	FenceWrapper next()
+	public FenceWrapper next()
 	{
 		currentFence = (currentFence + 1) % fences.size();
 		final var res = fences.get(currentFence);
@@ -72,7 +72,7 @@ public final class FenceManager
 		this.listeners = listeners;
 	}
 
-	static final class FenceWrapper
+	public static final class FenceWrapper
 	{
 		public final VkFence fence;
 		List<Consumer<EExecutionStatus>> listeners = null;

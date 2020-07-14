@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.execution.GenericExecutionRecorder;
-import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -29,9 +28,7 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 	private static final List<ECommandStage> stages = List.of(ECommandStage.MAIN);
 
 	private final ComputeCommandBuffer commandBuffer;
-	private final Submission submission;
 	private final GenericExecutionRecorder executionRecorder;
-	private final IAllocationState config;
 
 	private List<IRecordableExtender> recordables;
 	private boolean needRecord = true;
@@ -42,7 +39,6 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 											   @InjectDependency(index = 0) List<IRecordableExtender> recordables)
 	{
 		commandBuffer = new ComputeCommandBuffer(context);
-		this.config = config;
 		this.recordables = recordables;
 
 		final var manager = (ComputeExecutionManager) recorder.eContainer();
@@ -52,17 +48,14 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 		final var signals = managerAllocation.getSignals(index);
 		final int queuedExecutionCount = manager.getIndexCount() > 1 ? 2 : 1;
 
-		this.submission = new Submission(commandBuffer.getVkCommandBuffer(),
-										 context,
-										 waitForEmitters,
-										 signals,
-										 queuedExecutionCount);
-
 		executionRecorder = new GenericExecutionRecorder(commandBuffer,
-														 submission,
+														 context,
+														 config,
 														 index,
 														 manager.getIndexCount(),
+														 queuedExecutionCount,
 														 this::recordCommand);
+		executionRecorder.loadSubmit(waitForEmitters, signals);
 	}
 
 	@UpdateDependency(index = 0)
@@ -84,8 +77,8 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 	@Free
 	public void free(ExecutionContext context)
 	{
+		executionRecorder.free();
 		commandBuffer.free(context);
-		submission.free();
 	}
 
 	private void recordCommand(final RecordContext recordContext)
@@ -99,26 +92,18 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 	@Override
 	public boolean checkFence()
 	{
-		final boolean fenceIsUnlocked = submission.checkFence();
-		if (fenceIsUnlocked && config.isLocked())
-		{
-			config.unlockAllocation();
-		}
-		assert !config.isLocked() == fenceIsUnlocked;
-		return fenceIsUnlocked;
+		return executionRecorder.checkFence();
 	}
 
 	@Override
 	public void waitIdle()
 	{
-		submission.waitIdle();
-		checkFence();
+		executionRecorder.waitIdle();
 	}
 
 	@Override
 	public IFenceView play()
 	{
-		config.lockAllocation();
-		return submission.submit();
+		return executionRecorder.play().fence();
 	}
 }

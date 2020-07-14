@@ -1,34 +1,63 @@
 package org.sheepy.lily.vulkan.process.execution;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
+import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
+import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
+import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
+import org.sheepy.lily.vulkan.process.execution.util.Submission;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
+import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
+
 public final class GenericExecutionRecorder
 {
+	private static final String FAILED_SUBMIT = "Failed to submit command buffer";
+
 	private final AbstractCommandBuffer commandBuffer;
-	private final Submission submission;
+	private final ProcessContext context;
+	private final IAllocationState allocationState;
 	private final int index;
 	private final int indexCount;
+	private final FenceManager fences;
 	private final Consumer<RecordContext> doRecord;
 
+	private Submission submission;
+
 	public GenericExecutionRecorder(AbstractCommandBuffer commandBuffer,
-									Submission submission,
+									ProcessContext context,
+									IAllocationState allocationState,
 									int index,
 									int indexCount,
+									int fenceCount,
 									Consumer<RecordContext> doRecord)
 	{
 		this.commandBuffer = commandBuffer;
-		this.submission = submission;
+		this.context = context;
+		this.allocationState = allocationState;
 		this.index = index;
 		this.indexCount = indexCount;
 		this.doRecord = doRecord;
+		this.fences = new FenceManager(fenceCount, context.getVkDevice());
+	}
+
+	public void loadSubmit(Collection<WaitData> waitSemaphores, Collection<VkSemaphore> signalSemaphores)
+	{
+		if (submission != null) submission.free();
+
+		this.submission = new Submission(commandBuffer.getVkCommandBuffer(), waitSemaphores, signalSemaphores);
 	}
 
 	public void record(List<ECommandStage> stages)
@@ -54,6 +83,59 @@ public final class GenericExecutionRecorder
 			e.printStackTrace();
 		}
 
-		if (listeners.isEmpty() == false) submission.setNextExecutionListeners(listeners);
+		if (listeners.isEmpty() == false) fences.setNextExecutionListeners(listeners);
+	}
+
+	public SubmitResult play()
+	{
+		allocationState.lockAllocation();
+
+		final var queue = context.getQueue().vkQueue;
+		final var fence = fences.next();
+		fence.notify(EExecutionStatus.Started, false);
+		final var res = submission.submit(queue, fence.fence.getPtr());
+
+		Logger.check(res, FAILED_SUBMIT, true);
+
+		if (res != VK_SUCCESS)
+		{
+			fence.notify(EExecutionStatus.Canceled, true);
+
+			if (DebugUtil.DEBUG_ENABLED)
+			{
+				final var status = EVulkanErrorStatus.resolveFromCode(res);
+				final String message = status != null ? status.message : "Unknown Error";
+				System.err.println("[Submit] " + message);
+			}
+		}
+
+		return new SubmitResult(fence.fence, res);
+	}
+
+	public boolean checkFence()
+	{
+		final boolean fenceIsUnlocked = fences.check();
+		if (fenceIsUnlocked && allocationState.isLocked())
+		{
+			allocationState.unlockAllocation();
+		}
+		assert !allocationState.isLocked() == fenceIsUnlocked;
+		return fenceIsUnlocked;
+	}
+
+	public void free()
+	{
+		fences.free();
+		submission.free();
+	}
+
+	public void waitIdle()
+	{
+		fences.waitIdle();
+		checkFence();
+	}
+
+	public static record SubmitResult(IFenceView fence, int result)
+	{
 	}
 }

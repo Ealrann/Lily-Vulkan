@@ -16,7 +16,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.GenericExecutionRecorder;
-import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
@@ -29,8 +28,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.vulkan.VK10.VK_SUBPASS_CONTENTS_INLINE;
-import static org.lwjgl.vulkan.VK10.vkCmdNextSubpass;
+import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = GraphicExecutionRecorder.class)
 @Allocation(context = ProcessContext.class, reuseDirtyAllocations = true)
@@ -47,12 +45,10 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 															  ECommandStage.POST_RENDER);
 
 	private final GraphicCommandBuffer commandBuffer;
-	private final Submission submission;
 	private final GraphicProcess process;
 	private final PresentSubmission presentSubmission;
 	private final VkSemaphore presentSemaphore;
 	private final GenericExecutionRecorder executionRecorder;
-	private final IAllocationState allocationState;
 
 	private List<IRecordableExtender> recordables;
 	private int subpassCount;
@@ -67,7 +63,6 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 											  @InjectDependency(index = 4) FramebufferAllocation framebufferAllocation,
 											  @InjectDependency(index = 5) List<IRecordableExtender> recordables)
 	{
-		this.allocationState = allocationState;
 		final var manager = (GraphicExecutionManager) recorder.eContainer();
 		final var executionManagerAllocation = manager.adapt(GraphicExecutionManagerAllocation.class);
 		final var signals = executionManagerAllocation.getSignals();
@@ -84,28 +79,28 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 		currentSignalSemaphores.addAll(signals);
 		currentSignalSemaphores.add(presentSemaphore);
 		final var presentQueue = surfaceAllocation.getPresentQueue().vkQueue;
-		this.submission = new Submission(commandBuffer.getVkCommandBuffer(),
-										 context,
-										 waitForEmitters,
-										 currentSignalSemaphores,
-										 1);
+
 		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),
 													   presentQueue,
 													   index,
 													   presentSemaphore);
 		countSubpasses();
 		executionRecorder = new GenericExecutionRecorder(commandBuffer,
-														 submission,
+														 context,
+														 allocationState,
 														 index,
 														 indexCount,
+														 1,
 														 this::recordCommand);
+
+		executionRecorder.loadSubmit(waitForEmitters, currentSignalSemaphores);
 	}
 
 	@Free
 	public void free(ExecutionContext context)
 	{
+		executionRecorder.free();
 		commandBuffer.free(context);
-		submission.free();
 		presentSemaphore.free(context.getVkDevice());
 		presentSubmission.free();
 	}
@@ -156,10 +151,12 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 	@Override
 	public IFenceView play()
 	{
-		allocationState.lockAllocation();
-		final var res = submission.submit();
-		presentSubmission.submit();
-		return res;
+		final var res = executionRecorder.play();
+		if (res.result() == VK_SUCCESS)
+		{
+			presentSubmission.submit();
+		}
+		return res.fence();
 	}
 
 	private void countSubpasses()
@@ -179,19 +176,12 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionPlaye
 	@Override
 	public boolean checkFence()
 	{
-		final boolean fenceIsUnlocked = submission.checkFence();
-		if (fenceIsUnlocked && allocationState.isLocked())
-		{
-			allocationState.unlockAllocation();
-		}
-		assert !allocationState.isLocked() == fenceIsUnlocked;
-		return fenceIsUnlocked;
+		return executionRecorder.checkFence();
 	}
 
 	@Override
 	public void waitIdle()
 	{
-		submission.waitIdle();
-		checkFence();
+		executionRecorder.waitIdle();
 	}
 }
