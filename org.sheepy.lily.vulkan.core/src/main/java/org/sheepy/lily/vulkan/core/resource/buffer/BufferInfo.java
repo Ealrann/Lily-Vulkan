@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
+import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
 
 public class BufferInfo
 {
@@ -29,9 +30,8 @@ public class BufferInfo
 
 	public void computeAlignment(PhysicalDevice device)
 	{
-		final double alignment = device.getBufferAlignement(usage, coherent);
-		final int chunks = (int) Math.ceil(size / alignment);
-		instanceSize = (long) (chunks * alignment);
+		final long alignment = device.getBufferAlignement(usage, coherent);
+		instanceSize = AlignmentUtil.align(size, alignment);
 		totalSize = instanceSize * instanceCount;
 	}
 

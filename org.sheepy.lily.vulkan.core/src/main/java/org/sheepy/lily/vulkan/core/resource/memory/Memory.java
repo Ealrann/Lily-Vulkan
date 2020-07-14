@@ -12,15 +12,4 @@ public final record Memory(long ptr)
 		vkFreeMemory(context.getVkDevice(), ptr, null);
 	}
 
-	public final static class MemoryConsumer
-	{
-		public final long size;
-		public final MemoryAllocationCallback callBack;
-
-		public MemoryConsumer(long size, MemoryAllocationCallback callBack)
-		{
-			this.size = size;
-			this.callBack = callBack;
-		}
-	}
 }

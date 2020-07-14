@@ -9,11 +9,13 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
+import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.IBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.VkBufferAllocator;
+import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.IBufferObject;
@@ -48,7 +50,7 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		this.bufferMemory = bufferMemory;
 		this.context = context;
 
-		chunkInfo = new ChunkInfo(buildAlignmentData(bufferMemory));
+		chunkInfo = new ChunkInfo(buildAlignmentData(context.getPhysicalDevice(), bufferMemory));
 		bufferBackend = createBufferBackend(chunkInfo.size, chunkInfo.usage);
 
 		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
@@ -79,12 +81,12 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 											   .mapToLong(IBufferAllocation::getBindSize)
 											   .sum() : 0;
 
-		final var stream = IntStream.range(0, buffers.size())
+		final var dataStream = IntStream.range(0, buffers.size())
 									.mapToObj(this::newBufferData)
 									.filter(data -> force || data.bufferAllocation.needPush())
 									.map(data -> data.buildFillCommand(bufferPtr));
 
-		return new PushData(stream, size);
+		return new PushData(dataStream, size);
 	}
 
 	private BufferData newBufferData(int index)
@@ -115,16 +117,23 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		return bufferBackend.getAddress();
 	}
 
-	private static List<AlignmentData> buildAlignmentData(final BufferMemory bufferMemory)
+	private static List<AlignmentData> buildAlignmentData(final PhysicalDevice physicalDevice,
+														  final BufferMemory bufferMemory)
 	{
-		int position = 0;
+		long position = 0;
 		final List<AlignmentData> tmpData = new ArrayList<>();
 		for (final var buffer : bufferMemory.getBuffers())
 		{
 			final var sizeAdapter = buffer.adaptNotNull(IBufferObjectAdapter.class);
 			final long size = sizeAdapter.getSize(buffer);
-			tmpData.add(new AlignmentData(position, size, sizeAdapter.getUsage(buffer)));
-			position += size;
+			final int usage = sizeAdapter.getUsage(buffer);
+
+			final long alignment = physicalDevice.getBufferAlignement(usage, true);
+			position = AlignmentUtil.align(position, alignment);
+			final long alignedSize = AlignmentUtil.align(size, alignment);
+
+			tmpData.add(new AlignmentData(position, alignedSize, usage));
+			position += alignedSize;
 		}
 		return List.copyOf(tmpData);
 	}

@@ -20,7 +20,6 @@ import static org.lwjgl.vulkan.VK10.vkCmdCopyBuffer;
 public final class CopyBufferTaskRecorder implements IRecordableExtender
 {
 	private final VkBufferCopy.Buffer copyInfo;
-	private final CopyBufferTask task;
 	private final IBufferAllocation srcBuffer;
 	private final IBufferAllocation dstBuffer;
 	private final long scrPtr;
@@ -30,7 +29,6 @@ public final class CopyBufferTaskRecorder implements IRecordableExtender
 								  @InjectDependency(index = 0) IBufferAllocation srcBuffer,
 								  @InjectDependency(index = 1) IBufferAllocation dstBuffer)
 	{
-		this.task = task;
 		this.srcBuffer = srcBuffer;
 		this.dstBuffer = dstBuffer;
 		copyInfo = VkBufferCopy.calloc(1);

@@ -16,7 +16,6 @@ import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
@@ -34,7 +33,6 @@ public final class MemoryChunkAllocation implements IExtender
 	private final DeviceBufferFiller bufferPusher;
 	private final boolean useTransfer;
 
-	private final List<Integer> usedInRecords = new ArrayList<>();
 	private boolean needTransfer = false;
 
 	private MemoryChunkAllocation(MemoryChunk memoryChunk,
@@ -116,14 +114,6 @@ public final class MemoryChunkAllocation implements IExtender
 		bufferPusher.fillData(commands.fillCommands(), commands.size());
 	}
 
-	private IMemoryChunkPartAllocation.PushData streamFillCommands(boolean force, boolean computeSize)
-	{
-		return memoryPartAllocations.stream()
-									.map(p -> p.gatherPushData(force, computeSize))
-									.reduce(IMemoryChunkPartAllocation.PushData::merge)
-									.orElseGet(IMemoryChunkPartAllocation.PushData::new);
-	}
-
 	private void recordTransfer(boolean force)
 	{
 		final var commands = streamFillCommands(force, false);
@@ -134,6 +124,14 @@ public final class MemoryChunkAllocation implements IExtender
 		{
 			logTransferError();
 		}
+	}
+
+	private IMemoryChunkPartAllocation.PushData streamFillCommands(boolean force, boolean computeSize)
+	{
+		return memoryPartAllocations.stream()
+									.map(p -> p.gatherPushData(force, computeSize))
+									.reduce(IMemoryChunkPartAllocation.PushData::merge)
+									.orElseGet(IMemoryChunkPartAllocation.PushData::new);
 	}
 
 	public void attach(final IRecordContext recordContext)
