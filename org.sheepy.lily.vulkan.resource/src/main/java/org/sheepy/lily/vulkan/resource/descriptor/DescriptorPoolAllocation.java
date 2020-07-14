@@ -5,13 +5,14 @@ import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
+import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
@@ -32,9 +33,13 @@ public final class DescriptorPoolAllocation implements IExtender
 	private final long ptr;
 	private final int poolSize;
 	private final VkDevice vkDevice;
+	private final IAllocationState allocationState;
 
-	public DescriptorPoolAllocation(DescriptorPool descriptorPool, ExecutionContext context)
+	public DescriptorPoolAllocation(DescriptorPool descriptorPool,
+									ExecutionContext context,
+									IAllocationState allocationState)
 	{
+		this.allocationState = allocationState;
 		final var descriptorSets = descriptorPool.getDescriptorSets();
 		vkDevice = context.getVkDevice();
 		final int descriptorSetCount = descriptorSets.size();
@@ -104,9 +109,9 @@ public final class DescriptorPoolAllocation implements IExtender
 		}
 	}
 
-	public void lock(IFenceView fence)
+	public void lock(IRecordContext recordContext)
 	{
-		//TODO
+		recordContext.lockAllocationDuringExecution(allocationState);
 	}
 
 	@Free

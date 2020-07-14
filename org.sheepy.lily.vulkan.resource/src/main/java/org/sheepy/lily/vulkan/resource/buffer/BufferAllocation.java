@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -24,10 +25,12 @@ public final class BufferAllocation implements IBufferAllocation
 {
 	private final IBufferBackend bufferBackend;
 	private final ExecutionContext executionManager;
+	private final IAllocationState allocationState;
 
-	public BufferAllocation(Buffer buffer, ExecutionContext context)
+	public BufferAllocation(Buffer buffer, ExecutionContext context, IAllocationState allocationState)
 	{
 		executionManager = context;
+		this.allocationState = allocationState;
 		final var info = createInfo(buffer);
 		if (!buffer.isHostVisible())
 		{
@@ -61,7 +64,7 @@ public final class BufferAllocation implements IBufferAllocation
 	@Override
 	public void attach(final IRecordContext recordContext)
 	{
-		//TODO
+		recordContext.lockAllocationDuringExecution(allocationState);
 	}
 
 	@Free

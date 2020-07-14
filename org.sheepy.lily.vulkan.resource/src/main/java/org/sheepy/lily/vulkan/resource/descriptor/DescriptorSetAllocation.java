@@ -28,6 +28,7 @@ import static org.lwjgl.vulkan.VK10.vkAllocateDescriptorSets;
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(features = VulkanResourcePackage.DESCRIPTOR_SET__DESCRIPTORS, type = IDescriptorAllocation.class)
 @AllocationDependency(type = IDescriptorSetLayoutAllocation.class)
+@AllocationDependency(parent = DescriptorPool.class, type = DescriptorPoolAllocation.class)
 public class DescriptorSetAllocation implements IDescriptorSetAllocation
 {
 	private static final String FAILED_TO_ALLOCATE_DESCRIPTOR_SET = "Failed to allocate descriptor set";
@@ -37,14 +38,16 @@ public class DescriptorSetAllocation implements IDescriptorSetAllocation
 	private final VkDevice device;
 
 	private final List<IDescriptorAllocation> allocations;
+	private final DescriptorPoolAllocation descriptorPool;
 
 	public DescriptorSetAllocation(final DescriptorSet descriptorSet,
 								   final ExecutionContext context,
 								   final @InjectDependency(index = 0) List<IDescriptorAllocation> descriptorAllocations,
-								   final @InjectDependency(index = 1) IDescriptorSetLayoutAllocation layoutAllocation)
+								   final @InjectDependency(index = 1) IDescriptorSetLayoutAllocation layoutAllocation,
+								   final @InjectDependency(index = 2) DescriptorPoolAllocation descriptorPool)
 	{
-		final var descriptorPool = (DescriptorPool) descriptorSet.eContainer();
-		final var descriptorPoolPtr = descriptorPool.adapt(DescriptorPoolAllocation.class).getPtr();
+		this.descriptorPool = descriptorPool;
+		final var descriptorPoolPtr = descriptorPool.getPtr();
 
 		final var stack = context.stack();
 		device = context.getVkDevice();
@@ -60,6 +63,7 @@ public class DescriptorSetAllocation implements IDescriptorSetAllocation
 		{
 			allocation.attach(recordContext);
 		}
+		descriptorPool.lock(recordContext);
 	}
 
 	public void updateDescriptorSet(VkWriteDescriptorSet.Buffer descriptorWrites, MemoryStack stack)
