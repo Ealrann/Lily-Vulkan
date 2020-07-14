@@ -12,7 +12,6 @@ import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -44,11 +43,6 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 	private void free()
 	{
 		context.free(vulkanContext);
-	}
-
-	private IExecutionRecorders getRecorders()
-	{
-		return getProcessExecutionManager().adapt(IExecutionRecorders.class);
 	}
 
 	@Override
@@ -93,7 +87,7 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 
 	private IExecutionPlayer acquireNextPlayer()
 	{
-		final var recorders = getProcessExecutionManager().adapt(IExecutionRecorders.class);
+		final var recorders = process.getExecutionManager().adapt(IExecutionRecorders.class);
 		return recorders.acquire();
 	}
 
@@ -123,6 +117,4 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 	{
 		return context.getQueue().isShared() == false;
 	}
-
-	protected abstract ProcessExecutionManager getProcessExecutionManager();
 }

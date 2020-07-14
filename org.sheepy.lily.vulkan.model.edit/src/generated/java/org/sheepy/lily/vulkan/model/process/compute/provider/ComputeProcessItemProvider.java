@@ -96,7 +96,6 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__CONFIGURATION);
-			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__EXECUTION_MANAGER);
 		}
 		return childrenFeatures;
 	}
@@ -158,7 +157,6 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 		{
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
-			case ComputePackage.COMPUTE_PROCESS__EXECUTION_MANAGER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -186,11 +184,6 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 			(createChildParameter
 				(ComputePackage.Literals.COMPUTE_PROCESS__CONFIGURATION,
 				 ComputeFactory.eINSTANCE.createComputeConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ComputePackage.Literals.COMPUTE_PROCESS__EXECUTION_MANAGER,
-				 ComputeFactory.eINSTANCE.createComputeExecutionManager()));
 	}
 
 	/**

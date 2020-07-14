@@ -7,7 +7,6 @@ import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAllocation;
@@ -25,11 +24,5 @@ public class ComputeProcessAllocation extends AbstractProcessAllocation
 	public ComputeProcessAllocation(ComputeProcess process, IVulkanContext context)
 	{
 		super(process, context);
-	}
-
-	@Override
-	protected ComputeExecutionManager getProcessExecutionManager()
-	{
-		return ((ComputeProcess) process).getExecutionManager();
 	}
 }

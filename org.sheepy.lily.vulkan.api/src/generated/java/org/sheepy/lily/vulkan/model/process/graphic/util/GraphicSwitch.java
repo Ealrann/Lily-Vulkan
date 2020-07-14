@@ -15,7 +15,6 @@ import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 
@@ -268,7 +267,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseIProcess(graphicProcess);
 				if (result == null) result = caseIResourceContainer(graphicProcess);
 				if (result == null) result = caseLNamedElement(graphicProcess);
-				if (result == null) result = caseIExecutionManager(graphicProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1130,22 +1128,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIResourceContainer(IResourceContainer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIExecutionManager(IExecutionManager object)
 	{
 		return null;
 	}

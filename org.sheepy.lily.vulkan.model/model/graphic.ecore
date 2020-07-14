@@ -170,8 +170,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="GraphicProcess">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
         eType="#//GraphicConfiguration" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="executionManager" lowerBound="1"
-        eType="#//GraphicExecutionManager" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentPkg" lowerBound="1"
         eType="#//AttachmentPkg" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subpasses" upperBound="-1"

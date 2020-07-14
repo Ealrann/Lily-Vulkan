@@ -176,15 +176,6 @@ public interface VulkanResourceFactory extends EFactory
 	Sampler createSampler();
 
 	/**
-	 * Returns a new object of class '<em>Semaphore</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Semaphore</em>'.
-	 * @generated
-	 */
-	Semaphore createSemaphore();
-
-	/**
 	 * Returns a new object of class '<em>Buffer Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

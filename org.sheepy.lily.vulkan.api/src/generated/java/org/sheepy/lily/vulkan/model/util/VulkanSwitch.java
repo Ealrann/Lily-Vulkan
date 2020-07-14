@@ -81,7 +81,6 @@ public class VulkanSwitch<T> extends Switch<T>
 				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
 				T result = caseVulkanEngine(vulkanEngine);
 				if (result == null) result = caseIEngine(vulkanEngine);
-				if (result == null) result = caseIExecutionManager(vulkanEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -98,14 +97,6 @@ public class VulkanSwitch<T> extends Switch<T>
 				T result = caseIProcess(iProcess);
 				if (result == null) result = caseIResourceContainer(iProcess);
 				if (result == null) result = caseLNamedElement(iProcess);
-				if (result == null) result = caseIExecutionManager(iProcess);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.IEXECUTION_MANAGER:
-			{
-				IExecutionManager iExecutionManager = (IExecutionManager)theEObject;
-				T result = caseIExecutionManager(iExecutionManager);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -197,22 +188,6 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIProcess(IProcess object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIExecutionManager(IExecutionManager object)
 	{
 		return null;
 	}

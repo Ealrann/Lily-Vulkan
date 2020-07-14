@@ -2,19 +2,12 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.core.model.application.ICadence;
 import org.sheepy.lily.core.model.resource.ResourcePkg;
@@ -22,12 +15,11 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
-import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
-import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,9 +38,8 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorPool <em>Descriptor Pool</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSignals <em>Signals</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getWaitFor <em>Wait For</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getExtensionPkg <em>Extension Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getExecutionManager <em>Execution Manager</em>}</li>
  * </ul>
  *
  * @generated
@@ -196,26 +187,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	protected boolean resetAllowed = RESET_ALLOWED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSignals() <em>Signals</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSignals()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Semaphore> signals;
-
-	/**
-	 * The cached value of the '{@link #getWaitFor() <em>Wait For</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWaitFor()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Semaphore> waitFor;
-
-	/**
 	 * The cached value of the '{@link #getExtensionPkg() <em>Extension Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -224,6 +195,16 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @ordered
 	 */
 	protected ProcessExtensionPkg extensionPkg;
+
+	/**
+	 * The cached value of the '{@link #getExecutionManager() <em>Execution Manager</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExecutionManager()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProcessExecutionManager executionManager;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -527,36 +508,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public EList<Semaphore> getSignals()
-	{
-		if (signals == null)
-		{
-			signals = new EObjectResolvingEList<Semaphore>(Semaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__SIGNALS);
-		}
-		return signals;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Semaphore> getWaitFor()
-	{
-		if (waitFor == null)
-		{
-			waitFor = new EObjectResolvingEList<Semaphore>(Semaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR);
-		}
-		return waitFor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ProcessExtensionPkg getExtensionPkg()
 	{
 		return extensionPkg;
@@ -599,6 +550,56 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG, newExtensionPkg, newExtensionPkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ProcessExecutionManager getExecutionManager()
+	{
+		return executionManager;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExecutionManager(ProcessExecutionManager newExecutionManager, NotificationChain msgs)
+	{
+		ProcessExecutionManager oldExecutionManager = executionManager;
+		executionManager = newExecutionManager;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER, oldExecutionManager, newExecutionManager);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setExecutionManager(ProcessExecutionManager newExecutionManager)
+	{
+		if (newExecutionManager != executionManager)
+		{
+			NotificationChain msgs = null;
+			if (executionManager != null)
+				msgs = ((InternalEObject)executionManager).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER, null, msgs);
+			if (newExecutionManager != null)
+				msgs = ((InternalEObject)newExecutionManager).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER, null, msgs);
+			msgs = basicSetExecutionManager(newExecutionManager, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER, newExecutionManager, newExecutionManager));
 	}
 
 	/**
@@ -671,6 +672,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return basicSetDescriptorPool(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				return basicSetExtensionPkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER:
+				return basicSetExecutionManager(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -703,12 +706,10 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return isWaitingFenceDuringAcquire();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return isResetAllowed();
-			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
-				return getSignals();
-			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
-				return getWaitFor();
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				return getExtensionPkg();
+			case ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER:
+				return getExecutionManager();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -751,16 +752,11 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed((Boolean)newValue);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
-				getSignals().clear();
-				getSignals().addAll((Collection<? extends Semaphore>)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
-				getWaitFor().clear();
-				getWaitFor().addAll((Collection<? extends Semaphore>)newValue);
-				return;
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				setExtensionPkg((ProcessExtensionPkg)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER:
+				setExecutionManager((ProcessExecutionManager)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -803,14 +799,11 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed(RESET_ALLOWED_EDEFAULT);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
-				getSignals().clear();
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
-				getWaitFor().clear();
-				return;
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				setExtensionPkg((ProcessExtensionPkg)null);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER:
+				setExecutionManager((ProcessExecutionManager)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -844,12 +837,10 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return resetAllowed != RESET_ALLOWED_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
-				return signals != null && !signals.isEmpty();
-			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR:
-				return waitFor != null && !waitFor.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
 				return extensionPkg != null;
+			case ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER:
+				return executionManager != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -870,13 +861,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 				default: return -1;
 			}
 		}
-		if (baseClass == IExecutionManager.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -893,13 +877,6 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 			switch (baseFeatureID)
 			{
 				case TypesPackage.LNAMED_ELEMENT__NAME: return ProcessPackage.ABSTRACT_PROCESS__NAME;
-				default: return -1;
-			}
-		}
-		if (baseClass == IExecutionManager.class)
-		{
-			switch (baseFeatureID)
-			{
 				default: return -1;
 			}
 		}

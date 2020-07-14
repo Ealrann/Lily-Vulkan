@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,7 +19,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager} object.
@@ -59,8 +65,80 @@ public class ProcessExecutionManagerItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addWaitForExecutionPropertyDescriptor(object);
+			addWaitedByPropertyDescriptor(object);
+			addWaitStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Wait For Execution feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWaitForExecutionPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProcessExecutionManager_waitForExecution_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProcessExecutionManager_waitForExecution_feature", "_UI_ProcessExecutionManager_type"),
+				 ProcessPackage.Literals.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Waited By feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWaitedByPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProcessExecutionManager_waitedBy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProcessExecutionManager_waitedBy_feature", "_UI_ProcessExecutionManager_type"),
+				 ProcessPackage.Literals.PROCESS_EXECUTION_MANAGER__WAITED_BY,
+				 false,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Wait Stage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWaitStagePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProcessExecutionManager_waitStage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProcessExecutionManager_waitStage_feature", "_UI_ProcessExecutionManager_type"),
+				 ProcessPackage.Literals.PROCESS_EXECUTION_MANAGER__WAIT_STAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -84,7 +162,11 @@ public class ProcessExecutionManagerItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_ProcessExecutionManager_type");
+		EPipelineStage labelValue = ((ProcessExecutionManager)object).getWaitStage();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ProcessExecutionManager_type") :
+			getString("_UI_ProcessExecutionManager_type") + " " + label;
 	}
 
 
@@ -99,6 +181,13 @@ public class ProcessExecutionManagerItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ProcessExecutionManager.class))
+		{
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.provider.ProcessExecutionManagerItemProvider;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager} object.
@@ -108,7 +109,11 @@ public class GraphicExecutionManagerItemProvider extends ProcessExecutionManager
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_GraphicExecutionManager_type");
+		EPipelineStage labelValue = ((GraphicExecutionManager)object).getWaitStage();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_GraphicExecutionManager_type") :
+			getString("_UI_GraphicExecutionManager_type") + " " + label;
 	}
 
 

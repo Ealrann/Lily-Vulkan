@@ -1255,7 +1255,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getGraphicProcess_ExecutionManager()
+	public EReference getGraphicProcess_AttachmentPkg()
 	{
 		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(1);
 	}
@@ -1266,20 +1266,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getGraphicProcess_AttachmentPkg()
-	{
-		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getGraphicProcess_Subpasses()
 	{
-		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(3);
+		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2141,7 +2130,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		graphicProcessEClass = createEClass(GRAPHIC_PROCESS);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__CONFIGURATION);
-		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__EXECUTION_MANAGER);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__ATTACHMENT_PKG);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__SUBPASSES);
 
@@ -2405,7 +2393,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(graphicProcessEClass, GraphicProcess.class, "GraphicProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphicProcess_Configuration(), this.getGraphicConfiguration(), null, "configuration", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicProcess_ExecutionManager(), this.getGraphicExecutionManager(), null, "executionManager", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicProcess_AttachmentPkg(), this.getAttachmentPkg(), null, "attachmentPkg", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicProcess_Subpasses(), this.getSubpass(), null, "subpasses", null, 0, -1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

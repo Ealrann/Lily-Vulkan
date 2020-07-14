@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 
@@ -87,7 +85,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseIProcess(abstractProcess);
 				if (result == null) result = caseIResourceContainer(abstractProcess);
 				if (result == null) result = caseLNamedElement(abstractProcess);
-				if (result == null) result = caseIExecutionManager(abstractProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -704,22 +701,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseLNamedElement(LNamedElement object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIExecutionManager(IExecutionManager object)
 	{
 		return null;
 	}

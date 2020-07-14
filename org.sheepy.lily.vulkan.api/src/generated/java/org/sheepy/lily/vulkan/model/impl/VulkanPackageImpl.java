@@ -21,7 +21,6 @@ import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.MouseLocation;
@@ -74,13 +73,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass iProcessEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iExecutionManagerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -357,17 +349,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIExecutionManager()
-	{
-		return iExecutionManagerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getRunProcess()
 	{
 		return runProcessEClass;
@@ -529,8 +510,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEAttribute(iProcessEClass, IPROCESS__QUEUE_PRIORITY);
 		createEReference(iProcessEClass, IPROCESS__CADENCE);
 
-		iExecutionManagerEClass = createEClass(IEXECUTION_MANAGER);
-
 		runProcessEClass = createEClass(RUN_PROCESS);
 		createEReference(runProcessEClass, RUN_PROCESS__PROCESS);
 
@@ -586,10 +565,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		// Add supertypes to classes
 		vulkanEngineEClass.getESuperTypes().add(theApplicationPackage.getIEngine());
-		vulkanEngineEClass.getESuperTypes().add(this.getIExecutionManager());
 		iProcessEClass.getESuperTypes().add(this.getIResourceContainer());
 		iProcessEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		iProcessEClass.getESuperTypes().add(this.getIExecutionManager());
 		runProcessEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
 		waitProcessIdleEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
 		iDescriptorEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
@@ -610,8 +587,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getIProcess_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIProcess_QueuePriority(), ecorePackage.getEFloat(), "queuePriority", "1.0", 1, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIProcess_Cadence(), theApplicationPackage.getICadence(), null, "cadence", null, 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(runProcessEClass, RunProcess.class, "RunProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRunProcess_Process(), this.getIProcess(), null, "process", null, 1, 1, RunProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -23,7 +23,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IProcess extends IResourceContainer, LNamedElement, IExecutionManager
+public interface IProcess extends IResourceContainer, LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.

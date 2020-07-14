@@ -7,8 +7,6 @@ module org.sheepy.lily.vulkan.resource {
 	requires transitive org.lwjgl.stb;
 	requires org.lwjgl.stb.natives;
 
-	exports org.sheepy.lily.vulkan.resource.semaphore;
-
 	opens org.sheepy.lily.vulkan.resource.buffer;
 	opens org.sheepy.lily.vulkan.resource.buffer.transfer;
 	opens org.sheepy.lily.vulkan.resource.buffer.reference;
@@ -17,7 +15,6 @@ module org.sheepy.lily.vulkan.resource {
 	opens org.sheepy.lily.vulkan.resource.font;
 	opens org.sheepy.lily.vulkan.resource.image;
 	opens org.sheepy.lily.vulkan.resource.memorychunk;
-	opens org.sheepy.lily.vulkan.resource.semaphore;
 	opens org.sheepy.lily.vulkan.resource.shader;
 
 	provides IExtenderProvider with Extenders;

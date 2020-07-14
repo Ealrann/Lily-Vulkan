@@ -17,7 +17,6 @@ import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 
@@ -315,11 +314,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIResourceContainer(IResourceContainer object)
 			{
 				return createIResourceContainerAdapter();
-			}
-			@Override
-			public Adapter caseIExecutionManager(IExecutionManager object)
-			{
-				return createIExecutionManagerAdapter();
 			}
 			@Override
 			public Adapter caseIProcess(IProcess object)
@@ -1058,21 +1052,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIResourceContainerAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.IExecutionManager
-	 * @generated
-	 */
-	public Adapter createIExecutionManagerAdapter()
 	{
 		return null;
 	}

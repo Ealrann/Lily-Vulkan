@@ -154,31 +154,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Signals</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS__SIGNALS = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Wait For</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS__WAIT_FOR = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__EXTENSION_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+	int ABSTRACT_PROCESS__EXTENSION_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Execution Manager</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__EXECUTION_MANAGER = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
@@ -187,7 +178,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 6;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Abstract Process</em>' class.
@@ -1417,13 +1408,40 @@ public interface ProcessPackage extends EPackage
 	int PROCESS_EXECUTION_MANAGER = 21;
 
 	/**
+	 * The feature id for the '<em><b>Wait For Execution</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Waited By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXECUTION_MANAGER__WAITED_BY = 1;
+
+	/**
+	 * The feature id for the '<em><b>Wait Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXECUTION_MANAGER__WAIT_STAGE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Execution Manager</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_EXECUTION_MANAGER_FEATURE_COUNT = 0;
+	int PROCESS_EXECUTION_MANAGER_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Execution Manager</em>' class.
@@ -1570,28 +1588,6 @@ public interface ProcessPackage extends EPackage
 	EAttribute getAbstractProcess_ResetAllowed();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals <em>Signals</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Signals</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals()
-	 * @see #getAbstractProcess()
-	 * @generated
-	 */
-	EReference getAbstractProcess_Signals();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getWaitFor <em>Wait For</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Wait For</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getWaitFor()
-	 * @see #getAbstractProcess()
-	 * @generated
-	 */
-	EReference getAbstractProcess_WaitFor();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getExtensionPkg <em>Extension Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1601,6 +1597,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractProcess_ExtensionPkg();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getExecutionManager <em>Execution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Execution Manager</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getExecutionManager()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_ExecutionManager();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg <em>Pipeline Pkg</em>}'.
@@ -2209,6 +2216,39 @@ public interface ProcessPackage extends EPackage
 	EClass getProcessExecutionManager();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitForExecution <em>Wait For Execution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Wait For Execution</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitForExecution()
+	 * @see #getProcessExecutionManager()
+	 * @generated
+	 */
+	EReference getProcessExecutionManager_WaitForExecution();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitedBy <em>Waited By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Waited By</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitedBy()
+	 * @see #getProcessExecutionManager()
+	 * @generated
+	 */
+	EReference getProcessExecutionManager_WaitedBy();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitStage <em>Wait Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Wait Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitStage()
+	 * @see #getProcessExecutionManager()
+	 * @generated
+	 */
+	EAttribute getProcessExecutionManager_WaitStage();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2309,28 +2349,20 @@ public interface ProcessPackage extends EPackage
 		EAttribute ABSTRACT_PROCESS__RESET_ALLOWED = eINSTANCE.getAbstractProcess_ResetAllowed();
 
 		/**
-		 * The meta object literal for the '<em><b>Signals</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS__SIGNALS = eINSTANCE.getAbstractProcess_Signals();
-
-		/**
-		 * The meta object literal for the '<em><b>Wait For</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS__WAIT_FOR = eINSTANCE.getAbstractProcess_WaitFor();
-
-		/**
 		 * The meta object literal for the '<em><b>Extension Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ABSTRACT_PROCESS__EXTENSION_PKG = eINSTANCE.getAbstractProcess_ExtensionPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Execution Manager</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__EXECUTION_MANAGER = eINSTANCE.getAbstractProcess_ExecutionManager();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl <em>Pipeline Pkg</em>}' class.
@@ -2829,6 +2861,30 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EClass PROCESS_EXECUTION_MANAGER = eINSTANCE.getProcessExecutionManager();
+
+		/**
+		 * The meta object literal for the '<em><b>Wait For Execution</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION = eINSTANCE.getProcessExecutionManager_WaitForExecution();
+
+		/**
+		 * The meta object literal for the '<em><b>Waited By</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_EXECUTION_MANAGER__WAITED_BY = eINSTANCE.getProcessExecutionManager_WaitedBy();
+
+		/**
+		 * The meta object literal for the '<em><b>Wait Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROCESS_EXECUTION_MANAGER__WAIT_STAGE = eINSTANCE.getProcessExecutionManager_WaitStage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}' class.

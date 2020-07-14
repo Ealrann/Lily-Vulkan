@@ -158,6 +158,33 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_EXECUTION_MANAGER = 1;
 
 	/**
+	 * The feature id for the '<em><b>Wait For Execution</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_EXECUTION_MANAGER__WAIT_FOR_EXECUTION = ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION;
+
+	/**
+	 * The feature id for the '<em><b>Waited By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_EXECUTION_MANAGER__WAITED_BY = ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY;
+
+	/**
+	 * The feature id for the '<em><b>Wait Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_EXECUTION_MANAGER__WAIT_STAGE = ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE;
+
+	/**
 	 * The feature id for the '<em><b>Recorders</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1544,24 +1571,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED;
 
 	/**
-	 * The feature id for the '<em><b>Signals</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__SIGNALS = ProcessPackage.ABSTRACT_PROCESS__SIGNALS;
-
-	/**
-	 * The feature id for the '<em><b>Wait For</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__WAIT_FOR = ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR;
-
-	/**
 	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1569,6 +1578,15 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHIC_PROCESS__EXTENSION_PKG = ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Execution Manager</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__EXECUTION_MANAGER = ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER;
 
 	/**
 	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
@@ -1589,22 +1607,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Execution Manager</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__EXECUTION_MANAGER = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Attachment Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__ATTACHMENT_PKG = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
+	int GRAPHIC_PROCESS__ATTACHMENT_PKG = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Subpasses</b></em>' containment reference list.
@@ -1613,7 +1622,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__SUBPASSES = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
+	int GRAPHIC_PROCESS__SUBPASSES = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -1622,7 +1631,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 5;
+	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -3747,17 +3756,6 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicProcess_Configuration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getExecutionManager <em>Execution Manager</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Execution Manager</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getExecutionManager()
-	 * @see #getGraphicProcess()
-	 * @generated
-	 */
-	EReference getGraphicProcess_ExecutionManager();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getAttachmentPkg <em>Attachment Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5137,14 +5135,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHIC_PROCESS__CONFIGURATION = eINSTANCE.getGraphicProcess_Configuration();
-
-		/**
-		 * The meta object literal for the '<em><b>Execution Manager</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPHIC_PROCESS__EXECUTION_MANAGER = eINSTANCE.getGraphicProcess_ExecutionManager();
 
 		/**
 		 * The meta object literal for the '<em><b>Attachment Pkg</b></em>' containment reference feature.

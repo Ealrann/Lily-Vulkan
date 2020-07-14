@@ -23,6 +23,7 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.provider.ProcessExecutionManagerItemProvider;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager} object.
@@ -138,8 +139,11 @@ public class ComputeExecutionManagerItemProvider extends ProcessExecutionManager
 	@Override
 	public String getText(Object object)
 	{
-		ComputeExecutionManager computeExecutionManager = (ComputeExecutionManager)object;
-		return getString("_UI_ComputeExecutionManager_type") + " " + computeExecutionManager.getIndexCount();
+		EPipelineStage labelValue = ((ComputeExecutionManager)object).getWaitStage();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ComputeExecutionManager_type") :
+			getString("_UI_ComputeExecutionManager_type") + " " + label;
 	}
 
 

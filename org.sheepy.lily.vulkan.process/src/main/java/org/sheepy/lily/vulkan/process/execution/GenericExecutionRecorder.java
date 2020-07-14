@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.process.execution;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
@@ -16,7 +17,6 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -33,8 +33,10 @@ public final class GenericExecutionRecorder
 	private final int indexCount;
 	private final FenceManager fences;
 	private final Consumer<RecordContext> doRecord;
+	private final VkSemaphore executionSemaphore;
 
-	private Submission submission;
+	private List<WaitData> waitSemaphores;
+	private List<VkSemaphore> signalSemaphores;
 
 	public GenericExecutionRecorder(AbstractCommandBuffer commandBuffer,
 									ProcessContext context,
@@ -51,13 +53,25 @@ public final class GenericExecutionRecorder
 		this.indexCount = indexCount;
 		this.doRecord = doRecord;
 		this.fences = new FenceManager(fenceCount, context.getVkDevice());
+		executionSemaphore = new VkSemaphore(context.getVkDevice());
 	}
 
-	public void loadSubmit(Collection<WaitData> waitSemaphores, Collection<VkSemaphore> signalSemaphores)
+	public void prepare(final List<WaitData> waitSemaphores,
+						List<VkSemaphore> signalSemaphores,
+						boolean signalExecutionSemaphore)
 	{
-		if (submission != null) submission.free();
+		this.waitSemaphores = waitSemaphores;
 
-		this.submission = new Submission(commandBuffer.getVkCommandBuffer(), waitSemaphores, signalSemaphores);
+		if (signalExecutionSemaphore)
+		{
+			this.signalSemaphores = new ArrayList<>(signalSemaphores.size() + 1);
+			this.signalSemaphores.addAll(signalSemaphores);
+			this.signalSemaphores.add(executionSemaphore);
+		}
+		else
+		{
+			this.signalSemaphores = signalSemaphores;
+		}
 	}
 
 	public void record(List<ECommandStage> stages)
@@ -88,28 +102,35 @@ public final class GenericExecutionRecorder
 
 	public SubmitResult play()
 	{
-		allocationState.lockAllocation();
-
-		final var queue = context.getQueue().vkQueue;
-		final var fence = fences.next();
-		fence.notify(EExecutionStatus.Started, false);
-		final var res = submission.submit(queue, fence.fence.getPtr());
-
-		Logger.check(res, FAILED_SUBMIT, true);
-
-		if (res != VK_SUCCESS)
+		try (final var stack = MemoryStack.stackPush())
 		{
-			fence.notify(EExecutionStatus.Canceled, true);
+			final var submission = new Submission(stack,
+												  commandBuffer.getVkCommandBuffer(),
+												  waitSemaphores,
+												  signalSemaphores);
 
-			if (DebugUtil.DEBUG_ENABLED)
+			allocationState.lockAllocation();
+
+			final var queue = context.getQueue().vkQueue;
+			final var fence = fences.next();
+			fence.notify(EExecutionStatus.Started, false);
+			final var res = submission.submit(queue, fence.fence.getPtr());
+
+			Logger.check(res, FAILED_SUBMIT, true);
+
+			if (res != VK_SUCCESS)
 			{
-				final var status = EVulkanErrorStatus.resolveFromCode(res);
-				final String message = status != null ? status.message : "Unknown Error";
-				System.err.println("[Submit] " + message);
-			}
-		}
+				fence.notify(EExecutionStatus.Canceled, true);
 
-		return new SubmitResult(fence.fence, res);
+				if (DebugUtil.DEBUG_ENABLED)
+				{
+					final var status = EVulkanErrorStatus.resolveFromCode(res);
+					final String message = status != null ? status.message : "Unknown Error";
+					System.err.println("[Submit] " + message);
+				}
+			}
+			return new SubmitResult(fence.fence, res);
+		}
 	}
 
 	public boolean checkFence()
@@ -123,16 +144,21 @@ public final class GenericExecutionRecorder
 		return fenceIsUnlocked;
 	}
 
-	public void free()
+	public void free(VkDevice vkDevice)
 	{
 		fences.free();
-		submission.free();
+		executionSemaphore.free(vkDevice);
 	}
 
 	public void waitIdle()
 	{
 		fences.waitIdle();
 		checkFence();
+	}
+
+	public VkSemaphore getSemaphore()
+	{
+		return executionSemaphore;
 	}
 
 	public static record SubmitResult(IFenceView fence, int result)

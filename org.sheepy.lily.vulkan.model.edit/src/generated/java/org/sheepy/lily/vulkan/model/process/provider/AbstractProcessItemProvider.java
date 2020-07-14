@@ -29,6 +29,8 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 
 /**
@@ -69,8 +71,6 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 			addQueuePriorityPropertyDescriptor(object);
 			addWaitingFenceDuringAcquirePropertyDescriptor(object);
 			addResetAllowedPropertyDescriptor(object);
-			addSignalsPropertyDescriptor(object);
-			addWaitForPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -191,52 +191,6 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Signals feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSignalsPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractProcess_signals_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractProcess_signals_feature", "_UI_AbstractProcess_type"),
-				 ProcessPackage.Literals.ABSTRACT_PROCESS__SIGNALS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_SemaphoresPropertyCategory"),
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Wait For feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWaitForPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractProcess_waitFor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractProcess_waitFor_feature", "_UI_AbstractProcess_type"),
-				 ProcessPackage.Literals.ABSTRACT_PROCESS__WAIT_FOR,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_SemaphoresPropertyCategory"),
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -255,6 +209,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 			childrenFeatures.add(VulkanPackage.Literals.IPROCESS__CADENCE);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_POOL);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__EXTENSION_PKG);
+			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__EXECUTION_MANAGER);
 		}
 		return childrenFeatures;
 	}
@@ -314,6 +269,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL:
 			case ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG:
+			case ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -361,6 +317,16 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 			(createChildParameter
 				(ProcessPackage.Literals.ABSTRACT_PROCESS__EXTENSION_PKG,
 				 ProcessFactory.eINSTANCE.createProcessExtensionPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.ABSTRACT_PROCESS__EXECUTION_MANAGER,
+				 ComputeFactory.eINSTANCE.createComputeExecutionManager()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.ABSTRACT_PROCESS__EXECUTION_MANAGER,
+				 GraphicFactory.eINSTANCE.createGraphicExecutionManager()));
 	}
 
 	/**

@@ -149,12 +149,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Sampler" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo ../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" eType="#//Image"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Semaphore" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signalizedAtInit" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitStage" unique="false"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BufferDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" lowerBound="1"
         eType="#//IBuffer"/>

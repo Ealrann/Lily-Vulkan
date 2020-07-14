@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.font.FontImageAllocation;
 import org.sheepy.lily.vulkan.resource.image.*;
 import org.sheepy.lily.vulkan.resource.memorychunk.MemoryChunkAllocation;
-import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAllocation;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAllocation;
 
 import java.util.List;
@@ -32,7 +31,6 @@ public class Extenders implements IExtenderProvider
 					   TransferBufferAllocation.class,
 					   SamplerAllocation.class,
 					   SampledImageAllocation.class,
-					   SemaphoreAllocation.class,
 					   ShaderAllocation.class,
 					   StaticImageAllocation.class,
 					   BufferPartAllocation.class,

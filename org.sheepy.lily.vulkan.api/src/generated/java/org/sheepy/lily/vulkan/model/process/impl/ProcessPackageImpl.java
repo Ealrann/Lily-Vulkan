@@ -392,7 +392,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_Signals()
+	public EReference getAbstractProcess_ExtensionPkg()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(3);
 	}
@@ -403,20 +403,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_WaitFor()
+	public EReference getAbstractProcess_ExecutionManager()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAbstractProcess_ExtensionPkg()
-	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1052,6 +1041,39 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getProcessExecutionManager_WaitForExecution()
+	{
+		return (EReference)processExecutionManagerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getProcessExecutionManager_WaitedBy()
+	{
+		return (EReference)processExecutionManagerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProcessExecutionManager_WaitStage()
+	{
+		return (EAttribute)processExecutionManagerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getExecutionRecorder()
 	{
 		return executionRecorderEClass;
@@ -1125,9 +1147,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_POOL);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SIGNALS);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__WAIT_FOR);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__EXTENSION_PKG);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__EXECUTION_MANAGER);
 
 		pipelinePkgEClass = createEClass(PIPELINE_PKG);
 		createEReference(pipelinePkgEClass, PIPELINE_PKG__PIPELINES);
@@ -1206,6 +1227,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		processConfigurationEClass = createEClass(PROCESS_CONFIGURATION);
 
 		processExecutionManagerEClass = createEClass(PROCESS_EXECUTION_MANAGER);
+		createEReference(processExecutionManagerEClass, PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION);
+		createEReference(processExecutionManagerEClass, PROCESS_EXECUTION_MANAGER__WAITED_BY);
+		createEAttribute(processExecutionManagerEClass, PROCESS_EXECUTION_MANAGER__WAIT_STAGE);
 
 		executionRecorderEClass = createEClass(EXECUTION_RECORDER);
 
@@ -1282,9 +1306,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getAbstractProcess_DescriptorPool(), theVulkanResourcePackage.getDescriptorPool(), null, "descriptorPool", null, 1, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(), ecorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_ResetAllowed(), ecorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_Signals(), theVulkanResourcePackage.getSemaphore(), null, "signals", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_WaitFor(), theVulkanResourcePackage.getSemaphore(), null, "waitFor", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_ExtensionPkg(), this.getProcessExtensionPkg(), null, "extensionPkg", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_ExecutionManager(), this.getProcessExecutionManager(), null, "executionManager", null, 1, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pipelinePkgEClass, PipelinePkg.class, "PipelinePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPipelinePkg_Pipelines(), this.getAbstractPipeline(), null, "pipelines", null, 0, -1, PipelinePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1363,6 +1386,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEClass(processConfigurationEClass, ProcessConfiguration.class, "ProcessConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(processExecutionManagerEClass, ProcessExecutionManager.class, "ProcessExecutionManager", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProcessExecutionManager_WaitForExecution(), this.getProcessExecutionManager(), this.getProcessExecutionManager_WaitedBy(), "waitForExecution", null, 0, -1, ProcessExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessExecutionManager_WaitedBy(), this.getProcessExecutionManager(), this.getProcessExecutionManager_WaitForExecution(), "waitedBy", null, 0, -1, ProcessExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProcessExecutionManager_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1, ProcessExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(executionRecorderEClass, ExecutionRecorder.class, "ExecutionRecorder", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

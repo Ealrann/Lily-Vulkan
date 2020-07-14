@@ -21,7 +21,6 @@ import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -37,7 +36,6 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getMaintainer <em>Maintainer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getExecutionManager <em>Execution Manager</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getAttachmentPkg <em>Attachment Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getSubpasses <em>Subpasses</em>}</li>
  * </ul>
@@ -65,16 +63,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @ordered
 	 */
 	protected GraphicConfiguration configuration;
-
-	/**
-	 * The cached value of the '{@link #getExecutionManager() <em>Execution Manager</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExecutionManager()
-	 * @generated
-	 * @ordered
-	 */
-	protected GraphicExecutionManager executionManager;
 
 	/**
 	 * The cached value of the '{@link #getAttachmentPkg() <em>Attachment Pkg</em>}' containment reference.
@@ -244,56 +232,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public GraphicExecutionManager getExecutionManager()
-	{
-		return executionManager;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetExecutionManager(GraphicExecutionManager newExecutionManager, NotificationChain msgs)
-	{
-		GraphicExecutionManager oldExecutionManager = executionManager;
-		executionManager = newExecutionManager;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER, oldExecutionManager, newExecutionManager);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setExecutionManager(GraphicExecutionManager newExecutionManager)
-	{
-		if (newExecutionManager != executionManager)
-		{
-			NotificationChain msgs = null;
-			if (executionManager != null)
-				msgs = ((InternalEObject)executionManager).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER, null, msgs);
-			if (newExecutionManager != null)
-				msgs = ((InternalEObject)newExecutionManager).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER, null, msgs);
-			msgs = basicSetExecutionManager(newExecutionManager, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER, newExecutionManager, newExecutionManager));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public AttachmentPkg getAttachmentPkg()
 	{
 		return attachmentPkg;
@@ -386,8 +324,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return basicSetMaintainer(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return basicSetConfiguration(null, msgs);
-			case GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER:
-				return basicSetExecutionManager(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				return basicSetAttachmentPkg(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
@@ -411,8 +347,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return basicGetMaintainer();
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return getConfiguration();
-			case GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER:
-				return getExecutionManager();
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				return getAttachmentPkg();
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:
@@ -437,9 +371,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				setConfiguration((GraphicConfiguration)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER:
-				setExecutionManager((GraphicExecutionManager)newValue);
 				return;
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				setAttachmentPkg((AttachmentPkg)newValue);
@@ -468,9 +399,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				setConfiguration((GraphicConfiguration)null);
 				return;
-			case GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER:
-				setExecutionManager((GraphicExecutionManager)null);
-				return;
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				setAttachmentPkg((AttachmentPkg)null);
 				return;
@@ -495,8 +423,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 				return maintainer != null;
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 				return configuration != null;
-			case GraphicPackage.GRAPHIC_PROCESS__EXECUTION_MANAGER:
-				return executionManager != null;
 			case GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG:
 				return attachmentPkg != null;
 			case GraphicPackage.GRAPHIC_PROCESS__SUBPASSES:

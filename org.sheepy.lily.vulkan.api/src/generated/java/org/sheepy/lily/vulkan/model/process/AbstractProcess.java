@@ -2,11 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
-import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +17,8 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorPool <em>Descriptor Pool</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals <em>Signals</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getWaitFor <em>Wait For</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getExtensionPkg <em>Extension Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getExecutionManager <em>Execution Manager</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess()
@@ -99,30 +95,6 @@ public interface AbstractProcess extends IProcess
 	void setResetAllowed(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Signals</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.Semaphore}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Signals</em>' reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_Signals()
-	 * @model
-	 * @generated
-	 */
-	EList<Semaphore> getSignals();
-
-	/**
-	 * Returns the value of the '<em><b>Wait For</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.Semaphore}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Wait For</em>' reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_WaitFor()
-	 * @model
-	 * @generated
-	 */
-	EList<Semaphore> getWaitFor();
-
-	/**
 	 * Returns the value of the '<em><b>Extension Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,5 +115,27 @@ public interface AbstractProcess extends IProcess
 	 * @generated
 	 */
 	void setExtensionPkg(ProcessExtensionPkg value);
+
+	/**
+	 * Returns the value of the '<em><b>Execution Manager</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Execution Manager</em>' containment reference.
+	 * @see #setExecutionManager(ProcessExecutionManager)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_ExecutionManager()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ProcessExecutionManager getExecutionManager();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getExecutionManager <em>Execution Manager</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Execution Manager</em>' containment reference.
+	 * @see #getExecutionManager()
+	 * @generated
+	 */
+	void setExecutionManager(ProcessExecutionManager value);
 
 } // AbstractProcess

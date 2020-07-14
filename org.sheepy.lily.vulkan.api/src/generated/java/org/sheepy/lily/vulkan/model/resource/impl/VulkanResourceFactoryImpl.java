@@ -84,7 +84,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.IMAGE_INLAY: return createImageInlay();
 			case VulkanResourcePackage.SAMPLED_IMAGE: return createSampledImage();
 			case VulkanResourcePackage.SAMPLER: return createSampler();
-			case VulkanResourcePackage.SEMAPHORE: return createSemaphore();
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR: return createBufferDescriptor();
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR: return createImageDescriptor();
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
@@ -348,18 +347,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		SamplerImpl sampler = new SamplerImpl();
 		return sampler;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Semaphore createSemaphore()
-	{
-		SemaphoreImpl semaphore = new SemaphoreImpl();
-		return semaphore;
 	}
 
 	/**

@@ -263,34 +263,6 @@ public interface VulkanPackage extends EPackage
 	int IPROCESS_OPERATION_COUNT = IRESOURCE_CONTAINER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.IExecutionManager
-	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIExecutionManager()
-	 * @generated
-	 */
-	int IEXECUTION_MANAGER = 3;
-
-	/**
-	 * The number of structural features of the '<em>IExecution Manager</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IEXECUTION_MANAGER_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>IExecution Manager</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IEXECUTION_MANAGER_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.RunProcessImpl <em>Run Process</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -298,7 +270,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getRunProcess()
 	 * @generated
 	 */
-	int RUN_PROCESS = 4;
+	int RUN_PROCESS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Process</b></em>' reference.
@@ -335,7 +307,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getWaitProcessIdle()
 	 * @generated
 	 */
-	int WAIT_PROCESS_IDLE = 5;
+	int WAIT_PROCESS_IDLE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Process</b></em>' reference.
@@ -372,7 +344,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getDescriptorPkg()
 	 * @generated
 	 */
-	int DESCRIPTOR_PKG = 6;
+	int DESCRIPTOR_PKG = 5;
 
 	/**
 	 * The feature id for the '<em><b>Descriptors</b></em>' containment reference list.
@@ -409,7 +381,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIDescriptor()
 	 * @generated
 	 */
-	int IDESCRIPTOR = 7;
+	int IDESCRIPTOR = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -464,7 +436,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getMouseLocation()
 	 * @generated
 	 */
-	int MOUSE_LOCATION = 8;
+	int MOUSE_LOCATION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -630,16 +602,6 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EReference getIProcess_Cadence();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IExecution Manager</em>'.
-	 * @see org.sheepy.lily.vulkan.model.IExecutionManager
-	 * @generated
-	 */
-	EClass getIExecutionManager();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.RunProcess <em>Run Process</em>}'.
@@ -882,16 +844,6 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EReference IPROCESS__CADENCE = eINSTANCE.getIProcess_Cadence();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.IExecutionManager
-		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIExecutionManager()
-		 * @generated
-		 */
-		EClass IEXECUTION_MANAGER = eINSTANCE.getIExecutionManager();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.RunProcessImpl <em>Run Process</em>}' class.

@@ -188,11 +188,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createSamplerAdapter();
 			}
 			@Override
-			public Adapter caseSemaphore(Semaphore object)
-			{
-				return createSemaphoreAdapter();
-			}
-			@Override
 			public Adapter caseBufferDescriptor(BufferDescriptor object)
 			{
 				return createBufferDescriptorAdapter();
@@ -635,21 +630,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createSamplerAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Semaphore <em>Semaphore</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Semaphore
-	 * @generated
-	 */
-	public Adapter createSemaphoreAdapter()
 	{
 		return null;
 	}

@@ -84,7 +84,6 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
-import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StaticBuffer;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
@@ -249,13 +248,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass samplerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass semaphoreEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1257,39 +1249,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EClass getSemaphore()
-	{
-		return semaphoreEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getSemaphore_SignalizedAtInit()
-	{
-		return (EAttribute)semaphoreEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getSemaphore_WaitStage()
-	{
-		return (EAttribute)semaphoreEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getBufferDescriptor()
 	{
 		return bufferDescriptorEClass;
@@ -1888,10 +1847,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		samplerEClass = createEClass(SAMPLER);
 		createEReference(samplerEClass, SAMPLER__IMAGE);
 
-		semaphoreEClass = createEClass(SEMAPHORE);
-		createEAttribute(semaphoreEClass, SEMAPHORE__SIGNALIZED_AT_INIT);
-		createEAttribute(semaphoreEClass, SEMAPHORE__WAIT_STAGE);
-
 		bufferDescriptorEClass = createEClass(BUFFER_DESCRIPTOR);
 		createEReference(bufferDescriptorEClass, BUFFER_DESCRIPTOR__BUFFER);
 
@@ -2016,7 +1971,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		sampledImageEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
 		samplerEClass.getESuperTypes().add(theResourcePackage.getIResource());
-		semaphoreEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		bufferDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		imageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		sampledImageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
@@ -2125,10 +2079,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		initEClass(samplerEClass, Sampler.class, "Sampler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSampler_Image(), this.getImage(), null, "image", null, 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(semaphoreEClass, Semaphore.class, "Semaphore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSemaphore_SignalizedAtInit(), ecorePackage.getEBoolean(), "signalizedAtInit", "false", 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferDescriptorEClass, BufferDescriptor.class, "BufferDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferDescriptor_Buffer(), this.getIBuffer(), null, "buffer", null, 1, 1, BufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

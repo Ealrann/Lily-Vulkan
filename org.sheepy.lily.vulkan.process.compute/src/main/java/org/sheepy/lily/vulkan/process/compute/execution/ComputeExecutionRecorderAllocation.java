@@ -2,10 +2,9 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
-import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
+import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
@@ -15,6 +14,8 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.execution.GenericExecutionRecorder;
+import org.sheepy.lily.vulkan.process.execution.IExecutionRecorderAllocation;
+import org.sheepy.lily.vulkan.process.execution.WaitData;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -23,7 +24,7 @@ import java.util.List;
 @ModelExtender(scope = ComputeExecutionRecorder.class)
 @Allocation(context = ProcessContext.class, reuseDirtyAllocations = true)
 @AllocationDependency(parent = ComputeProcess.class, features = {ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IRecordableExtender.class)
-public final class ComputeExecutionRecorderAllocation implements IExecutionPlayer, IExtender
+public final class ComputeExecutionRecorderAllocation implements IExecutionRecorderAllocation
 {
 	private static final List<ECommandStage> stages = List.of(ECommandStage.MAIN);
 
@@ -42,10 +43,7 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 		this.recordables = recordables;
 
 		final var manager = (ComputeExecutionManager) recorder.eContainer();
-		final var managerAllocation = manager.adapt(ComputeExecutionManagerAllocation.class);
 		final int index = recorder.getIndex();
-		final var waitForEmitters = managerAllocation.getWaitForEmitters(index);
-		final var signals = managerAllocation.getSignals(index);
 		final int queuedExecutionCount = manager.getIndexCount() > 1 ? 2 : 1;
 
 		executionRecorder = new GenericExecutionRecorder(commandBuffer,
@@ -55,7 +53,6 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 														 manager.getIndexCount(),
 														 queuedExecutionCount,
 														 this::recordCommand);
-		executionRecorder.loadSubmit(waitForEmitters, signals);
 	}
 
 	@UpdateDependency(index = 0)
@@ -65,8 +62,11 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 		needRecord = true;
 	}
 
-	public void prepare()
+	@Override
+	public void prepare(final List<WaitData> waitSemaphores, boolean signalExecutionSemaphore)
 	{
+		executionRecorder.prepare(waitSemaphores, List.of(), signalExecutionSemaphore);
+
 		if (needRecord)
 		{
 			executionRecorder.record(stages);
@@ -77,7 +77,7 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 	@Free
 	public void free(ExecutionContext context)
 	{
-		executionRecorder.free();
+		executionRecorder.free(context.getVkDevice());
 		commandBuffer.free(context);
 	}
 
@@ -105,5 +105,11 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionPlaye
 	public IFenceView play()
 	{
 		return executionRecorder.play().fence();
+	}
+
+	@Override
+	public VkSemaphore getSemaphore()
+	{
+		return executionRecorder.getSemaphore();
 	}
 }

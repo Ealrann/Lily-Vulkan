@@ -274,15 +274,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.SEMAPHORE:
-			{
-				Semaphore semaphore = (Semaphore)theEObject;
-				T result = caseSemaphore(semaphore);
-				if (result == null) result = caseIResource(semaphore);
-				if (result == null) result = caseLNamedElement(semaphore);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR:
 			{
 				BufferDescriptor bufferDescriptor = (BufferDescriptor)theEObject;
@@ -750,22 +741,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseSampler(Sampler object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Semaphore</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Semaphore</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSemaphore(Semaphore object)
 	{
 		return null;
 	}

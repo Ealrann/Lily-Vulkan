@@ -9,7 +9,6 @@ import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAllocation;
@@ -46,11 +45,5 @@ public final class GraphicProcessAllocation extends AbstractProcessAllocation
 	private void free()
 	{
 		subpassManager.stop(vulkanContext);
-	}
-
-	@Override
-	protected GraphicExecutionManager getProcessExecutionManager()
-	{
-		return ((GraphicProcess) process).getExecutionManager();
 	}
 }

@@ -25,7 +25,7 @@ import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
  * @model
  * @generated
  */
-public interface VulkanEngine extends IEngine, IExecutionManager
+public interface VulkanEngine extends IEngine
 {
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
