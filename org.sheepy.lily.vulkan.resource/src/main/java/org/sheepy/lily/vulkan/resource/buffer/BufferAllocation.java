@@ -97,18 +97,6 @@ public final class BufferAllocation implements IBufferAllocation
 		return bufferBackend.getInstanceSize();
 	}
 
-	@Override
-	public long mapMemory()
-	{
-		return bufferBackend.mapMemory(executionManager.getVkDevice());
-	}
-
-	@Override
-	public void unmapMemory()
-	{
-		bufferBackend.unmapMemory(executionManager.getVkDevice());
-	}
-
 	private static BufferInfo createInfo(Buffer buffer)
 	{
 		final var size = buffer.getSize();

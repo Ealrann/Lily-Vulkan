@@ -81,18 +81,6 @@ public class DataBufferAllocation implements IBufferObjectAllocation
 	}
 
 	@Override
-	public long mapMemory()
-	{
-		throw new AssertionError("Unsupported Operation");
-	}
-
-	@Override
-	public void unmapMemory()
-	{
-		throw new AssertionError("Unsupported Operation");
-	}
-
-	@Override
 	public void flush()
 	{
 		throw new AssertionError("Unsupported Operation");

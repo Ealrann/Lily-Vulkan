@@ -13,9 +13,6 @@ public interface IBufferAllocation extends IExtender
 	long getBindSize();
 	long getBindOffset();
 
-	long mapMemory();
-	void unmapMemory();
-
 	void attach(IRecordContext recordContext);
 
 	/**
