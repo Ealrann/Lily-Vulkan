@@ -28,10 +28,8 @@ public class CompositeTaskRecorder implements IRecordableExtender
 	}
 
 	@Override
-	public void record(RecordContext context)
+	public void record(RecordContext recordContext)
 	{
-		final var recordContext = (RecordContext) context;
-
 		for (int repeat = 0; repeat < task.getRepeatCount(); repeat++)
 		{
 			for (int i = 0; i < children.size(); i++)

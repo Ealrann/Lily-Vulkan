@@ -135,7 +135,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 			{
 				final var subpass = (SubpassRecorder) recordables.get(i);
 				final int subpassIndex = subpass.getSubpassIndex();
-				if (subpassIndex == current)
+				if (stage != ECommandStage.MAIN || subpassIndex == current)
 				{
 					subpass.record(recordContext);
 				}

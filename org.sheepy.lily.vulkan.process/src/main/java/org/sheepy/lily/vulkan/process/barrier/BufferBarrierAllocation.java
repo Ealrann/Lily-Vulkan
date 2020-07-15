@@ -38,7 +38,7 @@ public final class BufferBarrierAllocation implements IBufferBarrierAllocation
 	}
 
 	@Override
-	public void fill(final VkBufferMemoryBarrier.Buffer info,
+	public void fill(final VkBufferMemoryBarrier.Buffer barriers,
 					 final int index,
 					 final int indexCount,
 					 final int srcQueueIndex,
@@ -50,14 +50,15 @@ public final class BufferBarrierAllocation implements IBufferBarrierAllocation
 			final long bindOffset = buffer.getBindOffset();
 			final long bindSize = buffer.getBindSize();
 
-			info.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-			info.buffer(ptr);
-			info.srcAccessMask(srcAccessMask);
-			info.dstAccessMask(dstAccessMask);
-			info.offset(bindOffset);
-			info.size(bindSize);
-			info.srcQueueFamilyIndex(srcQueueIndex);
-			info.dstQueueFamilyIndex(dstQueueIndex);
+			final var barrier = barriers.get();
+			barrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
+			barrier.buffer(ptr);
+			barrier.srcAccessMask(srcAccessMask);
+			barrier.dstAccessMask(dstAccessMask);
+			barrier.offset(bindOffset);
+			barrier.size(bindSize);
+			barrier.srcQueueFamilyIndex(srcQueueIndex);
+			barrier.dstQueueFamilyIndex(dstQueueIndex);
 		}
 	}
 }
