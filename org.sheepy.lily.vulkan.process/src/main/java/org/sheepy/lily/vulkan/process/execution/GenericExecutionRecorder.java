@@ -11,8 +11,8 @@ import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
 import org.sheepy.lily.vulkan.process.execution.util.Submission;
+import org.sheepy.lily.vulkan.process.execution.util.SynchronizationManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -31,12 +31,13 @@ public final class GenericExecutionRecorder
 	private final IAllocationState allocationState;
 	private final int index;
 	private final int indexCount;
-	private final FenceManager fences;
+	private final SynchronizationManager synchronizationManager;
 	private final Consumer<RecordContext> doRecord;
-	private final VkSemaphore executionSemaphore;
 
 	private List<WaitData> waitSemaphores;
 	private List<VkSemaphore> signalSemaphores;
+	private int semaphoreIndex = 0;
+	private SynchronizationManager.SyncUnit currentSyncUnit = null;
 
 	public GenericExecutionRecorder(AbstractCommandBuffer commandBuffer,
 									ProcessContext context,
@@ -52,25 +53,27 @@ public final class GenericExecutionRecorder
 		this.index = index;
 		this.indexCount = indexCount;
 		this.doRecord = doRecord;
-		this.fences = new FenceManager(fenceCount, context.getVkDevice());
-		executionSemaphore = new VkSemaphore(context.getVkDevice());
+		this.synchronizationManager = new SynchronizationManager(fenceCount, context.getVkDevice());
 	}
 
 	public void prepare(final List<WaitData> waitSemaphores,
-						List<VkSemaphore> signalSemaphores,
-						boolean signalExecutionSemaphore)
+						final List<VkSemaphore> signalSemaphores,
+						final int semaphoreCount)
 	{
 		this.waitSemaphores = waitSemaphores;
 
-		if (signalExecutionSemaphore)
+		currentSyncUnit = synchronizationManager.next();
+		currentSyncUnit.prepareSemaphores(context.getVkDevice(), semaphoreCount);
+		final var executionSemaphores = currentSyncUnit.getSemaphores();
+		if (signalSemaphores.isEmpty() == false)
 		{
-			this.signalSemaphores = new ArrayList<>(signalSemaphores.size() + 1);
+			this.signalSemaphores = new ArrayList<>(signalSemaphores.size() + semaphoreCount);
 			this.signalSemaphores.addAll(signalSemaphores);
-			this.signalSemaphores.add(executionSemaphore);
+			this.signalSemaphores.addAll(executionSemaphores);
 		}
 		else
 		{
-			this.signalSemaphores = signalSemaphores;
+			this.signalSemaphores = executionSemaphores;
 		}
 	}
 
@@ -97,30 +100,30 @@ public final class GenericExecutionRecorder
 			e.printStackTrace();
 		}
 
-		if (listeners.isEmpty() == false) fences.setNextExecutionListeners(listeners);
+		if (listeners.isEmpty() == false) synchronizationManager.setNextExecutionListeners(listeners);
 	}
 
 	public SubmitResult play()
 	{
 		try (final var stack = MemoryStack.stackPush())
 		{
+			semaphoreIndex = 0;
 			final var submission = new Submission(stack,
-												  commandBuffer.getVkCommandBuffer(),
+												  List.of(commandBuffer.getVkCommandBuffer()),
 												  waitSemaphores,
 												  signalSemaphores);
 
 			allocationState.lockAllocation();
 
 			final var queue = context.getQueue().vkQueue;
-			final var fence = fences.next();
-			fence.notify(EExecutionStatus.Started, false);
-			final var res = submission.submit(queue, fence.fence.getPtr());
+			currentSyncUnit.notify(EExecutionStatus.Started, false);
+			final var res = submission.submit(queue, currentSyncUnit.fence.getPtr());
 
 			Logger.check(res, FAILED_SUBMIT, true);
 
 			if (res != VK_SUCCESS)
 			{
-				fence.notify(EExecutionStatus.Canceled, true);
+				currentSyncUnit.notify(EExecutionStatus.Canceled, true);
 
 				if (DebugUtil.DEBUG_ENABLED)
 				{
@@ -129,13 +132,13 @@ public final class GenericExecutionRecorder
 					System.err.println("[Submit] " + message);
 				}
 			}
-			return new SubmitResult(fence.fence, res);
+			return new SubmitResult(currentSyncUnit.fence, res);
 		}
 	}
 
 	public boolean checkFence()
 	{
-		final boolean fenceIsUnlocked = fences.check();
+		final boolean fenceIsUnlocked = synchronizationManager.check();
 		if (fenceIsUnlocked && allocationState.isLocked())
 		{
 			allocationState.unlockAllocation();
@@ -146,19 +149,18 @@ public final class GenericExecutionRecorder
 
 	public void free(VkDevice vkDevice)
 	{
-		fences.free();
-		executionSemaphore.free(vkDevice);
+		synchronizationManager.free(vkDevice);
 	}
 
 	public void waitIdle()
 	{
-		fences.waitIdle();
+		synchronizationManager.waitIdle();
 		checkFence();
 	}
 
-	public VkSemaphore getSemaphore()
+	public VkSemaphore borrowSemaphore()
 	{
-		return executionSemaphore;
+		return currentSyncUnit.getSemaphores().get(semaphoreIndex++);
 	}
 
 	public static record SubmitResult(IFenceView fence, int result)

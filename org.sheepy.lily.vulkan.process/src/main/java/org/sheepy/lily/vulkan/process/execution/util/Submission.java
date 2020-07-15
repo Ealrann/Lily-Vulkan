@@ -11,6 +11,7 @@ import org.sheepy.lily.vulkan.process.execution.WaitData;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.Collection;
+import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_SUBMIT_INFO;
 import static org.lwjgl.vulkan.VK10.vkQueueSubmit;
@@ -20,7 +21,7 @@ public final class Submission
 	private final VkSubmitInfo submitInfo;
 
 	public Submission(MemoryStack stack,
-					  VkCommandBuffer commandBuffer,
+					  List<VkCommandBuffer> commandBuffers,
 					  Collection<WaitData> waitSemaphores,
 					  Collection<VkSemaphore> signalSemaphores)
 	{
@@ -44,8 +45,11 @@ public final class Submission
 			waitStages = null;
 		}
 
-		final PointerBuffer pCommandBuffers = stack.mallocPointer(1);
-		pCommandBuffers.put(commandBuffer);
+		final PointerBuffer pCommandBuffers = stack.mallocPointer(commandBuffers.size());
+		for(final var commandBuffer : commandBuffers)
+		{
+			pCommandBuffers.put(commandBuffer);
+		}
 		pCommandBuffers.flip();
 
 		final LongBuffer bSignalSemaphores = stack.mallocLong(signalSemaphores.size());

@@ -13,6 +13,7 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.process.execution.ExecutionManagerAllocation;
+import org.sheepy.lily.vulkan.process.execution.WaitData;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 
 	private ComputeExecutionManagerAllocation(ComputeExecutionManager executionManager, ProcessContext context)
 	{
-		super(executionManager);
+		super(executionManager, context);
 
 		this.executionManager = executionManager;
 		setupRecorders(executionManager);
@@ -75,6 +76,12 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 	protected List<ComputeExecutionRecorderAllocation> getRecorders()
 	{
 		return recorders;
+	}
+
+	@Override
+	protected Stream<WaitData> streamAcquireSemaphores()
+	{
+		return Stream.empty();
 	}
 
 	private static void setupRecorders(ComputeExecutionManager executionManager)

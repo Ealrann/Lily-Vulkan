@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface IExecutionRecorderAllocation extends IExecutionPlayer, IExtender
 {
-	VkSemaphore getSemaphore();
-	void prepare(List<WaitData> waitSemaphores, boolean waited);
+	VkSemaphore borrowSemaphore();
+	void prepare(List<WaitData> waitSemaphores, int executionSemaphoreCount);
 }

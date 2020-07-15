@@ -44,7 +44,7 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 
 		final var manager = (ComputeExecutionManager) recorder.eContainer();
 		final int index = recorder.getIndex();
-		final int queuedExecutionCount = manager.getIndexCount() > 1 ? 2 : 1;
+		final int queuedExecutionCount = manager.getIndexCount() > 1 ? 1 : 2;
 
 		executionRecorder = new GenericExecutionRecorder(commandBuffer,
 														 context,
@@ -63,9 +63,9 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@Override
-	public void prepare(final List<WaitData> waitSemaphores, boolean signalExecutionSemaphore)
+	public void prepare(final List<WaitData> waitSemaphores, int executionSemaphoreCount)
 	{
-		executionRecorder.prepare(waitSemaphores, List.of(), signalExecutionSemaphore);
+		executionRecorder.prepare(waitSemaphores, List.of(), executionSemaphoreCount);
 
 		if (needRecord)
 		{
@@ -108,8 +108,8 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@Override
-	public VkSemaphore getSemaphore()
+	public VkSemaphore borrowSemaphore()
 	{
-		return executionRecorder.getSemaphore();
+		return executionRecorder.borrowSemaphore();
 	}
 }

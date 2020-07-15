@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.execution.util;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
+import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
 import java.util.ArrayList;
@@ -10,36 +11,39 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-public final class FenceManager
+public final class SynchronizationManager
 {
 	private static final String FENCE_TIMEOUT = "Fence timeout";
 	private static final long TIMEOUT = TimeUnit.SECONDS.toNanos(60);
 
-	private final List<FenceWrapper> fences;
-	private int currentFence = -1;
+	private final List<SyncUnit> syncUnits;
+	private int currentIndex = -1;
 	private List<Consumer<EExecutionStatus>> listeners = null;
 
-	public FenceManager(int count, VkDevice vkDevice)
+	public SynchronizationManager(int count, VkDevice vkDevice)
 	{
-		final List<FenceWrapper> tmp = new ArrayList<>(count);
+		final List<SyncUnit> tmp = new ArrayList<>(count);
 		for (int i = 0; i < count; i++)
 		{
 			final var fence = new VkFence(vkDevice, i == 0);
-			final var wrapper = new FenceWrapper(fence);
+			final var wrapper = new SyncUnit(fence);
 			tmp.add(wrapper);
 		}
-		fences = List.copyOf(tmp);
+		syncUnits = List.copyOf(tmp);
 	}
 
-	public void free()
+	public void free(VkDevice vkDevice)
 	{
-		fences.forEach(FenceWrapper::free);
+		for (final var syncUnit : syncUnits)
+		{
+			syncUnit.free(vkDevice);
+		}
 	}
 
-	public FenceWrapper next()
+	public SyncUnit next()
 	{
-		currentFence = (currentFence + 1) % fences.size();
-		final var res = fences.get(currentFence);
+		currentIndex = (currentIndex + 1) % syncUnits.size();
+		final var res = syncUnits.get(currentIndex);
 		res.waitIdle();
 		assert res.listeners == null;
 		res.listeners = listeners;
@@ -49,22 +53,17 @@ public final class FenceManager
 
 	public void waitIdle()
 	{
-		fences.forEach(FenceWrapper::waitIdle);
+		syncUnits.forEach(SyncUnit::waitIdle);
 	}
 
 	public boolean check()
 	{
 		boolean res = true;
-		for (final var fence : fences)
+		for (final var fence : syncUnits)
 		{
 			res &= fence.checkFence();
 		}
 		return res;
-	}
-
-	public boolean isRunning()
-	{
-		return fences.stream().anyMatch(FenceWrapper::isRunning);
 	}
 
 	public void setNextExecutionListeners(final List<Consumer<EExecutionStatus>> listeners)
@@ -72,12 +71,14 @@ public final class FenceManager
 		this.listeners = listeners;
 	}
 
-	public static final class FenceWrapper
+	public static final class SyncUnit
 	{
 		public final VkFence fence;
-		List<Consumer<EExecutionStatus>> listeners = null;
+		private final List<VkSemaphore> executionSemaphores = new ArrayList<>();
+		private List<Consumer<EExecutionStatus>> listeners = null;
+		private int semaphoreCount;
 
-		FenceWrapper(VkFence fence)
+		SyncUnit(VkFence fence)
 		{
 			this.fence = fence;
 		}
@@ -135,9 +136,10 @@ public final class FenceManager
 			}
 		}
 
-		void free()
+		void free(VkDevice vkDevice)
 		{
 			fence.free();
+			executionSemaphores.forEach(s -> s.free(vkDevice));
 		}
 
 		public void notify(EExecutionStatus status, boolean removeListeners)
@@ -153,6 +155,20 @@ public final class FenceManager
 					listeners = null;
 				}
 			}
+		}
+
+		public void prepareSemaphores(final VkDevice vkDevice, final int semaphoreCount)
+		{
+			this.semaphoreCount = semaphoreCount;
+			while (executionSemaphores.size() < semaphoreCount)
+			{
+				executionSemaphores.add(new VkSemaphore(vkDevice));
+			}
+		}
+
+		public List<VkSemaphore> getSemaphores()
+		{
+			return executionSemaphores.subList(0, semaphoreCount);
 		}
 	}
 }

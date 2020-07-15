@@ -107,9 +107,9 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@Override
-	public void prepare(final List<WaitData> waitSemaphores, boolean signalExecutionSemaphore)
+	public void prepare(final List<WaitData> waitSemaphores, int semaphoreCount)
 	{
-		executionRecorder.prepare(waitSemaphores, signalSemaphores, signalExecutionSemaphore);
+		executionRecorder.prepare(waitSemaphores, signalSemaphores, semaphoreCount);
 
 		if (needRecord)
 		{
@@ -183,8 +183,8 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@Override
-	public VkSemaphore getSemaphore()
+	public VkSemaphore borrowSemaphore()
 	{
-		return executionRecorder.getSemaphore();
+		return executionRecorder.borrowSemaphore();
 	}
 }

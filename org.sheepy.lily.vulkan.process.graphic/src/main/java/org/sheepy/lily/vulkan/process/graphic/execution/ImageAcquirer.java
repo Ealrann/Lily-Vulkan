@@ -34,7 +34,7 @@ public final class ImageAcquirer
 		this.surfaceManager = surfaceAllocation;
 	}
 
-	public Integer acquireNextImage()
+	public int acquireNextImage()
 	{
 		final int res = vkAcquireNextImageKHR(vkDevice, swapChainPtr, TIMEOUT_NS, semaphorePtr, 0, nextImageArray);
 
@@ -50,7 +50,7 @@ public final class ImageAcquirer
 			{
 				surfaceManager.setDirty();
 			}
-			return null;
+			return -1;
 		}
 	}
 

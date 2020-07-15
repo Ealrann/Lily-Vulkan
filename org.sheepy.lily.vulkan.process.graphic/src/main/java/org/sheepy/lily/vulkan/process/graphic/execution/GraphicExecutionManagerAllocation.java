@@ -38,7 +38,7 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 											  @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation,
 											  @InjectDependency(index = 1) SwapChainAllocation swapChainAllocation)
 	{
-		super(executionManager);
+		super(executionManager, context);
 
 		final var process = (GraphicProcess) executionManager.eContainer();
 		final var vkDevice = context.getVkDevice();
@@ -102,23 +102,13 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 	@Override
 	public IExecutionPlayer acquire()
 	{
-		final Integer index = imageAcquirer.acquireNextImage();
-		if (index != null)
-		{
-			return acquire(index);
-		}
-		else
-		{
-			return null;
-		}
+		return acquire(imageAcquirer.acquireNextImage());
 	}
 
 	@Override
-	protected Stream<WaitData> streamWaitData()
+	protected Stream<WaitData> streamAcquireSemaphores()
 	{
-		final var acquireWaitData = Stream.of(createAcquireSemaphoreData());
-		final var waitDatas = super.streamWaitData();
-		return Stream.concat(acquireWaitData, waitDatas);
+		return Stream.of(createAcquireSemaphoreData());
 	}
 
 	private WaitData createAcquireSemaphoreData()

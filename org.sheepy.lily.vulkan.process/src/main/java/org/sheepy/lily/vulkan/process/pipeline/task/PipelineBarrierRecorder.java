@@ -3,11 +3,13 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.barrier.IBarrierAllocation;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAllocation;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
@@ -33,6 +35,7 @@ public final class PipelineBarrierRecorder implements IRecordableExtender
 {
 	private final int srcStage;
 	private final int dstStage;
+	private final PipelineBarrier pipelineBarrier;
 	private final List<IImageBarrierAllocation> imageBarriers;
 	private final List<BufferBarrierAllocation> bufferBarriers;
 	private final int srcQueueIndex;
@@ -41,8 +44,11 @@ public final class PipelineBarrierRecorder implements IRecordableExtender
 
 	public PipelineBarrierRecorder(PipelineBarrier pipelineBarrier,
 								   ProcessContext context,
+								   IObservatoryBuilder observatory,
+								   IAllocationState allocationState,
 								   @InjectDependency(index = 0) List<IBarrierAllocation<?>> barrierAllocations)
 	{
+		this.pipelineBarrier = pipelineBarrier;
 		srcStage = pipelineBarrier.getSrcStage().getValue();
 		dstStage = pipelineBarrier.getDstStage().getValue();
 
@@ -55,6 +61,8 @@ public final class PipelineBarrierRecorder implements IRecordableExtender
 		imageBarriers = filterBarriers(barrierAllocations, IImageBarrierAllocation.class);
 		bufferBarriers = filterBarriers(barrierAllocations, BufferBarrierAllocation.class);
 		bufferBarrierSize = bufferBarriers.stream().mapToInt(BufferBarrierAllocation::barrierCount).sum();
+
+		observatory.listenNoParam(allocationState::setAllocationObsolete, ProcessPackage.PIPELINE_BARRIER__ENABLED);
 	}
 
 	private static <T extends IBarrierAllocation<?>> List<T> filterBarriers(final List<IBarrierAllocation<?>> barrierAllocations,
@@ -69,13 +77,16 @@ public final class PipelineBarrierRecorder implements IRecordableExtender
 	@Override
 	public void record(RecordContext context)
 	{
-		final var stack = context.stack();
-		final int index = context.index;
-		final int indexCount = context.indexCount;
-		final var bufferInfo = allocateBufferInfo(stack, index, indexCount);
-		final var imageInfo = allocateImageInfo(stack, index, indexCount);
+		if (pipelineBarrier.isEnabled())
+		{
+			final var stack = context.stack();
+			final int index = context.index;
+			final int indexCount = context.indexCount;
+			final var bufferInfo = allocateBufferInfo(stack, index, indexCount);
+			final var imageInfo = allocateImageInfo(stack, index, indexCount);
 
-		vkCmdPipelineBarrier(context.commandBuffer, srcStage, dstStage, 0, null, bufferInfo, imageInfo);
+			vkCmdPipelineBarrier(context.commandBuffer, srcStage, dstStage, 0, null, bufferInfo, imageInfo);
+		}
 	}
 
 	public VkBufferMemoryBarrier.Buffer allocateBufferInfo(MemoryStack stack, int index, int indexCount)

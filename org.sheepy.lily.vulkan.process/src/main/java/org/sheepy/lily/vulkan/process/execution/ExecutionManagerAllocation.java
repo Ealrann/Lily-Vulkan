@@ -1,9 +1,13 @@
 package org.sheepy.lily.vulkan.process.execution;
 
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VK10;
 import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
+import org.sheepy.lily.vulkan.process.execution.util.Submission;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
 import java.util.Objects;
@@ -13,24 +17,38 @@ import java.util.stream.Stream;
 public abstract class ExecutionManagerAllocation implements IExecutionRecorders
 {
 	private final ProcessExecutionManager executionManager;
+	private final ProcessContext context;
 
-	private VkSemaphore lastExecutionSemaphore;
+	private IExecutionRecorderAllocation lastExecutedRecorder = null;
 
-	protected ExecutionManagerAllocation(ProcessExecutionManager executionManager)
+	protected ExecutionManagerAllocation(ProcessExecutionManager executionManager, final ProcessContext context)
 	{
 		this.executionManager = executionManager;
+		this.context = context;
 	}
 
 	protected final IExecutionPlayer acquire(int index)
 	{
-		final var recorder = getRecorders().get(index);
-		final boolean waited = executionManager.getWaitedBy().isEmpty() == false;
-
-		final var waitSemaphores = streamWaitData().collect(Collectors.toUnmodifiableList());
-		lastExecutionSemaphore = waited ? recorder.getSemaphore() : null;
-
-		recorder.prepare(waitSemaphores, waited);
-		return recorder;
+		if (index == -1)
+		{
+			try (final var stack = MemoryStack.stackPush())
+			{
+				final var waitSemaphores = streamWaitData(false).collect(Collectors.toUnmodifiableList());
+				final var dummySubmission = new Submission(stack, List.of(), waitSemaphores, List.of());
+				dummySubmission.submit(context.getQueue().vkQueue, VK10.VK_NULL_HANDLE);
+				lastExecutedRecorder = null;
+				return null;
+			}
+		}
+		else
+		{
+			final int semaphoreCount = executionManager.getWaitedBy().size();
+			final var waitSemaphores = streamWaitData(true).collect(Collectors.toUnmodifiableList());
+			final var recorder = getRecorders().get(index);
+			recorder.prepare(waitSemaphores, semaphoreCount);
+			lastExecutedRecorder = recorder;
+			return recorder;
+		}
 	}
 
 	@Override
@@ -42,20 +60,31 @@ public abstract class ExecutionManagerAllocation implements IExecutionRecorders
 		}
 	}
 
-	public final VkSemaphore getSemaphore()
+	public final VkSemaphore borrowSemaphore()
 	{
-		return lastExecutionSemaphore;
+		return lastExecutedRecorder != null ? lastExecutedRecorder.borrowSemaphore() : null;
 	}
 
 	protected abstract List<? extends IExecutionRecorderAllocation> getRecorders();
 
-	protected Stream<WaitData> streamWaitData()
+	private Stream<WaitData> streamWaitData(boolean withAcquireSemaphores)
 	{
-		return executionManager.getWaitForExecution()
-							   .stream()
-							   .map(e -> e.adapt(ExecutionManagerAllocation.class))
-							   .map(ExecutionManagerAllocation::getSemaphore)
-							   .filter(Objects::nonNull)
-							   .map(s -> new WaitData(s, executionManager.getWaitStage()));
+		final var res = executionManager.getWaitForExecution()
+										.stream()
+										.map(e -> e.adapt(ExecutionManagerAllocation.class))
+										.map(ExecutionManagerAllocation::borrowSemaphore)
+										.filter(Objects::nonNull)
+										.map(s -> new WaitData(s, executionManager.getWaitStage()));
+
+		if (withAcquireSemaphores)
+		{
+			return Stream.concat(res, streamAcquireSemaphores());
+		}
+		else
+		{
+			return res;
+		}
 	}
+
+	protected abstract Stream<WaitData> streamAcquireSemaphores();
 }
