@@ -52,20 +52,20 @@ public final class InstanceExtensions
 		public Builder requiresWindow()
 		{
 			final var glfwRequiredExtensions = Window.getRequiredInstanceExtensions();
-			for (int i = 0; i < glfwRequiredExtensions.capacity(); i++)
+			if (glfwRequiredExtensions != null)
 			{
-				final long extNamePtr = glfwRequiredExtensions.get(i);
-				final String name = MemoryUtil.memUTF8(extNamePtr);
-
-				if (availableExtensions.contains(name) == false)
+				for (int i = 0; i < glfwRequiredExtensions.capacity(); i++)
 				{
-					throw new IllegalArgumentException("The extension " +
-													   name +
-													   " (required by GLFW) is not " +
-													   "available.");
-				}
+					final long extNamePtr = glfwRequiredExtensions.get(i);
+					final String name = MemoryUtil.memUTF8(extNamePtr);
 
-				requiredExtensions.add(name);
+					if (availableExtensions.contains(name) == false)
+					{
+						throw new IllegalArgumentException("The extension " + name + " (required by GLFW) is not " + "available.");
+					}
+
+					requiredExtensions.add(name);
+				}
 			}
 			return this;
 		}
