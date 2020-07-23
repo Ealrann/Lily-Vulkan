@@ -100,12 +100,10 @@
         eType="ecore:EClass resource.ecore#//TransferBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CopyBufferTask" eSuperTypes="#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
-        unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="srcBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//IBuffer"/>
+        eType="ecore:EClass resource.ecore#//BufferReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dstBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//IBuffer"/>
+        eType="ecore:EClass resource.ecore#//BufferReference" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IProcessExtension" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessExtensionPkg">

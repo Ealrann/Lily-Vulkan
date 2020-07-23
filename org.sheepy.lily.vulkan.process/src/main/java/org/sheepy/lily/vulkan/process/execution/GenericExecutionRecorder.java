@@ -30,7 +30,6 @@ public final class GenericExecutionRecorder
 	private final ProcessContext context;
 	private final IAllocationState allocationState;
 	private final int index;
-	private final int indexCount;
 	private final SynchronizationManager synchronizationManager;
 	private final Consumer<RecordContext> doRecord;
 
@@ -43,7 +42,6 @@ public final class GenericExecutionRecorder
 									ProcessContext context,
 									IAllocationState allocationState,
 									int index,
-									int indexCount,
 									int fenceCount,
 									Consumer<RecordContext> doRecord)
 	{
@@ -51,7 +49,6 @@ public final class GenericExecutionRecorder
 		this.context = context;
 		this.allocationState = allocationState;
 		this.index = index;
-		this.indexCount = indexCount;
 		this.doRecord = doRecord;
 		this.synchronizationManager = new SynchronizationManager(fenceCount, context.getVkDevice());
 	}
@@ -87,7 +84,7 @@ public final class GenericExecutionRecorder
 			for (int i = 0; i < stages.size(); i++)
 			{
 				final var stage = stages.get(i);
-				final var context = new RecordContext(vkCommandBuffer, stage, index, indexCount, stack);
+				final var context = new RecordContext(vkCommandBuffer, stage, index, stack);
 
 				commandBuffer.start(stage);
 				doRecord.accept(context);

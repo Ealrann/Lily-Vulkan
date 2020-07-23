@@ -5,5 +5,5 @@ import org.sheepy.lily.core.api.extender.IExtender;
 
 public interface IBarrierAllocation<T extends NativeResource> extends IExtender
 {
-	void fill(T info, int index, final int indexCount, int srcQueueIndex, int dstQueueIndex);
+	void fill(T info, int index, int srcQueueIndex, int dstQueueIndex);
 }

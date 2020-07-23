@@ -4,7 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VK10;
 import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
+import org.sheepy.lily.vulkan.core.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.process.execution.util.Submission;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
@@ -14,14 +14,14 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class ExecutionManagerAllocation implements IExecutionRecorders
+public abstract class ExecutionManagerAllocation implements IExecutionManagerAdapter
 {
 	private final ProcessExecutionManager executionManager;
 	private final ProcessContext context;
 
 	private IExecutionRecorderAllocation lastExecutedRecorder = null;
 
-	protected ExecutionManagerAllocation(ProcessExecutionManager executionManager, final ProcessContext context)
+	protected ExecutionManagerAllocation(final ProcessExecutionManager executionManager, final ProcessContext context)
 	{
 		this.executionManager = executionManager;
 		this.context = context;

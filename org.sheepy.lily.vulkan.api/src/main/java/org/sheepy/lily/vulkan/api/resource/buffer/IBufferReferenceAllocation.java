@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IBufferReferenceAllocation extends IExtender
 {
-	List<IBuffer> getBuffers(int index, int indexCount);
-	List<IBufferAllocation> getBufferAllocations(int index, int indexCount);
+	List<IBuffer> getBuffers(int index);
+	List<IBufferAllocation> getBufferAllocations(int index);
 	int getBufferCountPerInstance();
 }

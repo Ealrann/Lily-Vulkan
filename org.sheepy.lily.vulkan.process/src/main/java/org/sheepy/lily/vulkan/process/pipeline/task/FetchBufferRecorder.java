@@ -48,7 +48,7 @@ public final class FetchBufferRecorder implements IRecordableExtender
 	@Override
 	public void record(final RecordContext context)
 	{
-		final var srcBuffer = bufferReferenceAllocation.getBufferAllocations(context.index, context.indexCount).get(0);
+		final var srcBuffer = bufferReferenceAllocation.getBufferAllocations(context.index).get(0);
 		final var dataProviderAdapter = task.getDataProvider().adapt(IBufferDataProviderAdapter.class);
 		final var fetcher = new Fetcher(executionContext, srcBuffer, dataProviderAdapter);
 
@@ -97,7 +97,7 @@ public final class FetchBufferRecorder implements IRecordableExtender
 
 		private void fetch(EExecutionStatus status)
 		{
-			if(status == EExecutionStatus.Done)
+			if (status == EExecutionStatus.Done)
 			{
 				final var memoryPtr = stagingBuffer.mapMemory(executionContext.getVkDevice());
 				final var fetchBuffer = MemoryUtil.memByteBuffer(memoryPtr, (int) size);

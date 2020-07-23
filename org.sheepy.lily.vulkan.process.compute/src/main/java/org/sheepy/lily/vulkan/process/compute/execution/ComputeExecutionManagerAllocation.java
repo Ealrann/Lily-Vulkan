@@ -5,7 +5,6 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
-import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
@@ -23,7 +22,7 @@ import java.util.stream.Stream;
 @ModelExtender(scope = ComputeExecutionManager.class)
 @Allocation(context = ProcessContext.class)
 @AllocationChild(features = ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS)
-public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation implements IExtender
+public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation
 {
 	private final ComputeExecutionManager executionManager;
 	private final List<VkSemaphore> executionSemaphores;

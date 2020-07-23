@@ -50,7 +50,6 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 														 context,
 														 config,
 														 index,
-														 manager.getIndexCount(),
 														 queuedExecutionCount,
 														 this::recordCommand);
 	}

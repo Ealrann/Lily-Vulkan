@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
-import org.sheepy.lily.vulkan.core.execution.IExecutionRecorders;
+import org.sheepy.lily.vulkan.core.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
@@ -87,7 +87,7 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 
 	private IExecutionPlayer acquireNextPlayer()
 	{
-		final var recorders = process.getExecutionManager().adapt(IExecutionRecorders.class);
+		final var recorders = process.getExecutionManager().adapt(IExecutionManagerAdapter.class);
 		return recorders.acquire();
 	}
 

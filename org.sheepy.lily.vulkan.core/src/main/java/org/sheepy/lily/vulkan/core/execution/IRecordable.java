@@ -19,21 +19,15 @@ public interface IRecordable
 		public final VkCommandBuffer commandBuffer;
 		public final ECommandStage stage;
 		public final int index;
-		public final int indexCount;
 		public final MemoryStack stack;
 
 		private final List<Consumer<EExecutionStatus>> listeners = new ArrayList<>();
 
-		public RecordContext(VkCommandBuffer commandBuffer,
-							 ECommandStage stage,
-							 int index,
-							 int indexCount,
-							 MemoryStack stack)
+		public RecordContext(VkCommandBuffer commandBuffer, ECommandStage stage, int index, MemoryStack stack)
 		{
 			this.commandBuffer = commandBuffer;
 			this.stage = stage;
 			this.index = index;
-			this.indexCount = indexCount;
 			this.stack = stack;
 		}
 

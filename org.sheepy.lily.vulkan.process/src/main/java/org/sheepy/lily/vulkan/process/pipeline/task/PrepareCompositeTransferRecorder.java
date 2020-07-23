@@ -4,7 +4,6 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
@@ -39,8 +38,7 @@ public final class PrepareCompositeTransferRecorder implements IRecordableExtend
 		final var adapter = compositeBuffer.adapt(ICompositeBufferAllocation.class);
 		final var mode = task.getMode();
 		// TODO any buffer should be accepted here
-		final var buffers = (List<BufferPart>) (List<?>) bufferReferenceAllocation.getBuffers(context.index,
-																							  context.indexCount);
+		final var buffers = (List<BufferPart>) (List<?>) bufferReferenceAllocation.getBuffers(context.index);
 
 		adapter.recordFlush(mode, buffers);
 	}

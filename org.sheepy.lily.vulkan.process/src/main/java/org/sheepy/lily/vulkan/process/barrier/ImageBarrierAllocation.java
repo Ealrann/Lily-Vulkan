@@ -36,11 +36,7 @@ public class ImageBarrierAllocation implements IImageBarrierAllocation
 	}
 
 	@Override
-	public void fill(final VkImageMemoryBarrier info,
-					 final int index,
-					 final int indexCount,
-					 final int srcQueueIndex,
-					 final int dstQueueIndex)
+	public void fill(final VkImageMemoryBarrier info, final int index, final int srcQueueIndex, final int dstQueueIndex)
 	{
 		final var aspectMask = vkImage.aspect;
 

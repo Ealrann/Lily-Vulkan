@@ -31,9 +31,9 @@ public final class TaskManager
 	{
 		final var bufferReference = VulkanResourceFactory.eINSTANCE.createBufferReference();
 		bufferReference.getBuffers().add(bufferViewer);
+		bufferReference.setStride(0);
 
 		final var fetchBuffer = ProcessFactory.eINSTANCE.createFetchBuffer();
-
 		fetchBuffer.setDataProvider(bufferViewer.getDataProvider());
 		fetchBuffer.setBufferReference(bufferReference);
 

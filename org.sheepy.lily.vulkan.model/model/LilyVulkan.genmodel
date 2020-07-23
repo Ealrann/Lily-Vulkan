@@ -344,9 +344,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//FlushTransferBufferTask/transferBuffer"/>
     </genClasses>
     <genClasses ecoreClass="process.ecore#//CopyBufferTask">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//CopyBufferTask/size"/>
-      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/srcBuffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/dstBuffer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/srcBuffer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//CopyBufferTask/dstBuffer"/>
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//IProcessExtension"/>
     <genClasses ecoreClass="process.ecore#//ProcessExtensionPkg">

@@ -64,12 +64,12 @@
           <barriers xsi:type="resource:BufferBarrier" name="Index">
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>INDEX_READ_BIT</dstAccessMask>
-            <buffers xsi:type="resource:FixedBufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.1"/>
+            <buffers xsi:type="resource:BufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.1"/>
           </barriers>
           <barriers xsi:type="resource:BufferBarrier" name="Vertex">
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>VERTEX_ATTRIBUTE_READ_BIT</dstAccessMask>
-            <buffers xsi:type="resource:FixedBufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.0"/>
+            <buffers xsi:type="resource:BufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.0"/>
           </barriers>
         </tasks>
       </taskPkgs>

@@ -40,11 +40,10 @@ public final class BufferBarrierAllocation implements IBufferBarrierAllocation
 	@Override
 	public void fill(final VkBufferMemoryBarrier.Buffer barriers,
 					 final int index,
-					 final int indexCount,
 					 final int srcQueueIndex,
 					 final int dstQueueIndex)
 	{
-		for (final var buffer : buffers.getBufferAllocations(index, indexCount))
+		for (final var buffer : buffers.getBufferAllocations(index))
 		{
 			final long ptr = buffer.getPtr();
 			final long bindOffset = buffer.getBindOffset();

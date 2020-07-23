@@ -7,4 +7,5 @@ public interface InternalProcessAdapter extends IExtender
 {
 	EQueueType getExecutionQueueType();
 	boolean needPresentQueue();
+	int getExecutionCount();
 }

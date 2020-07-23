@@ -9,7 +9,6 @@ import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -63,10 +62,8 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 											  @InjectDependency(index = 4) FramebufferAllocation framebufferAllocation,
 											  @InjectDependency(index = 5) List<IRecordableExtender> recordables)
 	{
-		final var manager = (GraphicExecutionManager) recorder.eContainer();
 		final int index = recorder.getIndex();
 		final var framebufferPtr = framebufferAllocation.getFramebufferAddresses().get(index);
-		final int indexCount = manager.getRecorders().size();
 
 		this.recordables = recordables;
 		this.process = ModelUtil.findParent(recorder, GraphicProcess.class);
@@ -83,7 +80,6 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 														 context,
 														 allocationState,
 														 index,
-														 indexCount,
 														 1,
 														 this::recordCommand);
 

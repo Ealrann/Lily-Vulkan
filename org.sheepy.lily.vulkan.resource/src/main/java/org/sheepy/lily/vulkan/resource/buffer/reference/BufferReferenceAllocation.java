@@ -4,8 +4,11 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAllocation;
+import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.EContextIndex;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
@@ -20,10 +23,15 @@ public final class BufferReferenceAllocation implements IBufferReferenceAllocati
 {
 	private final BufferReference bufferReference;
 	private final List<IBufferAllocation> bufferAllocations;
+	private final int indexCount;
 
 	private BufferReferenceAllocation(BufferReference bufferReference,
 									  @InjectDependency(index = 0) List<IBufferAllocation> bufferAllocations)
 	{
+		final var process = ModelUtil.findParent(bufferReference, AbstractProcess.class);
+		final var executionManager = process.adapt(InternalProcessAdapter.class);
+		indexCount = executionManager.getExecutionCount();
+
 		this.bufferReference = bufferReference;
 		this.bufferAllocations = bufferAllocations;
 	}
@@ -35,29 +43,40 @@ public final class BufferReferenceAllocation implements IBufferReferenceAllocati
 	}
 
 	@Override
-	public List<IBuffer> getBuffers(final int index, final int indexCount)
+	public List<IBuffer> getBuffers(final int index)
 	{
 		final var indexType = bufferReference.getIndexType();
 		final int contextIndex = (index + indexModifier(indexType)) % indexCount;
 		final int stride = bufferReference.getStride();
 		final var buffers = bufferReference.getBuffers();
-		final int effectiveStride = stride == 0 ? buffers.size() : stride;
-		final int start = contextIndex * effectiveStride;
-		final int end = start + effectiveStride;
-
-		return buffers.subList(start, end);
+		if (stride == 0)
+		{
+			return buffers;
+		}
+		else
+		{
+			final int start = contextIndex * stride;
+			final int end = start + stride;
+			return buffers.subList(start, end);
+		}
 	}
 
 	@Override
-	public List<IBufferAllocation> getBufferAllocations(final int index, final int indexCount)
+	public List<IBufferAllocation> getBufferAllocations(final int index)
 	{
 		final var indexType = bufferReference.getIndexType();
 		final int contextIndex = (index + indexModifier(indexType)) % indexCount;
 		final int stride = bufferReference.getStride();
-		final int start = contextIndex * stride;
-		final int end = start + stride;
-
-		return bufferAllocations.subList(start, end);
+		if (stride == 0)
+		{
+			return bufferAllocations;
+		}
+		else
+		{
+			final int start = contextIndex * stride;
+			final int end = start + stride;
+			return bufferAllocations.subList(start, end);
+		}
 	}
 
 	private static int indexModifier(final EContextIndex indexType)

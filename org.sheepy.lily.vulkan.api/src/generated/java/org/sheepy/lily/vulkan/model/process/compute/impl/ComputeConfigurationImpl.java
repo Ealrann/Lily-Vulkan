@@ -3,7 +3,6 @@
 package org.sheepy.lily.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
