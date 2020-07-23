@@ -319,12 +319,7 @@ public class PrepareCompositeTransferItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE,
-				 VulkanResourceFactory.eINSTANCE.createFixedBufferReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE,
-				 VulkanResourceFactory.eINSTANCE.createCircularBufferReference()));
+				 VulkanResourceFactory.eINSTANCE.createBufferReference()));
 	}
 
 	/**

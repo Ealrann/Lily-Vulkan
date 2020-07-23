@@ -3,8 +3,7 @@ package org.sheepy.lily.vulkan.resource;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.resource.buffer.*;
-import org.sheepy.lily.vulkan.resource.buffer.reference.CircularBufferReferenceAllocation;
-import org.sheepy.lily.vulkan.resource.buffer.reference.FixedBufferReferenceAllocation;
+import org.sheepy.lily.vulkan.resource.buffer.reference.BufferReferenceAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPoolAllocation;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorSetAllocation;
@@ -51,8 +50,7 @@ public class Extenders implements IExtenderProvider
 					   DescriptorPoolAllocation.class,
 					   DescriptorSetLayoutAllocation.class,
 					   DescriptorSetAllocation.class,
-					   FixedBufferReferenceAllocation.class,
-					   CircularBufferReferenceAllocation.class,
+					   BufferReferenceAllocation.class,
 					   MemoryChunkAllocation.class,
 					   BufferViewerAdapter.class,
 					   BufferViewerAllocation.class,

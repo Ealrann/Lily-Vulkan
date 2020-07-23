@@ -248,12 +248,7 @@ public class FetchBufferItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.FETCH_BUFFER__BUFFER_REFERENCE,
-				 VulkanResourceFactory.eINSTANCE.createFixedBufferReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.FETCH_BUFFER__BUFFER_REFERENCE,
-				 VulkanResourceFactory.eINSTANCE.createCircularBufferReference()));
+				 VulkanResourceFactory.eINSTANCE.createBufferReference()));
 	}
 
 	/**

@@ -26,7 +26,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * @model
  * @generated
  */
-public interface BufferViewer extends IBuffer, IBufferObject
+public interface BufferViewer extends IBufferObject
 {
 	/**
 	 * Returns the value of the '<em><b>Data Provider</b></em>' containment reference.

@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
-
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -32,6 +31,7 @@ import org.sheepy.vulkan.model.enumeration.EInstanceCount;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isKeptMapped <em>Kept Mapped</em>}</li>
@@ -43,8 +43,28 @@ import org.sheepy.vulkan.model.enumeration.EInstanceCount;
  *
  * @generated
  */
-public class BufferImpl extends IResourceImpl implements Buffer
+public class BufferImpl extends LilyEObject implements Buffer
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -194,6 +214,31 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	protected EClass eStaticClass()
 	{
 		return VulkanResourcePackage.Literals.BUFFER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -371,6 +416,8 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER__NAME:
+				return getName();
 			case VulkanResourcePackage.BUFFER__SIZE:
 				return getSize();
 			case VulkanResourcePackage.BUFFER__DATA:
@@ -400,6 +447,9 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER__NAME:
+				setName((String)newValue);
+				return;
 			case VulkanResourcePackage.BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
@@ -436,6 +486,9 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case VulkanResourcePackage.BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
@@ -471,6 +524,8 @@ public class BufferImpl extends IResourceImpl implements Buffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
 			case VulkanResourcePackage.BUFFER__DATA:
@@ -500,7 +555,9 @@ public class BufferImpl extends IResourceImpl implements Buffer
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (size: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", size: ");
 		result.append(size);
 		result.append(", data: ");
 		result.append(data);

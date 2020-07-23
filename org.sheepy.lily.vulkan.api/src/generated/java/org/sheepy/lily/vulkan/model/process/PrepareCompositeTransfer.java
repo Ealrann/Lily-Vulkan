@@ -2,9 +2,9 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
@@ -105,12 +105,12 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffer Reference</em>' containment reference.
-	 * @see #setBufferReference(IBufferReference)
+	 * @see #setBufferReference(BufferReference)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPrepareCompositeTransfer_BufferReference()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	IBufferReference getBufferReference();
+	BufferReference getBufferReference();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer#getBufferReference <em>Buffer Reference</em>}' containment reference.
@@ -120,7 +120,7 @@ public interface PrepareCompositeTransfer extends IPipelineTask
 	 * @see #getBufferReference()
 	 * @generated
 	 */
-	void setBufferReference(IBufferReference value);
+	void setBufferReference(BufferReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Transfer Buffer</b></em>' reference.

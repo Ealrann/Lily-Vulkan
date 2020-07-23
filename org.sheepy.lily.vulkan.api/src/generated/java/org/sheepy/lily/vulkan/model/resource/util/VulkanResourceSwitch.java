@@ -124,31 +124,14 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 			{
 				IBuffer iBuffer = (IBuffer)theEObject;
 				T result = caseIBuffer(iBuffer);
-				if (result == null) result = caseIResource(iBuffer);
 				if (result == null) result = caseLNamedElement(iBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.IBUFFER_REFERENCE:
+			case VulkanResourcePackage.BUFFER_REFERENCE:
 			{
-				IBufferReference iBufferReference = (IBufferReference)theEObject;
-				T result = caseIBufferReference(iBufferReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanResourcePackage.FIXED_BUFFER_REFERENCE:
-			{
-				FixedBufferReference fixedBufferReference = (FixedBufferReference)theEObject;
-				T result = caseFixedBufferReference(fixedBufferReference);
-				if (result == null) result = caseIBufferReference(fixedBufferReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE:
-			{
-				CircularBufferReference circularBufferReference = (CircularBufferReference)theEObject;
-				T result = caseCircularBufferReference(circularBufferReference);
-				if (result == null) result = caseIBufferReference(circularBufferReference);
+				BufferReference bufferReference = (BufferReference)theEObject;
+				T result = caseBufferReference(bufferReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -176,7 +159,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				BufferPart bufferPart = (BufferPart)theEObject;
 				T result = caseBufferPart(bufferPart);
 				if (result == null) result = caseIBuffer(bufferPart);
-				if (result == null) result = caseIResource(bufferPart);
 				if (result == null) result = caseLNamedElement(bufferPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -385,6 +367,8 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 			{
 				IBufferObject iBufferObject = (IBufferObject)theEObject;
 				T result = caseIBufferObject(iBufferObject);
+				if (result == null) result = caseIBuffer(iBufferObject);
+				if (result == null) result = caseLNamedElement(iBufferObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -392,9 +376,8 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 			{
 				StaticBuffer staticBuffer = (StaticBuffer)theEObject;
 				T result = caseStaticBuffer(staticBuffer);
-				if (result == null) result = caseIBuffer(staticBuffer);
 				if (result == null) result = caseIBufferObject(staticBuffer);
-				if (result == null) result = caseIResource(staticBuffer);
+				if (result == null) result = caseIBuffer(staticBuffer);
 				if (result == null) result = caseLNamedElement(staticBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -403,9 +386,8 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 			{
 				DataBuffer dataBuffer = (DataBuffer)theEObject;
 				T result = caseDataBuffer(dataBuffer);
-				if (result == null) result = caseIBuffer(dataBuffer);
 				if (result == null) result = caseIBufferObject(dataBuffer);
-				if (result == null) result = caseIResource(dataBuffer);
+				if (result == null) result = caseIBuffer(dataBuffer);
 				if (result == null) result = caseLNamedElement(dataBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -414,9 +396,8 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 			{
 				BufferViewer bufferViewer = (BufferViewer)theEObject;
 				T result = caseBufferViewer(bufferViewer);
-				if (result == null) result = caseIBuffer(bufferViewer);
 				if (result == null) result = caseIBufferObject(bufferViewer);
-				if (result == null) result = caseIResource(bufferViewer);
+				if (result == null) result = caseIBuffer(bufferViewer);
 				if (result == null) result = caseLNamedElement(bufferViewer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -506,49 +487,17 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IBuffer Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IBuffer Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIBufferReference(IBufferReference object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fixed Buffer Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fixed Buffer Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFixedBufferReference(FixedBufferReference object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Circular Buffer Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Circular Buffer Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCircularBufferReference(CircularBufferReference object)
+	public T caseBufferReference(BufferReference object)
 	{
 		return null;
 	}

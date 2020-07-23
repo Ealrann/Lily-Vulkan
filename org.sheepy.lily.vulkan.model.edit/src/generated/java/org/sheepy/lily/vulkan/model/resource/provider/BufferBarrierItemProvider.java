@@ -147,12 +147,7 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanResourcePackage.Literals.BUFFER_BARRIER__BUFFERS,
-				 VulkanResourceFactory.eINSTANCE.createFixedBufferReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanResourcePackage.Literals.BUFFER_BARRIER__BUFFERS,
-				 VulkanResourceFactory.eINSTANCE.createCircularBufferReference()));
+				 VulkanResourceFactory.eINSTANCE.createBufferReference()));
 	}
 
 }

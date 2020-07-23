@@ -405,14 +405,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//GenericConstantBuffer/VariablePkg"/>
     </genClasses>
     <genClasses image="false" ecoreClass="resource.ecore#//IBuffer"/>
-    <genClasses image="false" ecoreClass="resource.ecore#//IBufferReference"/>
-    <genClasses ecoreClass="resource.ecore#//FixedBufferReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//FixedBufferReference/buffers"/>
-    </genClasses>
-    <genClasses ecoreClass="resource.ecore#//CircularBufferReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CircularBufferReference/buffers"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBufferReference/stride"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//CircularBufferReference/indexType"/>
+    <genClasses ecoreClass="resource.ecore#//BufferReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferReference/buffers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferReference/stride"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferReference/indexType"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//Buffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//Buffer/size"/>

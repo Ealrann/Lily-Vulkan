@@ -53,6 +53,7 @@ import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
+import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.lily.vulkan.model.resource.util.VulkanResourceSwitch;
@@ -964,6 +965,26 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 				return null;
 			}
  
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseBufferViewer(BufferViewer object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
+						 RenderingFactory.eINSTANCE.createVertexProvider()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
+						 RenderingFactory.eINSTANCE.createIndexProvider()));
+
+				return null;
+			}
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +29,12 @@ public interface FetchBuffer extends IPipelineTask
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffer Reference</em>' containment reference.
-	 * @see #setBufferReference(IBufferReference)
+	 * @see #setBufferReference(BufferReference)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getFetchBuffer_BufferReference()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	IBufferReference getBufferReference();
+	BufferReference getBufferReference();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.FetchBuffer#getBufferReference <em>Buffer Reference</em>}' containment reference.
@@ -44,7 +44,7 @@ public interface FetchBuffer extends IPipelineTask
 	 * @see #getBufferReference()
 	 * @generated
 	 */
-	void setBufferReference(IBufferReference value);
+	void setBufferReference(BufferReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Data Provider</b></em>' reference.

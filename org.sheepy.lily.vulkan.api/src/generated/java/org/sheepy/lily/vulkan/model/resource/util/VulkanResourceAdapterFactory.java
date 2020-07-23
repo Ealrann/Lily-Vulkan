@@ -113,19 +113,9 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createIBufferAdapter();
 			}
 			@Override
-			public Adapter caseIBufferReference(IBufferReference object)
+			public Adapter caseBufferReference(BufferReference object)
 			{
-				return createIBufferReferenceAdapter();
-			}
-			@Override
-			public Adapter caseFixedBufferReference(FixedBufferReference object)
-			{
-				return createFixedBufferReferenceAdapter();
-			}
-			@Override
-			public Adapter caseCircularBufferReference(CircularBufferReference object)
-			{
-				return createCircularBufferReferenceAdapter();
+				return createBufferReferenceAdapter();
 			}
 			@Override
 			public Adapter caseBuffer(Buffer object)
@@ -410,46 +400,16 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BufferReference <em>Buffer Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.IBufferReference
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferReference
 	 * @generated
 	 */
-	public Adapter createIBufferReferenceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference <em>Fixed Buffer Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.FixedBufferReference
-	 * @generated
-	 */
-	public Adapter createFixedBufferReferenceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference <em>Circular Buffer Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBufferReference
-	 * @generated
-	 */
-	public Adapter createCircularBufferReferenceAdapter()
+	public Adapter createBufferReferenceAdapter()
 	{
 		return null;
 	}

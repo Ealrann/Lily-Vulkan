@@ -6,23 +6,23 @@ import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAllocation;
-import org.sheepy.lily.vulkan.model.resource.CircularBufferReference;
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.EContextIndex;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import java.util.List;
 
-@ModelExtender(scope = CircularBufferReference.class)
+@ModelExtender(scope = BufferReference.class)
 @Allocation
-@AllocationDependency(features = VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__BUFFERS, type = IBufferAllocation.class)
-public final class CircularBufferReferenceAllocation implements IBufferReferenceAllocation
+@AllocationDependency(features = VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS, type = IBufferAllocation.class)
+public final class BufferReferenceAllocation implements IBufferReferenceAllocation
 {
-	private final CircularBufferReference bufferReference;
+	private final BufferReference bufferReference;
 	private final List<IBufferAllocation> bufferAllocations;
 
-	private CircularBufferReferenceAllocation(CircularBufferReference bufferReference,
-											  @InjectDependency(index = 0) List<IBufferAllocation> bufferAllocations)
+	private BufferReferenceAllocation(BufferReference bufferReference,
+									  @InjectDependency(index = 0) List<IBufferAllocation> bufferAllocations)
 	{
 		this.bufferReference = bufferReference;
 		this.bufferAllocations = bufferAllocations;
@@ -41,8 +41,9 @@ public final class CircularBufferReferenceAllocation implements IBufferReference
 		final int contextIndex = (index + indexModifier(indexType)) % indexCount;
 		final int stride = bufferReference.getStride();
 		final var buffers = bufferReference.getBuffers();
-		final int start = contextIndex * stride;
-		final int end = start + stride;
+		final int effectiveStride = stride == 0 ? buffers.size() : stride;
+		final int start = contextIndex * effectiveStride;
+		final int end = start + effectiveStride;
 
 		return buffers.subList(start, end);
 	}

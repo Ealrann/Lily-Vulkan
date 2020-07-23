@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.core.model.resource.IResource;
+import org.sheepy.lily.core.model.types.LNamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +14,6 @@ import org.sheepy.lily.core.model.resource.IResource;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IBuffer extends IResource
+public interface IBuffer extends LNamedElement
 {
 } // IBuffer

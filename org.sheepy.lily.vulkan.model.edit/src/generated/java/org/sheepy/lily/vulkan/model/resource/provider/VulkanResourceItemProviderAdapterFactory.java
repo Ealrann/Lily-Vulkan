@@ -202,53 +202,28 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FixedBufferReferenceItemProvider fixedBufferReferenceItemProvider;
+	protected BufferReferenceItemProvider bufferReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createFixedBufferReferenceAdapter()
+	public Adapter createBufferReferenceAdapter()
 	{
-		if (fixedBufferReferenceItemProvider == null)
+		if (bufferReferenceItemProvider == null)
 		{
-			fixedBufferReferenceItemProvider = new FixedBufferReferenceItemProvider(this);
+			bufferReferenceItemProvider = new BufferReferenceItemProvider(this);
 		}
 
-		return fixedBufferReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CircularBufferReferenceItemProvider circularBufferReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCircularBufferReferenceAdapter()
-	{
-		if (circularBufferReferenceItemProvider == null)
-		{
-			circularBufferReferenceItemProvider = new CircularBufferReferenceItemProvider(this);
-		}
-
-		return circularBufferReferenceItemProvider;
+		return bufferReferenceItemProvider;
 	}
 
 	/**
@@ -1095,11 +1070,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 				newChildDescriptors.add
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createBufferPart()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createStaticImage()));
 
 				newChildDescriptors.add
@@ -1136,21 +1106,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createMemoryChunk()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createStaticBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createDataBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createBufferViewer()));
 
 				return null;
 			}

@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
-
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.StaticBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -29,6 +28,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#isInitWithZero <em>Init With Zero</em>}</li>
@@ -36,8 +36,28 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *
  * @generated
  */
-public class StaticBufferImpl extends IResourceImpl implements StaticBuffer
+public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -115,6 +135,31 @@ public class StaticBufferImpl extends IResourceImpl implements StaticBuffer
 	 * @generated
 	 */
 	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.STATIC_BUFFER__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public long getSize()
 	{
 		return size;
@@ -184,6 +229,8 @@ public class StaticBufferImpl extends IResourceImpl implements StaticBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.STATIC_BUFFER__NAME:
+				return getName();
 			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
 				return getSize();
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
@@ -205,6 +252,9 @@ public class StaticBufferImpl extends IResourceImpl implements StaticBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.STATIC_BUFFER__NAME:
+				setName((String)newValue);
+				return;
 			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
@@ -229,6 +279,9 @@ public class StaticBufferImpl extends IResourceImpl implements StaticBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.STATIC_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
@@ -252,6 +305,8 @@ public class StaticBufferImpl extends IResourceImpl implements StaticBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.STATIC_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
@@ -273,7 +328,9 @@ public class StaticBufferImpl extends IResourceImpl implements StaticBuffer
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (size: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", size: ");
 		result.append(size);
 		result.append(", usages: ");
 		result.append(usages);

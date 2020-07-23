@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.barrier.impl.AbstractBufferBarrierImpl;
@@ -39,7 +39,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * @generated
 	 * @ordered
 	 */
-	protected IBufferReference buffers;
+	protected BufferReference buffers;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +67,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * @generated
 	 */
 	@Override
-	public IBufferReference getBuffers()
+	public BufferReference getBuffers()
 	{
 		return buffers;
 	}
@@ -77,9 +77,9 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBuffers(IBufferReference newBuffers, NotificationChain msgs)
+	public NotificationChain basicSetBuffers(BufferReference newBuffers, NotificationChain msgs)
 	{
-		IBufferReference oldBuffers = buffers;
+		BufferReference oldBuffers = buffers;
 		buffers = newBuffers;
 		if (eNotificationRequired())
 		{
@@ -95,7 +95,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * @generated
 	 */
 	@Override
-	public void setBuffers(IBufferReference newBuffers)
+	public void setBuffers(BufferReference newBuffers)
 	{
 		if (newBuffers != buffers)
 		{
@@ -154,7 +154,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 		switch (featureID)
 		{
 			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
-				setBuffers((IBufferReference)newValue);
+				setBuffers((BufferReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -171,7 +171,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 		switch (featureID)
 		{
 			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
-				setBuffers((IBufferReference)null);
+				setBuffers((BufferReference)null);
 				return;
 		}
 		super.eUnset(featureID);

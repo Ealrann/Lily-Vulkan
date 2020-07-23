@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EInstanceCount;
 
@@ -31,7 +32,7 @@ import org.sheepy.vulkan.model.enumeration.EInstanceCount;
  * @model
  * @generated
  */
-public interface Buffer extends IBuffer
+public interface Buffer extends IBuffer, IResource
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

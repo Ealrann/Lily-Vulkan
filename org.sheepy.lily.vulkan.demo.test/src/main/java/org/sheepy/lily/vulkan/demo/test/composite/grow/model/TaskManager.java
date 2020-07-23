@@ -29,7 +29,7 @@ public final class TaskManager
 
 	private static FetchBuffer buildFetchBuffer(BufferViewer bufferViewer)
 	{
-		final var bufferReference = VulkanResourceFactory.eINSTANCE.createFixedBufferReference();
+		final var bufferReference = VulkanResourceFactory.eINSTANCE.createBufferReference();
 		bufferReference.getBuffers().add(bufferViewer);
 
 		final var fetchBuffer = ProcessFactory.eINSTANCE.createFetchBuffer();

@@ -59,22 +59,13 @@ public interface VulkanResourceFactory extends EFactory
 	GenericConstantBuffer createGenericConstantBuffer();
 
 	/**
-	 * Returns a new object of class '<em>Fixed Buffer Reference</em>'.
+	 * Returns a new object of class '<em>Buffer Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fixed Buffer Reference</em>'.
+	 * @return a new object of class '<em>Buffer Reference</em>'.
 	 * @generated
 	 */
-	FixedBufferReference createFixedBufferReference();
-
-	/**
-	 * Returns a new object of class '<em>Circular Buffer Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Circular Buffer Reference</em>'.
-	 * @generated
-	 */
-	CircularBufferReference createCircularBufferReference();
+	BufferReference createBufferReference();
 
 	/**
 	 * Returns a new object of class '<em>Buffer</em>'.

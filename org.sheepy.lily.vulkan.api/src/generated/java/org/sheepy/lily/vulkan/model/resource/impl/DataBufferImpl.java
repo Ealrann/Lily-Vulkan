@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
-
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.DataBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -31,14 +30,35 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.DataBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.DataBufferImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.DataBufferImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DataBufferImpl extends IResourceImpl implements DataBuffer
+public class DataBufferImpl extends LilyEObject implements DataBuffer
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getUsages() <em>Usages</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -96,6 +116,31 @@ public class DataBufferImpl extends IResourceImpl implements DataBuffer
 	 * @generated
 	 */
 	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.DATA_BUFFER__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<EBufferUsage> getUsages()
 	{
 		if (usages == null)
@@ -140,6 +185,8 @@ public class DataBufferImpl extends IResourceImpl implements DataBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.DATA_BUFFER__NAME:
+				return getName();
 			case VulkanResourcePackage.DATA_BUFFER__USAGES:
 				return getUsages();
 			case VulkanResourcePackage.DATA_BUFFER__DATA:
@@ -159,6 +206,9 @@ public class DataBufferImpl extends IResourceImpl implements DataBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.DATA_BUFFER__NAME:
+				setName((String)newValue);
+				return;
 			case VulkanResourcePackage.DATA_BUFFER__USAGES:
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
@@ -180,6 +230,9 @@ public class DataBufferImpl extends IResourceImpl implements DataBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.DATA_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case VulkanResourcePackage.DATA_BUFFER__USAGES:
 				getUsages().clear();
 				return;
@@ -200,6 +253,8 @@ public class DataBufferImpl extends IResourceImpl implements DataBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.DATA_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.DATA_BUFFER__USAGES:
 				return usages != null && !usages.isEmpty();
 			case VulkanResourcePackage.DATA_BUFFER__DATA:
@@ -219,7 +274,9 @@ public class DataBufferImpl extends IResourceImpl implements DataBuffer
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (usages: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", usages: ");
 		result.append(usages);
 		result.append(", data: ");
 		result.append(data);

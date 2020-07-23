@@ -4,25 +4,28 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.sheepy.lily.core.api.model.ILilyEObject;
+
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Circular Buffer Reference</b></em>'.
+ * A representation of the model object '<em><b>Buffer Reference</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getBuffers <em>Buffers</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getStride <em>Stride</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getIndexType <em>Index Type</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferReference#getBuffers <em>Buffers</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferReference#getStride <em>Stride</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferReference#getIndexType <em>Index Type</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getCircularBufferReference()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferReference()
  * @model
+ * @extends ILilyEObject
  * @generated
  */
-public interface CircularBufferReference extends IBufferReference
+public interface BufferReference extends ILilyEObject
 {
 	/**
 	 * Returns the value of the '<em><b>Buffers</b></em>' reference list.
@@ -30,7 +33,7 @@ public interface CircularBufferReference extends IBufferReference
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffers</em>' reference list.
-	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getCircularBufferReference_Buffers()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferReference_Buffers()
 	 * @model
 	 * @generated
 	 */
@@ -38,19 +41,19 @@ public interface CircularBufferReference extends IBufferReference
 
 	/**
 	 * Returns the value of the '<em><b>Stride</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stride</em>' attribute.
 	 * @see #setStride(int)
-	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getCircularBufferReference_Stride()
-	 * @model default="1"
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferReference_Stride()
+	 * @model default="0"
 	 * @generated
 	 */
 	int getStride();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getStride <em>Stride</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferReference#getStride <em>Stride</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stride</em>' attribute.
@@ -67,14 +70,14 @@ public interface CircularBufferReference extends IBufferReference
 	 * @return the value of the '<em>Index Type</em>' attribute.
 	 * @see org.sheepy.lily.vulkan.model.resource.EContextIndex
 	 * @see #setIndexType(EContextIndex)
-	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getCircularBufferReference_IndexType()
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferReference_IndexType()
 	 * @model required="true"
 	 * @generated
 	 */
 	EContextIndex getIndexType();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getIndexType <em>Index Type</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferReference#getIndexType <em>Index Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Index Type</em>' attribute.
@@ -84,4 +87,4 @@ public interface CircularBufferReference extends IBufferReference
 	 */
 	void setIndexType(EContextIndex value);
 
-} // CircularBufferReference
+} // BufferReference

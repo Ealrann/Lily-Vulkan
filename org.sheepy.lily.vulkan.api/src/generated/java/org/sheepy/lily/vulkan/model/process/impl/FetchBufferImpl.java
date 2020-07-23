@@ -17,7 +17,7 @@ import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,7 +85,7 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	 * @generated
 	 * @ordered
 	 */
-	protected IBufferReference bufferReference;
+	protected BufferReference bufferReference;
 
 	/**
 	 * The cached value of the '{@link #getDataProvider() <em>Data Provider</em>}' reference.
@@ -174,7 +174,7 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	 * @generated
 	 */
 	@Override
-	public IBufferReference getBufferReference()
+	public BufferReference getBufferReference()
 	{
 		return bufferReference;
 	}
@@ -184,9 +184,9 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBufferReference(IBufferReference newBufferReference, NotificationChain msgs)
+	public NotificationChain basicSetBufferReference(BufferReference newBufferReference, NotificationChain msgs)
 	{
-		IBufferReference oldBufferReference = bufferReference;
+		BufferReference oldBufferReference = bufferReference;
 		bufferReference = newBufferReference;
 		if (eNotificationRequired())
 		{
@@ -202,7 +202,7 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	 * @generated
 	 */
 	@Override
-	public void setBufferReference(IBufferReference newBufferReference)
+	public void setBufferReference(BufferReference newBufferReference)
 	{
 		if (newBufferReference != bufferReference)
 		{
@@ -319,7 +319,7 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 				setEnabled((Boolean)newValue);
 				return;
 			case ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE:
-				setBufferReference((IBufferReference)newValue);
+				setBufferReference((BufferReference)newValue);
 				return;
 			case ProcessPackage.FETCH_BUFFER__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider)newValue);
@@ -345,7 +345,7 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 				setEnabled(ENABLED_EDEFAULT);
 				return;
 			case ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE:
-				setBufferReference((IBufferReference)null);
+				setBufferReference((BufferReference)null);
 				return;
 			case ProcessPackage.FETCH_BUFFER__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider)null);

@@ -22,17 +22,12 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IBuffer" abstract="true" interface="true"
-      eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IBufferReference" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FixedBufferReference" eSuperTypes="#//IBufferReference">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="buffers" upperBound="-1"
-        eType="#//IBuffer"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CircularBufferReference" eSuperTypes="#//IBufferReference">
+      eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BufferReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffers" upperBound="-1"
         eType="#//IBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stride" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="1"/>
+        defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexType" lowerBound="1"
         eType="#//EContextIndex"/>
   </eClassifiers>
@@ -41,7 +36,7 @@
     <eLiterals name="ContextInstance_PlusOne" value="1"/>
     <eLiterals name="ContextInstance_MinusOne" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Buffer" eSuperTypes="#//IBuffer">
+  <eClassifiers xsi:type="ecore:EClass" name="Buffer" eSuperTypes="#//IBuffer ../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="keptMapped" unique="false"
@@ -169,7 +164,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BufferBarrier" eSuperTypes="../../org.sheepy.vulkan.model/model/barrier.ecore#//AbstractBufferBarrier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffers" lowerBound="1"
-        eType="#//IBufferReference" containment="true"/>
+        eType="#//BufferReference" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImageBarrier" eSuperTypes="../../org.sheepy.vulkan.model/model/barrier.ecore#//AbstractImageBarrier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>
@@ -198,20 +193,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffers" upperBound="-1"
         eType="#//IBufferObject" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IBufferObject" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StaticBuffer" eSuperTypes="#//IBuffer #//IBufferObject">
+  <eClassifiers xsi:type="ecore:EClass" name="IBufferObject" abstract="true" interface="true"
+      eSuperTypes="#//IBuffer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticBuffer" eSuperTypes="#//IBufferObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initWithZero" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataBuffer" eSuperTypes="#//IBuffer #//IBufferObject">
+  <eClassifiers xsi:type="ecore:EClass" name="DataBuffer" eSuperTypes="#//IBufferObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BufferViewer" eSuperTypes="#//IBuffer #//IBufferObject">
+  <eClassifiers xsi:type="ecore:EClass" name="BufferViewer" eSuperTypes="#//IBufferObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
         eType="#//BufferDataProvider" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"

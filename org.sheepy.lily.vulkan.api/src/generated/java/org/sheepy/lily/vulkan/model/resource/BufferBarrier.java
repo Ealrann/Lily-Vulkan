@@ -27,12 +27,12 @@ public interface BufferBarrier extends AbstractBufferBarrier
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffers</em>' containment reference.
-	 * @see #setBuffers(IBufferReference)
+	 * @see #setBuffers(BufferReference)
 	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferBarrier_Buffers()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	IBufferReference getBuffers();
+	BufferReference getBuffers();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffers <em>Buffers</em>}' containment reference.
@@ -42,6 +42,6 @@ public interface BufferBarrier extends AbstractBufferBarrier
 	 * @see #getBuffers()
 	 * @generated
 	 */
-	void setBuffers(IBufferReference value);
+	void setBuffers(BufferReference value);
 
 } // BufferBarrier

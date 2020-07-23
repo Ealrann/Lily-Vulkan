@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
-
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
@@ -32,6 +31,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getDataProvider <em>Data Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl#getGrowFactor <em>Grow Factor</em>}</li>
@@ -41,8 +41,28 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *
  * @generated
  */
-public class BufferViewerImpl extends IResourceImpl implements BufferViewer
+public class BufferViewerImpl extends LilyEObject implements BufferViewer
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getDataProvider() <em>Data Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -142,6 +162,31 @@ public class BufferViewerImpl extends IResourceImpl implements BufferViewer
 	protected EClass eStaticClass()
 	{
 		return VulkanResourcePackage.Literals.BUFFER_VIEWER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__NAME, oldName, name));
 	}
 
 	/**
@@ -310,6 +355,8 @@ public class BufferViewerImpl extends IResourceImpl implements BufferViewer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
+				return getName();
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				return getDataProvider();
 			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
@@ -335,6 +382,9 @@ public class BufferViewerImpl extends IResourceImpl implements BufferViewer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
+				setName((String)newValue);
+				return;
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider)newValue);
 				return;
@@ -365,6 +415,9 @@ public class BufferViewerImpl extends IResourceImpl implements BufferViewer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider)null);
 				return;
@@ -394,6 +447,8 @@ public class BufferViewerImpl extends IResourceImpl implements BufferViewer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				return dataProvider != null;
 			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
@@ -419,7 +474,9 @@ public class BufferViewerImpl extends IResourceImpl implements BufferViewer
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (usages: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", usages: ");
 		result.append(usages);
 		result.append(", growFactor: ");
 		result.append(growFactor);

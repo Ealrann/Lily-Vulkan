@@ -297,7 +297,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IBUFFER__NAME = ResourcePackage.IRESOURCE__NAME;
+	int IBUFFER__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
 
 	/**
 	 * The number of structural features of the '<em>IBuffer</em>' class.
@@ -306,7 +306,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IBUFFER_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
+	int IBUFFER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>IBuffer</em>' class.
@@ -315,45 +315,17 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IBUFFER_OPERATION_COUNT = ResourcePackage.IRESOURCE_OPERATION_COUNT + 0;
+	int IBUFFER_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferReferenceImpl <em>Buffer Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.IBufferReference
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIBufferReference()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferReferenceImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferReference()
 	 * @generated
 	 */
-	int IBUFFER_REFERENCE = 5;
-
-	/**
-	 * The number of structural features of the '<em>IBuffer Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IBUFFER_REFERENCE_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>IBuffer Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IBUFFER_REFERENCE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FixedBufferReferenceImpl <em>Fixed Buffer Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.FixedBufferReferenceImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFixedBufferReference()
-	 * @generated
-	 */
-	int FIXED_BUFFER_REFERENCE = 6;
+	int BUFFER_REFERENCE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Buffers</b></em>' reference list.
@@ -362,44 +334,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_BUFFER_REFERENCE__BUFFERS = IBUFFER_REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Fixed Buffer Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_BUFFER_REFERENCE_FEATURE_COUNT = IBUFFER_REFERENCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Fixed Buffer Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_BUFFER_REFERENCE_OPERATION_COUNT = IBUFFER_REFERENCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferReferenceImpl <em>Circular Buffer Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.CircularBufferReferenceImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCircularBufferReference()
-	 * @generated
-	 */
-	int CIRCULAR_BUFFER_REFERENCE = 7;
-
-	/**
-	 * The feature id for the '<em><b>Buffers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CIRCULAR_BUFFER_REFERENCE__BUFFERS = IBUFFER_REFERENCE_FEATURE_COUNT + 0;
+	int BUFFER_REFERENCE__BUFFERS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Stride</b></em>' attribute.
@@ -408,7 +343,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER_REFERENCE__STRIDE = IBUFFER_REFERENCE_FEATURE_COUNT + 1;
+	int BUFFER_REFERENCE__STRIDE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Index Type</b></em>' attribute.
@@ -417,25 +352,25 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER_REFERENCE__INDEX_TYPE = IBUFFER_REFERENCE_FEATURE_COUNT + 2;
+	int BUFFER_REFERENCE__INDEX_TYPE = 2;
 
 	/**
-	 * The number of structural features of the '<em>Circular Buffer Reference</em>' class.
+	 * The number of structural features of the '<em>Buffer Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER_REFERENCE_FEATURE_COUNT = IBUFFER_REFERENCE_FEATURE_COUNT + 3;
+	int BUFFER_REFERENCE_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Circular Buffer Reference</em>' class.
+	 * The number of operations of the '<em>Buffer Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CIRCULAR_BUFFER_REFERENCE_OPERATION_COUNT = IBUFFER_REFERENCE_OPERATION_COUNT + 0;
+	int BUFFER_REFERENCE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
@@ -445,7 +380,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBuffer()
 	 * @generated
 	 */
-	int BUFFER = 8;
+	int BUFFER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -545,7 +480,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCompositeBuffer()
 	 * @generated
 	 */
-	int COMPOSITE_BUFFER = 9;
+	int COMPOSITE_BUFFER = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -600,7 +535,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferPart()
 	 * @generated
 	 */
-	int BUFFER_PART = 10;
+	int BUFFER_PART = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -646,7 +581,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferDataProvider()
 	 * @generated
 	 */
-	int BUFFER_DATA_PROVIDER = 11;
+	int BUFFER_DATA_PROVIDER = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -791,7 +726,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImage()
 	 * @generated
 	 */
-	int IMAGE = 12;
+	int IMAGE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -873,7 +808,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getStaticImage()
 	 * @generated
 	 */
-	int STATIC_IMAGE = 13;
+	int STATIC_IMAGE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -982,7 +917,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFileImage()
 	 * @generated
 	 */
-	int FILE_IMAGE = 14;
+	int FILE_IMAGE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -1082,7 +1017,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFontImage()
 	 * @generated
 	 */
-	int FONT_IMAGE = 15;
+	int FONT_IMAGE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -1173,7 +1108,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCompositeImage()
 	 * @generated
 	 */
-	int COMPOSITE_IMAGE = 16;
+	int COMPOSITE_IMAGE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -1273,7 +1208,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageInlay()
 	 * @generated
 	 */
-	int IMAGE_INLAY = 17;
+	int IMAGE_INLAY = 15;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' reference.
@@ -1346,7 +1281,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE = 18;
+	int SAMPLED_IMAGE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1401,7 +1336,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSampler()
 	 * @generated
 	 */
-	int SAMPLER = 19;
+	int SAMPLER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Min Filter</b></em>' attribute.
@@ -1555,7 +1490,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferDescriptor()
 	 * @generated
 	 */
-	int BUFFER_DESCRIPTOR = 20;
+	int BUFFER_DESCRIPTOR = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1619,7 +1554,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageDescriptor()
 	 * @generated
 	 */
-	int IMAGE_DESCRIPTOR = 21;
+	int IMAGE_DESCRIPTOR = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1683,7 +1618,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSampledImageDescriptor()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE_DESCRIPTOR = 22;
+	int SAMPLED_IMAGE_DESCRIPTOR = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1747,7 +1682,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSamplerDescriptor()
 	 * @generated
 	 */
-	int SAMPLER_DESCRIPTOR = 23;
+	int SAMPLER_DESCRIPTOR = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1811,7 +1746,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 24;
+	int DESCRIPTOR_SET = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1857,7 +1792,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 25;
+	int BUFFER_BARRIER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1921,7 +1856,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 26;
+	int IMAGE_BARRIER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2003,7 +1938,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 27;
+	int SHADER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2067,7 +2002,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageArrayDescriptor()
 	 * @generated
 	 */
-	int IMAGE_ARRAY_DESCRIPTOR = 28;
+	int IMAGE_ARRAY_DESCRIPTOR = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2140,7 +2075,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getMemoryChunk()
 	 * @generated
 	 */
-	int MEMORY_CHUNK = 29;
+	int MEMORY_CHUNK = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2195,7 +2130,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIMemoryChunkPart()
 	 * @generated
 	 */
-	int IMEMORY_CHUNK_PART = 30;
+	int IMEMORY_CHUNK_PART = 28;
 
 	/**
 	 * The number of structural features of the '<em>IMemory Chunk Part</em>' class.
@@ -2223,7 +2158,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferMemory()
 	 * @generated
 	 */
-	int BUFFER_MEMORY = 31;
+	int BUFFER_MEMORY = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2269,7 +2204,16 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIBufferObject()
 	 * @generated
 	 */
-	int IBUFFER_OBJECT = 32;
+	int IBUFFER_OBJECT = 30;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IBUFFER_OBJECT__NAME = IBUFFER__NAME;
 
 	/**
 	 * The number of structural features of the '<em>IBuffer Object</em>' class.
@@ -2278,7 +2222,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IBUFFER_OBJECT_FEATURE_COUNT = 0;
+	int IBUFFER_OBJECT_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>IBuffer Object</em>' class.
@@ -2287,7 +2231,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IBUFFER_OBJECT_OPERATION_COUNT = 0;
+	int IBUFFER_OBJECT_OPERATION_COUNT = IBUFFER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl <em>Static Buffer</em>}' class.
@@ -2297,7 +2241,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getStaticBuffer()
 	 * @generated
 	 */
-	int STATIC_BUFFER = 33;
+	int STATIC_BUFFER = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2306,7 +2250,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_BUFFER__NAME = IBUFFER__NAME;
+	int STATIC_BUFFER__NAME = IBUFFER_OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -2315,7 +2259,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_BUFFER__SIZE = IBUFFER_FEATURE_COUNT + 0;
+	int STATIC_BUFFER__SIZE = IBUFFER_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -2324,7 +2268,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_BUFFER__USAGES = IBUFFER_FEATURE_COUNT + 1;
+	int STATIC_BUFFER__USAGES = IBUFFER_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Init With Zero</b></em>' attribute.
@@ -2333,7 +2277,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_BUFFER__INIT_WITH_ZERO = IBUFFER_FEATURE_COUNT + 2;
+	int STATIC_BUFFER__INIT_WITH_ZERO = IBUFFER_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Static Buffer</em>' class.
@@ -2342,7 +2286,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_BUFFER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 3;
+	int STATIC_BUFFER_FEATURE_COUNT = IBUFFER_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Static Buffer</em>' class.
@@ -2351,7 +2295,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_BUFFER_OPERATION_COUNT = IBUFFER_OPERATION_COUNT + 0;
+	int STATIC_BUFFER_OPERATION_COUNT = IBUFFER_OBJECT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DataBufferImpl <em>Data Buffer</em>}' class.
@@ -2361,7 +2305,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getDataBuffer()
 	 * @generated
 	 */
-	int DATA_BUFFER = 34;
+	int DATA_BUFFER = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2370,7 +2314,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_BUFFER__NAME = IBUFFER__NAME;
+	int DATA_BUFFER__NAME = IBUFFER_OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -2379,7 +2323,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_BUFFER__USAGES = IBUFFER_FEATURE_COUNT + 0;
+	int DATA_BUFFER__USAGES = IBUFFER_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
@@ -2388,7 +2332,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_BUFFER__DATA = IBUFFER_FEATURE_COUNT + 1;
+	int DATA_BUFFER__DATA = IBUFFER_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Data Buffer</em>' class.
@@ -2397,7 +2341,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_BUFFER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 2;
+	int DATA_BUFFER_FEATURE_COUNT = IBUFFER_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Data Buffer</em>' class.
@@ -2406,7 +2350,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_BUFFER_OPERATION_COUNT = IBUFFER_OPERATION_COUNT + 0;
+	int DATA_BUFFER_OPERATION_COUNT = IBUFFER_OBJECT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl <em>Buffer Viewer</em>}' class.
@@ -2416,7 +2360,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferViewer()
 	 * @generated
 	 */
-	int BUFFER_VIEWER = 35;
+	int BUFFER_VIEWER = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2425,7 +2369,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__NAME = IBUFFER__NAME;
+	int BUFFER_VIEWER__NAME = IBUFFER_OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Data Provider</b></em>' containment reference.
@@ -2434,7 +2378,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__DATA_PROVIDER = IBUFFER_FEATURE_COUNT + 0;
+	int BUFFER_VIEWER__DATA_PROVIDER = IBUFFER_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -2443,7 +2387,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__USAGES = IBUFFER_FEATURE_COUNT + 1;
+	int BUFFER_VIEWER__USAGES = IBUFFER_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
@@ -2452,7 +2396,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__GROW_FACTOR = IBUFFER_FEATURE_COUNT + 2;
+	int BUFFER_VIEWER__GROW_FACTOR = IBUFFER_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
@@ -2461,7 +2405,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__GROW_THRESHOLD = IBUFFER_FEATURE_COUNT + 3;
+	int BUFFER_VIEWER__GROW_THRESHOLD = IBUFFER_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -2470,7 +2414,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__SIZE = IBUFFER_FEATURE_COUNT + 4;
+	int BUFFER_VIEWER__SIZE = IBUFFER_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Buffer Viewer</em>' class.
@@ -2479,7 +2423,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 5;
+	int BUFFER_VIEWER_FEATURE_COUNT = IBUFFER_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Buffer Viewer</em>' class.
@@ -2488,7 +2432,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER_OPERATION_COUNT = IBUFFER_OPERATION_COUNT + 0;
+	int BUFFER_VIEWER_OPERATION_COUNT = IBUFFER_OBJECT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.EContextIndex <em>EContext Index</em>}' enum.
@@ -2498,7 +2442,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getEContextIndex()
 	 * @generated
 	 */
-	int ECONTEXT_INDEX = 36;
+	int ECONTEXT_INDEX = 34;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.EFlushMode <em>EFlush Mode</em>}' enum.
@@ -2508,7 +2452,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getEFlushMode()
 	 * @generated
 	 */
-	int EFLUSH_MODE = 37;
+	int EFLUSH_MODE = 35;
 
 	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
@@ -2518,7 +2462,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 38;
+	int BYTE_BUFFER = 36;
 
 
 	/**
@@ -2649,78 +2593,47 @@ public interface VulkanResourcePackage extends EPackage
 	EClass getIBuffer();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BufferReference <em>Buffer Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IBuffer Reference</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.IBufferReference
+	 * @return the meta object for class '<em>Buffer Reference</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferReference
 	 * @generated
 	 */
-	EClass getIBufferReference();
+	EClass getBufferReference();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference <em>Fixed Buffer Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fixed Buffer Reference</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FixedBufferReference
-	 * @generated
-	 */
-	EClass getFixedBufferReference();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.resource.FixedBufferReference#getBuffers <em>Buffers</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.resource.BufferReference#getBuffers <em>Buffers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Buffers</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FixedBufferReference#getBuffers()
-	 * @see #getFixedBufferReference()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferReference#getBuffers()
+	 * @see #getBufferReference()
 	 * @generated
 	 */
-	EReference getFixedBufferReference_Buffers();
+	EReference getBufferReference_Buffers();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference <em>Circular Buffer Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Circular Buffer Reference</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBufferReference
-	 * @generated
-	 */
-	EClass getCircularBufferReference();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getBuffers <em>Buffers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Buffers</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getBuffers()
-	 * @see #getCircularBufferReference()
-	 * @generated
-	 */
-	EReference getCircularBufferReference_Buffers();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getStride <em>Stride</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferReference#getStride <em>Stride</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stride</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getStride()
-	 * @see #getCircularBufferReference()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferReference#getStride()
+	 * @see #getBufferReference()
 	 * @generated
 	 */
-	EAttribute getCircularBufferReference_Stride();
+	EAttribute getBufferReference_Stride();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getIndexType <em>Index Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferReference#getIndexType <em>Index Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Index Type</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.CircularBufferReference#getIndexType()
-	 * @see #getCircularBufferReference()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferReference#getIndexType()
+	 * @see #getBufferReference()
 	 * @generated
 	 */
-	EAttribute getCircularBufferReference_IndexType();
+	EAttribute getBufferReference_IndexType();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Buffer <em>Buffer</em>}'.
@@ -3857,24 +3770,14 @@ public interface VulkanResourcePackage extends EPackage
 		EClass IBUFFER = eINSTANCE.getIBuffer();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferReferenceImpl <em>Buffer Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.IBufferReference
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIBufferReference()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferReferenceImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferReference()
 		 * @generated
 		 */
-		EClass IBUFFER_REFERENCE = eINSTANCE.getIBufferReference();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FixedBufferReferenceImpl <em>Fixed Buffer Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.FixedBufferReferenceImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFixedBufferReference()
-		 * @generated
-		 */
-		EClass FIXED_BUFFER_REFERENCE = eINSTANCE.getFixedBufferReference();
+		EClass BUFFER_REFERENCE = eINSTANCE.getBufferReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Buffers</b></em>' reference list feature.
@@ -3882,25 +3785,7 @@ public interface VulkanResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FIXED_BUFFER_REFERENCE__BUFFERS = eINSTANCE.getFixedBufferReference_Buffers();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferReferenceImpl <em>Circular Buffer Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.CircularBufferReferenceImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCircularBufferReference()
-		 * @generated
-		 */
-		EClass CIRCULAR_BUFFER_REFERENCE = eINSTANCE.getCircularBufferReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Buffers</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CIRCULAR_BUFFER_REFERENCE__BUFFERS = eINSTANCE.getCircularBufferReference_Buffers();
+		EReference BUFFER_REFERENCE__BUFFERS = eINSTANCE.getBufferReference_Buffers();
 
 		/**
 		 * The meta object literal for the '<em><b>Stride</b></em>' attribute feature.
@@ -3908,7 +3793,7 @@ public interface VulkanResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CIRCULAR_BUFFER_REFERENCE__STRIDE = eINSTANCE.getCircularBufferReference_Stride();
+		EAttribute BUFFER_REFERENCE__STRIDE = eINSTANCE.getBufferReference_Stride();
 
 		/**
 		 * The meta object literal for the '<em><b>Index Type</b></em>' attribute feature.
@@ -3916,7 +3801,7 @@ public interface VulkanResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CIRCULAR_BUFFER_REFERENCE__INDEX_TYPE = eINSTANCE.getCircularBufferReference_IndexType();
+		EAttribute BUFFER_REFERENCE__INDEX_TYPE = eINSTANCE.getBufferReference_IndexType();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.

@@ -16,27 +16,27 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
 
-import org.sheepy.lily.vulkan.model.resource.CircularBufferReference;
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.EContextIndex;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Circular Buffer Reference</b></em>'.
+ * An implementation of the model object '<em><b>Buffer Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferReferenceImpl#getBuffers <em>Buffers</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferReferenceImpl#getStride <em>Stride</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CircularBufferReferenceImpl#getIndexType <em>Index Type</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferReferenceImpl#getBuffers <em>Buffers</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferReferenceImpl#getStride <em>Stride</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferReferenceImpl#getIndexType <em>Index Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CircularBufferReferenceImpl extends LilyEObject implements CircularBufferReference
+public class BufferReferenceImpl extends LilyEObject implements BufferReference
 {
 	/**
 	 * The cached value of the '{@link #getBuffers() <em>Buffers</em>}' reference list.
@@ -56,7 +56,7 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int STRIDE_EDEFAULT = 1;
+	protected static final int STRIDE_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getStride() <em>Stride</em>}' attribute.
@@ -93,7 +93,7 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CircularBufferReferenceImpl()
+	protected BufferReferenceImpl()
 	{
 		super();
 	}
@@ -106,7 +106,7 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 	@Override
 	protected EClass eStaticClass()
 	{
-		return VulkanResourcePackage.Literals.CIRCULAR_BUFFER_REFERENCE;
+		return VulkanResourcePackage.Literals.BUFFER_REFERENCE;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 	{
 		if (buffers == null)
 		{
-			buffers = new EObjectResolvingEList<IBuffer>(IBuffer.class, this, VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__BUFFERS);
+			buffers = new EObjectResolvingEList<IBuffer>(IBuffer.class, this, VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS);
 		}
 		return buffers;
 	}
@@ -146,7 +146,7 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 		int oldStride = stride;
 		stride = newStride;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__STRIDE, oldStride, stride));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_REFERENCE__STRIDE, oldStride, stride));
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 		EContextIndex oldIndexType = indexType;
 		indexType = newIndexType == null ? INDEX_TYPE_EDEFAULT : newIndexType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__INDEX_TYPE, oldIndexType, indexType));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_REFERENCE__INDEX_TYPE, oldIndexType, indexType));
 	}
 
 	/**
@@ -184,11 +184,11 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__BUFFERS:
+			case VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS:
 				return getBuffers();
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__STRIDE:
+			case VulkanResourcePackage.BUFFER_REFERENCE__STRIDE:
 				return getStride();
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__INDEX_TYPE:
+			case VulkanResourcePackage.BUFFER_REFERENCE__INDEX_TYPE:
 				return getIndexType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -205,14 +205,14 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__BUFFERS:
+			case VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS:
 				getBuffers().clear();
 				getBuffers().addAll((Collection<? extends IBuffer>)newValue);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__STRIDE:
+			case VulkanResourcePackage.BUFFER_REFERENCE__STRIDE:
 				setStride((Integer)newValue);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__INDEX_TYPE:
+			case VulkanResourcePackage.BUFFER_REFERENCE__INDEX_TYPE:
 				setIndexType((EContextIndex)newValue);
 				return;
 		}
@@ -229,13 +229,13 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__BUFFERS:
+			case VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS:
 				getBuffers().clear();
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__STRIDE:
+			case VulkanResourcePackage.BUFFER_REFERENCE__STRIDE:
 				setStride(STRIDE_EDEFAULT);
 				return;
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__INDEX_TYPE:
+			case VulkanResourcePackage.BUFFER_REFERENCE__INDEX_TYPE:
 				setIndexType(INDEX_TYPE_EDEFAULT);
 				return;
 		}
@@ -252,11 +252,11 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__BUFFERS:
+			case VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS:
 				return buffers != null && !buffers.isEmpty();
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__STRIDE:
+			case VulkanResourcePackage.BUFFER_REFERENCE__STRIDE:
 				return stride != STRIDE_EDEFAULT;
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE__INDEX_TYPE:
+			case VulkanResourcePackage.BUFFER_REFERENCE__INDEX_TYPE:
 				return indexType != INDEX_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -281,4 +281,4 @@ public class CircularBufferReferenceImpl extends LilyEObject implements Circular
 		return result.toString();
 	}
 
-} //CircularBufferReferenceImpl
+} //BufferReferenceImpl

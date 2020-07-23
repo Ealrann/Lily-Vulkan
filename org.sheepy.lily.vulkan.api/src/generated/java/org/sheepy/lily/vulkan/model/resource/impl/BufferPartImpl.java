@@ -10,8 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
-
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
@@ -24,13 +23,32 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferPartImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferPartImpl#getDataProvider <em>Data Provider</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BufferPartImpl extends IResourceImpl implements BufferPart
+public class BufferPartImpl extends LilyEObject implements BufferPart
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getDataProvider() <em>Data Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -60,6 +78,31 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	protected EClass eStaticClass()
 	{
 		return VulkanResourcePackage.Literals.BUFFER_PART;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_PART__NAME, oldName, name));
 	}
 
 	/**
@@ -138,6 +181,8 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER_PART__NAME:
+				return getName();
 			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				return getDataProvider();
 		}
@@ -154,6 +199,9 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER_PART__NAME:
+				setName((String)newValue);
+				return;
 			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider)newValue);
 				return;
@@ -171,6 +219,9 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER_PART__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				setDataProvider((BufferDataProvider)null);
 				return;
@@ -188,10 +239,29 @@ public class BufferPartImpl extends IResourceImpl implements BufferPart
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.BUFFER_PART__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER:
 				return dataProvider != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //BufferPartImpl

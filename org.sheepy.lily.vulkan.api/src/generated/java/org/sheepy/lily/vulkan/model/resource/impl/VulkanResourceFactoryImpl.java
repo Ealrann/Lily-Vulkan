@@ -71,8 +71,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.DESCRIPTOR_POOL: return createDescriptorPool();
 			case VulkanResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER: return createGenericConstantBuffer();
-			case VulkanResourcePackage.FIXED_BUFFER_REFERENCE: return createFixedBufferReference();
-			case VulkanResourcePackage.CIRCULAR_BUFFER_REFERENCE: return createCircularBufferReference();
+			case VulkanResourcePackage.BUFFER_REFERENCE: return createBufferReference();
 			case VulkanResourcePackage.BUFFER: return createBuffer();
 			case VulkanResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
 			case VulkanResourcePackage.BUFFER_PART: return createBufferPart();
@@ -199,22 +198,10 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public FixedBufferReference createFixedBufferReference()
+	public BufferReference createBufferReference()
 	{
-		FixedBufferReferenceImpl fixedBufferReference = new FixedBufferReferenceImpl();
-		return fixedBufferReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public CircularBufferReference createCircularBufferReference()
-	{
-		CircularBufferReferenceImpl circularBufferReference = new CircularBufferReferenceImpl();
-		return circularBufferReference;
+		BufferReferenceImpl bufferReference = new BufferReferenceImpl();
+		return bufferReference;
 	}
 
 	/**

@@ -120,7 +120,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prepareDuringUpdate" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//IBufferReference" containment="true"/>
+        eType="ecore:EClass resource.ecore#//BufferReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
         eType="ecore:EClass resource.ecore#//TransferBuffer"/>
   </eClassifiers>
@@ -145,7 +145,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionRecorder" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="FetchBuffer" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//IBufferReference" containment="true"/>
+        eType="ecore:EClass resource.ecore#//BufferReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
         eType="ecore:EClass resource.ecore#//BufferDataProvider"/>
   </eClassifiers>

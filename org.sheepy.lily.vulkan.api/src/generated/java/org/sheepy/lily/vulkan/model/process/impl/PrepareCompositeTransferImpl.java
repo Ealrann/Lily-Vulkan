@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
-import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 
 /**
@@ -136,7 +136,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 * @ordered
 	 */
-	protected IBufferReference bufferReference;
+	protected BufferReference bufferReference;
 
 	/**
 	 * The cached value of the '{@link #getTransferBuffer() <em>Transfer Buffer</em>}' reference.
@@ -320,7 +320,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
-	public IBufferReference getBufferReference()
+	public BufferReference getBufferReference()
 	{
 		return bufferReference;
 	}
@@ -330,9 +330,9 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBufferReference(IBufferReference newBufferReference, NotificationChain msgs)
+	public NotificationChain basicSetBufferReference(BufferReference newBufferReference, NotificationChain msgs)
 	{
-		IBufferReference oldBufferReference = bufferReference;
+		BufferReference oldBufferReference = bufferReference;
 		bufferReference = newBufferReference;
 		if (eNotificationRequired())
 		{
@@ -348,7 +348,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 	 * @generated
 	 */
 	@Override
-	public void setBufferReference(IBufferReference newBufferReference)
+	public void setBufferReference(BufferReference newBufferReference)
 	{
 		if (newBufferReference != bufferReference)
 		{
@@ -481,7 +481,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				setPrepareDuringUpdate((Boolean)newValue);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE:
-				setBufferReference((IBufferReference)newValue);
+				setBufferReference((BufferReference)newValue);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)newValue);
@@ -516,7 +516,7 @@ public class PrepareCompositeTransferImpl extends LilyEObject implements Prepare
 				setPrepareDuringUpdate(PREPARE_DURING_UPDATE_EDEFAULT);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__BUFFER_REFERENCE:
-				setBufferReference((IBufferReference)null);
+				setBufferReference((BufferReference)null);
 				return;
 			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)null);
