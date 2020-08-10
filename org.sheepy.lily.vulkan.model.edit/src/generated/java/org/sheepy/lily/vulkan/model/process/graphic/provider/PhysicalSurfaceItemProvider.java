@@ -62,8 +62,7 @@ public class PhysicalSurfaceItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -81,8 +80,7 @@ public class PhysicalSurfaceItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.PHYSICAL_SURFACE__COLOR_DOMAIN);
 		}
@@ -140,8 +138,7 @@ public class PhysicalSurfaceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PhysicalSurface.class))
-		{
+		switch (notification.getFeatureID(PhysicalSurface.class)) {
 			case GraphicPackage.PHYSICAL_SURFACE__COLOR_DOMAIN:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

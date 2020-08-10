@@ -43,8 +43,7 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -62,8 +61,7 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanResourcePackage.Literals.BUFFER_BARRIER__BUFFERS);
 		}
@@ -123,8 +121,7 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BufferBarrier.class))
-		{
+		switch (notification.getFeatureID(BufferBarrier.class)) {
 			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

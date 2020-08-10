@@ -45,8 +45,7 @@ public class RenderProxyConstantBufferItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addConstantBufferPropertyDescriptor(object);
@@ -141,8 +140,7 @@ public class RenderProxyConstantBufferItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RenderProxyConstantBuffer.class))
-		{
+		switch (notification.getFeatureID(RenderProxyConstantBuffer.class)) {
 			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

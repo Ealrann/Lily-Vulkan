@@ -43,8 +43,7 @@ public class FileImageItemProvider extends ImageItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addFilePropertyDescriptor(object);
@@ -139,8 +138,7 @@ public class FileImageItemProvider extends ImageItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FileImage.class))
-		{
+		switch (notification.getFeatureID(FileImage.class)) {
 			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

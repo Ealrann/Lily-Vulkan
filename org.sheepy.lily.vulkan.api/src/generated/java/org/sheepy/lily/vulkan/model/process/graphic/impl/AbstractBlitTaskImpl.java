@@ -262,12 +262,10 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	@Override
 	public IImage getSrcImage()
 	{
-		if (srcImage != null && ((EObject)srcImage).eIsProxy())
-		{
+		if (srcImage != null && ((EObject)srcImage).eIsProxy()) {
 			InternalEObject oldSrcImage = srcImage;
 			srcImage = (IImage)eResolveProxy(oldSrcImage);
-			if (srcImage != oldSrcImage)
-			{
+			if (srcImage != oldSrcImage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.ABSTRACT_BLIT_TASK__SRC_IMAGE, oldSrcImage, srcImage));
 			}
@@ -307,8 +305,7 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ABSTRACT_BLIT_TASK__NAME:
 				return getName();
 			case GraphicPackage.ABSTRACT_BLIT_TASK__ENABLED:
@@ -332,8 +329,7 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ABSTRACT_BLIT_TASK__NAME:
 				setName((String)newValue);
 				return;
@@ -361,8 +357,7 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ABSTRACT_BLIT_TASK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -390,8 +385,7 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ABSTRACT_BLIT_TASK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.ABSTRACT_BLIT_TASK__ENABLED:

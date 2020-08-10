@@ -61,8 +61,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -320,8 +319,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
@@ -386,8 +384,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Subpass.class))
-		{
+		switch (notification.getFeatureID(Subpass.class)) {
 			case GraphicPackage.SUBPASS__NAME:
 			case GraphicPackage.SUBPASS__SUBPASS_INDEX:
 			case GraphicPackage.SUBPASS__BIND_POINT:

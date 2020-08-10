@@ -33,7 +33,7 @@ import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.core.model.resource.util.ResourceSwitch;
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
+import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -115,8 +115,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createGraphicConfigurationAdapter()
 	{
-		if (graphicConfigurationItemProvider == null)
-		{
+		if (graphicConfigurationItemProvider == null) {
 			graphicConfigurationItemProvider = new GraphicConfigurationItemProvider(this);
 		}
 
@@ -140,8 +139,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createGraphicExecutionManagerAdapter()
 	{
-		if (graphicExecutionManagerItemProvider == null)
-		{
+		if (graphicExecutionManagerItemProvider == null) {
 			graphicExecutionManagerItemProvider = new GraphicExecutionManagerItemProvider(this);
 		}
 
@@ -165,8 +163,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createGraphicExecutionRecorderAdapter()
 	{
-		if (graphicExecutionRecorderItemProvider == null)
-		{
+		if (graphicExecutionRecorderItemProvider == null) {
 			graphicExecutionRecorderItemProvider = new GraphicExecutionRecorderItemProvider(this);
 		}
 
@@ -190,8 +187,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createColorDomainAdapter()
 	{
-		if (colorDomainItemProvider == null)
-		{
+		if (colorDomainItemProvider == null) {
 			colorDomainItemProvider = new ColorDomainItemProvider(this);
 		}
 
@@ -215,8 +211,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createPhysicalSurfaceAdapter()
 	{
-		if (physicalSurfaceItemProvider == null)
-		{
+		if (physicalSurfaceItemProvider == null) {
 			physicalSurfaceItemProvider = new PhysicalSurfaceItemProvider(this);
 		}
 
@@ -240,8 +235,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createSwapchainConfigurationAdapter()
 	{
-		if (swapchainConfigurationItemProvider == null)
-		{
+		if (swapchainConfigurationItemProvider == null) {
 			swapchainConfigurationItemProvider = new SwapchainConfigurationItemProvider(this);
 		}
 
@@ -265,8 +259,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createFramebufferConfigurationAdapter()
 	{
-		if (framebufferConfigurationItemProvider == null)
-		{
+		if (framebufferConfigurationItemProvider == null) {
 			framebufferConfigurationItemProvider = new FramebufferConfigurationItemProvider(this);
 		}
 
@@ -290,8 +283,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createImageViewsAdapter()
 	{
-		if (imageViewsItemProvider == null)
-		{
+		if (imageViewsItemProvider == null) {
 			imageViewsItemProvider = new ImageViewsItemProvider(this);
 		}
 
@@ -315,8 +307,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createRenderPassAdapter()
 	{
-		if (renderPassItemProvider == null)
-		{
+		if (renderPassItemProvider == null) {
 			renderPassItemProvider = new RenderPassItemProvider(this);
 		}
 
@@ -340,8 +331,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createImageAttachmentAdapter()
 	{
-		if (imageAttachmentItemProvider == null)
-		{
+		if (imageAttachmentItemProvider == null) {
 			imageAttachmentItemProvider = new ImageAttachmentItemProvider(this);
 		}
 
@@ -365,8 +355,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createDepthAttachmentAdapter()
 	{
-		if (depthAttachmentItemProvider == null)
-		{
+		if (depthAttachmentItemProvider == null) {
 			depthAttachmentItemProvider = new DepthAttachmentItemProvider(this);
 		}
 
@@ -390,8 +379,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createColorAttachmentAdapter()
 	{
-		if (colorAttachmentItemProvider == null)
-		{
+		if (colorAttachmentItemProvider == null) {
 			colorAttachmentItemProvider = new ColorAttachmentItemProvider(this);
 		}
 
@@ -415,8 +403,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createAttachmentPkgAdapter()
 	{
-		if (attachmentPkgItemProvider == null)
-		{
+		if (attachmentPkgItemProvider == null) {
 			attachmentPkgItemProvider = new AttachmentPkgItemProvider(this);
 		}
 
@@ -440,8 +427,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createSubpassAdapter()
 	{
-		if (subpassItemProvider == null)
-		{
+		if (subpassItemProvider == null) {
 			subpassItemProvider = new SubpassItemProvider(this);
 		}
 
@@ -465,8 +451,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createAttachmentRefPkgAdapter()
 	{
-		if (attachmentRefPkgItemProvider == null)
-		{
+		if (attachmentRefPkgItemProvider == null) {
 			attachmentRefPkgItemProvider = new AttachmentRefPkgItemProvider(this);
 		}
 
@@ -490,8 +475,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createAttachmentRefAdapter()
 	{
-		if (attachmentRefItemProvider == null)
-		{
+		if (attachmentRefItemProvider == null) {
 			attachmentRefItemProvider = new AttachmentRefItemProvider(this);
 		}
 
@@ -515,8 +499,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createSwapImageAttachmentAdapter()
 	{
-		if (swapImageAttachmentItemProvider == null)
-		{
+		if (swapImageAttachmentItemProvider == null) {
 			swapImageAttachmentItemProvider = new SwapImageAttachmentItemProvider(this);
 		}
 
@@ -540,8 +523,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createGraphicProcessAdapter()
 	{
-		if (graphicProcessItemProvider == null)
-		{
+		if (graphicProcessItemProvider == null) {
 			graphicProcessItemProvider = new GraphicProcessItemProvider(this);
 		}
 
@@ -565,8 +547,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createGraphicsPipelineAdapter()
 	{
-		if (graphicsPipelineItemProvider == null)
-		{
+		if (graphicsPipelineItemProvider == null) {
 			graphicsPipelineItemProvider = new GraphicsPipelineItemProvider(this);
 		}
 
@@ -590,8 +571,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createSwapImageBarrierAdapter()
 	{
-		if (swapImageBarrierItemProvider == null)
-		{
+		if (swapImageBarrierItemProvider == null) {
 			swapImageBarrierItemProvider = new SwapImageBarrierItemProvider(this);
 		}
 
@@ -615,8 +595,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createBlitToSwapImageAdapter()
 	{
-		if (blitToSwapImageItemProvider == null)
-		{
+		if (blitToSwapImageItemProvider == null) {
 			blitToSwapImageItemProvider = new BlitToSwapImageItemProvider(this);
 		}
 
@@ -640,8 +619,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createBlitTaskAdapter()
 	{
-		if (blitTaskItemProvider == null)
-		{
+		if (blitTaskItemProvider == null) {
 			blitTaskItemProvider = new BlitTaskItemProvider(this);
 		}
 
@@ -665,8 +643,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createDrawIndexedAdapter()
 	{
-		if (drawIndexedItemProvider == null)
-		{
+		if (drawIndexedItemProvider == null) {
 			drawIndexedItemProvider = new DrawIndexedItemProvider(this);
 		}
 
@@ -690,8 +667,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createDrawAdapter()
 	{
-		if (drawItemProvider == null)
-		{
+		if (drawItemProvider == null) {
 			drawItemProvider = new DrawItemProvider(this);
 		}
 
@@ -715,8 +691,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createVertexInputStateAdapter()
 	{
-		if (vertexInputStateItemProvider == null)
-		{
+		if (vertexInputStateItemProvider == null) {
 			vertexInputStateItemProvider = new VertexInputStateItemProvider(this);
 		}
 
@@ -740,8 +715,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createInputDescriptorAdapter()
 	{
-		if (inputDescriptorItemProvider == null)
-		{
+		if (inputDescriptorItemProvider == null) {
 			inputDescriptorItemProvider = new InputDescriptorItemProvider(this);
 		}
 
@@ -765,8 +739,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createAttributeDescriptionAdapter()
 	{
-		if (attributeDescriptionItemProvider == null)
-		{
+		if (attributeDescriptionItemProvider == null) {
 			attributeDescriptionItemProvider = new AttributeDescriptionItemProvider(this);
 		}
 
@@ -790,8 +763,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createBindVertexBufferAdapter()
 	{
-		if (bindVertexBufferItemProvider == null)
-		{
+		if (bindVertexBufferItemProvider == null) {
 			bindVertexBufferItemProvider = new BindVertexBufferItemProvider(this);
 		}
 
@@ -815,8 +787,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createSetScissorAdapter()
 	{
-		if (setScissorItemProvider == null)
-		{
+		if (setScissorItemProvider == null) {
 			setScissorItemProvider = new SetScissorItemProvider(this);
 		}
 
@@ -840,8 +811,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createSetViewportAdapter()
 	{
-		if (setViewportItemProvider == null)
-		{
+		if (setViewportItemProvider == null) {
 			setViewportItemProvider = new SetViewportItemProvider(this);
 		}
 
@@ -865,8 +835,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createVertexBindingAdapter()
 	{
-		if (vertexBindingItemProvider == null)
-		{
+		if (vertexBindingItemProvider == null) {
 			vertexBindingItemProvider = new VertexBindingItemProvider(this);
 		}
 
@@ -890,8 +859,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createBindIndexBufferAdapter()
 	{
-		if (bindIndexBufferItemProvider == null)
-		{
+		if (bindIndexBufferItemProvider == null) {
 			bindIndexBufferItemProvider = new BindIndexBufferItemProvider(this);
 		}
 
@@ -915,8 +883,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createAttachmentDescriptorAdapter()
 	{
-		if (attachmentDescriptorItemProvider == null)
-		{
+		if (attachmentDescriptorItemProvider == null) {
 			attachmentDescriptorItemProvider = new AttachmentDescriptorItemProvider(this);
 		}
 
@@ -940,8 +907,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Adapter createCompositorAdapter()
 	{
-		if (compositorItemProvider == null)
-		{
+		if (compositorItemProvider == null) {
 			compositorItemProvider = new CompositorItemProvider(this);
 		}
 
@@ -1003,11 +969,9 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -1082,8 +1046,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

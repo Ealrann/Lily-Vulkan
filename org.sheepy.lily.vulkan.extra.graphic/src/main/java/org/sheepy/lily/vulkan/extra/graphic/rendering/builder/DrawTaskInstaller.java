@@ -9,6 +9,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
@@ -32,8 +33,7 @@ public final class DrawTaskInstaller
 		final var pipeline = context.pipeline;
 		final var taskPkg = pipeline.getTaskPkgs().get(0);
 		final var resourcePkg = pipeline.getResourcePkg();
-		final var buffer = context.buffer;
-		final var bufferParts = buffer.getParts();
+		final var bufferParts = context.bufferMemory.getBuffers();
 		final List<VertexProvider<?>> vertexProviders = new ArrayList<>();
 		final List<BufferDataProvider> dataProviders = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public final class DrawTaskInstaller
 		for (int i = 0; i < bufferParts.size(); i++)
 		{
 			final var part = bufferParts.get(i);
-			final var provider = part.getDataProvider();
+			final var provider = ((BufferViewer) part).getDataProvider();
 			dataProviders.add(provider);
 
 			if (provider instanceof IndexProvider)
@@ -54,12 +54,12 @@ public final class DrawTaskInstaller
 				}
 				indexIndex = i;
 			}
-			else if (provider instanceof VertexProvider)
+			else if (provider instanceof VertexProvider<?> vertexProvider)
 			{
 				final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
 				vertexBinding.setBuffer(part);
 				vertexBufferRef.add(vertexBinding);
-				vertexProviders.add((VertexProvider<?>) provider);
+				vertexProviders.add(vertexProvider);
 			}
 		}
 
@@ -81,7 +81,7 @@ public final class DrawTaskInstaller
 		if (indexIndex != -1)
 		{
 			final var part = bufferParts.get(indexIndex);
-			final var indexProvider = (IndexProvider<?>) part.getDataProvider();
+			final var indexProvider = (IndexProvider<?>) ((BufferViewer) part).getDataProvider();
 
 			final var bindIndex = GraphicFactory.eINSTANCE.createBindIndexBuffer();
 			bindIndex.setBuffer(part);

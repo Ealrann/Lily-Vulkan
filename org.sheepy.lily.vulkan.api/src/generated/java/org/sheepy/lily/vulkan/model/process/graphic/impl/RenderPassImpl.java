@@ -65,8 +65,7 @@ public class RenderPassImpl extends LilyEObject implements RenderPass
 	@Override
 	public EList<ExtraAttachment> getAttachments()
 	{
-		if (attachments == null)
-		{
+		if (attachments == null) {
 			attachments = new EObjectResolvingEList<ExtraAttachment>(ExtraAttachment.class, this, GraphicPackage.RENDER_PASS__ATTACHMENTS);
 		}
 		return attachments;
@@ -80,8 +79,7 @@ public class RenderPassImpl extends LilyEObject implements RenderPass
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.RENDER_PASS__ATTACHMENTS:
 				return getAttachments();
 		}
@@ -97,8 +95,7 @@ public class RenderPassImpl extends LilyEObject implements RenderPass
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.RENDER_PASS__ATTACHMENTS:
 				getAttachments().clear();
 				getAttachments().addAll((Collection<? extends ExtraAttachment>)newValue);
@@ -115,8 +112,7 @@ public class RenderPassImpl extends LilyEObject implements RenderPass
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.RENDER_PASS__ATTACHMENTS:
 				getAttachments().clear();
 				return;
@@ -132,8 +128,7 @@ public class RenderPassImpl extends LilyEObject implements RenderPass
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.RENDER_PASS__ATTACHMENTS:
 				return attachments != null && !attachments.isEmpty();
 		}

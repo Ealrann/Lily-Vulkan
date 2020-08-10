@@ -66,8 +66,7 @@ public class PipelinePkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -85,8 +84,7 @@ public class PipelinePkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES);
 		}
@@ -144,8 +142,7 @@ public class PipelinePkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PipelinePkg.class))
-		{
+		switch (notification.getFeatureID(PipelinePkg.class)) {
 			case ProcessPackage.PIPELINE_PKG__PIPELINES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

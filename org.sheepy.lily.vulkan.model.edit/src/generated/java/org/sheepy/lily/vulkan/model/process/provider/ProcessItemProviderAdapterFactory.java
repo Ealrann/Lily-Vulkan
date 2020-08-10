@@ -30,9 +30,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.cadence.CadenceTaskPkg;
 import org.sheepy.lily.core.model.cadence.util.CadenceSwitch;
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.util.ProcessAdapterFactory;
 
 /**
@@ -111,8 +111,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createPipelinePkgAdapter()
 	{
-		if (pipelinePkgItemProvider == null)
-		{
+		if (pipelinePkgItemProvider == null) {
 			pipelinePkgItemProvider = new PipelinePkgItemProvider(this);
 		}
 
@@ -136,8 +135,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createTaskPkgAdapter()
 	{
-		if (taskPkgItemProvider == null)
-		{
+		if (taskPkgItemProvider == null) {
 			taskPkgItemProvider = new TaskPkgItemProvider(this);
 		}
 
@@ -161,8 +159,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createPipelineAdapter()
 	{
-		if (pipelineItemProvider == null)
-		{
+		if (pipelineItemProvider == null) {
 			pipelineItemProvider = new PipelineItemProvider(this);
 		}
 
@@ -186,8 +183,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createCompositePipelineAdapter()
 	{
-		if (compositePipelineItemProvider == null)
-		{
+		if (compositePipelineItemProvider == null) {
 			compositePipelineItemProvider = new CompositePipelineItemProvider(this);
 		}
 
@@ -211,8 +207,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createPipelineBarrierAdapter()
 	{
-		if (pipelineBarrierItemProvider == null)
-		{
+		if (pipelineBarrierItemProvider == null) {
 			pipelineBarrierItemProvider = new PipelineBarrierItemProvider(this);
 		}
 
@@ -236,8 +231,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createCompositeTaskAdapter()
 	{
-		if (compositeTaskItemProvider == null)
-		{
+		if (compositeTaskItemProvider == null) {
 			compositeTaskItemProvider = new CompositeTaskItemProvider(this);
 		}
 
@@ -261,8 +255,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createBindDescriptorSetsAdapter()
 	{
-		if (bindDescriptorSetsItemProvider == null)
-		{
+		if (bindDescriptorSetsItemProvider == null) {
 			bindDescriptorSetsItemProvider = new BindDescriptorSetsItemProvider(this);
 		}
 
@@ -286,8 +279,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createPushConstantBufferAdapter()
 	{
-		if (pushConstantBufferItemProvider == null)
-		{
+		if (pushConstantBufferItemProvider == null) {
 			pushConstantBufferItemProvider = new PushConstantBufferItemProvider(this);
 		}
 
@@ -311,8 +303,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createFlushTransferBufferTaskAdapter()
 	{
-		if (flushTransferBufferTaskItemProvider == null)
-		{
+		if (flushTransferBufferTaskItemProvider == null) {
 			flushTransferBufferTaskItemProvider = new FlushTransferBufferTaskItemProvider(this);
 		}
 
@@ -336,8 +327,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createCopyBufferTaskAdapter()
 	{
-		if (copyBufferTaskItemProvider == null)
-		{
+		if (copyBufferTaskItemProvider == null) {
 			copyBufferTaskItemProvider = new CopyBufferTaskItemProvider(this);
 		}
 
@@ -361,37 +351,11 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createProcessExtensionPkgAdapter()
 	{
-		if (processExtensionPkgItemProvider == null)
-		{
+		if (processExtensionPkgItemProvider == null) {
 			processExtensionPkgItemProvider = new ProcessExtensionPkgItemProvider(this);
 		}
 
 		return processExtensionPkgItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PrepareCompositeTransferItemProvider prepareCompositeTransferItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PrepareCompositeTransfer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPrepareCompositeTransferAdapter()
-	{
-		if (prepareCompositeTransferItemProvider == null)
-		{
-			prepareCompositeTransferItemProvider = new PrepareCompositeTransferItemProvider(this);
-		}
-
-		return prepareCompositeTransferItemProvider;
 	}
 
 	/**
@@ -411,8 +375,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createSwapBindingsTaskAdapter()
 	{
-		if (swapBindingsTaskItemProvider == null)
-		{
+		if (swapBindingsTaskItemProvider == null) {
 			swapBindingsTaskItemProvider = new SwapBindingsTaskItemProvider(this);
 		}
 
@@ -436,8 +399,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Adapter createFetchBufferAdapter()
 	{
-		if (fetchBufferItemProvider == null)
-		{
+		if (fetchBufferItemProvider == null) {
 			fetchBufferItemProvider = new FetchBufferItemProvider(this);
 		}
 
@@ -499,11 +461,9 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -578,8 +538,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

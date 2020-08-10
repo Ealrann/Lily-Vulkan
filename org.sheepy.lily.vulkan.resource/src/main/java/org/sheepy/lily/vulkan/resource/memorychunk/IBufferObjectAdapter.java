@@ -16,5 +16,4 @@ public interface IBufferObjectAdapter extends IExtender, INotifier<IBufferObject
 	}
 
 	long getSize(final IBufferObject part);
-	int getUsage(final IBufferObject part);
 }

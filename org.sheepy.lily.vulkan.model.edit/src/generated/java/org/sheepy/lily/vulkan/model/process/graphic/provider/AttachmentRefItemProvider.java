@@ -56,8 +56,7 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addAttachmentPropertyDescriptor(object);
@@ -176,8 +175,7 @@ public class AttachmentRefItemProvider extends ItemProviderAdapter implements IE
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AttachmentRef.class))
-		{
+		switch (notification.getFeatureID(AttachmentRef.class)) {
 			case GraphicPackage.ATTACHMENT_REF__LAYOUT:
 			case GraphicPackage.ATTACHMENT_REF__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

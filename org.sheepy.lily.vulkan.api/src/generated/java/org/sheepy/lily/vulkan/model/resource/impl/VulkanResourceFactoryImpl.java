@@ -31,16 +31,13 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	 */
 	public static VulkanResourceFactory init()
 	{
-		try
-		{
+		try {
 			VulkanResourceFactory theVulkanResourceFactory = (VulkanResourceFactory)EPackage.Registry.INSTANCE.getEFactory(VulkanResourcePackage.eNS_URI);
-			if (theVulkanResourceFactory != null)
-			{
+			if (theVulkanResourceFactory != null) {
 				return theVulkanResourceFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new VulkanResourceFactoryImpl();
@@ -65,16 +62,12 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case VulkanResourcePackage.TRANSFER_BUFFER: return createTransferBuffer();
 			case VulkanResourcePackage.DESCRIPTOR_POOL: return createDescriptorPool();
 			case VulkanResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER: return createGenericConstantBuffer();
 			case VulkanResourcePackage.BUFFER_REFERENCE: return createBufferReference();
-			case VulkanResourcePackage.BUFFER: return createBuffer();
-			case VulkanResourcePackage.COMPOSITE_BUFFER: return createCompositeBuffer();
-			case VulkanResourcePackage.BUFFER_PART: return createBufferPart();
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
 			case VulkanResourcePackage.STATIC_IMAGE: return createStaticImage();
 			case VulkanResourcePackage.FILE_IMAGE: return createFileImage();
@@ -94,6 +87,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
 			case VulkanResourcePackage.MEMORY_CHUNK: return createMemoryChunk();
 			case VulkanResourcePackage.BUFFER_MEMORY: return createBufferMemory();
+			case VulkanResourcePackage.IMAGE_MEMORY: return createImageMemory();
 			case VulkanResourcePackage.STATIC_BUFFER: return createStaticBuffer();
 			case VulkanResourcePackage.DATA_BUFFER: return createDataBuffer();
 			case VulkanResourcePackage.BUFFER_VIEWER: return createBufferViewer();
@@ -110,8 +104,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case VulkanResourcePackage.ECONTEXT_INDEX:
 				return createEContextIndexFromString(eDataType, initialValue);
 			case VulkanResourcePackage.EFLUSH_MODE:
@@ -131,8 +124,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case VulkanResourcePackage.ECONTEXT_INDEX:
 				return convertEContextIndexToString(eDataType, instanceValue);
 			case VulkanResourcePackage.EFLUSH_MODE:
@@ -202,42 +194,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		BufferReferenceImpl bufferReference = new BufferReferenceImpl();
 		return bufferReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Buffer createBuffer()
-	{
-		BufferImpl buffer = new BufferImpl();
-		return buffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public CompositeBuffer createCompositeBuffer()
-	{
-		CompositeBufferImpl compositeBuffer = new CompositeBufferImpl();
-		return compositeBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public BufferPart createBufferPart()
-	{
-		BufferPartImpl bufferPart = new BufferPartImpl();
-		return bufferPart;
 	}
 
 	/**
@@ -466,6 +422,17 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		BufferMemoryImpl bufferMemory = new BufferMemoryImpl();
 		return bufferMemory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageMemory createImageMemory() {
+		ImageMemoryImpl imageMemory = new ImageMemoryImpl();
+		return imageMemory;
 	}
 
 	/**

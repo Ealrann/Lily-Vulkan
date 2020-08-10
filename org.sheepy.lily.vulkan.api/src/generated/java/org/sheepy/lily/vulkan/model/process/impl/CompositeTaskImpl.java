@@ -205,12 +205,10 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public Maintainer<CompositeTask> getMaintainer()
 	{
-		if (maintainer != null && ((EObject)maintainer).eIsProxy())
-		{
-			InternalEObject oldMaintainer = (InternalEObject)maintainer;
+		if (maintainer != null && ((EObject)maintainer).eIsProxy()) {
+			InternalEObject oldMaintainer = maintainer;
 			maintainer = (Maintainer<CompositeTask>)eResolveProxy(oldMaintainer);
-			if (maintainer != oldMaintainer)
-			{
+			if (maintainer != oldMaintainer) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.COMPOSITE_TASK__MAINTAINER, oldMaintainer, maintainer));
 			}
@@ -237,8 +235,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	{
 		Maintainer<CompositeTask> oldMaintainer = maintainer;
 		maintainer = newMaintainer;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.COMPOSITE_TASK__MAINTAINER, oldMaintainer, newMaintainer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -253,8 +250,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public void setMaintainer(Maintainer<CompositeTask> newMaintainer)
 	{
-		if (newMaintainer != maintainer)
-		{
+		if (newMaintainer != maintainer) {
 			NotificationChain msgs = null;
 			if (maintainer != null)
 				msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
@@ -300,8 +296,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public EList<IPipelineTask> getTasks()
 	{
-		if (tasks == null)
-		{
+		if (tasks == null) {
 			tasks = new EObjectContainmentEList<IPipelineTask>(IPipelineTask.class, this, ProcessPackage.COMPOSITE_TASK__TASKS);
 		}
 		return tasks;
@@ -316,8 +311,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
 				if (maintainer != null)
 					msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
@@ -334,8 +328,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
 				return basicSetMaintainer(null, msgs);
 			case ProcessPackage.COMPOSITE_TASK__TASKS:
@@ -352,8 +345,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.COMPOSITE_TASK__NAME:
 				return getName();
 			case ProcessPackage.COMPOSITE_TASK__ENABLED:
@@ -378,8 +370,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.COMPOSITE_TASK__NAME:
 				setName((String)newValue);
 				return;
@@ -408,8 +399,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.COMPOSITE_TASK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -437,8 +427,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.COMPOSITE_TASK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.COMPOSITE_TASK__ENABLED:
@@ -461,10 +450,8 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainable.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == Maintainable.class) {
+			switch (derivedFeatureID) {
 				case ProcessPackage.COMPOSITE_TASK__MAINTAINER: return MaintainerPackage.MAINTAINABLE__MAINTAINER;
 				default: return -1;
 			}
@@ -480,10 +467,8 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainable.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == Maintainable.class) {
+			switch (baseFeatureID) {
 				case MaintainerPackage.MAINTAINABLE__MAINTAINER: return ProcessPackage.COMPOSITE_TASK__MAINTAINER;
 				default: return -1;
 			}

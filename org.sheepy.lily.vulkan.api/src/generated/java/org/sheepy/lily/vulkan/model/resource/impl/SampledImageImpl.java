@@ -95,8 +95,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	{
 		SamplerInfo oldSampler = sampler;
 		sampler = newSampler;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER, oldSampler, newSampler);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -111,8 +110,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public void setSampler(SamplerInfo newSampler)
 	{
-		if (newSampler != sampler)
-		{
+		if (newSampler != sampler) {
 			NotificationChain msgs = null;
 			if (sampler != null)
 				msgs = ((InternalEObject)sampler).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
@@ -133,12 +131,10 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public Image getImage()
 	{
-		if (image != null && ((EObject)image).eIsProxy())
-		{
+		if (image != null && ((EObject)image).eIsProxy()) {
 			InternalEObject oldImage = image;
 			image = (Image)eResolveProxy(oldImage);
-			if (image != oldImage)
-			{
+			if (image != oldImage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.SAMPLED_IMAGE__IMAGE, oldImage, image));
 			}
@@ -178,8 +174,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return basicSetSampler(null, msgs);
 		}
@@ -194,8 +189,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return getSampler();
 			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
@@ -213,8 +207,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((SamplerInfo)newValue);
 				return;
@@ -233,8 +226,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((SamplerInfo)null);
 				return;
@@ -253,8 +245,7 @@ public class SampledImageImpl extends IResourceImpl implements SampledImage
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return sampler != null;
 			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:

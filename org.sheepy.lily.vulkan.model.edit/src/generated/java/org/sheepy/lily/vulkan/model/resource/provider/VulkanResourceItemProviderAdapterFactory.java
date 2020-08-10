@@ -35,9 +35,7 @@ import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.resource.ResourcePkg;
 
 import org.sheepy.lily.core.model.resource.util.ResourceSwitch;
-
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
-
+import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -118,8 +116,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createTransferBufferAdapter()
 	{
-		if (transferBufferItemProvider == null)
-		{
+		if (transferBufferItemProvider == null) {
 			transferBufferItemProvider = new TransferBufferItemProvider(this);
 		}
 
@@ -143,8 +140,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createDescriptorPoolAdapter()
 	{
-		if (descriptorPoolItemProvider == null)
-		{
+		if (descriptorPoolItemProvider == null) {
 			descriptorPoolItemProvider = new DescriptorPoolItemProvider(this);
 		}
 
@@ -168,8 +164,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createConstantBufferAdapter()
 	{
-		if (constantBufferItemProvider == null)
-		{
+		if (constantBufferItemProvider == null) {
 			constantBufferItemProvider = new ConstantBufferItemProvider(this);
 		}
 
@@ -193,8 +188,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createGenericConstantBufferAdapter()
 	{
-		if (genericConstantBufferItemProvider == null)
-		{
+		if (genericConstantBufferItemProvider == null) {
 			genericConstantBufferItemProvider = new GenericConstantBufferItemProvider(this);
 		}
 
@@ -218,87 +212,11 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createBufferReferenceAdapter()
 	{
-		if (bufferReferenceItemProvider == null)
-		{
+		if (bufferReferenceItemProvider == null) {
 			bufferReferenceItemProvider = new BufferReferenceItemProvider(this);
 		}
 
 		return bufferReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Buffer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BufferItemProvider bufferItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Buffer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBufferAdapter()
-	{
-		if (bufferItemProvider == null)
-		{
-			bufferItemProvider = new BufferItemProvider(this);
-		}
-
-		return bufferItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompositeBufferItemProvider compositeBufferItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCompositeBufferAdapter()
-	{
-		if (compositeBufferItemProvider == null)
-		{
-			compositeBufferItemProvider = new CompositeBufferItemProvider(this);
-		}
-
-		return compositeBufferItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferPart} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BufferPartItemProvider bufferPartItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferPart}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBufferPartAdapter()
-	{
-		if (bufferPartItemProvider == null)
-		{
-			bufferPartItemProvider = new BufferPartItemProvider(this);
-		}
-
-		return bufferPartItemProvider;
 	}
 
 	/**
@@ -318,8 +236,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createBufferDataProviderAdapter()
 	{
-		if (bufferDataProviderItemProvider == null)
-		{
+		if (bufferDataProviderItemProvider == null) {
 			bufferDataProviderItemProvider = new BufferDataProviderItemProvider(this);
 		}
 
@@ -343,8 +260,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createStaticImageAdapter()
 	{
-		if (staticImageItemProvider == null)
-		{
+		if (staticImageItemProvider == null) {
 			staticImageItemProvider = new StaticImageItemProvider(this);
 		}
 
@@ -368,8 +284,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createFileImageAdapter()
 	{
-		if (fileImageItemProvider == null)
-		{
+		if (fileImageItemProvider == null) {
 			fileImageItemProvider = new FileImageItemProvider(this);
 		}
 
@@ -393,8 +308,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createFontImageAdapter()
 	{
-		if (fontImageItemProvider == null)
-		{
+		if (fontImageItemProvider == null) {
 			fontImageItemProvider = new FontImageItemProvider(this);
 		}
 
@@ -418,8 +332,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createCompositeImageAdapter()
 	{
-		if (compositeImageItemProvider == null)
-		{
+		if (compositeImageItemProvider == null) {
 			compositeImageItemProvider = new CompositeImageItemProvider(this);
 		}
 
@@ -443,8 +356,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createImageInlayAdapter()
 	{
-		if (imageInlayItemProvider == null)
-		{
+		if (imageInlayItemProvider == null) {
 			imageInlayItemProvider = new ImageInlayItemProvider(this);
 		}
 
@@ -468,8 +380,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createSampledImageAdapter()
 	{
-		if (sampledImageItemProvider == null)
-		{
+		if (sampledImageItemProvider == null) {
 			sampledImageItemProvider = new SampledImageItemProvider(this);
 		}
 
@@ -493,8 +404,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createSamplerAdapter()
 	{
-		if (samplerItemProvider == null)
-		{
+		if (samplerItemProvider == null) {
 			samplerItemProvider = new SamplerItemProvider(this);
 		}
 
@@ -518,8 +428,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createBufferDescriptorAdapter()
 	{
-		if (bufferDescriptorItemProvider == null)
-		{
+		if (bufferDescriptorItemProvider == null) {
 			bufferDescriptorItemProvider = new BufferDescriptorItemProvider(this);
 		}
 
@@ -543,8 +452,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createImageDescriptorAdapter()
 	{
-		if (imageDescriptorItemProvider == null)
-		{
+		if (imageDescriptorItemProvider == null) {
 			imageDescriptorItemProvider = new ImageDescriptorItemProvider(this);
 		}
 
@@ -568,8 +476,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createSampledImageDescriptorAdapter()
 	{
-		if (sampledImageDescriptorItemProvider == null)
-		{
+		if (sampledImageDescriptorItemProvider == null) {
 			sampledImageDescriptorItemProvider = new SampledImageDescriptorItemProvider(this);
 		}
 
@@ -593,8 +500,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createSamplerDescriptorAdapter()
 	{
-		if (samplerDescriptorItemProvider == null)
-		{
+		if (samplerDescriptorItemProvider == null) {
 			samplerDescriptorItemProvider = new SamplerDescriptorItemProvider(this);
 		}
 
@@ -618,8 +524,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createDescriptorSetAdapter()
 	{
-		if (descriptorSetItemProvider == null)
-		{
+		if (descriptorSetItemProvider == null) {
 			descriptorSetItemProvider = new DescriptorSetItemProvider(this);
 		}
 
@@ -643,8 +548,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createBufferBarrierAdapter()
 	{
-		if (bufferBarrierItemProvider == null)
-		{
+		if (bufferBarrierItemProvider == null) {
 			bufferBarrierItemProvider = new BufferBarrierItemProvider(this);
 		}
 
@@ -668,8 +572,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createImageBarrierAdapter()
 	{
-		if (imageBarrierItemProvider == null)
-		{
+		if (imageBarrierItemProvider == null) {
 			imageBarrierItemProvider = new ImageBarrierItemProvider(this);
 		}
 
@@ -693,8 +596,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createShaderAdapter()
 	{
-		if (shaderItemProvider == null)
-		{
+		if (shaderItemProvider == null) {
 			shaderItemProvider = new ShaderItemProvider(this);
 		}
 
@@ -718,8 +620,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createImageArrayDescriptorAdapter()
 	{
-		if (imageArrayDescriptorItemProvider == null)
-		{
+		if (imageArrayDescriptorItemProvider == null) {
 			imageArrayDescriptorItemProvider = new ImageArrayDescriptorItemProvider(this);
 		}
 
@@ -743,8 +644,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createMemoryChunkAdapter()
 	{
-		if (memoryChunkItemProvider == null)
-		{
+		if (memoryChunkItemProvider == null) {
 			memoryChunkItemProvider = new MemoryChunkItemProvider(this);
 		}
 
@@ -768,12 +668,34 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createBufferMemoryAdapter()
 	{
-		if (bufferMemoryItemProvider == null)
-		{
+		if (bufferMemoryItemProvider == null) {
 			bufferMemoryItemProvider = new BufferMemoryItemProvider(this);
 		}
 
 		return bufferMemoryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageMemory} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageMemoryItemProvider imageMemoryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageMemory}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageMemoryAdapter() {
+		if (imageMemoryItemProvider == null) {
+			imageMemoryItemProvider = new ImageMemoryItemProvider(this);
+		}
+
+		return imageMemoryItemProvider;
 	}
 
 	/**
@@ -793,8 +715,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createStaticBufferAdapter()
 	{
-		if (staticBufferItemProvider == null)
-		{
+		if (staticBufferItemProvider == null) {
 			staticBufferItemProvider = new StaticBufferItemProvider(this);
 		}
 
@@ -818,8 +739,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createDataBufferAdapter()
 	{
-		if (dataBufferItemProvider == null)
-		{
+		if (dataBufferItemProvider == null) {
 			dataBufferItemProvider = new DataBufferItemProvider(this);
 		}
 
@@ -843,8 +763,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Adapter createBufferViewerAdapter()
 	{
-		if (bufferViewerItemProvider == null)
-		{
+		if (bufferViewerItemProvider == null) {
 			bufferViewerItemProvider = new BufferViewerItemProvider(this);
 		}
 
@@ -906,11 +825,9 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -985,8 +902,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -1056,16 +972,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createGenericConstantBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createCompositeBuffer()));
 
 				newChildDescriptors.add
 					(createChildParameter

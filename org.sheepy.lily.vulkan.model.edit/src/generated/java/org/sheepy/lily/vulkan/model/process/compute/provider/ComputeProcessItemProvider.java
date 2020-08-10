@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
@@ -48,8 +47,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSourceEnginePropertyDescriptor(object);
@@ -91,8 +89,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__CONFIGURATION);
@@ -153,8 +150,7 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ComputeProcess.class))
-		{
+		switch (notification.getFeatureID(ComputeProcess.class)) {
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

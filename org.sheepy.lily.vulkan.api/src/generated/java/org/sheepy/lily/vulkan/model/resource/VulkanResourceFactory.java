@@ -68,33 +68,6 @@ public interface VulkanResourceFactory extends EFactory
 	BufferReference createBufferReference();
 
 	/**
-	 * Returns a new object of class '<em>Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Buffer</em>'.
-	 * @generated
-	 */
-	Buffer createBuffer();
-
-	/**
-	 * Returns a new object of class '<em>Composite Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite Buffer</em>'.
-	 * @generated
-	 */
-	CompositeBuffer createCompositeBuffer();
-
-	/**
-	 * Returns a new object of class '<em>Buffer Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Buffer Part</em>'.
-	 * @generated
-	 */
-	BufferPart createBufferPart();
-
-	/**
 	 * Returns a new object of class '<em>Buffer Data Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -264,6 +237,15 @@ public interface VulkanResourceFactory extends EFactory
 	 * @generated
 	 */
 	BufferMemory createBufferMemory();
+
+	/**
+	 * Returns a new object of class '<em>Image Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Memory</em>'.
+	 * @generated
+	 */
+	ImageMemory createImageMemory();
 
 	/**
 	 * Returns a new object of class '<em>Static Buffer</em>'.

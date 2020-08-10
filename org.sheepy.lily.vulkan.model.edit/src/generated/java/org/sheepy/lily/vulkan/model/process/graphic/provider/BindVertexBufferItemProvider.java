@@ -59,8 +59,7 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -150,8 +149,7 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.BIND_VERTEX_BUFFER__VERTEX_BINDINGS);
 		}
@@ -211,8 +209,7 @@ public class BindVertexBufferItemProvider extends ItemProviderAdapter implements
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BindVertexBuffer.class))
-		{
+		switch (notification.getFeatureID(BindVertexBuffer.class)) {
 			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
 			case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
 			case GraphicPackage.BIND_VERTEX_BUFFER__FIRST_BINDING:

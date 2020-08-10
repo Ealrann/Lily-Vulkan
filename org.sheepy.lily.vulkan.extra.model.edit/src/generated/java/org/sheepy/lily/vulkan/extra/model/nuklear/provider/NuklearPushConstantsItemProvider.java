@@ -44,8 +44,7 @@ public class NuklearPushConstantsItemProvider extends PushConstantItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addWidthPropertyDescriptor(object);
@@ -164,8 +163,7 @@ public class NuklearPushConstantsItemProvider extends PushConstantItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(NuklearPushConstants.class))
-		{
+		switch (notification.getFeatureID(NuklearPushConstants.class)) {
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__WIDTH:
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__HEIGHT:
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__CURRENT_DESCRIPTOR:

@@ -169,8 +169,7 @@ public class InputDescriptorImpl extends LilyEObject implements InputDescriptor
 	@Override
 	public EList<AttributeDescription> getAttributes()
 	{
-		if (attributes == null)
-		{
+		if (attributes == null) {
 			attributes = new EObjectContainmentEList<AttributeDescription>(AttributeDescription.class, this, GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES);
 		}
 		return attributes;
@@ -184,8 +183,7 @@ public class InputDescriptorImpl extends LilyEObject implements InputDescriptor
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 		}
@@ -200,8 +198,7 @@ public class InputDescriptorImpl extends LilyEObject implements InputDescriptor
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
 				return getInputRate();
 			case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
@@ -221,8 +218,7 @@ public class InputDescriptorImpl extends LilyEObject implements InputDescriptor
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
 				setInputRate((EInputRate)newValue);
 				return;
@@ -245,8 +241,7 @@ public class InputDescriptorImpl extends LilyEObject implements InputDescriptor
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
 				setInputRate(INPUT_RATE_EDEFAULT);
 				return;
@@ -268,8 +263,7 @@ public class InputDescriptorImpl extends LilyEObject implements InputDescriptor
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
 				return inputRate != INPUT_RATE_EDEFAULT;
 			case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:

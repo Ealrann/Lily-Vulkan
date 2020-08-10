@@ -56,8 +56,7 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -219,8 +218,7 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS);
 		}
@@ -280,8 +278,7 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter implements 
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PipelineBarrier.class))
-		{
+		switch (notification.getFeatureID(PipelineBarrier.class)) {
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
 			case ProcessPackage.PIPELINE_BARRIER__SRC_STAGE:

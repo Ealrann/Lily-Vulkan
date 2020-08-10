@@ -105,8 +105,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	{
 		PipelinePkg oldPipelinePkg = pipelinePkg;
 		pipelinePkg = newPipelinePkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, oldPipelinePkg, newPipelinePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -121,8 +120,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	@Override
 	public void setPipelinePkg(PipelinePkg newPipelinePkg)
 	{
-		if (newPipelinePkg != pipelinePkg)
-		{
+		if (newPipelinePkg != pipelinePkg) {
 			NotificationChain msgs = null;
 			if (pipelinePkg != null)
 				msgs = ((InternalEObject)pipelinePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, null, msgs);
@@ -143,12 +141,10 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	@Override
 	public IEngine getSourceEngine()
 	{
-		if (sourceEngine != null && ((EObject)sourceEngine).eIsProxy())
-		{
+		if (sourceEngine != null && ((EObject)sourceEngine).eIsProxy()) {
 			InternalEObject oldSourceEngine = sourceEngine;
 			sourceEngine = (IEngine)eResolveProxy(oldSourceEngine);
-			if (sourceEngine != oldSourceEngine)
-			{
+			if (sourceEngine != oldSourceEngine) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE, oldSourceEngine, sourceEngine));
 			}
@@ -200,8 +196,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	{
 		ComputeConfiguration oldConfiguration = configuration;
 		configuration = newConfiguration;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PROCESS__CONFIGURATION, oldConfiguration, newConfiguration);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -216,8 +211,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	@Override
 	public void setConfiguration(ComputeConfiguration newConfiguration)
 	{
-		if (newConfiguration != configuration)
-		{
+		if (newConfiguration != configuration) {
 			NotificationChain msgs = null;
 			if (configuration != null)
 				msgs = ((InternalEObject)configuration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PROCESS__CONFIGURATION, null, msgs);
@@ -238,8 +232,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				return basicSetPipelinePkg(null, msgs);
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
@@ -256,8 +249,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				return getPipelinePkg();
 			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:
@@ -277,8 +269,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				setPipelinePkg((PipelinePkg)newValue);
 				return;
@@ -300,8 +291,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				setPipelinePkg((PipelinePkg)null);
 				return;
@@ -323,8 +313,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 				return pipelinePkg != null;
 			case ComputePackage.COMPUTE_PROCESS__SOURCE_ENGINE:

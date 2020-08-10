@@ -74,8 +74,7 @@ public class DescriptorPkgImpl extends LilyEObject implements DescriptorPkg
 	@Override
 	public EList<IDescriptor> getDescriptors()
 	{
-		if (descriptors == null)
-		{
+		if (descriptors == null) {
 			descriptors = new EObjectContainmentEList<IDescriptor>(IDescriptor.class, this, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS);
 		}
 		return descriptors;
@@ -89,8 +88,7 @@ public class DescriptorPkgImpl extends LilyEObject implements DescriptorPkg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS:
 				return ((InternalEList<?>)getDescriptors()).basicRemove(otherEnd, msgs);
 		}
@@ -105,8 +103,7 @@ public class DescriptorPkgImpl extends LilyEObject implements DescriptorPkg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS:
 				return getDescriptors();
 		}
@@ -122,8 +119,7 @@ public class DescriptorPkgImpl extends LilyEObject implements DescriptorPkg
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS:
 				getDescriptors().clear();
 				getDescriptors().addAll((Collection<? extends IDescriptor>)newValue);
@@ -140,8 +136,7 @@ public class DescriptorPkgImpl extends LilyEObject implements DescriptorPkg
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS:
 				getDescriptors().clear();
 				return;
@@ -157,8 +152,7 @@ public class DescriptorPkgImpl extends LilyEObject implements DescriptorPkg
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS:
 				return descriptors != null && !descriptors.isEmpty();
 		}

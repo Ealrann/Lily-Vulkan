@@ -269,8 +269,7 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	{
 		Axis oldAxis = axis;
 		axis = newAxis;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.PHYSICAL_ENTITY__AXIS, oldAxis, newAxis);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -285,8 +284,7 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	@Override
 	public void setAxis(Axis newAxis)
 	{
-		if (newAxis != axis)
-		{
+		if (newAxis != axis) {
 			NotificationChain msgs = null;
 			if (axis != null)
 				msgs = ((InternalEObject)axis).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.PHYSICAL_ENTITY__AXIS, null, msgs);
@@ -307,8 +305,7 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PHYSICAL_ENTITY__AXIS:
 				return basicSetAxis(null, msgs);
 		}
@@ -323,8 +320,7 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 				return getName();
 			case RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION:
@@ -347,8 +343,7 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 				setName((String)newValue);
 				return;
@@ -376,8 +371,7 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -405,8 +399,7 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION:

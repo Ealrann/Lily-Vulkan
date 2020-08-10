@@ -29,8 +29,8 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl#isInitWithZero <em>Init With Zero</em>}</li>
  * </ul>
  *
@@ -59,6 +59,16 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getUsages() <em>Usages</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EBufferUsage> usages;
+
+	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,16 +87,6 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	 * @ordered
 	 */
 	protected long size = SIZE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getUsages() <em>Usages</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EBufferUsage> usages;
 
 	/**
 	 * The default value of the '{@link #isInitWithZero() <em>Init With Zero</em>}' attribute.
@@ -187,8 +187,7 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public EList<EBufferUsage> getUsages()
 	{
-		if (usages == null)
-		{
+		if (usages == null) {
 			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, VulkanResourcePackage.STATIC_BUFFER__USAGES);
 		}
 		return usages;
@@ -227,14 +226,13 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 				return getName();
-			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
-				return getSize();
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
 				return getUsages();
+			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
+				return getSize();
 			case VulkanResourcePackage.STATIC_BUFFER__INIT_WITH_ZERO:
 				return isInitWithZero();
 		}
@@ -250,17 +248,16 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 				setName((String)newValue);
-				return;
-			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
-				setSize((Long)newValue);
 				return;
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
+				return;
+			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
+				setSize((Long)newValue);
 				return;
 			case VulkanResourcePackage.STATIC_BUFFER__INIT_WITH_ZERO:
 				setInitWithZero((Boolean)newValue);
@@ -277,16 +274,15 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
-				setSize(SIZE_EDEFAULT);
-				return;
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
 				getUsages().clear();
+				return;
+			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
+				setSize(SIZE_EDEFAULT);
 				return;
 			case VulkanResourcePackage.STATIC_BUFFER__INIT_WITH_ZERO:
 				setInitWithZero(INIT_WITH_ZERO_EDEFAULT);
@@ -303,14 +299,13 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
-				return size != SIZE_EDEFAULT;
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
 				return usages != null && !usages.isEmpty();
+			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
+				return size != SIZE_EDEFAULT;
 			case VulkanResourcePackage.STATIC_BUFFER__INIT_WITH_ZERO:
 				return initWithZero != INIT_WITH_ZERO_EDEFAULT;
 		}
@@ -330,10 +325,10 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", size: ");
-		result.append(size);
 		result.append(", usages: ");
 		result.append(usages);
+		result.append(", size: ");
+		result.append(size);
 		result.append(", initWithZero: ");
 		result.append(initWithZero);
 		result.append(')');

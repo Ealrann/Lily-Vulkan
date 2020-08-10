@@ -22,8 +22,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -62,8 +60,7 @@ public class ProcessExtensionPkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -81,8 +78,7 @@ public class ProcessExtensionPkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.PROCESS_EXTENSION_PKG__EXTENSIONS);
 		}
@@ -140,8 +136,7 @@ public class ProcessExtensionPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProcessExtensionPkg.class))
-		{
+		switch (notification.getFeatureID(ProcessExtensionPkg.class)) {
 			case ProcessPackage.PROCESS_EXTENSION_PKG__EXTENSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -160,16 +155,6 @@ public class ProcessExtensionPkgItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PROCESS_EXTENSION_PKG__EXTENSIONS,
-				 BindingFactory.eINSTANCE.createBindingConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PROCESS_EXTENSION_PKG__EXTENSIONS,
-				 BindingFactory.eINSTANCE.createIndexConfiguration()));
 	}
 
 	/**

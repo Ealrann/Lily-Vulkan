@@ -89,12 +89,10 @@ public class RenderProxyConstantBufferImpl extends ConstantBufferImpl implements
 	@Override
 	public ConstantBuffer getConstantBuffer()
 	{
-		if (constantBuffer != null && ((EObject)constantBuffer).eIsProxy())
-		{
-			InternalEObject oldConstantBuffer = (InternalEObject)constantBuffer;
+		if (constantBuffer != null && ((EObject)constantBuffer).eIsProxy()) {
+			InternalEObject oldConstantBuffer = constantBuffer;
 			constantBuffer = (ConstantBuffer)eResolveProxy(oldConstantBuffer);
-			if (constantBuffer != oldConstantBuffer)
-			{
+			if (constantBuffer != oldConstantBuffer) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER, oldConstantBuffer, constantBuffer));
 			}
@@ -159,8 +157,7 @@ public class RenderProxyConstantBufferImpl extends ConstantBufferImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER:
 				if (resolve) return getConstantBuffer();
 				return basicGetConstantBuffer();
@@ -178,8 +175,7 @@ public class RenderProxyConstantBufferImpl extends ConstantBufferImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER:
 				setConstantBuffer((ConstantBuffer)newValue);
 				return;
@@ -198,8 +194,7 @@ public class RenderProxyConstantBufferImpl extends ConstantBufferImpl implements
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER:
 				setConstantBuffer((ConstantBuffer)null);
 				return;
@@ -218,8 +213,7 @@ public class RenderProxyConstantBufferImpl extends ConstantBufferImpl implements
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER__CONSTANT_BUFFER:
 				return constantBuffer != null;
 			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER__PART_INDEX:

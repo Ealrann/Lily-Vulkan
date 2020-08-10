@@ -99,8 +99,7 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__INDEX:
 				return getIndex();
 		}
@@ -115,8 +114,7 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__INDEX:
 				setIndex((Integer)newValue);
 				return;
@@ -132,8 +130,7 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__INDEX:
 				setIndex(INDEX_EDEFAULT);
 				return;
@@ -149,8 +146,7 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__INDEX:
 				return index != INDEX_EDEFAULT;
 		}

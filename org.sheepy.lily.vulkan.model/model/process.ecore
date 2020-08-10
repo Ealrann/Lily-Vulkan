@@ -110,18 +110,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
         eType="#//IProcessExtension" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrepareCompositeTransfer" eSuperTypes="#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//CompositeBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" lowerBound="1" eType="ecore:EEnum resource.ecore#//EFlushMode"
-        defaultValueLiteral="PUSH"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prepareDuringUpdate" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//BufferReference" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//TransferBuffer"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwapBindingsTask" eSuperTypes="../../org.sheepy.lily.core.model/model/cadence.ecore#//ICadenceTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//BindDescriptorSets"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" lowerBound="1"

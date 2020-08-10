@@ -193,8 +193,7 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	@Override
 	public EList<EImageUsage> getSwapImageUsages()
 	{
-		if (swapImageUsages == null)
-		{
+		if (swapImageUsages == null) {
 			swapImageUsages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this, GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES);
 		}
 		return swapImageUsages;
@@ -295,8 +294,7 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	{
 		SwapImageAttachment oldColorAttachment = colorAttachment;
 		colorAttachment = newColorAttachment;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT, oldColorAttachment, newColorAttachment);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -311,8 +309,7 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	@Override
 	public void setColorAttachment(SwapImageAttachment newColorAttachment)
 	{
-		if (newColorAttachment != colorAttachment)
-		{
+		if (newColorAttachment != colorAttachment) {
 			NotificationChain msgs = null;
 			if (colorAttachment != null)
 				msgs = ((InternalEObject)colorAttachment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT, null, msgs);
@@ -333,8 +330,7 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT:
 				return basicSetColorAttachment(null, msgs);
 		}
@@ -349,8 +345,7 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 				return getRequiredSwapImageCount();
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
@@ -376,8 +371,7 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 				setRequiredSwapImageCount((Integer)newValue);
 				return;
@@ -409,8 +403,7 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 				setRequiredSwapImageCount(REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT);
 				return;
@@ -441,8 +434,7 @@ public class SwapchainConfigurationImpl extends LilyEObject implements Swapchain
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 				return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:

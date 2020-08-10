@@ -83,12 +83,10 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public Maintainer<ComputePipeline> getMaintainer()
 	{
-		if (maintainer != null && ((EObject)maintainer).eIsProxy())
-		{
+		if (maintainer != null && ((EObject)maintainer).eIsProxy()) {
 			InternalEObject oldMaintainer = maintainer;
 			maintainer = (Maintainer<ComputePipeline>)eResolveProxy(oldMaintainer);
-			if (maintainer != oldMaintainer)
-			{
+			if (maintainer != oldMaintainer) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTE_PIPELINE__MAINTAINER, oldMaintainer, maintainer));
 			}
@@ -115,8 +113,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	{
 		Maintainer<ComputePipeline> oldMaintainer = maintainer;
 		maintainer = newMaintainer;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__MAINTAINER, oldMaintainer, newMaintainer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -131,8 +128,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public void setMaintainer(Maintainer<ComputePipeline> newMaintainer)
 	{
-		if (newMaintainer != maintainer)
-		{
+		if (newMaintainer != maintainer) {
 			NotificationChain msgs = null;
 			if (maintainer != null)
 				msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
@@ -153,12 +149,10 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public Shader getShader()
 	{
-		if (shader != null && ((EObject)shader).eIsProxy())
-		{
+		if (shader != null && ((EObject)shader).eIsProxy()) {
 			InternalEObject oldShader = shader;
 			shader = (Shader)eResolveProxy(oldShader);
-			if (shader != oldShader)
-			{
+			if (shader != oldShader) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTE_PIPELINE__SHADER, oldShader, shader));
 			}
@@ -199,8 +193,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				if (maintainer != null)
 					msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
@@ -217,8 +210,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				return basicSetMaintainer(null, msgs);
 		}
@@ -233,8 +225,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				if (resolve) return getMaintainer();
 				return basicGetMaintainer();
@@ -254,8 +245,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				setMaintainer((Maintainer<ComputePipeline>)newValue);
 				return;
@@ -274,8 +264,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				setMaintainer((Maintainer<ComputePipeline>)null);
 				return;
@@ -294,8 +283,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ComputePackage.COMPUTE_PIPELINE__MAINTAINER:
 				return maintainer != null;
 			case ComputePackage.COMPUTE_PIPELINE__SHADER:
@@ -312,10 +300,8 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainable.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == Maintainable.class) {
+			switch (derivedFeatureID) {
 				case ComputePackage.COMPUTE_PIPELINE__MAINTAINER: return MaintainerPackage.MAINTAINABLE__MAINTAINER;
 				default: return -1;
 			}
@@ -331,10 +317,8 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainable.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == Maintainable.class) {
+			switch (baseFeatureID) {
 				case MaintainerPackage.MAINTAINABLE__MAINTAINER: return ComputePackage.COMPUTE_PIPELINE__MAINTAINER;
 				default: return -1;
 			}

@@ -58,8 +58,7 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -297,8 +296,7 @@ public class SetViewportItemProvider extends ItemProviderAdapter implements IEdi
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SetViewport.class))
-		{
+		switch (notification.getFeatureID(SetViewport.class)) {
 			case GraphicPackage.SET_VIEWPORT__NAME:
 			case GraphicPackage.SET_VIEWPORT__ENABLED:
 			case GraphicPackage.SET_VIEWPORT__X:

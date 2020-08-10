@@ -61,8 +61,7 @@ public class ProcessExecutionManagerItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addWaitForExecutionPropertyDescriptor(object);
@@ -182,8 +181,7 @@ public class ProcessExecutionManagerItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProcessExecutionManager.class))
-		{
+		switch (notification.getFeatureID(ProcessExecutionManager.class)) {
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -376,8 +376,7 @@ public class DrawIndexedImpl extends LilyEObject implements DrawIndexed
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.DRAW_INDEXED__NAME:
 				return getName();
 			case GraphicPackage.DRAW_INDEXED__ENABLED:
@@ -404,8 +403,7 @@ public class DrawIndexedImpl extends LilyEObject implements DrawIndexed
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.DRAW_INDEXED__NAME:
 				setName((String)newValue);
 				return;
@@ -439,8 +437,7 @@ public class DrawIndexedImpl extends LilyEObject implements DrawIndexed
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.DRAW_INDEXED__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -474,8 +471,7 @@ public class DrawIndexedImpl extends LilyEObject implements DrawIndexed
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.DRAW_INDEXED__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.DRAW_INDEXED__ENABLED:

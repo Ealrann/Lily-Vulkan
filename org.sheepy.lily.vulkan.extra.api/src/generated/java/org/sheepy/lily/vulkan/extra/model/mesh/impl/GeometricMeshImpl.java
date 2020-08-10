@@ -76,8 +76,7 @@ public class GeometricMeshImpl extends LilyEObject implements GeometricMesh
 	@Override
 	public EList<PresentableEntity> getPresentedEntities()
 	{
-		if (presentedEntities == null)
-		{
+		if (presentedEntities == null) {
 			presentedEntities = new EObjectWithInverseResolvingEList<PresentableEntity>(PresentableEntity.class, this, MeshPackage.GEOMETRIC_MESH__PRESENTED_ENTITIES, RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION);
 		}
 		return presentedEntities;
@@ -92,8 +91,7 @@ public class GeometricMeshImpl extends LilyEObject implements GeometricMesh
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_MESH__PRESENTED_ENTITIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPresentedEntities()).basicAdd(otherEnd, msgs);
 		}
@@ -108,8 +106,7 @@ public class GeometricMeshImpl extends LilyEObject implements GeometricMesh
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_MESH__PRESENTED_ENTITIES:
 				return ((InternalEList<?>)getPresentedEntities()).basicRemove(otherEnd, msgs);
 		}
@@ -124,8 +121,7 @@ public class GeometricMeshImpl extends LilyEObject implements GeometricMesh
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_MESH__PRESENTED_ENTITIES:
 				return getPresentedEntities();
 		}
@@ -141,8 +137,7 @@ public class GeometricMeshImpl extends LilyEObject implements GeometricMesh
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_MESH__PRESENTED_ENTITIES:
 				getPresentedEntities().clear();
 				getPresentedEntities().addAll((Collection<? extends PresentableEntity>)newValue);
@@ -159,8 +154,7 @@ public class GeometricMeshImpl extends LilyEObject implements GeometricMesh
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_MESH__PRESENTED_ENTITIES:
 				getPresentedEntities().clear();
 				return;
@@ -176,8 +170,7 @@ public class GeometricMeshImpl extends LilyEObject implements GeometricMesh
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_MESH__PRESENTED_ENTITIES:
 				return presentedEntities != null && !presentedEntities.isEmpty();
 		}

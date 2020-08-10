@@ -63,8 +63,7 @@ public class PresentationPkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -82,8 +81,7 @@ public class PresentationPkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES);
 		}
@@ -141,8 +139,7 @@ public class PresentationPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PresentationPkg.class))
-		{
+		switch (notification.getFeatureID(PresentationPkg.class)) {
 			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

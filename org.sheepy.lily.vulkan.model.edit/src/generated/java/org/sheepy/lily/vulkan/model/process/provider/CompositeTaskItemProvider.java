@@ -24,8 +24,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -61,8 +59,7 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -152,8 +149,7 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.COMPOSITE_TASK__TASKS);
 		}
@@ -213,8 +209,7 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositeTask.class))
-		{
+		switch (notification.getFeatureID(CompositeTask.class)) {
 			case ProcessPackage.COMPOSITE_TASK__NAME:
 			case ProcessPackage.COMPOSITE_TASK__ENABLED:
 			case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
@@ -272,17 +267,7 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 ProcessFactory.eINSTANCE.createPrepareCompositeTransfer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
 				 ProcessFactory.eINSTANCE.createFetchBuffer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-				 BindingFactory.eINSTANCE.createRotateConfiguration()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -164,8 +164,7 @@ public class SpriteStructureImpl extends LilyEObject implements SpriteStructure
 	@Override
 	public EList<Sprite> getSprites()
 	{
-		if (sprites == null)
-		{
+		if (sprites == null) {
 			sprites = new EObjectContainmentEList<Sprite>(Sprite.class, this, SpritePackage.SPRITE_STRUCTURE__SPRITES);
 		}
 		return sprites;
@@ -179,8 +178,7 @@ public class SpriteStructureImpl extends LilyEObject implements SpriteStructure
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_STRUCTURE__SPRITES:
 				return ((InternalEList<?>)getSprites()).basicRemove(otherEnd, msgs);
 		}
@@ -195,8 +193,7 @@ public class SpriteStructureImpl extends LilyEObject implements SpriteStructure
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 				return getWidth();
 			case SpritePackage.SPRITE_STRUCTURE__HEIGHT:
@@ -216,8 +213,7 @@ public class SpriteStructureImpl extends LilyEObject implements SpriteStructure
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 				setWidth((Integer)newValue);
 				return;
@@ -240,8 +236,7 @@ public class SpriteStructureImpl extends LilyEObject implements SpriteStructure
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 				setWidth(WIDTH_EDEFAULT);
 				return;
@@ -263,8 +258,7 @@ public class SpriteStructureImpl extends LilyEObject implements SpriteStructure
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 				return width != WIDTH_EDEFAULT;
 			case SpritePackage.SPRITE_STRUCTURE__HEIGHT:

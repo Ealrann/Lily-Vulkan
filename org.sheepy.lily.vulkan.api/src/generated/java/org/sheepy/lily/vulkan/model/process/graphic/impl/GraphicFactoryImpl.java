@@ -29,16 +29,13 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 */
 	public static GraphicFactory init()
 	{
-		try
-		{
+		try {
 			GraphicFactory theGraphicFactory = (GraphicFactory)EPackage.Registry.INSTANCE.getEFactory(GraphicPackage.eNS_URI);
-			if (theGraphicFactory != null)
-			{
+			if (theGraphicFactory != null) {
 				return theGraphicFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new GraphicFactoryImpl();
@@ -63,8 +60,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case GraphicPackage.GRAPHIC_CONFIGURATION: return createGraphicConfiguration();
 			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER: return createGraphicExecutionManager();
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER: return createGraphicExecutionRecorder();
@@ -112,8 +108,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case GraphicPackage.EATTACHMENT_TYPE:
 				return createEAttachmentTypeFromString(eDataType, initialValue);
 			default:
@@ -129,8 +124,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case GraphicPackage.EATTACHMENT_TYPE:
 				return convertEAttachmentTypeToString(eDataType, instanceValue);
 			default:

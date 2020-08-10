@@ -95,8 +95,7 @@ public class TaskPkgImpl extends LilyEObject implements TaskPkg
 	@Override
 	public EList<IPipelineTask> getTasks()
 	{
-		if (tasks == null)
-		{
+		if (tasks == null) {
 			tasks = new EObjectContainmentEList<IPipelineTask>(IPipelineTask.class, this, ProcessPackage.TASK_PKG__TASKS);
 		}
 		return tasks;
@@ -135,8 +134,7 @@ public class TaskPkgImpl extends LilyEObject implements TaskPkg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.TASK_PKG__TASKS:
 				return ((InternalEList<?>)getTasks()).basicRemove(otherEnd, msgs);
 		}
@@ -151,8 +149,7 @@ public class TaskPkgImpl extends LilyEObject implements TaskPkg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.TASK_PKG__TASKS:
 				return getTasks();
 			case ProcessPackage.TASK_PKG__STAGE:
@@ -170,8 +167,7 @@ public class TaskPkgImpl extends LilyEObject implements TaskPkg
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.TASK_PKG__TASKS:
 				getTasks().clear();
 				getTasks().addAll((Collection<? extends IPipelineTask>)newValue);
@@ -191,8 +187,7 @@ public class TaskPkgImpl extends LilyEObject implements TaskPkg
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.TASK_PKG__TASKS:
 				getTasks().clear();
 				return;
@@ -211,8 +206,7 @@ public class TaskPkgImpl extends LilyEObject implements TaskPkg
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.TASK_PKG__TASKS:
 				return tasks != null && !tasks.isEmpty();
 			case ProcessPackage.TASK_PKG__STAGE:

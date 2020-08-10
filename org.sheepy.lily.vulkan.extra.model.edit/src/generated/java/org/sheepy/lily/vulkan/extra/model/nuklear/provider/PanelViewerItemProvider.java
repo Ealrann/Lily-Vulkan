@@ -49,8 +49,7 @@ public class PanelViewerItemProvider extends PanelItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -68,8 +67,7 @@ public class PanelViewerItemProvider extends PanelItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(NuklearPackage.Literals.PANEL_VIEWER__VARIABLE_RESOLVER);
 		}
@@ -130,8 +128,7 @@ public class PanelViewerItemProvider extends PanelItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PanelViewer.class))
-		{
+		switch (notification.getFeatureID(PanelViewer.class)) {
 			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

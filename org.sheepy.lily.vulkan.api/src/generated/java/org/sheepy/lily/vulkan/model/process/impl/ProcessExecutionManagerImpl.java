@@ -104,8 +104,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	@Override
 	public EList<ProcessExecutionManager> getWaitForExecution()
 	{
-		if (waitForExecution == null)
-		{
+		if (waitForExecution == null) {
 			waitForExecution = new EObjectWithInverseResolvingEList.ManyInverse<ProcessExecutionManager>(ProcessExecutionManager.class, this, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY);
 		}
 		return waitForExecution;
@@ -119,8 +118,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	@Override
 	public EList<ProcessExecutionManager> getWaitedBy()
 	{
-		if (waitedBy == null)
-		{
+		if (waitedBy == null) {
 			waitedBy = new EObjectWithInverseResolvingEList.ManyInverse<ProcessExecutionManager>(ProcessExecutionManager.class, this, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION);
 		}
 		return waitedBy;
@@ -160,8 +158,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getWaitForExecution()).basicAdd(otherEnd, msgs);
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY:
@@ -178,8 +175,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION:
 				return ((InternalEList<?>)getWaitForExecution()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY:
@@ -196,8 +192,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION:
 				return getWaitForExecution();
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY:
@@ -217,8 +212,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION:
 				getWaitForExecution().clear();
 				getWaitForExecution().addAll((Collection<? extends ProcessExecutionManager>)newValue);
@@ -242,8 +236,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION:
 				getWaitForExecution().clear();
 				return;
@@ -265,8 +258,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION:
 				return waitForExecution != null && !waitForExecution.isEmpty();
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY:

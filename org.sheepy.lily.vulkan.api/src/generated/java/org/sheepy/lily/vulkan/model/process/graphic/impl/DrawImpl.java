@@ -330,8 +330,7 @@ public class DrawImpl extends LilyEObject implements Draw
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.DRAW__NAME:
 				return getName();
 			case GraphicPackage.DRAW__ENABLED:
@@ -356,8 +355,7 @@ public class DrawImpl extends LilyEObject implements Draw
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.DRAW__NAME:
 				setName((String)newValue);
 				return;
@@ -388,8 +386,7 @@ public class DrawImpl extends LilyEObject implements Draw
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.DRAW__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -420,8 +417,7 @@ public class DrawImpl extends LilyEObject implements Draw
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.DRAW__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.DRAW__ENABLED:

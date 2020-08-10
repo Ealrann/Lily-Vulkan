@@ -321,8 +321,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -337,8 +336,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
-		if (newResourcePkg != resourcePkg)
-		{
+		if (newResourcePkg != resourcePkg) {
 			NotificationChain msgs = null;
 			if (resourcePkg != null)
 				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__RESOURCE_PKG, null, msgs);
@@ -371,8 +369,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		DescriptorPkg oldDescriptorPkg = descriptorPkg;
 		descriptorPkg = newDescriptorPkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -387,8 +384,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
 	{
-		if (newDescriptorPkg != descriptorPkg)
-		{
+		if (newDescriptorPkg != descriptorPkg) {
 			NotificationChain msgs = null;
 			if (descriptorPkg != null)
 				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__DESCRIPTOR_PKG, null, msgs);
@@ -446,8 +442,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		AttachmentRefPkg oldAttachmentRefPkg = attachmentRefPkg;
 		attachmentRefPkg = newAttachmentRefPkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG, oldAttachmentRefPkg, newAttachmentRefPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -462,8 +457,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public void setAttachmentRefPkg(AttachmentRefPkg newAttachmentRefPkg)
 	{
-		if (newAttachmentRefPkg != attachmentRefPkg)
-		{
+		if (newAttachmentRefPkg != attachmentRefPkg) {
 			NotificationChain msgs = null;
 			if (attachmentRefPkg != null)
 				msgs = ((InternalEObject)attachmentRefPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG, null, msgs);
@@ -496,8 +490,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		AttachmentPkg oldAttachmentPkg = attachmentPkg;
 		attachmentPkg = newAttachmentPkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ATTACHMENT_PKG, oldAttachmentPkg, newAttachmentPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -512,8 +505,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public void setAttachmentPkg(AttachmentPkg newAttachmentPkg)
 	{
-		if (newAttachmentPkg != attachmentPkg)
-		{
+		if (newAttachmentPkg != attachmentPkg) {
 			NotificationChain msgs = null;
 			if (attachmentPkg != null)
 				msgs = ((InternalEObject)attachmentPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__ATTACHMENT_PKG, null, msgs);
@@ -571,8 +563,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		PipelinePkg oldPipelinePkg = pipelinePkg;
 		pipelinePkg = newPipelinePkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__PIPELINE_PKG, oldPipelinePkg, newPipelinePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -587,8 +578,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public void setPipelinePkg(PipelinePkg newPipelinePkg)
 	{
-		if (newPipelinePkg != pipelinePkg)
-		{
+		if (newPipelinePkg != pipelinePkg) {
 			NotificationChain msgs = null;
 			if (pipelinePkg != null)
 				msgs = ((InternalEObject)pipelinePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__PIPELINE_PKG, null, msgs);
@@ -634,12 +624,10 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public ICompositor getCompositor()
 	{
-		if (compositor != null && ((EObject)compositor).eIsProxy())
-		{
+		if (compositor != null && ((EObject)compositor).eIsProxy()) {
 			InternalEObject oldCompositor = compositor;
 			compositor = (ICompositor)eResolveProxy(oldCompositor);
-			if (compositor != oldCompositor)
-			{
+			if (compositor != oldCompositor) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.SUBPASS__COMPOSITOR, oldCompositor, compositor));
 			}
@@ -754,8 +742,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public EList<EAccess> getWaitForAccesses()
 	{
-		if (waitForAccesses == null)
-		{
+		if (waitForAccesses == null) {
 			waitForAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES);
 		}
 		return waitForAccesses;
@@ -769,8 +756,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public EList<EAccess> getSyncAccesses()
 	{
-		if (syncAccesses == null)
-		{
+		if (syncAccesses == null) {
 			syncAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__SYNC_ACCESSES);
 		}
 		return syncAccesses;
@@ -784,8 +770,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public EList<EAccess> getFinishAccesses()
 	{
-		if (finishAccesses == null)
-		{
+		if (finishAccesses == null) {
 			finishAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__FINISH_ACCESSES);
 		}
 		return finishAccesses;
@@ -811,8 +796,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		ProcessExtensionPkg oldExtensionPkg = extensionPkg;
 		extensionPkg = newExtensionPkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__EXTENSION_PKG, oldExtensionPkg, newExtensionPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -827,8 +811,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public void setExtensionPkg(ProcessExtensionPkg newExtensionPkg)
 	{
-		if (newExtensionPkg != extensionPkg)
-		{
+		if (newExtensionPkg != extensionPkg) {
 			NotificationChain msgs = null;
 			if (extensionPkg != null)
 				msgs = ((InternalEObject)extensionPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__EXTENSION_PKG, null, msgs);
@@ -849,8 +832,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SUBPASS__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
@@ -875,8 +857,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SUBPASS__RESOURCE_PKG:
 				return getResourcePkg();
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
@@ -923,8 +904,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SUBPASS__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)newValue);
 				return;
@@ -988,8 +968,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SUBPASS__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)null);
 				return;
@@ -1050,8 +1029,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.SUBPASS__RESOURCE_PKG:
 				return resourcePkg != null;
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
@@ -1096,10 +1074,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == LNamedElement.class) {
+			switch (derivedFeatureID) {
 				case GraphicPackage.SUBPASS__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
@@ -1115,10 +1091,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == LNamedElement.class) {
+			switch (baseFeatureID) {
 				case TypesPackage.LNAMED_ELEMENT__NAME: return GraphicPackage.SUBPASS__NAME;
 				default: return -1;
 			}

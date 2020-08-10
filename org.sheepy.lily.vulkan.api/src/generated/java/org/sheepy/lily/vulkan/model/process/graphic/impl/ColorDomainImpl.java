@@ -149,8 +149,7 @@ public class ColorDomainImpl extends LilyEObject implements ColorDomain
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.COLOR_DOMAIN__FORMAT:
 				return getFormat();
 			case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
@@ -167,8 +166,7 @@ public class ColorDomainImpl extends LilyEObject implements ColorDomain
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.COLOR_DOMAIN__FORMAT:
 				setFormat((EFormat)newValue);
 				return;
@@ -187,8 +185,7 @@ public class ColorDomainImpl extends LilyEObject implements ColorDomain
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.COLOR_DOMAIN__FORMAT:
 				setFormat(FORMAT_EDEFAULT);
 				return;
@@ -207,8 +204,7 @@ public class ColorDomainImpl extends LilyEObject implements ColorDomain
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.COLOR_DOMAIN__FORMAT:
 				return format != FORMAT_EDEFAULT;
 			case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:

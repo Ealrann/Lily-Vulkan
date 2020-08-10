@@ -47,8 +47,7 @@ public class IndexProviderItemProvider extends BufferDataProviderItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIndexTypePropertyDescriptor(object);
@@ -90,8 +89,7 @@ public class IndexProviderItemProvider extends BufferDataProviderItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.RENDER_DATA_PROVIDER__DATA_SOURCE);
 		}
@@ -152,8 +150,7 @@ public class IndexProviderItemProvider extends BufferDataProviderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(IndexProvider.class))
-		{
+		switch (notification.getFeatureID(IndexProvider.class)) {
 			case RenderingPackage.INDEX_PROVIDER__INDEX_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

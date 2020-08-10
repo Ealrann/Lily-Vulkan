@@ -25,6 +25,7 @@ public final class BufferViewerAllocation implements IBufferObjectAllocation
 	private final long bufferPtr;
 	private final BufferMemoryAllocation bufferMemoryAllocation;
 	private final AlignmentData alignmentData;
+	private boolean needPush = true;
 
 	private BufferViewerAllocation(BufferViewer bufferViewer,
 								   IObservatoryBuilder observatory,
@@ -35,13 +36,14 @@ public final class BufferViewerAllocation implements IBufferObjectAllocation
 		this.bufferMemoryAllocation = bufferMemoryAllocation;
 		this.alignmentData = bufferMemoryAllocation.getAlignmentData(bufferViewer);
 
-		final var dataProviderObservatory = observatory.explore(VulkanResourcePackage.BUFFER_PART__DATA_PROVIDER)
+		final var dataProviderObservatory = observatory.explore(VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER)
 													   .adaptNotifier(IBufferDataProviderAdapter.class);
 		dataProviderObservatory.listenNoParam(this::requestPush, IBufferDataProviderAdapter.Features.Data);
 	}
 
 	private void requestPush()
 	{
+		needPush = true;
 		bufferMemoryAllocation.requestPush();
 	}
 
@@ -50,6 +52,7 @@ public final class BufferViewerAllocation implements IBufferObjectAllocation
 	{
 		final var bufferDataProvider = bufferViewer.getDataProvider().adapt(IBufferDataProviderAdapter.class);
 		bufferDataProvider.fill(buffer);
+		needPush = false;
 	}
 
 	@Override
@@ -61,8 +64,7 @@ public final class BufferViewerAllocation implements IBufferObjectAllocation
 	@Override
 	public boolean needPush()
 	{
-		final var bufferDataProvider = bufferViewer.getDataProvider().adapt(IBufferDataProviderAdapter.class);
-		return bufferDataProvider.needPush();
+		return needPush;
 	}
 
 	@Override

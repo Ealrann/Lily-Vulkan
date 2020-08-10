@@ -63,8 +63,7 @@ public class PhysicalEntityVariableItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -183,8 +182,7 @@ public class PhysicalEntityVariableItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PhysicalEntityVariable.class))
-		{
+		switch (notification.getFeatureID(PhysicalEntityVariable.class)) {
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__NAME:
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__FEATURE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

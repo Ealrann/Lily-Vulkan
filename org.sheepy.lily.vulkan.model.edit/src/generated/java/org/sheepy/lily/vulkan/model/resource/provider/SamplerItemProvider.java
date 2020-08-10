@@ -46,8 +46,7 @@ public class SamplerItemProvider extends SamplerInfoItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -141,8 +140,7 @@ public class SamplerItemProvider extends SamplerInfoItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Sampler.class))
-		{
+		switch (notification.getFeatureID(Sampler.class)) {
 			case VulkanResourcePackage.SAMPLER__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

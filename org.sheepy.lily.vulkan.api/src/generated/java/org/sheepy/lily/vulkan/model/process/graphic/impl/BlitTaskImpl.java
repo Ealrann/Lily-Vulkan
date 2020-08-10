@@ -67,12 +67,10 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	@Override
 	public IImage getDstImage()
 	{
-		if (dstImage != null && ((EObject)dstImage).eIsProxy())
-		{
+		if (dstImage != null && ((EObject)dstImage).eIsProxy()) {
 			InternalEObject oldDstImage = dstImage;
 			dstImage = (IImage)eResolveProxy(oldDstImage);
-			if (dstImage != oldDstImage)
-			{
+			if (dstImage != oldDstImage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.BLIT_TASK__DST_IMAGE, oldDstImage, dstImage));
 			}
@@ -112,8 +110,7 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BLIT_TASK__DST_IMAGE:
 				if (resolve) return getDstImage();
 				return basicGetDstImage();
@@ -129,8 +126,7 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BLIT_TASK__DST_IMAGE:
 				setDstImage((IImage)newValue);
 				return;
@@ -146,8 +142,7 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BLIT_TASK__DST_IMAGE:
 				setDstImage((IImage)null);
 				return;
@@ -163,8 +158,7 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BLIT_TASK__DST_IMAGE:
 				return dstImage != null;
 		}

@@ -72,8 +72,7 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	@Override
 	public EList<ExtraAttachment> getExtraAttachments()
 	{
-		if (extraAttachments == null)
-		{
+		if (extraAttachments == null) {
 			extraAttachments = new EObjectContainmentEList<ExtraAttachment>(ExtraAttachment.class, this, GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS);
 		}
 		return extraAttachments;
@@ -87,8 +86,7 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				return ((InternalEList<?>)getExtraAttachments()).basicRemove(otherEnd, msgs);
 		}
@@ -103,8 +101,7 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				return getExtraAttachments();
 		}
@@ -120,8 +117,7 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				getExtraAttachments().clear();
 				getExtraAttachments().addAll((Collection<? extends ExtraAttachment>)newValue);
@@ -138,8 +134,7 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				getExtraAttachments().clear();
 				return;
@@ -155,8 +150,7 @@ public class AttachmentPkgImpl extends LilyEObject implements AttachmentPkg
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				return extraAttachments != null && !extraAttachments.isEmpty();
 		}

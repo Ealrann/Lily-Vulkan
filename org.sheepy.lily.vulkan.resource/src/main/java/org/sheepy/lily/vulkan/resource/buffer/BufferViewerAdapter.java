@@ -5,7 +5,6 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.IBufferObject;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
@@ -47,12 +46,6 @@ public final class BufferViewerAdapter extends Notifier<IBufferObjectAdapter.Fea
 	public long getSize(final IBufferObject buffer)
 	{
 		return bufferViewer.getSize();
-	}
-
-	@Override
-	public int getUsage(final IBufferObject buffer)
-	{
-		return VulkanModelUtil.getEnumeratedFlag(bufferViewer.getUsages());
 	}
 
 	private boolean needResize(long requestedSize)

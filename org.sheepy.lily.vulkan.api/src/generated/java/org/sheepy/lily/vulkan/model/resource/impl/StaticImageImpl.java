@@ -199,8 +199,7 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				return isFillWithZero();
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH:
@@ -219,8 +218,7 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				setFillWithZero((Boolean)newValue);
 				return;
@@ -242,8 +240,7 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				setFillWithZero(FILL_WITH_ZERO_EDEFAULT);
 				return;
@@ -265,8 +262,7 @@ public class StaticImageImpl extends ImageImpl implements StaticImage
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 				return fillWithZero != FILL_WITH_ZERO_EDEFAULT;
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH:

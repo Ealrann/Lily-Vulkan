@@ -101,8 +101,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	@Override
 	public Adapter createMeshRendererAdapter()
 	{
-		if (meshRendererItemProvider == null)
-		{
+		if (meshRendererItemProvider == null) {
 			meshRendererItemProvider = new MeshRendererItemProvider(this);
 		}
 
@@ -126,8 +125,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	@Override
 	public Adapter createIMeshStructureAdapter()
 	{
-		if (iMeshStructureItemProvider == null)
-		{
+		if (iMeshStructureItemProvider == null) {
 			iMeshStructureItemProvider = new IMeshStructureItemProvider(this);
 		}
 
@@ -151,8 +149,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	@Override
 	public Adapter createGeometricMeshAdapter()
 	{
-		if (geometricMeshItemProvider == null)
-		{
+		if (geometricMeshItemProvider == null) {
 			geometricMeshItemProvider = new GeometricMeshItemProvider(this);
 		}
 
@@ -176,8 +173,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	@Override
 	public Adapter createIcosahedronAdapter()
 	{
-		if (icosahedronItemProvider == null)
-		{
+		if (icosahedronItemProvider == null) {
 			icosahedronItemProvider = new IcosahedronItemProvider(this);
 		}
 
@@ -201,8 +197,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	@Override
 	public Adapter createSphereAdapter()
 	{
-		if (sphereItemProvider == null)
-		{
+		if (sphereItemProvider == null) {
 			sphereItemProvider = new SphereItemProvider(this);
 		}
 
@@ -226,8 +221,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	@Override
 	public Adapter createIcoSphereAdapter()
 	{
-		if (icoSphereItemProvider == null)
-		{
+		if (icoSphereItemProvider == null) {
 			icoSphereItemProvider = new IcoSphereItemProvider(this);
 		}
 
@@ -289,11 +283,9 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -336,8 +328,7 @@ public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implement
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

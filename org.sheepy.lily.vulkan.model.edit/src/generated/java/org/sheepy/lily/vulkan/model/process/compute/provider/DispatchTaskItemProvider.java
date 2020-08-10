@@ -23,8 +23,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
@@ -65,8 +63,7 @@ public class DispatchTaskItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -233,8 +230,7 @@ public class DispatchTaskItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DispatchTask.class))
-		{
+		switch (notification.getFeatureID(DispatchTask.class)) {
 			case ComputePackage.DISPATCH_TASK__NAME:
 			case ComputePackage.DISPATCH_TASK__ENABLED:
 			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_X:

@@ -23,8 +23,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.model.binding.BindingFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
@@ -61,8 +59,7 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addStagePropertyDescriptor(object);
@@ -104,8 +101,7 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.TASK_PKG__TASKS);
 		}
@@ -166,8 +162,7 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TaskPkg.class))
-		{
+		switch (notification.getFeatureID(TaskPkg.class)) {
 			case ProcessPackage.TASK_PKG__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -223,17 +218,7 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.TASK_PKG__TASKS,
-				 ProcessFactory.eINSTANCE.createPrepareCompositeTransfer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.TASK_PKG__TASKS,
 				 ProcessFactory.eINSTANCE.createFetchBuffer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.TASK_PKG__TASKS,
-				 BindingFactory.eINSTANCE.createRotateConfiguration()));
 
 		newChildDescriptors.add
 			(createChildParameter

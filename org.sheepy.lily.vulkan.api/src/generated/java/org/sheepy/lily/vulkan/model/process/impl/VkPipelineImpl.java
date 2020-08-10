@@ -126,8 +126,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	{
 		DescriptorPool oldDescriptorPool = descriptorPool;
 		descriptorPool = newDescriptorPool;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL, oldDescriptorPool, newDescriptorPool);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -142,8 +141,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public void setDescriptorPool(DescriptorPool newDescriptorPool)
 	{
-		if (newDescriptorPool != descriptorPool)
-		{
+		if (newDescriptorPool != descriptorPool) {
 			NotificationChain msgs = null;
 			if (descriptorPool != null)
 				msgs = ((InternalEObject)descriptorPool).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL, null, msgs);
@@ -164,12 +162,10 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public ConstantBuffer getSpecializationData()
 	{
-		if (specializationData != null && ((EObject)specializationData).eIsProxy())
-		{
+		if (specializationData != null && ((EObject)specializationData).eIsProxy()) {
 			InternalEObject oldSpecializationData = specializationData;
 			specializationData = (ConstantBuffer)eResolveProxy(oldSpecializationData);
-			if (specializationData != oldSpecializationData)
-			{
+			if (specializationData != oldSpecializationData) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData, specializationData));
 			}
@@ -209,8 +205,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public EList<PushConstantRange> getPushConstantRanges()
 	{
-		if (pushConstantRanges == null)
-		{
+		if (pushConstantRanges == null) {
 			pushConstantRanges = new EObjectContainmentEList<PushConstantRange>(PushConstantRange.class, this, ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return pushConstantRanges;
@@ -224,8 +219,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public EList<DescriptorSet> getLayout()
 	{
-		if (layout == null)
-		{
+		if (layout == null) {
 			layout = new EObjectResolvingEList<DescriptorSet>(DescriptorSet.class, this, ProcessPackage.VK_PIPELINE__LAYOUT);
 		}
 		return layout;
@@ -239,8 +233,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
 				return basicSetDescriptorPool(null, msgs);
 			case ProcessPackage.VK_PIPELINE__PUSH_CONSTANT_RANGES:
@@ -257,8 +250,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
 				return getDescriptorPool();
 			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:
@@ -281,8 +273,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
 				setDescriptorPool((DescriptorPool)newValue);
 				return;
@@ -309,8 +300,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
 				setDescriptorPool((DescriptorPool)null);
 				return;
@@ -335,8 +325,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.VK_PIPELINE__DESCRIPTOR_POOL:
 				return descriptorPool != null;
 			case ProcessPackage.VK_PIPELINE__SPECIALIZATION_DATA:

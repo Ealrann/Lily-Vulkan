@@ -70,8 +70,7 @@ public class GraphicExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public EList<GraphicExecutionRecorder> getRecorders()
 	{
-		if (recorders == null)
-		{
+		if (recorders == null) {
 			recorders = new EObjectContainmentEList<GraphicExecutionRecorder>(GraphicExecutionRecorder.class, this, GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS);
 		}
 		return recorders;
@@ -85,8 +84,7 @@ public class GraphicExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS:
 				return ((InternalEList<?>)getRecorders()).basicRemove(otherEnd, msgs);
 		}
@@ -101,8 +99,7 @@ public class GraphicExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS:
 				return getRecorders();
 		}
@@ -118,8 +115,7 @@ public class GraphicExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS:
 				getRecorders().clear();
 				getRecorders().addAll((Collection<? extends GraphicExecutionRecorder>)newValue);
@@ -136,8 +132,7 @@ public class GraphicExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS:
 				getRecorders().clear();
 				return;
@@ -153,8 +148,7 @@ public class GraphicExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS:
 				return recorders != null && !recorders.isEmpty();
 		}

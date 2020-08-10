@@ -45,8 +45,7 @@ public class SphereItemProvider extends GeometricStructureItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSliceCountPropertyDescriptor(object);
@@ -115,8 +114,7 @@ public class SphereItemProvider extends GeometricStructureItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Sphere.class))
-		{
+		switch (notification.getFeatureID(Sphere.class)) {
 			case MeshPackage.SPHERE__SLICE_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

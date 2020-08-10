@@ -20,7 +20,6 @@ public interface IBufferDataProviderAdapter extends IExtender, INotifier<IBuffer
 	void fetch(ByteBuffer buffer);
 
 	long size();
-	boolean needPush();
 
 	default int minAlignment()
 	{

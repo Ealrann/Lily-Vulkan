@@ -22,7 +22,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 
@@ -61,8 +60,7 @@ public class ComputeExecutionRecorderItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIndexPropertyDescriptor(object);
@@ -131,8 +129,7 @@ public class ComputeExecutionRecorderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ComputeExecutionRecorder.class))
-		{
+		switch (notification.getFeatureID(ComputeExecutionRecorder.class)) {
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

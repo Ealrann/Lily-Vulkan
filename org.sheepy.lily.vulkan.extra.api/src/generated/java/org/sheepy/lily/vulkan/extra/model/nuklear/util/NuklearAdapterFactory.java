@@ -48,8 +48,7 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 */
 	public NuklearAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = NuklearPackage.eINSTANCE;
 		}
 	}
@@ -65,12 +64,10 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -83,106 +80,85 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected NuklearSwitch<Adapter> modelSwitch =
-		new NuklearSwitch<Adapter>()
-		{
+		new NuklearSwitch<Adapter>() {
 			@Override
-			public Adapter caseNuklearPushConstants(NuklearPushConstants object)
-			{
+			public Adapter caseNuklearPushConstants(NuklearPushConstants object) {
 				return createNuklearPushConstantsAdapter();
 			}
 			@Override
-			public Adapter caseNuklearContext(NuklearContext object)
-			{
+			public Adapter caseNuklearContext(NuklearContext object) {
 				return createNuklearContextAdapter();
 			}
 			@Override
-			public Adapter caseNuklearFont(NuklearFont object)
-			{
+			public Adapter caseNuklearFont(NuklearFont object) {
 				return createNuklearFontAdapter();
 			}
 			@Override
-			public Adapter caseSelectorPanel(SelectorPanel object)
-			{
+			public Adapter caseSelectorPanel(SelectorPanel object) {
 				return createSelectorPanelAdapter();
 			}
 			@Override
-			public Adapter caseIInputProvider(IInputProvider object)
-			{
+			public Adapter caseIInputProvider(IInputProvider object) {
 				return createIInputProviderAdapter();
 			}
 			@Override
-			public Adapter casePanelViewer(PanelViewer object)
-			{
+			public Adapter casePanelViewer(PanelViewer object) {
 				return createPanelViewerAdapter();
 			}
 			@Override
-			public Adapter caseNuklearVertexProvider(NuklearVertexProvider object)
-			{
+			public Adapter caseNuklearVertexProvider(NuklearVertexProvider object) {
 				return createNuklearVertexProviderAdapter();
 			}
 			@Override
-			public Adapter caseNuklearIndexProvider(NuklearIndexProvider object)
-			{
+			public Adapter caseNuklearIndexProvider(NuklearIndexProvider object) {
 				return createNuklearIndexProviderAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(LNamedElement object)
-			{
+			public Adapter caseLNamedElement(LNamedElement object) {
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseIPipelineTask(IPipelineTask object)
-			{
+			public Adapter caseIPipelineTask(IPipelineTask object) {
 				return createIPipelineTaskAdapter();
 			}
 			@Override
-			public Adapter casePushConstant(PushConstant object)
-			{
+			public Adapter casePushConstant(PushConstant object) {
 				return createPushConstantAdapter();
 			}
 			@Override
-			public Adapter caseIResource(IResource object)
-			{
+			public Adapter caseIResource(IResource object) {
 				return createIResourceAdapter();
 			}
 			@Override
-			public Adapter caseIInferenceObject(IInferenceObject object)
-			{
+			public Adapter caseIInferenceObject(IInferenceObject object) {
 				return createIInferenceObjectAdapter();
 			}
 			@Override
-			public Adapter caseIUIElement(IUIElement object)
-			{
+			public Adapter caseIUIElement(IUIElement object) {
 				return createIUIElementAdapter();
 			}
 			@Override
-			public Adapter caseIPositionElement(IPositionElement object)
-			{
+			public Adapter caseIPositionElement(IPositionElement object) {
 				return createIPositionElementAdapter();
 			}
 			@Override
-			public Adapter caseIPanel(IPanel object)
-			{
+			public Adapter caseIPanel(IPanel object) {
 				return createIPanelAdapter();
 			}
 			@Override
-			public Adapter caseISizedElement(ISizedElement object)
-			{
+			public Adapter caseISizedElement(ISizedElement object) {
 				return createISizedElementAdapter();
 			}
 			@Override
-			public Adapter casePanel(Panel object)
-			{
+			public Adapter casePanel(Panel object) {
 				return createPanelAdapter();
 			}
 			@Override
-			public Adapter caseBufferDataProvider(BufferDataProvider object)
-			{
+			public Adapter caseBufferDataProvider(BufferDataProvider object) {
 				return createBufferDataProviderAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

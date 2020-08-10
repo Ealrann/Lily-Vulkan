@@ -45,8 +45,7 @@ public class IcoSphereItemProvider extends GeometricStructureItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSubdivisionCountPropertyDescriptor(object);
@@ -115,8 +114,7 @@ public class IcoSphereItemProvider extends GeometricStructureItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(IcoSphere.class))
-		{
+		switch (notification.getFeatureID(IcoSphere.class)) {
 			case MeshPackage.ICO_SPHERE__SUBDIVISION_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

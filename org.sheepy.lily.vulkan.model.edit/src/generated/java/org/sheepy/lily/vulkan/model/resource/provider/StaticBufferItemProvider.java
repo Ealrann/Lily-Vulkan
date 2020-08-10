@@ -53,13 +53,12 @@ public class StaticBufferItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addSizePropertyDescriptor(object);
 			addUsagesPropertyDescriptor(object);
+			addSizePropertyDescriptor(object);
 			addInitWithZeroPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -123,9 +122,9 @@ public class StaticBufferItemProvider extends ItemProviderAdapter implements IEd
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_StaticBuffer_usages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StaticBuffer_usages_feature", "_UI_StaticBuffer_type"),
-				 VulkanResourcePackage.Literals.STATIC_BUFFER__USAGES,
+				 getString("_UI_IBufferObject_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IBufferObject_usages_feature", "_UI_IBufferObject_type"),
+				 VulkanResourcePackage.Literals.IBUFFER_OBJECT__USAGES,
 				 true,
 				 false,
 				 false,
@@ -197,11 +196,10 @@ public class StaticBufferItemProvider extends ItemProviderAdapter implements IEd
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StaticBuffer.class))
-		{
+		switch (notification.getFeatureID(StaticBuffer.class)) {
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
-			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
+			case VulkanResourcePackage.STATIC_BUFFER__SIZE:
 			case VulkanResourcePackage.STATIC_BUFFER__INIT_WITH_ZERO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

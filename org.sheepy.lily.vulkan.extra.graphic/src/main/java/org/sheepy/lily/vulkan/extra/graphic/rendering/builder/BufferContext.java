@@ -1,18 +1,18 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 
 public final class BufferContext
 {
 	public final GraphicsPipeline pipeline;
-	public final CompositeBuffer buffer;
+	public final BufferMemory bufferMemory;
 	public final int drawCall;
 
-	public BufferContext(GraphicsPipeline pipeline, CompositeBuffer buffer, int drawCall)
+	public BufferContext(GraphicsPipeline pipeline, BufferMemory bufferMemory, int drawCall)
 	{
 		this.pipeline = pipeline;
-		this.buffer = buffer;
+		this.bufferMemory = bufferMemory;
 		this.drawCall = drawCall;
 	}
 }

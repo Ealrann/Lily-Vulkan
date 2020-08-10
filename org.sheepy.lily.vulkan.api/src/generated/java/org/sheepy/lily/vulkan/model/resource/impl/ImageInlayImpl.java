@@ -160,12 +160,10 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	@Override
 	public Image getImage()
 	{
-		if (image != null && ((EObject)image).eIsProxy())
-		{
+		if (image != null && ((EObject)image).eIsProxy()) {
 			InternalEObject oldImage = image;
 			image = (Image)eResolveProxy(oldImage);
-			if (image != oldImage)
-			{
+			if (image != oldImage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.IMAGE_INLAY__IMAGE, oldImage, image));
 			}
@@ -305,8 +303,7 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.IMAGE_INLAY__IMAGE:
 				if (resolve) return getImage();
 				return basicGetImage();
@@ -330,8 +327,7 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.IMAGE_INLAY__IMAGE:
 				setImage((Image)newValue);
 				return;
@@ -359,8 +355,7 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.IMAGE_INLAY__IMAGE:
 				setImage((Image)null);
 				return;
@@ -388,8 +383,7 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.IMAGE_INLAY__IMAGE:
 				return image != null;
 			case VulkanResourcePackage.IMAGE_INLAY__POSITION:

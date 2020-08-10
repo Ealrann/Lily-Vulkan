@@ -85,12 +85,10 @@ public class SwapBindingsTaskImpl extends LilyEObject implements SwapBindingsTas
 	@Override
 	public BindDescriptorSets getTask()
 	{
-		if (task != null && ((EObject)task).eIsProxy())
-		{
-			InternalEObject oldTask = (InternalEObject)task;
+		if (task != null && ((EObject)task).eIsProxy()) {
+			InternalEObject oldTask = task;
 			task = (BindDescriptorSets)eResolveProxy(oldTask);
-			if (task != oldTask)
-			{
+			if (task != oldTask) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.SWAP_BINDINGS_TASK__TASK, oldTask, task));
 			}
@@ -130,8 +128,7 @@ public class SwapBindingsTaskImpl extends LilyEObject implements SwapBindingsTas
 	@Override
 	public EList<DescriptorSet> getDescriptorSets()
 	{
-		if (descriptorSets == null)
-		{
+		if (descriptorSets == null) {
 			descriptorSets = new EObjectResolvingEList<DescriptorSet>(DescriptorSet.class, this, ProcessPackage.SWAP_BINDINGS_TASK__DESCRIPTOR_SETS);
 		}
 		return descriptorSets;
@@ -145,8 +142,7 @@ public class SwapBindingsTaskImpl extends LilyEObject implements SwapBindingsTas
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.SWAP_BINDINGS_TASK__TASK:
 				if (resolve) return getTask();
 				return basicGetTask();
@@ -165,8 +161,7 @@ public class SwapBindingsTaskImpl extends LilyEObject implements SwapBindingsTas
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.SWAP_BINDINGS_TASK__TASK:
 				setTask((BindDescriptorSets)newValue);
 				return;
@@ -186,8 +181,7 @@ public class SwapBindingsTaskImpl extends LilyEObject implements SwapBindingsTas
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.SWAP_BINDINGS_TASK__TASK:
 				setTask((BindDescriptorSets)null);
 				return;
@@ -206,8 +200,7 @@ public class SwapBindingsTaskImpl extends LilyEObject implements SwapBindingsTas
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.SWAP_BINDINGS_TASK__TASK:
 				return task != null;
 			case ProcessPackage.SWAP_BINDINGS_TASK__DESCRIPTOR_SETS:

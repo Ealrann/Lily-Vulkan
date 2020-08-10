@@ -70,8 +70,7 @@ public class DescriptorPoolImpl extends LilyEObject implements DescriptorPool
 	@Override
 	public EList<DescriptorSet> getDescriptorSets()
 	{
-		if (descriptorSets == null)
-		{
+		if (descriptorSets == null) {
 			descriptorSets = new EObjectContainmentEList<DescriptorSet>(DescriptorSet.class, this, VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS);
 		}
 		return descriptorSets;
@@ -85,8 +84,7 @@ public class DescriptorPoolImpl extends LilyEObject implements DescriptorPool
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS:
 				return ((InternalEList<?>)getDescriptorSets()).basicRemove(otherEnd, msgs);
 		}
@@ -101,8 +99,7 @@ public class DescriptorPoolImpl extends LilyEObject implements DescriptorPool
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS:
 				return getDescriptorSets();
 		}
@@ -118,8 +115,7 @@ public class DescriptorPoolImpl extends LilyEObject implements DescriptorPool
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
 				getDescriptorSets().addAll((Collection<? extends DescriptorSet>)newValue);
@@ -136,8 +132,7 @@ public class DescriptorPoolImpl extends LilyEObject implements DescriptorPool
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
 				return;
@@ -153,8 +148,7 @@ public class DescriptorPoolImpl extends LilyEObject implements DescriptorPool
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS:
 				return descriptorSets != null && !descriptorSets.isEmpty();
 		}

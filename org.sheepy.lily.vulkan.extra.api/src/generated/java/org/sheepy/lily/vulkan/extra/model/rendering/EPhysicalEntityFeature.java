@@ -47,8 +47,7 @@ public enum EPhysicalEntityFeature implements Enumerator
 	 * @generated
 	 */
 	private static final EPhysicalEntityFeature[] VALUES_ARRAY =
-		new EPhysicalEntityFeature[]
-		{
+		new EPhysicalEntityFeature[] {
 			LOCATION,
 		};
 
@@ -70,11 +69,9 @@ public enum EPhysicalEntityFeature implements Enumerator
 	 */
 	public static EPhysicalEntityFeature get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			EPhysicalEntityFeature result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -91,11 +88,9 @@ public enum EPhysicalEntityFeature implements Enumerator
 	 */
 	public static EPhysicalEntityFeature getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			EPhysicalEntityFeature result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -112,8 +107,7 @@ public enum EPhysicalEntityFeature implements Enumerator
 	 */
 	public static EPhysicalEntityFeature get(int value)
 	{
-		switch (value)
-		{
+		switch (value) {
 			case LOCATION_VALUE: return LOCATION;
 		}
 		return null;

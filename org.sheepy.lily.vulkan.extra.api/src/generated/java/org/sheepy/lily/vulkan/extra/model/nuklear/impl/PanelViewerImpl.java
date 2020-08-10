@@ -83,8 +83,7 @@ public class PanelViewerImpl extends PanelImpl implements PanelViewer
 	{
 		DirectVariableResolver oldVariableResolver = variableResolver;
 		variableResolver = newVariableResolver;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER, oldVariableResolver, newVariableResolver);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -99,8 +98,7 @@ public class PanelViewerImpl extends PanelImpl implements PanelViewer
 	@Override
 	public void setVariableResolver(DirectVariableResolver newVariableResolver)
 	{
-		if (newVariableResolver != variableResolver)
-		{
+		if (newVariableResolver != variableResolver) {
 			NotificationChain msgs = null;
 			if (variableResolver != null)
 				msgs = ((InternalEObject)variableResolver).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER, null, msgs);
@@ -121,8 +119,7 @@ public class PanelViewerImpl extends PanelImpl implements PanelViewer
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				return basicSetVariableResolver(null, msgs);
 		}
@@ -137,8 +134,7 @@ public class PanelViewerImpl extends PanelImpl implements PanelViewer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				return getVariableResolver();
 		}
@@ -153,8 +149,7 @@ public class PanelViewerImpl extends PanelImpl implements PanelViewer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				setVariableResolver((DirectVariableResolver)newValue);
 				return;
@@ -170,8 +165,7 @@ public class PanelViewerImpl extends PanelImpl implements PanelViewer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				setVariableResolver((DirectVariableResolver)null);
 				return;
@@ -187,8 +181,7 @@ public class PanelViewerImpl extends PanelImpl implements PanelViewer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.PANEL_VIEWER__VARIABLE_RESOLVER:
 				return variableResolver != null;
 		}

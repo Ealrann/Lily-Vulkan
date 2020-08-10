@@ -28,16 +28,13 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	 */
 	public static NuklearFactory init()
 	{
-		try
-		{
+		try {
 			NuklearFactory theNuklearFactory = (NuklearFactory)EPackage.Registry.INSTANCE.getEFactory(NuklearPackage.eNS_URI);
-			if (theNuklearFactory != null)
-			{
+			if (theNuklearFactory != null) {
 				return theNuklearFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NuklearFactoryImpl();
@@ -62,8 +59,7 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS: return createNuklearPushConstants();
 			case NuklearPackage.NUKLEAR_CONTEXT: return createNuklearContext();
 			case NuklearPackage.NUKLEAR_FONT: return createNuklearFont();

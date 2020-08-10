@@ -61,8 +61,7 @@ public class BufferReferenceItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBuffersPropertyDescriptor(object);
@@ -179,8 +178,7 @@ public class BufferReferenceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BufferReference.class))
-		{
+		switch (notification.getFeatureID(BufferReference.class)) {
 			case VulkanResourcePackage.BUFFER_REFERENCE__STRIDE:
 			case VulkanResourcePackage.BUFFER_REFERENCE__INDEX_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

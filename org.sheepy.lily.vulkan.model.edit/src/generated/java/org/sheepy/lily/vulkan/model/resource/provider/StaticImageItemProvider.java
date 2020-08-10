@@ -43,8 +43,7 @@ public class StaticImageItemProvider extends ImageItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addFillWithZeroPropertyDescriptor(object);
@@ -163,8 +162,7 @@ public class StaticImageItemProvider extends ImageItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StaticImage.class))
-		{
+		switch (notification.getFeatureID(StaticImage.class)) {
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH:
 			case VulkanResourcePackage.STATIC_IMAGE__SIZE:

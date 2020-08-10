@@ -54,7 +54,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
-import org.sheepy.lily.vulkan.model.resource.BufferPart;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -135,8 +134,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearPushConstantsAdapter()
 	{
-		if (nuklearPushConstantsItemProvider == null)
-		{
+		if (nuklearPushConstantsItemProvider == null) {
 			nuklearPushConstantsItemProvider = new NuklearPushConstantsItemProvider(this);
 		}
 
@@ -160,8 +158,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearContextAdapter()
 	{
-		if (nuklearContextItemProvider == null)
-		{
+		if (nuklearContextItemProvider == null) {
 			nuklearContextItemProvider = new NuklearContextItemProvider(this);
 		}
 
@@ -185,8 +182,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearFontAdapter()
 	{
-		if (nuklearFontItemProvider == null)
-		{
+		if (nuklearFontItemProvider == null) {
 			nuklearFontItemProvider = new NuklearFontItemProvider(this);
 		}
 
@@ -210,8 +206,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createSelectorPanelAdapter()
 	{
-		if (selectorPanelItemProvider == null)
-		{
+		if (selectorPanelItemProvider == null) {
 			selectorPanelItemProvider = new SelectorPanelItemProvider(this);
 		}
 
@@ -235,8 +230,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createPanelViewerAdapter()
 	{
-		if (panelViewerItemProvider == null)
-		{
+		if (panelViewerItemProvider == null) {
 			panelViewerItemProvider = new PanelViewerItemProvider(this);
 		}
 
@@ -260,8 +254,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearVertexProviderAdapter()
 	{
-		if (nuklearVertexProviderItemProvider == null)
-		{
+		if (nuklearVertexProviderItemProvider == null) {
 			nuklearVertexProviderItemProvider = new NuklearVertexProviderItemProvider(this);
 		}
 
@@ -285,8 +278,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearIndexProviderAdapter()
 	{
-		if (nuklearIndexProviderItemProvider == null)
-		{
+		if (nuklearIndexProviderItemProvider == null) {
 			nuklearIndexProviderItemProvider = new NuklearIndexProviderItemProvider(this);
 		}
 
@@ -348,11 +340,9 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -427,8 +417,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -707,27 +696,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseBufferPart(BufferPart object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
-						 NuklearFactory.eINSTANCE.createNuklearVertexProvider()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_PART__DATA_PROVIDER,
-						 NuklearFactory.eINSTANCE.createNuklearIndexProvider()));
-
-				return null;
-			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

@@ -99,8 +99,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public Adapter createSpriteRendererAdapter()
 	{
-		if (spriteRendererItemProvider == null)
-		{
+		if (spriteRendererItemProvider == null) {
 			spriteRendererItemProvider = new SpriteRendererItemProvider(this);
 		}
 
@@ -124,8 +123,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public Adapter createSpriteAdapter()
 	{
-		if (spriteItemProvider == null)
-		{
+		if (spriteItemProvider == null) {
 			spriteItemProvider = new SpriteItemProvider(this);
 		}
 
@@ -149,8 +147,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public Adapter createSpriteMonoSamplerProviderAdapter()
 	{
-		if (spriteMonoSamplerProviderItemProvider == null)
-		{
+		if (spriteMonoSamplerProviderItemProvider == null) {
 			spriteMonoSamplerProviderItemProvider = new SpriteMonoSamplerProviderItemProvider(this);
 		}
 
@@ -174,8 +171,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public Adapter createSpriteStructureAdapter()
 	{
-		if (spriteStructureItemProvider == null)
-		{
+		if (spriteStructureItemProvider == null) {
 			spriteStructureItemProvider = new SpriteStructureItemProvider(this);
 		}
 
@@ -199,8 +195,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public Adapter createSpriteCountSpecializationAdapter()
 	{
-		if (spriteCountSpecializationItemProvider == null)
-		{
+		if (spriteCountSpecializationItemProvider == null) {
 			spriteCountSpecializationItemProvider = new SpriteCountSpecializationItemProvider(this);
 		}
 
@@ -262,11 +257,9 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -309,8 +302,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

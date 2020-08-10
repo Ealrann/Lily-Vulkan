@@ -8,8 +8,9 @@
           <usages>Sampled</usages>
           <usages>TransferDst</usages>
         </resources>
+        <resources xsi:type="resource:TransferBuffer" name="" size="4000000"/>
         <resources xsi:type="nuklear:NuklearFont" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5" fontImage="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0"/>
-        <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1" layoutTask="//@pipelinePkg/@pipelines.0/@taskPkg/@tasks.1" imageArrayDescriptor="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.4"/>
+        <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1" imageArrayDescriptor="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.4"/>
         <resources xsi:type="resource:Shader" name="NkVertex">
           <file xsi:type="resource_1:StringModuleResource" name="Vertex" path="ui.vert.spv" moduleName="org.sheepy.lily.vulkan.extra.nuklear"/>
         </resources>
@@ -17,17 +18,22 @@
           <file xsi:type="resource_1:StringModuleResource" name="Frag" path="ui_with_images.frag.spv" moduleName="org.sheepy.lily.vulkan.extra.nuklear"/>
           <constants name="ImageCount" size="4"/>
         </resources>
-        <resources xsi:type="resource:TransferBuffer" name="NkPushBuffer" size="2097152" instanceCount="FitToSwapImageCount"/>
-        <resources xsi:type="resource:CompositeBuffer" name="NuklearVertexBuffer">
-          <parts name="Vertex">
-            <dataProvider xsi:type="nuklear:NuklearVertexProvider" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2">
+        <resources xsi:type="resource:MemoryChunk" name="NuklearVertexBuffer" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1">
+          <parts xsi:type="resource:BufferMemory">
+            <buffers xsi:type="resource:BufferViewer" name="Vertex">
+              <dataProvider xsi:type="nuklear:NuklearVertexProvider">
+                <usages>VERTEX_BUFFER_BIT</usages>
+              </dataProvider>
               <usages>VERTEX_BUFFER_BIT</usages>
-            </dataProvider>
-          </parts>
-          <parts name="Index">
-            <dataProvider xsi:type="nuklear:NuklearIndexProvider" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2">
+              <usages>TRANSFER_DST_BIT</usages>
+            </buffers>
+            <buffers xsi:type="resource:BufferViewer" name="Index">
+              <dataProvider xsi:type="nuklear:NuklearIndexProvider">
+                <usages>INDEX_BUFFER_BIT</usages>
+              </dataProvider>
               <usages>INDEX_BUFFER_BIT</usages>
-            </dataProvider>
+              <usages>TRANSFER_DST_BIT</usages>
+            </buffers>
           </parts>
         </resources>
         <resources xsi:type="resource:Sampler" name="FontSampler"/>
@@ -59,8 +65,7 @@
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
       </descriptorPkg>
-      <taskPkg>
-        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0"/>
+      <taskPkgs stage="PreRender">
         <tasks xsi:type="nuklear:NuklearLayoutTask" context="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2"/>
         <tasks xsi:type="process:PrepareCompositeTransfer" compositeBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6" prepareDuringUpdate="true" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5">
         	<bufferReference xsi:type="resource:FixedBufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.1"/>
@@ -79,8 +84,11 @@
             <dstAccessMask>INDEX_READ_BIT</dstAccessMask>
           </barriers>
         </tasks>
+      </taskPkgs>
+      <taskPkgs>
+        <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0"/>
         <tasks xsi:type="process:CompositeTask" name="Nk draw"/>
-      </taskPkg>
+      </taskPkgs>
       <descriptorPool>
         <descriptorSets name="UI" descriptors="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.0 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.1 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.2 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.3 //@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.4"/>
       </descriptorPool>

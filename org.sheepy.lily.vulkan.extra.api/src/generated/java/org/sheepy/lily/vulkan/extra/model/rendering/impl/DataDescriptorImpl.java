@@ -214,8 +214,7 @@ public class DataDescriptorImpl extends LilyEObject implements DataDescriptor
 	@Override
 	public EList<EShaderStage> getStages()
 	{
-		if (stages == null)
-		{
+		if (stages == null) {
 			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, RenderingPackage.DATA_DESCRIPTOR__STAGES);
 		}
 		return stages;
@@ -229,8 +228,7 @@ public class DataDescriptorImpl extends LilyEObject implements DataDescriptor
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.DATA_DESCRIPTOR__PART:
 				return getPart();
 			case RenderingPackage.DATA_DESCRIPTOR__INSTANCE:
@@ -252,8 +250,7 @@ public class DataDescriptorImpl extends LilyEObject implements DataDescriptor
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.DATA_DESCRIPTOR__PART:
 				setPart((Integer)newValue);
 				return;
@@ -279,8 +276,7 @@ public class DataDescriptorImpl extends LilyEObject implements DataDescriptor
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.DATA_DESCRIPTOR__PART:
 				setPart(PART_EDEFAULT);
 				return;
@@ -305,8 +301,7 @@ public class DataDescriptorImpl extends LilyEObject implements DataDescriptor
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.DATA_DESCRIPTOR__PART:
 				return part != PART_EDEFAULT;
 			case RenderingPackage.DATA_DESCRIPTOR__INSTANCE:

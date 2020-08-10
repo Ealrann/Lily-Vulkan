@@ -13,8 +13,6 @@ module org.sheepy.lily.vulkan.process {
 
 	opens org.sheepy.lily.vulkan.process.cadence;
 	opens org.sheepy.lily.vulkan.process.barrier;
-	opens org.sheepy.lily.vulkan.process.binding;
-	opens org.sheepy.lily.vulkan.process.binding.task;
 	opens org.sheepy.lily.vulkan.process.pipeline;
 	opens org.sheepy.lily.vulkan.process.pipeline.task;
 	opens org.sheepy.lily.vulkan.process.process;

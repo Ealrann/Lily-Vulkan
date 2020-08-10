@@ -194,8 +194,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				return getSize();
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
@@ -214,8 +213,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
@@ -237,8 +235,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
@@ -260,8 +257,7 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:

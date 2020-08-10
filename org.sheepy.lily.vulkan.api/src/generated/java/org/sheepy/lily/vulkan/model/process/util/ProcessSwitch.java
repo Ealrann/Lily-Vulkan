@@ -46,8 +46,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 */
 	public ProcessSwitch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = ProcessPackage.eINSTANCE;
 		}
 	}
@@ -76,10 +75,8 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case ProcessPackage.ABSTRACT_PROCESS:
-			{
+		switch (classifierID) {
+			case ProcessPackage.ABSTRACT_PROCESS: {
 				AbstractProcess abstractProcess = (AbstractProcess)theEObject;
 				T1 result = caseAbstractProcess(abstractProcess);
 				if (result == null) result = caseIProcess(abstractProcess);
@@ -88,31 +85,27 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PIPELINE_PKG:
-			{
+			case ProcessPackage.PIPELINE_PKG: {
 				PipelinePkg pipelinePkg = (PipelinePkg)theEObject;
 				T1 result = casePipelinePkg(pipelinePkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.IPIPELINE_TASK:
-			{
+			case ProcessPackage.IPIPELINE_TASK: {
 				IPipelineTask iPipelineTask = (IPipelineTask)theEObject;
 				T1 result = caseIPipelineTask(iPipelineTask);
 				if (result == null) result = caseLNamedElement(iPipelineTask);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.ABSTRACT_PIPELINE:
-			{
+			case ProcessPackage.ABSTRACT_PIPELINE: {
 				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
 				T1 result = caseAbstractPipeline(abstractPipeline);
 				if (result == null) result = caseLNamedElement(abstractPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.TASK_PIPELINE:
-			{
+			case ProcessPackage.TASK_PIPELINE: {
 				TaskPipeline taskPipeline = (TaskPipeline)theEObject;
 				T1 result = caseTaskPipeline(taskPipeline);
 				if (result == null) result = caseAbstractPipeline(taskPipeline);
@@ -121,8 +114,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.VK_PIPELINE:
-			{
+			case ProcessPackage.VK_PIPELINE: {
 				VkPipeline vkPipeline = (VkPipeline)theEObject;
 				T1 result = caseVkPipeline(vkPipeline);
 				if (result == null) result = caseTaskPipeline(vkPipeline);
@@ -132,15 +124,13 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.TASK_PKG:
-			{
+			case ProcessPackage.TASK_PKG: {
 				TaskPkg taskPkg = (TaskPkg)theEObject;
 				T1 result = caseTaskPkg(taskPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PIPELINE:
-			{
+			case ProcessPackage.PIPELINE: {
 				Pipeline pipeline = (Pipeline)theEObject;
 				T1 result = casePipeline(pipeline);
 				if (result == null) result = caseTaskPipeline(pipeline);
@@ -150,8 +140,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.COMPOSITE_PIPELINE:
-			{
+			case ProcessPackage.COMPOSITE_PIPELINE: {
 				CompositePipeline compositePipeline = (CompositePipeline)theEObject;
 				T1 result = caseCompositePipeline(compositePipeline);
 				if (result == null) result = caseAbstractPipeline(compositePipeline);
@@ -159,8 +148,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PIPELINE_BARRIER:
-			{
+			case ProcessPackage.PIPELINE_BARRIER: {
 				PipelineBarrier pipelineBarrier = (PipelineBarrier)theEObject;
 				T1 result = casePipelineBarrier(pipelineBarrier);
 				if (result == null) result = caseIPipelineTask(pipelineBarrier);
@@ -168,8 +156,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.COMPOSITE_TASK:
-			{
+			case ProcessPackage.COMPOSITE_TASK: {
 				CompositeTask compositeTask = (CompositeTask)theEObject;
 				T1 result = caseCompositeTask(compositeTask);
 				if (result == null) result = caseIPipelineTask(compositeTask);
@@ -178,8 +165,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.BIND_DESCRIPTOR_SETS:
-			{
+			case ProcessPackage.BIND_DESCRIPTOR_SETS: {
 				BindDescriptorSets bindDescriptorSets = (BindDescriptorSets)theEObject;
 				T1 result = caseBindDescriptorSets(bindDescriptorSets);
 				if (result == null) result = caseIPipelineTask(bindDescriptorSets);
@@ -187,8 +173,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PUSH_CONSTANT:
-			{
+			case ProcessPackage.PUSH_CONSTANT: {
 				PushConstant pushConstant = (PushConstant)theEObject;
 				T1 result = casePushConstant(pushConstant);
 				if (result == null) result = caseIPipelineTask(pushConstant);
@@ -196,8 +181,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PUSH_CONSTANT_BUFFER:
-			{
+			case ProcessPackage.PUSH_CONSTANT_BUFFER: {
 				PushConstantBuffer pushConstantBuffer = (PushConstantBuffer)theEObject;
 				T1 result = casePushConstantBuffer(pushConstantBuffer);
 				if (result == null) result = casePushConstant(pushConstantBuffer);
@@ -206,8 +190,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK:
-			{
+			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK: {
 				FlushTransferBufferTask flushTransferBufferTask = (FlushTransferBufferTask)theEObject;
 				T1 result = caseFlushTransferBufferTask(flushTransferBufferTask);
 				if (result == null) result = caseIPipelineTask(flushTransferBufferTask);
@@ -215,8 +198,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.COPY_BUFFER_TASK:
-			{
+			case ProcessPackage.COPY_BUFFER_TASK: {
 				CopyBufferTask copyBufferTask = (CopyBufferTask)theEObject;
 				T1 result = caseCopyBufferTask(copyBufferTask);
 				if (result == null) result = caseIPipelineTask(copyBufferTask);
@@ -224,60 +206,44 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.IPROCESS_EXTENSION:
-			{
+			case ProcessPackage.IPROCESS_EXTENSION: {
 				IProcessExtension iProcessExtension = (IProcessExtension)theEObject;
 				T1 result = caseIProcessExtension(iProcessExtension);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PROCESS_EXTENSION_PKG:
-			{
+			case ProcessPackage.PROCESS_EXTENSION_PKG: {
 				ProcessExtensionPkg processExtensionPkg = (ProcessExtensionPkg)theEObject;
 				T1 result = caseProcessExtensionPkg(processExtensionPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER:
-			{
-				PrepareCompositeTransfer prepareCompositeTransfer = (PrepareCompositeTransfer)theEObject;
-				T1 result = casePrepareCompositeTransfer(prepareCompositeTransfer);
-				if (result == null) result = caseIPipelineTask(prepareCompositeTransfer);
-				if (result == null) result = caseLNamedElement(prepareCompositeTransfer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.SWAP_BINDINGS_TASK:
-			{
+			case ProcessPackage.SWAP_BINDINGS_TASK: {
 				SwapBindingsTask swapBindingsTask = (SwapBindingsTask)theEObject;
 				T1 result = caseSwapBindingsTask(swapBindingsTask);
 				if (result == null) result = caseICadenceTask(swapBindingsTask);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PROCESS_CONFIGURATION:
-			{
+			case ProcessPackage.PROCESS_CONFIGURATION: {
 				ProcessConfiguration processConfiguration = (ProcessConfiguration)theEObject;
 				T1 result = caseProcessConfiguration(processConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PROCESS_EXECUTION_MANAGER:
-			{
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER: {
 				ProcessExecutionManager processExecutionManager = (ProcessExecutionManager)theEObject;
 				T1 result = caseProcessExecutionManager(processExecutionManager);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.EXECUTION_RECORDER:
-			{
+			case ProcessPackage.EXECUTION_RECORDER: {
 				ExecutionRecorder executionRecorder = (ExecutionRecorder)theEObject;
 				T1 result = caseExecutionRecorder(executionRecorder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.FETCH_BUFFER:
-			{
+			case ProcessPackage.FETCH_BUFFER: {
 				FetchBuffer fetchBuffer = (FetchBuffer)theEObject;
 				T1 result = caseFetchBuffer(fetchBuffer);
 				if (result == null) result = caseIPipelineTask(fetchBuffer);
@@ -573,22 +539,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseProcessExtensionPkg(ProcessExtensionPkg object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Prepare Composite Transfer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Prepare Composite Transfer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 casePrepareCompositeTransfer(PrepareCompositeTransfer object)
 	{
 		return null;
 	}

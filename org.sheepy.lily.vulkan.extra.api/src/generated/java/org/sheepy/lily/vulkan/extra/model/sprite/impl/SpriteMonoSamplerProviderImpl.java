@@ -80,8 +80,7 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	{
 		SamplerInfo oldSamplerInfo = samplerInfo;
 		samplerInfo = newSamplerInfo;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO, oldSamplerInfo, newSamplerInfo);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -96,8 +95,7 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	@Override
 	public void setSamplerInfo(SamplerInfo newSamplerInfo)
 	{
-		if (newSamplerInfo != samplerInfo)
-		{
+		if (newSamplerInfo != samplerInfo) {
 			NotificationChain msgs = null;
 			if (samplerInfo != null)
 				msgs = ((InternalEObject)samplerInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO, null, msgs);
@@ -118,8 +116,7 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				return basicSetSamplerInfo(null, msgs);
 		}
@@ -134,8 +131,7 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				return getSamplerInfo();
 		}
@@ -150,8 +146,7 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				setSamplerInfo((SamplerInfo)newValue);
 				return;
@@ -167,8 +162,7 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				setSamplerInfo((SamplerInfo)null);
 				return;
@@ -184,8 +178,7 @@ public class SpriteMonoSamplerProviderImpl extends LilyEObject implements Sprite
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				return samplerInfo != null;
 		}

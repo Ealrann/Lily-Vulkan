@@ -47,8 +47,7 @@ public class ImageItemProvider extends ImageInfoItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -107,8 +106,7 @@ public class ImageItemProvider extends ImageInfoItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Image.class))
-		{
+		switch (notification.getFeatureID(Image.class)) {
 			case VulkanResourcePackage.IMAGE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

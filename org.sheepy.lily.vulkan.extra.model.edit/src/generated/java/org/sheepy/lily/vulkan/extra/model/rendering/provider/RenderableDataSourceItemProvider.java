@@ -60,8 +60,7 @@ public class RenderableDataSourceItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addStructurePropertyDescriptor(object);
@@ -154,8 +153,7 @@ public class RenderableDataSourceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RenderableDataSource.class))
-		{
+		switch (notification.getFeatureID(RenderableDataSource.class)) {
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

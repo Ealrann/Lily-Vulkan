@@ -45,8 +45,7 @@ public class SampledImageItemProvider extends IResourceItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addImagePropertyDescriptor(object);
@@ -88,8 +87,7 @@ public class SampledImageItemProvider extends IResourceItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER);
 		}
@@ -149,8 +147,7 @@ public class SampledImageItemProvider extends IResourceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SampledImage.class))
-		{
+		switch (notification.getFeatureID(SampledImage.class)) {
 			case VulkanResourcePackage.SAMPLED_IMAGE__IMAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

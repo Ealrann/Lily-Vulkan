@@ -181,8 +181,7 @@ public class AttachmentDescriptorImpl extends LilyEObject implements AttachmentD
 	@Override
 	public EList<EShaderStage> getShaderStages()
 	{
-		if (shaderStages == null)
-		{
+		if (shaderStages == null) {
 			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, GraphicPackage.ATTACHMENT_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -196,12 +195,10 @@ public class AttachmentDescriptorImpl extends LilyEObject implements AttachmentD
 	@Override
 	public ExtraAttachment getAttachment()
 	{
-		if (attachment != null && ((EObject)attachment).eIsProxy())
-		{
+		if (attachment != null && ((EObject)attachment).eIsProxy()) {
 			InternalEObject oldAttachment = attachment;
 			attachment = (ExtraAttachment)eResolveProxy(oldAttachment);
-			if (attachment != oldAttachment)
-			{
+			if (attachment != oldAttachment) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.ATTACHMENT_DESCRIPTOR__ATTACHMENT, oldAttachment, attachment));
 			}
@@ -241,8 +238,7 @@ public class AttachmentDescriptorImpl extends LilyEObject implements AttachmentD
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__NAME:
 				return getName();
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__TYPE:
@@ -265,8 +261,7 @@ public class AttachmentDescriptorImpl extends LilyEObject implements AttachmentD
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
@@ -292,8 +287,7 @@ public class AttachmentDescriptorImpl extends LilyEObject implements AttachmentD
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -318,8 +312,7 @@ public class AttachmentDescriptorImpl extends LilyEObject implements AttachmentD
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__TYPE:

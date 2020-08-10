@@ -53,8 +53,7 @@ public class DataBufferItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -99,9 +98,9 @@ public class DataBufferItemProvider extends ItemProviderAdapter implements IEdit
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DataBuffer_usages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataBuffer_usages_feature", "_UI_DataBuffer_type"),
-				 VulkanResourcePackage.Literals.DATA_BUFFER__USAGES,
+				 getString("_UI_IBufferObject_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IBufferObject_usages_feature", "_UI_IBufferObject_type"),
+				 VulkanResourcePackage.Literals.IBUFFER_OBJECT__USAGES,
 				 true,
 				 false,
 				 false,
@@ -173,8 +172,7 @@ public class DataBufferItemProvider extends ItemProviderAdapter implements IEdit
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DataBuffer.class))
-		{
+		switch (notification.getFeatureID(DataBuffer.class)) {
 			case VulkanResourcePackage.DATA_BUFFER__NAME:
 			case VulkanResourcePackage.DATA_BUFFER__USAGES:
 			case VulkanResourcePackage.DATA_BUFFER__DATA:

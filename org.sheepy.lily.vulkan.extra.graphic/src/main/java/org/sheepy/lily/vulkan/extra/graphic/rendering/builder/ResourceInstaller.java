@@ -8,12 +8,11 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.EFlushMode;
+import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.function.BiFunction;
 public final class ResourceInstaller<T extends Structure>
 {
 	private final GenericRenderer<T> maintainer;
-	private final List<CompositeBuffer> buffers = new ArrayList<>();
+	private final List<BufferMemory> bufferMemories = new ArrayList<>();
 	private final List<DescriptorSet> dynamicBindings = new ArrayList<>();
 	private DescriptorSet staticBindings = null;
 
@@ -38,10 +37,13 @@ public final class ResourceInstaller<T extends Structure>
 													(adapter, provider) -> adapter.buildForPipeline(provider,
 																									structure));
 
+		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
+		pipeline.getResourcePkg().getResources().add(memoryChunk);
+
 		for (int i = 0; i < count; i++)
 		{
-			final var buffer = prepareBuffer(pipeline, structure, i);
-			buffers.add(buffer);
+			final var buffer = prepareBufferMemory(memoryChunk, structure, i);
+			bufferMemories.add(buffer);
 
 			final var dynamicDescriptors = prepareResourceDescriptors(pipeline,
 																	  (adapter, provider) -> adapter.buildForPart(
@@ -91,7 +93,7 @@ public final class ResourceInstaller<T extends Structure>
 
 	public BufferContext setupBindTask(GraphicsPipeline pipeline, int part, int drawCall)
 	{
-		final var buffer = buffers.get(part);
+		final var bufferMemory = bufferMemories.get(part);
 
 		final var bindDS = ProcessFactory.eINSTANCE.createBindDescriptorSets();
 		bindDS.getDescriptorSets().add(staticBindings);
@@ -102,19 +104,14 @@ public final class ResourceInstaller<T extends Structure>
 
 		pipeline.getTaskPkgs().get(0).getTasks().add(bindDS);
 
-		return new BufferContext(pipeline, buffer, drawCall);
+		return new BufferContext(pipeline, bufferMemory, drawCall);
 	}
 
-	private CompositeBuffer prepareBuffer(GraphicsPipeline pipeline, T structure, int part)
+	private BufferMemory prepareBufferMemory(MemoryChunk memoryChunk, T structure, int part)
 	{
-		final var buffer = VulkanResourceFactory.eINSTANCE.createCompositeBuffer();
+		final var bufferMemory = VulkanResourceFactory.eINSTANCE.createBufferMemory();
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
-		final var flushTransferTask = maintainer.getFlushTransferBufferTask();
-		final var prepareTranferTask = ProcessFactory.eINSTANCE.createPrepareCompositeTransfer();
-		buffer.setName(maintainer.getName());
-		prepareTranferTask.setCompositeBuffer(buffer);
-		prepareTranferTask.setTransferBuffer(maintainer.getTransferBuffer());
-		prepareTranferTask.setMode(EFlushMode.PUSH);
+		bufferMemory.setName(maintainer.getName());
 
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
@@ -126,22 +123,15 @@ public final class ResourceInstaller<T extends Structure>
 			final var copy = EcoreUtil.copy(dataProvider);
 			copy.setDataSource(dataSource);
 
-			final var bufferPart = VulkanResourceFactory.eINSTANCE.createBufferPart();
-			bufferPart.setDataProvider(copy);
+			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
+			bufferViewer.setDataProvider(copy);
 
-			buffer.getParts().add(bufferPart);
-			final var bufferRef = VulkanResourceFactory.eINSTANCE.createFixedBufferReference();
-			bufferRef.getBuffers().add(bufferPart);
-			prepareTranferTask.setBufferReference(bufferRef);
+			bufferMemory.getBuffers().add(bufferViewer);
+			final var bufferReference = VulkanResourceFactory.eINSTANCE.createBufferReference();
+			bufferReference.getBuffers().add(bufferViewer);
 		}
 
-		final var container = flushTransferTask.eContainer();
-		final var containingFeature = flushTransferTask.eContainingFeature();
-		@SuppressWarnings("unchecked") final var containingList = (List<IPipelineTask>) container.eGet(containingFeature);
-		final int index = containingList.indexOf(flushTransferTask);
-		containingList.add(index, prepareTranferTask);
-
-		pipeline.getResourcePkg().getResources().add(buffer);
-		return buffer;
+		memoryChunk.getParts().add(bufferMemory);
+		return bufferMemory;
 	}
 }

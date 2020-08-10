@@ -63,8 +63,7 @@ public class AttachmentItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -291,8 +290,7 @@ public class AttachmentItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Attachment.class))
-		{
+		switch (notification.getFeatureID(Attachment.class)) {
 			case GraphicPackage.ATTACHMENT__NAME:
 			case GraphicPackage.ATTACHMENT__SAMPLES:
 			case GraphicPackage.ATTACHMENT__LOAD_OP:

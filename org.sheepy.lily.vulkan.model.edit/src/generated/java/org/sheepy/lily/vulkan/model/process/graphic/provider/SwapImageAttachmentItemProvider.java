@@ -45,8 +45,7 @@ public class SwapImageAttachmentItemProvider extends AttachmentItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addClearValuePropertyDescriptor(object);
@@ -117,8 +116,7 @@ public class SwapImageAttachmentItemProvider extends AttachmentItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SwapImageAttachment.class))
-		{
+		switch (notification.getFeatureID(SwapImageAttachment.class)) {
 			case GraphicPackage.SWAP_IMAGE_ATTACHMENT__CLEAR_VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -182,8 +182,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	@Override
 	public EList<EShaderStage> getShaderStages()
 	{
-		if (shaderStages == null)
-		{
+		if (shaderStages == null) {
 			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -197,12 +196,10 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	@Override
 	public SampledImage getSampledImage()
 	{
-		if (sampledImage != null && ((EObject)sampledImage).eIsProxy())
-		{
-			InternalEObject oldSampledImage = (InternalEObject)sampledImage;
+		if (sampledImage != null && ((EObject)sampledImage).eIsProxy()) {
+			InternalEObject oldSampledImage = sampledImage;
 			sampledImage = (SampledImage)eResolveProxy(oldSampledImage);
-			if (sampledImage != oldSampledImage)
-			{
+			if (sampledImage != oldSampledImage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE, oldSampledImage, sampledImage));
 			}
@@ -242,8 +239,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 				return getName();
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
@@ -266,8 +262,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
@@ -293,8 +288,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -319,8 +313,7 @@ public class SampledImageDescriptorImpl extends LilyEObject implements SampledIm
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:

@@ -53,8 +53,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 */
 	public ComputeSwitch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = ComputePackage.eINSTANCE;
 		}
 	}
@@ -83,10 +82,8 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case ComputePackage.COMPUTE_PROCESS:
-			{
+		switch (classifierID) {
+			case ComputePackage.COMPUTE_PROCESS: {
 				ComputeProcess computeProcess = (ComputeProcess)theEObject;
 				T1 result = caseComputeProcess(computeProcess);
 				if (result == null) result = caseAbstractProcess(computeProcess);
@@ -96,8 +93,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.COMPUTE_PIPELINE:
-			{
+			case ComputePackage.COMPUTE_PIPELINE: {
 				ComputePipeline computePipeline = (ComputePipeline)theEObject;
 				T1 result = caseComputePipeline(computePipeline);
 				if (result == null) result = caseVkPipeline(computePipeline);
@@ -109,8 +105,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.DISPATCH_TASK:
-			{
+			case ComputePackage.DISPATCH_TASK: {
 				DispatchTask dispatchTask = (DispatchTask)theEObject;
 				T1 result = caseDispatchTask(dispatchTask);
 				if (result == null) result = caseIPipelineTask(dispatchTask);
@@ -118,24 +113,21 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.COMPUTE_CONFIGURATION:
-			{
+			case ComputePackage.COMPUTE_CONFIGURATION: {
 				ComputeConfiguration computeConfiguration = (ComputeConfiguration)theEObject;
 				T1 result = caseComputeConfiguration(computeConfiguration);
 				if (result == null) result = caseProcessConfiguration(computeConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.COMPUTE_EXECUTION_MANAGER:
-			{
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER: {
 				ComputeExecutionManager computeExecutionManager = (ComputeExecutionManager)theEObject;
 				T1 result = caseComputeExecutionManager(computeExecutionManager);
 				if (result == null) result = caseProcessExecutionManager(computeExecutionManager);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.COMPUTE_EXECUTION_RECORDER:
-			{
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER: {
 				ComputeExecutionRecorder computeExecutionRecorder = (ComputeExecutionRecorder)theEObject;
 				T1 result = caseComputeExecutionRecorder(computeExecutionRecorder);
 				if (result == null) result = caseExecutionRecorder(computeExecutionRecorder);

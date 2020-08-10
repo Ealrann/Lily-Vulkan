@@ -21,9 +21,6 @@ module org.sheepy.lily.vulkan.api {
 	exports org.sheepy.lily.vulkan.model;
 	exports org.sheepy.lily.vulkan.model.impl;
 	exports org.sheepy.lily.vulkan.model.util;
-	exports org.sheepy.lily.vulkan.model.binding;
-	exports org.sheepy.lily.vulkan.model.binding.impl;
-	exports org.sheepy.lily.vulkan.model.binding.util;
 	exports org.sheepy.lily.vulkan.model.process;
 	exports org.sheepy.lily.vulkan.model.process.impl;
 	exports org.sheepy.lily.vulkan.model.process.util;

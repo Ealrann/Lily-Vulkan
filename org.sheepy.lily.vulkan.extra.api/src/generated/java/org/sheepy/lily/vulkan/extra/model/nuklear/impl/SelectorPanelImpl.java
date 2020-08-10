@@ -673,8 +673,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	{
 		DirectVariableResolver oldVariableResolver = variableResolver;
 		variableResolver = newVariableResolver;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__VARIABLE_RESOLVER, oldVariableResolver, newVariableResolver);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -689,8 +688,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public void setVariableResolver(DirectVariableResolver newVariableResolver)
 	{
-		if (newVariableResolver != variableResolver)
-		{
+		if (newVariableResolver != variableResolver) {
 			NotificationChain msgs = null;
 			if (variableResolver != null)
 				msgs = ((InternalEObject)variableResolver).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.SELECTOR_PANEL__VARIABLE_RESOLVER, null, msgs);
@@ -723,8 +721,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	{
 		IInputProvider oldInputProvider = inputProvider;
 		inputProvider = newInputProvider;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__INPUT_PROVIDER, oldInputProvider, newInputProvider);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -739,8 +736,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public void setInputProvider(IInputProvider newInputProvider)
 	{
-		if (newInputProvider != inputProvider)
-		{
+		if (newInputProvider != inputProvider) {
 			NotificationChain msgs = null;
 			if (inputProvider != null)
 				msgs = ((InternalEObject)inputProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.SELECTOR_PANEL__INPUT_PROVIDER, null, msgs);
@@ -897,8 +893,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.SELECTOR_PANEL__VARIABLE_RESOLVER:
 				return basicSetVariableResolver(null, msgs);
 			case NuklearPackage.SELECTOR_PANEL__INPUT_PROVIDER:
@@ -915,8 +910,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.SELECTOR_PANEL__NAME:
 				return getName();
 			case NuklearPackage.SELECTOR_PANEL__POSITION:
@@ -963,8 +957,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.SELECTOR_PANEL__NAME:
 				setName((String)newValue);
 				return;
@@ -1028,8 +1021,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.SELECTOR_PANEL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -1093,8 +1085,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.SELECTOR_PANEL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case NuklearPackage.SELECTOR_PANEL__POSITION:
@@ -1141,24 +1132,18 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == IInferenceObject.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == IInferenceObject.class) {
+			switch (derivedFeatureID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == IUIElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == IUIElement.class) {
+			switch (derivedFeatureID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == IPositionElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == IPositionElement.class) {
+			switch (derivedFeatureID) {
 				case NuklearPackage.SELECTOR_PANEL__POSITION: return PresentationPackage.IPOSITION_ELEMENT__POSITION;
 				case NuklearPackage.SELECTOR_PANEL__VERTICAL_RELATIVE: return PresentationPackage.IPOSITION_ELEMENT__VERTICAL_RELATIVE;
 				case NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE: return PresentationPackage.IPOSITION_ELEMENT__HORIZONTAL_RELATIVE;
@@ -1176,24 +1161,18 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == IInferenceObject.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == IInferenceObject.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == IUIElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == IUIElement.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == IPositionElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == IPositionElement.class) {
+			switch (baseFeatureID) {
 				case PresentationPackage.IPOSITION_ELEMENT__POSITION: return NuklearPackage.SELECTOR_PANEL__POSITION;
 				case PresentationPackage.IPOSITION_ELEMENT__VERTICAL_RELATIVE: return NuklearPackage.SELECTOR_PANEL__VERTICAL_RELATIVE;
 				case PresentationPackage.IPOSITION_ELEMENT__HORIZONTAL_RELATIVE: return NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE;
@@ -1211,25 +1190,19 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
 	{
-		if (baseClass == IInferenceObject.class)
-		{
-			switch (baseOperationID)
-			{
+		if (baseClass == IInferenceObject.class) {
+			switch (baseOperationID) {
 				case InferencePackage.IINFERENCE_OBJECT___LINFERENCE_OBJECT: return NuklearPackage.SELECTOR_PANEL___LINFERENCE_OBJECT;
 				default: return -1;
 			}
 		}
-		if (baseClass == IUIElement.class)
-		{
-			switch (baseOperationID)
-			{
+		if (baseClass == IUIElement.class) {
+			switch (baseOperationID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == IPositionElement.class)
-		{
-			switch (baseOperationID)
-			{
+		if (baseClass == IPositionElement.class) {
+			switch (baseOperationID) {
 				default: return -1;
 			}
 		}
@@ -1244,8 +1217,7 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
-		switch (operationID)
-		{
+		switch (operationID) {
 			case NuklearPackage.SELECTOR_PANEL___LINFERENCE_OBJECT:
 				return lInferenceObject();
 		}

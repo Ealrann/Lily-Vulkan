@@ -89,8 +89,7 @@ public enum EContextIndex implements Enumerator
 	 * @generated
 	 */
 	private static final EContextIndex[] VALUES_ARRAY =
-		new EContextIndex[]
-		{
+		new EContextIndex[] {
 			CONTEXT_INSTANCE,
 			CONTEXT_INSTANCE_PLUS_ONE,
 			CONTEXT_INSTANCE_MINUS_ONE,
@@ -114,11 +113,9 @@ public enum EContextIndex implements Enumerator
 	 */
 	public static EContextIndex get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			EContextIndex result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,11 +132,9 @@ public enum EContextIndex implements Enumerator
 	 */
 	public static EContextIndex getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			EContextIndex result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -156,8 +151,7 @@ public enum EContextIndex implements Enumerator
 	 */
 	public static EContextIndex get(int value)
 	{
-		switch (value)
-		{
+		switch (value) {
 			case CONTEXT_INSTANCE_VALUE: return CONTEXT_INSTANCE;
 			case CONTEXT_INSTANCE_PLUS_ONE_VALUE: return CONTEXT_INSTANCE_PLUS_ONE;
 			case CONTEXT_INSTANCE_MINUS_ONE_VALUE: return CONTEXT_INSTANCE_MINUS_ONE;

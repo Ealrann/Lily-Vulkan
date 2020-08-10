@@ -17,7 +17,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration} object.
@@ -54,8 +53,7 @@ public class ComputeConfigurationItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}

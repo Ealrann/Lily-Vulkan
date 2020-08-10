@@ -63,8 +63,7 @@ public class MouseLocationItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -159,8 +158,7 @@ public class MouseLocationItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MouseLocation.class))
-		{
+		switch (notification.getFeatureID(MouseLocation.class)) {
 			case VulkanPackage.MOUSE_LOCATION__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

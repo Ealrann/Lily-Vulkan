@@ -76,12 +76,10 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	@Override
 	public TransferBuffer getTransferBuffer()
 	{
-		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
-		{
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy()) {
 			InternalEObject oldTransferBuffer = transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
-			if (transferBuffer != oldTransferBuffer)
-			{
+			if (transferBuffer != oldTransferBuffer) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 			}
@@ -121,12 +119,10 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	@Override
 	public FontImage getFontImage()
 	{
-		if (fontImage != null && ((EObject)fontImage).eIsProxy())
-		{
+		if (fontImage != null && ((EObject)fontImage).eIsProxy()) {
 			InternalEObject oldFontImage = fontImage;
 			fontImage = (FontImage)eResolveProxy(oldFontImage);
-			if (fontImage != oldFontImage)
-			{
+			if (fontImage != oldFontImage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_FONT__FONT_IMAGE, oldFontImage, fontImage));
 			}
@@ -166,8 +162,7 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER:
 				if (resolve) return getTransferBuffer();
 				return basicGetTransferBuffer();
@@ -186,8 +181,7 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)newValue);
 				return;
@@ -206,8 +200,7 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER:
 				setTransferBuffer((TransferBuffer)null);
 				return;
@@ -226,8 +219,7 @@ public class NuklearFontImpl extends IResourceImpl implements NuklearFont
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NuklearPackage.NUKLEAR_FONT__TRANSFER_BUFFER:
 				return transferBuffer != null;
 			case NuklearPackage.NUKLEAR_FONT__FONT_IMAGE:

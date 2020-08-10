@@ -57,8 +57,7 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -272,8 +271,7 @@ public class DrawIndexedItemProvider extends ItemProviderAdapter implements IEdi
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DrawIndexed.class))
-		{
+		switch (notification.getFeatureID(DrawIndexed.class)) {
 			case GraphicPackage.DRAW_INDEXED__NAME:
 			case GraphicPackage.DRAW_INDEXED__ENABLED:
 			case GraphicPackage.DRAW_INDEXED__INDEX_COUNT:

@@ -104,8 +104,7 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	{
 		RenderableDataSource<T> oldDataSource = dataSource;
 		dataSource = newDataSource;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.INDEX_PROVIDER__DATA_SOURCE, oldDataSource, newDataSource);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -120,8 +119,7 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	@Override
 	public void setDataSource(RenderableDataSource<T> newDataSource)
 	{
-		if (newDataSource != dataSource)
-		{
+		if (newDataSource != dataSource) {
 			NotificationChain msgs = null;
 			if (dataSource != null)
 				msgs = ((InternalEObject)dataSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.INDEX_PROVIDER__DATA_SOURCE, null, msgs);
@@ -167,8 +165,7 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
 				return basicSetDataSource(null, msgs);
 		}
@@ -183,8 +180,7 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
 				return getDataSource();
 			case RenderingPackage.INDEX_PROVIDER__INDEX_TYPE:
@@ -202,8 +198,7 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
 				setDataSource((RenderableDataSource<T>)newValue);
 				return;
@@ -222,8 +217,7 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
 				setDataSource((RenderableDataSource<T>)null);
 				return;
@@ -242,8 +236,7 @@ public class IndexProviderImpl<T extends Structure> extends BufferDataProviderIm
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.INDEX_PROVIDER__DATA_SOURCE:
 				return dataSource != null;
 			case RenderingPackage.INDEX_PROVIDER__INDEX_TYPE:

@@ -2,10 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Buffer Viewer</b></em>'.
@@ -16,7 +12,6 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getDataProvider <em>Data Provider</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.BufferViewer#getSize <em>Size</em>}</li>
@@ -49,20 +44,6 @@ public interface BufferViewer extends IBufferObject
 	 * @generated
 	 */
 	void setDataProvider(BufferDataProvider value);
-
-	/**
-	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Usages</em>' attribute list.
-	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
-	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getBufferViewer_Usages()
-	 * @model
-	 * @generated
-	 */
-	EList<EBufferUsage> getUsages();
 
 	/**
 	 * Returns the value of the '<em><b>Grow Factor</b></em>' attribute.

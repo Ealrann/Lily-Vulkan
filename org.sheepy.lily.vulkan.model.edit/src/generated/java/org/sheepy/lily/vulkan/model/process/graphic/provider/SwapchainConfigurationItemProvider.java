@@ -54,8 +54,7 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addRequiredSwapImageCountPropertyDescriptor(object);
@@ -193,8 +192,7 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT);
 		}
@@ -252,8 +250,7 @@ public class SwapchainConfigurationItemProvider extends ItemProviderAdapter impl
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SwapchainConfiguration.class))
-		{
+		switch (notification.getFeatureID(SwapchainConfiguration.class)) {
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 			case GraphicPackage.SWAPCHAIN_CONFIGURATION__PRESENT_WHEN_VBLANK:

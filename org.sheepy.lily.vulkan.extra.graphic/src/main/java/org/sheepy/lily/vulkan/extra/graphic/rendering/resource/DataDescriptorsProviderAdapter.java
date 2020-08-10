@@ -8,7 +8,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class DataDescriptorsProviderAdapter implements IDescriptorProviderAdapte
 	}
 
 	@Override
-	public ResourceDescriptor buildForPart(ResourceDescriptorProvider provider, CompositeBuffer compositeBuffer)
+	public ResourceDescriptor buildForPart(ResourceDescriptorProvider provider, BufferMemory bufferMemory)
 	{
 		final List<IDescriptor> descriptors = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class DataDescriptorsProviderAdapter implements IDescriptorProviderAdapte
 			final var dataDescriptor = dataDescriptors.get(i);
 
 			final var descriptor = VulkanResourceFactory.eINSTANCE.createBufferDescriptor();
-			descriptor.setBuffer(compositeBuffer.getParts().get(dataDescriptor.getPart()));
+			descriptor.setBuffer(bufferMemory.getBuffers().get(dataDescriptor.getPart()));
 			descriptor.setType(dataDescriptor.getDescriptorType());
 			descriptor.getShaderStages().addAll(dataDescriptor.getStages());
 

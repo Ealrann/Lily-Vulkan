@@ -43,8 +43,7 @@ public class DepthAttachmentItemProvider extends ExtraAttachmentItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addClearPropertyDescriptor(object);
@@ -138,8 +137,7 @@ public class DepthAttachmentItemProvider extends ExtraAttachmentItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DepthAttachment.class))
-		{
+		switch (notification.getFeatureID(DepthAttachment.class)) {
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 			case GraphicPackage.DEPTH_ATTACHMENT__USAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

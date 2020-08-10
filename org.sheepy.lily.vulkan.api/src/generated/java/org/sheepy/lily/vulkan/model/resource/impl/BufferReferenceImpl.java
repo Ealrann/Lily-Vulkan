@@ -117,8 +117,7 @@ public class BufferReferenceImpl extends LilyEObject implements BufferReference
 	@Override
 	public EList<IBuffer> getBuffers()
 	{
-		if (buffers == null)
-		{
+		if (buffers == null) {
 			buffers = new EObjectResolvingEList<IBuffer>(IBuffer.class, this, VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS);
 		}
 		return buffers;
@@ -182,8 +181,7 @@ public class BufferReferenceImpl extends LilyEObject implements BufferReference
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS:
 				return getBuffers();
 			case VulkanResourcePackage.BUFFER_REFERENCE__STRIDE:
@@ -203,8 +201,7 @@ public class BufferReferenceImpl extends LilyEObject implements BufferReference
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS:
 				getBuffers().clear();
 				getBuffers().addAll((Collection<? extends IBuffer>)newValue);
@@ -227,8 +224,7 @@ public class BufferReferenceImpl extends LilyEObject implements BufferReference
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS:
 				getBuffers().clear();
 				return;
@@ -250,8 +246,7 @@ public class BufferReferenceImpl extends LilyEObject implements BufferReference
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS:
 				return buffers != null && !buffers.isEmpty();
 			case VulkanResourcePackage.BUFFER_REFERENCE__STRIDE:

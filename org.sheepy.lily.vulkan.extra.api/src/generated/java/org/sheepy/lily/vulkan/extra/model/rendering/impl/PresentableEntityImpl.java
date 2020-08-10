@@ -90,12 +90,10 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public Presentation getPresentation()
 	{
-		if (presentation != null && ((EObject)presentation).eIsProxy())
-		{
-			InternalEObject oldPresentation = (InternalEObject)presentation;
+		if (presentation != null && ((EObject)presentation).eIsProxy()) {
+			InternalEObject oldPresentation = presentation;
 			presentation = (Presentation)eResolveProxy(oldPresentation);
-			if (presentation != oldPresentation)
-			{
+			if (presentation != oldPresentation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION, oldPresentation, presentation));
 			}
@@ -122,8 +120,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	{
 		Presentation oldPresentation = presentation;
 		presentation = newPresentation;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION, oldPresentation, newPresentation);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -138,8 +135,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public void setPresentation(Presentation newPresentation)
 	{
-		if (newPresentation != presentation)
-		{
+		if (newPresentation != presentation) {
 			NotificationChain msgs = null;
 			if (presentation != null)
 				msgs = ((InternalEObject)presentation).eInverseRemove(this, RenderingPackage.PRESENTATION__PRESENTED_ENTITIES, Presentation.class, msgs);
@@ -185,8 +181,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION:
 				if (presentation != null)
 					msgs = ((InternalEObject)presentation).eInverseRemove(this, RenderingPackage.PRESENTATION__PRESENTED_ENTITIES, Presentation.class, msgs);
@@ -203,8 +198,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION:
 				return basicSetPresentation(null, msgs);
 		}
@@ -219,8 +213,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION:
 				if (resolve) return getPresentation();
 				return basicGetPresentation();
@@ -238,8 +231,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION:
 				setPresentation((Presentation)newValue);
 				return;
@@ -258,8 +250,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION:
 				setPresentation((Presentation)null);
 				return;
@@ -278,8 +269,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION:
 				return presentation != null;
 			case RenderingPackage.PRESENTABLE_ENTITY__SCALE:

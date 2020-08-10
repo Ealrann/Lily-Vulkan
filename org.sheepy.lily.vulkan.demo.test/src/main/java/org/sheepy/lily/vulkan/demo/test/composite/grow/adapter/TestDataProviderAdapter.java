@@ -31,11 +31,10 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	private int pass = 0;
 	private boolean dirty = true;
 
-	public TestDataProviderAdapter(BufferDataProvider provider)
+	public TestDataProviderAdapter()
 	{
 		super(List.of(Features.Size, Features.Data));
 		random = new Random();
-		provider.setRequestedSize(currentSize);
 	}
 
 	@Tick
@@ -59,12 +58,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	}
 
 	@Override
-	public boolean needPush()
-	{
-		return dirty;
-	}
-
-	@Override
 	public void fill(ByteBuffer buffer)
 	{
 		final var intBuffer = buffer.asIntBuffer();
@@ -79,7 +72,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 		}
 
 		previousPushs.add(new PushData(previous, pass));
-		dirty = false;
 	}
 
 	@Override
@@ -103,7 +95,7 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 		return currentSize;
 	}
 
-	private static record PushData(int[]values, int pass)
+	private static record PushData(int[] values, int pass)
 	{
 		boolean match(IntBuffer buffer)
 		{

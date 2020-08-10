@@ -70,12 +70,10 @@ public class WaitProcessIdleImpl extends LilyEObject implements WaitProcessIdle
 	@Override
 	public IProcess getProcess()
 	{
-		if (process != null && ((EObject)process).eIsProxy())
-		{
-			InternalEObject oldProcess = (InternalEObject)process;
+		if (process != null && ((EObject)process).eIsProxy()) {
+			InternalEObject oldProcess = process;
 			process = (IProcess)eResolveProxy(oldProcess);
-			if (process != oldProcess)
-			{
+			if (process != oldProcess) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanPackage.WAIT_PROCESS_IDLE__PROCESS, oldProcess, process));
 			}
@@ -115,8 +113,7 @@ public class WaitProcessIdleImpl extends LilyEObject implements WaitProcessIdle
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.WAIT_PROCESS_IDLE__PROCESS:
 				if (resolve) return getProcess();
 				return basicGetProcess();
@@ -132,8 +129,7 @@ public class WaitProcessIdleImpl extends LilyEObject implements WaitProcessIdle
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.WAIT_PROCESS_IDLE__PROCESS:
 				setProcess((IProcess)newValue);
 				return;
@@ -149,8 +145,7 @@ public class WaitProcessIdleImpl extends LilyEObject implements WaitProcessIdle
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.WAIT_PROCESS_IDLE__PROCESS:
 				setProcess((IProcess)null);
 				return;
@@ -166,8 +161,7 @@ public class WaitProcessIdleImpl extends LilyEObject implements WaitProcessIdle
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanPackage.WAIT_PROCESS_IDLE__PROCESS:
 				return process != null;
 		}

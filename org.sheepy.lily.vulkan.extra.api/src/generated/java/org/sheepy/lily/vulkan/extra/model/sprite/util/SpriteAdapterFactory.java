@@ -49,8 +49,7 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	 */
 	public SpriteAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = SpritePackage.eINSTANCE;
 		}
 	}
@@ -66,12 +65,10 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -84,101 +81,81 @@ public class SpriteAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected SpriteSwitch<Adapter> modelSwitch =
-		new SpriteSwitch<Adapter>()
-		{
+		new SpriteSwitch<Adapter>() {
 			@Override
-			public Adapter caseSpriteRenderer(SpriteRenderer object)
-			{
+			public Adapter caseSpriteRenderer(SpriteRenderer object) {
 				return createSpriteRendererAdapter();
 			}
 			@Override
-			public Adapter caseSprite(Sprite object)
-			{
+			public Adapter caseSprite(Sprite object) {
 				return createSpriteAdapter();
 			}
 			@Override
-			public Adapter caseSpriteMonoSamplerProvider(SpriteMonoSamplerProvider object)
-			{
+			public Adapter caseSpriteMonoSamplerProvider(SpriteMonoSamplerProvider object) {
 				return createSpriteMonoSamplerProviderAdapter();
 			}
 			@Override
-			public Adapter caseSpriteStructure(SpriteStructure object)
-			{
+			public Adapter caseSpriteStructure(SpriteStructure object) {
 				return createSpriteStructureAdapter();
 			}
 			@Override
-			public Adapter caseSpriteCountSpecialization(SpriteCountSpecialization object)
-			{
+			public Adapter caseSpriteCountSpecialization(SpriteCountSpecialization object) {
 				return createSpriteCountSpecializationAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(LNamedElement object)
-			{
+			public Adapter caseLNamedElement(LNamedElement object) {
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object)
-			{
+			public Adapter caseAbstractPipeline(AbstractPipeline object) {
 				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter caseIResourceContainer(IResourceContainer object)
-			{
+			public Adapter caseIResourceContainer(IResourceContainer object) {
 				return createIResourceContainerAdapter();
 			}
 			@Override
-			public Adapter caseTaskPipeline(TaskPipeline object)
-			{
+			public Adapter caseTaskPipeline(TaskPipeline object) {
 				return createTaskPipelineAdapter();
 			}
 			@Override
-			public Adapter caseVkPipeline(VkPipeline object)
-			{
+			public Adapter caseVkPipeline(VkPipeline object) {
 				return createVkPipelineAdapter();
 			}
 			@Override
-			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
-			{
+			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object) {
 				return createMaintainableAdapter();
 			}
 			@Override
-			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
-			{
+			public Adapter caseGraphicsPipeline(GraphicsPipeline object) {
 				return createGraphicsPipelineAdapter();
 			}
 			@Override
-			public <T extends Maintainable<T>> Adapter caseMaintainer(Maintainer<T> object)
-			{
+			public <T extends Maintainable<T>> Adapter caseMaintainer(Maintainer<T> object) {
 				return createMaintainerAdapter();
 			}
 			@Override
-			public <T extends Structure> Adapter caseGenericRenderer(GenericRenderer<T> object)
-			{
+			public <T extends Structure> Adapter caseGenericRenderer(GenericRenderer<T> object) {
 				return createGenericRendererAdapter();
 			}
 			@Override
-			public Adapter casePresentation(Presentation object)
-			{
+			public Adapter casePresentation(Presentation object) {
 				return createPresentationAdapter();
 			}
 			@Override
-			public Adapter caseResourceDescriptorProvider(ResourceDescriptorProvider object)
-			{
+			public Adapter caseResourceDescriptorProvider(ResourceDescriptorProvider object) {
 				return createResourceDescriptorProviderAdapter();
 			}
 			@Override
-			public Adapter caseStructure(Structure object)
-			{
+			public Adapter caseStructure(Structure object) {
 				return createStructureAdapter();
 			}
 			@Override
-			public Adapter caseISpecialization(ISpecialization object)
-			{
+			public Adapter caseISpecialization(ISpecialization object) {
 				return createISpecializationAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

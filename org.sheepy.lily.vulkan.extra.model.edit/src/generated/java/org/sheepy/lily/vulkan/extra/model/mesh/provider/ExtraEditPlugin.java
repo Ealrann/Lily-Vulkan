@@ -6,7 +6,6 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.sheepy.lily.core.model.resource.provider.LilyEditPlugin;
-import org.sheepy.lily.vulkan.model.binding.provider.LilyVulkanEditPlugin;
 import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 
 /**
@@ -42,10 +41,9 @@ public final class ExtraEditPlugin extends EMFPlugin
 	public ExtraEditPlugin()
 	{
 		super
-		  (new ResourceLocator [] 
-		   {
+		  (new ResourceLocator [] {
 		     LilyEditPlugin.INSTANCE,
-		     LilyVulkanEditPlugin.INSTANCE,
+		     org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
 		   });
 	}

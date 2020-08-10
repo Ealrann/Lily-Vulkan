@@ -48,8 +48,7 @@ public class SpriteCountSpecializationItemProvider extends ISpecializationItemPr
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addProviderPropertyDescriptor(object);

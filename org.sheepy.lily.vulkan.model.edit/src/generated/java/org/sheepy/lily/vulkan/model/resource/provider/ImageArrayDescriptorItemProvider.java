@@ -65,8 +65,7 @@ public class ImageArrayDescriptorItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -233,8 +232,7 @@ public class ImageArrayDescriptorItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ImageArrayDescriptor.class))
-		{
+		switch (notification.getFeatureID(ImageArrayDescriptor.class)) {
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES:

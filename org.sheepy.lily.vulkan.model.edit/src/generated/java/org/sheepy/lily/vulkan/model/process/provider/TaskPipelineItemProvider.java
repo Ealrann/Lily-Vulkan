@@ -51,8 +51,7 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -70,8 +69,7 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
@@ -122,8 +120,7 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TaskPipeline.class))
-		{
+		switch (notification.getFeatureID(TaskPipeline.class)) {
 			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:

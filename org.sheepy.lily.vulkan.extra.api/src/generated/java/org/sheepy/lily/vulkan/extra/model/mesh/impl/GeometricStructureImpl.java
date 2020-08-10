@@ -72,8 +72,7 @@ public abstract class GeometricStructureImpl extends IMeshStructureImpl implemen
 	@Override
 	public EList<GeometricMesh> getMeshes()
 	{
-		if (meshes == null)
-		{
+		if (meshes == null) {
 			meshes = new EObjectContainmentEList<GeometricMesh>(GeometricMesh.class, this, MeshPackage.GEOMETRIC_STRUCTURE__MESHES);
 		}
 		return meshes;
@@ -87,8 +86,7 @@ public abstract class GeometricStructureImpl extends IMeshStructureImpl implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_STRUCTURE__MESHES:
 				return ((InternalEList<?>)getMeshes()).basicRemove(otherEnd, msgs);
 		}
@@ -103,8 +101,7 @@ public abstract class GeometricStructureImpl extends IMeshStructureImpl implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_STRUCTURE__MESHES:
 				return getMeshes();
 		}
@@ -120,8 +117,7 @@ public abstract class GeometricStructureImpl extends IMeshStructureImpl implemen
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_STRUCTURE__MESHES:
 				getMeshes().clear();
 				getMeshes().addAll((Collection<? extends GeometricMesh>)newValue);
@@ -138,8 +134,7 @@ public abstract class GeometricStructureImpl extends IMeshStructureImpl implemen
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_STRUCTURE__MESHES:
 				getMeshes().clear();
 				return;
@@ -155,8 +150,7 @@ public abstract class GeometricStructureImpl extends IMeshStructureImpl implemen
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case MeshPackage.GEOMETRIC_STRUCTURE__MESHES:
 				return meshes != null && !meshes.isEmpty();
 		}

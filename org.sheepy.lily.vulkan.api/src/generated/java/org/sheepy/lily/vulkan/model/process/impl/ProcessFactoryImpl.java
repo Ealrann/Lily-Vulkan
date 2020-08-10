@@ -28,16 +28,13 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	 */
 	public static ProcessFactory init()
 	{
-		try
-		{
+		try {
 			ProcessFactory theProcessFactory = (ProcessFactory)EPackage.Registry.INSTANCE.getEFactory(ProcessPackage.eNS_URI);
-			if (theProcessFactory != null)
-			{
+			if (theProcessFactory != null) {
 				return theProcessFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ProcessFactoryImpl();
@@ -62,8 +59,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case ProcessPackage.PIPELINE_PKG: return createPipelinePkg();
 			case ProcessPackage.TASK_PKG: return createTaskPkg();
 			case ProcessPackage.PIPELINE: return createPipeline();
@@ -75,7 +71,6 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK: return createFlushTransferBufferTask();
 			case ProcessPackage.COPY_BUFFER_TASK: return createCopyBufferTask();
 			case ProcessPackage.PROCESS_EXTENSION_PKG: return createProcessExtensionPkg();
-			case ProcessPackage.PREPARE_COMPOSITE_TRANSFER: return createPrepareCompositeTransfer();
 			case ProcessPackage.SWAP_BINDINGS_TASK: return createSwapBindingsTask();
 			case ProcessPackage.FETCH_BUFFER: return createFetchBuffer();
 			default:
@@ -213,18 +208,6 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		ProcessExtensionPkgImpl processExtensionPkg = new ProcessExtensionPkgImpl();
 		return processExtensionPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public PrepareCompositeTransfer createPrepareCompositeTransfer()
-	{
-		PrepareCompositeTransferImpl prepareCompositeTransfer = new PrepareCompositeTransferImpl();
-		return prepareCompositeTransfer;
 	}
 
 	/**

@@ -45,8 +45,7 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addClearValuePropertyDescriptor(object);
@@ -165,8 +164,7 @@ public class ColorAttachmentItemProvider extends ExtraAttachmentItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ColorAttachment.class))
-		{
+		switch (notification.getFeatureID(ColorAttachment.class)) {
 			case GraphicPackage.COLOR_ATTACHMENT__CLEAR_VALUE:
 			case GraphicPackage.COLOR_ATTACHMENT__USAGES:
 			case GraphicPackage.COLOR_ATTACHMENT__FORMAT:

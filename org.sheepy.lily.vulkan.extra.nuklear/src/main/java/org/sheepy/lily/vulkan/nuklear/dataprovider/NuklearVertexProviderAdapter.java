@@ -36,7 +36,6 @@ public final class NuklearVertexProviderAdapter extends Notifier<IBufferDataProv
 
 	public ByteBuffer requestUpdate()
 	{
-		needPush = true;
 		notify(Features.Data);
 		return stagingBuffer;
 	}
@@ -45,18 +44,11 @@ public final class NuklearVertexProviderAdapter extends Notifier<IBufferDataProv
 	public void fill(ByteBuffer buffer)
 	{
 		MemoryUtil.memCopy(stagingBuffer, buffer);
-		needPush = false;
 	}
 
 	@Override
 	public void fetch(ByteBuffer buffer)
 	{
-	}
-
-	@Override
-	public boolean needPush()
-	{
-		return needPush;
 	}
 
 	@Override

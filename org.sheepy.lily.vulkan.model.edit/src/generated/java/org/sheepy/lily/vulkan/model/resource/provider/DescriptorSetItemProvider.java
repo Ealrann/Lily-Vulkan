@@ -53,8 +53,7 @@ public class DescriptorSetItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -148,8 +147,7 @@ public class DescriptorSetItemProvider extends ItemProviderAdapter implements IE
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DescriptorSet.class))
-		{
+		switch (notification.getFeatureID(DescriptorSet.class)) {
 			case VulkanResourcePackage.DESCRIPTOR_SET__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

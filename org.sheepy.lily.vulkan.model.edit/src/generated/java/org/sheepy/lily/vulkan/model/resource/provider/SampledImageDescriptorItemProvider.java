@@ -64,8 +64,7 @@ public class SampledImageDescriptorItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -208,8 +207,7 @@ public class SampledImageDescriptorItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SampledImageDescriptor.class))
-		{
+		switch (notification.getFeatureID(SampledImageDescriptor.class)) {
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__NAME:
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__TYPE:
 			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR__SHADER_STAGES:

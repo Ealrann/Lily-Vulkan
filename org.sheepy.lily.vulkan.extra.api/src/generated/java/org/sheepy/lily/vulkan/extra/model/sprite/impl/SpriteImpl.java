@@ -111,8 +111,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	@Override
 	public EList<PresentableEntity> getPresentedEntities()
 	{
-		if (presentedEntities == null)
-		{
+		if (presentedEntities == null) {
 			presentedEntities = new EObjectWithInverseResolvingEList<PresentableEntity>(PresentableEntity.class, this, SpritePackage.SPRITE__PRESENTED_ENTITIES, RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION);
 		}
 		return presentedEntities;
@@ -138,8 +137,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	{
 		FileResource oldFile = file;
 		file = newFile;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpritePackage.SPRITE__FILE, oldFile, newFile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -154,8 +152,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	@Override
 	public void setFile(FileResource newFile)
 	{
-		if (newFile != file)
-		{
+		if (newFile != file) {
 			NotificationChain msgs = null;
 			if (file != null)
 				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpritePackage.SPRITE__FILE, null, msgs);
@@ -202,8 +199,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE__PRESENTED_ENTITIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPresentedEntities()).basicAdd(otherEnd, msgs);
 		}
@@ -218,8 +214,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE__PRESENTED_ENTITIES:
 				return ((InternalEList<?>)getPresentedEntities()).basicRemove(otherEnd, msgs);
 			case SpritePackage.SPRITE__FILE:
@@ -236,8 +231,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE__PRESENTED_ENTITIES:
 				return getPresentedEntities();
 			case SpritePackage.SPRITE__FILE:
@@ -257,8 +251,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE__PRESENTED_ENTITIES:
 				getPresentedEntities().clear();
 				getPresentedEntities().addAll((Collection<? extends PresentableEntity>)newValue);
@@ -281,8 +274,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE__PRESENTED_ENTITIES:
 				getPresentedEntities().clear();
 				return;
@@ -304,8 +296,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpritePackage.SPRITE__PRESENTED_ENTITIES:
 				return presentedEntities != null && !presentedEntities.isEmpty();
 			case SpritePackage.SPRITE__FILE:

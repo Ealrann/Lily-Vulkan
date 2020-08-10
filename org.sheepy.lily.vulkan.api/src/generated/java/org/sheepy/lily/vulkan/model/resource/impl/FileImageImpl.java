@@ -138,8 +138,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.FILE_IMAGE__FILE:
 				return getFile();
 			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
@@ -156,8 +155,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.FILE_IMAGE__FILE:
 				setFile((FileResource)newValue);
 				return;
@@ -176,8 +174,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.FILE_IMAGE__FILE:
 				setFile((FileResource)null);
 				return;
@@ -196,8 +193,7 @@ public class FileImageImpl extends ImageImpl implements FileImage
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.FILE_IMAGE__FILE:
 				return file != null;
 			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:

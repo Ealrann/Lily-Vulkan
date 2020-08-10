@@ -9,6 +9,7 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.execution.IRecordContext;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
@@ -126,7 +127,7 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		{
 			final var sizeAdapter = buffer.adaptNotNull(IBufferObjectAdapter.class);
 			final long size = sizeAdapter.getSize(buffer);
-			final int usage = sizeAdapter.getUsage(buffer);
+			final int usage = VulkanModelUtil.getEnumeratedFlag(buffer.getUsages());
 
 			final long alignment = physicalDevice.getBufferAlignement(usage, true);
 			position = AlignmentUtil.align(position, alignment);

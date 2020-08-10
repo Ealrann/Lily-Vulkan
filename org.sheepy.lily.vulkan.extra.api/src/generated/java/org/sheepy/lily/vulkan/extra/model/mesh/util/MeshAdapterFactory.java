@@ -47,8 +47,7 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	 */
 	public MeshAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = MeshPackage.eINSTANCE;
 		}
 	}
@@ -64,12 +63,10 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -82,111 +79,89 @@ public class MeshAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected MeshSwitch<Adapter> modelSwitch =
-		new MeshSwitch<Adapter>()
-		{
+		new MeshSwitch<Adapter>() {
 			@Override
-			public Adapter caseMesh(Mesh object)
-			{
+			public Adapter caseMesh(Mesh object) {
 				return createMeshAdapter();
 			}
 			@Override
-			public Adapter caseMeshRenderer(MeshRenderer object)
-			{
+			public Adapter caseMeshRenderer(MeshRenderer object) {
 				return createMeshRendererAdapter();
 			}
 			@Override
-			public <T extends Mesh> Adapter caseMeshStructure(MeshStructure<T> object)
-			{
+			public <T extends Mesh> Adapter caseMeshStructure(MeshStructure<T> object) {
 				return createMeshStructureAdapter();
 			}
 			@Override
-			public Adapter caseIMeshStructure(IMeshStructure object)
-			{
+			public Adapter caseIMeshStructure(IMeshStructure object) {
 				return createIMeshStructureAdapter();
 			}
 			@Override
-			public Adapter caseGeometricStructure(GeometricStructure object)
-			{
+			public Adapter caseGeometricStructure(GeometricStructure object) {
 				return createGeometricStructureAdapter();
 			}
 			@Override
-			public Adapter caseGeometricMesh(GeometricMesh object)
-			{
+			public Adapter caseGeometricMesh(GeometricMesh object) {
 				return createGeometricMeshAdapter();
 			}
 			@Override
-			public Adapter caseIcosahedron(Icosahedron object)
-			{
+			public Adapter caseIcosahedron(Icosahedron object) {
 				return createIcosahedronAdapter();
 			}
 			@Override
-			public Adapter caseSphere(Sphere object)
-			{
+			public Adapter caseSphere(Sphere object) {
 				return createSphereAdapter();
 			}
 			@Override
-			public Adapter caseIcoSphere(IcoSphere object)
-			{
+			public Adapter caseIcoSphere(IcoSphere object) {
 				return createIcoSphereAdapter();
 			}
 			@Override
-			public Adapter casePresentation(Presentation object)
-			{
+			public Adapter casePresentation(Presentation object) {
 				return createPresentationAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(LNamedElement object)
-			{
+			public Adapter caseLNamedElement(LNamedElement object) {
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object)
-			{
+			public Adapter caseAbstractPipeline(AbstractPipeline object) {
 				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter caseIResourceContainer(IResourceContainer object)
-			{
+			public Adapter caseIResourceContainer(IResourceContainer object) {
 				return createIResourceContainerAdapter();
 			}
 			@Override
-			public Adapter caseTaskPipeline(TaskPipeline object)
-			{
+			public Adapter caseTaskPipeline(TaskPipeline object) {
 				return createTaskPipelineAdapter();
 			}
 			@Override
-			public Adapter caseVkPipeline(VkPipeline object)
-			{
+			public Adapter caseVkPipeline(VkPipeline object) {
 				return createVkPipelineAdapter();
 			}
 			@Override
-			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
-			{
+			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object) {
 				return createMaintainableAdapter();
 			}
 			@Override
-			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
-			{
+			public Adapter caseGraphicsPipeline(GraphicsPipeline object) {
 				return createGraphicsPipelineAdapter();
 			}
 			@Override
-			public <T extends Maintainable<T>> Adapter caseMaintainer(Maintainer<T> object)
-			{
+			public <T extends Maintainable<T>> Adapter caseMaintainer(Maintainer<T> object) {
 				return createMaintainerAdapter();
 			}
 			@Override
-			public <T extends Structure> Adapter caseGenericRenderer(GenericRenderer<T> object)
-			{
+			public <T extends Structure> Adapter caseGenericRenderer(GenericRenderer<T> object) {
 				return createGenericRendererAdapter();
 			}
 			@Override
-			public Adapter caseStructure(Structure object)
-			{
+			public Adapter caseStructure(Structure object) {
 				return createStructureAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

@@ -3,7 +3,9 @@ package org.sheepy.lily.vulkan.extra.graphic.shape.adapter;
 import org.joml.Vector3d;
 import org.lwjgl.util.par.ParShapesMesh;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.notification.DummyNotifier;
 import org.sheepy.lily.vulkan.extra.api.mesh.IMeshStructureAdapter;
+import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
@@ -13,7 +15,8 @@ import java.nio.IntBuffer;
 import static org.lwjgl.util.par.ParShapes.par_shapes_compute_normals;
 import static org.lwjgl.util.par.ParShapes.par_shapes_free_mesh;
 
-public abstract class AbstractShapeMeshAdapter<T extends GeometricStructure> implements IMeshStructureAdapter
+public abstract class AbstractShapeMeshAdapter<T extends GeometricStructure> extends DummyNotifier<IStructureAdapter.Features> implements
+																															   IMeshStructureAdapter
 {
 	private final int[] indexes;
 	private final double[] vertices;
@@ -29,6 +32,7 @@ public abstract class AbstractShapeMeshAdapter<T extends GeometricStructure> imp
 
 		indexes = intBufferToArray(mesh.triangles(getIndexCount(0)));
 		vertices = doubleBufferToArray(mesh.points(getVertexCount(0) * 3));
+		//noinspection ConstantConditions
 		normals = doubleBufferToArray(mesh.normals(getVertexCount(0) * 3));
 		trianglesNormals = computeTriangleNormals();
 	}

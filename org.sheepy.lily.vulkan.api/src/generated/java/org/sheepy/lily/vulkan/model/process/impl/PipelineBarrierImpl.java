@@ -233,8 +233,7 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	@Override
 	public EList<Barrier> getBarriers()
 	{
-		if (barriers == null)
-		{
+		if (barriers == null) {
 			barriers = new EObjectContainmentEList<Barrier>(Barrier.class, this, ProcessPackage.PIPELINE_BARRIER__BARRIERS);
 		}
 		return barriers;
@@ -298,12 +297,10 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	@Override
 	public AbstractProcess getSrcQueue()
 	{
-		if (srcQueue != null && ((EObject)srcQueue).eIsProxy())
-		{
+		if (srcQueue != null && ((EObject)srcQueue).eIsProxy()) {
 			InternalEObject oldSrcQueue = srcQueue;
 			srcQueue = (AbstractProcess)eResolveProxy(oldSrcQueue);
-			if (srcQueue != oldSrcQueue)
-			{
+			if (srcQueue != oldSrcQueue) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE, oldSrcQueue, srcQueue));
 			}
@@ -343,12 +340,10 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	@Override
 	public AbstractProcess getDstQueue()
 	{
-		if (dstQueue != null && ((EObject)dstQueue).eIsProxy())
-		{
+		if (dstQueue != null && ((EObject)dstQueue).eIsProxy()) {
 			InternalEObject oldDstQueue = dstQueue;
 			dstQueue = (AbstractProcess)eResolveProxy(oldDstQueue);
-			if (dstQueue != oldDstQueue)
-			{
+			if (dstQueue != oldDstQueue) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PIPELINE_BARRIER__DST_QUEUE, oldDstQueue, dstQueue));
 			}
@@ -388,8 +383,7 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PIPELINE_BARRIER__BARRIERS:
 				return ((InternalEList<?>)getBarriers()).basicRemove(otherEnd, msgs);
 		}
@@ -404,8 +398,7 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				return getName();
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
@@ -435,8 +428,7 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				setName((String)newValue);
 				return;
@@ -471,8 +463,7 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -506,8 +497,7 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:

@@ -182,8 +182,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public EList<EShaderStage> getShaderStages()
 	{
-		if (shaderStages == null)
-		{
+		if (shaderStages == null) {
 			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -197,12 +196,10 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public Image getImage()
 	{
-		if (image != null && ((EObject)image).eIsProxy())
-		{
-			InternalEObject oldImage = (InternalEObject)image;
+		if (image != null && ((EObject)image).eIsProxy()) {
+			InternalEObject oldImage = image;
 			image = (Image)eResolveProxy(oldImage);
-			if (image != oldImage)
-			{
+			if (image != oldImage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE, oldImage, image));
 			}
@@ -242,8 +239,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				return getName();
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
@@ -266,8 +262,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
@@ -293,8 +288,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -319,8 +313,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:

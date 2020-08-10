@@ -114,12 +114,10 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public Maintainer<GraphicProcess> getMaintainer()
 	{
-		if (maintainer != null && ((EObject)maintainer).eIsProxy())
-		{
+		if (maintainer != null && ((EObject)maintainer).eIsProxy()) {
 			InternalEObject oldMaintainer = maintainer;
 			maintainer = (Maintainer<GraphicProcess>)eResolveProxy(oldMaintainer);
-			if (maintainer != oldMaintainer)
-			{
+			if (maintainer != oldMaintainer) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, maintainer));
 			}
@@ -146,8 +144,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		Maintainer<GraphicProcess> oldMaintainer = maintainer;
 		maintainer = newMaintainer;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, newMaintainer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -162,8 +159,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public void setMaintainer(Maintainer<GraphicProcess> newMaintainer)
 	{
-		if (newMaintainer != maintainer)
-		{
+		if (newMaintainer != maintainer) {
 			NotificationChain msgs = null;
 			if (maintainer != null)
 				msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
@@ -196,8 +192,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		GraphicConfiguration oldConfiguration = configuration;
 		configuration = newConfiguration;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, oldConfiguration, newConfiguration);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -212,8 +207,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public void setConfiguration(GraphicConfiguration newConfiguration)
 	{
-		if (newConfiguration != configuration)
-		{
+		if (newConfiguration != configuration) {
 			NotificationChain msgs = null;
 			if (configuration != null)
 				msgs = ((InternalEObject)configuration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
@@ -246,8 +240,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		AttachmentPkg oldAttachmentPkg = attachmentPkg;
 		attachmentPkg = newAttachmentPkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG, oldAttachmentPkg, newAttachmentPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -262,8 +255,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public void setAttachmentPkg(AttachmentPkg newAttachmentPkg)
 	{
-		if (newAttachmentPkg != attachmentPkg)
-		{
+		if (newAttachmentPkg != attachmentPkg) {
 			NotificationChain msgs = null;
 			if (attachmentPkg != null)
 				msgs = ((InternalEObject)attachmentPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__ATTACHMENT_PKG, null, msgs);
@@ -284,8 +276,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public EList<Subpass> getSubpasses()
 	{
-		if (subpasses == null)
-		{
+		if (subpasses == null) {
 			subpasses = new EObjectContainmentEList<Subpass>(Subpass.class, this, GraphicPackage.GRAPHIC_PROCESS__SUBPASSES);
 		}
 		return subpasses;
@@ -300,8 +291,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
 				if (maintainer != null)
 					msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
@@ -318,8 +308,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
 				return basicSetMaintainer(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
@@ -340,8 +329,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
 				if (resolve) return getMaintainer();
 				return basicGetMaintainer();
@@ -364,8 +352,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
 				setMaintainer((Maintainer<GraphicProcess>)newValue);
 				return;
@@ -391,8 +378,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
 				setMaintainer((Maintainer<GraphicProcess>)null);
 				return;
@@ -417,8 +403,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
 				return maintainer != null;
 			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
@@ -439,10 +424,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainable.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == Maintainable.class) {
+			switch (derivedFeatureID) {
 				case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER: return MaintainerPackage.MAINTAINABLE__MAINTAINER;
 				default: return -1;
 			}
@@ -458,10 +441,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainable.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == Maintainable.class) {
+			switch (baseFeatureID) {
 				case MaintainerPackage.MAINTAINABLE__MAINTAINER: return GraphicPackage.GRAPHIC_PROCESS__MAINTAINER;
 				default: return -1;
 			}

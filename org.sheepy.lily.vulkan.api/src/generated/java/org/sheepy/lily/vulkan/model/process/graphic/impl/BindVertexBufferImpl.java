@@ -213,8 +213,7 @@ public class BindVertexBufferImpl extends LilyEObject implements BindVertexBuffe
 	@Override
 	public EList<VertexBinding> getVertexBindings()
 	{
-		if (vertexBindings == null)
-		{
+		if (vertexBindings == null) {
 			vertexBindings = new EObjectContainmentEList<VertexBinding>(VertexBinding.class, this, GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS);
 		}
 		return vertexBindings;
@@ -228,8 +227,7 @@ public class BindVertexBufferImpl extends LilyEObject implements BindVertexBuffe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS:
 				return ((InternalEList<?>)getVertexBindings()).basicRemove(otherEnd, msgs);
 		}
@@ -244,8 +242,7 @@ public class BindVertexBufferImpl extends LilyEObject implements BindVertexBuffe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
 				return getName();
 			case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:
@@ -267,8 +264,7 @@ public class BindVertexBufferImpl extends LilyEObject implements BindVertexBuffe
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
 				setName((String)newValue);
 				return;
@@ -294,8 +290,7 @@ public class BindVertexBufferImpl extends LilyEObject implements BindVertexBuffe
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -320,8 +315,7 @@ public class BindVertexBufferImpl extends LilyEObject implements BindVertexBuffe
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case GraphicPackage.BIND_VERTEX_BUFFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.BIND_VERTEX_BUFFER__ENABLED:

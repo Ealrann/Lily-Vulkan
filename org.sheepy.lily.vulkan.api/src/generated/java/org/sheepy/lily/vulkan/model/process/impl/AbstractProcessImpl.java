@@ -247,8 +247,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -263,8 +262,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
-		if (newResourcePkg != resourcePkg)
-		{
+		if (newResourcePkg != resourcePkg) {
 			NotificationChain msgs = null;
 			if (resourcePkg != null)
 				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
@@ -372,8 +370,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		ICadence oldCadence = cadence;
 		cadence = newCadence;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__CADENCE, oldCadence, newCadence);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -388,8 +385,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public void setCadence(ICadence newCadence)
 	{
-		if (newCadence != cadence)
-		{
+		if (newCadence != cadence) {
 			NotificationChain msgs = null;
 			if (cadence != null)
 				msgs = ((InternalEObject)cadence).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__CADENCE, null, msgs);
@@ -422,8 +418,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		DescriptorPool oldDescriptorPool = descriptorPool;
 		descriptorPool = newDescriptorPool;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL, oldDescriptorPool, newDescriptorPool);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -438,8 +433,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public void setDescriptorPool(DescriptorPool newDescriptorPool)
 	{
-		if (newDescriptorPool != descriptorPool)
-		{
+		if (newDescriptorPool != descriptorPool) {
 			NotificationChain msgs = null;
 			if (descriptorPool != null)
 				msgs = ((InternalEObject)descriptorPool).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL, null, msgs);
@@ -522,8 +516,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		ProcessExtensionPkg oldExtensionPkg = extensionPkg;
 		extensionPkg = newExtensionPkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG, oldExtensionPkg, newExtensionPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -538,8 +531,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public void setExtensionPkg(ProcessExtensionPkg newExtensionPkg)
 	{
-		if (newExtensionPkg != extensionPkg)
-		{
+		if (newExtensionPkg != extensionPkg) {
 			NotificationChain msgs = null;
 			if (extensionPkg != null)
 				msgs = ((InternalEObject)extensionPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__EXTENSION_PKG, null, msgs);
@@ -572,8 +564,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		ProcessExecutionManager oldExecutionManager = executionManager;
 		executionManager = newExecutionManager;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER, oldExecutionManager, newExecutionManager);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -588,8 +579,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public void setExecutionManager(ProcessExecutionManager newExecutionManager)
 	{
-		if (newExecutionManager != executionManager)
-		{
+		if (newExecutionManager != executionManager) {
 			NotificationChain msgs = null;
 			if (executionManager != null)
 				msgs = ((InternalEObject)executionManager).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__EXECUTION_MANAGER, null, msgs);
@@ -622,8 +612,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		DescriptorPkg oldDescriptorPkg = descriptorPkg;
 		descriptorPkg = newDescriptorPkg;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -638,8 +627,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
 	{
-		if (newDescriptorPkg != descriptorPkg)
-		{
+		if (newDescriptorPkg != descriptorPkg) {
 			NotificationChain msgs = null;
 			if (descriptorPkg != null)
 				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG, null, msgs);
@@ -660,8 +648,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
@@ -686,8 +673,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				return getResourcePkg();
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
@@ -723,8 +709,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)newValue);
 				return;
@@ -770,8 +755,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)null);
 				return;
@@ -817,8 +801,7 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 				return resourcePkg != null;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
@@ -853,10 +836,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == LNamedElement.class) {
+			switch (derivedFeatureID) {
 				case ProcessPackage.ABSTRACT_PROCESS__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
@@ -872,10 +853,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == LNamedElement.class) {
+			switch (baseFeatureID) {
 				case TypesPackage.LNAMED_ELEMENT__NAME: return ProcessPackage.ABSTRACT_PROCESS__NAME;
 				default: return -1;
 			}

@@ -122,15 +122,6 @@ public interface ProcessFactory extends EFactory
 	ProcessExtensionPkg createProcessExtensionPkg();
 
 	/**
-	 * Returns a new object of class '<em>Prepare Composite Transfer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Prepare Composite Transfer</em>'.
-	 * @generated
-	 */
-	PrepareCompositeTransfer createPrepareCompositeTransfer();
-
-	/**
 	 * Returns a new object of class '<em>Swap Bindings Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

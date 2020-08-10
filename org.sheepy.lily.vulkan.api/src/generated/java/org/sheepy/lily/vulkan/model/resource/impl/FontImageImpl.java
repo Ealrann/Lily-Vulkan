@@ -67,8 +67,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	@Override
 	public EList<Font> getFonts()
 	{
-		if (fonts == null)
-		{
+		if (fonts == null) {
 			fonts = new EObjectResolvingEList<Font>(Font.class, this, VulkanResourcePackage.FONT_IMAGE__FONTS);
 		}
 		return fonts;
@@ -82,8 +81,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.FONT_IMAGE__FONTS:
 				return getFonts();
 		}
@@ -99,8 +97,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.FONT_IMAGE__FONTS:
 				getFonts().clear();
 				getFonts().addAll((Collection<? extends Font>)newValue);
@@ -117,8 +114,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.FONT_IMAGE__FONTS:
 				getFonts().clear();
 				return;
@@ -134,8 +130,7 @@ public class FontImageImpl extends ImageImpl implements FontImage
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanResourcePackage.FONT_IMAGE__FONTS:
 				return fonts != null && !fonts.isEmpty();
 		}
