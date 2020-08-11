@@ -20,30 +20,28 @@
         <resources xsi:type="resource:MemoryChunk" name="NuklearVertexBuffer" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1">
           <parts xsi:type="resource:BufferMemory">
             <buffers xsi:type="resource:BufferViewer" name="Vertex">
-              <dataProvider xsi:type="nuklear:NuklearVertexProvider">
-                <usages>VERTEX_BUFFER_BIT</usages>
-              </dataProvider>
               <usages>VERTEX_BUFFER_BIT</usages>
               <usages>TRANSFER_DST_BIT</usages>
+              <dataProvider xsi:type="nuklear:NuklearVertexProvider"/>
             </buffers>
             <buffers xsi:type="resource:BufferViewer" name="Index">
-              <dataProvider xsi:type="nuklear:NuklearIndexProvider">
-                <usages>INDEX_BUFFER_BIT</usages>
-              </dataProvider>
               <usages>INDEX_BUFFER_BIT</usages>
               <usages>TRANSFER_DST_BIT</usages>
+              <dataProvider xsi:type="nuklear:NuklearIndexProvider"/>
             </buffers>
           </parts>
         </resources>
         <resources xsi:type="resource:Sampler" name="FontSampler"/>
-        <resources xsi:type="resource:StaticImage" name="NullImage" size="1;1">
-          <usages>Sampled</usages>
-          <usages>TransferDst</usages>
-          <initialLayout stage="FRAGMENT_SHADER_BIT">
-            <accessMask>SHADER_READ_BIT</accessMask>
-          </initialLayout>
+        <resources xsi:type="resource:MemoryChunk" name="Static Resources">
+          <parts xsi:type="resource:StaticImage" name="NullImage" size="1;1">
+            <usages>Sampled</usages>
+            <usages>TransferDst</usages>
+            <initialLayout stage="FRAGMENT_SHADER_BIT">
+              <accessMask>SHADER_READ_BIT</accessMask>
+            </initialLayout>
+          </parts>
         </resources>
-        <resources xsi:type="resource:SampledImage" name="NullTexture" image="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.8">
+        <resources xsi:type="resource:SampledImage" name="NullTexture" image="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.8/@parts.0">
           <sampler/>
         </resources>
       </resourcePkg>
@@ -64,12 +62,12 @@
           <barriers xsi:type="resource:BufferBarrier" name="Index">
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>INDEX_READ_BIT</dstAccessMask>
-            <buffers xsi:type="resource:BufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.1"/>
+            <buffers buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.1"/>
           </barriers>
           <barriers xsi:type="resource:BufferBarrier" name="Vertex">
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>VERTEX_ATTRIBUTE_READ_BIT</dstAccessMask>
-            <buffers xsi:type="resource:BufferReference" buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.0"/>
+            <buffers buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6/@parts.0/@buffers.0"/>
           </barriers>
         </tasks>
       </taskPkgs>

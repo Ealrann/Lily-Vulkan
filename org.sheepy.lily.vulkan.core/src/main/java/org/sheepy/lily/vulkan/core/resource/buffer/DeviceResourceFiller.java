@@ -56,7 +56,7 @@ public final class DeviceResourceFiller
 		public PushBuffersCommand(List<FillCommand.FillBufferCommand> fillCommands)
 		{
 			final long size = fillCommands.stream().mapToLong(FillCommand::size).sum();
-			stagingBuffer = createStagingBuffer(size);
+			stagingBuffer = size > 0 ? createStagingBuffer(size) : null;
 			this.fillCommands = fillCommands;
 		}
 
@@ -70,29 +70,32 @@ public final class DeviceResourceFiller
 
 		public void execute(IRecordContext context)
 		{
-			final long stagingPtr = stagingBuffer.mapMemory(context.getVkDevice());
-			long position = stagingPtr;
-
-			final var stack = context.stack();
-			final var vkCommandBuffer = context.vkCommandBuffer();
-			long offset = 0;
-
-			for (final var fillCommand : fillCommands)
+			if (stagingBuffer != null)
 			{
-				final long partSize = fillCommand.size();
-				fillCommand.dataProvider().fillBuffer(MemoryUtil.memByteBuffer(position, (int) partSize));
+				final long stagingPtr = stagingBuffer.mapMemory(context.getVkDevice());
+				long position = stagingPtr;
 
-				final long dstOffset = fillCommand.offset();
-				final long deviceBufferPtr = fillCommand.bufferPtr();
-				fillBuffer(stack, vkCommandBuffer, deviceBufferPtr, offset, dstOffset, partSize);
-				offset += partSize;
-				position += fillCommand.size();
+				final var stack = context.stack();
+				final var vkCommandBuffer = context.vkCommandBuffer();
+				long offset = 0;
+
+				for (final var fillCommand : fillCommands)
+				{
+					final long partSize = fillCommand.size();
+					fillCommand.dataProvider().fillBuffer(MemoryUtil.memByteBuffer(position, (int) partSize));
+
+					final long dstOffset = fillCommand.offset();
+					final long deviceBufferPtr = fillCommand.bufferPtr();
+					fillBuffer(stack, vkCommandBuffer, deviceBufferPtr, offset, dstOffset, partSize);
+					offset += partSize;
+					position += fillCommand.size();
+				}
 			}
 		}
 
 		public void postExecute()
 		{
-			stagingBuffer.free(context);
+			if (stagingBuffer != null) stagingBuffer.free(context);
 		}
 
 		private void fillBuffer(MemoryStack stack,

@@ -88,6 +88,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImageDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" eType="#//Sampler"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SampledImageDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sampledImage" eType="#//SampledImage"/>

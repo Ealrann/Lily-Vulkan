@@ -71,6 +71,7 @@ public class ImageDescriptorItemProvider
 			addTypePropertyDescriptor(object);
 			addShaderStagesPropertyDescriptor(object);
 			addImagePropertyDescriptor(object);
+			addSamplerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -159,6 +160,28 @@ public class ImageDescriptorItemProvider
 				 getString("_UI_ImageDescriptor_image_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ImageDescriptor_image_feature", "_UI_ImageDescriptor_type"),
 				 VulkanResourcePackage.Literals.IMAGE_DESCRIPTOR__IMAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sampler feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSamplerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageDescriptor_sampler_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageDescriptor_sampler_feature", "_UI_ImageDescriptor_type"),
+				 VulkanResourcePackage.Literals.IMAGE_DESCRIPTOR__SAMPLER,
 				 true,
 				 false,
 				 true,

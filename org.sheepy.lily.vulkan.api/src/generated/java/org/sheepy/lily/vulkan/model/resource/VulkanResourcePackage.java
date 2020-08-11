@@ -1185,13 +1185,22 @@ public interface VulkanResourcePackage extends EPackage
 	int IMAGE_DESCRIPTOR__IMAGE = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Sampler</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_DESCRIPTOR__SAMPLER = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Image Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_DESCRIPTOR_FEATURE_COUNT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 1;
+	int IMAGE_DESCRIPTOR_FEATURE_COUNT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Image Descriptor</em>' class.
@@ -2644,6 +2653,17 @@ public interface VulkanResourcePackage extends EPackage
 	EReference getImageDescriptor_Image();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getSampler <em>Sampler</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Sampler</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getSampler()
+	 * @see #getImageDescriptor()
+	 * @generated
+	 */
+	EReference getImageDescriptor_Sampler();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor <em>Sampled Image Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3462,6 +3482,14 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference IMAGE_DESCRIPTOR__IMAGE = eINSTANCE.getImageDescriptor_Image();
+
+		/**
+		 * The meta object literal for the '<em><b>Sampler</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMAGE_DESCRIPTOR__SAMPLER = eINSTANCE.getImageDescriptor_Sampler();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageDescriptorImpl <em>Sampled Image Descriptor</em>}' class.

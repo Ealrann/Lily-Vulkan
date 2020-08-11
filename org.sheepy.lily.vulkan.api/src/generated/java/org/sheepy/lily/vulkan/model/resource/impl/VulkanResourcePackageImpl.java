@@ -935,6 +935,16 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EReference getImageDescriptor_Sampler() {
+		return (EReference)imageDescriptorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSampledImageDescriptor()
 	{
 		return sampledImageDescriptorEClass;
@@ -1433,6 +1443,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		imageDescriptorEClass = createEClass(IMAGE_DESCRIPTOR);
 		createEReference(imageDescriptorEClass, IMAGE_DESCRIPTOR__IMAGE);
+		createEReference(imageDescriptorEClass, IMAGE_DESCRIPTOR__SAMPLER);
 
 		sampledImageDescriptorEClass = createEClass(SAMPLED_IMAGE_DESCRIPTOR);
 		createEReference(sampledImageDescriptorEClass, SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE);
@@ -1625,6 +1636,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		initEClass(imageDescriptorEClass, ImageDescriptor.class, "ImageDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImageDescriptor_Image(), this.getImage(), null, "image", null, 1, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImageDescriptor_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sampledImageDescriptorEClass, SampledImageDescriptor.class, "SampledImageDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSampledImageDescriptor_SampledImage(), this.getSampledImage(), null, "sampledImage", null, 0, 1, SampledImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

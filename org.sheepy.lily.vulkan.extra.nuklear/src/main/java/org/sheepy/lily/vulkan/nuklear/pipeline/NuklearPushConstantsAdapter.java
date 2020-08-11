@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;

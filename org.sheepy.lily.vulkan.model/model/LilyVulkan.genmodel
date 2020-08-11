@@ -393,6 +393,7 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ImageDescriptor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageDescriptor/image"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//ImageDescriptor/sampler"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//SampledImageDescriptor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//SampledImageDescriptor/sampledImage"/>

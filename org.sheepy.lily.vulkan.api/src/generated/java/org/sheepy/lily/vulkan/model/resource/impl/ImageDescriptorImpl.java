@@ -20,6 +20,7 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
+import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
@@ -37,6 +38,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl#getShaderStages <em>Shader Stages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl#getImage <em>Image</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl#getSampler <em>Sampler</em>}</li>
  * </ul>
  *
  * @generated
@@ -102,6 +104,16 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 * @ordered
 	 */
 	protected Image image;
+
+	/**
+	 * The cached value of the '{@link #getSampler() <em>Sampler</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSampler()
+	 * @generated
+	 * @ordered
+	 */
+	protected Sampler sampler;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -237,6 +249,46 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 * @generated
 	 */
 	@Override
+	public Sampler getSampler() {
+		if (sampler != null && ((EObject)sampler).eIsProxy()) {
+			InternalEObject oldSampler = sampler;
+			sampler = (Sampler)eResolveProxy(oldSampler);
+			if (sampler != oldSampler) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER, oldSampler, sampler));
+			}
+		}
+		return sampler;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Sampler basicGetSampler() {
+		return sampler;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSampler(Sampler newSampler) {
+		Sampler oldSampler = sampler;
+		sampler = newSampler;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER, oldSampler, sampler));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID) {
@@ -249,6 +301,9 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
 				if (resolve) return getImage();
 				return basicGetImage();
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
+				if (resolve) return getSampler();
+				return basicGetSampler();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -276,6 +331,9 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
 				setImage((Image)newValue);
 				return;
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
+				setSampler((Sampler)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -301,6 +359,9 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
 				setImage((Image)null);
 				return;
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
+				setSampler((Sampler)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -322,6 +383,8 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 				return shaderStages != null && !shaderStages.isEmpty();
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
 				return image != null;
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
+				return sampler != null;
 		}
 		return super.eIsSet(featureID);
 	}
