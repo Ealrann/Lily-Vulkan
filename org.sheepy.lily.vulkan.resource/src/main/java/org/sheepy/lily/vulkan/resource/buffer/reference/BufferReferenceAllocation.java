@@ -5,9 +5,9 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAllocation;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
+import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
+import org.sheepy.lily.vulkan.core.resource.IVulkanBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.EContextIndex;
@@ -18,15 +18,15 @@ import java.util.List;
 
 @ModelExtender(scope = BufferReference.class)
 @Allocation
-@AllocationDependency(features = VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS, type = IBufferAllocation.class)
+@AllocationDependency(features = VulkanResourcePackage.BUFFER_REFERENCE__BUFFERS, type = IVulkanBufferAllocation.class)
 public final class BufferReferenceAllocation implements IBufferReferenceAllocation
 {
 	private final BufferReference bufferReference;
-	private final List<IBufferAllocation> bufferAllocations;
+	private final List<IVulkanBufferAllocation> bufferAllocations;
 	private final int indexCount;
 
 	private BufferReferenceAllocation(BufferReference bufferReference,
-									  @InjectDependency(index = 0) List<IBufferAllocation> bufferAllocations)
+									  @InjectDependency(index = 0) List<IVulkanBufferAllocation> bufferAllocations)
 	{
 		final var process = ModelUtil.findParent(bufferReference, AbstractProcess.class);
 		final var executionManager = process.adapt(InternalProcessAdapter.class);
@@ -62,7 +62,7 @@ public final class BufferReferenceAllocation implements IBufferReferenceAllocati
 	}
 
 	@Override
-	public List<IBufferAllocation> getBufferAllocations(final int index)
+	public List<IVulkanBufferAllocation> getBufferAllocations(final int index)
 	{
 		final var indexType = bufferReference.getIndexType();
 		final int contextIndex = (index + indexModifier(indexType)) % indexCount;

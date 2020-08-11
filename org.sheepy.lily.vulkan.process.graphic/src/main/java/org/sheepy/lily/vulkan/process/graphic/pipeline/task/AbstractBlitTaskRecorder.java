@@ -4,6 +4,7 @@ import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
@@ -116,7 +117,8 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 			final var builder = clearTextureBuilder.copy();
 			builder.fillWith(buffer);
 			builder.initialLayout(initialLayout);
-			clearTexture = builder.build(context);
+
+			clearTexture = context.executeFunction(builder::build);
 		}
 		else
 		{

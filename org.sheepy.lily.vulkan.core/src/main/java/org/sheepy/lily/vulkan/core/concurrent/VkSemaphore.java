@@ -42,7 +42,7 @@ public class VkSemaphore implements ISemaphore
 			throw new AssertionError("Unallocated Semaphore");
 		}
 
-		executionContext.execute(List.of(this), (s, c) -> {
+		executionContext.executeCommand(List.of(this), (c) -> {
 		});
 	}
 

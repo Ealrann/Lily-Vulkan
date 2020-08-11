@@ -7,9 +7,9 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.game.api.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.buffer.DeviceBufferFiller;
+import org.sheepy.lily.vulkan.core.resource.buffer.DeviceResourceFiller;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
@@ -30,7 +30,7 @@ public final class MemoryChunkAllocation implements IExtender
 	private final IAllocationState allocationState;
 	private final List<IMemoryChunkPartAllocation> memoryPartAllocations;
 	private final Memory memory;
-	private final DeviceBufferFiller bufferPusher;
+	private final DeviceResourceFiller bufferPusher;
 	private final boolean useTransfer;
 
 	private boolean needTransfer = false;
@@ -47,11 +47,10 @@ public final class MemoryChunkAllocation implements IExtender
 		final var builder = new MemoryBuilder(context, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		for (final var partAllocation : memoryPartAllocations)
 		{
-			final var bufferBackend = partAllocation.getBackend();
-			builder.registerBuffer(bufferBackend.getAddress(), bufferBackend::bindBufferMemory);
+			partAllocation.registerMemory(builder);
 		}
 		this.memory = builder.build(context);
-		bufferPusher = new DeviceBufferFiller(context);
+		bufferPusher = new DeviceResourceFiller(context);
 		useTransfer = memoryChunk.getTransferBuffer() != null;
 
 		for (final var partAllocation : memoryPartAllocations)
@@ -119,7 +118,7 @@ public final class MemoryChunkAllocation implements IExtender
 		final var commands = streamFillCommands(force, false);
 		final var transferBuffer = memoryChunk.getTransferBuffer();
 		final var transferBufferAllocation = transferBuffer.adapt(TransferBufferAllocation.class);
-		final boolean res = transferBufferAllocation.pushFillCommands(commands.fillCommands());
+		final boolean res = transferBufferAllocation.queueFillCommands(commands.fillCommands());
 		if (!res && DebugUtil.DEBUG_ENABLED)
 		{
 			logTransferError();

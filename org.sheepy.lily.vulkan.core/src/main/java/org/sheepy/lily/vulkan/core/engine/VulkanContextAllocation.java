@@ -27,17 +27,17 @@ import java.util.Collection;
 import java.util.EnumSet;
 import java.util.stream.Collectors;
 
-public final class VulkanContext extends GameAllocationContext implements IVulkanContext
+public final class VulkanContextAllocation extends GameAllocationContext implements IVulkanContext
 {
 	private final VulkanInstance vulkanInstance;
 	private final PhysicalDevice physicalDevice;
 	private final LogicalDevice logicalDevice;
 	private final Window window;
 
-	private VulkanContext(VulkanInstance vulkanInstance,
-						  PhysicalDevice physicalDevice,
-						  LogicalDevice logicalDevice,
-						  Window window)
+	VulkanContextAllocation(VulkanInstance vulkanInstance,
+							PhysicalDevice physicalDevice,
+							LogicalDevice logicalDevice,
+							Window window)
 	{
 		this.vulkanInstance = vulkanInstance;
 		this.physicalDevice = physicalDevice;
@@ -100,10 +100,10 @@ public final class VulkanContext extends GameAllocationContext implements IVulka
 			return this;
 		}
 
-		public VulkanContext build(MemoryStack stack,
-								   String instanceName,
-								   Collection<EQueueType> queueTypes,
-								   Collection<EPhysicalDeviceFeature> features)
+		public VulkanContextAllocation build(MemoryStack stack,
+											 String instanceName,
+											 Collection<EQueueType> queueTypes,
+											 Collection<EPhysicalDeviceFeature> features)
 		{
 			final boolean headless = window == null;
 			final var extRequirementBuilder = new InstanceExtensions.Builder(stack);
@@ -126,7 +126,7 @@ public final class VulkanContext extends GameAllocationContext implements IVulka
 			final var logicalDevice = createLogicalDevice(stack, physicalDevice, queueTypes, features, dummySurface);
 			if (dummySurface != null) dummySurface.free();
 
-			return new VulkanContext(vkInstance, physicalDevice, logicalDevice, window);
+			return new VulkanContextAllocation(vkInstance, physicalDevice, logicalDevice, window);
 		}
 
 		private static VulkanInstance createInstance(String instanceName,

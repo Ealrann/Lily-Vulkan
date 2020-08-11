@@ -239,15 +239,6 @@ public interface VulkanResourceFactory extends EFactory
 	BufferMemory createBufferMemory();
 
 	/**
-	 * Returns a new object of class '<em>Image Memory</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Image Memory</em>'.
-	 * @generated
-	 */
-	ImageMemory createImageMemory();
-
-	/**
 	 * Returns a new object of class '<em>Static Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

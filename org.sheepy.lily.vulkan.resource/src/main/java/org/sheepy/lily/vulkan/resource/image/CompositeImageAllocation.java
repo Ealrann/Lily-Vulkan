@@ -13,7 +13,7 @@ import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.ICommandBuffer;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
@@ -54,23 +54,23 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 		final var vkBackground = this.background.getVkImage();
 		final var builder = new VkImageBuilder(image, vkBackground.width, vkBackground.height).initialLayout(null);
 
-		imageBackend = builder.build(context);
+		imageBackend = context.executeFunction(builder::build);
 
 		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
 		imageView.allocate(vkDevice, imageBackend);
 
-		context.execute(this::assembleImage);
+		context.executeCommand(this::assembleImage);
 	}
 
-	private void assembleImage(ExecutionContext context, ICommandBuffer commandBuffer)
+	private void assembleImage(IRecordContext recordContext)
 	{
 		final var vkBackground = background.getVkImage();
 		final var initialLayout = image.getInitialLayout();
 
 		final var srcPtr = vkBackground.getPtr();
 		final var trgPtr = imageBackend.getPtr();
-		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-		final var stack = context.stack();
+		final var vkCommandBuffer = recordContext.vkCommandBuffer();
+		final var stack = recordContext.stack();
 		final var region = VkImageCopy.callocStack(1, stack);
 
 		fillRegion(region.get(0), vkBackground.width, vkBackground.height);

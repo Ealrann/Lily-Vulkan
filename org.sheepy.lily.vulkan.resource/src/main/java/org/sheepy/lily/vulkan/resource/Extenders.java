@@ -3,6 +3,8 @@ package org.sheepy.lily.vulkan.resource;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.resource.buffer.*;
+import org.sheepy.lily.vulkan.resource.buffer.descriptor.BufferDescriptorAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.descriptor.BufferDescriptorAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.reference.BufferReferenceAllocation;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPoolAllocation;
@@ -13,6 +15,7 @@ import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.font.FontImageAllocation;
 import org.sheepy.lily.vulkan.resource.image.*;
+import org.sheepy.lily.vulkan.resource.image.descriptor.*;
 import org.sheepy.lily.vulkan.resource.memorychunk.MemoryChunkAllocation;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAllocation;
 

@@ -8,12 +8,14 @@ module org.sheepy.lily.vulkan.resource {
 	requires org.lwjgl.stb.natives;
 
 	opens org.sheepy.lily.vulkan.resource.buffer;
+	opens org.sheepy.lily.vulkan.resource.buffer.descriptor;
 	opens org.sheepy.lily.vulkan.resource.buffer.transfer;
 	opens org.sheepy.lily.vulkan.resource.buffer.reference;
 	opens org.sheepy.lily.vulkan.resource.descriptor;
 	opens org.sheepy.lily.vulkan.resource.file;
 	opens org.sheepy.lily.vulkan.resource.font;
 	opens org.sheepy.lily.vulkan.resource.image;
+	opens org.sheepy.lily.vulkan.resource.image.descriptor;
 	opens org.sheepy.lily.vulkan.resource.memorychunk;
 	opens org.sheepy.lily.vulkan.resource.shader;
 

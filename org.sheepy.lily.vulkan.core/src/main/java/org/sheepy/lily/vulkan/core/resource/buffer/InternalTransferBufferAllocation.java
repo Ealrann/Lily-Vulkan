@@ -4,8 +4,7 @@ import org.sheepy.lily.core.api.notification.Feature;
 import org.sheepy.lily.core.api.notification.IFeatures;
 import org.sheepy.lily.core.api.notification.INotifier;
 import org.sheepy.lily.vulkan.api.resource.buffer.ITransferBufferAllocation;
-import org.sheepy.lily.vulkan.core.execution.IRecordable;
-import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 
 public interface InternalTransferBufferAllocation extends ITransferBufferAllocation,
 														  INotifier<InternalTransferBufferAllocation.Features>
@@ -17,5 +16,5 @@ public interface InternalTransferBufferAllocation extends ITransferBufferAllocat
 
 	boolean isEmpty();
 
-	void flush(IRecordable.RecordContext context);
+	void flush(RecordContext context);
 }

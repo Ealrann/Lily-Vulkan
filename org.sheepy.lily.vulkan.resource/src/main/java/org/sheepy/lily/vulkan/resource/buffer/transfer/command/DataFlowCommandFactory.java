@@ -35,5 +35,4 @@ public final class DataFlowCommandFactory
 	{
 		return new FetchCommand(ticket, srcBuffer, srcOffset, transferDone);
 	}
-
 }

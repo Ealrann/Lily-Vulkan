@@ -43,7 +43,7 @@ public class VkTexture
 	public void allocate(ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
-		image = imageBuilder.build(context);
+		image = context.executeFunction(imageBuilder::build);
 		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
 		imageView.allocate(vkDevice, image);
 	}
@@ -57,11 +57,12 @@ public class VkTexture
 		final var bufferInfo = new BufferInfo(data.remaining(), stagingUsage, false, true);
 		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 		final var stagingBuffer = bufferBuilder.build(executionContext);
-		stagingBuffer.pushData(executionContext, data);
 
-		executionContext.execute((context2, commandBuffer) -> {
-			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-			image.transitionImageLayout(context2.stack(),
+		executionContext.executeCommand(recordContext -> {
+			final var vkCommandBuffer = recordContext.vkCommandBuffer();
+			final var stack = recordContext.stack();
+			stagingBuffer.pushData(recordContext, data);
+			image.transitionImageLayout(stack,
 										vkCommandBuffer,
 										EPipelineStage.TOP_OF_PIPE_BIT,
 										EPipelineStage.TRANSFER_BIT,

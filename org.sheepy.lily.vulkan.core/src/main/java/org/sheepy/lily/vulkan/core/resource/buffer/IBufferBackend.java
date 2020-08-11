@@ -2,20 +2,21 @@ package org.sheepy.lily.vulkan.core.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 
 import java.nio.ByteBuffer;
+import java.util.function.Consumer;
 
 public interface IBufferBackend
 {
-	void free(ExecutionContext context);
+	void free(IVulkanContext context);
 
 	long getAddress();
 	long getMemoryAddress();
 
 	long mapMemory(VkDevice vkDevice);
 	void unmapMemory(VkDevice vkDevice);
-
 
 	void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size);
 
@@ -37,5 +38,6 @@ public interface IBufferBackend
 	long getInstanceOffset();
 	long getInstanceSize();
 
-	void pushData(ExecutionContext executionContext, ByteBuffer data);
+	void pushData(IRecordContext recordContext, ByteBuffer data);
+	void pushData(IRecordContext context, Consumer<ByteBuffer> dataProvider);
 }

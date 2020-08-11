@@ -35,16 +35,15 @@ public final class VulkanEngineAllocation implements IVulkanEngineAdapter
 	private final VulkanInputManager inputManager;
 	private final VulkanEngine engine;
 	private final Window window;
-	private final VulkanContext vulkanContext;
+	private final VulkanContextAllocation vulkanContext;
 	private final ExecutionContext executionContext;
 
 	public VulkanEngineAllocation(VulkanEngine engine)
 	{
-		this.engine = engine;
-
 		final var application = (Application) engine.eContainer();
-		this.inputManager = application.adapt(VulkanInputManager.class);
 		final var scene = application.getScene();
+		this.engine = engine;
+		this.inputManager = application.adapt(VulkanInputManager.class);
 		if (scene != null)
 		{
 			window = new Window(scene, application.getTitle());
@@ -61,7 +60,7 @@ public final class VulkanEngineAllocation implements IVulkanEngineAdapter
 			final var instanceName = application.getTitle();
 			final var queueTypes = VulkanEngineUtils.generateQueueTypes(engine);
 			final var features = engine.getFeatures();
-			final var contextBuilder = new VulkanContext.Builder();
+			final var contextBuilder = new VulkanContextAllocation.Builder();
 			contextBuilder.setWindow(window);
 
 			vulkanContext = contextBuilder.build(stack, instanceName, queueTypes, features);
@@ -118,7 +117,7 @@ public final class VulkanEngineAllocation implements IVulkanEngineAdapter
 	{
 		if (executionContext.getLogicalDevice() != null)
 		{
-			for(final var process : engine.getProcesses())
+			for (final var process : engine.getProcesses())
 			{
 				final var adapter = process.adapt(IProcessAdapter.class);
 				adapter.waitIdle();

@@ -13,6 +13,7 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.barrier.IBarrierAllocation;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAllocation;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;

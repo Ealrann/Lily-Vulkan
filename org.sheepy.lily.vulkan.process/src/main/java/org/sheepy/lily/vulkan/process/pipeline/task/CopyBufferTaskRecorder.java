@@ -8,10 +8,11 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
-import org.sheepy.lily.vulkan.api.resource.buffer.IBufferReferenceAllocation;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
+import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
+import org.sheepy.lily.vulkan.core.resource.IVulkanBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -91,8 +92,8 @@ public final class CopyBufferTaskRecorder implements IRecordableExtender
 	}
 
 	private static CopyPass buildCopyPass(final int stride,
-										  final List<IBufferAllocation> srcBufferAllocations,
-										  final List<IBufferAllocation> dstBufferAllocations)
+										  final List<IVulkanBufferAllocation> srcBufferAllocations,
+										  final List<IVulkanBufferAllocation> dstBufferAllocations)
 	{
 		final var bufferConfigurationMap = IntStream.range(0, stride)
 													.mapToObj(index -> new BufferCopyConfiguration(srcBufferAllocations.get(
@@ -111,7 +112,7 @@ public final class CopyBufferTaskRecorder implements IRecordableExtender
 		return new CopyConfiguration(entry.getValue().get(0), entry.getValue());
 	}
 
-	private static record BufferCopyConfiguration(IBufferAllocation srcBuffer, IBufferAllocation dstBuffer)
+	private static record BufferCopyConfiguration(IVulkanBufferAllocation srcBuffer, IVulkanBufferAllocation dstBuffer)
 	{
 		private BufferCopyConfigurationPtr toPtrConfiguration()
 		{
@@ -123,7 +124,7 @@ public final class CopyBufferTaskRecorder implements IRecordableExtender
 	{
 	}
 
-	private static record CopyPass(List<CopyConfiguration>copyData)
+	private static record CopyPass(List<CopyConfiguration> copyData)
 	{
 
 		private void record(RecordContext context)

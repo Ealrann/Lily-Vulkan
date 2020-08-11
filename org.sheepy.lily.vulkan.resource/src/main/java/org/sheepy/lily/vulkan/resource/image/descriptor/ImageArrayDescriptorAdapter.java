@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.image;
+package org.sheepy.lily.vulkan.resource.image.descriptor;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
@@ -6,15 +6,15 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
+import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 
-@ModelExtender(scope = ImageDescriptor.class)
+@ModelExtender(scope = ImageArrayDescriptor.class)
 @Adapter
-public final class ImageDescriptorAdapter implements IDescriptorAdapter
+public final class ImageArrayDescriptorAdapter implements IDescriptorAdapter
 {
-	private final ImageDescriptor descriptor;
+	private final ImageArrayDescriptor descriptor;
 
-	private ImageDescriptorAdapter(ImageDescriptor descriptor)
+	private ImageArrayDescriptorAdapter(ImageArrayDescriptor descriptor)
 	{
 		this.descriptor = descriptor;
 	}
@@ -22,17 +22,19 @@ public final class ImageDescriptorAdapter implements IDescriptorAdapter
 	@Override
 	public int sizeInPool()
 	{
-		return 1;
+		return descriptor.getImages().size();
 	}
 
 	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
 		final var shaderStages = VulkanModelUtil.getEnumeratedFlag(descriptor.getShaderStages());
+		final int descriptorType = descriptor.getType().getValue();
+		final int count = descriptor.getImages().size();
 
 		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
-		res.descriptorType(descriptor.getType().getValue());
-		res.descriptorCount(1);
+		res.descriptorType(descriptorType);
+		res.descriptorCount(count);
 		res.stageFlags(shaderStages);
 		return res;
 	}

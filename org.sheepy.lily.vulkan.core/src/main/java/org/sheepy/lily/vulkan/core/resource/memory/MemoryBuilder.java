@@ -4,7 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
-import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
@@ -17,12 +17,12 @@ public final class MemoryBuilder
 {
 	private static final String ALLOC_ERROR = "Failed to allocate buffer";
 
-	public final ExecutionContext context;
+	public final IVulkanContext context;
 	public final int properties;
 	private final MemoryRequirements memReq;
 	private final List<MemoryConsumer> consumers = new ArrayList<>();
 
-	public MemoryBuilder(ExecutionContext context, int properties)
+	public MemoryBuilder(IVulkanContext context, int properties)
 	{
 		this.context = context;
 		this.properties = properties;
@@ -46,7 +46,7 @@ public final class MemoryBuilder
 		consumers.add(new MemoryConsumer(size, whenMemoryIsAllocated));
 	}
 
-	public Memory build(ExecutionContext context)
+	public Memory build(IVulkanContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		final var alignedMemoryBuilder = new AlignedMemoryBuilder(consumers, memReq);
@@ -55,7 +55,7 @@ public final class MemoryBuilder
 		return new Memory(ptr);
 	}
 
-	private long allocateMemory(final ExecutionContext context, final VkDevice vkDevice, final long size)
+	private long allocateMemory(final IVulkanContext context, final VkDevice vkDevice, final long size)
 	{
 		final var allocInfo = allocateInfo(context.stack(), size);
 		final long[] aMemoryId = new long[1];
@@ -123,7 +123,7 @@ public final class MemoryBuilder
 		private int memoryTypeBits = 0;
 		private long alignement = 1;
 
-		public MemoryRequirements(ExecutionContext context)
+		public MemoryRequirements(IVulkanContext context)
 		{
 			final var stack = context.stack();
 			requirementBuffer = VkMemoryRequirements.mallocStack(stack);

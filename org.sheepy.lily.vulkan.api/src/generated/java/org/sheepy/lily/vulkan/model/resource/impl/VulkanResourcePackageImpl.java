@@ -68,7 +68,6 @@ import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageInlay;
-import org.sheepy.lily.vulkan.model.resource.ImageMemory;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
@@ -287,13 +286,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass bufferMemoryEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass imageMemoryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1196,16 +1188,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EClass getImageMemory() {
-		return imageMemoryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getIBufferObject()
 	{
 		return iBufferObjectEClass;
@@ -1421,11 +1403,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		imageEClass = createEClass(IMAGE);
 
-		staticImageEClass = createEClass(STATIC_IMAGE);
-		createEAttribute(staticImageEClass, STATIC_IMAGE__FILL_WITH_ZERO);
-		createEAttribute(staticImageEClass, STATIC_IMAGE__FILL_WITH);
-		createEAttribute(staticImageEClass, STATIC_IMAGE__SIZE);
-
 		fileImageEClass = createEClass(FILE_IMAGE);
 		createEReference(fileImageEClass, FILE_IMAGE__FILE);
 		createEAttribute(fileImageEClass, FILE_IMAGE__MIPMAP_ENABLED);
@@ -1490,8 +1467,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		bufferMemoryEClass = createEClass(BUFFER_MEMORY);
 		createEReference(bufferMemoryEClass, BUFFER_MEMORY__BUFFERS);
 
-		imageMemoryEClass = createEClass(IMAGE_MEMORY);
-
 		iBufferObjectEClass = createEClass(IBUFFER_OBJECT);
 		createEAttribute(iBufferObjectEClass, IBUFFER_OBJECT__USAGES);
 
@@ -1507,6 +1482,11 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_FACTOR);
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_THRESHOLD);
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__SIZE);
+
+		staticImageEClass = createEClass(STATIC_IMAGE);
+		createEAttribute(staticImageEClass, STATIC_IMAGE__FILL_WITH_ZERO);
+		createEAttribute(staticImageEClass, STATIC_IMAGE__FILL_WITH);
+		createEAttribute(staticImageEClass, STATIC_IMAGE__SIZE);
 
 		// Create enums
 		eContextIndexEEnum = createEEnum(ECONTEXT_INDEX);
@@ -1563,7 +1543,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		imageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
 		imageEClass.getESuperTypes().add(theResourcePackage.getIImage());
-		staticImageEClass.getESuperTypes().add(this.getImage());
 		fileImageEClass.getESuperTypes().add(this.getImage());
 		fontImageEClass.getESuperTypes().add(this.getImage());
 		compositeImageEClass.getESuperTypes().add(this.getImage());
@@ -1582,12 +1561,12 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		memoryChunkEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		bufferMemoryEClass.getESuperTypes().add(this.getIMemoryChunkPart());
 		bufferMemoryEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		imageMemoryEClass.getESuperTypes().add(this.getIMemoryChunkPart());
-		imageMemoryEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iBufferObjectEClass.getESuperTypes().add(this.getIBuffer());
 		staticBufferEClass.getESuperTypes().add(this.getIBufferObject());
 		dataBufferEClass.getESuperTypes().add(this.getIBufferObject());
 		bufferViewerEClass.getESuperTypes().add(this.getIBufferObject());
+		staticImageEClass.getESuperTypes().add(this.getIMemoryChunkPart());
+		staticImageEClass.getESuperTypes().add(this.getImage());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1615,11 +1594,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(staticImageEClass, StaticImage.class, "StaticImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStaticImage_FillWithZero(), ecorePackage.getEBoolean(), "fillWithZero", "false", 0, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getStaticImage_FillWith(), this.getByteBuffer(), "fillWith", null, 0, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getStaticImage_Size(), theTypesPackage.getVector2i(), "size", "1;1", 1, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fileImageEClass, FileImage.class, "FileImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFileImage_File(), theResourcePackage.getFileResource(), null, "file", null, 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1685,8 +1659,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEClass(bufferMemoryEClass, BufferMemory.class, "BufferMemory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferMemory_Buffers(), this.getIBufferObject(), null, "buffers", null, 0, -1, BufferMemory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageMemoryEClass, ImageMemory.class, "ImageMemory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(iBufferObjectEClass, IBufferObject.class, "IBufferObject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIBufferObject_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, IBufferObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1702,6 +1674,11 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getBufferViewer_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferViewer_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferViewer_Size(), ecorePackage.getELong(), "size", "0", 0, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(staticImageEClass, StaticImage.class, "StaticImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStaticImage_FillWithZero(), ecorePackage.getEBoolean(), "fillWithZero", "false", 0, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStaticImage_FillWith(), this.getByteBuffer(), "fillWith", null, 0, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStaticImage_Size(), theTypesPackage.getVector2i(), "size", "1;1", 1, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eContextIndexEEnum, EContextIndex.class, "EContextIndex");

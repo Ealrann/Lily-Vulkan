@@ -2,12 +2,15 @@ package org.sheepy.lily.vulkan.core.resource.buffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.VulkanDebugUtil;
 
 import java.nio.ByteBuffer;
+import java.util.function.Consumer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -47,7 +50,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void free(ExecutionContext context)
+	public void free(IVulkanContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 
@@ -59,13 +62,31 @@ public final class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(ExecutionContext executionContext, ByteBuffer data)
+	public void pushData(final IRecordContext recordContext, final Consumer<ByteBuffer> dataProvider)
+	{
+		final int size = (int) info.size;
+		pushDataInternal(recordContext,
+						 filler -> filler.fill(recordContext, dataProvider, currentOffset, size),
+						 cpuBackend -> cpuBackend.pushData(recordContext, dataProvider));
+	}
+
+	@Override
+	public void pushData(IRecordContext recordContext, ByteBuffer data)
+	{
+		final int size = (int) Math.min(data.remaining(), info.size);
+		pushDataInternal(recordContext,
+						 filler -> filler.fill(recordContext, data, currentOffset, size),
+						 cpuBackend -> cpuBackend.pushData(recordContext, data));
+	}
+
+	public void pushDataInternal(IRecordContext recordContext,
+								 Consumer<BufferGPUFiller> fillWithFiller,
+								 Consumer<CPUBufferBackend> fillWithStaging)
 	{
 		if (cpuBackend == null)
 		{
-			final int size = (int) Math.min(data.remaining(), info.size);
-			final var bufferFiller = new BufferGPUFiller(executionContext, address);
-			bufferFiller.fill(data, currentOffset, size);
+			final var bufferFiller = new BufferGPUFiller(address);
+			fillWithFiller.accept(bufferFiller);
 
 			if (VulkanDebugUtil.DEBUG_ENABLED)
 			{
@@ -75,26 +96,23 @@ public final class GPUBufferBackend implements IBufferBackend
 		}
 		else
 		{
-			cpuBackend.pushData(executionContext, data);
-			pushData(executionContext, cpuBackend);
+			fillWithStaging.accept(cpuBackend);
+			pushData(recordContext, cpuBackend);
 		}
 	}
 
-	public void pushData(ExecutionContext executionContext, CPUBufferBackend stagingBuffer)
+	public void pushData(IRecordContext recordContext, CPUBufferBackend stagingBuffer)
 	{
 		final int size = (int) Math.min(stagingBuffer.info.size, info.size);
 		final long bufferPtr = stagingBuffer.getAddress();
 
-		executionContext.execute((context, commandBuffer) -> {
-			final var stack = context.stack();
-			BufferUtils.copyBuffer(stack,
-								   commandBuffer.getVkCommandBuffer(),
-								   bufferPtr,
-								   0,
-								   address,
-								   currentOffset,
-								   size);
-		});
+		BufferUtils.copyBuffer(recordContext.stack(),
+							   recordContext.vkCommandBuffer(),
+							   bufferPtr,
+							   0,
+							   address,
+							   currentOffset,
+							   size);
 	}
 
 	@Override
@@ -124,9 +142,9 @@ public final class GPUBufferBackend implements IBufferBackend
 		throw new AssertionError(NO_STAGING_ERROR);
 	}
 
-	public void pushStagging(ExecutionContext executionManager)
+	public void pushStagging(IRecordContext recordContext)
 	{
-		pushData(executionManager, cpuBackend);
+		pushData(recordContext, cpuBackend);
 	}
 
 	public BufferInfo getInfos()

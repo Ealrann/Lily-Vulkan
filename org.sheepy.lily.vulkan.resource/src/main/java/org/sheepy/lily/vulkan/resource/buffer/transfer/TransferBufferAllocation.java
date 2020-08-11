@@ -7,17 +7,15 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.IRecordable;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.TransferBufferBackend;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommand;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.command.PushCommand;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.util.TransferCommandInserter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -28,6 +26,7 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 {
 	private final TransferBufferBackend backendBuffer;
 	private final VkDevice vkDevice;
+	private final TransferCommandInserter commandInserter;
 
 	public TransferBufferAllocation(TransferBuffer transferBuffer, ExecutionContext context)
 	{
@@ -40,6 +39,7 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 
 		final var bufferBuilder = new TransferBufferBackend.Builder(size, usedToPush, usedToFetch);
 		backendBuffer = bufferBuilder.build(context);
+		commandInserter = new TransferCommandInserter(backendBuffer);
 	}
 
 	@Free
@@ -60,49 +60,14 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 		backendBuffer.releaseTicket((MemoryTicket) ticket);
 	}
 
-	public boolean pushFillCommands(Stream<FillCommand> commands)
+	public boolean queueFillCommands(Stream<FillCommand> commands)
 	{
-		final List<CommandWrapper> pushCommands = new ArrayList<>();
-		boolean reservationSuccess = true;
-		final var it = commands.iterator();
-		while (it.hasNext())
+		final var result = commandInserter.queueCommands(commands);
+		if (result)
 		{
-			final var command = it.next();
-			final var ticket = reserveMemory(command.size());
-			if (ticket.getReservationStatus() == IMemoryTicket.EReservationStatus.SUCCESS)
-			{
-				final var pushCommand = DataFlowCommandFactory.newPushCommand(ticket,
-																			  command.bufferPtr(),
-																			  command.offset());
-				pushCommands.add(new CommandWrapper(pushCommand, command));
-			}
-			else
-			{
-				reservationSuccess = false;
-				break;
-			}
-		}
-
-		if (reservationSuccess)
-		{
-			pushCommands.forEach(this::fillAndAddCommand);
 			notify(Features.TransferQueueChange);
-			return true;
 		}
-		else
-		{
-			pushCommands.stream()
-						.map(CommandWrapper::pushCommand)
-						.map(PushCommand::getMemoryTicket)
-						.forEach(this::releaseTicket);
-			return false;
-		}
-	}
-
-	private void fillAndAddCommand(CommandWrapper command)
-	{
-		command.fillMemory();
-		backendBuffer.addTransferCommand(command.pushCommand);
+		return result;
 	}
 
 	@Override
@@ -112,7 +77,7 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 	}
 
 	@Override
-	public void flush(IRecordable.RecordContext context)
+	public void flush(RecordContext context)
 	{
 		backendBuffer.recordFlush(context, vkDevice);
 		notify(Features.TransferQueueChange);
@@ -122,14 +87,5 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 	{
 		backendBuffer.addTransferCommand(command);
 		notify(Features.TransferQueueChange);
-	}
-
-	private static record CommandWrapper(PushCommand pushCommand, FillCommand fillCommand)
-	{
-		private void fillMemory()
-		{
-			final var ticket = pushCommand.getMemoryTicket();
-			fillCommand.dataProvider().fillBuffer(ticket.toBuffer());
-		}
 	}
 }

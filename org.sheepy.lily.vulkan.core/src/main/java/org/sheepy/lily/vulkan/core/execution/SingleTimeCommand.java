@@ -4,6 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkSubmitInfo;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -44,11 +45,18 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 	{
 		start(null);
 
-		doExecute(executionContext, this);
+		final var recordContext = new RecordContext(executionContext, vkCommandBuffer, ECommandStage.MAIN, 0);
+		recordContext.stackPush();
+		doExecute(recordContext);
+		recordContext.stackPop();
+
+		recordContext.getExecutionListeners().forEach(listener -> listener.accept(EExecutionStatus.Started));
 
 		end(null);
 
 		postExecute();
+
+		recordContext.getExecutionListeners().forEach(listener -> listener.accept(EExecutionStatus.Done));
 
 		free(executionContext);
 	}
@@ -94,7 +102,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		if (lBuffer != null) MemoryUtil.memFree(lBuffer);
 	}
 
-	protected abstract void doExecute(ExecutionContext context, ICommandBuffer commandBuffer);
+	protected abstract void doExecute(IRecordContext context);
 
 	protected void postExecute()
 	{

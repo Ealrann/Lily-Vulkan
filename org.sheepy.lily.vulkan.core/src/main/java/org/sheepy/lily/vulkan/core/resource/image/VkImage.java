@@ -3,11 +3,14 @@ package org.sheepy.lily.vulkan.core.resource.image;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.*;
+import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
+import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -17,6 +20,7 @@ import org.sheepy.vulkan.model.image.ImageLayout;
 import java.nio.ByteBuffer;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -35,6 +39,7 @@ public final class VkImage
 	public final int aspect;
 
 	private long memoryPtr;
+	private long size = -1;
 	private Memory memory;
 
 	public static VkImageBuilder newBuilder(int width, int height, int format)
@@ -74,13 +79,14 @@ public final class VkImage
 		this.memory = memory;
 	}
 
-	void bindMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
+	public void bindMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
 	{
+		this.size = size;
 		this.memoryPtr = memoryPtr;
 		vkBindImageMemory(vkDevice, imagePtr, memoryPtr, offset);
 	}
 
-	void fillWithZero(final ExecutionContext executionContext, final long memorySize)
+	void fillWithZero(final IRecordContext executionContext, final long memorySize)
 	{
 		final ByteBuffer data = MemoryUtil.memCalloc((int) memorySize);
 
@@ -88,50 +94,59 @@ public final class VkImage
 		MemoryUtil.memFree(data);
 	}
 
-	void fillWith(final ExecutionContext context, final ByteBuffer data)
+	public void fillWith(final IRecordContext context, final FillCommand.DataProvider dataProvider)
+	{
+		fillWithInternal(context, getSize(), buffer -> buffer.pushData(context, dataProvider));
+	}
+
+	public void fillWith(final IRecordContext context, final ByteBuffer data)
+	{
+		final var size = data.limit();
+		fillWithInternal(context, size, buffer -> buffer.pushData(context, data));
+	}
+
+	private void fillWithInternal(final IRecordContext context,
+								  final long size,
+								  final Consumer<CPUBufferBackend> bufferFiller)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-		final var size = data.limit();
 
 		final var bufferInfo = new BufferInfo(size, usage, false, true);
 		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 		final var stagingBuffer = bufferBuilder.build(context);
-		stagingBuffer.pushData(context, data);
+		bufferFiller.accept(stagingBuffer);
 
-		context.execute((_context, commandBuffer) -> {
-			final var stack = _context.stack();
-			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-			List<EAccess> srcAccessMask = List.of();
-			List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
+		final var stack = context.stack();
+		final var vkCommandBuffer = context.vkCommandBuffer();
+		final List<EAccess> srcAccessMask = List.of();
+		final List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 
-			transitionImageLayout(stack,
+		transitionImageLayout(stack,
+							  vkCommandBuffer,
+							  EPipelineStage.TRANSFER_BIT,
+							  EPipelineStage.TRANSFER_BIT,
+							  EImageLayout.UNDEFINED,
+							  EImageLayout.TRANSFER_DST_OPTIMAL,
+							  srcAccessMask,
+							  dstAccessMask);
+
+		fillWithBuffer(vkCommandBuffer, stagingBuffer.getAddress());
+
+		transitionToInitialLayout(stack,
 								  vkCommandBuffer,
 								  EPipelineStage.TRANSFER_BIT,
-								  EPipelineStage.TRANSFER_BIT,
-								  EImageLayout.UNDEFINED,
 								  EImageLayout.TRANSFER_DST_OPTIMAL,
-								  srcAccessMask,
-								  dstAccessMask);
+								  List.of(EAccess.TRANSFER_WRITE_BIT));
 
-			fillWithBuffer(vkCommandBuffer, stagingBuffer.getAddress());
-
-			srcAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
-			dstAccessMask = List.of();
-
-			transitionImageLayout(stack,
-								  vkCommandBuffer,
-								  EPipelineStage.TRANSFER_BIT,
-								  EPipelineStage.TRANSFER_BIT,
-								  EImageLayout.TRANSFER_DST_OPTIMAL,
-								  EImageLayout.GENERAL,
-								  srcAccessMask,
-								  dstAccessMask);
+		context.listenExecution(status -> {
+			if (status == EExecutionStatus.Done || status == EExecutionStatus.Canceled)
+			{
+				stagingBuffer.free(context);
+			}
 		});
-
-		stagingBuffer.free(context);
 	}
 
-	public void fillWithBuffer(VkCommandBuffer commandBuffer, long bufferId)
+	public void fillWithBuffer(VkCommandBuffer commandBuffer, long bufferPtr)
 	{
 		final VkBufferImageCopy.Buffer region = VkBufferImageCopy.calloc(1);
 		region.bufferOffset(0);
@@ -147,7 +162,7 @@ public final class VkImage
 		region.imageExtent().set(width, height, 1);
 
 		final var dstImageLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
-		vkCmdCopyBufferToImage(commandBuffer, bufferId, imagePtr, dstImageLayout, region);
+		vkCmdCopyBufferToImage(commandBuffer, bufferPtr, imagePtr, dstImageLayout, region);
 
 		region.free();
 	}
@@ -227,5 +242,10 @@ public final class VkImage
 	public long getMemoryPtr()
 	{
 		return memoryPtr;
+	}
+
+	public long getSize()
+	{
+		return size;
 	}
 }

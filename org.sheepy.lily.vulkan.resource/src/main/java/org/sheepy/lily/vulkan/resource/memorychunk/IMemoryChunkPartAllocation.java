@@ -4,8 +4,8 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.notification.Feature;
 import org.sheepy.lily.core.api.notification.IFeatures;
 import org.sheepy.lily.core.api.notification.INotifier;
-import org.sheepy.lily.game.api.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.resource.buffer.IBufferBackend;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 
 import java.util.function.Consumer;
@@ -19,11 +19,11 @@ public interface IMemoryChunkPartAllocation extends IExtender, INotifier<IMemory
 		Feature<Consumer<IRecordContext>, Features> Attach = Feature.newFeature();
 	}
 
-	IBufferBackend getBackend();
+	void registerMemory(MemoryBuilder memoryBuilder);
 
 	PushData gatherPushData(boolean force, boolean computeSize);
 
-	record PushData(Stream<FillCommand>fillCommands, long size)
+	record PushData(Stream<FillCommand> fillCommands, long size)
 	{
 		public PushData()
 		{

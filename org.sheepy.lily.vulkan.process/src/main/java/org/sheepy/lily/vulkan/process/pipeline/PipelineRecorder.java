@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.execution.IRecordable;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -26,7 +26,7 @@ public final class PipelineRecorder implements IRecordableExtender
 	}
 
 	@Override
-	public void record(final IRecordable.RecordContext context)
+	public void record(final RecordContext context)
 	{
 		if (isActive())
 		{

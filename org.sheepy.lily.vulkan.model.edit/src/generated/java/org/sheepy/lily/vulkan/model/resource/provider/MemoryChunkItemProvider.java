@@ -179,7 +179,7 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS,
-				 VulkanResourceFactory.eINSTANCE.createImageMemory()));
+				 VulkanResourceFactory.eINSTANCE.createStaticImage()));
 	}
 
 }

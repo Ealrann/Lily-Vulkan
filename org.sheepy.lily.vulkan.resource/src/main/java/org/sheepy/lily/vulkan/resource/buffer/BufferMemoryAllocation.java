@@ -7,22 +7,22 @@ import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.game.api.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
-import org.sheepy.lily.vulkan.core.resource.buffer.IBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.VkBufferAllocator;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.IBufferObject;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAdapter;
-import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAllocation;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAllocationAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryChunkPartAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
@@ -77,31 +77,34 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		final long bufferPtr = bufferBackend.getAddress();
 
 		final long size = computeSize ? buffers.stream()
-											   .map(IBufferObjectAllocation::adapt)
+											   .map(IBufferObjectAllocationAllocation::adapt)
 											   .filter(bufferAllocation -> force || bufferAllocation.needPush())
 											   .mapToLong(IBufferAllocation::getBindSize)
 											   .sum() : 0;
 
 		final var dataStream = IntStream.range(0, buffers.size())
-									.mapToObj(this::newBufferData)
-									.filter(data -> force || data.bufferAllocation.needPush())
-									.map(data -> data.buildFillCommand(bufferPtr));
+										.mapToObj(this::newBufferData)
+										.filter(data -> force || data.bufferAllocation.needPush())
+										.map(data -> data.buildFillCommand(bufferPtr));
 
 		return new PushData(dataStream, size);
 	}
 
 	private BufferData newBufferData(int index)
 	{
-		final var bufferAllocation = bufferMemory.getBuffers().get(index).adapt(IBufferObjectAllocation.class);
+		final var bufferAllocation = bufferMemory.getBuffers().get(index).adapt(IBufferObjectAllocationAllocation.class);
 		final var alignmentData = chunkInfo.data.get(index);
 		return new BufferData(bufferAllocation, alignmentData);
 	}
 
-	private static record BufferData(IBufferObjectAllocation bufferAllocation, AlignmentData alignmentData)
+	private static record BufferData(IBufferObjectAllocationAllocation bufferAllocation, AlignmentData alignmentData)
 	{
 		public FillCommand buildFillCommand(long bufferPtr)
 		{
-			return new FillCommand(bufferAllocation::fillData, bufferPtr, alignmentData.offset(), alignmentData.size());
+			return new FillCommand.FillBufferCommand(bufferAllocation::fillData,
+													 bufferPtr,
+													 alignmentData.offset(),
+													 alignmentData.size());
 		}
 	}
 
@@ -150,12 +153,12 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 	}
 
 	@Override
-	public IBufferBackend getBackend()
+	public void registerMemory(MemoryBuilder memoryBuilder)
 	{
-		return bufferBackend;
+		memoryBuilder.registerBuffer(bufferBackend.getAddress(), bufferBackend::bindBufferMemory);
 	}
 
-	public static record ChunkInfo(List<AlignmentData>data, long size, int usage)
+	public static record ChunkInfo(List<AlignmentData> data, long size, int usage)
 	{
 		private ChunkInfo(List<AlignmentData> data)
 		{

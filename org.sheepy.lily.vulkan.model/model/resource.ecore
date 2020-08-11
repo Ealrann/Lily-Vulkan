@@ -43,13 +43,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StaticImage" eSuperTypes="#//Image">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillWithZero" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillWith" eType="#//ByteBuffer"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector2i"
-        defaultValueLiteral="1;1"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FileImage" eSuperTypes="#//Image">
     <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//FileResource"
         resolveProxies="false"/>
@@ -138,7 +131,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffers" upperBound="-1"
         eType="#//IBufferObject" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImageMemory" eSuperTypes="#//IMemoryChunkPart ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="IBufferObject" abstract="true" interface="true"
       eSuperTypes="#//IBuffer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" upperBound="-1"
@@ -165,5 +157,12 @@
         <details key="property" value="None"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticImage" eSuperTypes="#//IMemoryChunkPart #//Image">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillWithZero" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillWith" eType="#//ByteBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector2i"
+        defaultValueLiteral="1;1"/>
   </eClassifiers>
 </ecore:EPackage>

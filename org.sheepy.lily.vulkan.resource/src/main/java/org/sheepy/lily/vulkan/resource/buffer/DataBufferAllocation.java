@@ -5,11 +5,11 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.game.api.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.DataBuffer;
-import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAllocation;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAllocationAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
 import java.nio.ByteBuffer;
@@ -19,7 +19,7 @@ import static org.lwjgl.system.MemoryUtil.memAddress;
 @ModelExtender(scope = DataBuffer.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(parent = BufferMemory.class, type = BufferMemoryAllocation.class)
-public class DataBufferAllocation implements IBufferObjectAllocation
+public class DataBufferAllocation implements IBufferObjectAllocationAllocation
 {
 	private final DataBuffer buffer;
 	private final long bufferPtr;

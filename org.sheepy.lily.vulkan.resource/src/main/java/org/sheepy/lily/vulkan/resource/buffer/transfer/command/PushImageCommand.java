@@ -4,7 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.core.execution.IRecordable;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
@@ -48,7 +48,7 @@ public final class PushImageCommand implements DataFlowCommand
 	}
 
 	@Override
-	public void execute(final IRecordable.RecordContext recordContext, final VkDevice vkDevice, final MemoryStack stack)
+	public void execute(final RecordContext recordContext, final VkDevice vkDevice, final MemoryStack stack)
 	{
 		final var commandBuffer = recordContext.commandBuffer;
 		final var srcBuffer = ticket.getBufferPtr();

@@ -53,14 +53,13 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 		final var extent = surfaceAllocation.getExtent();
 		final int width = extent.x();
 		final int height = extent.y();
-		final int usages = VulkanModelUtil.getEnumeratedFlag(depthAttachment.getUsages()) |
-						   VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+		final int usages = VulkanModelUtil.getEnumeratedFlag(depthAttachment.getUsages()) | VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
 		final var depthImageBuilder = VkImage.newBuilder(width, height, depthFormat);
 		depthImageBuilder.usage(usages);
 		depthImageBuilder.aspect(VK_IMAGE_ASPECT_DEPTH_BIT);
 
-		return depthImageBuilder.build(context);
+		return context.executeFunction(depthImageBuilder::build);
 	}
 
 	private VkImageView createAndAllocateImageView(LogicalDevice logicalDevice)
@@ -92,16 +91,15 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 			barrierInfo.subresourceRange().baseArrayLayer(0);
 			barrierInfo.subresourceRange().layerCount(1);
 			barrierInfo.subresourceRange().aspectMask(VK_IMAGE_ASPECT_DEPTH_BIT);
-			barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE |
-									  EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
+			barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE | EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE);
 
-			context.execute((context2, commandBuffer) -> vkCmdPipelineBarrier(commandBuffer.getVkCommandBuffer(),
-																			  srcStage,
-																			  dstStage,
-																			  0,
-																			  null,
-																			  null,
-																			  barrierInfo));
+			context.executeCommand(recordContext -> vkCmdPipelineBarrier(recordContext.vkCommandBuffer(),
+																		 srcStage,
+																		 dstStage,
+																		 0,
+																		 null,
+																		 null,
+																		 barrierInfo));
 		}
 	}
 

@@ -5,7 +5,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.execution.IRecordable;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
@@ -26,7 +26,7 @@ public final class GraphicConfigurationAllocation implements IExtender
 		this.allocationState = allocationState;
 	}
 
-	public void attach(final IRecordable.RecordContext context)
+	public void attach(final RecordContext context)
 	{
 		context.lockAllocationDuringExecution(allocationState);
 	}

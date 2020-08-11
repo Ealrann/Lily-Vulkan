@@ -24,6 +24,7 @@ public final class BoardImageFactory
 		res.setMipLevels(1);
 		res.setTiling(0);
 		res.getUsages().add(EImageUsage.TRANSFER_SRC);
+		res.getUsages().add(EImageUsage.TRANSFER_DST);
 		res.getUsages().add(EImageUsage.STORAGE);
 		res.setInitialLayout(initialLayout);
 

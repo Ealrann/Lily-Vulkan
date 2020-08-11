@@ -362,11 +362,6 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferDataProvider"/>
     <genClasses image="false" ecoreClass="resource.ecore#//Image"/>
-    <genClasses ecoreClass="resource.ecore#//StaticImage">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWithZero"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWith"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/size"/>
-    </genClasses>
     <genClasses ecoreClass="resource.ecore#//FileImage">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//FileImage/file"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FileImage/mipmapEnabled"/>
@@ -431,7 +426,6 @@
     <genClasses ecoreClass="resource.ecore#//BufferMemory">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferMemory/buffers"/>
     </genClasses>
-    <genClasses ecoreClass="resource.ecore#//ImageMemory"/>
     <genClasses image="false" ecoreClass="resource.ecore#//IBufferObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//IBufferObject/usages"/>
     </genClasses>
@@ -447,6 +441,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/growFactor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/growThreshold"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/size"/>
+    </genClasses>
+    <genClasses ecoreClass="resource.ecore#//StaticImage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWithZero"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWith"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/size"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"

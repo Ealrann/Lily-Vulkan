@@ -4,7 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
-import org.sheepy.lily.vulkan.core.execution.IRecordable;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
@@ -31,7 +31,7 @@ public final class FetchCommand implements DataFlowCommand
 	}
 
 	@Override
-	public void execute(IRecordable.RecordContext recordContext, VkDevice vkDevice, MemoryStack stack)
+	public void execute(RecordContext recordContext, VkDevice vkDevice, MemoryStack stack)
 	{
 		final var trgBuffer = ticket.getBufferPtr();
 		final var trgOffset = ticket.getOffset();

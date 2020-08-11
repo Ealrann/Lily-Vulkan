@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.image;
+package org.sheepy.lily.vulkan.resource.image.descriptor;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;

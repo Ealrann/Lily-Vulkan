@@ -5,13 +5,13 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.game.api.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAllocation;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAllocationAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
 import java.nio.ByteBuffer;
@@ -19,7 +19,7 @@ import java.nio.ByteBuffer;
 @ModelExtender(scope = BufferViewer.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(parent = BufferMemory.class, type = BufferMemoryAllocation.class)
-public final class BufferViewerAllocation implements IBufferObjectAllocation
+public final class BufferViewerAllocation implements IBufferObjectAllocationAllocation
 {
 	private final BufferViewer bufferViewer;
 	private final long bufferPtr;

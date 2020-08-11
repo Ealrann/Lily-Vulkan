@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.buffer;
+package org.sheepy.lily.vulkan.resource.buffer.descriptor;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorBufferInfo;

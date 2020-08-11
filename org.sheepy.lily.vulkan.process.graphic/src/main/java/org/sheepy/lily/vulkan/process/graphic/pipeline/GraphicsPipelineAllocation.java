@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
-import org.sheepy.lily.vulkan.core.execution.IRecordable;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
@@ -93,7 +93,7 @@ public final class GraphicsPipelineAllocation implements IPipelineAllocation
 		vkPipeline.allocate(context, extent, renderPassAllocation);
 	}
 
-	public void attach(final IRecordable.RecordContext context)
+	public void attach(final RecordContext context)
 	{
 		context.lockAllocationDuringExecution(allocationState);
 		graphicConfigurationAllocation.attach(context);

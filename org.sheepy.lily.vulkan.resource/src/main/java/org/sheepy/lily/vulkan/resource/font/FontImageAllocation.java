@@ -5,7 +5,6 @@ import org.joml.Vector2ic;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VK10;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -16,8 +15,6 @@ import org.sheepy.lily.vulkan.core.resource.font.IFontImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
-import org.sheepy.lily.vulkan.core.resource.memory.Memory;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
@@ -47,7 +44,6 @@ public final class FontImageAllocation implements IFontImageAllocation
 
 	private final List<Font> fonts;
 	private final List<FontAllocator> fontAllocators;
-	private final Memory memory;
 	private final VkImage image;
 	private final VkImageView view;
 
@@ -67,10 +63,9 @@ public final class FontImageAllocation implements IFontImageAllocation
 		}
 
 		final var builder = new VkImageBuilder(fontImage, BASE_FONTIMAGE_WIDTH, BASE_FONTIMAGE_HEIGHT);
-		final var memoryBuilder = new MemoryBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		view = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
-		image = builder.build(context, memoryBuilder);
-		memory = memoryBuilder.build(context);
+
+		image = context.executeFunction(builder::build);
 		view.allocate(vkDevice, image);
 	}
 
@@ -80,7 +75,6 @@ public final class FontImageAllocation implements IFontImageAllocation
 		final var vkDevice = context.getVkDevice();
 		image.free(context);
 		view.free(vkDevice);
-		memory.free(context);
 
 		for (final var allocator : fontAllocators)
 		{

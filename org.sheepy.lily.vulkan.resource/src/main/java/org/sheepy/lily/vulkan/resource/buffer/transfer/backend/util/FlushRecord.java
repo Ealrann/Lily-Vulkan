@@ -4,7 +4,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
-import org.sheepy.lily.vulkan.core.execution.IRecordable;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommand;
 
@@ -25,7 +25,7 @@ public final class FlushRecord
 		this.commands = List.copyOf(commands);
 	}
 
-	public void flush(IRecordable.RecordContext recordContext)
+	public void flush(RecordContext recordContext)
 	{
 		try (final MemoryStack stack = MemoryStack.stackPush())
 		{
@@ -41,7 +41,7 @@ public final class FlushRecord
 		}
 	}
 
-	private void recordFetchInvalidations(final IRecordable.RecordContext recordContext)
+	private void recordFetchInvalidations(final RecordContext recordContext)
 	{
 		final var invalidator = buildInvalidator();
 		if (invalidator.isEmpty() == false)

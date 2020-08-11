@@ -4,8 +4,9 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.resource.IVulkanBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -15,15 +16,16 @@ import static org.lwjgl.vulkan.VK10.vkCmdBindVertexBuffers;
 
 @ModelExtender(scope = BindVertexBuffer.class)
 @Allocation
-@AllocationDependency(features = {GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS, GraphicPackage.VERTEX_BINDING__BUFFER}, type = IBufferAllocation.class)
+@AllocationDependency(features = {GraphicPackage.BIND_VERTEX_BUFFER__VERTEX_BINDINGS, GraphicPackage.VERTEX_BINDING__BUFFER}, type = IVulkanBufferAllocation.class)
 public final class BindVertexBuferRecorder implements IRecordableExtender
 {
 	private final BindVertexBuffer task;
-	private final List<IBufferAllocation> buffers;
+	private final List<IVulkanBufferAllocation> buffers;
 	private final long[] vertexBuffers;
 	private final long[] offsets;
 
-	private BindVertexBuferRecorder(BindVertexBuffer task, @InjectDependency(index = 0) List<IBufferAllocation> buffers)
+	private BindVertexBuferRecorder(BindVertexBuffer task,
+									@InjectDependency(index = 0) List<IVulkanBufferAllocation> buffers)
 	{
 		this.task = task;
 		this.buffers = buffers;

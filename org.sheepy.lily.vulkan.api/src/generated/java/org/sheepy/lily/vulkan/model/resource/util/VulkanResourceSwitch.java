@@ -144,17 +144,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.STATIC_IMAGE: {
-				StaticImage staticImage = (StaticImage)theEObject;
-				T result = caseStaticImage(staticImage);
-				if (result == null) result = caseImage(staticImage);
-				if (result == null) result = caseImageInfo(staticImage);
-				if (result == null) result = caseIImage(staticImage);
-				if (result == null) result = caseIResource(staticImage);
-				if (result == null) result = caseLNamedElement(staticImage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case VulkanResourcePackage.FILE_IMAGE: {
 				FileImage fileImage = (FileImage)theEObject;
 				T result = caseFileImage(fileImage);
@@ -306,14 +295,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.IMAGE_MEMORY: {
-				ImageMemory imageMemory = (ImageMemory)theEObject;
-				T result = caseImageMemory(imageMemory);
-				if (result == null) result = caseIMemoryChunkPart(imageMemory);
-				if (result == null) result = caseLNamedElement(imageMemory);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case VulkanResourcePackage.IBUFFER_OBJECT: {
 				IBufferObject iBufferObject = (IBufferObject)theEObject;
 				T result = caseIBufferObject(iBufferObject);
@@ -346,6 +327,18 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = caseIBufferObject(bufferViewer);
 				if (result == null) result = caseIBuffer(bufferViewer);
 				if (result == null) result = caseLNamedElement(bufferViewer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanResourcePackage.STATIC_IMAGE: {
+				StaticImage staticImage = (StaticImage)theEObject;
+				T result = caseStaticImage(staticImage);
+				if (result == null) result = caseIMemoryChunkPart(staticImage);
+				if (result == null) result = caseImage(staticImage);
+				if (result == null) result = caseImageInfo(staticImage);
+				if (result == null) result = caseIImage(staticImage);
+				if (result == null) result = caseIResource(staticImage);
+				if (result == null) result = caseLNamedElement(staticImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -782,21 +775,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 */
 	public T caseBufferMemory(BufferMemory object)
 	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Image Memory</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Image Memory</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseImageMemory(ImageMemory object) {
 		return null;
 	}
 

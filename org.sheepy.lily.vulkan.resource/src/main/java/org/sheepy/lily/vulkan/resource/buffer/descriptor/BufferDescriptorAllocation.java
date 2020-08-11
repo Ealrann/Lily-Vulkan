@@ -1,26 +1,26 @@
-package org.sheepy.lily.vulkan.resource.buffer;
+package org.sheepy.lily.vulkan.resource.buffer.descriptor;
 
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.game.api.execution.IRecordContext;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.resource.IVulkanBufferAllocation;
 import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 @ModelExtender(scope = BufferDescriptor.class)
 @Allocation
-@AllocationDependency(features = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER, type = IBufferAllocation.class)
+@AllocationDependency(features = VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER, type = IVulkanBufferAllocation.class)
 public final class BufferDescriptorAllocation implements IDescriptorAllocation
 {
 	private final VkBufferDescriptor vkDescriptor;
-	private final IBufferAllocation bufferAllocation;
+	private final IVulkanBufferAllocation bufferAllocation;
 
 	private BufferDescriptorAllocation(BufferDescriptor descriptor,
-									   @InjectDependency(index = 0) IBufferAllocation bufferAllocation)
+									   @InjectDependency(index = 0) IVulkanBufferAllocation bufferAllocation)
 	{
 		this.bufferAllocation = bufferAllocation;
 		vkDescriptor = new VkBufferDescriptor(bufferAllocation.getPtr(),

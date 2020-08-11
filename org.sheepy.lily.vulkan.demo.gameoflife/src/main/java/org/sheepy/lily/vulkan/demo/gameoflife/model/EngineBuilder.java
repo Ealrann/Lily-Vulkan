@@ -153,6 +153,7 @@ public final class EngineBuilder
 		bufferMemory.getBuffers().add(boardBuffer1);
 		bufferMemory.getBuffers().add(boardBuffer2);
 		memoryChunk.getParts().add(bufferMemory);
+		memoryChunk.getParts().add(boardImage);
 
 		final var boardBuffer1Descriptor = newDescriptor(boardBuffer1);
 		final var boardBuffer2Descriptor = newDescriptor(boardBuffer2);
@@ -195,7 +196,6 @@ public final class EngineBuilder
 		sharedResources.getResources().add(lifeShader);
 		sharedResources.getResources().add(life2pixelShader);
 		sharedResources.getResources().add(memoryChunk);
-		sharedResources.getResources().add(boardImage);
 
 		sharedDescriptors.getDescriptors().add(boardBuffer1Descriptor);
 		sharedDescriptors.getDescriptors().add(boardBuffer2Descriptor);

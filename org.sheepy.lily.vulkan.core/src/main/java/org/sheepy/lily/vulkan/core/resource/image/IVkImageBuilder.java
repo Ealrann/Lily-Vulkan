@@ -3,7 +3,8 @@ package org.sheepy.lily.vulkan.core.resource.image;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VK10;
 import org.lwjgl.vulkan.VkImageCreateInfo;
-import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -30,23 +31,40 @@ public interface IVkImageBuilder
 	IVkImageBuilder copyImmutable();
 	VkImageBuilder copy();
 
-	VkImage build(ExecutionContext context);
+	VkImage build(IRecordContext context);
+	VkImage buildNoFill(IVulkanContext context);
 
 	abstract class AbstractVkImageBuilder implements IVkImageBuilder
 	{
 		private static final String CREATE_ERROR = "Failed to create image!";
 
 		@Override
-		public VkImage build(ExecutionContext context)
+		public VkImage buildNoFill(IVulkanContext context)
+		{
+			final long imagePtr = allocateImage(context);
+			final var res = new VkImage(imagePtr,
+										width(),
+										height(),
+										format(),
+										usage(),
+										tiling(),
+										mipLevels(),
+										initialLayout(),
+										aspect());
+			return res;
+		}
+
+		@Override
+		public VkImage build(IRecordContext context)
 		{
 			final var memoryBuilder = new MemoryBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-			final var res = build(context, memoryBuilder);
+			final var res = buildWithMemory(context, memoryBuilder);
 			final var memory = memoryBuilder.build(context);
 			res.linkMemory(memory);
 			return res;
 		}
 
-		public VkImage build(ExecutionContext context, MemoryBuilder memoryBuilder)
+		public VkImage buildWithMemory(IRecordContext context, MemoryBuilder memoryBuilder)
 		{
 			final long imagePtr = allocateImage(context);
 			final var res = new VkImage(imagePtr,
@@ -67,18 +85,18 @@ public interface IVkImageBuilder
 
 				if (initialLayout() != null)
 				{
-					context.execute((context2, commandBuffer) -> res.transitionToInitialLayout(context2.stack(),
-																							   commandBuffer.getVkCommandBuffer(),
-																							   EPipelineStage.TOP_OF_PIPE_BIT,
-																							   EImageLayout.UNDEFINED,
-																							   Collections.emptyList()));
+					res.transitionToInitialLayout(context.stack(),
+												  context.vkCommandBuffer(),
+												  EPipelineStage.TOP_OF_PIPE_BIT,
+												  EImageLayout.UNDEFINED,
+												  Collections.emptyList());
 				}
 			});
 
 			return res;
 		}
 
-		private long allocateImage(ExecutionContext context) throws AssertionError
+		private long allocateImage(IVulkanContext context) throws AssertionError
 		{
 			final var stack = context.stack();
 			final var device = context.getVkDevice();

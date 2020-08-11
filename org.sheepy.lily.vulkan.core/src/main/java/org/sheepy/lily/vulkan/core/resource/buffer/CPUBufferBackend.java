@@ -4,11 +4,13 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.device.IVulkanContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 
 import java.nio.ByteBuffer;
+import java.util.function.Consumer;
 
 import static org.lwjgl.system.MemoryUtil.memAddress;
 import static org.lwjgl.vulkan.VK10.*;
@@ -48,7 +50,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void free(ExecutionContext context)
+	public void free(IVulkanContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 
@@ -64,16 +66,28 @@ public final class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(ExecutionContext executionContext, ByteBuffer data)
+	public void pushData(IRecordContext context, ByteBuffer data)
+	{
+		pushDataInternal(context, () -> MemoryUtil.memCopy(memAddress(data), memoryMap, info.size));
+	}
+
+	@Override
+	public void pushData(IRecordContext context, Consumer<ByteBuffer> dataProvider)
+	{
+		pushDataInternal(context,
+						 () -> dataProvider.accept(MemoryUtil.memByteBuffer(memoryMap, (int) info.size)));
+	}
+
+	private void pushDataInternal(IVulkanContext vulkanContext, Runnable doPush)
 	{
 		if (address == 0)
 		{
 			throw new AssertionError("Buffer not allocated");
 		}
 
-		final VkDevice vkDevice = executionContext.getVkDevice();
+		final VkDevice vkDevice = vulkanContext.getVkDevice();
 		mapMemory(vkDevice);
-		MemoryUtil.memCopy(memAddress(data), memoryMap, info.size);
+		doPush.run();
 
 		if (info.keptMapped == false)
 		{
@@ -241,7 +255,7 @@ public final class CPUBufferBackend implements IBufferBackend
 			this.properties = createPropertyMask(info.coherent);
 		}
 
-		public CPUBufferBackend build(ExecutionContext context)
+		public CPUBufferBackend build(IVulkanContext context)
 		{
 			final var memoryBuilder = new MemoryBuilder(context, properties);
 			final var res = build(context, memoryBuilder);
@@ -250,7 +264,7 @@ public final class CPUBufferBackend implements IBufferBackend
 			return res;
 		}
 
-		public CPUBufferBackend build(ExecutionContext context, MemoryBuilder memoryBuilder)
+		public CPUBufferBackend build(IVulkanContext context, MemoryBuilder memoryBuilder)
 		{
 			info.computeAlignment(context.getPhysicalDevice());
 			final long address = VkBufferAllocator.allocate(context, info);

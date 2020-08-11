@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 import org.lwjgl.vulkan.VkRect2D;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
 
@@ -27,7 +28,7 @@ public final class SetScissorRecorder implements IRecordableExtender
 		scissorRect.offset().y(task.getOffsetY());
 		scissorRect.extent().width(task.getWidth());
 		scissorRect.extent().height(task.getHeight());
-		final var commandBuffer = ((RecordContext) context).commandBuffer;
+		final var commandBuffer = context.commandBuffer;
 
 		vkCmdSetScissor(commandBuffer, 0, scissorRect);
 	}

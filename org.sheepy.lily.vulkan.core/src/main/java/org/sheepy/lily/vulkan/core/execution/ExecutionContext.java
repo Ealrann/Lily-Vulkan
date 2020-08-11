@@ -61,12 +61,20 @@ public class ExecutionContext extends GameAllocationContext implements IVulkanCo
 		return commandPool;
 	}
 
-	public void execute(ISingleTimeCommand command)
+	public void executeCommand(ISingleTimeCommand command)
 	{
-		execute(List.of(), command);
+		executeCommand(List.of(), command);
 	}
 
-	public void execute(Collection<VkSemaphore> semaphoreToSignal, ISingleTimeCommand command)
+	public <Result> Result executeFunction(ISingleTimeFunction<Result> function)
+	{
+		final var stc = new SingleTimeFunctionImpl<>(this, function);
+		stc.execute();
+
+		return stc.result;
+	}
+
+	public void executeCommand(Collection<VkSemaphore> semaphoreToSignal, ISingleTimeCommand command)
 	{
 		final var stc = new SingleTimeCommandImpl(this, semaphoreToSignal, command);
 		stc.execute();
@@ -121,15 +129,41 @@ public class ExecutionContext extends GameAllocationContext implements IVulkanCo
 		}
 
 		@Override
-		protected void doExecute(ExecutionContext context, ICommandBuffer commandBuffer)
+		protected void doExecute(IRecordContext context)
 		{
-			command.execute(context, commandBuffer);
+			command.execute(context);
 		}
 
 		@Override
 		protected void postExecute()
 		{
 			command.postExecute();
+		}
+	}
+
+	private static final class SingleTimeFunctionImpl<Result> extends SingleTimeCommand
+	{
+		private final ISingleTimeFunction<Result> function;
+
+		private Result result;
+
+		public SingleTimeFunctionImpl(final ExecutionContext executionContext,
+									  final ISingleTimeFunction<Result> function)
+		{
+			super(executionContext);
+			this.function = function;
+		}
+
+		@Override
+		protected void doExecute(IRecordContext context)
+		{
+			result = function.execute(context);
+		}
+
+		@Override
+		protected void postExecute()
+		{
+			function.postExecute();
 		}
 	}
 }

@@ -66,7 +66,7 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 		imageBuilder.usage(usage);
 		imageBuilder.initialLayout(initialLayout);
 
-		return imageBuilder.build(context);
+		return imageBuilder.buildNoFill(context);
 	}
 
 	private VkImageView createAndAllocateImageView(LogicalDevice logicalDevice)
@@ -80,14 +80,13 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 
 	private void layoutTransition(ProcessContext context)
 	{
-		final var stack = context.stack();
 		final var srcStage = EPipelineStage.TOP_OF_PIPE_BIT;
 		final var srcLayout = EImageLayout.UNDEFINED;
-		context.execute((context2, commandBuffer) -> colorImageBackend.transitionToInitialLayout(stack,
-																								 commandBuffer.getVkCommandBuffer(),
-																								 srcStage,
-																								 srcLayout,
-																								 List.of()));
+		context.executeCommand(recordContext -> colorImageBackend.transitionToInitialLayout(recordContext.stack(),
+																							recordContext.vkCommandBuffer(),
+																							srcStage,
+																							srcLayout,
+																							List.of()));
 	}
 
 	@Free

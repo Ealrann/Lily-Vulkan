@@ -116,10 +116,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createImageAdapter();
 			}
 			@Override
-			public Adapter caseStaticImage(StaticImage object) {
-				return createStaticImageAdapter();
-			}
-			@Override
 			public Adapter caseFileImage(FileImage object) {
 				return createFileImageAdapter();
 			}
@@ -192,10 +188,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createBufferMemoryAdapter();
 			}
 			@Override
-			public Adapter caseImageMemory(ImageMemory object) {
-				return createImageMemoryAdapter();
-			}
-			@Override
 			public Adapter caseIBufferObject(IBufferObject object) {
 				return createIBufferObjectAdapter();
 			}
@@ -210,6 +202,10 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 			@Override
 			public Adapter caseBufferViewer(BufferViewer object) {
 				return createBufferViewerAdapter();
+			}
+			@Override
+			public Adapter caseStaticImage(StaticImage object) {
+				return createStaticImageAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object) {
@@ -670,20 +666,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 */
 	public Adapter createBufferMemoryAdapter()
 	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ImageMemory <em>Image Memory</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageMemory
-	 * @generated
-	 */
-	public Adapter createImageMemoryAdapter() {
 		return null;
 	}
 

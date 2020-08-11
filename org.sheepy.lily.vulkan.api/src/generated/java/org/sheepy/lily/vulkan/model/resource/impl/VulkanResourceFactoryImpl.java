@@ -69,7 +69,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER: return createGenericConstantBuffer();
 			case VulkanResourcePackage.BUFFER_REFERENCE: return createBufferReference();
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
-			case VulkanResourcePackage.STATIC_IMAGE: return createStaticImage();
 			case VulkanResourcePackage.FILE_IMAGE: return createFileImage();
 			case VulkanResourcePackage.FONT_IMAGE: return createFontImage();
 			case VulkanResourcePackage.COMPOSITE_IMAGE: return createCompositeImage();
@@ -87,10 +86,10 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR: return createImageArrayDescriptor();
 			case VulkanResourcePackage.MEMORY_CHUNK: return createMemoryChunk();
 			case VulkanResourcePackage.BUFFER_MEMORY: return createBufferMemory();
-			case VulkanResourcePackage.IMAGE_MEMORY: return createImageMemory();
 			case VulkanResourcePackage.STATIC_BUFFER: return createStaticBuffer();
 			case VulkanResourcePackage.DATA_BUFFER: return createDataBuffer();
 			case VulkanResourcePackage.BUFFER_VIEWER: return createBufferViewer();
+			case VulkanResourcePackage.STATIC_IMAGE: return createStaticImage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -422,17 +421,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		BufferMemoryImpl bufferMemory = new BufferMemoryImpl();
 		return bufferMemory;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ImageMemory createImageMemory() {
-		ImageMemoryImpl imageMemory = new ImageMemoryImpl();
-		return imageMemory;
 	}
 
 	/**

@@ -8,7 +8,7 @@ import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.core.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.process.execution.util.Submission;
@@ -84,12 +84,14 @@ public final class GenericExecutionRecorder
 			for (int i = 0; i < stages.size(); i++)
 			{
 				final var stage = stages.get(i);
-				final var context = new RecordContext(vkCommandBuffer, stage, index, stack);
+				final var recordContext = new RecordContext(context, vkCommandBuffer, stage, index);
 
+				recordContext.stackPush();
 				commandBuffer.start(stage);
-				doRecord.accept(context);
+				doRecord.accept(recordContext);
 				commandBuffer.end(stage);
-				listeners.addAll(context.getExecutionListeners());
+				recordContext.stackPop();
+				listeners.addAll(recordContext.getExecutionListeners());
 			}
 		}
 		catch (final Exception e)
