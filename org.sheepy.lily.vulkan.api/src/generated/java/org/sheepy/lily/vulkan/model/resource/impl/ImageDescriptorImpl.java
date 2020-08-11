@@ -24,6 +24,7 @@ import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
@@ -39,6 +40,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl#getShaderStages <em>Shader Stages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl#getImage <em>Image</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl#getSampler <em>Sampler</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl#getLayout <em>Layout</em>}</li>
  * </ul>
  *
  * @generated
@@ -114,6 +116,26 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 * @ordered
 	 */
 	protected Sampler sampler;
+
+	/**
+	 * The default value of the '{@link #getLayout() <em>Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EImageLayout LAYOUT_EDEFAULT = EImageLayout.GENERAL;
+
+	/**
+	 * The cached value of the '{@link #getLayout() <em>Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected EImageLayout layout = LAYOUT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,7 +216,8 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public EList<EShaderStage> getShaderStages()
 	{
-		if (shaderStages == null) {
+		if (shaderStages == null)
+		{
 			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -208,10 +231,12 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public Image getImage()
 	{
-		if (image != null && ((EObject)image).eIsProxy()) {
+		if (image != null && ((EObject)image).eIsProxy())
+		{
 			InternalEObject oldImage = image;
 			image = (Image)eResolveProxy(oldImage);
-			if (image != oldImage) {
+			if (image != oldImage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE, oldImage, image));
 			}
@@ -250,10 +275,12 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 */
 	@Override
 	public Sampler getSampler() {
-		if (sampler != null && ((EObject)sampler).eIsProxy()) {
+		if (sampler != null && ((EObject)sampler).eIsProxy())
+		{
 			InternalEObject oldSampler = sampler;
 			sampler = (Sampler)eResolveProxy(oldSampler);
-			if (sampler != oldSampler) {
+			if (sampler != oldSampler)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER, oldSampler, sampler));
 			}
@@ -289,9 +316,35 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 * @generated
 	 */
 	@Override
+	public EImageLayout getLayout()
+	{
+		return layout;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLayout(EImageLayout newLayout)
+	{
+		EImageLayout oldLayout = layout;
+		layout = newLayout == null ? LAYOUT_EDEFAULT : newLayout;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_DESCRIPTOR__LAYOUT, oldLayout, layout));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				return getName();
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
@@ -304,6 +357,8 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
 				if (resolve) return getSampler();
 				return basicGetSampler();
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__LAYOUT:
+				return getLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,7 +372,8 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
@@ -334,6 +390,9 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
 				setSampler((Sampler)newValue);
 				return;
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__LAYOUT:
+				setLayout((EImageLayout)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -346,7 +405,8 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -362,6 +422,9 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
 				setSampler((Sampler)null);
 				return;
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__LAYOUT:
+				setLayout(LAYOUT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -374,7 +437,8 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
@@ -385,6 +449,8 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 				return image != null;
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
 				return sampler != null;
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__LAYOUT:
+				return layout != LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -406,6 +472,8 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 		result.append(type);
 		result.append(", shaderStages: ");
 		result.append(shaderStages);
+		result.append(", layout: ");
+		result.append(layout);
 		result.append(')');
 		return result.toString();
 	}

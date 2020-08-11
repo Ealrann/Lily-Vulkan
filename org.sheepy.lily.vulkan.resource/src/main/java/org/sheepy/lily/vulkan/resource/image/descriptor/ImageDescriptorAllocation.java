@@ -12,7 +12,6 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.image.SamplerAllocation;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
 
@@ -32,14 +31,14 @@ public final class ImageDescriptorAllocation implements IDescriptorAllocation
 
 		this.vkDescriptor = new VkImageDescriptor(imageAllocation.getViewPtr(),
 												  samplerPtr,
-												  EImageLayout.GENERAL,
-												  descriptor.getType(),
-												  descriptor.getShaderStages());
+												  descriptor.getLayout(),
+												  descriptor.getType());
 	}
 
 	@Override
 	public void attach(final IRecordContext recordContext)
 	{
+		// TODO
 	}
 
 	@Override

@@ -44,7 +44,7 @@
         <resources xsi:type="resource:Sampler" name="NullTextureSampler"/>
       </resourcePkg>
       <descriptorPkg>
-        <descriptors xsi:type="resource:ImageDescriptor" name="NullTexture" type="COMBINED_IMAGE_SAMPLER" image="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.8/@parts.0" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9">
+        <descriptors xsi:type="resource:ImageDescriptor" name="NullTexture" type="COMBINED_IMAGE_SAMPLER" image="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.8/@parts.0" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9" layout="SHADER_READ_ONLY_OPTIMAL">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
         <descriptors xsi:type="resource:SamplerDescriptor" name="FontSampler" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7">

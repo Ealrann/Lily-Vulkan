@@ -6,9 +6,6 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
-
-import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 
@@ -22,8 +19,7 @@ public class VkImageDescriptor implements IVkDescriptor
 	public VkImageDescriptor(long imageViewPtr,
 							 long samplerPtr,
 							 EImageLayout imageLayout,
-							 EDescriptorType descriptorType,
-							 List<EShaderStage> shaderStages)
+							 EDescriptorType descriptorType)
 	{
 		this.imageViewPtr = imageViewPtr;
 		this.samplerPtr = samplerPtr;

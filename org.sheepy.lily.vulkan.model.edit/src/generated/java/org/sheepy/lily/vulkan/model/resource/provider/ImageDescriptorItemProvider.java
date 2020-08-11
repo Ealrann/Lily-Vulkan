@@ -64,7 +64,8 @@ public class ImageDescriptorItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -72,6 +73,7 @@ public class ImageDescriptorItemProvider
 			addShaderStagesPropertyDescriptor(object);
 			addImagePropertyDescriptor(object);
 			addSamplerPropertyDescriptor(object);
+			addLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -191,6 +193,29 @@ public class ImageDescriptorItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Layout feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLayoutPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageDescriptor_layout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageDescriptor_layout_feature", "_UI_ImageDescriptor_type"),
+				 VulkanResourcePackage.Literals.IMAGE_DESCRIPTOR__LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ImageDescriptor.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -230,10 +255,12 @@ public class ImageDescriptorItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ImageDescriptor.class)) {
+		switch (notification.getFeatureID(ImageDescriptor.class))
+		{
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__NAME:
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__TYPE:
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SHADER_STAGES:
+			case VulkanResourcePackage.IMAGE_DESCRIPTOR__LAYOUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

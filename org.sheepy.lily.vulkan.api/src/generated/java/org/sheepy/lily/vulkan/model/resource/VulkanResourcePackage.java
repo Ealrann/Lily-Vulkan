@@ -1139,13 +1139,22 @@ public interface VulkanResourcePackage extends EPackage
 	int IMAGE_DESCRIPTOR__SAMPLER = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_DESCRIPTOR__LAYOUT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Image Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_DESCRIPTOR_FEATURE_COUNT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 2;
+	int IMAGE_DESCRIPTOR_FEATURE_COUNT = VulkanPackage.IDESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Image Descriptor</em>' class.
@@ -2513,6 +2522,17 @@ public interface VulkanResourcePackage extends EPackage
 	EReference getImageDescriptor_Sampler();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getLayout <em>Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Layout</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getLayout()
+	 * @see #getImageDescriptor()
+	 * @generated
+	 */
+	EAttribute getImageDescriptor_Layout();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.SamplerDescriptor <em>Sampler Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3292,6 +3312,14 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference IMAGE_DESCRIPTOR__SAMPLER = eINSTANCE.getImageDescriptor_Sampler();
+
+		/**
+		 * The meta object literal for the '<em><b>Layout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_DESCRIPTOR__LAYOUT = eINSTANCE.getImageDescriptor_Layout();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerDescriptorImpl <em>Sampler Descriptor</em>}' class.

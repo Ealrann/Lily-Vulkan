@@ -31,13 +31,16 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	 */
 	public static VulkanResourceFactory init()
 	{
-		try {
+		try
+		{
 			VulkanResourceFactory theVulkanResourceFactory = (VulkanResourceFactory)EPackage.Registry.INSTANCE.getEFactory(VulkanResourcePackage.eNS_URI);
-			if (theVulkanResourceFactory != null) {
+			if (theVulkanResourceFactory != null)
+			{
 				return theVulkanResourceFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new VulkanResourceFactoryImpl();
@@ -62,7 +65,8 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case VulkanResourcePackage.TRANSFER_BUFFER: return createTransferBuffer();
 			case VulkanResourcePackage.DESCRIPTOR_POOL: return createDescriptorPool();
 			case VulkanResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
@@ -101,7 +105,8 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case VulkanResourcePackage.ECONTEXT_INDEX:
 				return createEContextIndexFromString(eDataType, initialValue);
 			case VulkanResourcePackage.EFLUSH_MODE:
@@ -121,7 +126,8 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case VulkanResourcePackage.ECONTEXT_INDEX:
 				return convertEContextIndexToString(eDataType, instanceValue);
 			case VulkanResourcePackage.EFLUSH_MODE:

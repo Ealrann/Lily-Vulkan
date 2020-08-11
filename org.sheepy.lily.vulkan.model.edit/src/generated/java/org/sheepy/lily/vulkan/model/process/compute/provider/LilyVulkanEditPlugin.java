@@ -40,7 +40,8 @@ public final class LilyVulkanEditPlugin extends EMFPlugin
 	public LilyVulkanEditPlugin()
 	{
 		super
-		  (new ResourceLocator [] {
+		  (new ResourceLocator [] 
+		   {
 		     LilyEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
 		   });

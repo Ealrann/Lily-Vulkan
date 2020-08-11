@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +16,7 @@ import org.sheepy.lily.vulkan.model.IDescriptor;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getImage <em>Image</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getSampler <em>Sampler</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getLayout <em>Layout</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageDescriptor()
@@ -66,5 +68,31 @@ public interface ImageDescriptor extends IDescriptor
 	 * @generated
 	 */
 	void setSampler(Sampler value);
+
+	/**
+	 * Returns the value of the '<em><b>Layout</b></em>' attribute.
+	 * The default value is <code>"GENERAL"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Layout</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
+	 * @see #setLayout(EImageLayout)
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageDescriptor_Layout()
+	 * @model default="GENERAL" required="true"
+	 * @generated
+	 */
+	EImageLayout getLayout();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ImageDescriptor#getLayout <em>Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Layout</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
+	 * @see #getLayout()
+	 * @generated
+	 */
+	void setLayout(EImageLayout value);
 
 } // ImageDescriptor

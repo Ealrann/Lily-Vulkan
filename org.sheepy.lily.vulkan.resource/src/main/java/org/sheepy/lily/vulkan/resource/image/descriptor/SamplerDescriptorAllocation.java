@@ -4,9 +4,9 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.ISamplerAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
@@ -26,8 +26,7 @@ public class SamplerDescriptorAllocation implements IDescriptorAllocation
 		vkDescriptor = new VkImageDescriptor(samplerAllocation.getViewPtr(),
 											 samplerAllocation.getSamplerPtr(),
 											 EImageLayout.GENERAL,
-											 descriptor.getType(),
-											 descriptor.getShaderStages());
+											 descriptor.getType());
 	}
 
 	@Override

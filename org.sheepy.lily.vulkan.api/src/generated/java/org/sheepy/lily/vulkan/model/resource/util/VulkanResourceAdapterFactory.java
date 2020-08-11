@@ -50,7 +50,8 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 */
 	public VulkanResourceAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = VulkanResourcePackage.eINSTANCE;
 		}
 	}
@@ -66,10 +67,12 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -82,161 +85,201 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected VulkanResourceSwitch<Adapter> modelSwitch =
-		new VulkanResourceSwitch<Adapter>() {
+		new VulkanResourceSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseTransferBuffer(TransferBuffer object) {
+			public Adapter caseTransferBuffer(TransferBuffer object)
+			{
 				return createTransferBufferAdapter();
 			}
 			@Override
-			public Adapter caseDescriptorPool(DescriptorPool object) {
+			public Adapter caseDescriptorPool(DescriptorPool object)
+			{
 				return createDescriptorPoolAdapter();
 			}
 			@Override
-			public Adapter caseConstantBuffer(ConstantBuffer object) {
+			public Adapter caseConstantBuffer(ConstantBuffer object)
+			{
 				return createConstantBufferAdapter();
 			}
 			@Override
-			public Adapter caseGenericConstantBuffer(GenericConstantBuffer object) {
+			public Adapter caseGenericConstantBuffer(GenericConstantBuffer object)
+			{
 				return createGenericConstantBufferAdapter();
 			}
 			@Override
-			public Adapter caseIBuffer(IBuffer object) {
+			public Adapter caseIBuffer(IBuffer object)
+			{
 				return createIBufferAdapter();
 			}
 			@Override
-			public Adapter caseBufferReference(BufferReference object) {
+			public Adapter caseBufferReference(BufferReference object)
+			{
 				return createBufferReferenceAdapter();
 			}
 			@Override
-			public Adapter caseBufferDataProvider(BufferDataProvider object) {
+			public Adapter caseBufferDataProvider(BufferDataProvider object)
+			{
 				return createBufferDataProviderAdapter();
 			}
 			@Override
-			public Adapter caseImage(Image object) {
+			public Adapter caseImage(Image object)
+			{
 				return createImageAdapter();
 			}
 			@Override
-			public Adapter caseFileImage(FileImage object) {
+			public Adapter caseFileImage(FileImage object)
+			{
 				return createFileImageAdapter();
 			}
 			@Override
-			public Adapter caseFontImage(FontImage object) {
+			public Adapter caseFontImage(FontImage object)
+			{
 				return createFontImageAdapter();
 			}
 			@Override
-			public Adapter caseCompositeImage(CompositeImage object) {
+			public Adapter caseCompositeImage(CompositeImage object)
+			{
 				return createCompositeImageAdapter();
 			}
 			@Override
-			public Adapter caseImageInlay(ImageInlay object) {
+			public Adapter caseImageInlay(ImageInlay object)
+			{
 				return createImageInlayAdapter();
 			}
 			@Override
-			public Adapter caseSampler(Sampler object) {
+			public Adapter caseSampler(Sampler object)
+			{
 				return createSamplerAdapter();
 			}
 			@Override
-			public Adapter caseBufferDescriptor(BufferDescriptor object) {
+			public Adapter caseBufferDescriptor(BufferDescriptor object)
+			{
 				return createBufferDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseImageDescriptor(ImageDescriptor object) {
+			public Adapter caseImageDescriptor(ImageDescriptor object)
+			{
 				return createImageDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseSamplerDescriptor(SamplerDescriptor object) {
+			public Adapter caseSamplerDescriptor(SamplerDescriptor object)
+			{
 				return createSamplerDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseDescriptorSet(DescriptorSet object) {
+			public Adapter caseDescriptorSet(DescriptorSet object)
+			{
 				return createDescriptorSetAdapter();
 			}
 			@Override
-			public Adapter caseBufferBarrier(BufferBarrier object) {
+			public Adapter caseBufferBarrier(BufferBarrier object)
+			{
 				return createBufferBarrierAdapter();
 			}
 			@Override
-			public Adapter caseImageBarrier(ImageBarrier object) {
+			public Adapter caseImageBarrier(ImageBarrier object)
+			{
 				return createImageBarrierAdapter();
 			}
 			@Override
-			public Adapter caseShader(Shader object) {
+			public Adapter caseShader(Shader object)
+			{
 				return createShaderAdapter();
 			}
 			@Override
-			public Adapter caseImageArrayDescriptor(ImageArrayDescriptor object) {
+			public Adapter caseImageArrayDescriptor(ImageArrayDescriptor object)
+			{
 				return createImageArrayDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseMemoryChunk(MemoryChunk object) {
+			public Adapter caseMemoryChunk(MemoryChunk object)
+			{
 				return createMemoryChunkAdapter();
 			}
 			@Override
-			public Adapter caseIMemoryChunkPart(IMemoryChunkPart object) {
+			public Adapter caseIMemoryChunkPart(IMemoryChunkPart object)
+			{
 				return createIMemoryChunkPartAdapter();
 			}
 			@Override
-			public Adapter caseBufferMemory(BufferMemory object) {
+			public Adapter caseBufferMemory(BufferMemory object)
+			{
 				return createBufferMemoryAdapter();
 			}
 			@Override
-			public Adapter caseIBufferObject(IBufferObject object) {
+			public Adapter caseIBufferObject(IBufferObject object)
+			{
 				return createIBufferObjectAdapter();
 			}
 			@Override
-			public Adapter caseStaticBuffer(StaticBuffer object) {
+			public Adapter caseStaticBuffer(StaticBuffer object)
+			{
 				return createStaticBufferAdapter();
 			}
 			@Override
-			public Adapter caseDataBuffer(DataBuffer object) {
+			public Adapter caseDataBuffer(DataBuffer object)
+			{
 				return createDataBufferAdapter();
 			}
 			@Override
-			public Adapter caseBufferViewer(BufferViewer object) {
+			public Adapter caseBufferViewer(BufferViewer object)
+			{
 				return createBufferViewerAdapter();
 			}
 			@Override
-			public Adapter caseStaticImage(StaticImage object) {
+			public Adapter caseStaticImage(StaticImage object)
+			{
 				return createStaticImageAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(LNamedElement object) {
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseIResource(IResource object) {
+			public Adapter caseIResource(IResource object)
+			{
 				return createIResourceAdapter();
 			}
 			@Override
-			public Adapter caseImageInfo(ImageInfo object) {
+			public Adapter caseImageInfo(ImageInfo object)
+			{
 				return createImageInfoAdapter();
 			}
 			@Override
-			public Adapter caseIImage(IImage object) {
+			public Adapter caseIImage(IImage object)
+			{
 				return createIImageAdapter();
 			}
 			@Override
-			public Adapter caseSamplerInfo(SamplerInfo object) {
+			public Adapter caseSamplerInfo(SamplerInfo object)
+			{
 				return createSamplerInfoAdapter();
 			}
 			@Override
-			public Adapter caseIDescriptor(IDescriptor object) {
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
 				return createIDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseBarrier(Barrier object) {
+			public Adapter caseBarrier(Barrier object)
+			{
 				return createBarrierAdapter();
 			}
 			@Override
-			public Adapter caseAbstractBufferBarrier(AbstractBufferBarrier object) {
+			public Adapter caseAbstractBufferBarrier(AbstractBufferBarrier object)
+			{
 				return createAbstractBufferBarrierAdapter();
 			}
 			@Override
-			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object) {
+			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
+			{
 				return createAbstractImageBarrierAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};
