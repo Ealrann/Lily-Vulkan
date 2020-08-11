@@ -73,11 +73,9 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.FONT_IMAGE: return createFontImage();
 			case VulkanResourcePackage.COMPOSITE_IMAGE: return createCompositeImage();
 			case VulkanResourcePackage.IMAGE_INLAY: return createImageInlay();
-			case VulkanResourcePackage.SAMPLED_IMAGE: return createSampledImage();
 			case VulkanResourcePackage.SAMPLER: return createSampler();
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR: return createBufferDescriptor();
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR: return createImageDescriptor();
-			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: return createSampledImageDescriptor();
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR: return createSamplerDescriptor();
 			case VulkanResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
 			case VulkanResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
@@ -273,18 +271,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public SampledImage createSampledImage()
-	{
-		SampledImageImpl sampledImage = new SampledImageImpl();
-		return sampledImage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Sampler createSampler()
 	{
 		SamplerImpl sampler = new SamplerImpl();
@@ -313,18 +299,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		ImageDescriptorImpl imageDescriptor = new ImageDescriptorImpl();
 		return imageDescriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SampledImageDescriptor createSampledImageDescriptor()
-	{
-		SampledImageDescriptorImpl sampledImageDescriptor = new SampledImageDescriptorImpl();
-		return sampledImageDescriptor;
 	}
 
 	/**

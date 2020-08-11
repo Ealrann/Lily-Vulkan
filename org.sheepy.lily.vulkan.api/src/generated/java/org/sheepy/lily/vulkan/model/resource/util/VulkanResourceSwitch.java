@@ -183,14 +183,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.SAMPLED_IMAGE: {
-				SampledImage sampledImage = (SampledImage)theEObject;
-				T result = caseSampledImage(sampledImage);
-				if (result == null) result = caseIResource(sampledImage);
-				if (result == null) result = caseLNamedElement(sampledImage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case VulkanResourcePackage.SAMPLER: {
 				Sampler sampler = (Sampler)theEObject;
 				T result = caseSampler(sampler);
@@ -213,14 +205,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				T result = caseImageDescriptor(imageDescriptor);
 				if (result == null) result = caseIDescriptor(imageDescriptor);
 				if (result == null) result = caseLNamedElement(imageDescriptor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanResourcePackage.SAMPLED_IMAGE_DESCRIPTOR: {
-				SampledImageDescriptor sampledImageDescriptor = (SampledImageDescriptor)theEObject;
-				T result = caseSampledImageDescriptor(sampledImageDescriptor);
-				if (result == null) result = caseIDescriptor(sampledImageDescriptor);
-				if (result == null) result = caseLNamedElement(sampledImageDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -555,22 +539,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sampled Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sampled Image</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSampledImage(SampledImage object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Sampler</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -614,22 +582,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImageDescriptor(ImageDescriptor object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sampled Image Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sampled Image Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSampledImageDescriptor(SampledImageDescriptor object)
 	{
 		return null;
 	}

@@ -132,10 +132,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createImageInlayAdapter();
 			}
 			@Override
-			public Adapter caseSampledImage(SampledImage object) {
-				return createSampledImageAdapter();
-			}
-			@Override
 			public Adapter caseSampler(Sampler object) {
 				return createSamplerAdapter();
 			}
@@ -146,10 +142,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 			@Override
 			public Adapter caseImageDescriptor(ImageDescriptor object) {
 				return createImageDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseSampledImageDescriptor(SampledImageDescriptor object) {
-				return createSampledImageDescriptorAdapter();
 			}
 			@Override
 			public Adapter caseSamplerDescriptor(SamplerDescriptor object) {
@@ -460,21 +452,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.SampledImage
-	 * @generated
-	 */
-	public Adapter createSampledImageAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Sampler <em>Sampler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -515,21 +492,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImageDescriptorAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor <em>Sampled Image Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor
-	 * @generated
-	 */
-	public Adapter createSampledImageDescriptorAdapter()
 	{
 		return null;
 	}

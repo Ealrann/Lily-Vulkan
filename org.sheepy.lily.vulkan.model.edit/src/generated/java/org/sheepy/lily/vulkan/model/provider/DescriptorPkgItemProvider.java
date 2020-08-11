@@ -177,11 +177,6 @@ public class DescriptorPkgItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 VulkanResourceFactory.eINSTANCE.createSampledImageDescriptor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
 				 VulkanResourceFactory.eINSTANCE.createSamplerDescriptor()));
 
 		newChildDescriptors.add

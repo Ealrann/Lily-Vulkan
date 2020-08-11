@@ -122,15 +122,6 @@ public interface VulkanResourceFactory extends EFactory
 	ImageInlay createImageInlay();
 
 	/**
-	 * Returns a new object of class '<em>Sampled Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sampled Image</em>'.
-	 * @generated
-	 */
-	SampledImage createSampledImage();
-
-	/**
 	 * Returns a new object of class '<em>Sampler</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,15 +147,6 @@ public interface VulkanResourceFactory extends EFactory
 	 * @generated
 	 */
 	ImageDescriptor createImageDescriptor();
-
-	/**
-	 * Returns a new object of class '<em>Sampled Image Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sampled Image Descriptor</em>'.
-	 * @generated
-	 */
-	SampledImageDescriptor createSampledImageDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Sampler Descriptor</em>'.

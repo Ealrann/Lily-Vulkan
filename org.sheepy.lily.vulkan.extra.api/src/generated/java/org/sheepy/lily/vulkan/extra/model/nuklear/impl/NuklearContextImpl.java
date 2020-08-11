@@ -17,7 +17,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.model.resource.StaticImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,7 +58,7 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @generated
 	 * @ordered
 	 */
-	protected SampledImage nullTexture;
+	protected StaticImage nullTexture;
 
 	/**
 	 * The cached value of the '{@link #getImageArrayDescriptor() <em>Image Array Descriptor</em>}' reference.
@@ -180,11 +180,11 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public SampledImage getNullTexture()
+	public StaticImage getNullTexture()
 	{
 		if (nullTexture != null && ((EObject)nullTexture).eIsProxy()) {
 			InternalEObject oldNullTexture = nullTexture;
-			nullTexture = (SampledImage)eResolveProxy(oldNullTexture);
+			nullTexture = (StaticImage)eResolveProxy(oldNullTexture);
 			if (nullTexture != oldNullTexture) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE, oldNullTexture, nullTexture));
@@ -198,7 +198,7 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SampledImage basicGetNullTexture()
+	public StaticImage basicGetNullTexture()
 	{
 		return nullTexture;
 	}
@@ -209,9 +209,8 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public void setNullTexture(SampledImage newNullTexture)
-	{
-		SampledImage oldNullTexture = nullTexture;
+	public void setNullTexture(StaticImage newNullTexture) {
+		StaticImage oldNullTexture = nullTexture;
 		nullTexture = newNullTexture;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE, oldNullTexture, nullTexture));
@@ -479,7 +478,7 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 				setFont((NuklearFont)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
-				setNullTexture((SampledImage)newValue);
+				setNullTexture((StaticImage)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				setImageArrayDescriptor((ImageArrayDescriptor)newValue);
@@ -513,7 +512,7 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 				setFont((NuklearFont)null);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:
-				setNullTexture((SampledImage)null);
+				setNullTexture((StaticImage)null);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				setImageArrayDescriptor((ImageArrayDescriptor)null);

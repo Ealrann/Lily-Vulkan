@@ -73,12 +73,6 @@
         eType="ecore:EEnum ../../org.sheepy.lily.core.model/model/types.ecore#//EVerticalRelative"
         defaultValueLiteral="TOP"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SampledImage" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo"
-        containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sampler" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//SamplerInfo ../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" eType="#//Image"/>
   </eClassifiers>
@@ -89,9 +83,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ImageDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" eType="#//Sampler"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SampledImageDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sampledImage" eType="#//SampledImage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SamplerDescriptor" eSuperTypes="vulkan.ecore#//IDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sampler" lowerBound="1"

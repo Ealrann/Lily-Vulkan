@@ -69,8 +69,6 @@ import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageInlay;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.SamplerDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -194,13 +192,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass sampledImageEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass samplerEClass = null;
 
 	/**
@@ -216,13 +207,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass imageDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass sampledImageDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -836,39 +820,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EClass getSampledImage()
-	{
-		return sampledImageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSampledImage_Sampler()
-	{
-		return (EReference)sampledImageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSampledImage_Image()
-	{
-		return (EReference)sampledImageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getSampler()
 	{
 		return samplerEClass;
@@ -937,28 +888,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EReference getImageDescriptor_Sampler() {
 		return (EReference)imageDescriptorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getSampledImageDescriptor()
-	{
-		return sampledImageDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSampledImageDescriptor_SampledImage()
-	{
-		return (EReference)sampledImageDescriptorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1431,10 +1360,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(imageInlayEClass, IMAGE_INLAY__HORIZONTAL_RELATIVE);
 		createEAttribute(imageInlayEClass, IMAGE_INLAY__VERTICAL_RELATIVE);
 
-		sampledImageEClass = createEClass(SAMPLED_IMAGE);
-		createEReference(sampledImageEClass, SAMPLED_IMAGE__SAMPLER);
-		createEReference(sampledImageEClass, SAMPLED_IMAGE__IMAGE);
-
 		samplerEClass = createEClass(SAMPLER);
 		createEReference(samplerEClass, SAMPLER__IMAGE);
 
@@ -1444,9 +1369,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		imageDescriptorEClass = createEClass(IMAGE_DESCRIPTOR);
 		createEReference(imageDescriptorEClass, IMAGE_DESCRIPTOR__IMAGE);
 		createEReference(imageDescriptorEClass, IMAGE_DESCRIPTOR__SAMPLER);
-
-		sampledImageDescriptorEClass = createEClass(SAMPLED_IMAGE_DESCRIPTOR);
-		createEReference(sampledImageDescriptorEClass, SAMPLED_IMAGE_DESCRIPTOR__SAMPLED_IMAGE);
 
 		samplerDescriptorEClass = createEClass(SAMPLER_DESCRIPTOR);
 		createEReference(samplerDescriptorEClass, SAMPLER_DESCRIPTOR__SAMPLER);
@@ -1557,12 +1479,10 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		fileImageEClass.getESuperTypes().add(this.getImage());
 		fontImageEClass.getESuperTypes().add(this.getImage());
 		compositeImageEClass.getESuperTypes().add(this.getImage());
-		sampledImageEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
 		samplerEClass.getESuperTypes().add(theResourcePackage.getIResource());
 		bufferDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		imageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
-		sampledImageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		samplerDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
@@ -1624,10 +1544,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getImageInlay_HorizontalRelative(), theTypesPackage.getEHorizontalRelative(), "horizontalRelative", "LEFT", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInlay_VerticalRelative(), theTypesPackage.getEVerticalRelative(), "verticalRelative", "TOP", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSampledImage_Sampler(), theImagePackage.getSamplerInfo(), null, "sampler", null, 1, 1, SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSampledImage_Image(), this.getImage(), null, "image", null, 1, 1, SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(samplerEClass, Sampler.class, "Sampler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSampler_Image(), this.getImage(), null, "image", null, 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1637,9 +1553,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEClass(imageDescriptorEClass, ImageDescriptor.class, "ImageDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImageDescriptor_Image(), this.getImage(), null, "image", null, 1, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getImageDescriptor_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(sampledImageDescriptorEClass, SampledImageDescriptor.class, "SampledImageDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSampledImageDescriptor_SampledImage(), this.getSampledImage(), null, "sampledImage", null, 0, 1, SampledImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(samplerDescriptorEClass, SamplerDescriptor.class, "SamplerDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSamplerDescriptor_Sampler(), this.getSampler(), null, "sampler", null, 1, 1, SamplerDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -4,6 +4,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask;

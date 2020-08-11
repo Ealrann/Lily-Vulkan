@@ -6,7 +6,7 @@ import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.model.resource.StaticImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,12 +59,12 @@ public interface NuklearContext extends IResource
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Null Texture</em>' reference.
-	 * @see #setNullTexture(SampledImage)
+	 * @see #setNullTexture(StaticImage)
 	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_NullTexture()
 	 * @model
 	 * @generated
 	 */
-	SampledImage getNullTexture();
+	StaticImage getNullTexture();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getNullTexture <em>Null Texture</em>}' reference.
@@ -74,7 +74,7 @@ public interface NuklearContext extends IResource
 	 * @see #getNullTexture()
 	 * @generated
 	 */
-	void setNullTexture(SampledImage value);
+	void setNullTexture(StaticImage value);
 
 	/**
 	 * Returns the value of the '<em><b>Image Array Descriptor</b></em>' reference.

@@ -364,30 +364,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.SampledImage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SampledImageItemProvider sampledImageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.SampledImage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSampledImageAdapter()
-	{
-		if (sampledImageItemProvider == null) {
-			sampledImageItemProvider = new SampledImageItemProvider(this);
-		}
-
-		return sampledImageItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Sampler} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -457,30 +433,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 		}
 
 		return imageDescriptorItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SampledImageDescriptorItemProvider sampledImageDescriptorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.SampledImageDescriptor}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSampledImageDescriptorAdapter()
-	{
-		if (sampledImageDescriptorItemProvider == null) {
-			sampledImageDescriptorItemProvider = new SampledImageDescriptorItemProvider(this);
-		}
-
-		return sampledImageDescriptorItemProvider;
 	}
 
 	/**
@@ -964,11 +916,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createCompositeImage()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createSampledImage()));
 
 				newChildDescriptors.add
 					(createChildParameter

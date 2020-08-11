@@ -16,7 +16,6 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.*;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
-import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
@@ -204,19 +203,16 @@ public final class MeshSubpassBuilder
 			texture.setFormat(EFormat.R8G8B8A8_UNORM);
 			texture.getUsages().add(EImageUsage.SAMPLED);
 
-			final var sampler = ImageFactory.eINSTANCE.createSamplerInfo();
+			final var sampler = VulkanResourceFactory.eINSTANCE.createSampler();
 
-			final var sampledImage = VulkanResourceFactory.eINSTANCE.createSampledImage();
-			sampledImage.setSampler(sampler);
-			sampledImage.setImage(texture);
-
-			final var sampledImageDescriptor = VulkanResourceFactory.eINSTANCE.createSampledImageDescriptor();
+			final var sampledImageDescriptor = VulkanResourceFactory.eINSTANCE.createImageDescriptor();
 			sampledImageDescriptor.setType(EDescriptorType.COMBINED_IMAGE_SAMPLER);
 			sampledImageDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
-			sampledImageDescriptor.setSampledImage(sampledImage);
+			sampledImageDescriptor.setSampler(sampler);
+			sampledImageDescriptor.setImage(texture);
 
 			resourcePkg.getResources().add(texture);
-			resourcePkg.getResources().add(sampledImage);
+			resourcePkg.getResources().add(sampler);
 			resourcePkg.getResources().add(imageFile);
 
 			final var descriptorSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();

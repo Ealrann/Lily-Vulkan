@@ -111,7 +111,6 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
