@@ -59,6 +59,7 @@ public final class CPUBufferBackend implements IBufferBackend
 			unmapMemory(vkDevice);
 		}
 
+//		System.out.println("free " + Long.toHexString(address));
 		vkDestroyBuffer(vkDevice, address, null);
 		if (memory != null) memory.free(context);
 

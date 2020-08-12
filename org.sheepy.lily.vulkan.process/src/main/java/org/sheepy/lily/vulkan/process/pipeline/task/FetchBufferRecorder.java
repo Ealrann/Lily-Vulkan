@@ -84,7 +84,6 @@ public final class FetchBufferRecorder implements IRecordableExtender
 		{
 			try (final var stack = MemoryStack.stackPush())
 			{
-				executionContext.stackPush();
 				BufferUtils.copyBuffer(stack,
 									   vkCommandBuffer,
 									   srcBuffer.getPtr(),
@@ -92,7 +91,6 @@ public final class FetchBufferRecorder implements IRecordableExtender
 									   stagingBuffer.getAddress(),
 									   0,
 									   size);
-				executionContext.stackPop();
 			}
 		}
 
@@ -101,6 +99,10 @@ public final class FetchBufferRecorder implements IRecordableExtender
 			if (status == EExecutionStatus.Done)
 			{
 				final var memoryPtr = stagingBuffer.mapMemory(executionContext.getVkDevice());
+				try (final var stack = MemoryStack.stackPush())
+				{
+					stagingBuffer.invalidate(stack, executionContext.getVkDevice());
+				}
 				final var fetchBuffer = MemoryUtil.memByteBuffer(memoryPtr, (int) size);
 				dataProviderAdapter.fetch(fetchBuffer);
 				stagingBuffer.unmapMemory(executionContext.getVkDevice());
@@ -110,13 +112,12 @@ public final class FetchBufferRecorder implements IRecordableExtender
 			{
 				stagingBuffer.free(executionContext);
 			}
-
 		}
 
 		private CPUBufferBackend createStagingBuffer(long byteSize)
 		{
 			final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
-			final var bufferInfo = new BufferInfo(byteSize, usage, false, true);
+			final var bufferInfo = new BufferInfo(byteSize, usage, false, false);
 			final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 			executionContext.stackPush();
 			final var res = bufferBuilder.build(executionContext);

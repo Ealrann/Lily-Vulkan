@@ -54,6 +54,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	{
 		final var vkDevice = context.getVkDevice();
 
+//		System.out.println("free " + Long.toHexString(address));
 		vkDestroyBuffer(vkDevice, address, null);
 		if (memory != null) memory.free(context);
 		if (cpuBackend != null) cpuBackend.free(context);

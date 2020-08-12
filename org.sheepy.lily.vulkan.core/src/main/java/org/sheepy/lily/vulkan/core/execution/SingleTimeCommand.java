@@ -5,6 +5,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
+import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
@@ -19,6 +20,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 	protected final ExecutionContext executionContext;
 	private final MemoryStack stack;
 	private final List<VkSemaphore> semaphoreToSignal;
+	private final VkFence fence;
 
 	public SingleTimeCommand(ExecutionContext executionContext)
 	{
@@ -39,26 +41,20 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		{
 			this.semaphoreToSignal = List.of();
 		}
+
+		fence = new VkFence(executionContext.getVkDevice(), false);
 	}
 
 	public void execute()
 	{
-		start(null);
+		start(ECommandStage.MAIN);
 
 		final var recordContext = new RecordContext(executionContext, vkCommandBuffer, ECommandStage.MAIN, 0);
 		recordContext.stackPush();
 		doExecute(recordContext);
 		recordContext.stackPop();
-
-		recordContext.getExecutionListeners().forEach(listener -> listener.accept(EExecutionStatus.Started));
-
-		end(null);
-
-		postExecute();
-
-		recordContext.getExecutionListeners().forEach(listener -> listener.accept(EExecutionStatus.Done));
-
-		free(executionContext);
+		end(ECommandStage.MAIN);
+		submit(recordContext);
 	}
 
 	@Override
@@ -69,42 +65,68 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		beginInfo.flags(VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
 
 		vkBeginCommandBuffer(vkCommandBuffer, beginInfo);
+//		System.out.println(Long.toHexString(vkCommandBuffer.address()) + " STC Start");
 	}
 
 	@Override
 	public void end(ECommandStage stage)
 	{
 		vkEndCommandBuffer(vkCommandBuffer);
+	}
 
-		final var pCommandBuffer = stack.mallocPointer(1);
-		pCommandBuffer.put(vkCommandBuffer.address());
+	private void submit(final RecordContext recordContext)
+	{
+		final var pCommandBuffer = MemoryUtil.memAllocPointer(1);
+		final long commandBufferPtr = vkCommandBuffer.address();
+		pCommandBuffer.put(commandBufferPtr);
 		pCommandBuffer.flip();
-
-		LongBuffer lBuffer = null;
-		if (semaphoreToSignal.isEmpty() == false)
-		{
-			lBuffer = MemoryUtil.memAllocLong(semaphoreToSignal.size());
-			for (final VkSemaphore vkSemaphore : semaphoreToSignal)
-			{
-				lBuffer.put(vkSemaphore.getPtr());
-			}
-			lBuffer.flip();
-		}
-
-		final VkSubmitInfo submitInfo = VkSubmitInfo.callocStack(stack);
+		final LongBuffer pSemaphores = allocSemaphorePointers();
+		final VkSubmitInfo submitInfo = VkSubmitInfo.calloc();
 		submitInfo.sType(VK_STRUCTURE_TYPE_SUBMIT_INFO);
 		submitInfo.pCommandBuffers(pCommandBuffer);
-		submitInfo.pSignalSemaphores(lBuffer);
+		submitInfo.pSignalSemaphores(pSemaphores);
+		recordContext.getExecutionListeners().forEach(listener -> listener.accept(EExecutionStatus.Started));
+		final var res = vkQueueSubmit(executionContext.getQueue().vkQueue, submitInfo, fence.getPtr());
+		final EExecutionStatus finalStatus;
+		if (res == VK_SUCCESS)
+		{
+			finalStatus = EExecutionStatus.Done;
+			fence.waitForSignal((long) 1e9);
+		}
+		else
+		{
+			finalStatus = EExecutionStatus.Canceled;
+		}
+		assert fence.isSignaled();
 
-		vkQueueSubmit(executionContext.getQueue().vkQueue, submitInfo, VK_NULL_HANDLE);
-		vkQueueWaitIdle(executionContext.getQueue().vkQueue);
+		if (pSemaphores != null) MemoryUtil.memFree(pSemaphores);
+		fence.free();
+		free(executionContext);
+		MemoryUtil.memFree(pCommandBuffer);
+		submitInfo.free();
 
-		if (lBuffer != null) MemoryUtil.memFree(lBuffer);
+//			System.out.println(Long.toHexString(commandBufferPtr) + " STC Free");
+		recordContext.getExecutionListeners().forEach(listener -> listener.accept(finalStatus));
+	}
+
+	private LongBuffer allocSemaphorePointers()
+	{
+		final LongBuffer pSemaphores;
+		if (semaphoreToSignal.isEmpty() == false)
+		{
+			pSemaphores = MemoryUtil.memAllocLong(semaphoreToSignal.size());
+			for (final VkSemaphore vkSemaphore : semaphoreToSignal)
+			{
+				pSemaphores.put(vkSemaphore.getPtr());
+			}
+			pSemaphores.flip();
+		}
+		else
+		{
+			pSemaphores = null;
+		}
+		return pSemaphores;
 	}
 
 	protected abstract void doExecute(IRecordContext context);
-
-	protected void postExecute()
-	{
-	}
 }

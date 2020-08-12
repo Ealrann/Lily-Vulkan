@@ -65,6 +65,11 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		bufferBackend.free(context);
 	}
 
+	public void attach(final IRecordContext recordContext)
+	{
+		notify(Features.Attach, recordContext);
+	}
+
 	public AlignmentData getAlignmentData(IBufferObject buffer)
 	{
 		return chunkInfo.data.get(bufferMemory.getBuffers().indexOf(buffer));
@@ -145,11 +150,6 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 	public void requestPush()
 	{
 		notify(Features.PushRequest);
-	}
-
-	public void attach(final IRecordContext recordContext)
-	{
-		notify(Features.Attach, recordContext);
 	}
 
 	@Override

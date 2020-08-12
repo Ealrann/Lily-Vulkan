@@ -4,8 +4,4 @@ package org.sheepy.lily.vulkan.core.execution;
 public interface ISingleTimeFunction<Result>
 {
 	Result execute(IRecordContext recordContext);
-
-	default void postExecute()
-	{
-	}
 }

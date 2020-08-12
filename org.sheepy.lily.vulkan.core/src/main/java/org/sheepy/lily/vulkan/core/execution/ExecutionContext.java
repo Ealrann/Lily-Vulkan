@@ -133,12 +133,6 @@ public class ExecutionContext extends GameAllocationContext implements IVulkanCo
 		{
 			command.execute(context);
 		}
-
-		@Override
-		protected void postExecute()
-		{
-			command.postExecute();
-		}
 	}
 
 	private static final class SingleTimeFunctionImpl<Result> extends SingleTimeCommand
@@ -158,12 +152,6 @@ public class ExecutionContext extends GameAllocationContext implements IVulkanCo
 		protected void doExecute(IRecordContext context)
 		{
 			result = function.execute(context);
-		}
-
-		@Override
-		protected void postExecute()
-		{
-			function.postExecute();
 		}
 	}
 }

@@ -18,7 +18,6 @@ public final class SynchronizationManager
 
 	private final List<SyncUnit> syncUnits;
 	private int currentIndex = -1;
-	private List<Consumer<EExecutionStatus>> listeners = null;
 
 	public SynchronizationManager(int count, VkDevice vkDevice)
 	{
@@ -46,7 +45,6 @@ public final class SynchronizationManager
 		final var res = syncUnits.get(currentIndex);
 		res.waitIdle();
 		assert res.listeners == null;
-		res.listeners = listeners;
 		res.fence.setUsed(true);
 		return res;
 	}
@@ -64,11 +62,6 @@ public final class SynchronizationManager
 			res &= fence.checkFence();
 		}
 		return res;
-	}
-
-	public void setNextExecutionListeners(final List<Consumer<EExecutionStatus>> listeners)
-	{
-		this.listeners = listeners;
 	}
 
 	public static final class SyncUnit
@@ -155,6 +148,11 @@ public final class SynchronizationManager
 					listeners = null;
 				}
 			}
+		}
+
+		public void setListeners(List<Consumer<EExecutionStatus>> listeners)
+		{
+			this.listeners = listeners;
 		}
 
 		public void prepareSemaphores(final VkDevice vkDevice, final int semaphoreCount)

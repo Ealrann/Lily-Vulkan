@@ -99,7 +99,7 @@ public final class GenericExecutionRecorder
 			e.printStackTrace();
 		}
 
-		if (listeners.isEmpty() == false) synchronizationManager.setNextExecutionListeners(listeners);
+		if (listeners.isEmpty() == false) currentSyncUnit.setListeners(listeners);
 	}
 
 	public SubmitResult play()

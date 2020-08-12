@@ -62,15 +62,12 @@ public final class MemoryChunkAllocation implements IExtender
 
 		if (useTransfer)
 		{
-			needTransfer = true;
+			recordTransfer(true);
 		}
 		else
 		{
 			pushData(true);
 		}
-
-		if (useTransfer) recordTransfer(true);
-		else pushData(true);
 	}
 
 	@Free

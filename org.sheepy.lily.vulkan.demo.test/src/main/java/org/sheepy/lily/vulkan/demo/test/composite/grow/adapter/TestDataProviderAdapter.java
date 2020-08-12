@@ -29,6 +29,8 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	public int currentSize = INITIAL_SIZE;
 	private final List<PushData> previousPushs = new ArrayList<>();
 	private int pass = 0;
+	//	private int fetchPass = 0;
+//	private int pushPass = 0;
 	private boolean dirty = true;
 
 	public TestDataProviderAdapter()
@@ -71,22 +73,30 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 			previous[i] = rand;
 		}
 
+//		System.out.println("pushPass = " + pushPass);
+//		pushPass++;
+		dirty = false;
 		previousPushs.add(new PushData(previous, pass));
 	}
 
 	@Override
 	public void fetch(ByteBuffer buffer)
 	{
-		final var intBuffer = buffer.asIntBuffer();
-		final int size = intBuffer.capacity();
-		final var pushDatas = previousPushs.stream()
-										   .filter(p -> p.values.length == size)
-										   .filter(p -> p.match(buffer.asIntBuffer()))
-										   .collect(Collectors.toUnmodifiableList());
+		if (previousPushs.size() > 0)
+		{
+			final var intBuffer = buffer.asIntBuffer();
+			final int size = intBuffer.capacity();
+			final var pushDatas = previousPushs.stream()
+											   .filter(p -> p.values.length == size)
+											   .filter(p -> p.match(buffer.asIntBuffer()))
+											   .collect(Collectors.toUnmodifiableList());
 
-		if (pushDatas.size() != 1) throw new AssertionError();
+			assert pushDatas.size() == 1;
 
-		previousPushs.removeAll(pushDatas);
+//			System.out.println("fetchPass = " + fetchPass);
+//			fetchPass++;
+			previousPushs.removeAll(pushDatas);
+		}
 	}
 
 	@Override
