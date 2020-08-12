@@ -182,7 +182,8 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	@Override
 	public EList<EShaderStage> getShaderStages()
 	{
-		if (shaderStages == null) {
+		if (shaderStages == null)
+		{
 			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -196,10 +197,12 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	@Override
 	public Sampler getSampler()
 	{
-		if (sampler != null && ((EObject)sampler).eIsProxy()) {
+		if (sampler != null && ((EObject)sampler).eIsProxy())
+		{
 			InternalEObject oldSampler = sampler;
 			sampler = (Sampler)eResolveProxy(oldSampler);
-			if (sampler != oldSampler) {
+			if (sampler != oldSampler)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.SAMPLER_DESCRIPTOR__SAMPLER, oldSampler, sampler));
 			}
@@ -239,7 +242,8 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 				return getName();
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
@@ -262,7 +266,8 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
@@ -288,7 +293,8 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -313,7 +319,8 @@ public class SamplerDescriptorImpl extends LilyEObject implements SamplerDescrip
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE:

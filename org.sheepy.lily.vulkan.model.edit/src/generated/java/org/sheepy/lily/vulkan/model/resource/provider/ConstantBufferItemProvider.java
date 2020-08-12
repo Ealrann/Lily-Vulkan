@@ -43,7 +43,8 @@ public class ConstantBufferItemProvider extends IResourceItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addDataPropertyDescriptor(object);
@@ -113,7 +114,8 @@ public class ConstantBufferItemProvider extends IResourceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ConstantBuffer.class)) {
+		switch (notification.getFeatureID(ConstantBuffer.class))
+		{
 			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -87,7 +87,8 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	@Override
 	public EList<ImageInlay> getInlays()
 	{
-		if (inlays == null) {
+		if (inlays == null)
+		{
 			inlays = new EObjectContainmentEList<ImageInlay>(ImageInlay.class, this, VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS);
 		}
 		return inlays;
@@ -101,10 +102,12 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	@Override
 	public Image getBackground()
 	{
-		if (background != null && ((EObject)background).eIsProxy()) {
+		if (background != null && ((EObject)background).eIsProxy())
+		{
 			InternalEObject oldBackground = background;
 			background = (Image)eResolveProxy(oldBackground);
-			if (background != oldBackground) {
+			if (background != oldBackground)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND, oldBackground, background));
 			}
@@ -144,7 +147,8 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS:
 				return ((InternalEList<?>)getInlays()).basicRemove(otherEnd, msgs);
 		}
@@ -159,7 +163,8 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS:
 				return getInlays();
 			case VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND:
@@ -178,7 +183,8 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS:
 				getInlays().clear();
 				getInlays().addAll((Collection<? extends ImageInlay>)newValue);
@@ -198,7 +204,8 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS:
 				getInlays().clear();
 				return;
@@ -217,7 +224,8 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.COMPOSITE_IMAGE__INLAYS:
 				return inlays != null && !inlays.isEmpty();
 			case VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND:

@@ -143,6 +143,14 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanResourcePackage.IMAGE_DATA_PROVIDER:
+			{
+				ImageDataProvider imageDataProvider = (ImageDataProvider)theEObject;
+				T result = caseImageDataProvider(imageDataProvider);
+				if (result == null) result = caseLNamedElement(imageDataProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case VulkanResourcePackage.IMAGE:
 			{
 				Image image = (Image)theEObject;
@@ -357,6 +365,19 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanResourcePackage.IMAGE_VIEWER:
+			{
+				ImageViewer imageViewer = (ImageViewer)theEObject;
+				T result = caseImageViewer(imageViewer);
+				if (result == null) result = caseIMemoryChunkPart(imageViewer);
+				if (result == null) result = caseImage(imageViewer);
+				if (result == null) result = caseImageInfo(imageViewer);
+				if (result == null) result = caseIImage(imageViewer);
+				if (result == null) result = caseIResource(imageViewer);
+				if (result == null) result = caseLNamedElement(imageViewer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -474,6 +495,21 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image Data Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImageDataProvider(ImageDataProvider object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -506,18 +542,17 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>File Image</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Image Viewer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>File Image</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Image Viewer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFileImage(FileImage object)
-	{
+	public T caseImageViewer(ImageViewer object) {
 		return null;
 	}
 
@@ -533,6 +568,22 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseFontImage(FontImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileImage(FileImage object)
 	{
 		return null;
 	}

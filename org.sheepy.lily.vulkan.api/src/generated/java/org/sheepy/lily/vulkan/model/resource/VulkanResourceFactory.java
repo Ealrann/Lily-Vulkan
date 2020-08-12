@@ -77,6 +77,15 @@ public interface VulkanResourceFactory extends EFactory
 	BufferDataProvider createBufferDataProvider();
 
 	/**
+	 * Returns a new object of class '<em>Image Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Data Provider</em>'.
+	 * @generated
+	 */
+	ImageDataProvider createImageDataProvider();
+
+	/**
 	 * Returns a new object of class '<em>Static Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,13 +95,13 @@ public interface VulkanResourceFactory extends EFactory
 	StaticImage createStaticImage();
 
 	/**
-	 * Returns a new object of class '<em>File Image</em>'.
+	 * Returns a new object of class '<em>Image Viewer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>File Image</em>'.
+	 * @return a new object of class '<em>Image Viewer</em>'.
 	 * @generated
 	 */
-	FileImage createFileImage();
+	ImageViewer createImageViewer();
 
 	/**
 	 * Returns a new object of class '<em>Font Image</em>'.
@@ -102,6 +111,15 @@ public interface VulkanResourceFactory extends EFactory
 	 * @generated
 	 */
 	FontImage createFontImage();
+
+	/**
+	 * Returns a new object of class '<em>File Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Image</em>'.
+	 * @generated
+	 */
+	FileImage createFileImage();
 
 	/**
 	 * Returns a new object of class '<em>Composite Image</em>'.

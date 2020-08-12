@@ -69,7 +69,8 @@ public class SelectorPanelItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -447,7 +448,8 @@ public class SelectorPanelItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(NuklearPackage.Literals.SELECTOR_PANEL__VARIABLE_RESOLVER);
 			childrenFeatures.add(NuklearPackage.Literals.SELECTOR_PANEL__INPUT_PROVIDER);
@@ -509,7 +511,8 @@ public class SelectorPanelItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SelectorPanel.class)) {
+		switch (notification.getFeatureID(SelectorPanel.class))
+		{
 			case NuklearPackage.SELECTOR_PANEL__NAME:
 			case NuklearPackage.SELECTOR_PANEL__POSITION:
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL_RELATIVE:

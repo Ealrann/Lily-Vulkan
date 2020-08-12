@@ -209,7 +209,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	{
 		BufferDataProvider oldDataProvider = dataProvider;
 		dataProvider = newDataProvider;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, oldDataProvider, newDataProvider);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -224,7 +225,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	@Override
 	public void setDataProvider(BufferDataProvider newDataProvider)
 	{
-		if (newDataProvider != dataProvider) {
+		if (newDataProvider != dataProvider)
+		{
 			NotificationChain msgs = null;
 			if (dataProvider != null)
 				msgs = ((InternalEObject)dataProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, null, msgs);
@@ -245,7 +247,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	@Override
 	public EList<EBufferUsage> getUsages()
 	{
-		if (usages == null) {
+		if (usages == null)
+		{
 			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, VulkanResourcePackage.BUFFER_VIEWER__USAGES);
 		}
 		return usages;
@@ -334,7 +337,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
 				return basicSetDataProvider(null, msgs);
 		}
@@ -349,7 +353,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
 				return getName();
 			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
@@ -375,7 +380,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
 				setName((String)newValue);
 				return;
@@ -407,7 +413,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -438,7 +445,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:

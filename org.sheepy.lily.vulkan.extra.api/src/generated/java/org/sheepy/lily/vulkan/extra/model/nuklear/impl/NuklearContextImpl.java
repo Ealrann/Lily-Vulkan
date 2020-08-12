@@ -139,10 +139,12 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public NuklearFont getFont()
 	{
-		if (font != null && ((EObject)font).eIsProxy()) {
+		if (font != null && ((EObject)font).eIsProxy())
+		{
 			InternalEObject oldFont = font;
 			font = (NuklearFont)eResolveProxy(oldFont);
-			if (font != oldFont) {
+			if (font != oldFont)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__FONT, oldFont, font));
 			}
@@ -182,10 +184,12 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public StaticImage getNullTexture()
 	{
-		if (nullTexture != null && ((EObject)nullTexture).eIsProxy()) {
+		if (nullTexture != null && ((EObject)nullTexture).eIsProxy())
+		{
 			InternalEObject oldNullTexture = nullTexture;
 			nullTexture = (StaticImage)eResolveProxy(oldNullTexture);
-			if (nullTexture != oldNullTexture) {
+			if (nullTexture != oldNullTexture)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE, oldNullTexture, nullTexture));
 			}
@@ -224,10 +228,12 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public ImageArrayDescriptor getImageArrayDescriptor()
 	{
-		if (imageArrayDescriptor != null && ((EObject)imageArrayDescriptor).eIsProxy()) {
+		if (imageArrayDescriptor != null && ((EObject)imageArrayDescriptor).eIsProxy())
+		{
 			InternalEObject oldImageArrayDescriptor = imageArrayDescriptor;
 			imageArrayDescriptor = (ImageArrayDescriptor)eResolveProxy(oldImageArrayDescriptor);
-			if (imageArrayDescriptor != oldImageArrayDescriptor) {
+			if (imageArrayDescriptor != oldImageArrayDescriptor)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR, oldImageArrayDescriptor, imageArrayDescriptor));
 			}
@@ -267,10 +273,12 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public NuklearVertexProvider getVertexDataProvider()
 	{
-		if (vertexDataProvider != null && ((EObject)vertexDataProvider).eIsProxy()) {
+		if (vertexDataProvider != null && ((EObject)vertexDataProvider).eIsProxy())
+		{
 			InternalEObject oldVertexDataProvider = vertexDataProvider;
 			vertexDataProvider = (NuklearVertexProvider)eResolveProxy(oldVertexDataProvider);
-			if (vertexDataProvider != oldVertexDataProvider) {
+			if (vertexDataProvider != oldVertexDataProvider)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER, oldVertexDataProvider, vertexDataProvider));
 			}
@@ -310,10 +318,12 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public NuklearIndexProvider getIndexDataProvider()
 	{
-		if (indexDataProvider != null && ((EObject)indexDataProvider).eIsProxy()) {
+		if (indexDataProvider != null && ((EObject)indexDataProvider).eIsProxy())
+		{
 			InternalEObject oldIndexDataProvider = indexDataProvider;
 			indexDataProvider = (NuklearIndexProvider)eResolveProxy(oldIndexDataProvider);
-			if (indexDataProvider != oldIndexDataProvider) {
+			if (indexDataProvider != oldIndexDataProvider)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER, oldIndexDataProvider, indexDataProvider));
 			}
@@ -353,10 +363,12 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public MemoryChunk getVertexMemoryChunk()
 	{
-		if (vertexMemoryChunk != null && ((EObject)vertexMemoryChunk).eIsProxy()) {
+		if (vertexMemoryChunk != null && ((EObject)vertexMemoryChunk).eIsProxy())
+		{
 			InternalEObject oldVertexMemoryChunk = vertexMemoryChunk;
 			vertexMemoryChunk = (MemoryChunk)eResolveProxy(oldVertexMemoryChunk);
-			if (vertexMemoryChunk != oldVertexMemoryChunk) {
+			if (vertexMemoryChunk != oldVertexMemoryChunk)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK, oldVertexMemoryChunk, vertexMemoryChunk));
 			}
@@ -396,10 +408,12 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public CompositeTask getCompositeDrawTask()
 	{
-		if (compositeDrawTask != null && ((EObject)compositeDrawTask).eIsProxy()) {
+		if (compositeDrawTask != null && ((EObject)compositeDrawTask).eIsProxy())
+		{
 			InternalEObject oldCompositeDrawTask = compositeDrawTask;
 			compositeDrawTask = (CompositeTask)eResolveProxy(oldCompositeDrawTask);
-			if (compositeDrawTask != oldCompositeDrawTask) {
+			if (compositeDrawTask != oldCompositeDrawTask)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK, oldCompositeDrawTask, compositeDrawTask));
 			}
@@ -439,7 +453,8 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
 				if (resolve) return getFont();
 				return basicGetFont();
@@ -473,7 +488,8 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
 				setFont((NuklearFont)newValue);
 				return;
@@ -507,7 +523,8 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
 				setFont((NuklearFont)null);
 				return;
@@ -541,7 +558,8 @@ public class NuklearContextImpl extends IResourceImpl implements NuklearContext
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case NuklearPackage.NUKLEAR_CONTEXT__FONT:
 				return font != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__NULL_TEXTURE:

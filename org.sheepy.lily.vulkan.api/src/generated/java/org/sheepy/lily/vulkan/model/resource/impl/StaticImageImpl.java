@@ -267,7 +267,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 */
 	@Override
 	public EList<EImageUsage> getUsages() {
-		if (usages == null) {
+		if (usages == null)
+		{
 			usages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this, VulkanResourcePackage.STATIC_IMAGE__USAGES);
 		}
 		return usages;
@@ -337,7 +338,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	public NotificationChain basicSetInitialLayout(ImageLayout newInitialLayout, NotificationChain msgs) {
 		ImageLayout oldInitialLayout = initialLayout;
 		initialLayout = newInitialLayout;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -351,7 +353,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 */
 	@Override
 	public void setInitialLayout(ImageLayout newInitialLayout) {
-		if (newInitialLayout != initialLayout) {
+		if (newInitialLayout != initialLayout)
+		{
 			NotificationChain msgs = null;
 			if (initialLayout != null)
 				msgs = ((InternalEObject)initialLayout).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT, null, msgs);
@@ -469,7 +472,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT:
 				return basicSetInitialLayout(null, msgs);
 		}
@@ -484,7 +488,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_IMAGE__FORMAT:
 				return getFormat();
 			case VulkanResourcePackage.STATIC_IMAGE__USAGES:
@@ -516,7 +521,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_IMAGE__FORMAT:
 				setFormat((EFormat)newValue);
 				return;
@@ -557,7 +563,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_IMAGE__FORMAT:
 				setFormat(FORMAT_EDEFAULT);
 				return;
@@ -597,7 +604,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_IMAGE__FORMAT:
 				return format != FORMAT_EDEFAULT;
 			case VulkanResourcePackage.STATIC_IMAGE__USAGES:
@@ -627,8 +635,10 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ImageInfo.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == ImageInfo.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case VulkanResourcePackage.STATIC_IMAGE__FORMAT: return ImagePackage.IMAGE_INFO__FORMAT;
 				case VulkanResourcePackage.STATIC_IMAGE__USAGES: return ImagePackage.IMAGE_INFO__USAGES;
 				case VulkanResourcePackage.STATIC_IMAGE__TILING: return ImagePackage.IMAGE_INFO__TILING;
@@ -637,24 +647,32 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 				default: return -1;
 			}
 		}
-		if (baseClass == LNamedElement.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case VulkanResourcePackage.STATIC_IMAGE__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == IResource.class)
+		{
+			switch (derivedFeatureID)
+			{
 				default: return -1;
 			}
 		}
-		if (baseClass == IImage.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == IImage.class)
+		{
+			switch (derivedFeatureID)
+			{
 				default: return -1;
 			}
 		}
-		if (baseClass == Image.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == Image.class)
+		{
+			switch (derivedFeatureID)
+			{
 				default: return -1;
 			}
 		}
@@ -668,8 +686,10 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ImageInfo.class) {
-			switch (baseFeatureID) {
+		if (baseClass == ImageInfo.class)
+		{
+			switch (baseFeatureID)
+			{
 				case ImagePackage.IMAGE_INFO__FORMAT: return VulkanResourcePackage.STATIC_IMAGE__FORMAT;
 				case ImagePackage.IMAGE_INFO__USAGES: return VulkanResourcePackage.STATIC_IMAGE__USAGES;
 				case ImagePackage.IMAGE_INFO__TILING: return VulkanResourcePackage.STATIC_IMAGE__TILING;
@@ -678,24 +698,32 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 				default: return -1;
 			}
 		}
-		if (baseClass == LNamedElement.class) {
-			switch (baseFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case TypesPackage.LNAMED_ELEMENT__NAME: return VulkanResourcePackage.STATIC_IMAGE__NAME;
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class) {
-			switch (baseFeatureID) {
+		if (baseClass == IResource.class)
+		{
+			switch (baseFeatureID)
+			{
 				default: return -1;
 			}
 		}
-		if (baseClass == IImage.class) {
-			switch (baseFeatureID) {
+		if (baseClass == IImage.class)
+		{
+			switch (baseFeatureID)
+			{
 				default: return -1;
 			}
 		}
-		if (baseClass == Image.class) {
-			switch (baseFeatureID) {
+		if (baseClass == Image.class)
+		{
+			switch (baseFeatureID)
+			{
 				default: return -1;
 			}
 		}

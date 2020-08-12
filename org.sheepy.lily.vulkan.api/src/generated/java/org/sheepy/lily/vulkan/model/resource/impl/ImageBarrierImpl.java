@@ -70,10 +70,12 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public IImage getImage()
 	{
-		if (image != null && ((EObject)image).eIsProxy()) {
+		if (image != null && ((EObject)image).eIsProxy())
+		{
 			InternalEObject oldImage = image;
 			image = (IImage)eResolveProxy(oldImage);
-			if (image != oldImage) {
+			if (image != oldImage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
 			}
@@ -113,7 +115,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
 				if (resolve) return getImage();
 				return basicGetImage();
@@ -129,7 +132,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
 				setImage((IImage)newValue);
 				return;
@@ -145,7 +149,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
 				setImage((IImage)null);
 				return;
@@ -161,7 +166,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_BARRIER__IMAGE:
 				return image != null;
 		}

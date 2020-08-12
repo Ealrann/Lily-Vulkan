@@ -250,6 +250,30 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageDataProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageDataProviderItemProvider imageDataProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageDataProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageDataProviderAdapter() {
+		if (imageDataProviderItemProvider == null)
+		{
+			imageDataProviderItemProvider = new ImageDataProviderItemProvider(this);
+		}
+
+		return imageDataProviderItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.StaticImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -275,28 +299,27 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileImage} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageViewer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FileImageItemProvider fileImageItemProvider;
+	protected ImageViewerItemProvider imageViewerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImage}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageViewer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createFileImageAdapter()
-	{
-		if (fileImageItemProvider == null)
+	public Adapter createImageViewerAdapter() {
+		if (imageViewerItemProvider == null)
 		{
-			fileImageItemProvider = new FileImageItemProvider(this);
+			imageViewerItemProvider = new ImageViewerItemProvider(this);
 		}
 
-		return fileImageItemProvider;
+		return imageViewerItemProvider;
 	}
 
 	/**
@@ -322,6 +345,31 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 		}
 
 		return fontImageItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileImage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FileImageItemProvider fileImageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFileImageAdapter()
+	{
+		if (fileImageItemProvider == null)
+		{
+			fileImageItemProvider = new FileImageItemProvider(this);
+		}
+
+		return fileImageItemProvider;
 	}
 
 	/**
@@ -964,6 +1012,11 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createStaticImage()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 VulkanResourceFactory.eINSTANCE.createImageViewer()));
 
 				return null;
 			}

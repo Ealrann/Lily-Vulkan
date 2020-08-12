@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.model.resource.FontImage;
@@ -20,7 +19,8 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FontImageItemProvider extends ImageItemProvider
+public class FontImageItemProvider 
+	extends ImageItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -42,7 +42,8 @@ public class FontImageItemProvider extends ImageItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addFontsPropertyDescriptor(object);

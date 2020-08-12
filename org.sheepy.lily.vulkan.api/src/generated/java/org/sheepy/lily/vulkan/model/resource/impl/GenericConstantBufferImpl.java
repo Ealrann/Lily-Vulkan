@@ -84,7 +84,8 @@ public class GenericConstantBufferImpl extends ConstantBufferImpl implements Gen
 	@Override
 	public EList<IModelVariable> getReferencedVariables()
 	{
-		if (referencedVariables == null) {
+		if (referencedVariables == null)
+		{
 			referencedVariables = new EObjectResolvingEList<IModelVariable>(IModelVariable.class, this, VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES);
 		}
 		return referencedVariables;
@@ -110,7 +111,8 @@ public class GenericConstantBufferImpl extends ConstantBufferImpl implements Gen
 	{
 		ModelVariablePkg oldVariablePkg = variablePkg;
 		variablePkg = newVariablePkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG, oldVariablePkg, newVariablePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -125,7 +127,8 @@ public class GenericConstantBufferImpl extends ConstantBufferImpl implements Gen
 	@Override
 	public void setVariablePkg(ModelVariablePkg newVariablePkg)
 	{
-		if (newVariablePkg != variablePkg) {
+		if (newVariablePkg != variablePkg)
+		{
 			NotificationChain msgs = null;
 			if (variablePkg != null)
 				msgs = ((InternalEObject)variablePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG, null, msgs);
@@ -146,7 +149,8 @@ public class GenericConstantBufferImpl extends ConstantBufferImpl implements Gen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG:
 				return basicSetVariablePkg(null, msgs);
 		}
@@ -161,7 +165,8 @@ public class GenericConstantBufferImpl extends ConstantBufferImpl implements Gen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES:
 				return getReferencedVariables();
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG:
@@ -179,7 +184,8 @@ public class GenericConstantBufferImpl extends ConstantBufferImpl implements Gen
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES:
 				getReferencedVariables().clear();
 				getReferencedVariables().addAll((Collection<? extends IModelVariable>)newValue);
@@ -199,7 +205,8 @@ public class GenericConstantBufferImpl extends ConstantBufferImpl implements Gen
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES:
 				getReferencedVariables().clear();
 				return;
@@ -218,7 +225,8 @@ public class GenericConstantBufferImpl extends ConstantBufferImpl implements Gen
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__REFERENCED_VARIABLES:
 				return referencedVariables != null && !referencedVariables.isEmpty();
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG:

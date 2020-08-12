@@ -68,7 +68,8 @@ public enum EFlushMode implements Enumerator
 	 * @generated
 	 */
 	private static final EFlushMode[] VALUES_ARRAY =
-		new EFlushMode[] {
+		new EFlushMode[]
+		{
 			PUSH,
 			FETCH,
 		};
@@ -91,9 +92,11 @@ public enum EFlushMode implements Enumerator
 	 */
 	public static EFlushMode get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EFlushMode result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -110,9 +113,11 @@ public enum EFlushMode implements Enumerator
 	 */
 	public static EFlushMode getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EFlushMode result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -129,7 +134,8 @@ public enum EFlushMode implements Enumerator
 	 */
 	public static EFlushMode get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case PUSH_VALUE: return PUSH;
 			case FETCH_VALUE: return FETCH;
 		}

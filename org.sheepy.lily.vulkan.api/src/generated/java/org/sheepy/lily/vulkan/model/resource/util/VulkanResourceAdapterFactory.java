@@ -123,6 +123,11 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createBufferDataProviderAdapter();
 			}
 			@Override
+			public Adapter caseImageDataProvider(ImageDataProvider object)
+			{
+				return createImageDataProviderAdapter();
+			}
+			@Override
 			public Adapter caseImage(Image object)
 			{
 				return createImageAdapter();
@@ -231,6 +236,11 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseStaticImage(StaticImage object)
 			{
 				return createStaticImageAdapter();
+			}
+			@Override
+			public Adapter caseImageViewer(ImageViewer object)
+			{
+				return createImageViewerAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -405,6 +415,20 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ImageDataProvider <em>Image Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageDataProvider
+	 * @generated
+	 */
+	public Adapter createImageDataProviderAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -435,17 +459,16 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FileImage <em>File Image</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ImageViewer <em>Image Viewer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.FileImage
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageViewer
 	 * @generated
 	 */
-	public Adapter createFileImageAdapter()
-	{
+	public Adapter createImageViewerAdapter() {
 		return null;
 	}
 
@@ -460,6 +483,21 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createFontImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FileImage <em>File Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.FileImage
+	 * @generated
+	 */
+	public Adapter createFileImageAdapter()
 	{
 		return null;
 	}

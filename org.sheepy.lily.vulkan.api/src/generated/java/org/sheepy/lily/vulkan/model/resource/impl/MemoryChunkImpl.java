@@ -87,7 +87,8 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	@Override
 	public EList<IMemoryChunkPart> getParts()
 	{
-		if (parts == null) {
+		if (parts == null)
+		{
 			parts = new EObjectContainmentEList<IMemoryChunkPart>(IMemoryChunkPart.class, this, VulkanResourcePackage.MEMORY_CHUNK__PARTS);
 		}
 		return parts;
@@ -101,10 +102,12 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	@Override
 	public TransferBuffer getTransferBuffer()
 	{
-		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy()) {
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
+		{
 			InternalEObject oldTransferBuffer = transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
-			if (transferBuffer != oldTransferBuffer) {
+			if (transferBuffer != oldTransferBuffer)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.MEMORY_CHUNK__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 			}
@@ -144,7 +147,8 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
 		}
@@ -159,7 +163,8 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				return getParts();
 			case VulkanResourcePackage.MEMORY_CHUNK__TRANSFER_BUFFER:
@@ -178,7 +183,8 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				getParts().clear();
 				getParts().addAll((Collection<? extends IMemoryChunkPart>)newValue);
@@ -198,7 +204,8 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				getParts().clear();
 				return;
@@ -217,7 +224,8 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				return parts != null && !parts.isEmpty();
 			case VulkanResourcePackage.MEMORY_CHUNK__TRANSFER_BUFFER:

@@ -204,7 +204,8 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	@Override
 	public EList<EShaderStage> getShaderStages()
 	{
-		if (shaderStages == null) {
+		if (shaderStages == null)
+		{
 			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -218,7 +219,8 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	@Override
 	public EList<IImage> getImages()
 	{
-		if (images == null) {
+		if (images == null)
+		{
 			images = new EObjectResolvingEList<IImage>(IImage.class, this, VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__IMAGES);
 		}
 		return images;
@@ -257,7 +259,8 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 				return getName();
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:
@@ -281,7 +284,8 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
@@ -311,7 +315,8 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -339,7 +344,8 @@ public class ImageArrayDescriptorImpl extends LilyEObject implements ImageArrayD
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.IMAGE_ARRAY_DESCRIPTOR__TYPE:

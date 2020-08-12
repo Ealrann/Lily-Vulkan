@@ -121,10 +121,12 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	public Image getImage()
 	{
-		if (image != null && ((EObject)image).eIsProxy()) {
+		if (image != null && ((EObject)image).eIsProxy())
+		{
 			InternalEObject oldImage = image;
 			image = (Image)eResolveProxy(oldImage);
-			if (image != oldImage) {
+			if (image != oldImage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.SAMPLER__IMAGE, oldImage, image));
 			}
@@ -164,7 +166,8 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SAMPLER__NAME:
 				return getName();
 			case VulkanResourcePackage.SAMPLER__IMAGE:
@@ -182,7 +185,8 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SAMPLER__NAME:
 				setName((String)newValue);
 				return;
@@ -201,7 +205,8 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SAMPLER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -220,7 +225,8 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SAMPLER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.SAMPLER__IMAGE:
@@ -237,14 +243,18 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case VulkanResourcePackage.SAMPLER__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == IResource.class)
+		{
+			switch (derivedFeatureID)
+			{
 				default: return -1;
 			}
 		}
@@ -259,14 +269,18 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class) {
-			switch (baseFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case TypesPackage.LNAMED_ELEMENT__NAME: return VulkanResourcePackage.SAMPLER__NAME;
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class) {
-			switch (baseFeatureID) {
+		if (baseClass == IResource.class)
+		{
+			switch (baseFeatureID)
+			{
 				default: return -1;
 			}
 		}

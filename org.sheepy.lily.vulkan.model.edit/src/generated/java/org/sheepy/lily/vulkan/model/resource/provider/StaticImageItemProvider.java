@@ -55,7 +55,8 @@ public class StaticImageItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addFormatPropertyDescriptor(object);
@@ -259,7 +260,8 @@ public class StaticImageItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT);
 		}
@@ -319,7 +321,8 @@ public class StaticImageItemProvider extends ItemProviderAdapter implements IEdi
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StaticImage.class)) {
+		switch (notification.getFeatureID(StaticImage.class))
+		{
 			case VulkanResourcePackage.STATIC_IMAGE__FORMAT:
 			case VulkanResourcePackage.STATIC_IMAGE__USAGES:
 			case VulkanResourcePackage.STATIC_IMAGE__TILING:

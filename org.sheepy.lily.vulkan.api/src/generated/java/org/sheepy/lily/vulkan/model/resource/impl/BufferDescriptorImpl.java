@@ -182,7 +182,8 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	@Override
 	public EList<EShaderStage> getShaderStages()
 	{
-		if (shaderStages == null) {
+		if (shaderStages == null)
+		{
 			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, VulkanResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -196,10 +197,12 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	@Override
 	public IBuffer getBuffer()
 	{
-		if (buffer != null && ((EObject)buffer).eIsProxy()) {
+		if (buffer != null && ((EObject)buffer).eIsProxy())
+		{
 			InternalEObject oldBuffer = buffer;
 			buffer = (IBuffer)eResolveProxy(oldBuffer);
-			if (buffer != oldBuffer) {
+			if (buffer != oldBuffer)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.BUFFER_DESCRIPTOR__BUFFER, oldBuffer, buffer));
 			}
@@ -239,7 +242,8 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 				return getName();
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE:
@@ -262,7 +266,8 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 				setName((String)newValue);
 				return;
@@ -288,7 +293,8 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -313,7 +319,8 @@ public class BufferDescriptorImpl extends LilyEObject implements BufferDescripto
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE:

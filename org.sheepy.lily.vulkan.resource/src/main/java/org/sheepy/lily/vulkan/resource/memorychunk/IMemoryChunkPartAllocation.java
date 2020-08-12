@@ -25,10 +25,7 @@ public interface IMemoryChunkPartAllocation extends IExtender, INotifier<IMemory
 
 	record PushData(Stream<FillCommand> fillCommands, long size)
 	{
-		public PushData()
-		{
-			this(Stream.empty(), 0);
-		}
+		public static final PushData EMPTY = new PushData(Stream.empty(), 0);
 
 		PushData merge(PushData other)
 		{

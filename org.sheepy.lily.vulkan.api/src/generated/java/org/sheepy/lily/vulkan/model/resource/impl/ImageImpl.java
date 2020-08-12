@@ -108,7 +108,8 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE__NAME:
 				return getName();
 		}
@@ -123,7 +124,8 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE__NAME:
 				setName((String)newValue);
 				return;
@@ -139,7 +141,8 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -155,7 +158,8 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.IMAGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
@@ -170,19 +174,25 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case VulkanResourcePackage.IMAGE__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == IResource.class)
+		{
+			switch (derivedFeatureID)
+			{
 				default: return -1;
 			}
 		}
-		if (baseClass == IImage.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == IImage.class)
+		{
+			switch (derivedFeatureID)
+			{
 				default: return -1;
 			}
 		}
@@ -197,19 +207,25 @@ public abstract class ImageImpl extends ImageInfoImpl implements Image
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class) {
-			switch (baseFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case TypesPackage.LNAMED_ELEMENT__NAME: return VulkanResourcePackage.IMAGE__NAME;
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class) {
-			switch (baseFeatureID) {
+		if (baseClass == IResource.class)
+		{
+			switch (baseFeatureID)
+			{
 				default: return -1;
 			}
 		}
-		if (baseClass == IImage.class) {
-			switch (baseFeatureID) {
+		if (baseClass == IImage.class)
+		{
+			switch (baseFeatureID)
+			{
 				default: return -1;
 			}
 		}

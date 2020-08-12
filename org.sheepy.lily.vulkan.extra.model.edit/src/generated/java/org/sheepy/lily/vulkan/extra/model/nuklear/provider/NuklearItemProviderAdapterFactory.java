@@ -134,7 +134,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearPushConstantsAdapter()
 	{
-		if (nuklearPushConstantsItemProvider == null) {
+		if (nuklearPushConstantsItemProvider == null)
+		{
 			nuklearPushConstantsItemProvider = new NuklearPushConstantsItemProvider(this);
 		}
 
@@ -158,7 +159,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearContextAdapter()
 	{
-		if (nuklearContextItemProvider == null) {
+		if (nuklearContextItemProvider == null)
+		{
 			nuklearContextItemProvider = new NuklearContextItemProvider(this);
 		}
 
@@ -182,7 +184,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearFontAdapter()
 	{
-		if (nuklearFontItemProvider == null) {
+		if (nuklearFontItemProvider == null)
+		{
 			nuklearFontItemProvider = new NuklearFontItemProvider(this);
 		}
 
@@ -206,7 +209,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createSelectorPanelAdapter()
 	{
-		if (selectorPanelItemProvider == null) {
+		if (selectorPanelItemProvider == null)
+		{
 			selectorPanelItemProvider = new SelectorPanelItemProvider(this);
 		}
 
@@ -230,7 +234,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createPanelViewerAdapter()
 	{
-		if (panelViewerItemProvider == null) {
+		if (panelViewerItemProvider == null)
+		{
 			panelViewerItemProvider = new PanelViewerItemProvider(this);
 		}
 
@@ -254,7 +259,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearVertexProviderAdapter()
 	{
-		if (nuklearVertexProviderItemProvider == null) {
+		if (nuklearVertexProviderItemProvider == null)
+		{
 			nuklearVertexProviderItemProvider = new NuklearVertexProviderItemProvider(this);
 		}
 
@@ -278,7 +284,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Adapter createNuklearIndexProviderAdapter()
 	{
-		if (nuklearIndexProviderItemProvider == null) {
+		if (nuklearIndexProviderItemProvider == null)
+		{
 			nuklearIndexProviderItemProvider = new NuklearIndexProviderItemProvider(this);
 		}
 
@@ -340,9 +347,11 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -417,7 +426,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

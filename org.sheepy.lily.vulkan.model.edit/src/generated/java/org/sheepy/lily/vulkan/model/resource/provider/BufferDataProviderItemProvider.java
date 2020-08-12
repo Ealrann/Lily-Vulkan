@@ -53,7 +53,8 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -123,7 +124,8 @@ public class BufferDataProviderItemProvider extends ItemProviderAdapter implemen
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BufferDataProvider.class)) {
+		switch (notification.getFeatureID(BufferDataProvider.class))
+		{
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

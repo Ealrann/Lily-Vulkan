@@ -7,8 +7,8 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.DeviceResourceFiller;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
@@ -127,7 +127,7 @@ public final class MemoryChunkAllocation implements IExtender
 		return memoryPartAllocations.stream()
 									.map(p -> p.gatherPushData(force, computeSize))
 									.reduce(IMemoryChunkPartAllocation.PushData::merge)
-									.orElseGet(IMemoryChunkPartAllocation.PushData::new);
+									.orElse(IMemoryChunkPartAllocation.PushData.EMPTY);
 	}
 
 	public void attach(final IRecordContext recordContext)

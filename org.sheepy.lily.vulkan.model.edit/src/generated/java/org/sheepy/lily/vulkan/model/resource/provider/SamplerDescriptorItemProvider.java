@@ -64,7 +64,8 @@ public class SamplerDescriptorItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -207,7 +208,8 @@ public class SamplerDescriptorItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SamplerDescriptor.class)) {
+		switch (notification.getFeatureID(SamplerDescriptor.class))
+		{
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__NAME:
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__TYPE:
 			case VulkanResourcePackage.SAMPLER_DESCRIPTOR__SHADER_STAGES:

@@ -187,7 +187,8 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public EList<EBufferUsage> getUsages()
 	{
-		if (usages == null) {
+		if (usages == null)
+		{
 			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, VulkanResourcePackage.STATIC_BUFFER__USAGES);
 		}
 		return usages;
@@ -226,7 +227,8 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 				return getName();
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
@@ -248,7 +250,8 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 				setName((String)newValue);
 				return;
@@ -274,7 +277,8 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -299,7 +303,8 @@ public class StaticBufferImpl extends LilyEObject implements StaticBuffer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:

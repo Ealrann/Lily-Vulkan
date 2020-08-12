@@ -126,7 +126,8 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	@Override
 	public EList<IBufferObject> getBuffers()
 	{
-		if (buffers == null) {
+		if (buffers == null)
+		{
 			buffers = new EObjectContainmentEList<IBufferObject>(IBufferObject.class, this, VulkanResourcePackage.BUFFER_MEMORY__BUFFERS);
 		}
 		return buffers;
@@ -140,7 +141,8 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_MEMORY__BUFFERS:
 				return ((InternalEList<?>)getBuffers()).basicRemove(otherEnd, msgs);
 		}
@@ -155,7 +157,8 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_MEMORY__NAME:
 				return getName();
 			case VulkanResourcePackage.BUFFER_MEMORY__BUFFERS:
@@ -173,7 +176,8 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_MEMORY__NAME:
 				setName((String)newValue);
 				return;
@@ -193,7 +197,8 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_MEMORY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -212,7 +217,8 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_MEMORY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.BUFFER_MEMORY__BUFFERS:
@@ -229,8 +235,10 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case VulkanResourcePackage.BUFFER_MEMORY__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
@@ -246,8 +254,10 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class) {
-			switch (baseFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case TypesPackage.LNAMED_ELEMENT__NAME: return VulkanResourcePackage.BUFFER_MEMORY__NAME;
 				default: return -1;
 			}

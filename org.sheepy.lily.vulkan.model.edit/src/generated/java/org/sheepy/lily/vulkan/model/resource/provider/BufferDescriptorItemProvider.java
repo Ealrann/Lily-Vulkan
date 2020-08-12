@@ -63,7 +63,8 @@ public class BufferDescriptorItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -206,7 +207,8 @@ public class BufferDescriptorItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BufferDescriptor.class)) {
+		switch (notification.getFeatureID(BufferDescriptor.class))
+		{
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__NAME:
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__TYPE:
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR__SHADER_STAGES:

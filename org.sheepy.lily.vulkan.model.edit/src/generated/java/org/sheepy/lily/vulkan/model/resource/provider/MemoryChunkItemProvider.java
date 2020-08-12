@@ -48,7 +48,8 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTransferBufferPropertyDescriptor(object);
@@ -90,7 +91,8 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS);
 		}
@@ -151,7 +153,8 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MemoryChunk.class)) {
+		switch (notification.getFeatureID(MemoryChunk.class))
+		{
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -180,6 +183,11 @@ public class MemoryChunkItemProvider extends IResourceItemProvider
 			(createChildParameter
 				(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS,
 				 VulkanResourceFactory.eINSTANCE.createStaticImage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS,
+				 VulkanResourceFactory.eINSTANCE.createImageViewer()));
 	}
 
 }

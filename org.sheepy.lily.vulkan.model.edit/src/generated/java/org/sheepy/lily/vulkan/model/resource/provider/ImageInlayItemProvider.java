@@ -62,7 +62,8 @@ public class ImageInlayItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addImagePropertyDescriptor(object);
@@ -230,7 +231,8 @@ public class ImageInlayItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ImageInlay.class)) {
+		switch (notification.getFeatureID(ImageInlay.class))
+		{
 			case VulkanResourcePackage.IMAGE_INLAY__POSITION:
 			case VulkanResourcePackage.IMAGE_INLAY__SIZE:
 			case VulkanResourcePackage.IMAGE_INLAY__HORIZONTAL_RELATIVE:

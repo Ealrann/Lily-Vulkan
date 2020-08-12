@@ -73,6 +73,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER: return createGenericConstantBuffer();
 			case VulkanResourcePackage.BUFFER_REFERENCE: return createBufferReference();
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
+			case VulkanResourcePackage.IMAGE_DATA_PROVIDER: return createImageDataProvider();
 			case VulkanResourcePackage.FILE_IMAGE: return createFileImage();
 			case VulkanResourcePackage.FONT_IMAGE: return createFontImage();
 			case VulkanResourcePackage.COMPOSITE_IMAGE: return createCompositeImage();
@@ -92,6 +93,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.DATA_BUFFER: return createDataBuffer();
 			case VulkanResourcePackage.BUFFER_VIEWER: return createBufferViewer();
 			case VulkanResourcePackage.STATIC_IMAGE: return createStaticImage();
+			case VulkanResourcePackage.IMAGE_VIEWER: return createImageViewer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -217,6 +219,17 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public ImageDataProvider createImageDataProvider() {
+		ImageDataProviderImpl imageDataProvider = new ImageDataProviderImpl();
+		return imageDataProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public StaticImage createStaticImage()
 	{
 		StaticImageImpl staticImage = new StaticImageImpl();
@@ -229,10 +242,9 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public FileImage createFileImage()
-	{
-		FileImageImpl fileImage = new FileImageImpl();
-		return fileImage;
+	public ImageViewer createImageViewer() {
+		ImageViewerImpl imageViewer = new ImageViewerImpl();
+		return imageViewer;
 	}
 
 	/**
@@ -245,6 +257,18 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		FontImageImpl fontImage = new FontImageImpl();
 		return fontImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FileImage createFileImage()
+	{
+		FileImageImpl fileImage = new FileImageImpl();
+		return fileImage;
 	}
 
 	/**

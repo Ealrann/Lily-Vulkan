@@ -47,7 +47,8 @@ public class ShaderItemProvider extends IResourceItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addStagePropertyDescriptor(object);
@@ -89,7 +90,8 @@ public class ShaderItemProvider extends IResourceItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanResourcePackage.Literals.SHADER__FILE);
 			childrenFeatures.add(VulkanResourcePackage.Literals.SHADER__CONSTANTS);
@@ -150,7 +152,8 @@ public class ShaderItemProvider extends IResourceItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Shader.class)) {
+		switch (notification.getFeatureID(Shader.class))
+		{
 			case VulkanResourcePackage.SHADER__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -45,7 +45,8 @@ public class TransferBufferItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSizePropertyDescriptor(object);
@@ -164,7 +165,8 @@ public class TransferBufferItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TransferBuffer.class)) {
+		switch (notification.getFeatureID(TransferBuffer.class))
+		{
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_FETCH:

@@ -46,7 +46,8 @@ public class GenericConstantBufferItemProvider extends ConstantBufferItemProvide
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addReferencedVariablesPropertyDescriptor(object);
@@ -88,7 +89,8 @@ public class GenericConstantBufferItemProvider extends ConstantBufferItemProvide
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanResourcePackage.Literals.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG);
 		}
@@ -149,7 +151,8 @@ public class GenericConstantBufferItemProvider extends ConstantBufferItemProvide
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GenericConstantBuffer.class)) {
+		switch (notification.getFeatureID(GenericConstantBuffer.class))
+		{
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER__VARIABLE_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

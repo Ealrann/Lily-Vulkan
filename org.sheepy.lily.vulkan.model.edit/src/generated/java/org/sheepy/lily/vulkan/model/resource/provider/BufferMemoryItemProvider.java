@@ -66,7 +66,8 @@ public class BufferMemoryItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -108,7 +109,8 @@ public class BufferMemoryItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanResourcePackage.Literals.BUFFER_MEMORY__BUFFERS);
 		}
@@ -169,7 +171,8 @@ public class BufferMemoryItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BufferMemory.class)) {
+		switch (notification.getFeatureID(BufferMemory.class))
+		{
 			case VulkanResourcePackage.BUFFER_MEMORY__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -104,7 +104,8 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				return getData();
 		}
@@ -119,7 +120,8 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				setData((ByteBuffer)newValue);
 				return;
@@ -135,7 +137,8 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				setData(DATA_EDEFAULT);
 				return;
@@ -151,7 +154,8 @@ public class ConstantBufferImpl extends IResourceImpl implements ConstantBuffer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.CONSTANT_BUFFER__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}

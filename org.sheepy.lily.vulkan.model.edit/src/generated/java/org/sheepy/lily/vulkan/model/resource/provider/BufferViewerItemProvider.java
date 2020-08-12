@@ -56,7 +56,8 @@ public class BufferViewerItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -170,7 +171,8 @@ public class BufferViewerItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER);
 		}
@@ -231,7 +233,8 @@ public class BufferViewerItemProvider extends ItemProviderAdapter implements IEd
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BufferViewer.class)) {
+		switch (notification.getFeatureID(BufferViewer.class))
+		{
 			case VulkanResourcePackage.BUFFER_VIEWER__NAME:
 			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:

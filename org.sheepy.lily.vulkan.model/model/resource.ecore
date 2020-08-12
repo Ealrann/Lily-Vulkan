@@ -41,6 +41,7 @@
     <eLiterals name="FETCH" value="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>
   <eClassifiers xsi:type="ecore:EClass" name="FileImage" eSuperTypes="#//Image">
@@ -159,5 +160,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillWith" eType="#//ByteBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector2i"
         defaultValueLiteral="1;1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageViewer" eSuperTypes="#//IMemoryChunkPart #//Image">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
+        eType="#//ImageDataProvider" containment="true" resolveProxies="false"/>
   </eClassifiers>
 </ecore:EPackage>

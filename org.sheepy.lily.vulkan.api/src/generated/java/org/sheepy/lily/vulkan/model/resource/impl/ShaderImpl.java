@@ -126,7 +126,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		FileResource oldFile = file;
 		file = newFile;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SHADER__FILE, oldFile, newFile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -141,7 +142,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	@Override
 	public void setFile(FileResource newFile)
 	{
-		if (newFile != file) {
+		if (newFile != file)
+		{
 			NotificationChain msgs = null;
 			if (file != null)
 				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.SHADER__FILE, null, msgs);
@@ -187,7 +189,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	@Override
 	public EList<SpecializationConstant> getConstants()
 	{
-		if (constants == null) {
+		if (constants == null)
+		{
 			constants = new EObjectContainmentEList<SpecializationConstant>(SpecializationConstant.class, this, VulkanResourcePackage.SHADER__CONSTANTS);
 		}
 		return constants;
@@ -201,7 +204,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SHADER__FILE:
 				return basicSetFile(null, msgs);
 			case VulkanResourcePackage.SHADER__CONSTANTS:
@@ -218,7 +222,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SHADER__FILE:
 				return getFile();
 			case VulkanResourcePackage.SHADER__STAGE:
@@ -238,7 +243,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SHADER__FILE:
 				setFile((FileResource)newValue);
 				return;
@@ -261,7 +267,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SHADER__FILE:
 				setFile((FileResource)null);
 				return;
@@ -283,7 +290,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.SHADER__FILE:
 				return file != null;
 			case VulkanResourcePackage.SHADER__STAGE:

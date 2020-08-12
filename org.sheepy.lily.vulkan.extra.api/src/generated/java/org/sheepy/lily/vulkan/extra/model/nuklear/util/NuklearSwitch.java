@@ -51,7 +51,8 @@ public class NuklearSwitch<T> extends Switch<T>
 	 */
 	public NuklearSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = NuklearPackage.eINSTANCE;
 		}
 	}
@@ -80,8 +81,10 @@ public class NuklearSwitch<T> extends Switch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS: {
+		switch (classifierID)
+		{
+			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS:
+			{
 				NuklearPushConstants nuklearPushConstants = (NuklearPushConstants)theEObject;
 				T result = caseNuklearPushConstants(nuklearPushConstants);
 				if (result == null) result = casePushConstant(nuklearPushConstants);
@@ -90,7 +93,8 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.NUKLEAR_CONTEXT: {
+			case NuklearPackage.NUKLEAR_CONTEXT:
+			{
 				NuklearContext nuklearContext = (NuklearContext)theEObject;
 				T result = caseNuklearContext(nuklearContext);
 				if (result == null) result = caseIResource(nuklearContext);
@@ -98,7 +102,8 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.NUKLEAR_FONT: {
+			case NuklearPackage.NUKLEAR_FONT:
+			{
 				NuklearFont nuklearFont = (NuklearFont)theEObject;
 				T result = caseNuklearFont(nuklearFont);
 				if (result == null) result = caseIResource(nuklearFont);
@@ -106,7 +111,8 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.SELECTOR_PANEL: {
+			case NuklearPackage.SELECTOR_PANEL:
+			{
 				SelectorPanel selectorPanel = (SelectorPanel)theEObject;
 				T result = caseSelectorPanel(selectorPanel);
 				if (result == null) result = caseIPanel(selectorPanel);
@@ -117,13 +123,15 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.IINPUT_PROVIDER: {
+			case NuklearPackage.IINPUT_PROVIDER:
+			{
 				IInputProvider iInputProvider = (IInputProvider)theEObject;
 				T result = caseIInputProvider(iInputProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.PANEL_VIEWER: {
+			case NuklearPackage.PANEL_VIEWER:
+			{
 				PanelViewer panelViewer = (PanelViewer)theEObject;
 				T result = casePanelViewer(panelViewer);
 				if (result == null) result = casePanel(panelViewer);
@@ -136,7 +144,8 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.NUKLEAR_VERTEX_PROVIDER: {
+			case NuklearPackage.NUKLEAR_VERTEX_PROVIDER:
+			{
 				NuklearVertexProvider nuklearVertexProvider = (NuklearVertexProvider)theEObject;
 				T result = caseNuklearVertexProvider(nuklearVertexProvider);
 				if (result == null) result = caseBufferDataProvider(nuklearVertexProvider);
@@ -144,7 +153,8 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.NUKLEAR_INDEX_PROVIDER: {
+			case NuklearPackage.NUKLEAR_INDEX_PROVIDER:
+			{
 				NuklearIndexProvider nuklearIndexProvider = (NuklearIndexProvider)theEObject;
 				T result = caseNuklearIndexProvider(nuklearIndexProvider);
 				if (result == null) result = caseBufferDataProvider(nuklearIndexProvider);

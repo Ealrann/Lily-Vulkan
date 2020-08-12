@@ -81,7 +81,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	{
 		BufferReference oldBuffers = buffers;
 		buffers = newBuffers;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_BARRIER__BUFFERS, oldBuffers, newBuffers);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -96,7 +97,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	@Override
 	public void setBuffers(BufferReference newBuffers)
 	{
-		if (newBuffers != buffers) {
+		if (newBuffers != buffers)
+		{
 			NotificationChain msgs = null;
 			if (buffers != null)
 				msgs = ((InternalEObject)buffers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_BARRIER__BUFFERS, null, msgs);
@@ -117,7 +119,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
 				return basicSetBuffers(null, msgs);
 		}
@@ -132,7 +135,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
 				return getBuffers();
 		}
@@ -147,7 +151,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
 				setBuffers((BufferReference)newValue);
 				return;
@@ -163,7 +168,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
 				setBuffers((BufferReference)null);
 				return;
@@ -179,7 +185,8 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanResourcePackage.BUFFER_BARRIER__BUFFERS:
 				return buffers != null;
 		}

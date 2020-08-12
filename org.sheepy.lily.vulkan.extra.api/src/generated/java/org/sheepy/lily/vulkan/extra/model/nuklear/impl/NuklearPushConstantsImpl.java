@@ -193,7 +193,8 @@ public class NuklearPushConstantsImpl extends PushConstantImpl implements Nuklea
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__WIDTH:
 				return getWidth();
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__HEIGHT:
@@ -212,7 +213,8 @@ public class NuklearPushConstantsImpl extends PushConstantImpl implements Nuklea
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__WIDTH:
 				setWidth((Integer)newValue);
 				return;
@@ -234,7 +236,8 @@ public class NuklearPushConstantsImpl extends PushConstantImpl implements Nuklea
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__WIDTH:
 				setWidth(WIDTH_EDEFAULT);
 				return;
@@ -256,7 +259,8 @@ public class NuklearPushConstantsImpl extends PushConstantImpl implements Nuklea
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__WIDTH:
 				return width != WIDTH_EDEFAULT;
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS__HEIGHT:

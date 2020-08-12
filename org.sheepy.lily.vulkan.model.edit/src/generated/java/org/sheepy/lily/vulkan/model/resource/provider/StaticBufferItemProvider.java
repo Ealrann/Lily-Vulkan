@@ -53,7 +53,8 @@ public class StaticBufferItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -196,7 +197,8 @@ public class StaticBufferItemProvider extends ItemProviderAdapter implements IEd
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StaticBuffer.class)) {
+		switch (notification.getFeatureID(StaticBuffer.class))
+		{
 			case VulkanResourcePackage.STATIC_BUFFER__NAME:
 			case VulkanResourcePackage.STATIC_BUFFER__USAGES:
 			case VulkanResourcePackage.STATIC_BUFFER__SIZE:

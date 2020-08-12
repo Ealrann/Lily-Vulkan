@@ -31,9 +31,8 @@ public class StaticImageAllocation extends Notifier<IMemoryChunkPartAllocation.F
 																						 IVkImageAllocation
 {
 	private final StaticImage image;
-
-	private VkImage imageBackend;
-	private VkImageView imageView;
+	private final VkImage imageBackend;
+	private final VkImageView imageView;
 
 	public StaticImageAllocation(StaticImage image, ExecutionContext context)
 	{
@@ -52,10 +51,7 @@ public class StaticImageAllocation extends Notifier<IMemoryChunkPartAllocation.F
 	{
 		final var vkDevice = context.getVkDevice();
 		imageView.free(vkDevice);
-		imageView = null;
-
 		imageBackend.free(context);
-		imageBackend = null;
 	}
 
 	@Override
