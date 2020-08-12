@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.resource.font.util;
 
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
-import org.lwjgl.stb.STBTTPackedchar.Buffer;
+import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
@@ -74,7 +74,7 @@ public final class FontTableAllocator implements IFontTableInfo
 		return new CodepointDispatch(tables, codepoints);
 	}
 
-	public void pack(STBTTPackContext pc, Buffer buffer, CodepointDispatch dispatch)
+	public void pack(STBTTPackContext pc, STBTTPackedchar.Buffer cdata, CodepointDispatch dispatch)
 	{
 		charCount = 0;
 		int bufferOffset = 0;
@@ -88,7 +88,7 @@ public final class FontTableAllocator implements IFontTableInfo
 				for (int i = 0; i < codepoints.length; i++)
 				{
 					final int codepoint = codepoints[i];
-					final var subData = buffer.slice(bufferOffset++, 1);
+					final var subData = cdata.slice(bufferOffset++, 1);
 					if (stbtt_PackFontRange(pc, ttfBuffer, 0, height, codepoint, subData) == false)
 					{
 						logFail();
