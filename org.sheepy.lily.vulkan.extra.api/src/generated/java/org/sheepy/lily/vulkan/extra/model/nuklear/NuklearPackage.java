@@ -264,22 +264,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_FONT__NAME = ResourcePackage.IRESOURCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_FONT__TRANSFER_BUFFER = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Font Image</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__FONT_IMAGE = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_FONT__FONT_IMAGE = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Font</em>' class.
@@ -288,7 +279,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 2;
+	int NUKLEAR_FONT_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -773,6 +764,98 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_INDEX_PROVIDER_OPERATION_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontImageProviderImpl <em>Font Image Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontImageProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getFontImageProvider()
+	 * @generated
+	 */
+	int FONT_IMAGE_PROVIDER = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE_PROVIDER__NAME = VulkanResourcePackage.IMAGE_DATA_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Font Usages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE_PROVIDER__FONT_USAGES = VulkanResourcePackage.IMAGE_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Font Image Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE_PROVIDER_FEATURE_COUNT = VulkanResourcePackage.IMAGE_DATA_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Font Image Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_IMAGE_PROVIDER_OPERATION_COUNT = VulkanResourcePackage.IMAGE_DATA_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontUsageImpl <em>Font Usage</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontUsageImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getFontUsage()
+	 * @generated
+	 */
+	int FONT_USAGE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Font</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_USAGE__FONT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Strings</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_USAGE__STRINGS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Font Usage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_USAGE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Font Usage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_USAGE_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants <em>Push Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -911,17 +994,6 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 */
 	EClass getNuklearFont();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getTransferBuffer <em>Transfer Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Transfer Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getTransferBuffer()
-	 * @see #getNuklearFont()
-	 * @generated
-	 */
-	EReference getNuklearFont_TransferBuffer();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontImage <em>Font Image</em>}'.
@@ -1128,6 +1200,59 @@ public interface NuklearPackage extends EPackage
 	EClass getNuklearIndexProvider();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider <em>Font Image Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Font Image Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider
+	 * @generated
+	 */
+	EClass getFontImageProvider();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getFontUsages <em>Font Usages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Font Usages</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getFontUsages()
+	 * @see #getFontImageProvider()
+	 * @generated
+	 */
+	EReference getFontImageProvider_FontUsages();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage <em>Font Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Font Usage</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage
+	 * @generated
+	 */
+	EClass getFontUsage();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage#getFont <em>Font</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Font</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage#getFont()
+	 * @see #getFontUsage()
+	 * @generated
+	 */
+	EReference getFontUsage_Font();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage#getStrings <em>Strings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Strings</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage#getStrings()
+	 * @see #getFontUsage()
+	 * @generated
+	 */
+	EAttribute getFontUsage_Strings();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1259,14 +1384,6 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EClass NUKLEAR_FONT = eINSTANCE.getNuklearFont();
-
-		/**
-		 * The meta object literal for the '<em><b>Transfer Buffer</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NUKLEAR_FONT__TRANSFER_BUFFER = eINSTANCE.getNuklearFont_TransferBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Font Image</b></em>' reference feature.
@@ -1429,6 +1546,50 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EClass NUKLEAR_INDEX_PROVIDER = eINSTANCE.getNuklearIndexProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontImageProviderImpl <em>Font Image Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontImageProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getFontImageProvider()
+		 * @generated
+		 */
+		EClass FONT_IMAGE_PROVIDER = eINSTANCE.getFontImageProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Usages</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FONT_IMAGE_PROVIDER__FONT_USAGES = eINSTANCE.getFontImageProvider_FontUsages();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontUsageImpl <em>Font Usage</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontUsageImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getFontUsage()
+		 * @generated
+		 */
+		EClass FONT_USAGE = eINSTANCE.getFontUsage();
+
+		/**
+		 * The meta object literal for the '<em><b>Font</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FONT_USAGE__FONT = eINSTANCE.getFontUsage_Font();
+
+		/**
+		 * The meta object literal for the '<em><b>Strings</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FONT_USAGE__STRINGS = eINSTANCE.getFontUsage_Strings();
 
 	}
 

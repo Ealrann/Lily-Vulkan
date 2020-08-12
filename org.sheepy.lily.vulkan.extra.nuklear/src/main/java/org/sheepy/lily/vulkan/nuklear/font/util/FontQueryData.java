@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.nuklear.font.util;
 
 import org.lwjgl.nuklear.NkUserFontGlyph;
 import org.lwjgl.stb.STBTTAlignedQuad;
-import org.sheepy.lily.vulkan.core.resource.font.IFontAllocator;
+import org.sheepy.lily.vulkan.nuklear.font.IFontAllocator;
 
 public class FontQueryData
 {

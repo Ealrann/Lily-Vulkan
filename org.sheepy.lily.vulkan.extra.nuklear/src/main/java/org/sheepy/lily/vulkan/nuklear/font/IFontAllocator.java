@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.core.resource.font;
+package org.sheepy.lily.vulkan.nuklear.font;
 
 import org.lwjgl.system.Struct;
 import org.sheepy.lily.core.api.notification.Feature;

@@ -1,12 +1,13 @@
-package org.sheepy.lily.vulkan.resource.font.util;
+package org.sheepy.lily.vulkan.nuklear.font.util;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.sheepy.lily.core.model.ui.UiFactory;
 
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Test;
-import org.sheepy.lily.core.model.ui.UiFactory;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CodepointMapTest
 {
@@ -40,8 +41,8 @@ public class CodepointMapTest
 		assertTrue(c1.isCompatible(c2));
 		assertTrue(c3.isCompatible(c2));
 		assertTrue(c3.isCompatible(c1));
-		assertTrue(c2.isCompatible(c1) == false);
-		assertTrue(c1.isCompatible(c3) == false);
+		assertFalse(c2.isCompatible(c1));
+		assertFalse(c1.isCompatible(c3));
 	}
 
 	@Test
@@ -62,6 +63,6 @@ public class CodepointMapTest
 		assertTrue(c3.isCompatible(c2));
 		assertTrue(c3.isCompatible(c1));
 		assertTrue(c2.isCompatible(c1));
-		assertTrue(c1.isCompatible(c3) == false);
+		assertFalse(c1.isCompatible(c3));
 	}
 }

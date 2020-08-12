@@ -58,7 +58,6 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.EContextIndex;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.FileImage;
-import org.sheepy.lily.vulkan.model.resource.FontImage;
 import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBufferObject;
@@ -174,13 +173,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass imageViewerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass fontImageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -704,28 +696,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EReference getImageViewer_DataProvider() {
 		return (EReference)imageViewerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFontImage()
-	{
-		return fontImageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getFontImage_Fonts()
-	{
-		return (EReference)fontImageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1405,9 +1375,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEReference(fileImageEClass, FILE_IMAGE__FILE);
 		createEAttribute(fileImageEClass, FILE_IMAGE__MIPMAP_ENABLED);
 
-		fontImageEClass = createEClass(FONT_IMAGE);
-		createEReference(fontImageEClass, FONT_IMAGE__FONTS);
-
 		compositeImageEClass = createEClass(COMPOSITE_IMAGE);
 		createEReference(compositeImageEClass, COMPOSITE_IMAGE__INLAYS);
 		createEReference(compositeImageEClass, COMPOSITE_IMAGE__BACKGROUND);
@@ -1521,7 +1488,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
-		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
@@ -1541,7 +1507,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		imageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
 		imageEClass.getESuperTypes().add(theResourcePackage.getIImage());
 		fileImageEClass.getESuperTypes().add(this.getImage());
-		fontImageEClass.getESuperTypes().add(this.getImage());
 		compositeImageEClass.getESuperTypes().add(this.getImage());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
 		samplerEClass.getESuperTypes().add(theResourcePackage.getIResource());
@@ -1597,9 +1562,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEClass(fileImageEClass, FileImage.class, "FileImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFileImage_File(), theResourcePackage.getFileResource(), null, "file", null, 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFileImage_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 1, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(fontImageEClass, FontImage.class, "FontImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFontImage_Fonts(), theUiPackage.getFont(), null, "fonts", null, 0, -1, FontImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeImageEClass, CompositeImage.class, "CompositeImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeImage_Inlays(), this.getImageInlay(), null, "inlays", null, 0, -1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

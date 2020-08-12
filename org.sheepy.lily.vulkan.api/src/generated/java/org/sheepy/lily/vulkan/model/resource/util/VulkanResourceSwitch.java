@@ -174,18 +174,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.FONT_IMAGE:
-			{
-				FontImage fontImage = (FontImage)theEObject;
-				T result = caseFontImage(fontImage);
-				if (result == null) result = caseImage(fontImage);
-				if (result == null) result = caseImageInfo(fontImage);
-				if (result == null) result = caseIImage(fontImage);
-				if (result == null) result = caseIResource(fontImage);
-				if (result == null) result = caseLNamedElement(fontImage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case VulkanResourcePackage.COMPOSITE_IMAGE:
 			{
 				CompositeImage compositeImage = (CompositeImage)theEObject;
@@ -553,22 +541,6 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImageViewer(ImageViewer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Font Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Font Image</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFontImage(FontImage object)
-	{
 		return null;
 	}
 

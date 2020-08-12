@@ -46,7 +46,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/compositeDrawTask"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearFont">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFont/transferBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFont/fontImage"/>
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//SelectorPanel">
@@ -69,6 +68,13 @@
     </genClasses>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearVertexProvider"/>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearIndexProvider"/>
+    <genClasses ecoreClass="Nuklear.ecore#//FontImageProvider">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//FontImageProvider/fontUsages"/>
+    </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//FontUsage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//FontUsage/font"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//FontUsage/strings"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"

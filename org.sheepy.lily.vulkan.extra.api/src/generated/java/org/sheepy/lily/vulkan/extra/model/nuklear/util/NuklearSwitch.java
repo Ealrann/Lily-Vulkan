@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.*;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.resource.ImageDataProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -162,6 +163,22 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case NuklearPackage.FONT_IMAGE_PROVIDER:
+			{
+				FontImageProvider fontImageProvider = (FontImageProvider)theEObject;
+				T result = caseFontImageProvider(fontImageProvider);
+				if (result == null) result = caseImageDataProvider(fontImageProvider);
+				if (result == null) result = caseLNamedElement(fontImageProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NuklearPackage.FONT_USAGE:
+			{
+				FontUsage fontUsage = (FontUsage)theEObject;
+				T result = caseFontUsage(fontUsage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -290,6 +307,38 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseNuklearIndexProvider(NuklearIndexProvider object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Font Image Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Font Image Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFontImageProvider(FontImageProvider object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Font Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Font Usage</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFontUsage(FontUsage object)
 	{
 		return null;
 	}
@@ -466,6 +515,22 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseBufferDataProvider(BufferDataProvider object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image Data Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImageDataProvider(ImageDataProvider object)
 	{
 		return null;
 	}

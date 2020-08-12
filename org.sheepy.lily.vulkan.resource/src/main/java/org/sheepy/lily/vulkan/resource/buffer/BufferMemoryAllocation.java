@@ -87,12 +87,12 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 											   .mapToLong(IBufferAllocation::getBindSize)
 											   .sum() : 0;
 
-		final var dataStream = IntStream.range(0, buffers.size())
+		final var fillCommands = IntStream.range(0, buffers.size())
 										.mapToObj(this::newBufferData)
 										.filter(data -> force || data.bufferAllocation.needPush())
 										.map(data -> data.buildFillCommand(bufferPtr));
 
-		return new PushData(dataStream, size);
+		return new PushData(fillCommands, size);
 	}
 
 	private BufferData newBufferData(int index)

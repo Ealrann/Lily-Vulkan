@@ -10,7 +10,8 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontPkg;
 import org.sheepy.lily.core.model.ui.UI;
-import org.sheepy.lily.vulkan.core.resource.font.IFontImageAllocation;
+import org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.ui.ITextWidgetAdapter;
@@ -45,11 +46,9 @@ public final class NuklearFontAdapter implements IExtender
 
 		final List<Font> fonts = gatherFonts(ui.getFontPkg());
 		defaultFont = fonts.get(0);
-
-		final var fontImage = nuklearFont.getFontImage();
-		fontImage.getFonts().addAll(fonts);
-
 		textWidgetAdapterDeployer.deploy(ui);
+
+		update();
 	}
 
 	@Dispose
@@ -63,21 +62,26 @@ public final class NuklearFontAdapter implements IExtender
 	{
 		if (dirty)
 		{
-			final Map<Font, List<String>> characterMap = new HashMap<>();
+			final Map<Font, FontUsage> usageMap = new HashMap<>();
 			for (final var textAdapter : textAdapters)
 			{
 				final var providedFont = textAdapter.getFont();
 				final var font = providedFont != null ? providedFont : defaultFont;
-				final var list = characterMap.computeIfAbsent(font, k -> new ArrayList<>());
-				list.add(textAdapter.getText());
+				final var usage = usageMap.computeIfAbsent(font, NuklearFontAdapter::newFontUsage);
+				usage.getStrings().add(textAdapter.getText());
 			}
 
-			final var fontImageAllocation = nuklearFont.getFontImage().adapt(IFontImageAllocation.class);
-			if (fontImageAllocation.push(characterMap, nuklearFont.getTransferBuffer()))
-			{
-				dirty = false;
-			}
+			nuklearFont.getFontImage().getFontUsages().clear();
+			nuklearFont.getFontImage().getFontUsages().addAll(usageMap.values());
+			dirty = false;
 		}
+	}
+
+	private static FontUsage newFontUsage(Font font)
+	{
+		final var res = NuklearFactory.eINSTANCE.createFontUsage();
+		res.setFont(font);
+		return res;
 	}
 
 	private void newTextWidgetAdapter(ITextWidgetAdapter newAdapter)

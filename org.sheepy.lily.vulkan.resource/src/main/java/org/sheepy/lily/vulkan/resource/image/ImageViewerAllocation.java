@@ -96,7 +96,7 @@ public class ImageViewerAllocation extends Notifier<IMemoryChunkPartAllocation.F
 		}
 		else
 		{
-			return PushData.EMPTY;
+			return PushData.empty();
 		}
 	}
 

@@ -127,7 +127,7 @@ public final class MemoryChunkAllocation implements IExtender
 		return memoryPartAllocations.stream()
 									.map(p -> p.gatherPushData(force, computeSize))
 									.reduce(IMemoryChunkPartAllocation.PushData::merge)
-									.orElse(IMemoryChunkPartAllocation.PushData.EMPTY);
+									.orElseGet(IMemoryChunkPartAllocation.PushData::empty);
 	}
 
 	public void attach(final IRecordContext recordContext)

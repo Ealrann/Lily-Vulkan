@@ -75,7 +75,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
 			case VulkanResourcePackage.IMAGE_DATA_PROVIDER: return createImageDataProvider();
 			case VulkanResourcePackage.FILE_IMAGE: return createFileImage();
-			case VulkanResourcePackage.FONT_IMAGE: return createFontImage();
 			case VulkanResourcePackage.COMPOSITE_IMAGE: return createCompositeImage();
 			case VulkanResourcePackage.IMAGE_INLAY: return createImageInlay();
 			case VulkanResourcePackage.SAMPLER: return createSampler();
@@ -245,18 +244,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	public ImageViewer createImageViewer() {
 		ImageViewerImpl imageViewer = new ImageViewerImpl();
 		return imageViewer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public FontImage createFontImage()
-	{
-		FontImageImpl fontImage = new FontImageImpl();
-		return fontImage;
 	}
 
 	/**

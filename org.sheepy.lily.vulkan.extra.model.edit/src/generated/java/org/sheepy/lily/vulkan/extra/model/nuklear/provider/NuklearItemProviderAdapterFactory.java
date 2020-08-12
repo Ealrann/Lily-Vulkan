@@ -55,6 +55,7 @@ import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
+import org.sheepy.lily.vulkan.model.resource.ImageViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.lily.vulkan.model.resource.util.VulkanResourceSwitch;
@@ -293,6 +294,56 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FontImageProviderItemProvider fontImageProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFontImageProviderAdapter()
+	{
+		if (fontImageProviderItemProvider == null)
+		{
+			fontImageProviderItemProvider = new FontImageProviderItemProvider(this);
+		}
+
+		return fontImageProviderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FontUsageItemProvider fontUsageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFontUsageAdapter()
+	{
+		if (fontUsageItemProvider == null)
+		{
+			fontUsageItemProvider = new FontUsageItemProvider(this);
+		}
+
+		return fontUsageItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -448,6 +499,8 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		if (panelViewerItemProvider != null) panelViewerItemProvider.dispose();
 		if (nuklearVertexProviderItemProvider != null) nuklearVertexProviderItemProvider.dispose();
 		if (nuklearIndexProviderItemProvider != null) nuklearIndexProviderItemProvider.dispose();
+		if (fontImageProviderItemProvider != null) fontImageProviderItemProvider.dispose();
+		if (fontUsageItemProvider != null) fontUsageItemProvider.dispose();
 	}
 
 	/**
@@ -723,6 +776,21 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 					(createChildParameter
 						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
 						 NuklearFactory.eINSTANCE.createNuklearIndexProvider()));
+
+				return null;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseImageViewer(ImageViewer object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.IMAGE_VIEWER__DATA_PROVIDER,
+						 NuklearFactory.eINSTANCE.createFontImageProvider()));
 
 				return null;
 			}

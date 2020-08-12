@@ -13,7 +13,6 @@ module org.sheepy.lily.vulkan.resource {
 	opens org.sheepy.lily.vulkan.resource.buffer.reference;
 	opens org.sheepy.lily.vulkan.resource.descriptor;
 	opens org.sheepy.lily.vulkan.resource.file;
-	opens org.sheepy.lily.vulkan.resource.font;
 	opens org.sheepy.lily.vulkan.resource.image;
 	opens org.sheepy.lily.vulkan.resource.image.descriptor;
 	opens org.sheepy.lily.vulkan.resource.memorychunk;

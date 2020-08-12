@@ -20,6 +20,19 @@ dependencies {
 	api "org.lwjgl:lwjgl-nuklear:$lwjglVersion"
 	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
 	implementation "org.lwjgl:lwjgl-nuklear:$lwjglVersion:$lwjglNatives"
+
+	// Test
+	testRuntimeOnly 'org.sheepy.lily.core:org.sheepy.lily.core.base'
+
+	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+	testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
+
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher:$junitPlatformVersion"
+}
+
+test {
+	useJUnitPlatform()
 }
 
 sourceSets {

@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.font.util;
+package org.sheepy.lily.vulkan.nuklear.font.util;
 
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
@@ -8,7 +8,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontTable;
-import org.sheepy.lily.vulkan.core.resource.font.IFontTableInfo;
+import org.sheepy.lily.vulkan.nuklear.font.IFontTableInfo;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
 import java.nio.ByteBuffer;

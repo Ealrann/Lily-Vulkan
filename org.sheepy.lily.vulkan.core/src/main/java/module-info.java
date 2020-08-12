@@ -25,7 +25,6 @@ module org.sheepy.lily.vulkan.core {
 	exports org.sheepy.lily.vulkan.core.resource;
 	exports org.sheepy.lily.vulkan.core.resource.attachment;
 	exports org.sheepy.lily.vulkan.core.resource.buffer;
-	exports org.sheepy.lily.vulkan.core.resource.font;
 	exports org.sheepy.lily.vulkan.core.resource.image;
 	exports org.sheepy.lily.vulkan.core.resource.memory;
 	exports org.sheepy.lily.vulkan.core.resource.transfer;

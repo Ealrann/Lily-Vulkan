@@ -5,7 +5,6 @@ import org.lwjgl.nuklear.NkUserFont;
 import org.lwjgl.nuklear.NkUserFontGlyph;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.core.resource.font.IFontAllocator;
 import org.sheepy.lily.vulkan.nuklear.font.util.FontQueryData;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAllocation;
 

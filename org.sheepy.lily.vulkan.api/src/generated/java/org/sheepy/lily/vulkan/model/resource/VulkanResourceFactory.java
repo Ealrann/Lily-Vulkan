@@ -104,15 +104,6 @@ public interface VulkanResourceFactory extends EFactory
 	ImageViewer createImageViewer();
 
 	/**
-	 * Returns a new object of class '<em>Font Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Font Image</em>'.
-	 * @generated
-	 */
-	FontImage createFontImage();
-
-	/**
 	 * Returns a new object of class '<em>File Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

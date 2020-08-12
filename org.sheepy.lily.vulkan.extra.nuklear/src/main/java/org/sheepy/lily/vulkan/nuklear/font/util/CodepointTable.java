@@ -1,6 +1,6 @@
-package org.sheepy.lily.vulkan.resource.font.util;
+package org.sheepy.lily.vulkan.nuklear.font.util;
 
-import org.sheepy.lily.vulkan.core.resource.font.IFontTableInfo.TableData;
+import org.sheepy.lily.vulkan.nuklear.font.IFontTableInfo.TableData;
 
 import java.util.ArrayList;
 import java.util.List;

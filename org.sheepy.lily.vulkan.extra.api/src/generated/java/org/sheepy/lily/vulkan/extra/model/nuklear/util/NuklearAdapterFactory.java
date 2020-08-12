@@ -21,6 +21,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.*;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.resource.ImageDataProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -126,6 +127,16 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createNuklearIndexProviderAdapter();
 			}
 			@Override
+			public Adapter caseFontImageProvider(FontImageProvider object)
+			{
+				return createFontImageProviderAdapter();
+			}
+			@Override
+			public Adapter caseFontUsage(FontUsage object)
+			{
+				return createFontUsageAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -179,6 +190,11 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseBufferDataProvider(BufferDataProvider object)
 			{
 				return createBufferDataProviderAdapter();
+			}
+			@Override
+			public Adapter caseImageDataProvider(ImageDataProvider object)
+			{
+				return createImageDataProviderAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -318,6 +334,36 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNuklearIndexProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider <em>Font Image Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider
+	 * @generated
+	 */
+	public Adapter createFontImageProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage <em>Font Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage
+	 * @generated
+	 */
+	public Adapter createFontUsageAdapter()
 	{
 		return null;
 	}
@@ -483,6 +529,21 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBufferDataProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ImageDataProvider <em>Image Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageDataProvider
+	 * @generated
+	 */
+	public Adapter createImageDataProviderAdapter()
 	{
 		return null;
 	}

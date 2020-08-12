@@ -323,31 +323,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FontImage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FontImageItemProvider fontImageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FontImage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFontImageAdapter()
-	{
-		if (fontImageItemProvider == null)
-		{
-			fontImageItemProvider = new FontImageItemProvider(this);
-		}
-
-		return fontImageItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -982,11 +957,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createFileImage()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createFontImage()));
 
 				newChildDescriptors.add
 					(createChildParameter

@@ -536,7 +536,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getStaticImage()
 	 * @generated
 	 */
-	int STATIC_IMAGE = 29;
+	int STATIC_IMAGE = 28;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl <em>File Image</em>}' class.
@@ -646,7 +646,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getCompositeImage()
 	 * @generated
 	 */
-	int COMPOSITE_IMAGE = 11;
+	int COMPOSITE_IMAGE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageInlayImpl <em>Image Inlay</em>}' class.
@@ -656,7 +656,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageInlay()
 	 * @generated
 	 */
-	int IMAGE_INLAY = 12;
+	int IMAGE_INLAY = 11;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
@@ -666,7 +666,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSampler()
 	 * @generated
 	 */
-	int SAMPLER = 13;
+	int SAMPLER = 12;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDescriptorImpl <em>Buffer Descriptor</em>}' class.
@@ -676,7 +676,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferDescriptor()
 	 * @generated
 	 */
-	int BUFFER_DESCRIPTOR = 14;
+	int BUFFER_DESCRIPTOR = 13;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageDescriptorImpl <em>Image Descriptor</em>}' class.
@@ -686,7 +686,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageDescriptor()
 	 * @generated
 	 */
-	int IMAGE_DESCRIPTOR = 15;
+	int IMAGE_DESCRIPTOR = 14;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerDescriptorImpl <em>Sampler Descriptor</em>}' class.
@@ -696,7 +696,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getSamplerDescriptor()
 	 * @generated
 	 */
-	int SAMPLER_DESCRIPTOR = 16;
+	int SAMPLER_DESCRIPTOR = 15;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
@@ -706,7 +706,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 17;
+	int DESCRIPTOR_SET = 16;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
@@ -716,7 +716,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 18;
+	int BUFFER_BARRIER = 17;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
@@ -726,7 +726,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 19;
+	int IMAGE_BARRIER = 18;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
@@ -736,7 +736,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 20;
+	int SHADER = 19;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageArrayDescriptorImpl <em>Image Array Descriptor</em>}' class.
@@ -746,7 +746,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageArrayDescriptor()
 	 * @generated
 	 */
-	int IMAGE_ARRAY_DESCRIPTOR = 21;
+	int IMAGE_ARRAY_DESCRIPTOR = 20;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.MemoryChunkImpl <em>Memory Chunk</em>}' class.
@@ -756,7 +756,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getMemoryChunk()
 	 * @generated
 	 */
-	int MEMORY_CHUNK = 22;
+	int MEMORY_CHUNK = 21;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart <em>IMemory Chunk Part</em>}' class.
@@ -766,7 +766,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIMemoryChunkPart()
 	 * @generated
 	 */
-	int IMEMORY_CHUNK_PART = 23;
+	int IMEMORY_CHUNK_PART = 22;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferMemoryImpl <em>Buffer Memory</em>}' class.
@@ -776,7 +776,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferMemory()
 	 * @generated
 	 */
-	int BUFFER_MEMORY = 24;
+	int BUFFER_MEMORY = 23;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.IBufferObject <em>IBuffer Object</em>}' class.
@@ -786,7 +786,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getIBufferObject()
 	 * @generated
 	 */
-	int IBUFFER_OBJECT = 25;
+	int IBUFFER_OBJECT = 24;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StaticBufferImpl <em>Static Buffer</em>}' class.
@@ -796,7 +796,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getStaticBuffer()
 	 * @generated
 	 */
-	int STATIC_BUFFER = 26;
+	int STATIC_BUFFER = 25;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DataBufferImpl <em>Data Buffer</em>}' class.
@@ -806,7 +806,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getDataBuffer()
 	 * @generated
 	 */
-	int DATA_BUFFER = 27;
+	int DATA_BUFFER = 26;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferViewerImpl <em>Buffer Viewer</em>}' class.
@@ -816,7 +816,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getBufferViewer()
 	 * @generated
 	 */
-	int BUFFER_VIEWER = 28;
+	int BUFFER_VIEWER = 27;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageViewerImpl <em>Image Viewer</em>}' class.
@@ -826,98 +826,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImageViewer()
 	 * @generated
 	 */
-	int IMAGE_VIEWER = 30;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl <em>Font Image</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFontImage()
-	 * @generated
-	 */
-	int FONT_IMAGE = 10;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE__FORMAT = IMAGE__FORMAT;
-
-	/**
-	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE__USAGES = IMAGE__USAGES;
-
-	/**
-	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE__TILING = IMAGE__TILING;
-
-	/**
-	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE__MIP_LEVELS = IMAGE__MIP_LEVELS;
-
-	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE__NAME = IMAGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Fonts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE__FONTS = IMAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Font Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Font Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
+	int IMAGE_VIEWER = 29;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -2169,7 +2078,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getEContextIndex()
 	 * @generated
 	 */
-	int ECONTEXT_INDEX = 31;
+	int ECONTEXT_INDEX = 30;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.EFlushMode <em>EFlush Mode</em>}' enum.
@@ -2179,7 +2088,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getEFlushMode()
 	 * @generated
 	 */
-	int EFLUSH_MODE = 32;
+	int EFLUSH_MODE = 31;
 
 	/**
 	 * The meta object id for the '<em>Byte Buffer</em>' data type.
@@ -2189,7 +2098,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 33;
+	int BYTE_BUFFER = 32;
 
 
 	/**
@@ -2455,27 +2364,6 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 */
 	EReference getImageViewer_DataProvider();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FontImage <em>Font Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Font Image</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FontImage
-	 * @generated
-	 */
-	EClass getFontImage();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.resource.FontImage#getFonts <em>Fonts</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Fonts</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FontImage#getFonts()
-	 * @see #getFontImage()
-	 * @generated
-	 */
-	EReference getFontImage_Fonts();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FileImage <em>File Image</em>}'.
@@ -3317,24 +3205,6 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference IMAGE_VIEWER__DATA_PROVIDER = eINSTANCE.getImageViewer_DataProvider();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl <em>Font Image</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImageImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFontImage()
-		 * @generated
-		 */
-		EClass FONT_IMAGE = eINSTANCE.getFontImage();
-
-		/**
-		 * The meta object literal for the '<em><b>Fonts</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FONT_IMAGE__FONTS = eINSTANCE.getFontImage_Fonts();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl <em>File Image</em>}' class.
