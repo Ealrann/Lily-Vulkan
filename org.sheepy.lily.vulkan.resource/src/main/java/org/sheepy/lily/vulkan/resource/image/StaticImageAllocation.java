@@ -67,10 +67,10 @@ public class StaticImageAllocation extends Notifier<IMemoryChunkPartAllocation.F
 	}
 
 	@Override
-	public PushData gatherPushData(boolean force, boolean computeSize)
+	public Stream<FillCommand> streamFillCommands(boolean force)
 	{
 		final var fillCommand = new FillCommand.FillImageCommand(this::fillData, imageBackend, 0);
-		return new PushData(Stream.of(fillCommand), imageBackend.getSize());
+		return Stream.of(fillCommand);
 	}
 
 	private void fillData(ByteBuffer trgBuffer)

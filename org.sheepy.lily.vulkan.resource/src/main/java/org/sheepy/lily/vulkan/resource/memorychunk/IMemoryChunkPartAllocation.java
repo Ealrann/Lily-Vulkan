@@ -21,18 +21,5 @@ public interface IMemoryChunkPartAllocation extends IExtender, INotifier<IMemory
 
 	void registerMemory(MemoryBuilder memoryBuilder);
 
-	PushData gatherPushData(boolean force, boolean computeSize);
-
-	record PushData(Stream<FillCommand> fillCommands, long size)
-	{
-		public static PushData empty()
-		{
-			return new PushData(Stream.empty(), 0);
-		}
-
-		PushData merge(PushData other)
-		{
-			return new PushData(Stream.concat(fillCommands, other.fillCommands), size + other.size);
-		}
-	}
+	Stream<FillCommand> streamFillCommands(boolean force);
 }

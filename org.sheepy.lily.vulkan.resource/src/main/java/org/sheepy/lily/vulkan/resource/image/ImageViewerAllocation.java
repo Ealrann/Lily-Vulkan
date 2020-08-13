@@ -89,17 +89,17 @@ public final class ImageViewerAllocation extends Notifier<IMemoryChunkPartAlloca
 	}
 
 	@Override
-	public PushData gatherPushData(boolean force, boolean computeSize)
+	public Stream<FillCommand> streamFillCommands(boolean force)
 	{
 		if (needPush || force)
 		{
 			needPush = false;
 			final var fillCommand = new FillCommand.FillImageCommand(dataProviderAdapter::fill, imageBackend, 0);
-			return new PushData(Stream.of(fillCommand), imageBackend.getSize());
+			return Stream.of(fillCommand);
 		}
 		else
 		{
-			return PushData.empty();
+			return Stream.empty();
 		}
 	}
 

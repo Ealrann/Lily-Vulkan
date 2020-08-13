@@ -12,11 +12,13 @@ import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.DeviceResourceFiller;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
+import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.lwjgl.vulkan.VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
@@ -106,28 +108,25 @@ public final class MemoryChunkAllocation implements IExtender
 
 	private void pushData(boolean force)
 	{
-		final var commands = streamFillCommands(force, true);
-		bufferPusher.fillData(commands.fillCommands(), commands.size());
+		final var commands = streamFillCommands(force);
+		bufferPusher.fillData(commands);
 	}
 
 	private void recordTransfer(boolean force)
 	{
-		final var commands = streamFillCommands(force, false);
+		final var commands = streamFillCommands(force);
 		final var transferBuffer = memoryChunk.getTransferBuffer();
 		final var transferBufferAllocation = transferBuffer.adapt(TransferBufferAllocation.class);
-		final boolean res = transferBufferAllocation.queueFillCommands(commands.fillCommands());
+		final boolean res = transferBufferAllocation.queueFillCommands(commands);
 		if (!res && DebugUtil.DEBUG_ENABLED)
 		{
 			logTransferError();
 		}
 	}
 
-	private IMemoryChunkPartAllocation.PushData streamFillCommands(boolean force, boolean computeSize)
+	private Stream<FillCommand> streamFillCommands(boolean force)
 	{
-		return memoryPartAllocations.stream()
-									.map(p -> p.gatherPushData(force, computeSize))
-									.reduce(IMemoryChunkPartAllocation.PushData::merge)
-									.orElseGet(IMemoryChunkPartAllocation.PushData::empty);
+		return memoryPartAllocations.stream().flatMap(p -> p.streamFillCommands(force));
 	}
 
 	public void attach(final IRecordContext recordContext)

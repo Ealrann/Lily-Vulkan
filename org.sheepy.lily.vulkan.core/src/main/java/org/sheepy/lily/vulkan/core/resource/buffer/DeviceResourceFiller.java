@@ -24,7 +24,7 @@ public final class DeviceResourceFiller
 		this.context = context;
 	}
 
-	public void fillData(Stream<FillCommand> fillCommands, final long size)
+	public void fillData(Stream<FillCommand> fillCommands)
 	{
 		// TODO create only one memory chunk for all the staging buffers
 		final List<FillCommand.FillBufferCommand> fillBufferCommands = new ArrayList<>();

@@ -7,11 +7,10 @@ import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.VkBufferAllocator;
@@ -29,6 +28,7 @@ import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @ModelExtender(scope = BufferMemory.class)
 @Allocation(context = ExecutionContext.class)
@@ -76,28 +76,28 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 	}
 
 	@Override
-	public PushData gatherPushData(boolean force, boolean computeSize)
+	public Stream<FillCommand> streamFillCommands(boolean force)
 	{
 		final var buffers = bufferMemory.getBuffers();
 		final long bufferPtr = bufferBackend.getAddress();
 
-		final long size = computeSize ? buffers.stream()
-											   .map(IBufferObjectAllocationAllocation::adapt)
-											   .filter(bufferAllocation -> force || bufferAllocation.needPush())
-											   .mapToLong(IBufferAllocation::getBindSize)
-											   .sum() : 0;
+//		final long size = computeSize ? buffers.stream()
+//											   .map(IBufferObjectAllocationAllocation::adapt)
+//											   .filter(bufferAllocation -> force || bufferAllocation.needPush())
+//											   .mapToLong(IBufferAllocation::getBindSize)
+//											   .sum() : 0;
 
-		final var fillCommands = IntStream.range(0, buffers.size())
-										.mapToObj(this::newBufferData)
-										.filter(data -> force || data.bufferAllocation.needPush())
-										.map(data -> data.buildFillCommand(bufferPtr));
-
-		return new PushData(fillCommands, size);
+		return IntStream.range(0, buffers.size())
+						.mapToObj(this::newBufferData)
+						.filter(data -> force || data.bufferAllocation.needPush())
+						.map(data -> data.buildFillCommand(bufferPtr));
 	}
 
 	private BufferData newBufferData(int index)
 	{
-		final var bufferAllocation = bufferMemory.getBuffers().get(index).adapt(IBufferObjectAllocationAllocation.class);
+		final var bufferAllocation = bufferMemory.getBuffers()
+												 .get(index)
+												 .adapt(IBufferObjectAllocationAllocation.class);
 		final var alignmentData = chunkInfo.data.get(index);
 		return new BufferData(bufferAllocation, alignmentData);
 	}
