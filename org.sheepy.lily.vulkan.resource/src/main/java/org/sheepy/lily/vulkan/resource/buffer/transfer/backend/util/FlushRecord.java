@@ -36,7 +36,7 @@ public final class FlushRecord
 			{
 				final var command = commands.get(i);
 				// System.out.println(command.toString());
-				command.execute(recordContext, vkDevice, stack);
+				command.execute(recordContext);
 			}
 		}
 	}

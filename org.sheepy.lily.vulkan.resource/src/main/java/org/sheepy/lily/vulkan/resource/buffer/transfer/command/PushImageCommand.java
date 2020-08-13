@@ -1,13 +1,12 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
-import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
+import org.sheepy.lily.vulkan.resource.image.util.MipmapGenerator;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -25,11 +24,11 @@ public final class PushImageCommand implements DataFlowCommand
 	private final EPipelineStage trgStage;
 	private final List<EAccess> trgAccess;
 	private final EImageLayout trgLayout;
-	private final int mipLevel;
+	private final boolean generateMipmaps;
 
 	public PushImageCommand(MemoryTicket ticket,
 							VkImage trgImage,
-							int mipLevel,
+							boolean generateMipmaps,
 							EPipelineStage srcStage,
 							List<EAccess> srcAccess,
 							EPipelineStage trgStage,
@@ -42,7 +41,7 @@ public final class PushImageCommand implements DataFlowCommand
 
 		this.ticket = ticket;
 		this.trgImage = trgImage;
-		this.mipLevel = mipLevel;
+		this.generateMipmaps = generateMipmaps;
 		this.srcStage = srcStage;
 		this.srcAccess = srcAccess;
 		this.trgStage = trgStage;
@@ -51,12 +50,13 @@ public final class PushImageCommand implements DataFlowCommand
 	}
 
 	@Override
-	public void execute(final RecordContext recordContext, final VkDevice vkDevice, final MemoryStack stack)
+	public void execute(final RecordContext recordContext)
 	{
 		final var commandBuffer = recordContext.commandBuffer;
 		final var srcBuffer = ticket.getBufferPtr();
 		final var srcoffset = ticket.getOffset();
 		final var size = ticket.getSize();
+		final var stack = recordContext.stack();
 
 		// Submission guarantees the host write being complete, as per
 		// https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#synchronization-submission-host-writes
@@ -85,13 +85,13 @@ public final class PushImageCommand implements DataFlowCommand
 
 		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), blitStage.getValue(), 0, null, barriers, null);
 
-		final VkBufferImageCopy.Buffer region = VkBufferImageCopy.calloc(1);
+		final VkBufferImageCopy.Buffer region = VkBufferImageCopy.callocStack(1, stack);
 		region.bufferOffset(ticket.getOffset());
 		region.bufferRowLength(0);
 		region.bufferImageHeight(0);
 
 		region.imageSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
-		region.imageSubresource().mipLevel(mipLevel);
+		region.imageSubresource().mipLevel(0);
 		region.imageSubresource().baseArrayLayer(0);
 		region.imageSubresource().layerCount(1);
 
@@ -101,16 +101,21 @@ public final class PushImageCommand implements DataFlowCommand
 		final var dstImageLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
 		vkCmdCopyBufferToImage(commandBuffer, ticket.getBufferPtr(), trgImage.getPtr(), dstImageLayout, region);
 
-		region.free();
-
-		trgImage.transitionImageLayout(stack,
-									   commandBuffer,
-									   blitStage,
-									   trgStage,
-									   EImageLayout.TRANSFER_DST_OPTIMAL,
-									   trgLayout,
-									   blitAccess,
-									   trgAccess);
+		if (generateMipmaps)
+		{
+			MipmapGenerator.generateMipmaps(recordContext, trgImage, trgLayout);
+		}
+		else
+		{
+			trgImage.transitionImageLayout(stack,
+										   commandBuffer,
+										   blitStage,
+										   trgStage,
+										   EImageLayout.TRANSFER_DST_OPTIMAL,
+										   trgLayout,
+										   blitAccess,
+										   trgAccess);
+		}
 	}
 
 	@Override

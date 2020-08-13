@@ -9,7 +9,7 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.resource.buffer.DeviceResourceFiller;
+import org.sheepy.lily.vulkan.resource.util.DeviceResourceFiller;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.FillCommand;

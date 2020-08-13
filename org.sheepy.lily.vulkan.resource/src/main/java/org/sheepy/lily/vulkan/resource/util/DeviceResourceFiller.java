@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.core.resource.buffer;
+package org.sheepy.lily.vulkan.resource.util;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
@@ -7,7 +7,11 @@ import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
+import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
+import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
+import org.sheepy.lily.vulkan.resource.image.util.MipmapGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,7 +148,9 @@ public final class DeviceResourceFiller
 		public void execute(IRecordContext context)
 		{
 			final var dataProvider = fillCommand.dataProvider();
-			fillCommand.vkImage().fillWith(context, dataProvider);
+			final var vkImage = fillCommand.vkImage();
+			vkImage.fillWith(context, dataProvider);
+			MipmapGenerator.generateMipmaps(context, vkImage, vkImage.initialLayout);
 		}
 	}
 }

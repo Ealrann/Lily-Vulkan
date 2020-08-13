@@ -19,14 +19,14 @@ public final class DataFlowCommandFactory
 
 	public static PushImageCommand newPushImageCommand(MemoryTicket ticket,
 													   VkImage trgImage,
-													   int mipLevel,
+													   boolean generateMipmaps,
 													   EPipelineStage srcStage,
 													   List<EAccess> srcAccess,
 													   EPipelineStage trgStage,
 													   List<EAccess> trgAccess,
 													   EImageLayout trgLayout)
 	{
-		return new PushImageCommand(ticket, trgImage, mipLevel, srcStage, srcAccess, trgStage, trgAccess, trgLayout);
+		return new PushImageCommand(ticket, trgImage, generateMipmaps, srcStage, srcAccess, trgStage, trgAccess, trgLayout);
 	}
 
 	public static FetchCommand newFetchCommand(MemoryTicket ticket,

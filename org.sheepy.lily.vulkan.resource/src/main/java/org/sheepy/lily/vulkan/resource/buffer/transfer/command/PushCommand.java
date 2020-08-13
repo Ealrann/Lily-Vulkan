@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
@@ -25,12 +23,13 @@ public final class PushCommand implements DataFlowCommand
 	}
 
 	@Override
-	public void execute(final RecordContext recordContext, final VkDevice vkDevice, final MemoryStack stack)
+	public void execute(final RecordContext recordContext)
 	{
 		final var commandBuffer = recordContext.commandBuffer;
 		final var srcBuffer = ticket.getBufferPtr();
 		final var srcOffset = ticket.getOffset();
 		final var size = ticket.getSize();
+		final var stack = recordContext.stack();
 
 		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, srcOffset, trgBuffer, trgOffset, size);
 	}

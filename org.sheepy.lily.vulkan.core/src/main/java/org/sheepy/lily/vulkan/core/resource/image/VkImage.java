@@ -131,12 +131,6 @@ public final class VkImage
 
 		fillWithBuffer(vkCommandBuffer, stagingBuffer.getAddress());
 
-		transitionToInitialLayout(stack,
-								  vkCommandBuffer,
-								  EPipelineStage.TRANSFER_BIT,
-								  EImageLayout.TRANSFER_DST_OPTIMAL,
-								  List.of(EAccess.TRANSFER_WRITE_BIT));
-
 		context.listenExecution(status -> {
 			if (status == EExecutionStatus.Done || status == EExecutionStatus.Canceled)
 			{

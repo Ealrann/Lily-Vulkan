@@ -14,7 +14,7 @@ public interface FillCommand
 	{
 	}
 
-	record FillImageCommand(DataProvider dataProvider, VkImage vkImage, int mipLevel) implements FillCommand
+	record FillImageCommand(DataProvider dataProvider, VkImage vkImage, boolean generateMipmap) implements FillCommand
 	{
 		@Override
 		public long size()

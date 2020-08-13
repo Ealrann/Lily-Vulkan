@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.demo.mesh;
 
-import java.nio.ByteBuffer;
-
 import org.joml.Vector2ic;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
+
+import java.nio.ByteBuffer;
 
 public class MeshConfiguration
 {
@@ -19,7 +19,6 @@ public class MeshConfiguration
 
 	public final int width;
 	public final int height;
-	public boolean mipmap = false;
 	public boolean useTexture = false;
 
 	public int indexCount;

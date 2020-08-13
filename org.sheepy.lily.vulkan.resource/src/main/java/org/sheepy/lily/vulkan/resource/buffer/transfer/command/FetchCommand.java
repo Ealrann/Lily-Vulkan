@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
@@ -31,12 +29,13 @@ public final class FetchCommand implements DataFlowCommand
 	}
 
 	@Override
-	public void execute(RecordContext recordContext, VkDevice vkDevice, MemoryStack stack)
+	public void execute(RecordContext recordContext)
 	{
 		final var trgBuffer = ticket.getBufferPtr();
 		final var trgOffset = ticket.getOffset();
 		final var size = ticket.getSize();
 		final var commandBuffer = recordContext.commandBuffer;
+		final var stack = recordContext.stack();
 
 		// Submission guarantees the host write being complete, as per
 		// https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#synchronization-submission-host-writes

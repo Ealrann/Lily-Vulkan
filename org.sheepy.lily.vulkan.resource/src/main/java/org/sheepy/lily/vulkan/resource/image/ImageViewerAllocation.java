@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.resource.ImageViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryChunkPartAllocation;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -35,6 +36,7 @@ public final class ImageViewerAllocation extends Notifier<IMemoryChunkPartAlloca
 	private final VkImage imageBackend;
 	private final VkImageView imageView;
 	private final IImageDataProviderAdapter dataProviderAdapter;
+	private final boolean mipmapEnabled;
 
 	private boolean needPush = true;
 
@@ -49,8 +51,13 @@ public final class ImageViewerAllocation extends Notifier<IMemoryChunkPartAlloca
 		final var size = dataProviderAdapter.size();
 		final var builder = new VkImageBuilder(image, size.x(), size.y());
 
-		// TODO support mipMapping
-		// if (image.isMipmapEnabled()) builder.computeMipLevels();
+		mipmapEnabled = image.isMipmapEnabled();
+		if (mipmapEnabled)
+		{
+			builder.computeMipLevels();
+			builder.addUsage(EImageUsage.TRANSFER_SRC_VALUE); // needed to generate the mipmap
+			builder.addUsage(EImageUsage.TRANSFER_DST_VALUE); // needed to generate the mipmap
+		}
 
 		imageBackend = builder.buildNoFill(context);
 		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
@@ -94,7 +101,7 @@ public final class ImageViewerAllocation extends Notifier<IMemoryChunkPartAlloca
 		if (needPush || force)
 		{
 			needPush = false;
-			final var fillCommand = new FillCommand.FillImageCommand(dataProviderAdapter::fill, imageBackend, 0);
+			final var fillCommand = new FillCommand.FillImageCommand(dataProviderAdapter::fill, imageBackend, mipmapEnabled);
 			return Stream.of(fillCommand);
 		}
 		else
@@ -102,113 +109,6 @@ public final class ImageViewerAllocation extends Notifier<IMemoryChunkPartAlloca
 			return Stream.empty();
 		}
 	}
-
-//	private void generateMipmaps(VkCommandBuffer commandBuffer, ImageLayout targetLayout)
-//	{
-//		final long imageAddress = image.getPtr();
-//
-//		final VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1);
-//		barrier.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
-//		barrier.image(imageAddress);
-//		barrier.srcQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
-//		barrier.dstQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
-//		barrier.subresourceRange().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
-//		barrier.subresourceRange().baseArrayLayer(0);
-//		barrier.subresourceRange().layerCount(1);
-//		barrier.subresourceRange().levelCount(1);
-//
-//		int mipWidth = image.width;
-//		int mipHeight = image.height;
-//
-//		for (int i = 1; i < image.mipLevels; i++)
-//		{
-//			barrier.subresourceRange().baseMipLevel(i - 1);
-//			barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-//			barrier.newLayout(VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-//			barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
-//			barrier.dstAccessMask(VK_ACCESS_TRANSFER_READ_BIT);
-//
-//			vkCmdPipelineBarrier(commandBuffer,
-//								 VK_PIPELINE_STAGE_TRANSFER_BIT,
-//								 VK_PIPELINE_STAGE_TRANSFER_BIT,
-//								 0,
-//								 null,
-//								 null,
-//								 barrier);
-//
-//			final VkOffset3D.Buffer srcOffsets = VkOffset3D.calloc(2);
-//			srcOffsets.get(0).set(0, 0, 0);
-//			srcOffsets.get(1).set(mipWidth, mipHeight, 1);
-//
-//			final VkOffset3D.Buffer dstOffsets = VkOffset3D.calloc(2);
-//			dstOffsets.get(0).set(0, 0, 0);
-//			dstOffsets.get(1).set(mipWidth / 2, mipHeight / 2, 1);
-//
-//			final VkImageBlit.Buffer blit = VkImageBlit.calloc(1);
-//			blit.srcOffsets(srcOffsets);
-//			blit.srcSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
-//			blit.srcSubresource().mipLevel(i - 1);
-//			blit.srcSubresource().baseArrayLayer(0);
-//			blit.srcSubresource().layerCount(1);
-//			blit.dstOffsets(dstOffsets);
-//			blit.dstSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
-//			blit.dstSubresource().mipLevel(i);
-//			blit.dstSubresource().baseArrayLayer(0);
-//			blit.dstSubresource().layerCount(1);
-//
-//			vkCmdBlitImage(commandBuffer,
-//						   imageAddress,
-//						   VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
-//						   imageAddress,
-//						   VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-//						   blit,
-//						   VK_FILTER_LINEAR);
-//
-//			barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-//			barrier.newLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-//			barrier.srcAccessMask(VK_ACCESS_TRANSFER_READ_BIT);
-//			barrier.dstAccessMask(VK_ACCESS_SHADER_READ_BIT);
-//
-//			vkCmdPipelineBarrier(commandBuffer,
-//								 VK_PIPELINE_STAGE_TRANSFER_BIT,
-//								 VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
-//								 0,
-//								 null,
-//								 null,
-//								 barrier);
-//
-//			if (mipWidth > 1) mipWidth /= 2;
-//			if (mipHeight > 1) mipHeight /= 2;
-//
-//			blit.free();
-//		}
-//
-//		final int trgAccess;
-//		final int trgStage;
-//		final int trgLayout;
-//		if (targetLayout != null)
-//		{
-//			trgAccess = VulkanModelUtil.getEnumeratedFlag(targetLayout.getAccessMask());
-//			trgStage = targetLayout.getStage().getValue();
-//			trgLayout = targetLayout.getLayout().getValue();
-//		}
-//		else
-//		{
-//			trgAccess = EAccess.SHADER_READ_BIT_VALUE;
-//			trgStage = EPipelineStage.FRAGMENT_SHADER_BIT_VALUE;
-//			trgLayout = EImageLayout.SHADER_READ_ONLY_OPTIMAL_VALUE;
-//		}
-//
-//		barrier.subresourceRange().baseMipLevel(image.mipLevels - 1);
-//		barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-//		barrier.newLayout(trgLayout);
-//		barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
-//		barrier.dstAccessMask(trgAccess);
-//
-//		vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, trgStage, 0, null, null, barrier);
-//
-//		barrier.free();
-//	}
 
 	@Override
 	public long getImagePtr()

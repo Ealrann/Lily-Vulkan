@@ -101,7 +101,7 @@ public final class TransferCommandInserter
 				final var vkImage = fillImageCommand.vkImage();
 				return DataFlowCommandFactory.newPushImageCommand(ticket,
 																  vkImage,
-																  fillImageCommand.mipLevel(),
+																  fillImageCommand.generateMipmap(),
 																  EPipelineStage.TRANSFER_BIT,
 																  List.of(),
 																  EPipelineStage.TRANSFER_BIT,

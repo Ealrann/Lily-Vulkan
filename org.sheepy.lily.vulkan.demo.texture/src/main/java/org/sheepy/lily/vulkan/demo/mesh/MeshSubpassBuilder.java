@@ -204,7 +204,7 @@ public final class MeshSubpassBuilder
 
 			final var imageViewer = VulkanResourceFactory.eINSTANCE.createImageViewer();
 			imageViewer.setDataProvider(textureProvider);
-			imageViewer.setMipmapEnabled(meshConfiguration.mipmap);
+			imageViewer.setMipmapEnabled(true);
 			imageViewer.setFormat(EFormat.R8G8B8A8_UNORM);
 			imageViewer.getUsages().add(EImageUsage.SAMPLED);
 			imageViewer.getUsages().add(EImageUsage.TRANSFER_DST);
