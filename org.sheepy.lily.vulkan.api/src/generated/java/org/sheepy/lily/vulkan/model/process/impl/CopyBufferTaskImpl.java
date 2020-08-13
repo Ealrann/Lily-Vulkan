@@ -184,7 +184,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	{
 		BufferReference oldSrcBuffer = srcBuffer;
 		srcBuffer = newSrcBuffer;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, oldSrcBuffer, newSrcBuffer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -199,7 +200,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	@Override
 	public void setSrcBuffer(BufferReference newSrcBuffer)
 	{
-		if (newSrcBuffer != srcBuffer) {
+		if (newSrcBuffer != srcBuffer)
+		{
 			NotificationChain msgs = null;
 			if (srcBuffer != null)
 				msgs = ((InternalEObject)srcBuffer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER, null, msgs);
@@ -232,7 +234,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	{
 		BufferReference oldDstBuffer = dstBuffer;
 		dstBuffer = newDstBuffer;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER, oldDstBuffer, newDstBuffer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -247,7 +250,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	@Override
 	public void setDstBuffer(BufferReference newDstBuffer)
 	{
-		if (newDstBuffer != dstBuffer) {
+		if (newDstBuffer != dstBuffer)
+		{
 			NotificationChain msgs = null;
 			if (dstBuffer != null)
 				msgs = ((InternalEObject)dstBuffer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER, null, msgs);
@@ -268,7 +272,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COPY_BUFFER_TASK__SRC_BUFFER:
 				return basicSetSrcBuffer(null, msgs);
 			case ProcessPackage.COPY_BUFFER_TASK__DST_BUFFER:
@@ -285,7 +290,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COPY_BUFFER_TASK__NAME:
 				return getName();
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
@@ -306,7 +312,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COPY_BUFFER_TASK__NAME:
 				setName((String)newValue);
 				return;
@@ -331,7 +338,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COPY_BUFFER_TASK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -356,7 +364,8 @@ public class CopyBufferTaskImpl extends LilyEObject implements CopyBufferTask
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COPY_BUFFER_TASK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:

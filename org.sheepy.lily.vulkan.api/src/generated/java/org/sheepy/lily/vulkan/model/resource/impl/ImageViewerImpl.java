@@ -30,10 +30,10 @@ import org.sheepy.lily.vulkan.model.resource.ImageViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 import org.sheepy.vulkan.model.image.ImageInfo;
-import org.sheepy.vulkan.model.image.ImageLayout;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
 /**
@@ -51,6 +51,7 @@ import org.sheepy.vulkan.model.image.ImagePackage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageViewerImpl#getInitialLayout <em>Initial Layout</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageViewerImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageViewerImpl#getDataProvider <em>Data Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageViewerImpl#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
  * </ul>
  *
  * @generated
@@ -127,14 +128,24 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 	protected int mipLevels = MIP_LEVELS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' containment reference.
+	 * The default value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInitialLayout()
 	 * @generated
 	 * @ordered
 	 */
-	protected ImageLayout initialLayout;
+	protected static final EImageLayout INITIAL_LAYOUT_EDEFAULT = EImageLayout.SHADER_READ_ONLY_OPTIMAL;
+
+	/**
+	 * The cached value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected EImageLayout initialLayout = INITIAL_LAYOUT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -165,6 +176,26 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 	 * @ordered
 	 */
 	protected ImageDataProvider dataProvider;
+
+	/**
+	 * The default value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMipmapEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean MIPMAP_ENABLED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMipmapEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean mipmapEnabled = MIPMAP_ENABLED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -274,7 +305,7 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 	 * @generated
 	 */
 	@Override
-	public ImageLayout getInitialLayout() {
+	public EImageLayout getInitialLayout() {
 		return initialLayout;
 	}
 
@@ -283,36 +314,13 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitialLayout(ImageLayout newInitialLayout, NotificationChain msgs) {
-		ImageLayout oldInitialLayout = initialLayout;
-		initialLayout = newInitialLayout;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public void setInitialLayout(ImageLayout newInitialLayout) {
-		if (newInitialLayout != initialLayout)
-		{
-			NotificationChain msgs = null;
-			if (initialLayout != null)
-				msgs = ((InternalEObject)initialLayout).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT, null, msgs);
-			if (newInitialLayout != null)
-				msgs = ((InternalEObject)newInitialLayout).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT, null, msgs);
-			msgs = basicSetInitialLayout(newInitialLayout, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
+	public void setInitialLayout(EImageLayout newInitialLayout)
+	{
+		EImageLayout oldInitialLayout = initialLayout;
+		initialLayout = newInitialLayout == null ? INITIAL_LAYOUT_EDEFAULT : newInitialLayout;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT, oldInitialLayout, initialLayout));
 	}
 
 	/**
@@ -391,11 +399,34 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 	 * @generated
 	 */
 	@Override
+	public boolean isMipmapEnabled()
+	{
+		return mipmapEnabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMipmapEnabled(boolean newMipmapEnabled)
+	{
+		boolean oldMipmapEnabled = mipmapEnabled;
+		mipmapEnabled = newMipmapEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_VIEWER__MIPMAP_ENABLED, oldMipmapEnabled, mipmapEnabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT:
-				return basicSetInitialLayout(null, msgs);
 			case VulkanResourcePackage.IMAGE_VIEWER__DATA_PROVIDER:
 				return basicSetDataProvider(null, msgs);
 		}
@@ -425,6 +456,8 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 				return getName();
 			case VulkanResourcePackage.IMAGE_VIEWER__DATA_PROVIDER:
 				return getDataProvider();
+			case VulkanResourcePackage.IMAGE_VIEWER__MIPMAP_ENABLED:
+				return isMipmapEnabled();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -453,13 +486,16 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 				setMipLevels((Integer)newValue);
 				return;
 			case VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT:
-				setInitialLayout((ImageLayout)newValue);
+				setInitialLayout((EImageLayout)newValue);
 				return;
 			case VulkanResourcePackage.IMAGE_VIEWER__NAME:
 				setName((String)newValue);
 				return;
 			case VulkanResourcePackage.IMAGE_VIEWER__DATA_PROVIDER:
 				setDataProvider((ImageDataProvider)newValue);
+				return;
+			case VulkanResourcePackage.IMAGE_VIEWER__MIPMAP_ENABLED:
+				setMipmapEnabled((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -487,13 +523,16 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 				setMipLevels(MIP_LEVELS_EDEFAULT);
 				return;
 			case VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT:
-				setInitialLayout((ImageLayout)null);
+				setInitialLayout(INITIAL_LAYOUT_EDEFAULT);
 				return;
 			case VulkanResourcePackage.IMAGE_VIEWER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case VulkanResourcePackage.IMAGE_VIEWER__DATA_PROVIDER:
 				setDataProvider((ImageDataProvider)null);
+				return;
+			case VulkanResourcePackage.IMAGE_VIEWER__MIPMAP_ENABLED:
+				setMipmapEnabled(MIPMAP_ENABLED_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -517,11 +556,13 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 			case VulkanResourcePackage.IMAGE_VIEWER__MIP_LEVELS:
 				return mipLevels != MIP_LEVELS_EDEFAULT;
 			case VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT:
-				return initialLayout != null;
+				return initialLayout != INITIAL_LAYOUT_EDEFAULT;
 			case VulkanResourcePackage.IMAGE_VIEWER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.IMAGE_VIEWER__DATA_PROVIDER:
 				return dataProvider != null;
+			case VulkanResourcePackage.IMAGE_VIEWER__MIPMAP_ENABLED:
+				return mipmapEnabled != MIPMAP_ENABLED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -646,8 +687,12 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 		result.append(tiling);
 		result.append(", mipLevels: ");
 		result.append(mipLevels);
+		result.append(", initialLayout: ");
+		result.append(initialLayout);
 		result.append(", name: ");
 		result.append(name);
+		result.append(", mipmapEnabled: ");
+		result.append(mipmapEnabled);
 		result.append(')');
 		return result.toString();
 	}

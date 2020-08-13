@@ -116,10 +116,12 @@ public class MouseLocationImpl extends LilyEObject implements MouseLocation
 	@Override
 	public VulkanEngine getVulkanEngine()
 	{
-		if (vulkanEngine != null && ((EObject)vulkanEngine).eIsProxy()) {
+		if (vulkanEngine != null && ((EObject)vulkanEngine).eIsProxy())
+		{
 			InternalEObject oldVulkanEngine = vulkanEngine;
 			vulkanEngine = (VulkanEngine)eResolveProxy(oldVulkanEngine);
-			if (vulkanEngine != oldVulkanEngine) {
+			if (vulkanEngine != oldVulkanEngine)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanPackage.MOUSE_LOCATION__VULKAN_ENGINE, oldVulkanEngine, vulkanEngine));
 			}
@@ -159,7 +161,8 @@ public class MouseLocationImpl extends LilyEObject implements MouseLocation
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.MOUSE_LOCATION__NAME:
 				return getName();
 			case VulkanPackage.MOUSE_LOCATION__VULKAN_ENGINE:
@@ -177,7 +180,8 @@ public class MouseLocationImpl extends LilyEObject implements MouseLocation
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.MOUSE_LOCATION__NAME:
 				setName((String)newValue);
 				return;
@@ -196,7 +200,8 @@ public class MouseLocationImpl extends LilyEObject implements MouseLocation
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.MOUSE_LOCATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -215,7 +220,8 @@ public class MouseLocationImpl extends LilyEObject implements MouseLocation
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.MOUSE_LOCATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanPackage.MOUSE_LOCATION__VULKAN_ENGINE:

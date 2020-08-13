@@ -66,7 +66,8 @@ public enum SpriteType implements Enumerator
 	 * @generated
 	 */
 	private static final SpriteType[] VALUES_ARRAY =
-		new SpriteType[] {
+		new SpriteType[]
+		{
 			FLOOR,
 			WALL,
 		};
@@ -89,9 +90,11 @@ public enum SpriteType implements Enumerator
 	 */
 	public static SpriteType get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			SpriteType result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -108,9 +111,11 @@ public enum SpriteType implements Enumerator
 	 */
 	public static SpriteType getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			SpriteType result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -127,7 +132,8 @@ public enum SpriteType implements Enumerator
 	 */
 	public static SpriteType get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case FLOOR_VALUE: return FLOOR;
 			case WALL_VALUE: return WALL;
 		}

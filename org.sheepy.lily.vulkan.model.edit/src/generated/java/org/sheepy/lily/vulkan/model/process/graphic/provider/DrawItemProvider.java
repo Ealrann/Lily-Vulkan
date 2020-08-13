@@ -58,7 +58,8 @@ public class DrawItemProvider extends ItemProviderAdapter implements IEditingDom
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -248,7 +249,8 @@ public class DrawItemProvider extends ItemProviderAdapter implements IEditingDom
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Draw.class)) {
+		switch (notification.getFeatureID(Draw.class))
+		{
 			case GraphicPackage.DRAW__NAME:
 			case GraphicPackage.DRAW__ENABLED:
 			case GraphicPackage.DRAW__VERTEX_COUNT:

@@ -54,7 +54,8 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter implemen
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -220,7 +221,8 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter implemen
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BindDescriptorSets.class)) {
+		switch (notification.getFeatureID(BindDescriptorSets.class))
+		{
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__BIND_POINT:

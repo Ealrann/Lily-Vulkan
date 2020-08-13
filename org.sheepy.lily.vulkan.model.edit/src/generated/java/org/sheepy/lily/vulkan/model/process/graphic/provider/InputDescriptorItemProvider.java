@@ -59,7 +59,8 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addInputRatePropertyDescriptor(object);
@@ -125,7 +126,8 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.INPUT_DESCRIPTOR__ATTRIBUTES);
 		}
@@ -186,7 +188,8 @@ public class InputDescriptorItemProvider extends ItemProviderAdapter implements 
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(InputDescriptor.class)) {
+		switch (notification.getFeatureID(InputDescriptor.class))
+		{
 			case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
 			case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

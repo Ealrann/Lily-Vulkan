@@ -54,7 +54,8 @@ public class ColorDomainItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addFormatPropertyDescriptor(object);
@@ -149,7 +150,8 @@ public class ColorDomainItemProvider extends ItemProviderAdapter implements IEdi
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ColorDomain.class)) {
+		switch (notification.getFeatureID(ColorDomain.class))
+		{
 			case GraphicPackage.COLOR_DOMAIN__FORMAT:
 			case GraphicPackage.COLOR_DOMAIN__COLOR_SPACE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

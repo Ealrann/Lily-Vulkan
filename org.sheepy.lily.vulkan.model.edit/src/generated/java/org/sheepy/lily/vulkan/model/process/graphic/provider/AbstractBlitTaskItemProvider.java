@@ -65,7 +65,8 @@ public class AbstractBlitTaskItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -220,7 +221,8 @@ public class AbstractBlitTaskItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AbstractBlitTask.class)) {
+		switch (notification.getFeatureID(AbstractBlitTask.class))
+		{
 			case GraphicPackage.ABSTRACT_BLIT_TASK__NAME:
 			case GraphicPackage.ABSTRACT_BLIT_TASK__ENABLED:
 			case GraphicPackage.ABSTRACT_BLIT_TASK__FILTER:

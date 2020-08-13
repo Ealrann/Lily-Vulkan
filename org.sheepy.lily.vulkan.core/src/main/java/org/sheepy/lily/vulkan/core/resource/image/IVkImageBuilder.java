@@ -9,7 +9,6 @@ import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.image.ImageLayout;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
@@ -27,7 +26,7 @@ public interface IVkImageBuilder
 	int aspect();
 	boolean fillWithZero();
 	ByteBuffer fillWith();
-	ImageLayout initialLayout();
+	EImageLayout initialLayout();
 	IVkImageBuilder copyImmutable();
 	VkImageBuilder copy();
 

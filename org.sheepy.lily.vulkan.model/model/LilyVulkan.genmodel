@@ -362,11 +362,10 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferDataProvider"/>
     <genClasses ecoreClass="resource.ecore#//ImageDataProvider"/>
-    <genClasses image="false" ecoreClass="resource.ecore#//Image"/>
-    <genClasses ecoreClass="resource.ecore#//FileImage">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//FileImage/file"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//FileImage/mipmapEnabled"/>
+    <genClasses ecoreClass="resource.ecore#//FileImageDataProvider">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//FileImageDataProvider/fileImage"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="resource.ecore#//Image"/>
     <genClasses ecoreClass="resource.ecore#//CompositeImage">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeImage/inlays"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeImage/background"/>
@@ -442,6 +441,7 @@
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ImageViewer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//ImageViewer/dataProvider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//ImageViewer/mipmapEnabled"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"

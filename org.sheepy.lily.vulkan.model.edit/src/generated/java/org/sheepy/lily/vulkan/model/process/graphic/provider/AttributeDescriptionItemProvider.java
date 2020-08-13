@@ -55,7 +55,8 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter implem
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -173,7 +174,8 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter implem
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AttributeDescription.class)) {
+		switch (notification.getFeatureID(AttributeDescription.class))
+		{
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:

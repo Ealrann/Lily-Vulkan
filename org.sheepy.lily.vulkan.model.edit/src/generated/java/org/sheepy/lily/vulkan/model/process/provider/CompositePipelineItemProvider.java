@@ -51,7 +51,8 @@ public class CompositePipelineItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRepeatPropertyDescriptor(object);
@@ -93,7 +94,8 @@ public class CompositePipelineItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES);
 		}
@@ -154,7 +156,8 @@ public class CompositePipelineItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositePipeline.class)) {
+		switch (notification.getFeatureID(CompositePipeline.class))
+		{
 			case ProcessPackage.COMPOSITE_PIPELINE__REPEAT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

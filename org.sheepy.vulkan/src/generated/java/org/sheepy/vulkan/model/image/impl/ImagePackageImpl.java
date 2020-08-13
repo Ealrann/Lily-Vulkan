@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.image.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -347,9 +346,9 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getImageInfo_InitialLayout()
+	public EAttribute getImageInfo_InitialLayout()
 	{
-		return (EReference)imageInfoEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)imageInfoEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -446,7 +445,7 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 		createEAttribute(imageInfoEClass, IMAGE_INFO__USAGES);
 		createEAttribute(imageInfoEClass, IMAGE_INFO__TILING);
 		createEAttribute(imageInfoEClass, IMAGE_INFO__MIP_LEVELS);
-		createEReference(imageInfoEClass, IMAGE_INFO__INITIAL_LAYOUT);
+		createEAttribute(imageInfoEClass, IMAGE_INFO__INITIAL_LAYOUT);
 
 		imageLayoutEClass = createEClass(IMAGE_LAYOUT);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__STAGE);
@@ -507,7 +506,7 @@ public class ImagePackageImpl extends EPackageImpl implements ImagePackage
 		initEAttribute(getImageInfo_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 1, -1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInfo_Tiling(), ecorePackage.getEInt(), "tiling", "0", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInfo_MipLevels(), ecorePackage.getEInt(), "mipLevels", "1", 1, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getImageInfo_InitialLayout(), this.getImageLayout(), null, "initialLayout", null, 0, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageInfo_InitialLayout(), theEnumerationPackage.getEImageLayout(), "initialLayout", "SHADER_READ_ONLY_OPTIMAL", 0, 1, ImageInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

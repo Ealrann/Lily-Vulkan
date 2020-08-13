@@ -70,10 +70,12 @@ public class RunProcessImpl extends LilyEObject implements RunProcess
 	@Override
 	public IProcess getProcess()
 	{
-		if (process != null && ((EObject)process).eIsProxy()) {
+		if (process != null && ((EObject)process).eIsProxy())
+		{
 			InternalEObject oldProcess = process;
 			process = (IProcess)eResolveProxy(oldProcess);
-			if (process != oldProcess) {
+			if (process != oldProcess)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanPackage.RUN_PROCESS__PROCESS, oldProcess, process));
 			}
@@ -113,7 +115,8 @@ public class RunProcessImpl extends LilyEObject implements RunProcess
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.RUN_PROCESS__PROCESS:
 				if (resolve) return getProcess();
 				return basicGetProcess();
@@ -129,7 +132,8 @@ public class RunProcessImpl extends LilyEObject implements RunProcess
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.RUN_PROCESS__PROCESS:
 				setProcess((IProcess)newValue);
 				return;
@@ -145,7 +149,8 @@ public class RunProcessImpl extends LilyEObject implements RunProcess
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.RUN_PROCESS__PROCESS:
 				setProcess((IProcess)null);
 				return;
@@ -161,7 +166,8 @@ public class RunProcessImpl extends LilyEObject implements RunProcess
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.RUN_PROCESS__PROCESS:
 				return process != null;
 		}

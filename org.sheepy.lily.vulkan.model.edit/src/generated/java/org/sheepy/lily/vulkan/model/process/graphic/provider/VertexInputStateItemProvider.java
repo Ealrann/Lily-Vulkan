@@ -55,7 +55,8 @@ public class VertexInputStateItemProvider extends ItemProviderAdapter implements
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -73,7 +74,8 @@ public class VertexInputStateItemProvider extends ItemProviderAdapter implements
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR);
 		}
@@ -130,7 +132,8 @@ public class VertexInputStateItemProvider extends ItemProviderAdapter implements
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(VertexInputState.class)) {
+		switch (notification.getFeatureID(VertexInputState.class))
+		{
 			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

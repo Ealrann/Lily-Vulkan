@@ -89,7 +89,8 @@ public enum EAttachmentType implements Enumerator
 	 * @generated
 	 */
 	private static final EAttachmentType[] VALUES_ARRAY =
-		new EAttachmentType[] {
+		new EAttachmentType[]
+		{
 			COLOR,
 			DEPTH,
 			INPUT,
@@ -113,9 +114,11 @@ public enum EAttachmentType implements Enumerator
 	 */
 	public static EAttachmentType get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EAttachmentType result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -132,9 +135,11 @@ public enum EAttachmentType implements Enumerator
 	 */
 	public static EAttachmentType getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EAttachmentType result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -151,7 +156,8 @@ public enum EAttachmentType implements Enumerator
 	 */
 	public static EAttachmentType get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case COLOR_VALUE: return COLOR;
 			case DEPTH_VALUE: return DEPTH;
 			case INPUT_VALUE: return INPUT;

@@ -113,10 +113,12 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	@Override
 	public Attachment getAttachment()
 	{
-		if (attachment != null && ((EObject)attachment).eIsProxy()) {
+		if (attachment != null && ((EObject)attachment).eIsProxy())
+		{
 			InternalEObject oldAttachment = attachment;
 			attachment = (Attachment)eResolveProxy(oldAttachment);
-			if (attachment != oldAttachment) {
+			if (attachment != oldAttachment)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
 			}
@@ -206,7 +208,8 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
 				if (resolve) return getAttachment();
 				return basicGetAttachment();
@@ -226,7 +229,8 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
 				setAttachment((Attachment)newValue);
 				return;
@@ -248,7 +252,8 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
 				setAttachment((Attachment)null);
 				return;
@@ -270,7 +275,8 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
 				return attachment != null;
 			case GraphicPackage.ATTACHMENT_REF__LAYOUT:

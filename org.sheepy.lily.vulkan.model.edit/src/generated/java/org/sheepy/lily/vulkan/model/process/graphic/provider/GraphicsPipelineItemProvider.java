@@ -45,7 +45,8 @@ public class GraphicsPipelineItemProvider extends VkPipelineItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addShadersPropertyDescriptor(object);
@@ -87,7 +88,8 @@ public class GraphicsPipelineItemProvider extends VkPipelineItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY);
@@ -153,7 +155,8 @@ public class GraphicsPipelineItemProvider extends VkPipelineItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GraphicsPipeline.class)) {
+		switch (notification.getFeatureID(GraphicsPipeline.class))
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
 			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:

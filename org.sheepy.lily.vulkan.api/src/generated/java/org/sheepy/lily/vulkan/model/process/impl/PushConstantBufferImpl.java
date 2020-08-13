@@ -68,10 +68,12 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	@Override
 	public ConstantBuffer getBuffer()
 	{
-		if (buffer != null && ((EObject)buffer).eIsProxy()) {
+		if (buffer != null && ((EObject)buffer).eIsProxy())
+		{
 			InternalEObject oldBuffer = buffer;
 			buffer = (ConstantBuffer)eResolveProxy(oldBuffer);
-			if (buffer != oldBuffer) {
+			if (buffer != oldBuffer)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER, oldBuffer, buffer));
 			}
@@ -111,7 +113,8 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
 				if (resolve) return getBuffer();
 				return basicGetBuffer();
@@ -127,7 +130,8 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
 				setBuffer((ConstantBuffer)newValue);
 				return;
@@ -143,7 +147,8 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
 				setBuffer((ConstantBuffer)null);
 				return;
@@ -159,7 +164,8 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PUSH_CONSTANT_BUFFER__BUFFER:
 				return buffer != null;
 		}

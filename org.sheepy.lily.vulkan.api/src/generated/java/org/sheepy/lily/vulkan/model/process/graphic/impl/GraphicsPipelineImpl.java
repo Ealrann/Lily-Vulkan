@@ -173,10 +173,12 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public Maintainer<GraphicsPipeline> getMaintainer()
 	{
-		if (maintainer != null && ((EObject)maintainer).eIsProxy()) {
+		if (maintainer != null && ((EObject)maintainer).eIsProxy())
+		{
 			InternalEObject oldMaintainer = maintainer;
 			maintainer = (Maintainer<GraphicsPipeline>)eResolveProxy(oldMaintainer);
-			if (maintainer != oldMaintainer) {
+			if (maintainer != oldMaintainer)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, oldMaintainer, maintainer));
 			}
@@ -203,7 +205,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		Maintainer<GraphicsPipeline> oldMaintainer = maintainer;
 		maintainer = newMaintainer;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, oldMaintainer, newMaintainer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -218,7 +221,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void setMaintainer(Maintainer<GraphicsPipeline> newMaintainer)
 	{
-		if (newMaintainer != maintainer) {
+		if (newMaintainer != maintainer)
+		{
 			NotificationChain msgs = null;
 			if (maintainer != null)
 				msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
@@ -239,7 +243,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public EList<Shader> getShaders()
 	{
-		if (shaders == null) {
+		if (shaders == null)
+		{
 			shaders = new EObjectResolvingEList<Shader>(Shader.class, this, GraphicPackage.GRAPHICS_PIPELINE__SHADERS);
 		}
 		return shaders;
@@ -265,7 +270,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		ViewportState oldViewportState = viewportState;
 		viewportState = newViewportState;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, oldViewportState, newViewportState);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -280,7 +286,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void setViewportState(ViewportState newViewportState)
 	{
-		if (newViewportState != viewportState) {
+		if (newViewportState != viewportState)
+		{
 			NotificationChain msgs = null;
 			if (viewportState != null)
 				msgs = ((InternalEObject)viewportState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
@@ -313,7 +320,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		InputAssembly oldInputAssembly = inputAssembly;
 		inputAssembly = newInputAssembly;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, oldInputAssembly, newInputAssembly);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -328,7 +336,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void setInputAssembly(InputAssembly newInputAssembly)
 	{
-		if (newInputAssembly != inputAssembly) {
+		if (newInputAssembly != inputAssembly)
+		{
 			NotificationChain msgs = null;
 			if (inputAssembly != null)
 				msgs = ((InternalEObject)inputAssembly).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY, null, msgs);
@@ -361,7 +370,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		Rasterizer oldRasterizer = rasterizer;
 		rasterizer = newRasterizer;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, oldRasterizer, newRasterizer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -376,7 +386,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void setRasterizer(Rasterizer newRasterizer)
 	{
-		if (newRasterizer != rasterizer) {
+		if (newRasterizer != rasterizer)
+		{
 			NotificationChain msgs = null;
 			if (rasterizer != null)
 				msgs = ((InternalEObject)rasterizer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
@@ -409,7 +420,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		ColorBlend oldColorBlend = colorBlend;
 		colorBlend = newColorBlend;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, oldColorBlend, newColorBlend);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -424,7 +436,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void setColorBlend(ColorBlend newColorBlend)
 	{
-		if (newColorBlend != colorBlend) {
+		if (newColorBlend != colorBlend)
+		{
 			NotificationChain msgs = null;
 			if (colorBlend != null)
 				msgs = ((InternalEObject)colorBlend).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
@@ -457,7 +470,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		DynamicState oldDynamicState = dynamicState;
 		dynamicState = newDynamicState;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, oldDynamicState, newDynamicState);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -472,7 +486,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void setDynamicState(DynamicState newDynamicState)
 	{
-		if (newDynamicState != dynamicState) {
+		if (newDynamicState != dynamicState)
+		{
 			NotificationChain msgs = null;
 			if (dynamicState != null)
 				msgs = ((InternalEObject)dynamicState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
@@ -505,7 +520,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		VertexInputState oldVertexInputState = vertexInputState;
 		vertexInputState = newVertexInputState;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, oldVertexInputState, newVertexInputState);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -520,7 +536,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void setVertexInputState(VertexInputState newVertexInputState)
 	{
-		if (newVertexInputState != vertexInputState) {
+		if (newVertexInputState != vertexInputState)
+		{
 			NotificationChain msgs = null;
 			if (vertexInputState != null)
 				msgs = ((InternalEObject)vertexInputState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, null, msgs);
@@ -553,7 +570,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		DepthStencilState oldDepthStencilState = depthStencilState;
 		depthStencilState = newDepthStencilState;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE, oldDepthStencilState, newDepthStencilState);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -568,7 +586,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void setDepthStencilState(DepthStencilState newDepthStencilState)
 	{
-		if (newDepthStencilState != depthStencilState) {
+		if (newDepthStencilState != depthStencilState)
+		{
 			NotificationChain msgs = null;
 			if (depthStencilState != null)
 				msgs = ((InternalEObject)depthStencilState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DEPTH_STENCIL_STATE, null, msgs);
@@ -590,7 +609,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				if (maintainer != null)
 					msgs = ((InternalEObject)maintainer).eInverseRemove(this, MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
@@ -607,7 +627,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				return basicSetMaintainer(null, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
@@ -636,7 +657,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				if (resolve) return getMaintainer();
 				return basicGetMaintainer();
@@ -669,7 +691,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				setMaintainer((Maintainer<GraphicsPipeline>)newValue);
 				return;
@@ -710,7 +733,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				setMaintainer((Maintainer<GraphicsPipeline>)null);
 				return;
@@ -750,7 +774,8 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
 				return maintainer != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
@@ -781,8 +806,10 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainable.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == Maintainable.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER: return MaintainerPackage.MAINTAINABLE__MAINTAINER;
 				default: return -1;
 			}
@@ -798,8 +825,10 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainable.class) {
-			switch (baseFeatureID) {
+		if (baseClass == Maintainable.class)
+		{
+			switch (baseFeatureID)
+			{
 				case MaintainerPackage.MAINTAINABLE__MAINTAINER: return GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER;
 				default: return -1;
 			}

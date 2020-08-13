@@ -50,7 +50,8 @@ public class MeshRendererImpl extends GenericRendererImpl<IMeshStructure> implem
 	@Override
 	public EList<IMeshStructure> getRenderedStructures()
 	{
-		if (renderedStructures == null) {
+		if (renderedStructures == null)
+		{
 			renderedStructures = new EObjectResolvingEList<IMeshStructure>(IMeshStructure.class, this, MeshPackage.MESH_RENDERER__RENDERED_STRUCTURES);
 		}
 		return renderedStructures;

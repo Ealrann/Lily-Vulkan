@@ -55,7 +55,8 @@ public class SpriteMonoSamplerProviderItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -73,7 +74,8 @@ public class SpriteMonoSamplerProviderItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SpritePackage.Literals.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO);
 		}
@@ -131,7 +133,8 @@ public class SpriteMonoSamplerProviderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SpriteMonoSamplerProvider.class)) {
+		switch (notification.getFeatureID(SpriteMonoSamplerProvider.class))
+		{
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

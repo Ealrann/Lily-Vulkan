@@ -58,7 +58,8 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -248,7 +249,8 @@ public class SetScissorItemProvider extends ItemProviderAdapter implements IEdit
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SetScissor.class)) {
+		switch (notification.getFeatureID(SetScissor.class))
+		{
 			case GraphicPackage.SET_SCISSOR__NAME:
 			case GraphicPackage.SET_SCISSOR__ENABLED:
 			case GraphicPackage.SET_SCISSOR__OFFSET_X:

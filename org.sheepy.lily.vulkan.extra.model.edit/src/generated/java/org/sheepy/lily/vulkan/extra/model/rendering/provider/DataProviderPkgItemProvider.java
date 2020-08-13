@@ -62,7 +62,8 @@ public class DataProviderPkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -80,7 +81,8 @@ public class DataProviderPkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS);
 		}
@@ -138,7 +140,8 @@ public class DataProviderPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DataProviderPkg.class)) {
+		switch (notification.getFeatureID(DataProviderPkg.class))
+		{
 			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

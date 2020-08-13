@@ -64,7 +64,8 @@ public class ResourceDescriptorProviderPkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -82,7 +83,8 @@ public class ResourceDescriptorProviderPkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS);
 		}
@@ -140,7 +142,8 @@ public class ResourceDescriptorProviderPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ResourceDescriptorProviderPkg.class)) {
+		switch (notification.getFeatureID(ResourceDescriptorProviderPkg.class))
+		{
 			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

@@ -74,7 +74,8 @@ public class AttachmentRefPkgImpl extends LilyEObject implements AttachmentRefPk
 	@Override
 	public EList<AttachmentRef> getAttachmentRefs()
 	{
-		if (attachmentRefs == null) {
+		if (attachmentRefs == null)
+		{
 			attachmentRefs = new EObjectContainmentEList<AttachmentRef>(AttachmentRef.class, this, GraphicPackage.ATTACHMENT_REF_PKG__ATTACHMENT_REFS);
 		}
 		return attachmentRefs;
@@ -88,7 +89,8 @@ public class AttachmentRefPkgImpl extends LilyEObject implements AttachmentRefPk
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF_PKG__ATTACHMENT_REFS:
 				return ((InternalEList<?>)getAttachmentRefs()).basicRemove(otherEnd, msgs);
 		}
@@ -103,7 +105,8 @@ public class AttachmentRefPkgImpl extends LilyEObject implements AttachmentRefPk
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF_PKG__ATTACHMENT_REFS:
 				return getAttachmentRefs();
 		}
@@ -119,7 +122,8 @@ public class AttachmentRefPkgImpl extends LilyEObject implements AttachmentRefPk
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF_PKG__ATTACHMENT_REFS:
 				getAttachmentRefs().clear();
 				getAttachmentRefs().addAll((Collection<? extends AttachmentRef>)newValue);
@@ -136,7 +140,8 @@ public class AttachmentRefPkgImpl extends LilyEObject implements AttachmentRefPk
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF_PKG__ATTACHMENT_REFS:
 				getAttachmentRefs().clear();
 				return;
@@ -152,7 +157,8 @@ public class AttachmentRefPkgImpl extends LilyEObject implements AttachmentRefPk
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_REF_PKG__ATTACHMENT_REFS:
 				return attachmentRefs != null && !attachmentRefs.isEmpty();
 		}

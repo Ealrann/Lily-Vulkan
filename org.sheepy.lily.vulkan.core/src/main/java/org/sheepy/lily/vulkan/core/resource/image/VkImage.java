@@ -15,7 +15,6 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.image.ImageInfo;
-import org.sheepy.vulkan.model.image.ImageLayout;
 
 import java.nio.ByteBuffer;
 import java.util.Collection;
@@ -35,7 +34,7 @@ public final class VkImage
 	public final int properties;
 	public final int tiling;
 	public final int mipLevels;
-	public final ImageLayout initialLayout;
+	public final EImageLayout initialLayout;
 	public final int aspect;
 
 	private long memoryPtr;
@@ -59,7 +58,7 @@ public final class VkImage
 			int usage,
 			int tiling,
 			int mipLevels,
-			ImageLayout initialLayout,
+			EImageLayout initialLayout,
 			int aspect)
 	{
 		this.imagePtr = imagePtr;
@@ -176,11 +175,11 @@ public final class VkImage
 		transitionImageLayout(stack,
 							  commandBuffer,
 							  srcStage,
-							  initialLayout.getStage(),
+							  EPipelineStage.TOP_OF_PIPE_BIT,
 							  srcLayout,
-							  initialLayout.getLayout(),
+							  initialLayout,
 							  srcAccessMask,
-							  initialLayout.getAccessMask());
+							  List.of());
 	}
 
 	public void transitionFromInitialLayout(MemoryStack stack,
@@ -191,11 +190,11 @@ public final class VkImage
 	{
 		transitionImageLayout(stack,
 							  commandBuffer,
-							  initialLayout.getStage(),
+							  EPipelineStage.TOP_OF_PIPE_BIT,
 							  dstStage,
-							  initialLayout.getLayout(),
+							  initialLayout,
 							  dstLayout,
-							  initialLayout.getAccessMask(),
+							  List.of(),
 							  dstAccessMask);
 	}
 

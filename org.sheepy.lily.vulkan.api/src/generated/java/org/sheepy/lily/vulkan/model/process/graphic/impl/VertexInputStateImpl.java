@@ -72,7 +72,8 @@ public class VertexInputStateImpl extends LilyEObject implements VertexInputStat
 	@Override
 	public EList<InputDescriptor> getInputDescriptor()
 	{
-		if (inputDescriptor == null) {
+		if (inputDescriptor == null)
+		{
 			inputDescriptor = new EObjectContainmentEList<InputDescriptor>(InputDescriptor.class, this, GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR);
 		}
 		return inputDescriptor;
@@ -86,7 +87,8 @@ public class VertexInputStateImpl extends LilyEObject implements VertexInputStat
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
 				return ((InternalEList<?>)getInputDescriptor()).basicRemove(otherEnd, msgs);
 		}
@@ -101,7 +103,8 @@ public class VertexInputStateImpl extends LilyEObject implements VertexInputStat
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
 				return getInputDescriptor();
 		}
@@ -117,7 +120,8 @@ public class VertexInputStateImpl extends LilyEObject implements VertexInputStat
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
 				getInputDescriptor().clear();
 				getInputDescriptor().addAll((Collection<? extends InputDescriptor>)newValue);
@@ -134,7 +138,8 @@ public class VertexInputStateImpl extends LilyEObject implements VertexInputStat
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
 				getInputDescriptor().clear();
 				return;
@@ -150,7 +155,8 @@ public class VertexInputStateImpl extends LilyEObject implements VertexInputStat
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
 				return inputDescriptor != null && !inputDescriptor.isEmpty();
 		}

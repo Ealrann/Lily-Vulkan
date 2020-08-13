@@ -138,10 +138,12 @@ public class PhysicalEntityVariableImpl extends LilyEObject implements PhysicalE
 	@Override
 	public PhysicalEntity getEntity()
 	{
-		if (entity != null && ((EObject)entity).eIsProxy()) {
+		if (entity != null && ((EObject)entity).eIsProxy())
+		{
 			InternalEObject oldEntity = entity;
 			entity = (PhysicalEntity)eResolveProxy(oldEntity);
-			if (entity != oldEntity) {
+			if (entity != oldEntity)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.PHYSICAL_ENTITY_VARIABLE__ENTITY, oldEntity, entity));
 			}
@@ -206,7 +208,8 @@ public class PhysicalEntityVariableImpl extends LilyEObject implements PhysicalE
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__NAME:
 				return getName();
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__ENTITY:
@@ -226,7 +229,8 @@ public class PhysicalEntityVariableImpl extends LilyEObject implements PhysicalE
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__NAME:
 				setName((String)newValue);
 				return;
@@ -248,7 +252,8 @@ public class PhysicalEntityVariableImpl extends LilyEObject implements PhysicalE
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -270,7 +275,8 @@ public class PhysicalEntityVariableImpl extends LilyEObject implements PhysicalE
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE__ENTITY:

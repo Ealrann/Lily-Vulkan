@@ -28,13 +28,16 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	 */
 	public static VulkanFactory init()
 	{
-		try {
+		try
+		{
 			VulkanFactory theVulkanFactory = (VulkanFactory)EPackage.Registry.INSTANCE.getEFactory(VulkanPackage.eNS_URI);
-			if (theVulkanFactory != null) {
+			if (theVulkanFactory != null)
+			{
 				return theVulkanFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new VulkanFactoryImpl();
@@ -59,7 +62,8 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case VulkanPackage.VULKAN_ENGINE: return createVulkanEngine();
 			case VulkanPackage.RUN_PROCESS: return createRunProcess();
 			case VulkanPackage.WAIT_PROCESS_IDLE: return createWaitProcessIdle();

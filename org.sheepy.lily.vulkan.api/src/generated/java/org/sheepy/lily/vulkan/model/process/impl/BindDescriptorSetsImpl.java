@@ -207,7 +207,8 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 	@Override
 	public EList<DescriptorSet> getDescriptorSets()
 	{
-		if (descriptorSets == null) {
+		if (descriptorSets == null)
+		{
 			descriptorSets = new EObjectResolvingEList<DescriptorSet>(DescriptorSet.class, this, ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS);
 		}
 		return descriptorSets;
@@ -271,7 +272,8 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
 				return getName();
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
@@ -295,7 +297,8 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
 				setName((String)newValue);
 				return;
@@ -324,7 +327,8 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -352,7 +356,8 @@ public class BindDescriptorSetsImpl extends LilyEObject implements BindDescripto
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:

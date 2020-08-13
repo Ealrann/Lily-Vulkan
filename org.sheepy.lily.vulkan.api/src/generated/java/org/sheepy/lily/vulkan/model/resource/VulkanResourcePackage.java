@@ -447,6 +447,52 @@ public interface VulkanResourcePackage extends EPackage
 	int IMAGE_DATA_PROVIDER_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageDataProviderImpl <em>File Image Data Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.FileImageDataProviderImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFileImageDataProvider()
+	 * @generated
+	 */
+	int FILE_IMAGE_DATA_PROVIDER = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE_DATA_PROVIDER__NAME = IMAGE_DATA_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>File Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE_DATA_PROVIDER__FILE_IMAGE = IMAGE_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>File Image Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE_DATA_PROVIDER_FEATURE_COUNT = IMAGE_DATA_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>File Image Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMAGE_DATA_PROVIDER_OPERATION_COUNT = IMAGE_DATA_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -454,7 +500,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getImage()
 	 * @generated
 	 */
-	int IMAGE = 8;
+	int IMAGE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -493,7 +539,7 @@ public interface VulkanResourcePackage extends EPackage
 	int IMAGE__MIP_LEVELS = ImagePackage.IMAGE_INFO__MIP_LEVELS;
 
 	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -537,106 +583,6 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 */
 	int STATIC_IMAGE = 28;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl <em>File Image</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFileImage()
-	 * @generated
-	 */
-	int FILE_IMAGE = 9;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__FORMAT = IMAGE__FORMAT;
-
-	/**
-	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__USAGES = IMAGE__USAGES;
-
-	/**
-	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__TILING = IMAGE__TILING;
-
-	/**
-	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__MIP_LEVELS = IMAGE__MIP_LEVELS;
-
-	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__INITIAL_LAYOUT = IMAGE__INITIAL_LAYOUT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__NAME = IMAGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>File</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__FILE = IMAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE__MIPMAP_ENABLED = IMAGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>File Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>File Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeImageImpl <em>Composite Image</em>}' class.
@@ -865,7 +811,7 @@ public interface VulkanResourcePackage extends EPackage
 	int COMPOSITE_IMAGE__MIP_LEVELS = IMAGE__MIP_LEVELS;
 
 	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1927,7 +1873,7 @@ public interface VulkanResourcePackage extends EPackage
 	int STATIC_IMAGE__MIP_LEVELS = IMEMORY_CHUNK_PART_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2026,7 +1972,7 @@ public interface VulkanResourcePackage extends EPackage
 	int IMAGE_VIEWER__MIP_LEVELS = IMEMORY_CHUNK_PART_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2053,13 +1999,22 @@ public interface VulkanResourcePackage extends EPackage
 	int IMAGE_VIEWER__DATA_PROVIDER = IMEMORY_CHUNK_PART_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_VIEWER__MIPMAP_ENABLED = IMEMORY_CHUNK_PART_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Image Viewer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_VIEWER_FEATURE_COUNT = IMEMORY_CHUNK_PART_FEATURE_COUNT + 7;
+	int IMAGE_VIEWER_FEATURE_COUNT = IMEMORY_CHUNK_PART_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Image Viewer</em>' class.
@@ -2292,6 +2247,27 @@ public interface VulkanResourcePackage extends EPackage
 	EClass getImageDataProvider();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FileImageDataProvider <em>File Image Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>File Image Data Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FileImageDataProvider
+	 * @generated
+	 */
+	EClass getFileImageDataProvider();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.FileImageDataProvider#getFileImage <em>File Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>File Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.FileImageDataProvider#getFileImage()
+	 * @see #getFileImageDataProvider()
+	 * @generated
+	 */
+	EReference getFileImageDataProvider_FileImage();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2366,36 +2342,15 @@ public interface VulkanResourcePackage extends EPackage
 	EReference getImageViewer_DataProvider();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FileImage <em>File Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>File Image</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FileImage
-	 * @generated
-	 */
-	EClass getFileImage();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.FileImage#getFile <em>File</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>File</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FileImage#getFile()
-	 * @see #getFileImage()
-	 * @generated
-	 */
-	EReference getFileImage_File();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.FileImage#isMipmapEnabled <em>Mipmap Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageViewer#isMipmapEnabled <em>Mipmap Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Mipmap Enabled</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.FileImage#isMipmapEnabled()
-	 * @see #getFileImage()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageViewer#isMipmapEnabled()
+	 * @see #getImageViewer()
 	 * @generated
 	 */
-	EAttribute getFileImage_MipmapEnabled();
+	EAttribute getImageViewer_MipmapEnabled();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.CompositeImage <em>Composite Image</em>}'.
@@ -3145,6 +3100,24 @@ public interface VulkanResourcePackage extends EPackage
 		EClass IMAGE_DATA_PROVIDER = eINSTANCE.getImageDataProvider();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageDataProviderImpl <em>File Image Data Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.FileImageDataProviderImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFileImageDataProvider()
+		 * @generated
+		 */
+		EClass FILE_IMAGE_DATA_PROVIDER = eINSTANCE.getFileImageDataProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>File Image</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILE_IMAGE_DATA_PROVIDER__FILE_IMAGE = eINSTANCE.getFileImageDataProvider_FileImage();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3207,30 +3180,12 @@ public interface VulkanResourcePackage extends EPackage
 		EReference IMAGE_VIEWER__DATA_PROVIDER = eINSTANCE.getImageViewer_DataProvider();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl <em>File Image</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.FileImageImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl#getFileImage()
-		 * @generated
-		 */
-		EClass FILE_IMAGE = eINSTANCE.getFileImage();
-
-		/**
-		 * The meta object literal for the '<em><b>File</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FILE_IMAGE__FILE = eINSTANCE.getFileImage_File();
-
-		/**
 		 * The meta object literal for the '<em><b>Mipmap Enabled</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FILE_IMAGE__MIPMAP_ENABLED = eINSTANCE.getFileImage_MipmapEnabled();
+		EAttribute IMAGE_VIEWER__MIPMAP_ENABLED = eINSTANCE.getImageViewer_MipmapEnabled();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeImageImpl <em>Composite Image</em>}' class.

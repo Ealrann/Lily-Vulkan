@@ -53,7 +53,8 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 */
 	public RenderingSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = RenderingPackage.eINSTANCE;
 		}
 	}
@@ -82,15 +83,18 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case RenderingPackage.ENTITY: {
+		switch (classifierID)
+		{
+			case RenderingPackage.ENTITY:
+			{
 				Entity entity = (Entity)theEObject;
 				T1 result = caseEntity(entity);
 				if (result == null) result = caseLNamedElement(entity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.PHYSICAL_ENTITY: {
+			case RenderingPackage.PHYSICAL_ENTITY:
+			{
 				PhysicalEntity physicalEntity = (PhysicalEntity)theEObject;
 				T1 result = casePhysicalEntity(physicalEntity);
 				if (result == null) result = caseEntity(physicalEntity);
@@ -98,31 +102,36 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.AXIS: {
+			case RenderingPackage.AXIS:
+			{
 				Axis axis = (Axis)theEObject;
 				T1 result = caseAxis(axis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.STRUCTURE: {
+			case RenderingPackage.STRUCTURE:
+			{
 				Structure structure = (Structure)theEObject;
 				T1 result = caseStructure(structure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.PRESENTATION: {
+			case RenderingPackage.PRESENTATION:
+			{
 				Presentation presentation = (Presentation)theEObject;
 				T1 result = casePresentation(presentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.PRESENTATION_PKG: {
+			case RenderingPackage.PRESENTATION_PKG:
+			{
 				PresentationPkg presentationPkg = (PresentationPkg)theEObject;
 				T1 result = casePresentationPkg(presentationPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.PRESENTABLE_ENTITY: {
+			case RenderingPackage.PRESENTABLE_ENTITY:
+			{
 				PresentableEntity presentableEntity = (PresentableEntity)theEObject;
 				T1 result = casePresentableEntity(presentableEntity);
 				if (result == null) result = casePhysicalEntity(presentableEntity);
@@ -131,7 +140,8 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.GENERIC_RENDERER: {
+			case RenderingPackage.GENERIC_RENDERER:
+			{
 				GenericRenderer<?> genericRenderer = (GenericRenderer<?>)theEObject;
 				T1 result = caseGenericRenderer(genericRenderer);
 				if (result == null) result = caseGraphicsPipeline(genericRenderer);
@@ -145,7 +155,8 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.RENDER_DATA_PROVIDER: {
+			case RenderingPackage.RENDER_DATA_PROVIDER:
+			{
 				RenderDataProvider<?> renderDataProvider = (RenderDataProvider<?>)theEObject;
 				T1 result = caseRenderDataProvider(renderDataProvider);
 				if (result == null) result = caseBufferDataProvider(renderDataProvider);
@@ -153,19 +164,22 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.DATA_PROVIDER_PKG: {
+			case RenderingPackage.DATA_PROVIDER_PKG:
+			{
 				DataProviderPkg<?> dataProviderPkg = (DataProviderPkg<?>)theEObject;
 				T1 result = caseDataProviderPkg(dataProviderPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.RENDERABLE_DATA_SOURCE: {
+			case RenderingPackage.RENDERABLE_DATA_SOURCE:
+			{
 				RenderableDataSource<?> renderableDataSource = (RenderableDataSource<?>)theEObject;
 				T1 result = caseRenderableDataSource(renderableDataSource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.VERTEX_PROVIDER: {
+			case RenderingPackage.VERTEX_PROVIDER:
+			{
 				VertexProvider<?> vertexProvider = (VertexProvider<?>)theEObject;
 				T1 result = caseVertexProvider(vertexProvider);
 				if (result == null) result = caseRenderDataProvider(vertexProvider);
@@ -174,7 +188,8 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.INDEX_PROVIDER: {
+			case RenderingPackage.INDEX_PROVIDER:
+			{
 				IndexProvider<?> indexProvider = (IndexProvider<?>)theEObject;
 				T1 result = caseIndexProvider(indexProvider);
 				if (result == null) result = caseRenderDataProvider(indexProvider);
@@ -183,39 +198,45 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER: {
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER:
+			{
 				ResourceDescriptorProvider resourceDescriptorProvider = (ResourceDescriptorProvider)theEObject;
 				T1 result = caseResourceDescriptorProvider(resourceDescriptorProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.DESCRIPTORS_PROVIDER: {
+			case RenderingPackage.DESCRIPTORS_PROVIDER:
+			{
 				DescriptorsProvider descriptorsProvider = (DescriptorsProvider)theEObject;
 				T1 result = caseDescriptorsProvider(descriptorsProvider);
 				if (result == null) result = caseResourceDescriptorProvider(descriptorsProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER: {
+			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER:
+			{
 				DataDescriptorsProvider dataDescriptorsProvider = (DataDescriptorsProvider)theEObject;
 				T1 result = caseDataDescriptorsProvider(dataDescriptorsProvider);
 				if (result == null) result = caseResourceDescriptorProvider(dataDescriptorsProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.DATA_DESCRIPTOR: {
+			case RenderingPackage.DATA_DESCRIPTOR:
+			{
 				DataDescriptor dataDescriptor = (DataDescriptor)theEObject;
 				T1 result = caseDataDescriptor(dataDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG: {
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG:
+			{
 				ResourceDescriptorProviderPkg resourceDescriptorProviderPkg = (ResourceDescriptorProviderPkg)theEObject;
 				T1 result = caseResourceDescriptorProviderPkg(resourceDescriptorProviderPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER: {
+			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER:
+			{
 				RenderProxyConstantBuffer renderProxyConstantBuffer = (RenderProxyConstantBuffer)theEObject;
 				T1 result = caseRenderProxyConstantBuffer(renderProxyConstantBuffer);
 				if (result == null) result = caseConstantBuffer(renderProxyConstantBuffer);
@@ -224,19 +245,22 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.ISPECIALIZATION: {
+			case RenderingPackage.ISPECIALIZATION:
+			{
 				ISpecialization iSpecialization = (ISpecialization)theEObject;
 				T1 result = caseISpecialization(iSpecialization);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.ENTITY_PKG: {
+			case RenderingPackage.ENTITY_PKG:
+			{
 				EntityPkg<?> entityPkg = (EntityPkg<?>)theEObject;
 				T1 result = caseEntityPkg(entityPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.RENDER_DRAW_TASK: {
+			case RenderingPackage.RENDER_DRAW_TASK:
+			{
 				RenderDrawTask renderDrawTask = (RenderDrawTask)theEObject;
 				T1 result = caseRenderDrawTask(renderDrawTask);
 				if (result == null) result = caseIPipelineTask(renderDrawTask);
@@ -244,7 +268,8 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.RENDER_INDEXED_DRAW_TASK: {
+			case RenderingPackage.RENDER_INDEXED_DRAW_TASK:
+			{
 				RenderIndexedDrawTask renderIndexedDrawTask = (RenderIndexedDrawTask)theEObject;
 				T1 result = caseRenderIndexedDrawTask(renderIndexedDrawTask);
 				if (result == null) result = caseIPipelineTask(renderIndexedDrawTask);
@@ -252,7 +277,8 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE: {
+			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE:
+			{
 				PhysicalEntityVariable physicalEntityVariable = (PhysicalEntityVariable)theEObject;
 				T1 result = casePhysicalEntityVariable(physicalEntityVariable);
 				if (result == null) result = caseIModelVariable(physicalEntityVariable);

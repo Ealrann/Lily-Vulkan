@@ -99,7 +99,8 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
 				return getIndex();
 		}
@@ -114,7 +115,8 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
 				setIndex((Integer)newValue);
 				return;
@@ -130,7 +132,8 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
 				setIndex(INDEX_EDEFAULT);
 				return;
@@ -146,7 +149,8 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
 				return index != INDEX_EDEFAULT;
 		}

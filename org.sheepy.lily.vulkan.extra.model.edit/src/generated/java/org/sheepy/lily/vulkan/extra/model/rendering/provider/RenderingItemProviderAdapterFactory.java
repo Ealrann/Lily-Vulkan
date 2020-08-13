@@ -132,7 +132,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createAxisAdapter()
 	{
-		if (axisItemProvider == null) {
+		if (axisItemProvider == null)
+		{
 			axisItemProvider = new AxisItemProvider(this);
 		}
 
@@ -156,7 +157,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createPresentationPkgAdapter()
 	{
-		if (presentationPkgItemProvider == null) {
+		if (presentationPkgItemProvider == null)
+		{
 			presentationPkgItemProvider = new PresentationPkgItemProvider(this);
 		}
 
@@ -180,7 +182,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createPresentableEntityAdapter()
 	{
-		if (presentableEntityItemProvider == null) {
+		if (presentableEntityItemProvider == null)
+		{
 			presentableEntityItemProvider = new PresentableEntityItemProvider(this);
 		}
 
@@ -204,7 +207,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createDataProviderPkgAdapter()
 	{
-		if (dataProviderPkgItemProvider == null) {
+		if (dataProviderPkgItemProvider == null)
+		{
 			dataProviderPkgItemProvider = new DataProviderPkgItemProvider(this);
 		}
 
@@ -228,7 +232,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createRenderableDataSourceAdapter()
 	{
-		if (renderableDataSourceItemProvider == null) {
+		if (renderableDataSourceItemProvider == null)
+		{
 			renderableDataSourceItemProvider = new RenderableDataSourceItemProvider(this);
 		}
 
@@ -252,7 +257,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createVertexProviderAdapter()
 	{
-		if (vertexProviderItemProvider == null) {
+		if (vertexProviderItemProvider == null)
+		{
 			vertexProviderItemProvider = new VertexProviderItemProvider(this);
 		}
 
@@ -276,7 +282,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createIndexProviderAdapter()
 	{
-		if (indexProviderItemProvider == null) {
+		if (indexProviderItemProvider == null)
+		{
 			indexProviderItemProvider = new IndexProviderItemProvider(this);
 		}
 
@@ -300,7 +307,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createDescriptorsProviderAdapter()
 	{
-		if (descriptorsProviderItemProvider == null) {
+		if (descriptorsProviderItemProvider == null)
+		{
 			descriptorsProviderItemProvider = new DescriptorsProviderItemProvider(this);
 		}
 
@@ -324,7 +332,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createDataDescriptorsProviderAdapter()
 	{
-		if (dataDescriptorsProviderItemProvider == null) {
+		if (dataDescriptorsProviderItemProvider == null)
+		{
 			dataDescriptorsProviderItemProvider = new DataDescriptorsProviderItemProvider(this);
 		}
 
@@ -348,7 +357,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createDataDescriptorAdapter()
 	{
-		if (dataDescriptorItemProvider == null) {
+		if (dataDescriptorItemProvider == null)
+		{
 			dataDescriptorItemProvider = new DataDescriptorItemProvider(this);
 		}
 
@@ -372,7 +382,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createResourceDescriptorProviderPkgAdapter()
 	{
-		if (resourceDescriptorProviderPkgItemProvider == null) {
+		if (resourceDescriptorProviderPkgItemProvider == null)
+		{
 			resourceDescriptorProviderPkgItemProvider = new ResourceDescriptorProviderPkgItemProvider(this);
 		}
 
@@ -396,7 +407,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createRenderProxyConstantBufferAdapter()
 	{
-		if (renderProxyConstantBufferItemProvider == null) {
+		if (renderProxyConstantBufferItemProvider == null)
+		{
 			renderProxyConstantBufferItemProvider = new RenderProxyConstantBufferItemProvider(this);
 		}
 
@@ -420,7 +432,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createISpecializationAdapter()
 	{
-		if (iSpecializationItemProvider == null) {
+		if (iSpecializationItemProvider == null)
+		{
 			iSpecializationItemProvider = new ISpecializationItemProvider(this);
 		}
 
@@ -444,7 +457,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createRenderDrawTaskAdapter()
 	{
-		if (renderDrawTaskItemProvider == null) {
+		if (renderDrawTaskItemProvider == null)
+		{
 			renderDrawTaskItemProvider = new RenderDrawTaskItemProvider(this);
 		}
 
@@ -468,7 +482,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createRenderIndexedDrawTaskAdapter()
 	{
-		if (renderIndexedDrawTaskItemProvider == null) {
+		if (renderIndexedDrawTaskItemProvider == null)
+		{
 			renderIndexedDrawTaskItemProvider = new RenderIndexedDrawTaskItemProvider(this);
 		}
 
@@ -492,7 +507,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Adapter createPhysicalEntityVariableAdapter()
 	{
-		if (physicalEntityVariableItemProvider == null) {
+		if (physicalEntityVariableItemProvider == null)
+		{
 			physicalEntityVariableItemProvider = new PhysicalEntityVariableItemProvider(this);
 		}
 
@@ -554,9 +570,11 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -631,7 +649,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

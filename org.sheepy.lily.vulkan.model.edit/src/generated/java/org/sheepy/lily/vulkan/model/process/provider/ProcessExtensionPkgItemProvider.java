@@ -60,7 +60,8 @@ public class ProcessExtensionPkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -78,7 +79,8 @@ public class ProcessExtensionPkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.PROCESS_EXTENSION_PKG__EXTENSIONS);
 		}
@@ -136,7 +138,8 @@ public class ProcessExtensionPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProcessExtensionPkg.class)) {
+		switch (notification.getFeatureID(ProcessExtensionPkg.class))
+		{
 			case ProcessPackage.PROCESS_EXTENSION_PKG__EXTENSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

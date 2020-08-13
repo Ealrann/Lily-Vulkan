@@ -59,7 +59,8 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -149,7 +150,8 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.COMPOSITE_TASK__TASKS);
 		}
@@ -209,7 +211,8 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter implements IE
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositeTask.class)) {
+		switch (notification.getFeatureID(CompositeTask.class))
+		{
 			case ProcessPackage.COMPOSITE_TASK__NAME:
 			case ProcessPackage.COMPOSITE_TASK__ENABLED:
 			case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:

@@ -70,7 +70,8 @@ public class CompositorItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -208,7 +209,8 @@ public class CompositorItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ApplicationPackage.Literals.ICOMPOSITOR__EXTENSION_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.COMPOSITOR__CONSTANT_VARIABLES);
@@ -271,7 +273,8 @@ public class CompositorItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Compositor.class)) {
+		switch (notification.getFeatureID(Compositor.class))
+		{
 			case GraphicPackage.COMPOSITOR__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

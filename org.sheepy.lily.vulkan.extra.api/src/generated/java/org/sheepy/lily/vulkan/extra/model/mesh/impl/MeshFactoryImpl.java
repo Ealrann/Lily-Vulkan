@@ -28,13 +28,16 @@ public class MeshFactoryImpl extends EFactoryImpl implements MeshFactory
 	 */
 	public static MeshFactory init()
 	{
-		try {
+		try
+		{
 			MeshFactory theMeshFactory = (MeshFactory)EPackage.Registry.INSTANCE.getEFactory(MeshPackage.eNS_URI);
-			if (theMeshFactory != null) {
+			if (theMeshFactory != null)
+			{
 				return theMeshFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new MeshFactoryImpl();
@@ -59,7 +62,8 @@ public class MeshFactoryImpl extends EFactoryImpl implements MeshFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case MeshPackage.MESH_RENDERER: return createMeshRenderer();
 			case MeshPackage.IMESH_STRUCTURE: return createIMeshStructure();
 			case MeshPackage.GEOMETRIC_MESH: return createGeometricMesh();

@@ -100,11 +100,11 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 		imageBackend.transitionImageLayout(stack,
 										   vkCommandBuffer,
 										   EPipelineStage.TRANSFER_BIT,
-										   initialLayout.getStage(),
+										   EPipelineStage.TRANSFER_BIT,
 										   EImageLayout.TRANSFER_DST_OPTIMAL,
-										   initialLayout.getLayout(),
+										   initialLayout,
 										   EnumSet.of(EAccess.TRANSFER_WRITE_BIT),
-										   initialLayout.getAccessMask());
+										   List.of());
 	}
 
 	private static void blitInlay(final VkCommandBuffer vkCommandBuffer,

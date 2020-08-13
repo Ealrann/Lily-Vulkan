@@ -165,7 +165,8 @@ public abstract class PushConstantImpl extends LilyEObject implements PushConsta
 	@Override
 	public EList<EShaderStage> getStages()
 	{
-		if (stages == null) {
+		if (stages == null)
+		{
 			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this, ProcessPackage.PUSH_CONSTANT__STAGES);
 		}
 		return stages;
@@ -179,7 +180,8 @@ public abstract class PushConstantImpl extends LilyEObject implements PushConsta
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PUSH_CONSTANT__NAME:
 				return getName();
 			case ProcessPackage.PUSH_CONSTANT__ENABLED:
@@ -199,7 +201,8 @@ public abstract class PushConstantImpl extends LilyEObject implements PushConsta
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PUSH_CONSTANT__NAME:
 				setName((String)newValue);
 				return;
@@ -222,7 +225,8 @@ public abstract class PushConstantImpl extends LilyEObject implements PushConsta
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PUSH_CONSTANT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -244,7 +248,8 @@ public abstract class PushConstantImpl extends LilyEObject implements PushConsta
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PUSH_CONSTANT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.PUSH_CONSTANT__ENABLED:

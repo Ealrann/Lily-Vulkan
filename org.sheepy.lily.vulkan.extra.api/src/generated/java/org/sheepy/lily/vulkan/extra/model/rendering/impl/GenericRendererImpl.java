@@ -189,7 +189,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public EList<Maintainable<GraphicsPipeline>> getMaintained()
 	{
-		if (maintained == null) {
+		if (maintained == null)
+		{
 			maintained = new EObjectWithInverseResolvingEList<Maintainable<GraphicsPipeline>>(Maintainable.class, this, RenderingPackage.GENERIC_RENDERER__MAINTAINED, MaintainerPackage.MAINTAINABLE__MAINTAINER);
 		}
 		return maintained;
@@ -215,7 +216,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		DataProviderPkg<T> oldDataProviderPkg = dataProviderPkg;
 		dataProviderPkg = newDataProviderPkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG, oldDataProviderPkg, newDataProviderPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -230,7 +232,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public void setDataProviderPkg(DataProviderPkg<T> newDataProviderPkg)
 	{
-		if (newDataProviderPkg != dataProviderPkg) {
+		if (newDataProviderPkg != dataProviderPkg)
+		{
 			NotificationChain msgs = null;
 			if (dataProviderPkg != null)
 				msgs = ((InternalEObject)dataProviderPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG, null, msgs);
@@ -251,7 +254,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public EList<T> getRenderedStructures()
 	{
-		if (renderedStructures == null) {
+		if (renderedStructures == null)
+		{
 			renderedStructures = new EObjectResolvingEList<T>(Structure.class, this, RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES);
 		}
 		return renderedStructures;
@@ -265,10 +269,12 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public ConstantBuffer getConstantBuffer()
 	{
-		if (constantBuffer != null && ((EObject)constantBuffer).eIsProxy()) {
+		if (constantBuffer != null && ((EObject)constantBuffer).eIsProxy())
+		{
 			InternalEObject oldConstantBuffer = constantBuffer;
 			constantBuffer = (ConstantBuffer)eResolveProxy(oldConstantBuffer);
-			if (constantBuffer != oldConstantBuffer) {
+			if (constantBuffer != oldConstantBuffer)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER, oldConstantBuffer, constantBuffer));
 			}
@@ -308,10 +314,12 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public TransferBuffer getTransferBuffer()
 	{
-		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy()) {
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
+		{
 			InternalEObject oldTransferBuffer = transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
-			if (transferBuffer != oldTransferBuffer) {
+			if (transferBuffer != oldTransferBuffer)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 			}
@@ -363,7 +371,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		ResourceDescriptorProviderPkg oldDescriptorProviderPkg = descriptorProviderPkg;
 		descriptorProviderPkg = newDescriptorProviderPkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG, oldDescriptorProviderPkg, newDescriptorProviderPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -378,7 +387,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public void setDescriptorProviderPkg(ResourceDescriptorProviderPkg newDescriptorProviderPkg)
 	{
-		if (newDescriptorProviderPkg != descriptorProviderPkg) {
+		if (newDescriptorProviderPkg != descriptorProviderPkg)
+		{
 			NotificationChain msgs = null;
 			if (descriptorProviderPkg != null)
 				msgs = ((InternalEObject)descriptorProviderPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG, null, msgs);
@@ -411,7 +421,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		ISpecialization oldSpecialization = specialization;
 		specialization = newSpecialization;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__SPECIALIZATION, oldSpecialization, newSpecialization);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -426,7 +437,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public void setSpecialization(ISpecialization newSpecialization)
 	{
-		if (newSpecialization != specialization) {
+		if (newSpecialization != specialization)
+		{
 			NotificationChain msgs = null;
 			if (specialization != null)
 				msgs = ((InternalEObject)specialization).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.GENERIC_RENDERER__SPECIALIZATION, null, msgs);
@@ -447,10 +459,12 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public FlushTransferBufferTask getFlushTransferBufferTask()
 	{
-		if (flushTransferBufferTask != null && ((EObject)flushTransferBufferTask).eIsProxy()) {
+		if (flushTransferBufferTask != null && ((EObject)flushTransferBufferTask).eIsProxy())
+		{
 			InternalEObject oldFlushTransferBufferTask = flushTransferBufferTask;
 			flushTransferBufferTask = (FlushTransferBufferTask)eResolveProxy(oldFlushTransferBufferTask);
-			if (flushTransferBufferTask != oldFlushTransferBufferTask) {
+			if (flushTransferBufferTask != oldFlushTransferBufferTask)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK, oldFlushTransferBufferTask, flushTransferBufferTask));
 			}
@@ -516,7 +530,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.GENERIC_RENDERER__MAINTAINED:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMaintained()).basicAdd(otherEnd, msgs);
 		}
@@ -531,7 +546,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.GENERIC_RENDERER__MAINTAINED:
 				return ((InternalEList<?>)getMaintained()).basicRemove(otherEnd, msgs);
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
@@ -552,7 +568,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.GENERIC_RENDERER__MAINTAINED:
 				return getMaintained();
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
@@ -587,7 +604,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.GENERIC_RENDERER__MAINTAINED:
 				getMaintained().clear();
 				getMaintained().addAll((Collection<? extends Maintainable<GraphicsPipeline>>)newValue);
@@ -629,7 +647,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.GENERIC_RENDERER__MAINTAINED:
 				getMaintained().clear();
 				return;
@@ -669,7 +688,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.GENERIC_RENDERER__MAINTAINED:
 				return maintained != null && !maintained.isEmpty();
 			case RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG:
@@ -700,8 +720,10 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainer.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == Maintainer.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case RenderingPackage.GENERIC_RENDERER__MAINTAINED: return MaintainerPackage.MAINTAINER__MAINTAINED;
 				default: return -1;
 			}
@@ -717,8 +739,10 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Maintainer.class) {
-			switch (baseFeatureID) {
+		if (baseClass == Maintainer.class)
+		{
+			switch (baseFeatureID)
+			{
 				case MaintainerPackage.MAINTAINER__MAINTAINED: return RenderingPackage.GENERIC_RENDERER__MAINTAINED;
 				default: return -1;
 			}

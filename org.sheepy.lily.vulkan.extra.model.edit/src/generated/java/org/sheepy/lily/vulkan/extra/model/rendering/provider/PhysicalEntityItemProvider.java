@@ -65,7 +65,8 @@ public class PhysicalEntityItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -155,7 +156,8 @@ public class PhysicalEntityItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.PHYSICAL_ENTITY__AXIS);
 		}
@@ -216,7 +218,8 @@ public class PhysicalEntityItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PhysicalEntity.class)) {
+		switch (notification.getFeatureID(PhysicalEntity.class))
+		{
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 			case RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION:
 			case RenderingPackage.PHYSICAL_ENTITY__GEO_ORIENTATION:

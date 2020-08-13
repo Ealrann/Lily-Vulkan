@@ -63,7 +63,8 @@ public class SpriteStructureItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addWidthPropertyDescriptor(object);
@@ -129,7 +130,8 @@ public class SpriteStructureItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SpritePackage.Literals.SPRITE_STRUCTURE__SPRITES);
 		}
@@ -188,7 +190,8 @@ public class SpriteStructureItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SpriteStructure.class)) {
+		switch (notification.getFeatureID(SpriteStructure.class))
+		{
 			case SpritePackage.SPRITE_STRUCTURE__WIDTH:
 			case SpritePackage.SPRITE_STRUCTURE__HEIGHT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

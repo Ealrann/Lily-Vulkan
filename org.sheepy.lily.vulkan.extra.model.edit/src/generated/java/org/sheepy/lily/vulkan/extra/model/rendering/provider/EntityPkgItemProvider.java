@@ -62,7 +62,8 @@ public class EntityPkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -80,7 +81,8 @@ public class EntityPkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.ENTITY_PKG__ENTITIES);
 		}
@@ -126,7 +128,8 @@ public class EntityPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EntityPkg.class)) {
+		switch (notification.getFeatureID(EntityPkg.class))
+		{
 			case RenderingPackage.ENTITY_PKG__ENTITIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

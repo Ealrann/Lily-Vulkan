@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.core.resource.image;
 
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.image.ImageInfo;
-import org.sheepy.vulkan.model.image.ImageLayout;
 
 import java.nio.ByteBuffer;
 
@@ -18,7 +18,7 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 	private int mipLevels = 1;
 	private boolean fillWithZero = false;
 	private ByteBuffer fillWith = null;
-	private ImageLayout initialLayout = null;
+	private EImageLayout initialLayout = null;
 	private int aspect = VK_IMAGE_ASPECT_COLOR_BIT;
 
 	public VkImageBuilder(int width, int height, int format)
@@ -112,6 +112,12 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 		return tiling;
 	}
 
+	public VkImageBuilder computeMipLevels()
+	{
+		mipLevels = (int) Math.floor(log2nlz(Math.max(width, height))) + 1;
+		return this;
+	}
+
 	public VkImageBuilder mipLevels(int mipLevels)
 	{
 		this.mipLevels = mipLevels;
@@ -148,16 +154,22 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 		return fillWith;
 	}
 
-	public AbstractVkImageBuilder initialLayout(ImageLayout initialLayout)
+	public AbstractVkImageBuilder initialLayout(EImageLayout initialLayout)
 	{
 		this.initialLayout = initialLayout;
 		return this;
 	}
 
 	@Override
-	public ImageLayout initialLayout()
+	public EImageLayout initialLayout()
 	{
 		return initialLayout;
+	}
+
+	private static int log2nlz(int bits)
+	{
+		if (bits == 0) return 0;
+		return 31 - Integer.numberOfLeadingZeros(bits);
 	}
 
 	static final class ImmutableBuilder extends IVkImageBuilder.AbstractVkImageBuilder
@@ -170,7 +182,7 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 		private final int mipLevels;
 		private final boolean fillWithZero;
 		private final ByteBuffer fillWith;
-		private final ImageLayout initialLayout;
+		private final EImageLayout initialLayout;
 		private final int aspect;
 
 		public ImmutableBuilder(IVkImageBuilder builder)
@@ -242,7 +254,7 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 		}
 
 		@Override
-		public ImageLayout initialLayout()
+		public EImageLayout initialLayout()
 		{
 			return initialLayout;
 		}

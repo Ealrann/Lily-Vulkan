@@ -194,7 +194,8 @@ public class AttributeDescriptionImpl extends LilyEObject implements AttributeDe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
 				return getName();
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
@@ -213,7 +214,8 @@ public class AttributeDescriptionImpl extends LilyEObject implements AttributeDe
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
 				setName((String)newValue);
 				return;
@@ -235,7 +237,8 @@ public class AttributeDescriptionImpl extends LilyEObject implements AttributeDe
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -257,7 +260,8 @@ public class AttributeDescriptionImpl extends LilyEObject implements AttributeDe
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:

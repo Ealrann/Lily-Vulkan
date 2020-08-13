@@ -88,7 +88,8 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_BINDING__BUFFER:
 				return getBuffer();
 		}
@@ -103,7 +104,8 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_BINDING__BUFFER:
 				setBuffer((IBuffer)newValue);
 				return;
@@ -119,7 +121,8 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_BINDING__BUFFER:
 				setBuffer((IBuffer)null);
 				return;
@@ -135,7 +138,8 @@ public class VertexBindingImpl extends LilyEObject implements VertexBinding
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.VERTEX_BINDING__BUFFER:
 				return buffer != null;
 		}

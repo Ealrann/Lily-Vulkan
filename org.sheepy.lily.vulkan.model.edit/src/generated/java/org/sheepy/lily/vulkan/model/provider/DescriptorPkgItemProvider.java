@@ -63,7 +63,8 @@ public class DescriptorPkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -81,7 +82,8 @@ public class DescriptorPkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS);
 		}
@@ -139,7 +141,8 @@ public class DescriptorPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DescriptorPkg.class)) {
+		switch (notification.getFeatureID(DescriptorPkg.class))
+		{
 			case VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

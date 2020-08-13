@@ -61,7 +61,8 @@ public class AttachmentPkgItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -79,7 +80,8 @@ public class AttachmentPkgItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.ATTACHMENT_PKG__EXTRA_ATTACHMENTS);
 		}
@@ -137,7 +139,8 @@ public class AttachmentPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AttachmentPkg.class)) {
+		switch (notification.getFeatureID(AttachmentPkg.class))
+		{
 			case GraphicPackage.ATTACHMENT_PKG__EXTRA_ATTACHMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

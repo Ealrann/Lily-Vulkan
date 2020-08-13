@@ -6,6 +6,7 @@ import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.TransferBufferBackend;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommand;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommandFactory;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.util.ArrayList;
@@ -100,11 +101,12 @@ public final class TransferCommandInserter
 				final var vkImage = fillImageCommand.vkImage();
 				return DataFlowCommandFactory.newPushImageCommand(ticket,
 																  vkImage,
+																  fillImageCommand.mipLevel(),
 																  EPipelineStage.TRANSFER_BIT,
 																  List.of(),
-																  vkImage.initialLayout.getStage(),
-																  vkImage.initialLayout.getAccessMask(),
-																  vkImage.initialLayout.getLayout());
+																  EPipelineStage.TRANSFER_BIT,
+																  List.of(EAccess.TRANSFER_WRITE_BIT),
+																  vkImage.initialLayout);
 			}
 			// TODO https://openjdk.java.net/jeps/360 switch on sealed type. No need to return null anymore.
 			return null;

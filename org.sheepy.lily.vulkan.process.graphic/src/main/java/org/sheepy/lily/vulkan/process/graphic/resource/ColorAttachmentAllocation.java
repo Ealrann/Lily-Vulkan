@@ -20,7 +20,6 @@ import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.image.ImageFactory;
 
 import java.util.List;
 
@@ -59,12 +58,9 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 		final int width = extent.x();
 		final int height = extent.y();
 		final int usage = VulkanModelUtil.getEnumeratedFlag(colorAttachment.getUsages());
-		final var initialLayout = ImageFactory.eINSTANCE.createImageLayout();
-		initialLayout.setLayout(colorAttachment.getInitialLayout());
-		initialLayout.setStage(EPipelineStage.EARLY_FRAGMENT_TESTS_BIT);
 		final var imageBuilder = VkImage.newBuilder(width, height, colorFormat);
 		imageBuilder.usage(usage);
-		imageBuilder.initialLayout(initialLayout);
+		imageBuilder.initialLayout(colorAttachment.getInitialLayout());
 
 		return imageBuilder.buildNoFill(context);
 	}

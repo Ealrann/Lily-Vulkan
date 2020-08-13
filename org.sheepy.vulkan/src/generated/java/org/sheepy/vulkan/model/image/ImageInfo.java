@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.image;
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.api.model.ILilyEObject;
 import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 /**
@@ -117,25 +118,29 @@ public interface ImageInfo extends ILilyEObject
 	void setMipLevels(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Initial Layout</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Initial Layout</b></em>' attribute.
+	 * The default value is <code>"SHADER_READ_ONLY_OPTIMAL"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initial Layout</em>' containment reference.
-	 * @see #setInitialLayout(ImageLayout)
+	 * @return the value of the '<em>Initial Layout</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
+	 * @see #setInitialLayout(EImageLayout)
 	 * @see org.sheepy.vulkan.model.image.ImagePackage#getImageInfo_InitialLayout()
-	 * @model containment="true"
+	 * @model default="SHADER_READ_ONLY_OPTIMAL"
 	 * @generated
 	 */
-	ImageLayout getInitialLayout();
+	EImageLayout getInitialLayout();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout <em>Initial Layout</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout <em>Initial Layout</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Initial Layout</em>' containment reference.
+	 * @param value the new value of the '<em>Initial Layout</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #getInitialLayout()
 	 * @generated
 	 */
-	void setInitialLayout(ImageLayout value);
+	void setInitialLayout(EImageLayout value);
 
 } // ImageInfo

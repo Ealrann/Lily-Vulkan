@@ -166,7 +166,8 @@ public class RenderDrawTaskImpl extends LilyEObject implements RenderDrawTask
 	@Override
 	public EList<VertexProvider<?>> getVertexProviders()
 	{
-		if (vertexProviders == null) {
+		if (vertexProviders == null)
+		{
 			vertexProviders = new EObjectResolvingEList<VertexProvider<?>>(VertexProvider.class, this, RenderingPackage.RENDER_DRAW_TASK__VERTEX_PROVIDERS);
 		}
 		return vertexProviders;
@@ -180,7 +181,8 @@ public class RenderDrawTaskImpl extends LilyEObject implements RenderDrawTask
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDER_DRAW_TASK__NAME:
 				return getName();
 			case RenderingPackage.RENDER_DRAW_TASK__ENABLED:
@@ -200,7 +202,8 @@ public class RenderDrawTaskImpl extends LilyEObject implements RenderDrawTask
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDER_DRAW_TASK__NAME:
 				setName((String)newValue);
 				return;
@@ -223,7 +226,8 @@ public class RenderDrawTaskImpl extends LilyEObject implements RenderDrawTask
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDER_DRAW_TASK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -245,7 +249,8 @@ public class RenderDrawTaskImpl extends LilyEObject implements RenderDrawTask
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDER_DRAW_TASK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RenderingPackage.RENDER_DRAW_TASK__ENABLED:

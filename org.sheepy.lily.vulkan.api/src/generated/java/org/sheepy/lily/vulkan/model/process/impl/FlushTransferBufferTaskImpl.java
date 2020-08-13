@@ -162,10 +162,12 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	@Override
 	public TransferBuffer getTransferBuffer()
 	{
-		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy()) {
+		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
+		{
 			InternalEObject oldTransferBuffer = transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
-			if (transferBuffer != oldTransferBuffer) {
+			if (transferBuffer != oldTransferBuffer)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER, oldTransferBuffer, transferBuffer));
 			}
@@ -205,7 +207,8 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 				return getName();
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:
@@ -225,7 +228,8 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 				setName((String)newValue);
 				return;
@@ -247,7 +251,8 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -269,7 +274,8 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:

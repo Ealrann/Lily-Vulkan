@@ -196,7 +196,8 @@ public class AxisImpl extends LilyEObject implements Axis
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.AXIS__FRONT_DIRECTION:
 				return getFrontDirection();
 			case RenderingPackage.AXIS__UP_DIRECTION:
@@ -215,7 +216,8 @@ public class AxisImpl extends LilyEObject implements Axis
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.AXIS__FRONT_DIRECTION:
 				setFrontDirection((Vector3dc)newValue);
 				return;
@@ -237,7 +239,8 @@ public class AxisImpl extends LilyEObject implements Axis
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.AXIS__FRONT_DIRECTION:
 				setFrontDirection(FRONT_DIRECTION_EDEFAULT);
 				return;
@@ -259,7 +262,8 @@ public class AxisImpl extends LilyEObject implements Axis
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.AXIS__FRONT_DIRECTION:
 				return FRONT_DIRECTION_EDEFAULT == null ? frontDirection != null : !FRONT_DIRECTION_EDEFAULT.equals(frontDirection);
 			case RenderingPackage.AXIS__UP_DIRECTION:

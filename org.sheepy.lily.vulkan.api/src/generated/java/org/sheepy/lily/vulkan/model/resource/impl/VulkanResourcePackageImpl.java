@@ -57,7 +57,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.EContextIndex;
 import org.sheepy.lily.vulkan.model.resource.EFlushMode;
-import org.sheepy.lily.vulkan.model.resource.FileImage;
+import org.sheepy.lily.vulkan.model.resource.FileImageDataProvider;
 import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBufferObject;
@@ -158,6 +158,13 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass fileImageDataProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass imageEClass = null;
 
 	/**
@@ -173,13 +180,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass imageViewerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass fileImageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -629,6 +629,28 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EClass getFileImageDataProvider()
+	{
+		return fileImageDataProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFileImageDataProvider_FileImage()
+	{
+		return (EReference)fileImageDataProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getImage()
 	{
 		return imageEClass;
@@ -704,31 +726,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EClass getFileImage()
+	public EAttribute getImageViewer_MipmapEnabled()
 	{
-		return fileImageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getFileImage_File()
-	{
-		return (EReference)fileImageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFileImage_MipmapEnabled()
-	{
-		return (EAttribute)fileImageEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)imageViewerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1369,11 +1369,10 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		imageDataProviderEClass = createEClass(IMAGE_DATA_PROVIDER);
 
-		imageEClass = createEClass(IMAGE);
+		fileImageDataProviderEClass = createEClass(FILE_IMAGE_DATA_PROVIDER);
+		createEReference(fileImageDataProviderEClass, FILE_IMAGE_DATA_PROVIDER__FILE_IMAGE);
 
-		fileImageEClass = createEClass(FILE_IMAGE);
-		createEReference(fileImageEClass, FILE_IMAGE__FILE);
-		createEAttribute(fileImageEClass, FILE_IMAGE__MIPMAP_ENABLED);
+		imageEClass = createEClass(IMAGE);
 
 		compositeImageEClass = createEClass(COMPOSITE_IMAGE);
 		createEReference(compositeImageEClass, COMPOSITE_IMAGE__INLAYS);
@@ -1450,6 +1449,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		imageViewerEClass = createEClass(IMAGE_VIEWER);
 		createEReference(imageViewerEClass, IMAGE_VIEWER__DATA_PROVIDER);
+		createEAttribute(imageViewerEClass, IMAGE_VIEWER__MIPMAP_ENABLED);
 
 		// Create enums
 		eContextIndexEEnum = createEEnum(ECONTEXT_INDEX);
@@ -1504,9 +1504,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		iBufferEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		imageDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		fileImageDataProviderEClass.getESuperTypes().add(this.getImageDataProvider());
 		imageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
 		imageEClass.getESuperTypes().add(theResourcePackage.getIImage());
-		fileImageEClass.getESuperTypes().add(this.getImage());
 		compositeImageEClass.getESuperTypes().add(this.getImage());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
 		samplerEClass.getESuperTypes().add(theResourcePackage.getIResource());
@@ -1557,11 +1557,10 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		initEClass(imageDataProviderEClass, ImageDataProvider.class, "ImageDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(fileImageDataProviderEClass, FileImageDataProvider.class, "FileImageDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFileImageDataProvider_FileImage(), theResourcePackage.getFileImage(), null, "fileImage", null, 1, 1, FileImageDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(fileImageEClass, FileImage.class, "FileImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFileImage_File(), theResourcePackage.getFileResource(), null, "file", null, 0, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFileImage_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 1, 1, FileImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(compositeImageEClass, CompositeImage.class, "CompositeImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeImage_Inlays(), this.getImageInlay(), null, "inlays", null, 0, -1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1638,6 +1637,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		initEClass(imageViewerEClass, ImageViewer.class, "ImageViewer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImageViewer_DataProvider(), this.getImageDataProvider(), null, "dataProvider", null, 1, 1, ImageViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageViewer_MipmapEnabled(), ecorePackage.getEBoolean(), "mipmapEnabled", "false", 1, 1, ImageViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eContextIndexEEnum, EContextIndex.class, "EContextIndex");

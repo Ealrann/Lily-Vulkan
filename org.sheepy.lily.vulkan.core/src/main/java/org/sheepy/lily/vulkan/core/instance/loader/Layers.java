@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.core.instance.loader;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkLayerProperties;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class Layers
 		final var res = stack.mallocPointer(size);
 		for (int i = 0; i < size; i++)
 		{
+			MemoryUtil.memUTF8("");
 			res.put(stack.UTF8(layers.get(i)));
 		}
 		res.flip();
@@ -66,7 +68,7 @@ public class Layers
 			}
 			else
 			{
-				System.err.println(String.format("Required layer [%s] is not available.", layer));
+				System.err.printf("Required layer [%s] is not available.%n", layer);
 			}
 			return this;
 		}

@@ -63,7 +63,8 @@ public class FlushTransferBufferTaskItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -182,7 +183,8 @@ public class FlushTransferBufferTaskItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FlushTransferBufferTask.class)) {
+		switch (notification.getFeatureID(FlushTransferBufferTask.class))
+		{
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__NAME:
 			case ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

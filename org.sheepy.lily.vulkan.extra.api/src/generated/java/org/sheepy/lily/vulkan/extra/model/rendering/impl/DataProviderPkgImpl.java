@@ -73,7 +73,8 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 	@Override
 	public EList<RenderDataProvider<T>> getDataProviders()
 	{
-		if (dataProviders == null) {
+		if (dataProviders == null)
+		{
 			dataProviders = new EObjectContainmentEList<RenderDataProvider<T>>(RenderDataProvider.class, this, RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS);
 		}
 		return dataProviders;
@@ -87,7 +88,8 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
 				return ((InternalEList<?>)getDataProviders()).basicRemove(otherEnd, msgs);
 		}
@@ -102,7 +104,8 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
 				return getDataProviders();
 		}
@@ -118,7 +121,8 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
 				getDataProviders().clear();
 				getDataProviders().addAll((Collection<? extends RenderDataProvider<T>>)newValue);
@@ -135,7 +139,8 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
 				getDataProviders().clear();
 				return;
@@ -151,7 +156,8 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
 				return dataProviders != null && !dataProviders.isEmpty();
 		}

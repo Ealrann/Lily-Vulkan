@@ -117,7 +117,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	@Override
 	public Adapter createVulkanEngineAdapter()
 	{
-		if (vulkanEngineItemProvider == null) {
+		if (vulkanEngineItemProvider == null)
+		{
 			vulkanEngineItemProvider = new VulkanEngineItemProvider(this);
 		}
 
@@ -141,7 +142,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	@Override
 	public Adapter createRunProcessAdapter()
 	{
-		if (runProcessItemProvider == null) {
+		if (runProcessItemProvider == null)
+		{
 			runProcessItemProvider = new RunProcessItemProvider(this);
 		}
 
@@ -165,7 +167,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	@Override
 	public Adapter createWaitProcessIdleAdapter()
 	{
-		if (waitProcessIdleItemProvider == null) {
+		if (waitProcessIdleItemProvider == null)
+		{
 			waitProcessIdleItemProvider = new WaitProcessIdleItemProvider(this);
 		}
 
@@ -189,7 +192,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	@Override
 	public Adapter createDescriptorPkgAdapter()
 	{
-		if (descriptorPkgItemProvider == null) {
+		if (descriptorPkgItemProvider == null)
+		{
 			descriptorPkgItemProvider = new DescriptorPkgItemProvider(this);
 		}
 
@@ -213,7 +217,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	@Override
 	public Adapter createMouseLocationAdapter()
 	{
-		if (mouseLocationItemProvider == null) {
+		if (mouseLocationItemProvider == null)
+		{
 			mouseLocationItemProvider = new MouseLocationItemProvider(this);
 		}
 
@@ -275,9 +280,11 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -352,7 +359,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

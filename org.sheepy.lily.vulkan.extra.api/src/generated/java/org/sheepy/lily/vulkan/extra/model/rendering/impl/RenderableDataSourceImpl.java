@@ -90,10 +90,12 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	@Override
 	public T getStructure()
 	{
-		if (structure != null && ((EObject)structure).eIsProxy()) {
+		if (structure != null && ((EObject)structure).eIsProxy())
+		{
 			InternalEObject oldStructure = structure;
 			structure = (T)eResolveProxy(oldStructure);
-			if (structure != oldStructure) {
+			if (structure != oldStructure)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE, oldStructure, structure));
 			}
@@ -158,7 +160,8 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
 				if (resolve) return getStructure();
 				return basicGetStructure();
@@ -177,7 +180,8 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
 				setStructure((T)newValue);
 				return;
@@ -196,7 +200,8 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
 				setStructure((T)null);
 				return;
@@ -215,7 +220,8 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
 				return structure != null;
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:

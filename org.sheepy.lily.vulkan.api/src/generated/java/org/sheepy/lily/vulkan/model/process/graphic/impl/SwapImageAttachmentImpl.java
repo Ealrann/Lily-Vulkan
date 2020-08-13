@@ -100,7 +100,8 @@ public class SwapImageAttachmentImpl extends AttachmentImpl implements SwapImage
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SWAP_IMAGE_ATTACHMENT__CLEAR_VALUE:
 				return getClearValue();
 		}
@@ -115,7 +116,8 @@ public class SwapImageAttachmentImpl extends AttachmentImpl implements SwapImage
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SWAP_IMAGE_ATTACHMENT__CLEAR_VALUE:
 				setClearValue((Vector4fc)newValue);
 				return;
@@ -131,7 +133,8 @@ public class SwapImageAttachmentImpl extends AttachmentImpl implements SwapImage
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SWAP_IMAGE_ATTACHMENT__CLEAR_VALUE:
 				setClearValue(CLEAR_VALUE_EDEFAULT);
 				return;
@@ -147,7 +150,8 @@ public class SwapImageAttachmentImpl extends AttachmentImpl implements SwapImage
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SWAP_IMAGE_ATTACHMENT__CLEAR_VALUE:
 				return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
 		}

@@ -44,7 +44,8 @@ public class VulkanSwitch<T> extends Switch<T>
 	 */
 	public VulkanSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = VulkanPackage.eINSTANCE;
 		}
 	}
@@ -73,21 +74,25 @@ public class VulkanSwitch<T> extends Switch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case VulkanPackage.VULKAN_ENGINE: {
+		switch (classifierID)
+		{
+			case VulkanPackage.VULKAN_ENGINE:
+			{
 				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
 				T result = caseVulkanEngine(vulkanEngine);
 				if (result == null) result = caseIEngine(vulkanEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.IRESOURCE_CONTAINER: {
+			case VulkanPackage.IRESOURCE_CONTAINER:
+			{
 				IResourceContainer iResourceContainer = (IResourceContainer)theEObject;
 				T result = caseIResourceContainer(iResourceContainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.IPROCESS: {
+			case VulkanPackage.IPROCESS:
+			{
 				IProcess iProcess = (IProcess)theEObject;
 				T result = caseIProcess(iProcess);
 				if (result == null) result = caseIResourceContainer(iProcess);
@@ -95,34 +100,39 @@ public class VulkanSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.RUN_PROCESS: {
+			case VulkanPackage.RUN_PROCESS:
+			{
 				RunProcess runProcess = (RunProcess)theEObject;
 				T result = caseRunProcess(runProcess);
 				if (result == null) result = caseICadenceTask(runProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.WAIT_PROCESS_IDLE: {
+			case VulkanPackage.WAIT_PROCESS_IDLE:
+			{
 				WaitProcessIdle waitProcessIdle = (WaitProcessIdle)theEObject;
 				T result = caseWaitProcessIdle(waitProcessIdle);
 				if (result == null) result = caseICadenceTask(waitProcessIdle);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.DESCRIPTOR_PKG: {
+			case VulkanPackage.DESCRIPTOR_PKG:
+			{
 				DescriptorPkg descriptorPkg = (DescriptorPkg)theEObject;
 				T result = caseDescriptorPkg(descriptorPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.IDESCRIPTOR: {
+			case VulkanPackage.IDESCRIPTOR:
+			{
 				IDescriptor iDescriptor = (IDescriptor)theEObject;
 				T result = caseIDescriptor(iDescriptor);
 				if (result == null) result = caseLNamedElement(iDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.MOUSE_LOCATION: {
+			case VulkanPackage.MOUSE_LOCATION:
+			{
 				MouseLocation mouseLocation = (MouseLocation)theEObject;
 				T result = caseMouseLocation(mouseLocation);
 				if (result == null) result = caseIModelVariable(mouseLocation);

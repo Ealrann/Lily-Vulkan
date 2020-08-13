@@ -55,7 +55,8 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -197,7 +198,8 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter implements 
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BindIndexBuffer.class)) {
+		switch (notification.getFeatureID(BindIndexBuffer.class))
+		{
 			case GraphicPackage.BIND_INDEX_BUFFER__NAME:
 			case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:

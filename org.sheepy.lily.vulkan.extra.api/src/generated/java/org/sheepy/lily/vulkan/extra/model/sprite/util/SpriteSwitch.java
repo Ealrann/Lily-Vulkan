@@ -52,7 +52,8 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 */
 	public SpriteSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = SpritePackage.eINSTANCE;
 		}
 	}
@@ -81,8 +82,10 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case SpritePackage.SPRITE_RENDERER: {
+		switch (classifierID)
+		{
+			case SpritePackage.SPRITE_RENDERER:
+			{
 				SpriteRenderer spriteRenderer = (SpriteRenderer)theEObject;
 				T1 result = caseSpriteRenderer(spriteRenderer);
 				if (result == null) result = caseGenericRenderer(spriteRenderer);
@@ -97,28 +100,32 @@ public class SpriteSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpritePackage.SPRITE: {
+			case SpritePackage.SPRITE:
+			{
 				Sprite sprite = (Sprite)theEObject;
 				T1 result = caseSprite(sprite);
 				if (result == null) result = casePresentation(sprite);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER: {
+			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER:
+			{
 				SpriteMonoSamplerProvider spriteMonoSamplerProvider = (SpriteMonoSamplerProvider)theEObject;
 				T1 result = caseSpriteMonoSamplerProvider(spriteMonoSamplerProvider);
 				if (result == null) result = caseResourceDescriptorProvider(spriteMonoSamplerProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpritePackage.SPRITE_STRUCTURE: {
+			case SpritePackage.SPRITE_STRUCTURE:
+			{
 				SpriteStructure spriteStructure = (SpriteStructure)theEObject;
 				T1 result = caseSpriteStructure(spriteStructure);
 				if (result == null) result = caseStructure(spriteStructure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpritePackage.SPRITE_COUNT_SPECIALIZATION: {
+			case SpritePackage.SPRITE_COUNT_SPECIALIZATION:
+			{
 				SpriteCountSpecialization spriteCountSpecialization = (SpriteCountSpecialization)theEObject;
 				T1 result = caseSpriteCountSpecialization(spriteCountSpecialization);
 				if (result == null) result = caseISpecialization(spriteCountSpecialization);

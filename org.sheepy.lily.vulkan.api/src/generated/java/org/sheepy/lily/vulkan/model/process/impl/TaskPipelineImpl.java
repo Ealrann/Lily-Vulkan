@@ -112,7 +112,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	{
 		ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.TASK_PIPELINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -127,7 +128,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
-		if (newResourcePkg != resourcePkg) {
+		if (newResourcePkg != resourcePkg)
+		{
 			NotificationChain msgs = null;
 			if (resourcePkg != null)
 				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.TASK_PIPELINE__RESOURCE_PKG, null, msgs);
@@ -160,7 +162,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	{
 		DescriptorPkg oldDescriptorPkg = descriptorPkg;
 		descriptorPkg = newDescriptorPkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -175,7 +178,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
 	{
-		if (newDescriptorPkg != descriptorPkg) {
+		if (newDescriptorPkg != descriptorPkg)
+		{
 			NotificationChain msgs = null;
 			if (descriptorPkg != null)
 				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG, null, msgs);
@@ -196,7 +200,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public EList<TaskPkg> getTaskPkgs()
 	{
-		if (taskPkgs == null) {
+		if (taskPkgs == null)
+		{
 			taskPkgs = new EObjectContainmentEList<TaskPkg>(TaskPkg.class, this, ProcessPackage.TASK_PIPELINE__TASK_PKGS);
 		}
 		return taskPkgs;
@@ -210,7 +215,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
@@ -229,7 +235,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
 				return getResourcePkg();
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
@@ -249,7 +256,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)newValue);
 				return;
@@ -272,7 +280,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)null);
 				return;
@@ -294,7 +303,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
 				return resourcePkg != null;
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
@@ -313,8 +323,10 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == IResourceContainer.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == IResourceContainer.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
 				case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG: return VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG;
 				default: return -1;
@@ -331,8 +343,10 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == IResourceContainer.class) {
-			switch (baseFeatureID) {
+		if (baseClass == IResourceContainer.class)
+		{
+			switch (baseFeatureID)
+			{
 				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return ProcessPackage.TASK_PIPELINE__RESOURCE_PKG;
 				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG;
 				default: return -1;

@@ -117,10 +117,12 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	@Override
 	public Image getImageRef()
 	{
-		if (imageRef != null && ((EObject)imageRef).eIsProxy()) {
+		if (imageRef != null && ((EObject)imageRef).eIsProxy())
+		{
 			InternalEObject oldImageRef = imageRef;
 			imageRef = (Image)eResolveProxy(oldImageRef);
-			if (imageRef != oldImageRef) {
+			if (imageRef != oldImageRef)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
 			}
@@ -160,7 +162,8 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 				return getClearValue();
 			case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
@@ -178,7 +181,8 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 				setClearValue((Vector4fc)newValue);
 				return;
@@ -197,7 +201,8 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 				setClearValue(CLEAR_VALUE_EDEFAULT);
 				return;
@@ -216,7 +221,8 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 				return CLEAR_VALUE_EDEFAULT == null ? clearValue != null : !CLEAR_VALUE_EDEFAULT.equals(clearValue);
 			case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:

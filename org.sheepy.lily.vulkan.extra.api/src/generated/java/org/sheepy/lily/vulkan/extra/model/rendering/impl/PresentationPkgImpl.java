@@ -70,7 +70,8 @@ public class PresentationPkgImpl extends LilyEObject implements PresentationPkg
 	@Override
 	public EList<Structure> getStructures()
 	{
-		if (structures == null) {
+		if (structures == null)
+		{
 			structures = new EObjectContainmentEList<Structure>(Structure.class, this, RenderingPackage.PRESENTATION_PKG__STRUCTURES);
 		}
 		return structures;
@@ -84,7 +85,8 @@ public class PresentationPkgImpl extends LilyEObject implements PresentationPkg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
 				return ((InternalEList<?>)getStructures()).basicRemove(otherEnd, msgs);
 		}
@@ -99,7 +101,8 @@ public class PresentationPkgImpl extends LilyEObject implements PresentationPkg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
 				return getStructures();
 		}
@@ -115,7 +118,8 @@ public class PresentationPkgImpl extends LilyEObject implements PresentationPkg
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
 				getStructures().clear();
 				getStructures().addAll((Collection<? extends Structure>)newValue);
@@ -132,7 +136,8 @@ public class PresentationPkgImpl extends LilyEObject implements PresentationPkg
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
 				getStructures().clear();
 				return;
@@ -148,7 +153,8 @@ public class PresentationPkgImpl extends LilyEObject implements PresentationPkg
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
 				return structures != null && !structures.isEmpty();
 		}

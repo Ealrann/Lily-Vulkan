@@ -55,7 +55,8 @@ public class SpriteItemProvider extends ItemProviderAdapter implements IEditingD
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
@@ -98,7 +99,8 @@ public class SpriteItemProvider extends ItemProviderAdapter implements IEditingD
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SpritePackage.Literals.SPRITE__FILE);
 		}
@@ -163,7 +165,8 @@ public class SpriteItemProvider extends ItemProviderAdapter implements IEditingD
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Sprite.class)) {
+		switch (notification.getFeatureID(Sprite.class))
+		{
 			case SpritePackage.SPRITE__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

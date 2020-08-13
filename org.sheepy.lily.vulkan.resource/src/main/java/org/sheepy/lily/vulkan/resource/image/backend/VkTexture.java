@@ -4,7 +4,6 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
@@ -15,7 +14,6 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.image.ImageLayout;
 
 import java.nio.ByteBuffer;
 import java.util.EnumSet;
@@ -77,7 +75,7 @@ public class VkTexture
 		stagingBuffer.free(executionContext);
 	}
 
-	private void generateMipmaps(VkCommandBuffer commandBuffer, ImageLayout targetLayout)
+	private void generateMipmaps(VkCommandBuffer commandBuffer, EImageLayout targetLayout)
 	{
 		final long imageAddress = image.getPtr();
 
@@ -157,19 +155,14 @@ public class VkTexture
 			blit.free();
 		}
 
-		final int trgAccess;
-		final int trgStage;
+		final int trgStage = EPipelineStage.TRANSFER_BIT_VALUE;
 		final int trgLayout;
 		if (targetLayout != null)
 		{
-			trgAccess = VulkanModelUtil.getEnumeratedFlag(targetLayout.getAccessMask());
-			trgStage = targetLayout.getStage().getValue();
-			trgLayout = targetLayout.getLayout().getValue();
+			trgLayout = targetLayout.getValue();
 		}
 		else
 		{
-			trgAccess = EAccess.SHADER_READ_BIT_VALUE;
-			trgStage = EPipelineStage.FRAGMENT_SHADER_BIT_VALUE;
 			trgLayout = EImageLayout.SHADER_READ_ONLY_OPTIMAL_VALUE;
 		}
 
@@ -177,7 +170,7 @@ public class VkTexture
 		barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
 		barrier.newLayout(trgLayout);
 		barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
-		barrier.dstAccessMask(trgAccess);
+		barrier.dstAccessMask(0);
 
 		vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, trgStage, 0, null, null, barrier);
 

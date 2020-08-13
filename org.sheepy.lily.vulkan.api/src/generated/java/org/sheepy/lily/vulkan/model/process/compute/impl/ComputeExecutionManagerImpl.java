@@ -92,7 +92,8 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public EList<ComputeExecutionRecorder> getRecorders()
 	{
-		if (recorders == null) {
+		if (recorders == null)
+		{
 			recorders = new EObjectContainmentEList<ComputeExecutionRecorder>(ComputeExecutionRecorder.class, this, ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS);
 		}
 		return recorders;
@@ -131,7 +132,8 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS:
 				return ((InternalEList<?>)getRecorders()).basicRemove(otherEnd, msgs);
 		}
@@ -146,7 +148,8 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS:
 				return getRecorders();
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__INDEX_COUNT:
@@ -164,7 +167,8 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS:
 				getRecorders().clear();
 				getRecorders().addAll((Collection<? extends ComputeExecutionRecorder>)newValue);
@@ -184,7 +188,8 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS:
 				getRecorders().clear();
 				return;
@@ -203,7 +208,8 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS:
 				return recorders != null && !recorders.isEmpty();
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__INDEX_COUNT:

@@ -50,7 +50,8 @@ public class SpriteRendererImpl extends GenericRendererImpl<SpriteStructure> imp
 	@Override
 	public EList<SpriteStructure> getRenderedStructures()
 	{
-		if (renderedStructures == null) {
+		if (renderedStructures == null)
+		{
 			renderedStructures = new EObjectResolvingEList<SpriteStructure>(SpriteStructure.class, this, SpritePackage.SPRITE_RENDERER__RENDERED_STRUCTURES);
 		}
 		return renderedStructures;

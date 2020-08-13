@@ -50,7 +50,8 @@ public class MeshSwitch<T1> extends Switch<T1>
 	 */
 	public MeshSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = MeshPackage.eINSTANCE;
 		}
 	}
@@ -79,15 +80,18 @@ public class MeshSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case MeshPackage.MESH: {
+		switch (classifierID)
+		{
+			case MeshPackage.MESH:
+			{
 				Mesh mesh = (Mesh)theEObject;
 				T1 result = caseMesh(mesh);
 				if (result == null) result = casePresentation(mesh);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.MESH_RENDERER: {
+			case MeshPackage.MESH_RENDERER:
+			{
 				MeshRenderer meshRenderer = (MeshRenderer)theEObject;
 				T1 result = caseMeshRenderer(meshRenderer);
 				if (result == null) result = caseGenericRenderer(meshRenderer);
@@ -102,7 +106,8 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.MESH_STRUCTURE: {
+			case MeshPackage.MESH_STRUCTURE:
+			{
 				MeshStructure<?> meshStructure = (MeshStructure<?>)theEObject;
 				T1 result = caseMeshStructure(meshStructure);
 				if (result == null) result = caseIMeshStructure(meshStructure);
@@ -110,14 +115,16 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.IMESH_STRUCTURE: {
+			case MeshPackage.IMESH_STRUCTURE:
+			{
 				IMeshStructure iMeshStructure = (IMeshStructure)theEObject;
 				T1 result = caseIMeshStructure(iMeshStructure);
 				if (result == null) result = caseStructure(iMeshStructure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.GEOMETRIC_STRUCTURE: {
+			case MeshPackage.GEOMETRIC_STRUCTURE:
+			{
 				GeometricStructure geometricStructure = (GeometricStructure)theEObject;
 				T1 result = caseGeometricStructure(geometricStructure);
 				if (result == null) result = caseMeshStructure(geometricStructure);
@@ -126,7 +133,8 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.GEOMETRIC_MESH: {
+			case MeshPackage.GEOMETRIC_MESH:
+			{
 				GeometricMesh geometricMesh = (GeometricMesh)theEObject;
 				T1 result = caseGeometricMesh(geometricMesh);
 				if (result == null) result = caseMesh(geometricMesh);
@@ -134,7 +142,8 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.ICOSAHEDRON: {
+			case MeshPackage.ICOSAHEDRON:
+			{
 				Icosahedron icosahedron = (Icosahedron)theEObject;
 				T1 result = caseIcosahedron(icosahedron);
 				if (result == null) result = caseGeometricStructure(icosahedron);
@@ -144,7 +153,8 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.SPHERE: {
+			case MeshPackage.SPHERE:
+			{
 				Sphere sphere = (Sphere)theEObject;
 				T1 result = caseSphere(sphere);
 				if (result == null) result = caseGeometricStructure(sphere);
@@ -154,7 +164,8 @@ public class MeshSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MeshPackage.ICO_SPHERE: {
+			case MeshPackage.ICO_SPHERE:
+			{
 				IcoSphere icoSphere = (IcoSphere)theEObject;
 				T1 result = caseIcoSphere(icoSphere);
 				if (result == null) result = caseGeometricStructure(icoSphere);

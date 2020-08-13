@@ -82,7 +82,8 @@ public class PhysicalSurfaceImpl extends LilyEObject implements PhysicalSurface
 	{
 		ColorDomain oldColorDomain = colorDomain;
 		colorDomain = newColorDomain;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.PHYSICAL_SURFACE__COLOR_DOMAIN, oldColorDomain, newColorDomain);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -97,7 +98,8 @@ public class PhysicalSurfaceImpl extends LilyEObject implements PhysicalSurface
 	@Override
 	public void setColorDomain(ColorDomain newColorDomain)
 	{
-		if (newColorDomain != colorDomain) {
+		if (newColorDomain != colorDomain)
+		{
 			NotificationChain msgs = null;
 			if (colorDomain != null)
 				msgs = ((InternalEObject)colorDomain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.PHYSICAL_SURFACE__COLOR_DOMAIN, null, msgs);
@@ -118,7 +120,8 @@ public class PhysicalSurfaceImpl extends LilyEObject implements PhysicalSurface
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PHYSICAL_SURFACE__COLOR_DOMAIN:
 				return basicSetColorDomain(null, msgs);
 		}
@@ -133,7 +136,8 @@ public class PhysicalSurfaceImpl extends LilyEObject implements PhysicalSurface
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PHYSICAL_SURFACE__COLOR_DOMAIN:
 				return getColorDomain();
 		}
@@ -148,7 +152,8 @@ public class PhysicalSurfaceImpl extends LilyEObject implements PhysicalSurface
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PHYSICAL_SURFACE__COLOR_DOMAIN:
 				setColorDomain((ColorDomain)newValue);
 				return;
@@ -164,7 +169,8 @@ public class PhysicalSurfaceImpl extends LilyEObject implements PhysicalSurface
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PHYSICAL_SURFACE__COLOR_DOMAIN:
 				setColorDomain((ColorDomain)null);
 				return;
@@ -180,7 +186,8 @@ public class PhysicalSurfaceImpl extends LilyEObject implements PhysicalSurface
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PHYSICAL_SURFACE__COLOR_DOMAIN:
 				return colorDomain != null;
 		}

@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.image;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -240,7 +239,7 @@ public interface ImagePackage extends EPackage
 	int IMAGE_INFO__MIP_LEVELS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -518,15 +517,15 @@ public interface ImagePackage extends EPackage
 	EAttribute getImageInfo_MipLevels();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout <em>Initial Layout</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout <em>Initial Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Initial Layout</em>'.
+	 * @return the meta object for the attribute '<em>Initial Layout</em>'.
 	 * @see org.sheepy.vulkan.model.image.ImageInfo#getInitialLayout()
 	 * @see #getImageInfo()
 	 * @generated
 	 */
-	EReference getImageInfo_InitialLayout();
+	EAttribute getImageInfo_InitialLayout();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.image.ImageLayout <em>Layout</em>}'.
@@ -744,12 +743,12 @@ public interface ImagePackage extends EPackage
 		EAttribute IMAGE_INFO__MIP_LEVELS = eINSTANCE.getImageInfo_MipLevels();
 
 		/**
-		 * The meta object literal for the '<em><b>Initial Layout</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Initial Layout</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IMAGE_INFO__INITIAL_LAYOUT = eINSTANCE.getImageInfo_InitialLayout();
+		EAttribute IMAGE_INFO__INITIAL_LAYOUT = eINSTANCE.getImageInfo_InitialLayout();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.image.impl.ImageLayoutImpl <em>Layout</em>}' class.

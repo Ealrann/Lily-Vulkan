@@ -179,13 +179,16 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public CompositorExtensionPkg getExtensionPkg()
 	{
-		if (extensionPkg != null && ((EObject)extensionPkg).eIsProxy()) {
+		if (extensionPkg != null && ((EObject)extensionPkg).eIsProxy())
+		{
 			InternalEObject oldExtensionPkg = extensionPkg;
 			extensionPkg = (CompositorExtensionPkg)eResolveProxy(oldExtensionPkg);
-			if (extensionPkg != oldExtensionPkg) {
+			if (extensionPkg != oldExtensionPkg)
+			{
 				InternalEObject newExtensionPkg = extensionPkg;
 				NotificationChain msgs = oldExtensionPkg.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.COMPOSITOR__EXTENSION_PKG, null, null);
-				if (newExtensionPkg.eInternalContainer() == null) {
+				if (newExtensionPkg.eInternalContainer() == null)
+				{
 					msgs = newExtensionPkg.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.COMPOSITOR__EXTENSION_PKG, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -215,7 +218,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	{
 		CompositorExtensionPkg oldExtensionPkg = extensionPkg;
 		extensionPkg = newExtensionPkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.COMPOSITOR__EXTENSION_PKG, oldExtensionPkg, newExtensionPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -230,7 +234,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public void setExtensionPkg(CompositorExtensionPkg newExtensionPkg)
 	{
-		if (newExtensionPkg != extensionPkg) {
+		if (newExtensionPkg != extensionPkg)
+		{
 			NotificationChain msgs = null;
 			if (extensionPkg != null)
 				msgs = ((InternalEObject)extensionPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.COMPOSITOR__EXTENSION_PKG, null, msgs);
@@ -276,10 +281,12 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public Shader getVertexShader()
 	{
-		if (vertexShader != null && ((EObject)vertexShader).eIsProxy()) {
+		if (vertexShader != null && ((EObject)vertexShader).eIsProxy())
+		{
 			InternalEObject oldVertexShader = vertexShader;
 			vertexShader = (Shader)eResolveProxy(oldVertexShader);
-			if (vertexShader != oldVertexShader) {
+			if (vertexShader != oldVertexShader)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.COMPOSITOR__VERTEX_SHADER, oldVertexShader, vertexShader));
 			}
@@ -319,10 +326,12 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public Shader getFragmentShader()
 	{
-		if (fragmentShader != null && ((EObject)fragmentShader).eIsProxy()) {
+		if (fragmentShader != null && ((EObject)fragmentShader).eIsProxy())
+		{
 			InternalEObject oldFragmentShader = fragmentShader;
 			fragmentShader = (Shader)eResolveProxy(oldFragmentShader);
-			if (fragmentShader != oldFragmentShader) {
+			if (fragmentShader != oldFragmentShader)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.COMPOSITOR__FRAGMENT_SHADER, oldFragmentShader, fragmentShader));
 			}
@@ -362,7 +371,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public EList<Attachment> getColorAttachments()
 	{
-		if (colorAttachments == null) {
+		if (colorAttachments == null)
+		{
 			colorAttachments = new EObjectResolvingEList<Attachment>(Attachment.class, this, GraphicPackage.COMPOSITOR__COLOR_ATTACHMENTS);
 		}
 		return colorAttachments;
@@ -376,7 +386,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public EList<ExtraAttachment> getInputAttachments()
 	{
-		if (inputAttachments == null) {
+		if (inputAttachments == null)
+		{
 			inputAttachments = new EObjectResolvingEList<ExtraAttachment>(ExtraAttachment.class, this, GraphicPackage.COMPOSITOR__INPUT_ATTACHMENTS);
 		}
 		return inputAttachments;
@@ -402,7 +413,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	{
 		ModelVariablePkg oldConstantVariables = constantVariables;
 		constantVariables = newConstantVariables;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.COMPOSITOR__CONSTANT_VARIABLES, oldConstantVariables, newConstantVariables);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -417,7 +429,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public void setConstantVariables(ModelVariablePkg newConstantVariables)
 	{
-		if (newConstantVariables != constantVariables) {
+		if (newConstantVariables != constantVariables)
+		{
 			NotificationChain msgs = null;
 			if (constantVariables != null)
 				msgs = ((InternalEObject)constantVariables).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.COMPOSITOR__CONSTANT_VARIABLES, null, msgs);
@@ -450,7 +463,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	{
 		DescriptorPkg oldDescriptorPkg = descriptorPkg;
 		descriptorPkg = newDescriptorPkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.COMPOSITOR__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -465,7 +479,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
 	{
-		if (newDescriptorPkg != descriptorPkg) {
+		if (newDescriptorPkg != descriptorPkg)
+		{
 			NotificationChain msgs = null;
 			if (descriptorPkg != null)
 				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.COMPOSITOR__DESCRIPTOR_PKG, null, msgs);
@@ -497,7 +512,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				return basicSetExtensionPkg(null, msgs);
 			case GraphicPackage.COMPOSITOR__CONSTANT_VARIABLES:
@@ -516,7 +532,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				if (resolve) return getExtensionPkg();
 				return basicGetExtensionPkg();
@@ -549,7 +566,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				setExtensionPkg((CompositorExtensionPkg)newValue);
 				return;
@@ -588,7 +606,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				setExtensionPkg((CompositorExtensionPkg)null);
 				return;
@@ -625,7 +644,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				return extensionPkg != null;
 			case GraphicPackage.COMPOSITOR__NAME:
@@ -654,8 +674,10 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case GraphicPackage.COMPOSITOR__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
 				default: return -1;
 			}
@@ -671,8 +693,10 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == LNamedElement.class) {
-			switch (baseFeatureID) {
+		if (baseClass == LNamedElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case TypesPackage.LNAMED_ELEMENT__NAME: return GraphicPackage.COMPOSITOR__NAME;
 				default: return -1;
 			}
@@ -688,7 +712,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
-		switch (operationID) {
+		switch (operationID)
+		{
 			case GraphicPackage.COMPOSITOR___LINFERENCE_OBJECT:
 				return lInferenceObject();
 		}

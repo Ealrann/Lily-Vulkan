@@ -53,7 +53,8 @@ public class PushConstantItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -159,7 +160,8 @@ public class PushConstantItemProvider extends ItemProviderAdapter implements IEd
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PushConstant.class)) {
+		switch (notification.getFeatureID(PushConstant.class))
+		{
 			case ProcessPackage.PUSH_CONSTANT__NAME:
 			case ProcessPackage.PUSH_CONSTANT__ENABLED:
 			case ProcessPackage.PUSH_CONSTANT__STAGES:

@@ -29,13 +29,16 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 */
 	public static RenderingFactory init()
 	{
-		try {
+		try
+		{
 			RenderingFactory theRenderingFactory = (RenderingFactory)EPackage.Registry.INSTANCE.getEFactory(RenderingPackage.eNS_URI);
-			if (theRenderingFactory != null) {
+			if (theRenderingFactory != null)
+			{
 				return theRenderingFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RenderingFactoryImpl();
@@ -60,7 +63,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case RenderingPackage.AXIS: return createAxis();
 			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
 			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
@@ -90,7 +94,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case RenderingPackage.EPHYSICAL_ENTITY_FEATURE:
 				return createEPhysicalEntityFeatureFromString(eDataType, initialValue);
 			default:
@@ -106,7 +111,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case RenderingPackage.EPHYSICAL_ENTITY_FEATURE:
 				return convertEPhysicalEntityFeatureToString(eDataType, instanceValue);
 			default:

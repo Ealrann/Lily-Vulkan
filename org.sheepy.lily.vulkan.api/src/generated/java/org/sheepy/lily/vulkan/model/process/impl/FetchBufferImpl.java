@@ -188,7 +188,8 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	{
 		BufferReference oldBufferReference = bufferReference;
 		bufferReference = newBufferReference;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE, oldBufferReference, newBufferReference);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -203,7 +204,8 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	@Override
 	public void setBufferReference(BufferReference newBufferReference)
 	{
-		if (newBufferReference != bufferReference) {
+		if (newBufferReference != bufferReference)
+		{
 			NotificationChain msgs = null;
 			if (bufferReference != null)
 				msgs = ((InternalEObject)bufferReference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE, null, msgs);
@@ -224,10 +226,12 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	@Override
 	public BufferDataProvider getDataProvider()
 	{
-		if (dataProvider != null && ((EObject)dataProvider).eIsProxy()) {
+		if (dataProvider != null && ((EObject)dataProvider).eIsProxy())
+		{
 			InternalEObject oldDataProvider = dataProvider;
 			dataProvider = (BufferDataProvider)eResolveProxy(oldDataProvider);
-			if (dataProvider != oldDataProvider) {
+			if (dataProvider != oldDataProvider)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.FETCH_BUFFER__DATA_PROVIDER, oldDataProvider, dataProvider));
 			}
@@ -267,7 +271,8 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE:
 				return basicSetBufferReference(null, msgs);
 		}
@@ -282,7 +287,8 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FETCH_BUFFER__NAME:
 				return getName();
 			case ProcessPackage.FETCH_BUFFER__ENABLED:
@@ -304,7 +310,8 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FETCH_BUFFER__NAME:
 				setName((String)newValue);
 				return;
@@ -329,7 +336,8 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FETCH_BUFFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -354,7 +362,8 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.FETCH_BUFFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.FETCH_BUFFER__ENABLED:

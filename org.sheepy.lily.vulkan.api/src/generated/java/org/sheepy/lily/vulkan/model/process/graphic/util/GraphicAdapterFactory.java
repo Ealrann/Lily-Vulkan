@@ -59,7 +59,8 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 */
 	public GraphicAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = GraphicPackage.eINSTANCE;
 		}
 	}
@@ -75,10 +76,12 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -90,233 +93,291 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GraphicSwitch<Adapter> modelSwitch = new GraphicSwitch<Adapter>() {
+	protected GraphicSwitch<Adapter> modelSwitch = new GraphicSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseGraphicConfiguration(GraphicConfiguration object) {
+			public Adapter caseGraphicConfiguration(GraphicConfiguration object)
+			{
 				return createGraphicConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseGraphicExecutionManager(GraphicExecutionManager object) {
+			public Adapter caseGraphicExecutionManager(GraphicExecutionManager object)
+			{
 				return createGraphicExecutionManagerAdapter();
 			}
 			@Override
-			public Adapter caseGraphicExecutionRecorder(GraphicExecutionRecorder object) {
+			public Adapter caseGraphicExecutionRecorder(GraphicExecutionRecorder object)
+			{
 				return createGraphicExecutionRecorderAdapter();
 			}
 			@Override
-			public Adapter caseColorDomain(ColorDomain object) {
+			public Adapter caseColorDomain(ColorDomain object)
+			{
 				return createColorDomainAdapter();
 			}
 			@Override
-			public Adapter casePhysicalSurface(PhysicalSurface object) {
+			public Adapter casePhysicalSurface(PhysicalSurface object)
+			{
 				return createPhysicalSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseSwapchainConfiguration(SwapchainConfiguration object) {
+			public Adapter caseSwapchainConfiguration(SwapchainConfiguration object)
+			{
 				return createSwapchainConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseFramebufferConfiguration(FramebufferConfiguration object) {
+			public Adapter caseFramebufferConfiguration(FramebufferConfiguration object)
+			{
 				return createFramebufferConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseImageViews(ImageViews object) {
+			public Adapter caseImageViews(ImageViews object)
+			{
 				return createImageViewsAdapter();
 			}
 			@Override
-			public Adapter caseRenderPass(RenderPass object) {
+			public Adapter caseRenderPass(RenderPass object)
+			{
 				return createRenderPassAdapter();
 			}
 			@Override
-			public Adapter caseImageAttachment(ImageAttachment object) {
+			public Adapter caseImageAttachment(ImageAttachment object)
+			{
 				return createImageAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseDepthAttachment(DepthAttachment object) {
+			public Adapter caseDepthAttachment(DepthAttachment object)
+			{
 				return createDepthAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseColorAttachment(ColorAttachment object) {
+			public Adapter caseColorAttachment(ColorAttachment object)
+			{
 				return createColorAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseAttachmentPkg(AttachmentPkg object) {
+			public Adapter caseAttachmentPkg(AttachmentPkg object)
+			{
 				return createAttachmentPkgAdapter();
 			}
 			@Override
-			public Adapter caseSubpass(Subpass object) {
+			public Adapter caseSubpass(Subpass object)
+			{
 				return createSubpassAdapter();
 			}
 			@Override
-			public Adapter caseAttachmentRefPkg(AttachmentRefPkg object) {
+			public Adapter caseAttachmentRefPkg(AttachmentRefPkg object)
+			{
 				return createAttachmentRefPkgAdapter();
 			}
 			@Override
-			public Adapter caseAttachmentRef(AttachmentRef object) {
+			public Adapter caseAttachmentRef(AttachmentRef object)
+			{
 				return createAttachmentRefAdapter();
 			}
 			@Override
-			public Adapter caseAttachment(Attachment object) {
+			public Adapter caseAttachment(Attachment object)
+			{
 				return createAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseSwapImageAttachment(SwapImageAttachment object) {
+			public Adapter caseSwapImageAttachment(SwapImageAttachment object)
+			{
 				return createSwapImageAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseExtraAttachment(ExtraAttachment object) {
+			public Adapter caseExtraAttachment(ExtraAttachment object)
+			{
 				return createExtraAttachmentAdapter();
 			}
 			@Override
-			public Adapter caseGraphicProcess(GraphicProcess object) {
+			public Adapter caseGraphicProcess(GraphicProcess object)
+			{
 				return createGraphicProcessAdapter();
 			}
 			@Override
-			public Adapter caseGraphicsPipeline(GraphicsPipeline object) {
+			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
+			{
 				return createGraphicsPipelineAdapter();
 			}
 			@Override
-			public Adapter caseSwapImageBarrier(SwapImageBarrier object) {
+			public Adapter caseSwapImageBarrier(SwapImageBarrier object)
+			{
 				return createSwapImageBarrierAdapter();
 			}
 			@Override
-			public Adapter caseAbstractBlitTask(AbstractBlitTask object) {
+			public Adapter caseAbstractBlitTask(AbstractBlitTask object)
+			{
 				return createAbstractBlitTaskAdapter();
 			}
 			@Override
-			public Adapter caseBlitToSwapImage(BlitToSwapImage object) {
+			public Adapter caseBlitToSwapImage(BlitToSwapImage object)
+			{
 				return createBlitToSwapImageAdapter();
 			}
 			@Override
-			public Adapter caseBlitTask(BlitTask object) {
+			public Adapter caseBlitTask(BlitTask object)
+			{
 				return createBlitTaskAdapter();
 			}
 			@Override
-			public Adapter caseDrawIndexed(DrawIndexed object) {
+			public Adapter caseDrawIndexed(DrawIndexed object)
+			{
 				return createDrawIndexedAdapter();
 			}
 			@Override
-			public Adapter caseDraw(Draw object) {
+			public Adapter caseDraw(Draw object)
+			{
 				return createDrawAdapter();
 			}
 			@Override
-			public Adapter caseVertexInputState(VertexInputState object) {
+			public Adapter caseVertexInputState(VertexInputState object)
+			{
 				return createVertexInputStateAdapter();
 			}
 			@Override
-			public Adapter caseInputDescriptor(InputDescriptor object) {
+			public Adapter caseInputDescriptor(InputDescriptor object)
+			{
 				return createInputDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseAttributeDescription(AttributeDescription object) {
+			public Adapter caseAttributeDescription(AttributeDescription object)
+			{
 				return createAttributeDescriptionAdapter();
 			}
 			@Override
-			public Adapter caseBindVertexBuffer(BindVertexBuffer object) {
+			public Adapter caseBindVertexBuffer(BindVertexBuffer object)
+			{
 				return createBindVertexBufferAdapter();
 			}
 			@Override
-			public Adapter caseSetScissor(SetScissor object) {
+			public Adapter caseSetScissor(SetScissor object)
+			{
 				return createSetScissorAdapter();
 			}
 			@Override
-			public Adapter caseSetViewport(SetViewport object) {
+			public Adapter caseSetViewport(SetViewport object)
+			{
 				return createSetViewportAdapter();
 			}
 			@Override
-			public Adapter caseVertexBinding(VertexBinding object) {
+			public Adapter caseVertexBinding(VertexBinding object)
+			{
 				return createVertexBindingAdapter();
 			}
 			@Override
-			public Adapter caseBindIndexBuffer(BindIndexBuffer object) {
+			public Adapter caseBindIndexBuffer(BindIndexBuffer object)
+			{
 				return createBindIndexBufferAdapter();
 			}
 			@Override
-			public Adapter caseAttachmentDescriptor(AttachmentDescriptor object) {
+			public Adapter caseAttachmentDescriptor(AttachmentDescriptor object)
+			{
 				return createAttachmentDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseCompositor(Compositor object) {
+			public Adapter caseCompositor(Compositor object)
+			{
 				return createCompositorAdapter();
 			}
 			@Override
-			public Adapter caseProcessConfiguration(ProcessConfiguration object) {
+			public Adapter caseProcessConfiguration(ProcessConfiguration object)
+			{
 				return createProcessConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseProcessExecutionManager(ProcessExecutionManager object) {
+			public Adapter caseProcessExecutionManager(ProcessExecutionManager object)
+			{
 				return createProcessExecutionManagerAdapter();
 			}
 			@Override
-			public Adapter caseExecutionRecorder(ExecutionRecorder object) {
+			public Adapter caseExecutionRecorder(ExecutionRecorder object)
+			{
 				return createExecutionRecorderAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(LNamedElement object) {
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseIResource(IResource object) {
+			public Adapter caseIResource(IResource object)
+			{
 				return createIResourceAdapter();
 			}
 			@Override
-			public Adapter caseIImage(IImage object) {
+			public Adapter caseIImage(IImage object)
+			{
 				return createIImageAdapter();
 			}
 			@Override
-			public Adapter caseIResourceContainer(IResourceContainer object) {
+			public Adapter caseIResourceContainer(IResourceContainer object)
+			{
 				return createIResourceContainerAdapter();
 			}
 			@Override
-			public Adapter caseIProcess(IProcess object) {
+			public Adapter caseIProcess(IProcess object)
+			{
 				return createIProcessAdapter();
 			}
 			@Override
-			public Adapter caseAbstractProcess(AbstractProcess object) {
+			public Adapter caseAbstractProcess(AbstractProcess object)
+			{
 				return createAbstractProcessAdapter();
 			}
 			@Override
-			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object) {
+			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
+			{
 				return createMaintainableAdapter();
 			}
 			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object) {
+			public Adapter caseAbstractPipeline(AbstractPipeline object)
+			{
 				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter caseTaskPipeline(TaskPipeline object) {
+			public Adapter caseTaskPipeline(TaskPipeline object)
+			{
 				return createTaskPipelineAdapter();
 			}
 			@Override
-			public Adapter caseVkPipeline(VkPipeline object) {
+			public Adapter caseVkPipeline(VkPipeline object)
+			{
 				return createVkPipelineAdapter();
 			}
 			@Override
-			public Adapter caseBarrier(Barrier object) {
+			public Adapter caseBarrier(Barrier object)
+			{
 				return createBarrierAdapter();
 			}
 			@Override
-			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object) {
+			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
+			{
 				return createAbstractImageBarrierAdapter();
 			}
 			@Override
-			public Adapter caseIPipelineTask(IPipelineTask object) {
+			public Adapter caseIPipelineTask(IPipelineTask object)
+			{
 				return createIPipelineTaskAdapter();
 			}
 			@Override
-			public Adapter caseIDescriptor(IDescriptor object) {
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
 				return createIDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseIInferenceObject(IInferenceObject object) {
+			public Adapter caseIInferenceObject(IInferenceObject object)
+			{
 				return createIInferenceObjectAdapter();
 			}
 			@Override
-			public Adapter caseICompositor(ICompositor object) {
+			public Adapter caseICompositor(ICompositor object)
+			{
 				return createICompositorAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

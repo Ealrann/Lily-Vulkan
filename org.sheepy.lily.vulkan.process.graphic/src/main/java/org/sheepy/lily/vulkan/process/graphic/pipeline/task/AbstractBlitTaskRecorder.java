@@ -12,8 +12,9 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.vulkan.model.enumeration.*;
-import org.sheepy.vulkan.model.image.ImageFactory;
+import org.sheepy.vulkan.model.enumeration.EFilter;
+import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -109,14 +110,9 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 			buffer.putInt(intColor);
 			buffer.flip();
 
-			final var initialLayout = ImageFactory.eINSTANCE.createImageLayout();
-			initialLayout.setLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
-			initialLayout.getAccessMask().add(EAccess.TRANSFER_READ_BIT);
-			initialLayout.setStage(EPipelineStage.TRANSFER_BIT);
-
 			final var builder = clearTextureBuilder.copy();
 			builder.fillWith(buffer);
-			builder.initialLayout(initialLayout);
+			builder.initialLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
 
 			clearTexture = context.executeFunction(builder::build);
 		}

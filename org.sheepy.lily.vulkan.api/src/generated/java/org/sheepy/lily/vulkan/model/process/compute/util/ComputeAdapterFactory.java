@@ -50,7 +50,8 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 */
 	public ComputeAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = ComputePackage.eINSTANCE;
 		}
 	}
@@ -66,10 +67,12 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -81,81 +84,101 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComputeSwitch<Adapter> modelSwitch = new ComputeSwitch<Adapter>() {
+	protected ComputeSwitch<Adapter> modelSwitch = new ComputeSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseComputeProcess(ComputeProcess object) {
+			public Adapter caseComputeProcess(ComputeProcess object)
+			{
 				return createComputeProcessAdapter();
 			}
 			@Override
-			public Adapter caseComputePipeline(ComputePipeline object) {
+			public Adapter caseComputePipeline(ComputePipeline object)
+			{
 				return createComputePipelineAdapter();
 			}
 			@Override
-			public Adapter caseDispatchTask(DispatchTask object) {
+			public Adapter caseDispatchTask(DispatchTask object)
+			{
 				return createDispatchTaskAdapter();
 			}
 			@Override
-			public Adapter caseComputeConfiguration(ComputeConfiguration object) {
+			public Adapter caseComputeConfiguration(ComputeConfiguration object)
+			{
 				return createComputeConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseComputeExecutionManager(ComputeExecutionManager object) {
+			public Adapter caseComputeExecutionManager(ComputeExecutionManager object)
+			{
 				return createComputeExecutionManagerAdapter();
 			}
 			@Override
-			public Adapter caseComputeExecutionRecorder(ComputeExecutionRecorder object) {
+			public Adapter caseComputeExecutionRecorder(ComputeExecutionRecorder object)
+			{
 				return createComputeExecutionRecorderAdapter();
 			}
 			@Override
-			public Adapter caseIResourceContainer(IResourceContainer object) {
+			public Adapter caseIResourceContainer(IResourceContainer object)
+			{
 				return createIResourceContainerAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(LNamedElement object) {
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseIProcess(IProcess object) {
+			public Adapter caseIProcess(IProcess object)
+			{
 				return createIProcessAdapter();
 			}
 			@Override
-			public Adapter caseAbstractProcess(AbstractProcess object) {
+			public Adapter caseAbstractProcess(AbstractProcess object)
+			{
 				return createAbstractProcessAdapter();
 			}
 			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object) {
+			public Adapter caseAbstractPipeline(AbstractPipeline object)
+			{
 				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter caseTaskPipeline(TaskPipeline object) {
+			public Adapter caseTaskPipeline(TaskPipeline object)
+			{
 				return createTaskPipelineAdapter();
 			}
 			@Override
-			public Adapter caseVkPipeline(VkPipeline object) {
+			public Adapter caseVkPipeline(VkPipeline object)
+			{
 				return createVkPipelineAdapter();
 			}
 			@Override
-			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object) {
+			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
+			{
 				return createMaintainableAdapter();
 			}
 			@Override
-			public Adapter caseIPipelineTask(IPipelineTask object) {
+			public Adapter caseIPipelineTask(IPipelineTask object)
+			{
 				return createIPipelineTaskAdapter();
 			}
 			@Override
-			public Adapter caseProcessConfiguration(ProcessConfiguration object) {
+			public Adapter caseProcessConfiguration(ProcessConfiguration object)
+			{
 				return createProcessConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseProcessExecutionManager(ProcessExecutionManager object) {
+			public Adapter caseProcessExecutionManager(ProcessExecutionManager object)
+			{
 				return createProcessExecutionManagerAdapter();
 			}
 			@Override
-			public Adapter caseExecutionRecorder(ExecutionRecorder object) {
+			public Adapter caseExecutionRecorder(ExecutionRecorder object)
+			{
 				return createExecutionRecorderAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

@@ -128,14 +128,14 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createImageDataProviderAdapter();
 			}
 			@Override
+			public Adapter caseFileImageDataProvider(FileImageDataProvider object)
+			{
+				return createFileImageDataProviderAdapter();
+			}
+			@Override
 			public Adapter caseImage(Image object)
 			{
 				return createImageAdapter();
-			}
-			@Override
-			public Adapter caseFileImage(FileImage object)
-			{
-				return createFileImageAdapter();
 			}
 			@Override
 			public Adapter caseCompositeImage(CompositeImage object)
@@ -424,6 +424,21 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FileImageDataProvider <em>File Image Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.FileImageDataProvider
+	 * @generated
+	 */
+	public Adapter createFileImageDataProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -464,21 +479,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImageViewerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.FileImage <em>File Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.FileImage
-	 * @generated
-	 */
-	public Adapter createFileImageAdapter()
-	{
 		return null;
 	}
 

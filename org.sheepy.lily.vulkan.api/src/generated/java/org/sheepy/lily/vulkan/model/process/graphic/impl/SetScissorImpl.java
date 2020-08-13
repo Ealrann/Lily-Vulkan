@@ -330,7 +330,8 @@ public class SetScissorImpl extends LilyEObject implements SetScissor
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SET_SCISSOR__NAME:
 				return getName();
 			case GraphicPackage.SET_SCISSOR__ENABLED:
@@ -355,7 +356,8 @@ public class SetScissorImpl extends LilyEObject implements SetScissor
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SET_SCISSOR__NAME:
 				setName((String)newValue);
 				return;
@@ -386,7 +388,8 @@ public class SetScissorImpl extends LilyEObject implements SetScissor
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SET_SCISSOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -417,7 +420,8 @@ public class SetScissorImpl extends LilyEObject implements SetScissor
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SET_SCISSOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.SET_SCISSOR__ENABLED:

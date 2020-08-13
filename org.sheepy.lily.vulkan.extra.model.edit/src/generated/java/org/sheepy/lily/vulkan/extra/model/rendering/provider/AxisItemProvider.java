@@ -62,7 +62,8 @@ public class AxisItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addFrontDirectionPropertyDescriptor(object);
@@ -182,7 +183,8 @@ public class AxisItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Axis.class)) {
+		switch (notification.getFeatureID(Axis.class))
+		{
 			case RenderingPackage.AXIS__FRONT_DIRECTION:
 			case RenderingPackage.AXIS__UP_DIRECTION:
 			case RenderingPackage.AXIS__RIGHT_DIRECTION:

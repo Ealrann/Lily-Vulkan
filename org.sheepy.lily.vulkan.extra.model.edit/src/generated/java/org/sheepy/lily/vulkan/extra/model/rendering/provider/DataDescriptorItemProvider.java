@@ -61,7 +61,8 @@ public class DataDescriptorItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addPartPropertyDescriptor(object);
@@ -202,7 +203,8 @@ public class DataDescriptorItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DataDescriptor.class)) {
+		switch (notification.getFeatureID(DataDescriptor.class))
+		{
 			case RenderingPackage.DATA_DESCRIPTOR__PART:
 			case RenderingPackage.DATA_DESCRIPTOR__INSTANCE:
 			case RenderingPackage.DATA_DESCRIPTOR__DESCRIPTOR_TYPE:

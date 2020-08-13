@@ -63,7 +63,8 @@ public class DispatchTaskItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -230,7 +231,8 @@ public class DispatchTaskItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DispatchTask.class)) {
+		switch (notification.getFeatureID(DispatchTask.class))
+		{
 			case ComputePackage.DISPATCH_TASK__NAME:
 			case ComputePackage.DISPATCH_TASK__ENABLED:
 			case ComputePackage.DISPATCH_TASK__WORKGROUP_COUNT_X:

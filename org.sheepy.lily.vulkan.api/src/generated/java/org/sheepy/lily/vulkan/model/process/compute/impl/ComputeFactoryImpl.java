@@ -28,13 +28,16 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	 */
 	public static ComputeFactory init()
 	{
-		try {
+		try
+		{
 			ComputeFactory theComputeFactory = (ComputeFactory)EPackage.Registry.INSTANCE.getEFactory(ComputePackage.eNS_URI);
-			if (theComputeFactory != null) {
+			if (theComputeFactory != null)
+			{
 				return theComputeFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ComputeFactoryImpl();
@@ -59,7 +62,8 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case ComputePackage.COMPUTE_PROCESS: return createComputeProcess();
 			case ComputePackage.COMPUTE_PIPELINE: return createComputePipeline();
 			case ComputePackage.DISPATCH_TASK: return createDispatchTask();

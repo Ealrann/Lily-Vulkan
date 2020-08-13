@@ -42,7 +42,8 @@ public class ImageAttachmentItemProvider extends ExtraAttachmentItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addClearValuePropertyDescriptor(object);
@@ -136,7 +137,8 @@ public class ImageAttachmentItemProvider extends ExtraAttachmentItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ImageAttachment.class)) {
+		switch (notification.getFeatureID(ImageAttachment.class))
+		{
 			case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

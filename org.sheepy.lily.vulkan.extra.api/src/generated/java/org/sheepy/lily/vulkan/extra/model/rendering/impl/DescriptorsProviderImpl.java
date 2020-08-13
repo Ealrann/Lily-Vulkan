@@ -68,7 +68,8 @@ public class DescriptorsProviderImpl extends LilyEObject implements DescriptorsP
 	@Override
 	public EList<IDescriptor> getDescriptors()
 	{
-		if (descriptors == null) {
+		if (descriptors == null)
+		{
 			descriptors = new EObjectResolvingEList<IDescriptor>(IDescriptor.class, this, RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS);
 		}
 		return descriptors;
@@ -82,7 +83,8 @@ public class DescriptorsProviderImpl extends LilyEObject implements DescriptorsP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS:
 				return getDescriptors();
 		}
@@ -98,7 +100,8 @@ public class DescriptorsProviderImpl extends LilyEObject implements DescriptorsP
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS:
 				getDescriptors().clear();
 				getDescriptors().addAll((Collection<? extends IDescriptor>)newValue);
@@ -115,7 +118,8 @@ public class DescriptorsProviderImpl extends LilyEObject implements DescriptorsP
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS:
 				getDescriptors().clear();
 				return;
@@ -131,7 +135,8 @@ public class DescriptorsProviderImpl extends LilyEObject implements DescriptorsP
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DESCRIPTORS_PROVIDER__DESCRIPTORS:
 				return descriptors != null && !descriptors.isEmpty();
 		}

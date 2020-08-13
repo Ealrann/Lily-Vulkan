@@ -45,7 +45,8 @@ public class VertexProviderItemProvider extends BufferDataProviderItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -63,7 +64,8 @@ public class VertexProviderItemProvider extends BufferDataProviderItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.RENDER_DATA_PROVIDER__DATA_SOURCE);
 		}
@@ -124,7 +126,8 @@ public class VertexProviderItemProvider extends BufferDataProviderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(VertexProvider.class)) {
+		switch (notification.getFeatureID(VertexProvider.class))
+		{
 			case RenderingPackage.VERTEX_PROVIDER__DATA_SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

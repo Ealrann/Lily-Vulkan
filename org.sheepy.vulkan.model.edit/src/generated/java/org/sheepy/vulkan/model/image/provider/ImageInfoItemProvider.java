@@ -10,8 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,7 +24,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 
 import org.sheepy.vulkan.model.enumeration.EFormat;
-import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.image.ImageInfo;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
@@ -73,6 +70,7 @@ public class ImageInfoItemProvider
 			addUsagesPropertyDescriptor(object);
 			addTilingPropertyDescriptor(object);
 			addMipLevelsPropertyDescriptor(object);
+			addInitialLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -170,36 +168,26 @@ public class ImageInfoItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Initial Layout feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	protected void addInitialLayoutPropertyDescriptor(Object object)
 	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageInfo_initialLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_initialLayout_feature", "_UI_ImageInfo_type"),
+				 ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -251,9 +239,6 @@ public class ImageInfoItemProvider
 			case ImagePackage.IMAGE_INFO__MIP_LEVELS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -269,11 +254,6 @@ public class ImageInfoItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT,
-				 ImageFactory.eINSTANCE.createImageLayout()));
 	}
 
 	/**

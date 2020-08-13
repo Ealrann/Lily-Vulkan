@@ -274,6 +274,31 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileImageDataProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FileImageDataProviderItemProvider fileImageDataProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImageDataProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFileImageDataProviderAdapter()
+	{
+		if (fileImageDataProviderItemProvider == null)
+		{
+			fileImageDataProviderItemProvider = new FileImageDataProviderItemProvider(this);
+		}
+
+		return fileImageDataProviderItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.StaticImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,31 +345,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 		}
 
 		return imageViewerItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileImage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FileImageItemProvider fileImageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFileImageAdapter()
-	{
-		if (fileImageItemProvider == null)
-		{
-			fileImageItemProvider = new FileImageItemProvider(this);
-		}
-
-		return fileImageItemProvider;
 	}
 
 	/**
@@ -952,11 +952,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 					(createChildParameter
 						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
 						 VulkanResourceFactory.eINSTANCE.createGenericConstantBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createFileImage()));
 
 				newChildDescriptors.add
 					(createChildParameter

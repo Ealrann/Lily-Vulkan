@@ -42,14 +42,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImageDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FileImageDataProvider" eSuperTypes="#//ImageDataProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImage" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//FileImage"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ByteBuffer" instanceClassName="java.nio.ByteBuffer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" abstract="true" eSuperTypes="../../org.sheepy.vulkan.model/model/Image.ecore#//ImageInfo ../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FileImage" eSuperTypes="#//Image">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//FileResource"
-        resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipmapEnabled" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeImage" eSuperTypes="#//Image">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inlays" upperBound="-1"
         eType="#//ImageInlay" containment="true"/>
@@ -160,5 +158,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ImageViewer" eSuperTypes="#//IMemoryChunkPart #//Image">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
         eType="#//ImageDataProvider" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mipmapEnabled" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
 </ecore:EPackage>

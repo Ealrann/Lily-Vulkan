@@ -146,7 +146,8 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				return getName();
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
@@ -163,7 +164,8 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				setName((String)newValue);
 				return;
@@ -182,7 +184,8 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -201,7 +204,8 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:

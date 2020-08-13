@@ -62,7 +62,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 */
 	public GraphicSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = GraphicPackage.eINSTANCE;
 		}
 	}
@@ -91,65 +92,76 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case GraphicPackage.GRAPHIC_CONFIGURATION: {
+		switch (classifierID)
+		{
+			case GraphicPackage.GRAPHIC_CONFIGURATION:
+			{
 				GraphicConfiguration graphicConfiguration = (GraphicConfiguration)theEObject;
 				T1 result = caseGraphicConfiguration(graphicConfiguration);
 				if (result == null) result = caseProcessConfiguration(graphicConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER: {
+			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER:
+			{
 				GraphicExecutionManager graphicExecutionManager = (GraphicExecutionManager)theEObject;
 				T1 result = caseGraphicExecutionManager(graphicExecutionManager);
 				if (result == null) result = caseProcessExecutionManager(graphicExecutionManager);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER: {
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER:
+			{
 				GraphicExecutionRecorder graphicExecutionRecorder = (GraphicExecutionRecorder)theEObject;
 				T1 result = caseGraphicExecutionRecorder(graphicExecutionRecorder);
 				if (result == null) result = caseExecutionRecorder(graphicExecutionRecorder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.COLOR_DOMAIN: {
+			case GraphicPackage.COLOR_DOMAIN:
+			{
 				ColorDomain colorDomain = (ColorDomain)theEObject;
 				T1 result = caseColorDomain(colorDomain);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.PHYSICAL_SURFACE: {
+			case GraphicPackage.PHYSICAL_SURFACE:
+			{
 				PhysicalSurface physicalSurface = (PhysicalSurface)theEObject;
 				T1 result = casePhysicalSurface(physicalSurface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.SWAPCHAIN_CONFIGURATION: {
+			case GraphicPackage.SWAPCHAIN_CONFIGURATION:
+			{
 				SwapchainConfiguration swapchainConfiguration = (SwapchainConfiguration)theEObject;
 				T1 result = caseSwapchainConfiguration(swapchainConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.FRAMEBUFFER_CONFIGURATION: {
+			case GraphicPackage.FRAMEBUFFER_CONFIGURATION:
+			{
 				FramebufferConfiguration framebufferConfiguration = (FramebufferConfiguration)theEObject;
 				T1 result = caseFramebufferConfiguration(framebufferConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.IMAGE_VIEWS: {
+			case GraphicPackage.IMAGE_VIEWS:
+			{
 				ImageViews imageViews = (ImageViews)theEObject;
 				T1 result = caseImageViews(imageViews);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.RENDER_PASS: {
+			case GraphicPackage.RENDER_PASS:
+			{
 				RenderPass renderPass = (RenderPass)theEObject;
 				T1 result = caseRenderPass(renderPass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.IMAGE_ATTACHMENT: {
+			case GraphicPackage.IMAGE_ATTACHMENT:
+			{
 				ImageAttachment imageAttachment = (ImageAttachment)theEObject;
 				T1 result = caseImageAttachment(imageAttachment);
 				if (result == null) result = caseExtraAttachment(imageAttachment);
@@ -160,7 +172,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.DEPTH_ATTACHMENT: {
+			case GraphicPackage.DEPTH_ATTACHMENT:
+			{
 				DepthAttachment depthAttachment = (DepthAttachment)theEObject;
 				T1 result = caseDepthAttachment(depthAttachment);
 				if (result == null) result = caseExtraAttachment(depthAttachment);
@@ -171,7 +184,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.COLOR_ATTACHMENT: {
+			case GraphicPackage.COLOR_ATTACHMENT:
+			{
 				ColorAttachment colorAttachment = (ColorAttachment)theEObject;
 				T1 result = caseColorAttachment(colorAttachment);
 				if (result == null) result = caseExtraAttachment(colorAttachment);
@@ -182,13 +196,15 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ATTACHMENT_PKG: {
+			case GraphicPackage.ATTACHMENT_PKG:
+			{
 				AttachmentPkg attachmentPkg = (AttachmentPkg)theEObject;
 				T1 result = caseAttachmentPkg(attachmentPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.SUBPASS: {
+			case GraphicPackage.SUBPASS:
+			{
 				Subpass subpass = (Subpass)theEObject;
 				T1 result = caseSubpass(subpass);
 				if (result == null) result = caseIResourceContainer(subpass);
@@ -196,19 +212,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ATTACHMENT_REF_PKG: {
+			case GraphicPackage.ATTACHMENT_REF_PKG:
+			{
 				AttachmentRefPkg attachmentRefPkg = (AttachmentRefPkg)theEObject;
 				T1 result = caseAttachmentRefPkg(attachmentRefPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ATTACHMENT_REF: {
+			case GraphicPackage.ATTACHMENT_REF:
+			{
 				AttachmentRef attachmentRef = (AttachmentRef)theEObject;
 				T1 result = caseAttachmentRef(attachmentRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ATTACHMENT: {
+			case GraphicPackage.ATTACHMENT:
+			{
 				Attachment attachment = (Attachment)theEObject;
 				T1 result = caseAttachment(attachment);
 				if (result == null) result = caseIImage(attachment);
@@ -217,7 +236,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.SWAP_IMAGE_ATTACHMENT: {
+			case GraphicPackage.SWAP_IMAGE_ATTACHMENT:
+			{
 				SwapImageAttachment swapImageAttachment = (SwapImageAttachment)theEObject;
 				T1 result = caseSwapImageAttachment(swapImageAttachment);
 				if (result == null) result = caseAttachment(swapImageAttachment);
@@ -227,7 +247,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.EXTRA_ATTACHMENT: {
+			case GraphicPackage.EXTRA_ATTACHMENT:
+			{
 				ExtraAttachment extraAttachment = (ExtraAttachment)theEObject;
 				T1 result = caseExtraAttachment(extraAttachment);
 				if (result == null) result = caseAttachment(extraAttachment);
@@ -237,7 +258,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.GRAPHIC_PROCESS: {
+			case GraphicPackage.GRAPHIC_PROCESS:
+			{
 				GraphicProcess graphicProcess = (GraphicProcess)theEObject;
 				T1 result = caseGraphicProcess(graphicProcess);
 				if (result == null) result = caseAbstractProcess(graphicProcess);
@@ -248,7 +270,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.GRAPHICS_PIPELINE: {
+			case GraphicPackage.GRAPHICS_PIPELINE:
+			{
 				GraphicsPipeline graphicsPipeline = (GraphicsPipeline)theEObject;
 				T1 result = caseGraphicsPipeline(graphicsPipeline);
 				if (result == null) result = caseVkPipeline(graphicsPipeline);
@@ -260,7 +283,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.SWAP_IMAGE_BARRIER: {
+			case GraphicPackage.SWAP_IMAGE_BARRIER:
+			{
 				SwapImageBarrier swapImageBarrier = (SwapImageBarrier)theEObject;
 				T1 result = caseSwapImageBarrier(swapImageBarrier);
 				if (result == null) result = caseAbstractImageBarrier(swapImageBarrier);
@@ -269,7 +293,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ABSTRACT_BLIT_TASK: {
+			case GraphicPackage.ABSTRACT_BLIT_TASK:
+			{
 				AbstractBlitTask abstractBlitTask = (AbstractBlitTask)theEObject;
 				T1 result = caseAbstractBlitTask(abstractBlitTask);
 				if (result == null) result = caseIPipelineTask(abstractBlitTask);
@@ -277,7 +302,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.BLIT_TO_SWAP_IMAGE: {
+			case GraphicPackage.BLIT_TO_SWAP_IMAGE:
+			{
 				BlitToSwapImage blitToSwapImage = (BlitToSwapImage)theEObject;
 				T1 result = caseBlitToSwapImage(blitToSwapImage);
 				if (result == null) result = caseAbstractBlitTask(blitToSwapImage);
@@ -286,7 +312,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.BLIT_TASK: {
+			case GraphicPackage.BLIT_TASK:
+			{
 				BlitTask blitTask = (BlitTask)theEObject;
 				T1 result = caseBlitTask(blitTask);
 				if (result == null) result = caseAbstractBlitTask(blitTask);
@@ -295,7 +322,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.DRAW_INDEXED: {
+			case GraphicPackage.DRAW_INDEXED:
+			{
 				DrawIndexed drawIndexed = (DrawIndexed)theEObject;
 				T1 result = caseDrawIndexed(drawIndexed);
 				if (result == null) result = caseIPipelineTask(drawIndexed);
@@ -303,7 +331,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.DRAW: {
+			case GraphicPackage.DRAW:
+			{
 				Draw draw = (Draw)theEObject;
 				T1 result = caseDraw(draw);
 				if (result == null) result = caseIPipelineTask(draw);
@@ -311,26 +340,30 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.VERTEX_INPUT_STATE: {
+			case GraphicPackage.VERTEX_INPUT_STATE:
+			{
 				VertexInputState vertexInputState = (VertexInputState)theEObject;
 				T1 result = caseVertexInputState(vertexInputState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.INPUT_DESCRIPTOR: {
+			case GraphicPackage.INPUT_DESCRIPTOR:
+			{
 				InputDescriptor inputDescriptor = (InputDescriptor)theEObject;
 				T1 result = caseInputDescriptor(inputDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ATTRIBUTE_DESCRIPTION: {
+			case GraphicPackage.ATTRIBUTE_DESCRIPTION:
+			{
 				AttributeDescription attributeDescription = (AttributeDescription)theEObject;
 				T1 result = caseAttributeDescription(attributeDescription);
 				if (result == null) result = caseLNamedElement(attributeDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.BIND_VERTEX_BUFFER: {
+			case GraphicPackage.BIND_VERTEX_BUFFER:
+			{
 				BindVertexBuffer bindVertexBuffer = (BindVertexBuffer)theEObject;
 				T1 result = caseBindVertexBuffer(bindVertexBuffer);
 				if (result == null) result = caseIPipelineTask(bindVertexBuffer);
@@ -338,7 +371,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.SET_SCISSOR: {
+			case GraphicPackage.SET_SCISSOR:
+			{
 				SetScissor setScissor = (SetScissor)theEObject;
 				T1 result = caseSetScissor(setScissor);
 				if (result == null) result = caseIPipelineTask(setScissor);
@@ -346,7 +380,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.SET_VIEWPORT: {
+			case GraphicPackage.SET_VIEWPORT:
+			{
 				SetViewport setViewport = (SetViewport)theEObject;
 				T1 result = caseSetViewport(setViewport);
 				if (result == null) result = caseIPipelineTask(setViewport);
@@ -354,13 +389,15 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.VERTEX_BINDING: {
+			case GraphicPackage.VERTEX_BINDING:
+			{
 				VertexBinding vertexBinding = (VertexBinding)theEObject;
 				T1 result = caseVertexBinding(vertexBinding);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.BIND_INDEX_BUFFER: {
+			case GraphicPackage.BIND_INDEX_BUFFER:
+			{
 				BindIndexBuffer bindIndexBuffer = (BindIndexBuffer)theEObject;
 				T1 result = caseBindIndexBuffer(bindIndexBuffer);
 				if (result == null) result = caseIPipelineTask(bindIndexBuffer);
@@ -368,7 +405,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ATTACHMENT_DESCRIPTOR: {
+			case GraphicPackage.ATTACHMENT_DESCRIPTOR:
+			{
 				AttachmentDescriptor attachmentDescriptor = (AttachmentDescriptor)theEObject;
 				T1 result = caseAttachmentDescriptor(attachmentDescriptor);
 				if (result == null) result = caseIDescriptor(attachmentDescriptor);
@@ -376,7 +414,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.COMPOSITOR: {
+			case GraphicPackage.COMPOSITOR:
+			{
 				Compositor compositor = (Compositor)theEObject;
 				T1 result = caseCompositor(compositor);
 				if (result == null) result = caseICompositor(compositor);

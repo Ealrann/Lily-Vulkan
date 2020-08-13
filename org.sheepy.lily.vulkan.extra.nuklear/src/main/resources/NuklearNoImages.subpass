@@ -27,9 +27,6 @@
           <parts xsi:type="resource:ImageViewer" format="R8_UNORM" name="FontImage">
             <usages>Sampled</usages>
             <usages>TransferDst</usages>
-            <initialLayout stage="FRAGMENT_SHADER_BIT">
-              <accessMask>SHADER_READ_BIT</accessMask>
-            </initialLayout>
             <dataProvider xsi:type="nuklear:FontImageProvider"/>
           </parts>
         </resources>
@@ -38,9 +35,6 @@
           <parts xsi:type="resource:StaticImage" name="NullImage" size="1;1">
             <usages>Sampled</usages>
             <usages>TransferDst</usages>
-            <initialLayout stage="FRAGMENT_SHADER_BIT">
-              <accessMask>SHADER_READ_BIT</accessMask>
-            </initialLayout>
           </parts>
         </resources>
         <resources xsi:type="resource:Sampler" name="NullTextureSampler"/>

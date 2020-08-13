@@ -65,7 +65,8 @@ public class AttachmentDescriptorItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -208,7 +209,8 @@ public class AttachmentDescriptorItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AttachmentDescriptor.class)) {
+		switch (notification.getFeatureID(AttachmentDescriptor.class))
+		{
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__NAME:
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__TYPE:
 			case GraphicPackage.ATTACHMENT_DESCRIPTOR__SHADER_STAGES:

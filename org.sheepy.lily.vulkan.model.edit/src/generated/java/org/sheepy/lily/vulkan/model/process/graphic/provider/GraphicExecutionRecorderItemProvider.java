@@ -60,7 +60,8 @@ public class GraphicExecutionRecorderItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addIndexPropertyDescriptor(object);
@@ -129,7 +130,8 @@ public class GraphicExecutionRecorderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GraphicExecutionRecorder.class)) {
+		switch (notification.getFeatureID(GraphicExecutionRecorder.class))
+		{
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -59,7 +59,8 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addStagePropertyDescriptor(object);
@@ -101,7 +102,8 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.TASK_PKG__TASKS);
 		}
@@ -162,7 +164,8 @@ public class TaskPkgItemProvider extends ItemProviderAdapter implements IEditing
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TaskPkg.class)) {
+		switch (notification.getFeatureID(TaskPkg.class))
+		{
 			case ProcessPackage.TASK_PKG__STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

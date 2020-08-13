@@ -5,22 +5,18 @@ package org.sheepy.vulkan.model.image.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 import org.sheepy.vulkan.model.image.ImageInfo;
-import org.sheepy.vulkan.model.image.ImageLayout;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
 /**
@@ -113,14 +109,24 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	protected int mipLevels = MIP_LEVELS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' containment reference.
+	 * The default value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInitialLayout()
 	 * @generated
 	 * @ordered
 	 */
-	protected ImageLayout initialLayout;
+	protected static final EImageLayout INITIAL_LAYOUT_EDEFAULT = EImageLayout.SHADER_READ_ONLY_OPTIMAL;
+
+	/**
+	 * The cached value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected EImageLayout initialLayout = INITIAL_LAYOUT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -239,7 +245,7 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	 * @generated
 	 */
 	@Override
-	public ImageLayout getInitialLayout()
+	public EImageLayout getInitialLayout()
 	{
 		return initialLayout;
 	}
@@ -249,54 +255,13 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitialLayout(ImageLayout newInitialLayout, NotificationChain msgs)
+	@Override
+	public void setInitialLayout(EImageLayout newInitialLayout)
 	{
-		ImageLayout oldInitialLayout = initialLayout;
-		initialLayout = newInitialLayout;
+		EImageLayout oldInitialLayout = initialLayout;
+		initialLayout = newInitialLayout == null ? INITIAL_LAYOUT_EDEFAULT : newInitialLayout;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInitialLayout(ImageLayout newInitialLayout)
-	{
-		if (newInitialLayout != initialLayout)
-		{
-			NotificationChain msgs = null;
-			if (initialLayout != null)
-				msgs = ((InternalEObject)initialLayout).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, null, msgs);
-			if (newInitialLayout != null)
-				msgs = ((InternalEObject)newInitialLayout).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, null, msgs);
-			msgs = basicSetInitialLayout(newInitialLayout, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
-				return basicSetInitialLayout(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, ImagePackage.IMAGE_INFO__INITIAL_LAYOUT, oldInitialLayout, initialLayout));
 	}
 
 	/**
@@ -348,7 +313,7 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 				setMipLevels((Integer)newValue);
 				return;
 			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
-				setInitialLayout((ImageLayout)newValue);
+				setInitialLayout((EImageLayout)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -377,7 +342,7 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 				setMipLevels(MIP_LEVELS_EDEFAULT);
 				return;
 			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
-				setInitialLayout((ImageLayout)null);
+				setInitialLayout(INITIAL_LAYOUT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -402,7 +367,7 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 			case ImagePackage.IMAGE_INFO__MIP_LEVELS:
 				return mipLevels != MIP_LEVELS_EDEFAULT;
 			case ImagePackage.IMAGE_INFO__INITIAL_LAYOUT:
-				return initialLayout != null;
+				return initialLayout != INITIAL_LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -426,6 +391,8 @@ public class ImageInfoImpl extends LilyEObject implements ImageInfo
 		result.append(tiling);
 		result.append(", mipLevels: ");
 		result.append(mipLevels);
+		result.append(", initialLayout: ");
+		result.append(initialLayout);
 		result.append(')');
 		return result.toString();
 	}

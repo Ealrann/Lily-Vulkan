@@ -64,7 +64,8 @@ public class CopyBufferTaskItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -130,7 +131,8 @@ public class CopyBufferTaskItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ProcessPackage.Literals.COPY_BUFFER_TASK__SRC_BUFFER);
 			childrenFeatures.add(ProcessPackage.Literals.COPY_BUFFER_TASK__DST_BUFFER);
@@ -192,7 +194,8 @@ public class CopyBufferTaskItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CopyBufferTask.class)) {
+		switch (notification.getFeatureID(CopyBufferTask.class))
+		{
 			case ProcessPackage.COPY_BUFFER_TASK__NAME:
 			case ProcessPackage.COPY_BUFFER_TASK__ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -244,7 +247,8 @@ public class CopyBufferTaskItemProvider
 			childFeature == ProcessPackage.Literals.COPY_BUFFER_TASK__SRC_BUFFER ||
 			childFeature == ProcessPackage.Literals.COPY_BUFFER_TASK__DST_BUFFER;
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2",
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });

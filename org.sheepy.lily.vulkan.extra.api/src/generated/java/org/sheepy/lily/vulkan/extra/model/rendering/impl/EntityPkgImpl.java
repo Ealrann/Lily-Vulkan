@@ -74,7 +74,8 @@ public abstract class EntityPkgImpl<T extends Entity> extends LilyEObject implem
 	@Override
 	public EList<T> getEntities()
 	{
-		if (entities == null) {
+		if (entities == null)
+		{
 			entities = new EObjectContainmentEList<T>(Entity.class, this, RenderingPackage.ENTITY_PKG__ENTITIES);
 		}
 		return entities;
@@ -88,7 +89,8 @@ public abstract class EntityPkgImpl<T extends Entity> extends LilyEObject implem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.ENTITY_PKG__ENTITIES:
 				return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
 		}
@@ -103,7 +105,8 @@ public abstract class EntityPkgImpl<T extends Entity> extends LilyEObject implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.ENTITY_PKG__ENTITIES:
 				return getEntities();
 		}
@@ -119,7 +122,8 @@ public abstract class EntityPkgImpl<T extends Entity> extends LilyEObject implem
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.ENTITY_PKG__ENTITIES:
 				getEntities().clear();
 				getEntities().addAll((Collection<? extends T>)newValue);
@@ -136,7 +140,8 @@ public abstract class EntityPkgImpl<T extends Entity> extends LilyEObject implem
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.ENTITY_PKG__ENTITIES:
 				getEntities().clear();
 				return;
@@ -152,7 +157,8 @@ public abstract class EntityPkgImpl<T extends Entity> extends LilyEObject implem
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.ENTITY_PKG__ENTITIES:
 				return entities != null && !entities.isEmpty();
 		}

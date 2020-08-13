@@ -87,7 +87,8 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	@Override
 	public Adapter createComputeProcessAdapter()
 	{
-		if (computeProcessItemProvider == null) {
+		if (computeProcessItemProvider == null)
+		{
 			computeProcessItemProvider = new ComputeProcessItemProvider(this);
 		}
 
@@ -111,7 +112,8 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	@Override
 	public Adapter createComputePipelineAdapter()
 	{
-		if (computePipelineItemProvider == null) {
+		if (computePipelineItemProvider == null)
+		{
 			computePipelineItemProvider = new ComputePipelineItemProvider(this);
 		}
 
@@ -135,7 +137,8 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	@Override
 	public Adapter createDispatchTaskAdapter()
 	{
-		if (dispatchTaskItemProvider == null) {
+		if (dispatchTaskItemProvider == null)
+		{
 			dispatchTaskItemProvider = new DispatchTaskItemProvider(this);
 		}
 
@@ -159,7 +162,8 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	@Override
 	public Adapter createComputeConfigurationAdapter()
 	{
-		if (computeConfigurationItemProvider == null) {
+		if (computeConfigurationItemProvider == null)
+		{
 			computeConfigurationItemProvider = new ComputeConfigurationItemProvider(this);
 		}
 
@@ -183,7 +187,8 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	@Override
 	public Adapter createComputeExecutionManagerAdapter()
 	{
-		if (computeExecutionManagerItemProvider == null) {
+		if (computeExecutionManagerItemProvider == null)
+		{
 			computeExecutionManagerItemProvider = new ComputeExecutionManagerItemProvider(this);
 		}
 
@@ -207,7 +212,8 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	@Override
 	public Adapter createComputeExecutionRecorderAdapter()
 	{
-		if (computeExecutionRecorderItemProvider == null) {
+		if (computeExecutionRecorderItemProvider == null)
+		{
 			computeExecutionRecorderItemProvider = new ComputeExecutionRecorderItemProvider(this);
 		}
 
@@ -269,9 +275,11 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	@Override
 	public Object adapt(Object object, Object type)
 	{
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -314,7 +322,8 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

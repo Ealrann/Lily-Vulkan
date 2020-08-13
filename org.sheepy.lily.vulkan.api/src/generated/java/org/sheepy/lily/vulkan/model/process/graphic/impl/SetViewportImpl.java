@@ -422,7 +422,8 @@ public class SetViewportImpl extends LilyEObject implements SetViewport
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SET_VIEWPORT__NAME:
 				return getName();
 			case GraphicPackage.SET_VIEWPORT__ENABLED:
@@ -451,7 +452,8 @@ public class SetViewportImpl extends LilyEObject implements SetViewport
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SET_VIEWPORT__NAME:
 				setName((String)newValue);
 				return;
@@ -488,7 +490,8 @@ public class SetViewportImpl extends LilyEObject implements SetViewport
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SET_VIEWPORT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -525,7 +528,8 @@ public class SetViewportImpl extends LilyEObject implements SetViewport
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SET_VIEWPORT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.SET_VIEWPORT__ENABLED:

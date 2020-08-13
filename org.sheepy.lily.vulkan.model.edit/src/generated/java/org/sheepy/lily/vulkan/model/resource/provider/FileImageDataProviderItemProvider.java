@@ -8,20 +8,20 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.resource.FileImage;
+
+import org.sheepy.lily.vulkan.model.resource.FileImageDataProvider;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImage} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileImageDataProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FileImageItemProvider extends ImageItemProvider
+public class FileImageDataProviderItemProvider extends ImageDataProviderItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -29,7 +29,7 @@ public class FileImageItemProvider extends ImageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FileImageItemProvider(AdapterFactory adapterFactory)
+	public FileImageDataProviderItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -47,27 +47,26 @@ public class FileImageItemProvider extends ImageItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addFilePropertyDescriptor(object);
-			addMipmapEnabledPropertyDescriptor(object);
+			addFileImagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the File feature.
+	 * This adds a property descriptor for the File Image feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFilePropertyDescriptor(Object object)
+	protected void addFileImagePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FileImage_file_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FileImage_file_feature", "_UI_FileImage_type"),
-				 VulkanResourcePackage.Literals.FILE_IMAGE__FILE,
+				 getString("_UI_FileImageDataProvider_fileImage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FileImageDataProvider_fileImage_feature", "_UI_FileImageDataProvider_type"),
+				 VulkanResourcePackage.Literals.FILE_IMAGE_DATA_PROVIDER__FILE_IMAGE,
 				 true,
 				 false,
 				 true,
@@ -77,30 +76,7 @@ public class FileImageItemProvider extends ImageItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Mipmap Enabled feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMipmapEnabledPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FileImage_mipmapEnabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FileImage_mipmapEnabled_feature", "_UI_FileImage_type"),
-				 VulkanResourcePackage.Literals.FILE_IMAGE__MIPMAP_ENABLED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns FileImage.gif.
+	 * This returns FileImageDataProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -108,7 +84,7 @@ public class FileImageItemProvider extends ImageItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FileImage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FileImageDataProvider"));
 	}
 
 	/**
@@ -120,10 +96,10 @@ public class FileImageItemProvider extends ImageItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((FileImage)object).getName();
+		String label = ((FileImageDataProvider)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_FileImage_type") :
-			getString("_UI_FileImage_type") + " " + label;
+			getString("_UI_FileImageDataProvider_type") :
+			getString("_UI_FileImageDataProvider_type") + " " + label;
 	}
 
 
@@ -138,13 +114,6 @@ public class FileImageItemProvider extends ImageItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(FileImage.class))
-		{
-			case VulkanResourcePackage.FILE_IMAGE__MIPMAP_ENABLED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

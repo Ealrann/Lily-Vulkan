@@ -25,9 +25,11 @@ public final class PushImageCommand implements DataFlowCommand
 	private final EPipelineStage trgStage;
 	private final List<EAccess> trgAccess;
 	private final EImageLayout trgLayout;
+	private final int mipLevel;
 
 	public PushImageCommand(MemoryTicket ticket,
 							VkImage trgImage,
+							int mipLevel,
 							EPipelineStage srcStage,
 							List<EAccess> srcAccess,
 							EPipelineStage trgStage,
@@ -40,6 +42,7 @@ public final class PushImageCommand implements DataFlowCommand
 
 		this.ticket = ticket;
 		this.trgImage = trgImage;
+		this.mipLevel = mipLevel;
 		this.srcStage = srcStage;
 		this.srcAccess = srcAccess;
 		this.trgStage = trgStage;
@@ -88,7 +91,7 @@ public final class PushImageCommand implements DataFlowCommand
 		region.bufferImageHeight(0);
 
 		region.imageSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
-		region.imageSubresource().mipLevel(0);
+		region.imageSubresource().mipLevel(mipLevel);
 		region.imageSubresource().baseArrayLayer(0);
 		region.imageSubresource().layerCount(1);
 

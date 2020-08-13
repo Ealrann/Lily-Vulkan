@@ -74,7 +74,8 @@ public class ProcessExtensionPkgImpl extends LilyEObject implements ProcessExten
 	@Override
 	public EList<IProcessExtension> getExtensions()
 	{
-		if (extensions == null) {
+		if (extensions == null)
+		{
 			extensions = new EObjectContainmentEList<IProcessExtension>(IProcessExtension.class, this, ProcessPackage.PROCESS_EXTENSION_PKG__EXTENSIONS);
 		}
 		return extensions;
@@ -88,7 +89,8 @@ public class ProcessExtensionPkgImpl extends LilyEObject implements ProcessExten
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PROCESS_EXTENSION_PKG__EXTENSIONS:
 				return ((InternalEList<?>)getExtensions()).basicRemove(otherEnd, msgs);
 		}
@@ -103,7 +105,8 @@ public class ProcessExtensionPkgImpl extends LilyEObject implements ProcessExten
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PROCESS_EXTENSION_PKG__EXTENSIONS:
 				return getExtensions();
 		}
@@ -119,7 +122,8 @@ public class ProcessExtensionPkgImpl extends LilyEObject implements ProcessExten
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PROCESS_EXTENSION_PKG__EXTENSIONS:
 				getExtensions().clear();
 				getExtensions().addAll((Collection<? extends IProcessExtension>)newValue);
@@ -136,7 +140,8 @@ public class ProcessExtensionPkgImpl extends LilyEObject implements ProcessExten
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PROCESS_EXTENSION_PKG__EXTENSIONS:
 				getExtensions().clear();
 				return;
@@ -152,7 +157,8 @@ public class ProcessExtensionPkgImpl extends LilyEObject implements ProcessExten
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PROCESS_EXTENSION_PKG__EXTENSIONS:
 				return extensions != null && !extensions.isEmpty();
 		}

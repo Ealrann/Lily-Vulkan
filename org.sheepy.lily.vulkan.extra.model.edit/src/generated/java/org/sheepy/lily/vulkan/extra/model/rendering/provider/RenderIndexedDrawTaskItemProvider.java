@@ -65,7 +65,8 @@ public class RenderIndexedDrawTaskItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -208,7 +209,8 @@ public class RenderIndexedDrawTaskItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RenderIndexedDrawTask.class)) {
+		switch (notification.getFeatureID(RenderIndexedDrawTask.class))
+		{
 			case RenderingPackage.RENDER_INDEXED_DRAW_TASK__NAME:
 			case RenderingPackage.RENDER_INDEXED_DRAW_TASK__ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

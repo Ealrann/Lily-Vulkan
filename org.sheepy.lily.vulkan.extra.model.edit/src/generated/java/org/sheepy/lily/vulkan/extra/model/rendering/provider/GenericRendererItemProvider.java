@@ -50,7 +50,8 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRenderedStructuresPropertyDescriptor(object);
@@ -188,7 +189,8 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__DATA_PROVIDER_PKG);
 			childrenFeatures.add(RenderingPackage.Literals.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG);
@@ -239,7 +241,8 @@ public class GenericRendererItemProvider extends GraphicsPipelineItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GenericRenderer.class)) {
+		switch (notification.getFeatureID(GenericRenderer.class))
+		{
 			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

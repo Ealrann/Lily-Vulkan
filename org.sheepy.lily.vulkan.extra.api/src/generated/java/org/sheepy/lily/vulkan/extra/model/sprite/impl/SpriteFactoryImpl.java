@@ -29,13 +29,16 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	 */
 	public static SpriteFactory init()
 	{
-		try {
+		try
+		{
 			SpriteFactory theSpriteFactory = (SpriteFactory)EPackage.Registry.INSTANCE.getEFactory(SpritePackage.eNS_URI);
-			if (theSpriteFactory != null) {
+			if (theSpriteFactory != null)
+			{
 				return theSpriteFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new SpriteFactoryImpl();
@@ -60,7 +63,8 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case SpritePackage.SPRITE_RENDERER: return createSpriteRenderer();
 			case SpritePackage.SPRITE: return createSprite();
 			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER: return createSpriteMonoSamplerProvider();
@@ -79,7 +83,8 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case SpritePackage.SPRITE_TYPE:
 				return createSpriteTypeFromString(eDataType, initialValue);
 			default:
@@ -95,7 +100,8 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case SpritePackage.SPRITE_TYPE:
 				return convertSpriteTypeToString(eDataType, instanceValue);
 			default:

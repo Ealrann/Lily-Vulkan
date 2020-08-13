@@ -100,7 +100,8 @@ public class IcoSphereImpl extends GeometricStructureImpl implements IcoSphere
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case MeshPackage.ICO_SPHERE__SUBDIVISION_COUNT:
 				return getSubdivisionCount();
 		}
@@ -115,7 +116,8 @@ public class IcoSphereImpl extends GeometricStructureImpl implements IcoSphere
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case MeshPackage.ICO_SPHERE__SUBDIVISION_COUNT:
 				setSubdivisionCount((Integer)newValue);
 				return;
@@ -131,7 +133,8 @@ public class IcoSphereImpl extends GeometricStructureImpl implements IcoSphere
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case MeshPackage.ICO_SPHERE__SUBDIVISION_COUNT:
 				setSubdivisionCount(SUBDIVISION_COUNT_EDEFAULT);
 				return;
@@ -147,7 +150,8 @@ public class IcoSphereImpl extends GeometricStructureImpl implements IcoSphere
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case MeshPackage.ICO_SPHERE__SUBDIVISION_COUNT:
 				return subdivisionCount != SUBDIVISION_COUNT_EDEFAULT;
 		}

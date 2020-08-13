@@ -26,7 +26,7 @@ public class Extenders implements IExtenderProvider
 	public List<Class<? extends IExtender>> classifiers()
 	{
 		return List.of(CompositeImageAllocation.class,
-					   FileImageAllocation.class,
+					   FileImageProviderAdapter.class,
 					   TransferBufferAllocation.class,
 					   SamplerAllocation.class,
 					   ShaderAllocation.class,

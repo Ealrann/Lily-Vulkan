@@ -152,7 +152,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	{
 		SwapchainConfiguration oldSwapchainConfiguration = swapchainConfiguration;
 		swapchainConfiguration = newSwapchainConfiguration;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, oldSwapchainConfiguration, newSwapchainConfiguration);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -167,7 +168,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public void setSwapchainConfiguration(SwapchainConfiguration newSwapchainConfiguration)
 	{
-		if (newSwapchainConfiguration != swapchainConfiguration) {
+		if (newSwapchainConfiguration != swapchainConfiguration)
+		{
 			NotificationChain msgs = null;
 			if (swapchainConfiguration != null)
 				msgs = ((InternalEObject)swapchainConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, null, msgs);
@@ -201,7 +203,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	{
 		FramebufferConfiguration oldFramebufferConfiguration = framebufferConfiguration;
 		framebufferConfiguration = newFramebufferConfiguration;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION, oldFramebufferConfiguration, newFramebufferConfiguration);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -216,7 +219,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public void setFramebufferConfiguration(FramebufferConfiguration newFramebufferConfiguration)
 	{
-		if (newFramebufferConfiguration != framebufferConfiguration) {
+		if (newFramebufferConfiguration != framebufferConfiguration)
+		{
 			NotificationChain msgs = null;
 			if (framebufferConfiguration != null)
 				msgs = ((InternalEObject)framebufferConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION, null, msgs);
@@ -274,7 +278,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	{
 		PhysicalSurface oldSurface = surface;
 		surface = newSurface;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, oldSurface, newSurface);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -289,7 +294,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public void setSurface(PhysicalSurface newSurface)
 	{
-		if (newSurface != surface) {
+		if (newSurface != surface)
+		{
 			NotificationChain msgs = null;
 			if (surface != null)
 				msgs = ((InternalEObject)surface).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, null, msgs);
@@ -322,7 +328,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	{
 		RenderPass oldRenderPass = renderPass;
 		renderPass = newRenderPass;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, oldRenderPass, newRenderPass);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -337,7 +344,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public void setRenderPass(RenderPass newRenderPass)
 	{
-		if (newRenderPass != renderPass) {
+		if (newRenderPass != renderPass)
+		{
 			NotificationChain msgs = null;
 			if (renderPass != null)
 				msgs = ((InternalEObject)renderPass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, null, msgs);
@@ -370,7 +378,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	{
 		ImageViews oldImageViews = imageViews;
 		imageViews = newImageViews;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, oldImageViews, newImageViews);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -385,7 +394,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public void setImageViews(ImageViews newImageViews)
 	{
-		if (newImageViews != imageViews) {
+		if (newImageViews != imageViews)
+		{
 			NotificationChain msgs = null;
 			if (imageViews != null)
 				msgs = ((InternalEObject)imageViews).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, null, msgs);
@@ -406,7 +416,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 				return basicSetSwapchainConfiguration(null, msgs);
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
@@ -429,7 +440,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 				return getSwapchainConfiguration();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
@@ -454,7 +466,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 				setSwapchainConfiguration((SwapchainConfiguration)newValue);
 				return;
@@ -485,7 +498,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 				setSwapchainConfiguration((SwapchainConfiguration)null);
 				return;
@@ -516,7 +530,8 @@ public class GraphicConfigurationImpl extends LilyEObject implements GraphicConf
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 				return swapchainConfiguration != null;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:

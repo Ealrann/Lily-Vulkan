@@ -62,7 +62,8 @@ public class AbstractPipelineItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -145,7 +146,8 @@ public class AbstractPipelineItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AbstractPipeline.class)) {
+		switch (notification.getFeatureID(AbstractPipeline.class))
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

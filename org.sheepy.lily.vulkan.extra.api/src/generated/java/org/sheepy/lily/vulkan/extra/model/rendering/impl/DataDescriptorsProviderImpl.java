@@ -73,7 +73,8 @@ public class DataDescriptorsProviderImpl extends LilyEObject implements DataDesc
 	@Override
 	public EList<DataDescriptor> getDataDescriptors()
 	{
-		if (dataDescriptors == null) {
+		if (dataDescriptors == null)
+		{
 			dataDescriptors = new EObjectContainmentEList<DataDescriptor>(DataDescriptor.class, this, RenderingPackage.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS);
 		}
 		return dataDescriptors;
@@ -87,7 +88,8 @@ public class DataDescriptorsProviderImpl extends LilyEObject implements DataDesc
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS:
 				return ((InternalEList<?>)getDataDescriptors()).basicRemove(otherEnd, msgs);
 		}
@@ -102,7 +104,8 @@ public class DataDescriptorsProviderImpl extends LilyEObject implements DataDesc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS:
 				return getDataDescriptors();
 		}
@@ -118,7 +121,8 @@ public class DataDescriptorsProviderImpl extends LilyEObject implements DataDesc
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS:
 				getDataDescriptors().clear();
 				getDataDescriptors().addAll((Collection<? extends DataDescriptor>)newValue);
@@ -135,7 +139,8 @@ public class DataDescriptorsProviderImpl extends LilyEObject implements DataDesc
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS:
 				getDataDescriptors().clear();
 				return;
@@ -151,7 +156,8 @@ public class DataDescriptorsProviderImpl extends LilyEObject implements DataDesc
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER__DATA_DESCRIPTORS:
 				return dataDescriptors != null && !dataDescriptors.isEmpty();
 		}

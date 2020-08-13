@@ -74,7 +74,8 @@ public class ResourceDescriptorProviderPkgImpl extends LilyEObject implements Re
 	@Override
 	public EList<ResourceDescriptorProvider> getResourceDescriptorProviders()
 	{
-		if (resourceDescriptorProviders == null) {
+		if (resourceDescriptorProviders == null)
+		{
 			resourceDescriptorProviders = new EObjectContainmentEList<ResourceDescriptorProvider>(ResourceDescriptorProvider.class, this, RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS);
 		}
 		return resourceDescriptorProviders;
@@ -88,7 +89,8 @@ public class ResourceDescriptorProviderPkgImpl extends LilyEObject implements Re
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
 				return ((InternalEList<?>)getResourceDescriptorProviders()).basicRemove(otherEnd, msgs);
 		}
@@ -103,7 +105,8 @@ public class ResourceDescriptorProviderPkgImpl extends LilyEObject implements Re
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
 				return getResourceDescriptorProviders();
 		}
@@ -119,7 +122,8 @@ public class ResourceDescriptorProviderPkgImpl extends LilyEObject implements Re
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
 				getResourceDescriptorProviders().clear();
 				getResourceDescriptorProviders().addAll((Collection<? extends ResourceDescriptorProvider>)newValue);
@@ -136,7 +140,8 @@ public class ResourceDescriptorProviderPkgImpl extends LilyEObject implements Re
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
 				getResourceDescriptorProviders().clear();
 				return;
@@ -152,7 +157,8 @@ public class ResourceDescriptorProviderPkgImpl extends LilyEObject implements Re
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS:
 				return resourceDescriptorProviders != null && !resourceDescriptorProviders.isEmpty();
 		}

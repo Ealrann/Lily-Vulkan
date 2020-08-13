@@ -70,10 +70,12 @@ public class SpriteCountSpecializationImpl extends ISpecializationImpl implement
 	@Override
 	public SpriteMonoSamplerProvider getProvider()
 	{
-		if (provider != null && ((EObject)provider).eIsProxy()) {
+		if (provider != null && ((EObject)provider).eIsProxy())
+		{
 			InternalEObject oldProvider = provider;
 			provider = (SpriteMonoSamplerProvider)eResolveProxy(oldProvider);
-			if (provider != oldProvider) {
+			if (provider != oldProvider)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpritePackage.SPRITE_COUNT_SPECIALIZATION__PROVIDER, oldProvider, provider));
 			}
@@ -113,7 +115,8 @@ public class SpriteCountSpecializationImpl extends ISpecializationImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpritePackage.SPRITE_COUNT_SPECIALIZATION__PROVIDER:
 				if (resolve) return getProvider();
 				return basicGetProvider();
@@ -129,7 +132,8 @@ public class SpriteCountSpecializationImpl extends ISpecializationImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpritePackage.SPRITE_COUNT_SPECIALIZATION__PROVIDER:
 				setProvider((SpriteMonoSamplerProvider)newValue);
 				return;
@@ -145,7 +149,8 @@ public class SpriteCountSpecializationImpl extends ISpecializationImpl implement
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpritePackage.SPRITE_COUNT_SPECIALIZATION__PROVIDER:
 				setProvider((SpriteMonoSamplerProvider)null);
 				return;
@@ -161,7 +166,8 @@ public class SpriteCountSpecializationImpl extends ISpecializationImpl implement
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpritePackage.SPRITE_COUNT_SPECIALIZATION__PROVIDER:
 				return provider != null;
 		}

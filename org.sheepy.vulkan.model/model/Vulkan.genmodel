@@ -606,7 +606,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/usages"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/tiling"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/mipLevels"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Image.ecore#//ImageInfo/initialLayout"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageInfo/initialLayout"/>
     </genClasses>
     <genClasses ecoreClass="Image.ecore#//ImageLayout">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Image.ecore#//ImageLayout/stage"/>

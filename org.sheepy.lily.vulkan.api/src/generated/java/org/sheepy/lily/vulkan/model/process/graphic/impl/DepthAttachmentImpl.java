@@ -114,7 +114,8 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 	@Override
 	public EList<EImageUsage> getUsages()
 	{
-		if (usages == null) {
+		if (usages == null)
+		{
 			usages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this, GraphicPackage.DEPTH_ATTACHMENT__USAGES);
 		}
 		return usages;
@@ -128,7 +129,8 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 				return isClear();
 			case GraphicPackage.DEPTH_ATTACHMENT__USAGES:
@@ -146,7 +148,8 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 				setClear((Boolean)newValue);
 				return;
@@ -166,7 +169,8 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 				setClear(CLEAR_EDEFAULT);
 				return;
@@ -185,7 +189,8 @@ public class DepthAttachmentImpl extends ExtraAttachmentImpl implements DepthAtt
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 				return clear != CLEAR_EDEFAULT;
 			case GraphicPackage.DEPTH_ATTACHMENT__USAGES:

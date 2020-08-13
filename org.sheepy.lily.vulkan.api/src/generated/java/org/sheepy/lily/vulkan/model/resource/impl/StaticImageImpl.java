@@ -6,12 +6,8 @@ import java.nio.ByteBuffer;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -28,9 +24,9 @@ import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.image.ImageInfo;
-import org.sheepy.vulkan.model.image.ImageLayout;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
 /**
@@ -127,14 +123,24 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	protected int mipLevels = MIP_LEVELS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' containment reference.
+	 * The default value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInitialLayout()
 	 * @generated
 	 * @ordered
 	 */
-	protected ImageLayout initialLayout;
+	protected static final EImageLayout INITIAL_LAYOUT_EDEFAULT = EImageLayout.SHADER_READ_ONLY_OPTIMAL;
+
+	/**
+	 * The cached value of the '{@link #getInitialLayout() <em>Initial Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected EImageLayout initialLayout = INITIAL_LAYOUT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -326,7 +332,7 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 * @generated
 	 */
 	@Override
-	public ImageLayout getInitialLayout() {
+	public EImageLayout getInitialLayout() {
 		return initialLayout;
 	}
 
@@ -335,36 +341,13 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitialLayout(ImageLayout newInitialLayout, NotificationChain msgs) {
-		ImageLayout oldInitialLayout = initialLayout;
-		initialLayout = newInitialLayout;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public void setInitialLayout(ImageLayout newInitialLayout) {
-		if (newInitialLayout != initialLayout)
-		{
-			NotificationChain msgs = null;
-			if (initialLayout != null)
-				msgs = ((InternalEObject)initialLayout).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT, null, msgs);
-			if (newInitialLayout != null)
-				msgs = ((InternalEObject)newInitialLayout).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT, null, msgs);
-			msgs = basicSetInitialLayout(newInitialLayout, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
+	public void setInitialLayout(EImageLayout newInitialLayout)
+	{
+		EImageLayout oldInitialLayout = initialLayout;
+		initialLayout = newInitialLayout == null ? INITIAL_LAYOUT_EDEFAULT : newInitialLayout;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT, oldInitialLayout, initialLayout));
 	}
 
 	/**
@@ -471,21 +454,6 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
-			case VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT:
-				return basicSetInitialLayout(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -537,7 +505,7 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 				setMipLevels((Integer)newValue);
 				return;
 			case VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT:
-				setInitialLayout((ImageLayout)newValue);
+				setInitialLayout((EImageLayout)newValue);
 				return;
 			case VulkanResourcePackage.STATIC_IMAGE__NAME:
 				setName((String)newValue);
@@ -578,7 +546,7 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 				setMipLevels(MIP_LEVELS_EDEFAULT);
 				return;
 			case VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT:
-				setInitialLayout((ImageLayout)null);
+				setInitialLayout(INITIAL_LAYOUT_EDEFAULT);
 				return;
 			case VulkanResourcePackage.STATIC_IMAGE__NAME:
 				setName(NAME_EDEFAULT);
@@ -615,7 +583,7 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 			case VulkanResourcePackage.STATIC_IMAGE__MIP_LEVELS:
 				return mipLevels != MIP_LEVELS_EDEFAULT;
 			case VulkanResourcePackage.STATIC_IMAGE__INITIAL_LAYOUT:
-				return initialLayout != null;
+				return initialLayout != INITIAL_LAYOUT_EDEFAULT;
 			case VulkanResourcePackage.STATIC_IMAGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.STATIC_IMAGE__FILL_WITH_ZERO:
@@ -749,6 +717,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 		result.append(tiling);
 		result.append(", mipLevels: ");
 		result.append(mipLevels);
+		result.append(", initialLayout: ");
+		result.append(initialLayout);
 		result.append(", name: ");
 		result.append(name);
 		result.append(", fillWithZero: ");

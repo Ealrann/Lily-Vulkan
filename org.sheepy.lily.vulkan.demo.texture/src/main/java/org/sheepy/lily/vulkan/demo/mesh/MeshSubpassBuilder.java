@@ -193,25 +193,33 @@ public final class MeshSubpassBuilder
 
 		if (meshConfiguration.useTexture)
 		{
-			final var imageFile = ResourceFactory.eINSTANCE.createModuleResource();
-			imageFile.setModule(module);
-			imageFile.setPath(meshConfiguration.texturePath);
+			final var imageFileResource = ResourceFactory.eINSTANCE.createModuleResource();
+			imageFileResource.setModule(module);
+			imageFileResource.setPath(meshConfiguration.texturePath);
+			final var imageFile = ResourceFactory.eINSTANCE.createFileImage();
+			imageFile.setFile(imageFileResource);
 
-			final var texture = VulkanResourceFactory.eINSTANCE.createFileImage();
-			texture.setFile(imageFile);
-			texture.setMipmapEnabled(meshConfiguration.mipmap);
-			texture.setFormat(EFormat.R8G8B8A8_UNORM);
-			texture.getUsages().add(EImageUsage.SAMPLED);
+			final var textureProvider = VulkanResourceFactory.eINSTANCE.createFileImageDataProvider();
+			textureProvider.setFileImage(imageFile);
+
+			final var imageViewer = VulkanResourceFactory.eINSTANCE.createImageViewer();
+			imageViewer.setDataProvider(textureProvider);
+			imageViewer.setMipmapEnabled(meshConfiguration.mipmap);
+			imageViewer.setFormat(EFormat.R8G8B8A8_UNORM);
+			imageViewer.getUsages().add(EImageUsage.SAMPLED);
+			imageViewer.getUsages().add(EImageUsage.TRANSFER_DST);
+			imageViewer.setInitialLayout(EImageLayout.SHADER_READ_ONLY_OPTIMAL);
+			memoryChunk.getParts().add(imageViewer);
 
 			final var sampler = VulkanResourceFactory.eINSTANCE.createSampler();
 
 			final var sampledImageDescriptor = VulkanResourceFactory.eINSTANCE.createImageDescriptor();
 			sampledImageDescriptor.setType(EDescriptorType.COMBINED_IMAGE_SAMPLER);
 			sampledImageDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
+			sampledImageDescriptor.setLayout(EImageLayout.SHADER_READ_ONLY_OPTIMAL);
 			sampledImageDescriptor.setSampler(sampler);
-			sampledImageDescriptor.setImage(texture);
+			sampledImageDescriptor.setImage(imageViewer);
 
-			resourcePkg.getResources().add(texture);
 			resourcePkg.getResources().add(sampler);
 			resourcePkg.getResources().add(imageFile);
 

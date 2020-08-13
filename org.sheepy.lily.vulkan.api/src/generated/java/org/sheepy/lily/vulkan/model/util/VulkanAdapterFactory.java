@@ -41,7 +41,8 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 */
 	public VulkanAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = VulkanPackage.eINSTANCE;
 		}
 	}
@@ -57,10 +58,12 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -72,57 +75,71 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VulkanSwitch<Adapter> modelSwitch = new VulkanSwitch<Adapter>() {
+	protected VulkanSwitch<Adapter> modelSwitch = new VulkanSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseVulkanEngine(VulkanEngine object) {
+			public Adapter caseVulkanEngine(VulkanEngine object)
+			{
 				return createVulkanEngineAdapter();
 			}
 			@Override
-			public Adapter caseIResourceContainer(IResourceContainer object) {
+			public Adapter caseIResourceContainer(IResourceContainer object)
+			{
 				return createIResourceContainerAdapter();
 			}
 			@Override
-			public Adapter caseIProcess(IProcess object) {
+			public Adapter caseIProcess(IProcess object)
+			{
 				return createIProcessAdapter();
 			}
 			@Override
-			public Adapter caseRunProcess(RunProcess object) {
+			public Adapter caseRunProcess(RunProcess object)
+			{
 				return createRunProcessAdapter();
 			}
 			@Override
-			public Adapter caseWaitProcessIdle(WaitProcessIdle object) {
+			public Adapter caseWaitProcessIdle(WaitProcessIdle object)
+			{
 				return createWaitProcessIdleAdapter();
 			}
 			@Override
-			public Adapter caseDescriptorPkg(DescriptorPkg object) {
+			public Adapter caseDescriptorPkg(DescriptorPkg object)
+			{
 				return createDescriptorPkgAdapter();
 			}
 			@Override
-			public Adapter caseIDescriptor(IDescriptor object) {
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
 				return createIDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseMouseLocation(MouseLocation object) {
+			public Adapter caseMouseLocation(MouseLocation object)
+			{
 				return createMouseLocationAdapter();
 			}
 			@Override
-			public Adapter caseIEngine(IEngine object) {
+			public Adapter caseIEngine(IEngine object)
+			{
 				return createIEngineAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(LNamedElement object) {
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseICadenceTask(ICadenceTask object) {
+			public Adapter caseICadenceTask(ICadenceTask object)
+			{
 				return createICadenceTaskAdapter();
 			}
 			@Override
-			public Adapter caseIModelVariable(IModelVariable object) {
+			public Adapter caseIModelVariable(IModelVariable object)
+			{
 				return createIModelVariableAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

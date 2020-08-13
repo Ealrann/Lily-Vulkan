@@ -30,8 +30,6 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.resource.ImageViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-
-import org.sheepy.vulkan.model.image.ImageFactory;
 import org.sheepy.vulkan.model.image.ImagePackage;
 
 /**
@@ -74,7 +72,9 @@ public class ImageViewerItemProvider
 			addUsagesPropertyDescriptor(object);
 			addTilingPropertyDescriptor(object);
 			addMipLevelsPropertyDescriptor(object);
+			addInitialLayoutPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addMipmapEnabledPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -168,6 +168,29 @@ public class ImageViewerItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Initial Layout feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInitialLayoutPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageInfo_initialLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageInfo_initialLayout_feature", "_UI_ImageInfo_type"),
+				 ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,6 +213,29 @@ public class ImageViewerItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Mipmap Enabled feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMipmapEnabledPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImageViewer_mipmapEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageViewer_mipmapEnabled_feature", "_UI_ImageViewer_type"),
+				 VulkanResourcePackage.Literals.IMAGE_VIEWER__MIPMAP_ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -202,7 +248,6 @@ public class ImageViewerItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT);
 			childrenFeatures.add(VulkanResourcePackage.Literals.IMAGE_VIEWER__DATA_PROVIDER);
 		}
 		return childrenFeatures;
@@ -265,9 +310,9 @@ public class ImageViewerItemProvider
 			case VulkanResourcePackage.IMAGE_VIEWER__TILING:
 			case VulkanResourcePackage.IMAGE_VIEWER__MIP_LEVELS:
 			case VulkanResourcePackage.IMAGE_VIEWER__NAME:
+			case VulkanResourcePackage.IMAGE_VIEWER__MIPMAP_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case VulkanResourcePackage.IMAGE_VIEWER__INITIAL_LAYOUT:
 			case VulkanResourcePackage.IMAGE_VIEWER__DATA_PROVIDER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -288,13 +333,13 @@ public class ImageViewerItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ImagePackage.Literals.IMAGE_INFO__INITIAL_LAYOUT,
-				 ImageFactory.eINSTANCE.createImageLayout()));
+				(VulkanResourcePackage.Literals.IMAGE_VIEWER__DATA_PROVIDER,
+				 VulkanResourceFactory.eINSTANCE.createImageDataProvider()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanResourcePackage.Literals.IMAGE_VIEWER__DATA_PROVIDER,
-				 VulkanResourceFactory.eINSTANCE.createImageDataProvider()));
+				 VulkanResourceFactory.eINSTANCE.createFileImageDataProvider()));
 	}
 
 	/**

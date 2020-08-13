@@ -429,7 +429,8 @@ public abstract class AttachmentImpl extends LilyEObject implements Attachment
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT__NAME:
 				return getName();
 			case GraphicPackage.ATTACHMENT__SAMPLES:
@@ -458,7 +459,8 @@ public abstract class AttachmentImpl extends LilyEObject implements Attachment
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT__NAME:
 				setName((String)newValue);
 				return;
@@ -495,7 +497,8 @@ public abstract class AttachmentImpl extends LilyEObject implements Attachment
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -532,7 +535,8 @@ public abstract class AttachmentImpl extends LilyEObject implements Attachment
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.ATTACHMENT__SAMPLES:

@@ -96,7 +96,8 @@ public class CompositePipelineImpl extends AbstractPipelineImpl implements Compo
 	@Override
 	public EList<TaskPipeline> getPipelines()
 	{
-		if (pipelines == null) {
+		if (pipelines == null)
+		{
 			pipelines = new EObjectContainmentEList<TaskPipeline>(TaskPipeline.class, this, ProcessPackage.COMPOSITE_PIPELINE__PIPELINES);
 		}
 		return pipelines;
@@ -135,7 +136,8 @@ public class CompositePipelineImpl extends AbstractPipelineImpl implements Compo
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COMPOSITE_PIPELINE__PIPELINES:
 				return ((InternalEList<?>)getPipelines()).basicRemove(otherEnd, msgs);
 		}
@@ -150,7 +152,8 @@ public class CompositePipelineImpl extends AbstractPipelineImpl implements Compo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COMPOSITE_PIPELINE__PIPELINES:
 				return getPipelines();
 			case ProcessPackage.COMPOSITE_PIPELINE__REPEAT:
@@ -168,7 +171,8 @@ public class CompositePipelineImpl extends AbstractPipelineImpl implements Compo
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COMPOSITE_PIPELINE__PIPELINES:
 				getPipelines().clear();
 				getPipelines().addAll((Collection<? extends TaskPipeline>)newValue);
@@ -188,7 +192,8 @@ public class CompositePipelineImpl extends AbstractPipelineImpl implements Compo
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COMPOSITE_PIPELINE__PIPELINES:
 				getPipelines().clear();
 				return;
@@ -207,7 +212,8 @@ public class CompositePipelineImpl extends AbstractPipelineImpl implements Compo
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.COMPOSITE_PIPELINE__PIPELINES:
 				return pipelines != null && !pipelines.isEmpty();
 			case ProcessPackage.COMPOSITE_PIPELINE__REPEAT:

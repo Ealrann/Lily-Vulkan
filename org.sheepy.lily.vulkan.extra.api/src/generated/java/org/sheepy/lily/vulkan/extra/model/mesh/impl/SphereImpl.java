@@ -100,7 +100,8 @@ public class SphereImpl extends GeometricStructureImpl implements Sphere
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case MeshPackage.SPHERE__SLICE_COUNT:
 				return getSliceCount();
 		}
@@ -115,7 +116,8 @@ public class SphereImpl extends GeometricStructureImpl implements Sphere
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case MeshPackage.SPHERE__SLICE_COUNT:
 				setSliceCount((Integer)newValue);
 				return;
@@ -131,7 +133,8 @@ public class SphereImpl extends GeometricStructureImpl implements Sphere
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case MeshPackage.SPHERE__SLICE_COUNT:
 				setSliceCount(SLICE_COUNT_EDEFAULT);
 				return;
@@ -147,7 +150,8 @@ public class SphereImpl extends GeometricStructureImpl implements Sphere
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case MeshPackage.SPHERE__SLICE_COUNT:
 				return sliceCount != SLICE_COUNT_EDEFAULT;
 		}

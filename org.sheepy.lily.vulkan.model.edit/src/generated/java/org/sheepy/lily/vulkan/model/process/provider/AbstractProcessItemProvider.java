@@ -62,7 +62,8 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -200,7 +201,8 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
@@ -253,7 +255,8 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AbstractProcess.class)) {
+		switch (notification.getFeatureID(AbstractProcess.class))
+		{
 			case ProcessPackage.ABSTRACT_PROCESS__NAME:
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			case ProcessPackage.ABSTRACT_PROCESS__QUEUE_PRIORITY:

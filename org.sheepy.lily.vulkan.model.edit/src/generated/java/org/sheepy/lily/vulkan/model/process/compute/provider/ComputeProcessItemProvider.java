@@ -47,7 +47,8 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSourceEnginePropertyDescriptor(object);
@@ -89,7 +90,8 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__PIPELINE_PKG);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_PROCESS__CONFIGURATION);
@@ -150,7 +152,8 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ComputeProcess.class)) {
+		switch (notification.getFeatureID(ComputeProcess.class))
+		{
 			case ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG:
 			case ComputePackage.COMPUTE_PROCESS__CONFIGURATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

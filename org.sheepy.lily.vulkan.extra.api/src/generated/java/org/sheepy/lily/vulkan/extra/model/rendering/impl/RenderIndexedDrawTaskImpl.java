@@ -174,10 +174,12 @@ public class RenderIndexedDrawTaskImpl extends LilyEObject implements RenderInde
 	@Override
 	public IndexProvider<?> getIndexProvider()
 	{
-		if (indexProvider != null && ((EObject)indexProvider).eIsProxy()) {
+		if (indexProvider != null && ((EObject)indexProvider).eIsProxy())
+		{
 			InternalEObject oldIndexProvider = indexProvider;
 			indexProvider = (IndexProvider<?>)eResolveProxy(oldIndexProvider);
-			if (indexProvider != oldIndexProvider) {
+			if (indexProvider != oldIndexProvider)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.RENDER_INDEXED_DRAW_TASK__INDEX_PROVIDER, oldIndexProvider, indexProvider));
 			}
@@ -217,10 +219,12 @@ public class RenderIndexedDrawTaskImpl extends LilyEObject implements RenderInde
 	@Override
 	public Structure getStructure()
 	{
-		if (structure != null && ((EObject)structure).eIsProxy()) {
+		if (structure != null && ((EObject)structure).eIsProxy())
+		{
 			InternalEObject oldStructure = structure;
 			structure = (Structure)eResolveProxy(oldStructure);
-			if (structure != oldStructure) {
+			if (structure != oldStructure)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.RENDER_INDEXED_DRAW_TASK__STRUCTURE, oldStructure, structure));
 			}
@@ -260,7 +264,8 @@ public class RenderIndexedDrawTaskImpl extends LilyEObject implements RenderInde
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDER_INDEXED_DRAW_TASK__NAME:
 				return getName();
 			case RenderingPackage.RENDER_INDEXED_DRAW_TASK__ENABLED:
@@ -283,7 +288,8 @@ public class RenderIndexedDrawTaskImpl extends LilyEObject implements RenderInde
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDER_INDEXED_DRAW_TASK__NAME:
 				setName((String)newValue);
 				return;
@@ -308,7 +314,8 @@ public class RenderIndexedDrawTaskImpl extends LilyEObject implements RenderInde
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDER_INDEXED_DRAW_TASK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -333,7 +340,8 @@ public class RenderIndexedDrawTaskImpl extends LilyEObject implements RenderInde
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RenderingPackage.RENDER_INDEXED_DRAW_TASK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RenderingPackage.RENDER_INDEXED_DRAW_TASK__ENABLED:

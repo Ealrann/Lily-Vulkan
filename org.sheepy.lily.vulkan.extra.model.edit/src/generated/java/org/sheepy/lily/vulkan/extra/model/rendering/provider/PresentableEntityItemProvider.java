@@ -45,7 +45,8 @@ public class PresentableEntityItemProvider extends PhysicalEntityItemProvider
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addPresentationPropertyDescriptor(object);
@@ -140,7 +141,8 @@ public class PresentableEntityItemProvider extends PhysicalEntityItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PresentableEntity.class)) {
+		switch (notification.getFeatureID(PresentableEntity.class))
+		{
 			case RenderingPackage.PRESENTABLE_ENTITY__SCALE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

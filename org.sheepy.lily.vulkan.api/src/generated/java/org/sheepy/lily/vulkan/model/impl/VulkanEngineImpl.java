@@ -133,13 +133,16 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public ResourcePkg getResourcePkg()
 	{
-		if (resourcePkg != null && ((EObject)resourcePkg).eIsProxy()) {
+		if (resourcePkg != null && ((EObject)resourcePkg).eIsProxy())
+		{
 			InternalEObject oldResourcePkg = resourcePkg;
 			resourcePkg = (ResourcePkg)eResolveProxy(oldResourcePkg);
-			if (resourcePkg != oldResourcePkg) {
+			if (resourcePkg != oldResourcePkg)
+			{
 				InternalEObject newResourcePkg = resourcePkg;
 				NotificationChain msgs = oldResourcePkg.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, null);
-				if (newResourcePkg.eInternalContainer() == null) {
+				if (newResourcePkg.eInternalContainer() == null)
+				{
 					msgs = newResourcePkg.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -169,7 +172,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	{
 		ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -184,7 +188,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
-		if (newResourcePkg != resourcePkg) {
+		if (newResourcePkg != resourcePkg)
+		{
 			NotificationChain msgs = null;
 			if (resourcePkg != null)
 				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, msgs);
@@ -217,7 +222,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	{
 		DescriptorPkg oldDescriptorPkg = descriptorPkg;
 		descriptorPkg = newDescriptorPkg;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG, oldDescriptorPkg, newDescriptorPkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -232,7 +238,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public void setDescriptorPkg(DescriptorPkg newDescriptorPkg)
 	{
-		if (newDescriptorPkg != descriptorPkg) {
+		if (newDescriptorPkg != descriptorPkg)
+		{
 			NotificationChain msgs = null;
 			if (descriptorPkg != null)
 				msgs = ((InternalEObject)descriptorPkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG, null, msgs);
@@ -278,7 +285,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public EList<IProcess> getProcesses()
 	{
-		if (processes == null) {
+		if (processes == null)
+		{
 			processes = new EObjectContainmentEList<IProcess>(IProcess.class, this, VulkanPackage.VULKAN_ENGINE__PROCESSES);
 		}
 		return processes;
@@ -292,7 +300,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public EList<EPhysicalDeviceFeature> getFeatures()
 	{
-		if (features == null) {
+		if (features == null)
+		{
 			features = new EDataTypeUniqueEList<EPhysicalDeviceFeature>(EPhysicalDeviceFeature.class, this, VulkanPackage.VULKAN_ENGINE__FEATURES);
 		}
 		return features;
@@ -306,7 +315,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
@@ -325,7 +335,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				if (resolve) return getResourcePkg();
 				return basicGetResourcePkg();
@@ -350,7 +361,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)newValue);
 				return;
@@ -380,7 +392,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				setResourcePkg((ResourcePkg)null);
 				return;
@@ -408,7 +421,8 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return resourcePkg != null;
 			case VulkanPackage.VULKAN_ENGINE__ENABLED:

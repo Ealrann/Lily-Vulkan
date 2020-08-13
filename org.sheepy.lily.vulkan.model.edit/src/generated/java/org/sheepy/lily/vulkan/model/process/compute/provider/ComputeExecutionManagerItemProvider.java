@@ -50,7 +50,8 @@ public class ComputeExecutionManagerItemProvider extends ProcessExecutionManager
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
 	{
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addIndexCountPropertyDescriptor(object);
@@ -92,7 +93,8 @@ public class ComputeExecutionManagerItemProvider extends ProcessExecutionManager
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_EXECUTION_MANAGER__RECORDERS);
 		}
@@ -154,7 +156,8 @@ public class ComputeExecutionManagerItemProvider extends ProcessExecutionManager
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ComputeExecutionManager.class)) {
+		switch (notification.getFeatureID(ComputeExecutionManager.class))
+		{
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__INDEX_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

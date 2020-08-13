@@ -74,7 +74,8 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 	@Override
 	public EList<AbstractPipeline> getPipelines()
 	{
-		if (pipelines == null) {
+		if (pipelines == null)
+		{
 			pipelines = new EObjectContainmentEList<AbstractPipeline>(AbstractPipeline.class, this, ProcessPackage.PIPELINE_PKG__PIPELINES);
 		}
 		return pipelines;
@@ -88,7 +89,8 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_PKG__PIPELINES:
 				return ((InternalEList<?>)getPipelines()).basicRemove(otherEnd, msgs);
 		}
@@ -103,7 +105,8 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_PKG__PIPELINES:
 				return getPipelines();
 		}
@@ -119,7 +122,8 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_PKG__PIPELINES:
 				getPipelines().clear();
 				getPipelines().addAll((Collection<? extends AbstractPipeline>)newValue);
@@ -136,7 +140,8 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_PKG__PIPELINES:
 				getPipelines().clear();
 				return;
@@ -152,7 +157,8 @@ public class PipelinePkgImpl extends LilyEObject implements PipelinePkg
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_PKG__PIPELINES:
 				return pipelines != null && !pipelines.isEmpty();
 		}
