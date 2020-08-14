@@ -51,8 +51,8 @@
             uri="org.sheepy.lily.vulkan.model.resource"
             class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
       <extender
-            uri="org.sheepy.lily.core.model.resource"
-            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$ResourceChildCreationExtender"/>
+            uri="org.sheepy.lily.vulkan.model"
+            class="org.sheepy.lily.vulkan.extra.model.nuklear.provider.NuklearItemProviderAdapterFactory$VulkanChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
@@ -80,8 +80,8 @@
             uri="org.sheepy.lily.vulkan.model.resource"
             class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
       <extender
-            uri="org.sheepy.lily.core.model.resource"
-            class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$ResourceChildCreationExtender"/>
+            uri="org.sheepy.lily.vulkan.model"
+            class="org.sheepy.lily.vulkan.extra.model.rendering.provider.RenderingItemProviderAdapterFactory$VulkanChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">

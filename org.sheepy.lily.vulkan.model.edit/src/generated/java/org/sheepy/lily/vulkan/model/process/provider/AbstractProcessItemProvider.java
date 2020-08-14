@@ -22,7 +22,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
-import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -204,7 +203,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IPROCESS__CADENCE);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_POOL);
@@ -264,7 +263,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+			case ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG:
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_POOL:
@@ -290,8 +289,8 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 
 		newChildDescriptors.add
 			(createChildParameter
-				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 ResourceFactory.eINSTANCE.createResourcePkg()));
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG,
+				 VulkanFactory.eINSTANCE.createVulkanResourcePkg()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -327,6 +326,30 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter implements 
 			(createChildParameter
 				(ProcessPackage.Literals.ABSTRACT_PROCESS__EXECUTION_MANAGER,
 				 GraphicFactory.eINSTANCE.createGraphicExecutionManager()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
+	{
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_POOL;
+
+		if (qualify)
+		{
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

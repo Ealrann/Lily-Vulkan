@@ -11,13 +11,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
-import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.extra.model.nuklear.*;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
@@ -152,9 +152,9 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 				return createPushConstantAdapter();
 			}
 			@Override
-			public Adapter caseIResource(IResource object)
+			public Adapter caseIVulkanResource(IVulkanResource object)
 			{
-				return createIResourceAdapter();
+				return createIVulkanResourceAdapter();
 			}
 			@Override
 			public Adapter caseIInferenceObject(IInferenceObject object)
@@ -414,16 +414,16 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IResource <em>IResource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IVulkanResource <em>IVulkan Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.resource.IResource
+	 * @see org.sheepy.lily.vulkan.model.IVulkanResource
 	 * @generated
 	 */
-	public Adapter createIResourceAdapter()
+	public Adapter createIVulkanResourceAdapter()
 	{
 		return null;
 	}

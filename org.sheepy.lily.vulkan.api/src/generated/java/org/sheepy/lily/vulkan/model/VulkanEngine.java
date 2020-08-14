@@ -18,14 +18,13 @@ import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
  *   <li>{@link org.sheepy.lily.vulkan.model.VulkanEngine#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.VulkanEngine#getProcesses <em>Processes</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.VulkanEngine#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.VulkanEngine#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanEngine()
  * @model
  * @generated
  */
-public interface VulkanEngine extends IEngine
+public interface VulkanEngine extends IEngine, IResourceContainer
 {
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
@@ -75,27 +74,5 @@ public interface VulkanEngine extends IEngine
 	 * @generated
 	 */
 	EList<EPhysicalDeviceFeature> getFeatures();
-
-	/**
-	 * Returns the value of the '<em><b>Descriptor Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Pkg</em>' containment reference.
-	 * @see #setDescriptorPkg(DescriptorPkg)
-	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanEngine_DescriptorPkg()
-	 * @model containment="true"
-	 * @generated
-	 */
-	DescriptorPkg getDescriptorPkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanEngine#getDescriptorPkg <em>Descriptor Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Pkg</em>' containment reference.
-	 * @see #getDescriptorPkg()
-	 * @generated
-	 */
-	void setDescriptorPkg(DescriptorPkg value);
 
 } // VulkanEngine

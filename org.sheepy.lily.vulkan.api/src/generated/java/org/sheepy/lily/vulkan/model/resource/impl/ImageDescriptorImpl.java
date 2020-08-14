@@ -17,10 +17,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
-
-import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
@@ -105,7 +104,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 * @generated
 	 * @ordered
 	 */
-	protected Image image;
+	protected VulkanImage image;
 
 	/**
 	 * The cached value of the '{@link #getSampler() <em>Sampler</em>}' reference.
@@ -229,12 +228,12 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 * @generated
 	 */
 	@Override
-	public Image getImage()
+	public VulkanImage getImage()
 	{
 		if (image != null && ((EObject)image).eIsProxy())
 		{
 			InternalEObject oldImage = image;
-			image = (Image)eResolveProxy(oldImage);
+			image = (VulkanImage)eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
 				if (eNotificationRequired())
@@ -249,7 +248,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Image basicGetImage()
+	public VulkanImage basicGetImage()
 	{
 		return image;
 	}
@@ -260,9 +259,9 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 	 * @generated
 	 */
 	@Override
-	public void setImage(Image newImage)
+	public void setImage(VulkanImage newImage)
 	{
-		Image oldImage = image;
+		VulkanImage oldImage = image;
 		image = newImage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE, oldImage, image));
@@ -385,7 +384,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
-				setImage((Image)newValue);
+				setImage((VulkanImage)newValue);
 				return;
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
 				setSampler((Sampler)newValue);
@@ -417,7 +416,7 @@ public class ImageDescriptorImpl extends LilyEObject implements ImageDescriptor
 				getShaderStages().clear();
 				return;
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__IMAGE:
-				setImage((Image)null);
+				setImage((VulkanImage)null);
 				return;
 			case VulkanResourcePackage.IMAGE_DESCRIPTOR__SAMPLER:
 				setSampler((Sampler)null);

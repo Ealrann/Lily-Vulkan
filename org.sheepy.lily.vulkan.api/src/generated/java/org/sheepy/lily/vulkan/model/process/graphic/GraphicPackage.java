@@ -1117,13 +1117,13 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS = 13;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS__RESOURCE_PKG = VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+	int SUBPASS__VULKAN_RESOURCE_PKG = VulkanPackage.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -1261,13 +1261,22 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS__EXTENSION_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 13;
 
 	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__RESOURCE_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 14;
+
+	/**
 	 * The number of structural features of the '<em>Subpass</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 14;
+	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of operations of the '<em>Subpass</em>' class.
@@ -1490,13 +1499,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS = 19;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__RESOURCE_PKG = ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG;
+	int GRAPHIC_PROCESS__VULKAN_RESOURCE_PKG = ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -1671,13 +1680,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__ENABLED = ProcessPackage.VK_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__RESOURCE_PKG = ProcessPackage.VK_PIPELINE__RESOURCE_PKG;
+	int GRAPHICS_PIPELINE__VULKAN_RESOURCE_PKG = ProcessPackage.VK_PIPELINE__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -3553,6 +3562,17 @@ public interface GraphicPackage extends EPackage
 	EReference getSubpass_ExtensionPkg();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getResourcePkg <em>Resource Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Resource Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getResourcePkg()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EReference getSubpass_ResourcePkg();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg <em>Attachment Ref Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4971,6 +4991,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference SUBPASS__EXTENSION_PKG = eINSTANCE.getSubpass_ExtensionPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBPASS__RESOURCE_PKG = eINSTANCE.getSubpass_ResourcePkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl <em>Attachment Ref Pkg</em>}' class.

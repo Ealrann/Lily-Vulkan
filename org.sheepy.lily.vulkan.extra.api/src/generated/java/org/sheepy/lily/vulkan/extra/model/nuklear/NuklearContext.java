@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
-import org.sheepy.lily.core.model.resource.IResource;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
@@ -30,7 +30,7 @@ import org.sheepy.lily.vulkan.model.resource.StaticImage;
  * @model
  * @generated
  */
-public interface NuklearContext extends IResource
+public interface NuklearContext extends IVulkanResource
 {
 	/**
 	 * Returns the value of the '<em><b>Font</b></em>' reference.

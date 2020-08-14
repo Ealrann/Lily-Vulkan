@@ -54,7 +54,7 @@ public final class NuklearContextLoader implements IExtender
 				final var constantBuffer = VulkanResourceFactory.eINSTANCE.createConstantBuffer();
 				constantBuffer.setData(specializationBuffer);
 
-				pipeline.getResourcePkg().getResources().add(constantBuffer);
+				pipeline.getVulkanResourcePkg().getResources().add(constantBuffer);
 				pipeline.setSpecializationData(constantBuffer);
 			}
 		}

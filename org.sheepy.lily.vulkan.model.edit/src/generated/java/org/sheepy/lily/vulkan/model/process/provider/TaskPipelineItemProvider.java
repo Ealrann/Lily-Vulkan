@@ -13,9 +13,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.core.model.resource.ResourceFactory;
-
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
@@ -73,7 +70,7 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.TASK_PIPELINE__TASK_PKGS);
 		}
@@ -124,7 +121,7 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 
 		switch (notification.getFeatureID(TaskPipeline.class))
 		{
-			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
+			case ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG:
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -147,8 +144,8 @@ public class TaskPipelineItemProvider extends AbstractPipelineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
-				 ResourceFactory.eINSTANCE.createResourcePkg()));
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG,
+				 VulkanFactory.eINSTANCE.createVulkanResourcePkg()));
 
 		newChildDescriptors.add
 			(createChildParameter

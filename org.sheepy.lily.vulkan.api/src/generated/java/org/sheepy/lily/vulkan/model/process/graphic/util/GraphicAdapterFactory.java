@@ -13,7 +13,6 @@ import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 
 import org.sheepy.lily.core.model.resource.IImage;
-import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
@@ -299,11 +298,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
-			}
-			@Override
-			public Adapter caseIResource(IResource object)
-			{
-				return createIResourceAdapter();
 			}
 			@Override
 			public Adapter caseIImage(IImage object)
@@ -1007,21 +1001,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createLNamedElementAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IResource <em>IResource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.resource.IResource
-	 * @generated
-	 */
-	public Adapter createIResourceAdapter()
 	{
 		return null;
 	}

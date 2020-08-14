@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
-import org.sheepy.lily.core.model.resource.IResource;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +20,7 @@ import org.sheepy.lily.core.model.resource.IResource;
  * @model
  * @generated
  */
-public interface NuklearFont extends IResource
+public interface NuklearFont extends IVulkanResource
 {
 
 	/**

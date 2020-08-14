@@ -23,7 +23,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.resource.BufferMemory;
-import org.sheepy.lily.vulkan.model.resource.IBufferObject;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
@@ -70,7 +70,7 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IBufferObject> buffers;
+	protected EList<IBuffer> buffers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,11 +124,11 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 	 * @generated
 	 */
 	@Override
-	public EList<IBufferObject> getBuffers()
+	public EList<IBuffer> getBuffers()
 	{
 		if (buffers == null)
 		{
-			buffers = new EObjectContainmentEList<IBufferObject>(IBufferObject.class, this, VulkanResourcePackage.BUFFER_MEMORY__BUFFERS);
+			buffers = new EObjectContainmentEList<IBuffer>(IBuffer.class, this, VulkanResourcePackage.BUFFER_MEMORY__BUFFERS);
 		}
 		return buffers;
 	}
@@ -183,7 +183,7 @@ public class BufferMemoryImpl extends LilyEObject implements BufferMemory
 				return;
 			case VulkanResourcePackage.BUFFER_MEMORY__BUFFERS:
 				getBuffers().clear();
-				getBuffers().addAll((Collection<? extends IBufferObject>)newValue);
+				getBuffers().addAll((Collection<? extends IBuffer>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

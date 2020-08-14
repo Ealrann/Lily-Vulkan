@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
-import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
@@ -68,8 +67,8 @@ public class GrowEngineFactory
 		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		process.setPipelinePkg(pipelinePkg);
 
-		final var resourcePkg = ResourceFactory.eINSTANCE.createResourcePkg();
-		process.setResourcePkg(resourcePkg);
+		final var resourcePkg = VulkanFactory.eINSTANCE.createVulkanResourcePkg();
+		process.setVulkanResourcePkg(resourcePkg);
 		final var resourceList = resourcePkg.getResources();
 		resourceList.add(memoryChunk);
 

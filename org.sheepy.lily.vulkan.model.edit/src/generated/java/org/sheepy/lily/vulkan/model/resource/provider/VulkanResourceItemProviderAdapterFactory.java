@@ -30,16 +30,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import org.sheepy.lily.core.model.resource.ResourcePackage;
-import org.sheepy.lily.core.model.resource.ResourcePkg;
-
-import org.sheepy.lily.core.model.resource.util.ResourceSwitch;
 import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
+import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.resource.BufferMemory;
+import org.sheepy.lily.vulkan.model.resource.BufferViewer;
+import org.sheepy.lily.vulkan.model.resource.CompositeImage;
+import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.resource.ImageViewer;
+import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.lily.vulkan.model.resource.util.VulkanResourceAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.util.VulkanResourceSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -888,12 +891,12 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
-	 * A child creation extender for the {@link ResourcePackage}.
+	 * A child creation extender for the {@link VulkanResourcePackage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class ResourceChildCreationExtender implements IChildCreationExtender
+	public static class VulkanResourceChildCreationExtender implements IChildCreationExtender
 	{
 		/**
 		 * The switch for creating child descriptors specific to each extended class.
@@ -901,7 +904,7 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected static class CreationSwitch extends ResourceSwitch<Object>
+		protected static class CreationSwitch extends VulkanResourceSwitch<Object>
 		{
 			/**
 			 * The child descriptors being populated.
@@ -936,52 +939,133 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 			 * @generated
 			 */
 			@Override
-			public Object caseResourcePkg(ResourcePkg object)
+			public Object caseDescriptorPool(DescriptorPool object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createTransferBuffer()));
+						(VulkanResourcePackage.Literals.DESCRIPTOR_POOL__DESCRIPTOR_SETS,
+						 VulkanResourceFactory.eINSTANCE.createDescriptorSet()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseBufferBarrier(BufferBarrier object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_BARRIER__BUFFERS,
+						 VulkanResourceFactory.eINSTANCE.createBufferReference()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseMemoryChunk(MemoryChunk object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS,
+						 VulkanResourceFactory.eINSTANCE.createBufferMemory()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createConstantBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createGenericConstantBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createCompositeImage()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createSampler()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createShader()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
-						 VulkanResourceFactory.eINSTANCE.createMemoryChunk()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS,
 						 VulkanResourceFactory.eINSTANCE.createStaticImage()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						(VulkanResourcePackage.Literals.MEMORY_CHUNK__PARTS,
 						 VulkanResourceFactory.eINSTANCE.createImageViewer()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseBufferMemory(BufferMemory object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_MEMORY__BUFFERS,
+						 VulkanResourceFactory.eINSTANCE.createStaticBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_MEMORY__BUFFERS,
+						 VulkanResourceFactory.eINSTANCE.createDataBuffer()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_MEMORY__BUFFERS,
+						 VulkanResourceFactory.eINSTANCE.createBufferViewer()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseBufferViewer(BufferViewer object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
+						 VulkanResourceFactory.eINSTANCE.createBufferDataProvider()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositeImage(CompositeImage object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.COMPOSITE_IMAGE__INLAYS,
+						 VulkanResourceFactory.eINSTANCE.createImageInlay()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseImageViewer(ImageViewer object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.IMAGE_VIEWER__DATA_PROVIDER,
+						 VulkanResourceFactory.eINSTANCE.createImageDataProvider()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanResourcePackage.Literals.IMAGE_VIEWER__DATA_PROVIDER,
+						 VulkanResourceFactory.eINSTANCE.createFileImageDataProvider()));
 
 				return null;
 			}

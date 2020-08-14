@@ -126,6 +126,31 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.VulkanResourcePkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VulkanResourcePkgItemProvider vulkanResourcePkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.VulkanResourcePkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVulkanResourcePkgAdapter()
+	{
+		if (vulkanResourcePkgItemProvider == null)
+		{
+			vulkanResourcePkgItemProvider = new VulkanResourcePkgItemProvider(this);
+		}
+
+		return vulkanResourcePkgItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.RunProcess} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

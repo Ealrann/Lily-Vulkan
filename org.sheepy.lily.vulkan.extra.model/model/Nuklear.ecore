@@ -7,7 +7,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentDescriptor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearContext" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IVulkanResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="font" lowerBound="1" eType="#//NuklearFont"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nullTexture" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//StaticImage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageArrayDescriptor" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ImageArrayDescriptor"/>
@@ -20,7 +20,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="compositeDrawTask" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/process.ecore#//CompositeTask"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IResource">
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IVulkanResource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fontImage" lowerBound="1"
         eType="#//FontImageProvider"/>
   </eClassifiers>

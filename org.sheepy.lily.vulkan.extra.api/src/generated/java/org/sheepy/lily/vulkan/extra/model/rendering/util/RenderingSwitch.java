@@ -8,12 +8,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
-import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
@@ -240,7 +240,7 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				RenderProxyConstantBuffer renderProxyConstantBuffer = (RenderProxyConstantBuffer)theEObject;
 				T1 result = caseRenderProxyConstantBuffer(renderProxyConstantBuffer);
 				if (result == null) result = caseConstantBuffer(renderProxyConstantBuffer);
-				if (result == null) result = caseIResource(renderProxyConstantBuffer);
+				if (result == null) result = caseIVulkanResource(renderProxyConstantBuffer);
 				if (result == null) result = caseLNamedElement(renderProxyConstantBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -819,17 +819,17 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IVulkan Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IVulkan Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIResource(IResource object)
+	public T1 caseIVulkanResource(IVulkanResource object)
 	{
 		return null;
 	}

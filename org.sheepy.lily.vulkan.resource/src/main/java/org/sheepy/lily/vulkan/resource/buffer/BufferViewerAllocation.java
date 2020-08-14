@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.model.resource.BufferMemory;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAllocationAllocation;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
 import java.nio.ByteBuffer;
@@ -19,7 +19,7 @@ import java.nio.ByteBuffer;
 @ModelExtender(scope = BufferViewer.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(parent = BufferMemory.class, type = BufferMemoryAllocation.class)
-public final class BufferViewerAllocation implements IBufferObjectAllocationAllocation
+public final class BufferViewerAllocation implements IBufferAllocation
 {
 	private final BufferViewer bufferViewer;
 	private final long bufferPtr;

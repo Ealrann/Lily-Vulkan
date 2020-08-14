@@ -7,9 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
-
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -21,6 +19,7 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#isUsedToPush <em>Used To Push</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.TransferBufferImpl#isUsedToFetch <em>Used To Fetch</em>}</li>
@@ -28,8 +27,28 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
  *
  * @generated
  */
-public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
+public class TransferBufferImpl extends LilyEObject implements TransferBuffer
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,6 +136,31 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	 * @generated
 	 */
 	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.TRANSFER_BUFFER__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public long getSize()
 	{
 		return size;
@@ -196,6 +240,8 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.TRANSFER_BUFFER__NAME:
+				return getName();
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				return getSize();
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
@@ -216,6 +262,9 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.TRANSFER_BUFFER__NAME:
+				setName((String)newValue);
+				return;
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
@@ -239,6 +288,9 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.TRANSFER_BUFFER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
@@ -262,6 +314,8 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.TRANSFER_BUFFER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.TRANSFER_BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
 			case VulkanResourcePackage.TRANSFER_BUFFER__USED_TO_PUSH:
@@ -283,7 +337,9 @@ public class TransferBufferImpl extends IResourceImpl implements TransferBuffer
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (size: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", size: ");
 		result.append(size);
 		result.append(", usedToPush: ");
 		result.append(usedToPush);

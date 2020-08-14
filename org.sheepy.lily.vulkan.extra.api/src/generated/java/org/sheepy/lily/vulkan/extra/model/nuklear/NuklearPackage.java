@@ -6,8 +6,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.ui.UiPackage;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -159,7 +159,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__NAME = ResourcePackage.IRESOURCE__NAME;
+	int NUKLEAR_CONTEXT__NAME = VulkanPackage.IVULKAN_RESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Font</b></em>' reference.
@@ -168,7 +168,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__FONT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_CONTEXT__FONT = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Null Texture</b></em>' reference.
@@ -177,7 +177,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__NULL_TEXTURE = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_CONTEXT__NULL_TEXTURE = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Image Array Descriptor</b></em>' reference.
@@ -186,7 +186,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR = ResourcePackage.IRESOURCE_FEATURE_COUNT + 2;
+	int NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Vertex Data Provider</b></em>' reference.
@@ -195,7 +195,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER = ResourcePackage.IRESOURCE_FEATURE_COUNT + 3;
+	int NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Index Data Provider</b></em>' reference.
@@ -204,7 +204,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER = ResourcePackage.IRESOURCE_FEATURE_COUNT + 4;
+	int NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Vertex Memory Chunk</b></em>' reference.
@@ -213,7 +213,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK = ResourcePackage.IRESOURCE_FEATURE_COUNT + 5;
+	int NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Composite Draw Task</b></em>' reference.
@@ -222,7 +222,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK = ResourcePackage.IRESOURCE_FEATURE_COUNT + 6;
+	int NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Context</em>' class.
@@ -231,7 +231,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 7;
+	int NUKLEAR_CONTEXT_FEATURE_COUNT = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 7;
 
 
 	/**
@@ -241,7 +241,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT_OPERATION_COUNT = ResourcePackage.IRESOURCE_OPERATION_COUNT + 0;
+	int NUKLEAR_CONTEXT_OPERATION_COUNT = VulkanPackage.IVULKAN_RESOURCE_OPERATION_COUNT + 0;
 
 
 	/**
@@ -261,7 +261,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__NAME = ResourcePackage.IRESOURCE__NAME;
+	int NUKLEAR_FONT__NAME = VulkanPackage.IVULKAN_RESOURCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Font Image</b></em>' reference.
@@ -270,7 +270,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT__FONT_IMAGE = ResourcePackage.IRESOURCE_FEATURE_COUNT + 0;
+	int NUKLEAR_FONT__FONT_IMAGE = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Font</em>' class.
@@ -279,7 +279,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_FEATURE_COUNT = ResourcePackage.IRESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_FONT_FEATURE_COUNT = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -288,7 +288,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_OPERATION_COUNT = ResourcePackage.IRESOURCE_OPERATION_COUNT + 0;
+	int NUKLEAR_FONT_OPERATION_COUNT = VulkanPackage.IVULKAN_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.

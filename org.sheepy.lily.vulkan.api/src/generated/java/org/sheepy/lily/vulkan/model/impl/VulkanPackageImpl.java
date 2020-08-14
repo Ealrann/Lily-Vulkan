@@ -23,11 +23,13 @@ import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.MouseLocation;
 import org.sheepy.lily.vulkan.model.RunProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.VulkanResourcePkg;
 import org.sheepy.lily.vulkan.model.WaitProcessIdle;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
@@ -64,6 +66,20 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass iResourceContainerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vulkanResourcePkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iVulkanResourceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -255,17 +271,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getVulkanEngine_DescriptorPkg()
-	{
-		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getIResourceContainer()
 	{
 		return iResourceContainerEClass;
@@ -277,7 +282,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getIResourceContainer_ResourcePkg()
+	public EReference getIResourceContainer_VulkanResourcePkg()
 	{
 		return (EReference)iResourceContainerEClass.getEStructuralFeatures().get(0);
 	}
@@ -291,6 +296,39 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	public EReference getIResourceContainer_DescriptorPkg()
 	{
 		return (EReference)iResourceContainerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getVulkanResourcePkg()
+	{
+		return vulkanResourcePkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getVulkanResourcePkg_Resources()
+	{
+		return (EReference)vulkanResourcePkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIVulkanResource()
+	{
+		return iVulkanResourceEClass;
 	}
 
 	/**
@@ -493,11 +531,15 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__ENABLED);
 		createEReference(vulkanEngineEClass, VULKAN_ENGINE__PROCESSES);
 		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__FEATURES);
-		createEReference(vulkanEngineEClass, VULKAN_ENGINE__DESCRIPTOR_PKG);
 
 		iResourceContainerEClass = createEClass(IRESOURCE_CONTAINER);
-		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__RESOURCE_PKG);
+		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG);
 		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
+
+		vulkanResourcePkgEClass = createEClass(VULKAN_RESOURCE_PKG);
+		createEReference(vulkanResourcePkgEClass, VULKAN_RESOURCE_PKG__RESOURCES);
+
+		iVulkanResourceEClass = createEClass(IVULKAN_RESOURCE);
 
 		iProcessEClass = createEClass(IPROCESS);
 		createEAttribute(iProcessEClass, IPROCESS__ENABLED);
@@ -548,7 +590,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		// Obtain other dependent packages
 		ApplicationPackage theApplicationPackage = (ApplicationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplicationPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		CadencePackage theCadencePackage = (CadencePackage)EPackage.Registry.INSTANCE.getEPackage(CadencePackage.eNS_URI);
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
@@ -559,6 +600,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		// Add supertypes to classes
 		vulkanEngineEClass.getESuperTypes().add(theApplicationPackage.getIEngine());
+		vulkanEngineEClass.getESuperTypes().add(this.getIResourceContainer());
+		iVulkanResourceEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iProcessEClass.getESuperTypes().add(this.getIResourceContainer());
 		iProcessEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		runProcessEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
@@ -571,11 +614,15 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getVulkanEngine_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVulkanEngine_Features(), theEnumerationPackage.getEPhysicalDeviceFeature(), "features", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVulkanEngine_DescriptorPkg(), this.getDescriptorPkg(), null, "descriptorPkg", null, 0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIResourceContainer_ResourcePkg(), theResourcePackage.getResourcePkg(), null, "resourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIResourceContainer_VulkanResourcePkg(), this.getVulkanResourcePkg(), null, "vulkanResourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIResourceContainer_DescriptorPkg(), this.getDescriptorPkg(), null, "descriptorPkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(vulkanResourcePkgEClass, VulkanResourcePkg.class, "VulkanResourcePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVulkanResourcePkg_Resources(), this.getIVulkanResource(), null, "resources", null, 0, -1, VulkanResourcePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iVulkanResourceEClass, IVulkanResource.class, "IVulkanResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iProcessEClass, IProcess.class, "IProcess", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIProcess_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

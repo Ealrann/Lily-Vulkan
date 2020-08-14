@@ -25,7 +25,7 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompositeImageItemProvider extends ImageItemProvider
+public class CompositeImageItemProvider extends VulkanImageItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.

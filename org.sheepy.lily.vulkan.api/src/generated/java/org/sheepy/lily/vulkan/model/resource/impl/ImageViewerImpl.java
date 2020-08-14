@@ -19,14 +19,11 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.api.model.LilyEObject;
 
 import org.sheepy.lily.core.model.resource.IImage;
-import org.sheepy.lily.core.model.resource.IResource;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ImageViewer;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EFormat;
@@ -329,7 +326,8 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 	 * @generated
 	 */
 	@Override
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
@@ -339,7 +337,8 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName) {
+	public void setName(String newName)
+	{
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -594,13 +593,6 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == IImage.class)
 		{
 			switch (derivedFeatureID)
@@ -608,7 +600,7 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 				default: return -1;
 			}
 		}
-		if (baseClass == Image.class)
+		if (baseClass == VulkanImage.class)
 		{
 			switch (derivedFeatureID)
 			{
@@ -645,13 +637,6 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == IImage.class)
 		{
 			switch (baseFeatureID)
@@ -659,7 +644,7 @@ public class ImageViewerImpl extends LilyEObject implements ImageViewer {
 				default: return -1;
 			}
 		}
-		if (baseClass == Image.class)
+		if (baseClass == VulkanImage.class)
 		{
 			switch (baseFeatureID)
 			{

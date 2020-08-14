@@ -32,7 +32,7 @@ public final class DrawTaskInstaller
 	{
 		final var pipeline = context.pipeline;
 		final var taskPkg = pipeline.getTaskPkgs().get(0);
-		final var resourcePkg = pipeline.getResourcePkg();
+		final var resourcePkg = pipeline.getVulkanResourcePkg();
 		final var bufferParts = context.bufferMemory.getBuffers();
 		final List<VertexProvider<?>> vertexProviders = new ArrayList<>();
 		final List<BufferDataProvider> dataProviders = new ArrayList<>();

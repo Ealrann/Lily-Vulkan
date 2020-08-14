@@ -743,7 +743,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		// Obtain other dependent packages
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		VulkanResourcePackage theVulkanResourcePackage = (VulkanResourcePackage)EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
 		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
@@ -754,8 +754,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		// Add supertypes to classes
 		nuklearPushConstantsEClass.getESuperTypes().add(theProcessPackage.getPushConstant());
-		nuklearContextEClass.getESuperTypes().add(theResourcePackage.getIResource());
-		nuklearFontEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		nuklearContextEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
+		nuklearFontEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
 		selectorPanelEClass.getESuperTypes().add(theUiPackage.getIPanel());
 		panelViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
 		nuklearVertexProviderEClass.getESuperTypes().add(theVulkanResourcePackage.getBufferDataProvider());

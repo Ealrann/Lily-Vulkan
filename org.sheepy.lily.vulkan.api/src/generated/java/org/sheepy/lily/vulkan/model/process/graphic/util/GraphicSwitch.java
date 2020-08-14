@@ -11,7 +11,6 @@ import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 
 import org.sheepy.lily.core.model.resource.IImage;
-import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.vulkan.model.IDescriptor;
@@ -167,7 +166,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseExtraAttachment(imageAttachment);
 				if (result == null) result = caseAttachment(imageAttachment);
 				if (result == null) result = caseIImage(imageAttachment);
-				if (result == null) result = caseIResource(imageAttachment);
 				if (result == null) result = caseLNamedElement(imageAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -179,7 +177,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseExtraAttachment(depthAttachment);
 				if (result == null) result = caseAttachment(depthAttachment);
 				if (result == null) result = caseIImage(depthAttachment);
-				if (result == null) result = caseIResource(depthAttachment);
 				if (result == null) result = caseLNamedElement(depthAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -191,7 +188,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseExtraAttachment(colorAttachment);
 				if (result == null) result = caseAttachment(colorAttachment);
 				if (result == null) result = caseIImage(colorAttachment);
-				if (result == null) result = caseIResource(colorAttachment);
 				if (result == null) result = caseLNamedElement(colorAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -231,7 +227,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				Attachment attachment = (Attachment)theEObject;
 				T1 result = caseAttachment(attachment);
 				if (result == null) result = caseIImage(attachment);
-				if (result == null) result = caseIResource(attachment);
 				if (result == null) result = caseLNamedElement(attachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -242,7 +237,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseSwapImageAttachment(swapImageAttachment);
 				if (result == null) result = caseAttachment(swapImageAttachment);
 				if (result == null) result = caseIImage(swapImageAttachment);
-				if (result == null) result = caseIResource(swapImageAttachment);
 				if (result == null) result = caseLNamedElement(swapImageAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -253,7 +247,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseExtraAttachment(extraAttachment);
 				if (result == null) result = caseAttachment(extraAttachment);
 				if (result == null) result = caseIImage(extraAttachment);
-				if (result == null) result = caseIResource(extraAttachment);
 				if (result == null) result = caseLNamedElement(extraAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -1080,22 +1073,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseLNamedElement(LNamedElement object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIResource(IResource object)
 	{
 		return null;
 	}

@@ -81,6 +81,7 @@ public class VulkanSwitch<T> extends Switch<T>
 				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
 				T result = caseVulkanEngine(vulkanEngine);
 				if (result == null) result = caseIEngine(vulkanEngine);
+				if (result == null) result = caseIResourceContainer(vulkanEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -88,6 +89,21 @@ public class VulkanSwitch<T> extends Switch<T>
 			{
 				IResourceContainer iResourceContainer = (IResourceContainer)theEObject;
 				T result = caseIResourceContainer(iResourceContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.VULKAN_RESOURCE_PKG:
+			{
+				VulkanResourcePkg vulkanResourcePkg = (VulkanResourcePkg)theEObject;
+				T result = caseVulkanResourcePkg(vulkanResourcePkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.IVULKAN_RESOURCE:
+			{
+				IVulkanResource iVulkanResource = (IVulkanResource)theEObject;
+				T result = caseIVulkanResource(iVulkanResource);
+				if (result == null) result = caseLNamedElement(iVulkanResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -172,6 +188,38 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIResourceContainer(IResourceContainer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resource Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resource Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVulkanResourcePkg(VulkanResourcePkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IVulkan Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IVulkan Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIVulkanResource(IVulkanResource object)
 	{
 		return null;
 	}

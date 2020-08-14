@@ -18,10 +18,10 @@ import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.resource.BufferMemory;
-import org.sheepy.lily.vulkan.model.resource.IBufferObject;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAdapter;
-import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAllocationAllocation;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAdapter;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryChunkPartAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
@@ -55,8 +55,8 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		bufferBackend = createBufferBackend(chunkInfo.size, chunkInfo.usage);
 
 		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
-				   .adaptNotifier(IBufferObjectAdapter.class)
-				   .listenNoParam(allocationState::setAllocationObsolete, IBufferObjectAdapter.Features.Size);
+				   .adaptNotifier(IBufferAdapter.class)
+				   .listenNoParam(allocationState::setAllocationObsolete, IBufferAdapter.Features.Size);
 	}
 
 	@Free
@@ -70,7 +70,7 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		notify(Features.Attach, recordContext);
 	}
 
-	public AlignmentData getAlignmentData(IBufferObject buffer)
+	public AlignmentData getAlignmentData(IBuffer buffer)
 	{
 		return chunkInfo.data.get(bufferMemory.getBuffers().indexOf(buffer));
 	}
@@ -97,12 +97,12 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 	{
 		final var bufferAllocation = bufferMemory.getBuffers()
 												 .get(index)
-												 .adapt(IBufferObjectAllocationAllocation.class);
+												 .adapt(IBufferAllocation.class);
 		final var alignmentData = chunkInfo.data.get(index);
 		return new BufferData(bufferAllocation, alignmentData);
 	}
 
-	private static record BufferData(IBufferObjectAllocationAllocation bufferAllocation, AlignmentData alignmentData)
+	private static record BufferData(IBufferAllocation bufferAllocation, AlignmentData alignmentData)
 	{
 		public FillCommand buildFillCommand(long bufferPtr)
 		{
@@ -133,7 +133,7 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		final List<AlignmentData> tmpData = new ArrayList<>();
 		for (final var buffer : bufferMemory.getBuffers())
 		{
-			final var sizeAdapter = buffer.adaptNotNull(IBufferObjectAdapter.class);
+			final var sizeAdapter = buffer.adaptNotNull(IBufferAdapter.class);
 			final long size = sizeAdapter.getSize(buffer);
 			final int usage = VulkanModelUtil.getEnumeratedFlag(buffer.getUsages());
 

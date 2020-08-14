@@ -14,9 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
-
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart;
 import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
@@ -30,14 +28,35 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.MemoryChunkImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.MemoryChunkImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.MemoryChunkImpl#getTransferBuffer <em>Transfer Buffer</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
+public class MemoryChunkImpl extends LilyEObject implements MemoryChunk
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -77,6 +96,31 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	protected EClass eStaticClass()
 	{
 		return VulkanResourcePackage.Literals.MEMORY_CHUNK;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.MEMORY_CHUNK__NAME, oldName, name));
 	}
 
 	/**
@@ -165,6 +209,8 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.MEMORY_CHUNK__NAME:
+				return getName();
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				return getParts();
 			case VulkanResourcePackage.MEMORY_CHUNK__TRANSFER_BUFFER:
@@ -185,6 +231,9 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.MEMORY_CHUNK__NAME:
+				setName((String)newValue);
+				return;
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				getParts().clear();
 				getParts().addAll((Collection<? extends IMemoryChunkPart>)newValue);
@@ -206,6 +255,9 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.MEMORY_CHUNK__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				getParts().clear();
 				return;
@@ -226,12 +278,31 @@ public class MemoryChunkImpl extends IResourceImpl implements MemoryChunk
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.MEMORY_CHUNK__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.MEMORY_CHUNK__PARTS:
 				return parts != null && !parts.isEmpty();
 			case VulkanResourcePackage.MEMORY_CHUNK__TRANSFER_BUFFER:
 				return transferBuffer != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MemoryChunkImpl

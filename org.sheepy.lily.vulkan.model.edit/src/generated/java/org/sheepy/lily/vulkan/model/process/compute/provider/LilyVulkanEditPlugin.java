@@ -44,6 +44,7 @@ public final class LilyVulkanEditPlugin extends EMFPlugin
 		   {
 		     LilyEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
+		     LilyVulkanEditPlugin.INSTANCE,
 		   });
 	}
 

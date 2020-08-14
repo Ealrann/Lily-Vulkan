@@ -21,7 +21,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface BufferViewer extends IBufferObject
+public interface BufferViewer extends IBuffer
 {
 	/**
 	 * Returns the value of the '<em><b>Data Provider</b></em>' containment reference.

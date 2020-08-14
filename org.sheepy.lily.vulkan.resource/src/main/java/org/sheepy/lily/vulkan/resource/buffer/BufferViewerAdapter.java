@@ -6,15 +6,15 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferViewer;
-import org.sheepy.lily.vulkan.model.resource.IBufferObject;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.resource.memorychunk.IBufferObjectAdapter;
+import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAdapter;
 
 import java.util.List;
 
 @ModelExtender(scope = BufferViewer.class)
 @Adapter(lazy = false)
-public final class BufferViewerAdapter extends Notifier<IBufferObjectAdapter.Features> implements IBufferObjectAdapter
+public final class BufferViewerAdapter extends Notifier<IBufferAdapter.Features> implements IBufferAdapter
 {
 	private final BufferViewer bufferViewer;
 	private final IBufferDataProviderAdapter dataProviderAdapter;
@@ -43,7 +43,7 @@ public final class BufferViewerAdapter extends Notifier<IBufferObjectAdapter.Fea
 	}
 
 	@Override
-	public long getSize(final IBufferObject buffer)
+	public long getSize(final IBuffer buffer)
 	{
 		return bufferViewer.getSize();
 	}

@@ -8,14 +8,14 @@ import org.sheepy.vulkan.model.image.ImageInfo;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Image</b></em>'.
+ * A representation of the model object '<em><b>Vulkan Image</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImage()
+ * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getVulkanImage()
  * @model abstract="true"
  * @generated
  */
-public interface Image extends ImageInfo, IImage
+public interface VulkanImage extends ImageInfo, IImage
 {
-} // Image
+} // VulkanImage

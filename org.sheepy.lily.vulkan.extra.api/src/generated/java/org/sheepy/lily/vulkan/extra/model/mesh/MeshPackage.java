@@ -125,13 +125,13 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__ENABLED = RenderingPackage.GENERIC_RENDERER__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__RESOURCE_PKG;
+	int MESH_RENDERER__VULKAN_RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.

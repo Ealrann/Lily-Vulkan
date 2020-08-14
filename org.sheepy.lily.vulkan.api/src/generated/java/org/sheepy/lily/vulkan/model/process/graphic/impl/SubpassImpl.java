@@ -21,6 +21,7 @@ import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
+import org.sheepy.lily.vulkan.model.VulkanResourcePkg;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
@@ -38,7 +39,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getResourcePkg <em>Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getVulkanResourcePkg <em>Vulkan Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getAttachmentRefPkg <em>Attachment Ref Pkg</em>}</li>
@@ -54,6 +55,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSyncAccesses <em>Sync Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getFinishAccesses <em>Finish Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getExtensionPkg <em>Extension Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,14 +63,14 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 public class SubpassImpl extends LilyEObject implements Subpass
 {
 	/**
-	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getVulkanResourcePkg() <em>Vulkan Resource Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResourcePkg()
+	 * @see #getVulkanResourcePkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected ResourcePkg resourcePkg;
+	protected VulkanResourcePkg vulkanResourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -281,6 +283,16 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	protected ProcessExtensionPkg extensionPkg;
 
 	/**
+	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourcePkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected ResourcePkg resourcePkg;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -307,9 +319,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
-	public ResourcePkg getResourcePkg()
+	public VulkanResourcePkg getVulkanResourcePkg()
 	{
-		return resourcePkg;
+		return vulkanResourcePkg;
 	}
 
 	/**
@@ -317,13 +329,13 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetVulkanResourcePkg(VulkanResourcePkg newVulkanResourcePkg, NotificationChain msgs)
 	{
-		ResourcePkg oldResourcePkg = resourcePkg;
-		resourcePkg = newResourcePkg;
+		VulkanResourcePkg oldVulkanResourcePkg = vulkanResourcePkg;
+		vulkanResourcePkg = newVulkanResourcePkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG, oldVulkanResourcePkg, newVulkanResourcePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -335,20 +347,20 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(ResourcePkg newResourcePkg)
+	public void setVulkanResourcePkg(VulkanResourcePkg newVulkanResourcePkg)
 	{
-		if (newResourcePkg != resourcePkg)
+		if (newVulkanResourcePkg != vulkanResourcePkg)
 		{
 			NotificationChain msgs = null;
-			if (resourcePkg != null)
-				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__RESOURCE_PKG, null, msgs);
-			if (newResourcePkg != null)
-				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__RESOURCE_PKG, null, msgs);
-			msgs = basicSetResourcePkg(newResourcePkg, msgs);
+			if (vulkanResourcePkg != null)
+				msgs = ((InternalEObject)vulkanResourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG, null, msgs);
+			if (newVulkanResourcePkg != null)
+				msgs = ((InternalEObject)newVulkanResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG, null, msgs);
+			msgs = basicSetVulkanResourcePkg(newVulkanResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG, newVulkanResourcePkg, newVulkanResourcePkg));
 	}
 
 	/**
@@ -847,12 +859,62 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
+	public ResourcePkg getResourcePkg()
+	{
+		return resourcePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	{
+		ResourcePkg oldResourcePkg = resourcePkg;
+		resourcePkg = newResourcePkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setResourcePkg(ResourcePkg newResourcePkg)
+	{
+		if (newResourcePkg != resourcePkg)
+		{
+			NotificationChain msgs = null;
+			if (resourcePkg != null)
+				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__RESOURCE_PKG, null, msgs);
+			if (newResourcePkg != null)
+				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.SUBPASS__RESOURCE_PKG, null, msgs);
+			msgs = basicSetResourcePkg(newResourcePkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__RESOURCE_PKG:
-				return basicSetResourcePkg(null, msgs);
+			case GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG:
+				return basicSetVulkanResourcePkg(null, msgs);
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 				return basicSetDescriptorPkg(null, msgs);
 			case GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG:
@@ -863,6 +925,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return basicSetPipelinePkg(null, msgs);
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				return basicSetExtensionPkg(null, msgs);
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				return basicSetResourcePkg(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -877,8 +941,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__RESOURCE_PKG:
-				return getResourcePkg();
+			case GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG:
+				return getVulkanResourcePkg();
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 				return getDescriptorPkg();
 			case GraphicPackage.SUBPASS__NAME:
@@ -910,6 +974,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return getFinishAccesses();
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				return getExtensionPkg();
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				return getResourcePkg();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -925,8 +991,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)newValue);
+			case GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG:
+				setVulkanResourcePkg((VulkanResourcePkg)newValue);
 				return;
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -976,6 +1042,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				setExtensionPkg((ProcessExtensionPkg)newValue);
 				return;
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -990,8 +1059,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)null);
+			case GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG:
+				setVulkanResourcePkg((VulkanResourcePkg)null);
 				return;
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
@@ -1038,6 +1107,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				setExtensionPkg((ProcessExtensionPkg)null);
 				return;
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				setResourcePkg((ResourcePkg)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1052,8 +1124,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__RESOURCE_PKG:
-				return resourcePkg != null;
+			case GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG:
+				return vulkanResourcePkg != null;
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 				return descriptorPkg != null;
 			case GraphicPackage.SUBPASS__NAME:
@@ -1084,6 +1156,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return finishAccesses != null && !finishAccesses.isEmpty();
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				return extensionPkg != null;
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
+				return resourcePkg != null;
 		}
 		return super.eIsSet(featureID);
 	}

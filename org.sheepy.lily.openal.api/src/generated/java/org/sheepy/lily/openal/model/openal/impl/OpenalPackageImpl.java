@@ -15,6 +15,7 @@ import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.openal.model.openal.OpenALEngine;
 import org.sheepy.lily.openal.model.openal.OpenalFactory;
 import org.sheepy.lily.openal.model.openal.OpenalPackage;
@@ -89,6 +90,7 @@ public class OpenalPackageImpl extends EPackageImpl implements OpenalPackage
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
+		VariablePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theOpenalPackage.createPackageContents();

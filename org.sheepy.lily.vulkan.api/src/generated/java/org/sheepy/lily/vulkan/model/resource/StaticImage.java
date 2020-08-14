@@ -24,7 +24,7 @@ import org.joml.Vector2ic;
  * @model
  * @generated
  */
-public interface StaticImage extends IMemoryChunkPart, Image
+public interface StaticImage extends IMemoryChunkPart, VulkanImage
 {
 	/**
 	 * Returns the value of the '<em><b>Fill With Zero</b></em>' attribute.

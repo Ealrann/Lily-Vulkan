@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @ModelExtender(scope = ComputePipeline.class)
 @Allocation(context = ProcessContext.class)
-@AllocationChild(features = {ComputePackage.COMPUTE_PIPELINE__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
+@AllocationChild(features = {ComputePackage.COMPUTE_PIPELINE__VULKAN_RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
 @AllocationChild(features = {ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
 @AllocationChild(features = {ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_POOL})
 @AllocationChild(features = ComputePackage.COMPUTE_PIPELINE__TASK_PKGS)

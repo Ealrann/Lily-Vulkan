@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface CompositeImage extends Image
+public interface CompositeImage extends VulkanImage
 {
 	/**
 	 * Returns the value of the '<em><b>Inlays</b></em>' containment reference list.
@@ -40,12 +40,12 @@ public interface CompositeImage extends Image
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Background</em>' reference.
-	 * @see #setBackground(Image)
+	 * @see #setBackground(VulkanImage)
 	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getCompositeImage_Background()
 	 * @model required="true"
 	 * @generated
 	 */
-	Image getBackground();
+	VulkanImage getBackground();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositeImage#getBackground <em>Background</em>}' reference.
@@ -55,6 +55,6 @@ public interface CompositeImage extends Image
 	 * @see #getBackground()
 	 * @generated
 	 */
-	void setBackground(Image value);
+	void setBackground(VulkanImage value);
 
 } // CompositeImage

@@ -65,6 +65,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 		switch (eClass.getClassifierID())
 		{
 			case VulkanPackage.VULKAN_ENGINE: return createVulkanEngine();
+			case VulkanPackage.VULKAN_RESOURCE_PKG: return createVulkanResourcePkg();
 			case VulkanPackage.RUN_PROCESS: return createRunProcess();
 			case VulkanPackage.WAIT_PROCESS_IDLE: return createWaitProcessIdle();
 			case VulkanPackage.DESCRIPTOR_PKG: return createDescriptorPkg();
@@ -84,6 +85,18 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	{
 		VulkanEngineImpl vulkanEngine = new VulkanEngineImpl();
 		return vulkanEngine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VulkanResourcePkg createVulkanResourcePkg()
+	{
+		VulkanResourcePkgImpl vulkanResourcePkg = new VulkanResourcePkgImpl();
+		return vulkanResourcePkg;
 	}
 
 	/**

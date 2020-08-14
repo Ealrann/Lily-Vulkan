@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.sheepy.lily.core.model.resource.IResource;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,7 @@ import org.sheepy.lily.core.model.resource.IResource;
  * @model
  * @generated
  */
-public interface MemoryChunk extends IResource
+public interface MemoryChunk extends IVulkanResource
 {
 	/**
 	 * Returns the value of the '<em><b>Parts</b></em>' containment reference list.

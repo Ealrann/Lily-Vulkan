@@ -88,6 +88,16 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createIResourceContainerAdapter();
 			}
 			@Override
+			public Adapter caseVulkanResourcePkg(VulkanResourcePkg object)
+			{
+				return createVulkanResourcePkgAdapter();
+			}
+			@Override
+			public Adapter caseIVulkanResource(IVulkanResource object)
+			{
+				return createIVulkanResourceAdapter();
+			}
+			@Override
 			public Adapter caseIProcess(IProcess object)
 			{
 				return createIProcessAdapter();
@@ -184,6 +194,36 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIResourceContainerAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.VulkanResourcePkg <em>Resource Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.VulkanResourcePkg
+	 * @generated
+	 */
+	public Adapter createVulkanResourcePkgAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IVulkanResource <em>IVulkan Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.IVulkanResource
+	 * @generated
+	 */
+	public Adapter createIVulkanResourceAdapter()
 	{
 		return null;
 	}

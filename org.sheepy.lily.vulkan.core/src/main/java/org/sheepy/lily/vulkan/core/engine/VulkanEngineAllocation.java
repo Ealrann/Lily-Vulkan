@@ -26,7 +26,7 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 
 @ModelExtender(scope = VulkanEngine.class)
 @Allocation
-@AllocationChild(features = {VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
+@AllocationChild(features = {VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
 @AllocationChild(features = {VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
 @AllocationChild(features = VulkanPackage.VULKAN_ENGINE__PROCESSES)
 public final class VulkanEngineAllocation implements IVulkanEngineAdapter

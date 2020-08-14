@@ -13,9 +13,9 @@ import org.joml.Vector4fc;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
-import org.sheepy.lily.vulkan.model.resource.Image;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	 * @generated
 	 * @ordered
 	 */
-	protected Image imageRef;
+	protected VulkanEngine imageRef;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,12 +115,12 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	 * @generated
 	 */
 	@Override
-	public Image getImageRef()
+	public VulkanEngine getImageRef()
 	{
 		if (imageRef != null && ((EObject)imageRef).eIsProxy())
 		{
 			InternalEObject oldImageRef = imageRef;
-			imageRef = (Image)eResolveProxy(oldImageRef);
+			imageRef = (VulkanEngine)eResolveProxy(oldImageRef);
 			if (imageRef != oldImageRef)
 			{
 				if (eNotificationRequired())
@@ -135,7 +135,7 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Image basicGetImageRef()
+	public VulkanEngine basicGetImageRef()
 	{
 		return imageRef;
 	}
@@ -146,9 +146,9 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	 * @generated
 	 */
 	@Override
-	public void setImageRef(Image newImageRef)
+	public void setImageRef(VulkanEngine newImageRef)
 	{
-		Image oldImageRef = imageRef;
+		VulkanEngine oldImageRef = imageRef;
 		imageRef = newImageRef;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
@@ -187,7 +187,7 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 				setClearValue((Vector4fc)newValue);
 				return;
 			case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
-				setImageRef((Image)newValue);
+				setImageRef((VulkanEngine)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -207,7 +207,7 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 				setClearValue(CLEAR_VALUE_EDEFAULT);
 				return;
 			case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
-				setImageRef((Image)null);
+				setImageRef((VulkanEngine)null);
 				return;
 		}
 		super.eUnset(featureID);

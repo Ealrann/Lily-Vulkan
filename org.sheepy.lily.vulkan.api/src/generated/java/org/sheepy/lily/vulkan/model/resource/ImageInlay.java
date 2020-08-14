@@ -37,12 +37,12 @@ public interface ImageInlay extends ILilyEObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image</em>' reference.
-	 * @see #setImage(Image)
+	 * @see #setImage(VulkanImage)
 	 * @see org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage#getImageInlay_Image()
 	 * @model required="true"
 	 * @generated
 	 */
-	Image getImage();
+	VulkanImage getImage();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ImageInlay#getImage <em>Image</em>}' reference.
@@ -52,7 +52,7 @@ public interface ImageInlay extends ILilyEObject
 	 * @see #getImage()
 	 * @generated
 	 */
-	void setImage(Image value);
+	void setImage(VulkanImage value);
 
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' attribute.

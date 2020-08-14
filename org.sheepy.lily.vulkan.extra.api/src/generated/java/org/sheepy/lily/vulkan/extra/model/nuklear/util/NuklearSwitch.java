@@ -9,13 +9,13 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
-import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.extra.model.nuklear.*;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
@@ -98,7 +98,7 @@ public class NuklearSwitch<T> extends Switch<T>
 			{
 				NuklearContext nuklearContext = (NuklearContext)theEObject;
 				T result = caseNuklearContext(nuklearContext);
-				if (result == null) result = caseIResource(nuklearContext);
+				if (result == null) result = caseIVulkanResource(nuklearContext);
 				if (result == null) result = caseLNamedElement(nuklearContext);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -107,7 +107,7 @@ public class NuklearSwitch<T> extends Switch<T>
 			{
 				NuklearFont nuklearFont = (NuklearFont)theEObject;
 				T result = caseNuklearFont(nuklearFont);
-				if (result == null) result = caseIResource(nuklearFont);
+				if (result == null) result = caseIVulkanResource(nuklearFont);
 				if (result == null) result = caseLNamedElement(nuklearFont);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -392,17 +392,17 @@ public class NuklearSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IVulkan Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IVulkan Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIResource(IResource object)
+	public T caseIVulkanResource(IVulkanResource object)
 	{
 		return null;
 	}

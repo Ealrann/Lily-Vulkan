@@ -75,7 +75,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
 			case VulkanResourcePackage.IMAGE_DATA_PROVIDER: return createImageDataProvider();
 			case VulkanResourcePackage.FILE_IMAGE_DATA_PROVIDER: return createFileImageDataProvider();
-			case VulkanResourcePackage.COMPOSITE_IMAGE: return createCompositeImage();
 			case VulkanResourcePackage.IMAGE_INLAY: return createImageInlay();
 			case VulkanResourcePackage.SAMPLER: return createSampler();
 			case VulkanResourcePackage.BUFFER_DESCRIPTOR: return createBufferDescriptor();
@@ -91,6 +90,7 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.STATIC_BUFFER: return createStaticBuffer();
 			case VulkanResourcePackage.DATA_BUFFER: return createDataBuffer();
 			case VulkanResourcePackage.BUFFER_VIEWER: return createBufferViewer();
+			case VulkanResourcePackage.COMPOSITE_IMAGE: return createCompositeImage();
 			case VulkanResourcePackage.STATIC_IMAGE: return createStaticImage();
 			case VulkanResourcePackage.IMAGE_VIEWER: return createImageViewer();
 			default:

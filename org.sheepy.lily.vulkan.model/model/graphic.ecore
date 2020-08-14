@@ -78,7 +78,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clearValue" unique="false"
         eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Color4f"
         defaultValueLiteral="0;0;0;0"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="imageRef" eType="ecore:EClass resource.ecore#//Image"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imageRef" eType="ecore:EClass vulkan.ecore#//VulkanEngine"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DepthAttachment" eSuperTypes="#//ExtraAttachment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clear" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -127,6 +127,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finishAccesses" upperBound="-1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPkg" eType="ecore:EClass process.ecore#//ProcessExtensionPkg"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourcePkg" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//ResourcePkg"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentRefPkg">

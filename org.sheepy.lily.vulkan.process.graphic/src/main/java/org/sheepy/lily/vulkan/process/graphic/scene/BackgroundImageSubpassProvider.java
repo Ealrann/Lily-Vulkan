@@ -9,14 +9,13 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.resource.IResourceLoader;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
-import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
-import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
@@ -34,8 +33,8 @@ public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvid
 	@NotifyChanged(featureIds = ApplicationPackage.BACKGROUND_IMAGE__SRC_IMAGE)
 	private void imageChanged(Notification notification)
 	{
-		final var newImage = (IImage) notification.getNewValue();
-		setupImage((Image) newImage);
+		final var newImage = (VulkanImage) notification.getNewValue();
+		setupImage(newImage);
 	}
 
 	@Override
@@ -80,7 +79,7 @@ public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvid
 			targetRef.setAttachment((Attachment) part.getDstImage());
 		}
 
-		setupImage((Image) part.getSrcImage());
+		setupImage((VulkanImage) part.getSrcImage());
 		return subpass;
 	}
 
@@ -106,7 +105,7 @@ public class BackgroundImageSubpassProvider implements ICompositor_SubpassProvid
 		}
 	}
 
-	private void setupImage(Image image)
+	private void setupImage(VulkanImage image)
 	{
 		imageBarrier.setImage(image);
 		blit.setSrcImage(image);

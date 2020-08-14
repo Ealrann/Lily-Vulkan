@@ -19,7 +19,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface StaticBuffer extends IBufferObject
+public interface StaticBuffer extends IBuffer
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

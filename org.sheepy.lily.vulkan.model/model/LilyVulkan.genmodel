@@ -5,7 +5,7 @@
     modelPluginID="org.sheepy.lily.vulkan.model" modelName="LilyVulkan" updateClasspath="false"
     rootExtendsInterface="org.sheepy.lily.core.api.model.ILilyEObject" rootExtendsClass="org.sheepy.lily.core.api.model.LilyEObject"
     testsDirectory="" importerID="org.eclipse.emf.importer.ecore" complianceLevel="14.0"
-    copyrightFields="false" usedGenPackages="../../org.sheepy.lily.core.model/model/Lily.genmodel#//resource ../../org.sheepy.lily.core.model/model/Lily.genmodel#//ui ../../org.sheepy.lily.core.model/model/Lily.genmodel#//variable ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//presentation ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
+    copyrightFields="false" usedGenPackages="../../org.sheepy.lily.core.model/model/Lily.genmodel#//resource ../../org.sheepy.lily.core.model/model/Lily.genmodel#//ui ../../org.sheepy.lily.core.model/model/Lily.genmodel#//variable ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//presentation ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline #//resource"
     operationReflection="true" importOrganizing="true" cleanup="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
     <genAnnotations source="selectedPackages">
@@ -129,6 +129,7 @@
       <genFeatures createChild="false" propertyCategory="2 - Finish (for next subpass)"
           ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/finishAccesses"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/extensionPkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/resourcePkg"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//AttachmentRefPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentRefPkg/attachmentRefs"/>
@@ -354,7 +355,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//GenericConstantBuffer/referencedVariables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//GenericConstantBuffer/VariablePkg"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//IBuffer"/>
+    <genClasses image="false" ecoreClass="resource.ecore#//IBuffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//IBuffer/usages"/>
+    </genClasses>
     <genClasses ecoreClass="resource.ecore#//BufferReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//BufferReference/buffers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferReference/stride"/>
@@ -364,11 +367,6 @@
     <genClasses ecoreClass="resource.ecore#//ImageDataProvider"/>
     <genClasses ecoreClass="resource.ecore#//FileImageDataProvider">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//FileImageDataProvider/fileImage"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//Image"/>
-    <genClasses ecoreClass="resource.ecore#//CompositeImage">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeImage/inlays"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeImage/background"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ImageInlay">
       <genFeatures notify="false" createChild="false" propertyMultiLine="true" propertySortChoices="true"
@@ -418,9 +416,6 @@
     <genClasses ecoreClass="resource.ecore#//BufferMemory">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//BufferMemory/buffers"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="resource.ecore#//IBufferObject">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//IBufferObject/usages"/>
-    </genClasses>
     <genClasses ecoreClass="resource.ecore#//StaticBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticBuffer/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticBuffer/initWithZero"/>
@@ -433,6 +428,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/growFactor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/growThreshold"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//BufferViewer/size"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="resource.ecore#//VulkanImage"/>
+    <genClasses ecoreClass="resource.ecore#//CompositeImage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeImage/inlays"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference resource.ecore#//CompositeImage/background"/>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//StaticImage">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute resource.ecore#//StaticImage/fillWithZero"/>
@@ -450,12 +450,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//VulkanEngine/enabled"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//VulkanEngine/processes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//VulkanEngine/features"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//VulkanEngine/descriptorPkg"/>
     </genClasses>
     <genClasses image="false" ecoreClass="vulkan.ecore#//IResourceContainer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/resourcePkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/vulkanResourcePkg"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//IResourceContainer/descriptorPkg"/>
     </genClasses>
+    <genClasses ecoreClass="vulkan.ecore#//VulkanResourcePkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkan.ecore#//VulkanResourcePkg/resources"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="vulkan.ecore#//IVulkanResource"/>
     <genClasses image="false" ecoreClass="vulkan.ecore#//IProcess">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/enabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkan.ecore#//IProcess/queuePriority"/>

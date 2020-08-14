@@ -10,12 +10,12 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
-import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 
 import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
@@ -253,9 +253,9 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createBufferDataProviderAdapter();
 			}
 			@Override
-			public Adapter caseIResource(IResource object)
+			public Adapter caseIVulkanResource(IVulkanResource object)
 			{
-				return createIResourceAdapter();
+				return createIVulkanResourceAdapter();
 			}
 			@Override
 			public Adapter caseConstantBuffer(ConstantBuffer object)
@@ -790,16 +790,16 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IResource <em>IResource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IVulkanResource <em>IVulkan Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.resource.IResource
+	 * @see org.sheepy.lily.vulkan.model.IVulkanResource
 	 * @generated
 	 */
-	public Adapter createIResourceAdapter()
+	public Adapter createIVulkanResourceAdapter()
 	{
 		return null;
 	}

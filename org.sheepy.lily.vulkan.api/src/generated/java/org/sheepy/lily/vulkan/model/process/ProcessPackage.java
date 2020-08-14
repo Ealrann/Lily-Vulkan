@@ -73,13 +73,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__RESOURCE_PKG = VulkanPackage.IPROCESS__RESOURCE_PKG;
+	int ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG = VulkanPackage.IPROCESS__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -347,13 +347,13 @@ public interface ProcessPackage extends EPackage
 	int TASK_PIPELINE__ENABLED = ABSTRACT_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_PIPELINE__RESOURCE_PKG = ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
+	int TASK_PIPELINE__VULKAN_RESOURCE_PKG = ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -420,13 +420,13 @@ public interface ProcessPackage extends EPackage
 	int VK_PIPELINE__ENABLED = TASK_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VK_PIPELINE__RESOURCE_PKG = TASK_PIPELINE__RESOURCE_PKG;
+	int VK_PIPELINE__VULKAN_RESOURCE_PKG = TASK_PIPELINE__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -575,13 +575,13 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE__ENABLED = TASK_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE__RESOURCE_PKG = TASK_PIPELINE__RESOURCE_PKG;
+	int PIPELINE__VULKAN_RESOURCE_PKG = TASK_PIPELINE__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.

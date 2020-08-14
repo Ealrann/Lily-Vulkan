@@ -17,7 +17,7 @@ import org.sheepy.lily.openal.model.openal.OpenalPackage;
 
 @ModelExtender(scope = OpenALEngine.class)
 @Allocation
-@AllocationChild(features = {OpenalPackage.OPEN_AL_ENGINE__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
+//@AllocationChild(features = {OpenalPackage.OPEN_AL_ENGINE__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
 public final class OpenALEngineAdapter implements IEngineAdapter
 {
 	private final ISoundContext context;

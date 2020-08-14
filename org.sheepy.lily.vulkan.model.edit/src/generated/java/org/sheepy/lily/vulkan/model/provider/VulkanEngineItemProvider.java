@@ -129,8 +129,9 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ApplicationPackage.Literals.IENGINE__RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES);
-			childrenFeatures.add(VulkanPackage.Literals.VULKAN_ENGINE__DESCRIPTOR_PKG);
 		}
 		return childrenFeatures;
 	}
@@ -193,8 +194,9 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
+			case VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG:
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
+			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -220,6 +222,16 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 
 		newChildDescriptors.add
 			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG,
+				 VulkanFactory.eINSTANCE.createVulkanResourcePkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG,
+				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
 				 ComputeFactory.eINSTANCE.createComputeProcess()));
 
@@ -227,11 +239,6 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 			(createChildParameter
 				(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
 				 GraphicFactory.eINSTANCE.createGraphicProcess()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.VULKAN_ENGINE__DESCRIPTOR_PKG,
-				 VulkanFactory.eINSTANCE.createDescriptorPkg()));
 	}
 
 	/**

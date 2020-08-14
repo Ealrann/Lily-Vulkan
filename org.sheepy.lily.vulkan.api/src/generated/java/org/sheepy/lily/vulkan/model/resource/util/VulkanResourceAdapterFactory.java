@@ -10,11 +10,10 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.lily.core.model.resource.IImage;
-import org.sheepy.lily.core.model.resource.IResource;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.resource.*;
 
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
@@ -133,16 +132,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createFileImageDataProviderAdapter();
 			}
 			@Override
-			public Adapter caseImage(Image object)
-			{
-				return createImageAdapter();
-			}
-			@Override
-			public Adapter caseCompositeImage(CompositeImage object)
-			{
-				return createCompositeImageAdapter();
-			}
-			@Override
 			public Adapter caseImageInlay(ImageInlay object)
 			{
 				return createImageInlayAdapter();
@@ -208,11 +197,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createBufferMemoryAdapter();
 			}
 			@Override
-			public Adapter caseIBufferObject(IBufferObject object)
-			{
-				return createIBufferObjectAdapter();
-			}
-			@Override
 			public Adapter caseStaticBuffer(StaticBuffer object)
 			{
 				return createStaticBufferAdapter();
@@ -226,6 +210,16 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseBufferViewer(BufferViewer object)
 			{
 				return createBufferViewerAdapter();
+			}
+			@Override
+			public Adapter caseVulkanImage(VulkanImage object)
+			{
+				return createVulkanImageAdapter();
+			}
+			@Override
+			public Adapter caseCompositeImage(CompositeImage object)
+			{
+				return createCompositeImageAdapter();
 			}
 			@Override
 			public Adapter caseStaticImage(StaticImage object)
@@ -243,19 +237,9 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 				return createLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseIResource(IResource object)
+			public Adapter caseIVulkanResource(IVulkanResource object)
 			{
-				return createIResourceAdapter();
-			}
-			@Override
-			public Adapter caseImageInfo(ImageInfo object)
-			{
-				return createImageInfoAdapter();
-			}
-			@Override
-			public Adapter caseIImage(IImage object)
-			{
-				return createIImageAdapter();
+				return createIVulkanResourceAdapter();
 			}
 			@Override
 			public Adapter caseSamplerInfo(SamplerInfo object)
@@ -281,6 +265,16 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
 			{
 				return createAbstractImageBarrierAdapter();
+			}
+			@Override
+			public Adapter caseImageInfo(ImageInfo object)
+			{
+				return createImageInfoAdapter();
+			}
+			@Override
+			public Adapter caseIImage(IImage object)
+			{
+				return createIImageAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -434,21 +428,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createFileImageDataProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Image
-	 * @generated
-	 */
-	public Adapter createImageAdapter()
 	{
 		return null;
 	}
@@ -693,21 +672,6 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IBufferObject <em>IBuffer Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.IBufferObject
-	 * @generated
-	 */
-	public Adapter createIBufferObjectAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.StaticBuffer <em>Static Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -753,6 +717,21 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.VulkanImage <em>Vulkan Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.VulkanImage
+	 * @generated
+	 */
+	public Adapter createVulkanImageAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.types.LNamedElement <em>LNamed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -768,16 +747,16 @@ public class VulkanResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IResource <em>IResource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IVulkanResource <em>IVulkan Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.resource.IResource
+	 * @see org.sheepy.lily.vulkan.model.IVulkanResource
 	 * @generated
 	 */
-	public Adapter createIResourceAdapter()
+	public Adapter createIVulkanResourceAdapter()
 	{
 		return null;
 	}

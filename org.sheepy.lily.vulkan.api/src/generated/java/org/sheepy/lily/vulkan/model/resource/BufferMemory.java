@@ -26,7 +26,7 @@ public interface BufferMemory extends IMemoryChunkPart, LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Buffers</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.IBufferObject}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.IBuffer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffers</em>' containment reference list.
@@ -34,6 +34,6 @@ public interface BufferMemory extends IMemoryChunkPart, LNamedElement
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IBufferObject> getBuffers();
+	EList<IBuffer> getBuffers();
 
 } // BufferMemory

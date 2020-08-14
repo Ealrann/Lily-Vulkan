@@ -17,9 +17,8 @@ import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.types.EVerticalRelative;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageInlay;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
@@ -49,7 +48,7 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	 * @generated
 	 * @ordered
 	 */
-	protected Image image;
+	protected VulkanImage image;
 
 	/**
 	 * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
@@ -158,12 +157,12 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	 * @generated
 	 */
 	@Override
-	public Image getImage()
+	public VulkanImage getImage()
 	{
 		if (image != null && ((EObject)image).eIsProxy())
 		{
 			InternalEObject oldImage = image;
-			image = (Image)eResolveProxy(oldImage);
+			image = (VulkanImage)eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
 				if (eNotificationRequired())
@@ -178,7 +177,7 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Image basicGetImage()
+	public VulkanImage basicGetImage()
 	{
 		return image;
 	}
@@ -189,9 +188,9 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 	 * @generated
 	 */
 	@Override
-	public void setImage(Image newImage)
+	public void setImage(VulkanImage newImage)
 	{
-		Image oldImage = image;
+		VulkanImage oldImage = image;
 		image = newImage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.IMAGE_INLAY__IMAGE, oldImage, image));
@@ -333,7 +332,7 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 		switch (featureID)
 		{
 			case VulkanResourcePackage.IMAGE_INLAY__IMAGE:
-				setImage((Image)newValue);
+				setImage((VulkanImage)newValue);
 				return;
 			case VulkanResourcePackage.IMAGE_INLAY__POSITION:
 				setPosition((Vector2ic)newValue);
@@ -362,7 +361,7 @@ public class ImageInlayImpl extends LilyEObject implements ImageInlay
 		switch (featureID)
 		{
 			case VulkanResourcePackage.IMAGE_INLAY__IMAGE:
-				setImage((Image)null);
+				setImage((VulkanImage)null);
 				return;
 			case VulkanResourcePackage.IMAGE_INLAY__POSITION:
 				setPosition(POSITION_EDEFAULT);

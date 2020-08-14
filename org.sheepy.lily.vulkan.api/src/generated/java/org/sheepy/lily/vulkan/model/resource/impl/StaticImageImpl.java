@@ -15,13 +15,11 @@ import org.joml.Vector2ic;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.core.model.resource.IImage;
-import org.sheepy.lily.core.model.resource.IResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -356,7 +354,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 * @generated
 	 */
 	@Override
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
@@ -366,7 +365,8 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName) {
+	public void setName(String newName)
+	{
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -623,13 +623,6 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == IImage.class)
 		{
 			switch (derivedFeatureID)
@@ -637,7 +630,7 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 				default: return -1;
 			}
 		}
-		if (baseClass == Image.class)
+		if (baseClass == VulkanImage.class)
 		{
 			switch (derivedFeatureID)
 			{
@@ -674,13 +667,6 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == IImage.class)
 		{
 			switch (baseFeatureID)
@@ -688,7 +674,7 @@ public class StaticImageImpl extends LilyEObject implements StaticImage
 				default: return -1;
 			}
 		}
-		if (baseClass == Image.class)
+		if (baseClass == VulkanImage.class)
 		{
 			switch (baseFeatureID)
 			{

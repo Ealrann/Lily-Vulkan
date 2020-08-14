@@ -91,7 +91,7 @@ public final class ScreenEffectSubpassProvider implements ICompositor_SubpassPro
 		shader.setFile(EcoreUtil.copy(effect.getShader()));
 		shader.setStage(EShaderStage.FRAGMENT_BIT);
 
-		subpass.getResourcePkg().getResources().add(shader);
+		subpass.getVulkanResourcePkg().getResources().add(shader);
 		graphicPipeline.getShaders().remove(1);
 		graphicPipeline.getShaders().add(shader);
 

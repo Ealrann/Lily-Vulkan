@@ -38,7 +38,7 @@ public final class ResourceInstaller<T extends Structure>
 																									structure));
 
 		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
-		pipeline.getResourcePkg().getResources().add(memoryChunk);
+		pipeline.getVulkanResourcePkg().getResources().add(memoryChunk);
 
 		for (int i = 0; i < count; i++)
 		{
@@ -70,7 +70,7 @@ public final class ResourceInstaller<T extends Structure>
 
 				if (resourceDescriptors != null)
 				{
-					pipeline.getResourcePkg().getResources().addAll(resourceDescriptors.resources);
+					pipeline.getVulkanResourcePkg().getResources().addAll(resourceDescriptors.resources);
 					pipeline.getDescriptorPkg().getDescriptors().addAll(resourceDescriptors.descriptors);
 					res.addAll(resourceDescriptors.descriptors);
 				}

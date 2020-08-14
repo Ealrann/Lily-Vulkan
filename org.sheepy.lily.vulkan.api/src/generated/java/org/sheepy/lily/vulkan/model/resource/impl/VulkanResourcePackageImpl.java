@@ -60,9 +60,7 @@ import org.sheepy.lily.vulkan.model.resource.EFlushMode;
 import org.sheepy.lily.vulkan.model.resource.FileImageDataProvider;
 import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.lily.vulkan.model.resource.IBufferObject;
 import org.sheepy.lily.vulkan.model.resource.IMemoryChunkPart;
-import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageDataProvider;
@@ -76,6 +74,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.StaticBuffer;
 import org.sheepy.lily.vulkan.model.resource.StaticImage;
 import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -159,13 +158,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass fileImageDataProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass imageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -284,13 +276,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iBufferObjectEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass staticBufferEClass = null;
 
 	/**
@@ -306,6 +291,13 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	private EClass bufferViewerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vulkanImageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -564,6 +556,17 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EAttribute getIBuffer_Usages()
+	{
+		return (EAttribute)iBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getBufferReference()
 	{
 		return bufferReferenceEClass;
@@ -643,17 +646,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	public EReference getFileImageDataProvider_FileImage()
 	{
 		return (EReference)fileImageDataProviderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getImage()
-	{
-		return imageEClass;
 	}
 
 	/**
@@ -1154,27 +1146,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EClass getIBufferObject()
-	{
-		return iBufferObjectEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getIBufferObject_Usages() {
-		return (EAttribute)iBufferObjectEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getStaticBuffer()
 	{
 		return staticBufferEClass;
@@ -1285,6 +1256,17 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EClass getVulkanImage()
+	{
+		return vulkanImageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEContextIndex()
 	{
 		return eContextIndexEEnum;
@@ -1359,6 +1341,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEReference(genericConstantBufferEClass, GENERIC_CONSTANT_BUFFER__VARIABLE_PKG);
 
 		iBufferEClass = createEClass(IBUFFER);
+		createEAttribute(iBufferEClass, IBUFFER__USAGES);
 
 		bufferReferenceEClass = createEClass(BUFFER_REFERENCE);
 		createEReference(bufferReferenceEClass, BUFFER_REFERENCE__BUFFERS);
@@ -1371,12 +1354,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 
 		fileImageDataProviderEClass = createEClass(FILE_IMAGE_DATA_PROVIDER);
 		createEReference(fileImageDataProviderEClass, FILE_IMAGE_DATA_PROVIDER__FILE_IMAGE);
-
-		imageEClass = createEClass(IMAGE);
-
-		compositeImageEClass = createEClass(COMPOSITE_IMAGE);
-		createEReference(compositeImageEClass, COMPOSITE_IMAGE__INLAYS);
-		createEReference(compositeImageEClass, COMPOSITE_IMAGE__BACKGROUND);
 
 		imageInlayEClass = createEClass(IMAGE_INLAY);
 		createEReference(imageInlayEClass, IMAGE_INLAY__IMAGE);
@@ -1426,9 +1403,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		bufferMemoryEClass = createEClass(BUFFER_MEMORY);
 		createEReference(bufferMemoryEClass, BUFFER_MEMORY__BUFFERS);
 
-		iBufferObjectEClass = createEClass(IBUFFER_OBJECT);
-		createEAttribute(iBufferObjectEClass, IBUFFER_OBJECT__USAGES);
-
 		staticBufferEClass = createEClass(STATIC_BUFFER);
 		createEAttribute(staticBufferEClass, STATIC_BUFFER__SIZE);
 		createEAttribute(staticBufferEClass, STATIC_BUFFER__INIT_WITH_ZERO);
@@ -1441,6 +1415,12 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_FACTOR);
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_THRESHOLD);
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__SIZE);
+
+		vulkanImageEClass = createEClass(VULKAN_IMAGE);
+
+		compositeImageEClass = createEClass(COMPOSITE_IMAGE);
+		createEReference(compositeImageEClass, COMPOSITE_IMAGE__INLAYS);
+		createEReference(compositeImageEClass, COMPOSITE_IMAGE__BACKGROUND);
 
 		staticImageEClass = createEClass(STATIC_IMAGE);
 		createEAttribute(staticImageEClass, STATIC_IMAGE__FILL_WITH_ZERO);
@@ -1484,12 +1464,12 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
-		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
-		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
 		PipelinePackage thePipelinePackage = (PipelinePackage)EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
 
@@ -1498,37 +1478,36 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		transferBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
-		constantBufferEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		transferBufferEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
+		constantBufferEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
 		genericConstantBufferEClass.getESuperTypes().add(this.getConstantBuffer());
 		iBufferEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		imageDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		fileImageDataProviderEClass.getESuperTypes().add(this.getImageDataProvider());
-		imageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
-		imageEClass.getESuperTypes().add(theResourcePackage.getIImage());
-		compositeImageEClass.getESuperTypes().add(this.getImage());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
-		samplerEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		samplerEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
 		bufferDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		imageDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		samplerDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
-		shaderEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		shaderEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
 		imageArrayDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
-		memoryChunkEClass.getESuperTypes().add(theResourcePackage.getIResource());
+		memoryChunkEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
 		bufferMemoryEClass.getESuperTypes().add(this.getIMemoryChunkPart());
 		bufferMemoryEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		iBufferObjectEClass.getESuperTypes().add(this.getIBuffer());
-		staticBufferEClass.getESuperTypes().add(this.getIBufferObject());
-		dataBufferEClass.getESuperTypes().add(this.getIBufferObject());
-		bufferViewerEClass.getESuperTypes().add(this.getIBufferObject());
+		staticBufferEClass.getESuperTypes().add(this.getIBuffer());
+		dataBufferEClass.getESuperTypes().add(this.getIBuffer());
+		bufferViewerEClass.getESuperTypes().add(this.getIBuffer());
+		vulkanImageEClass.getESuperTypes().add(theImagePackage.getImageInfo());
+		vulkanImageEClass.getESuperTypes().add(theResourcePackage.getIImage());
+		compositeImageEClass.getESuperTypes().add(this.getVulkanImage());
 		staticImageEClass.getESuperTypes().add(this.getIMemoryChunkPart());
-		staticImageEClass.getESuperTypes().add(this.getImage());
+		staticImageEClass.getESuperTypes().add(this.getVulkanImage());
 		imageViewerEClass.getESuperTypes().add(this.getIMemoryChunkPart());
-		imageViewerEClass.getESuperTypes().add(this.getImage());
+		imageViewerEClass.getESuperTypes().add(this.getVulkanImage());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transferBufferEClass, TransferBuffer.class, "TransferBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1547,6 +1526,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEReference(getGenericConstantBuffer_VariablePkg(), theVariablePackage.getModelVariablePkg(), null, "VariablePkg", null, 0, 1, GenericConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iBufferEClass, IBuffer.class, "IBuffer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, IBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferReferenceEClass, BufferReference.class, "BufferReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferReference_Buffers(), this.getIBuffer(), null, "buffers", null, 0, -1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1560,27 +1540,21 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEClass(fileImageDataProviderEClass, FileImageDataProvider.class, "FileImageDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFileImageDataProvider_FileImage(), theResourcePackage.getFileImage(), null, "fileImage", null, 1, 1, FileImageDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(compositeImageEClass, CompositeImage.class, "CompositeImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeImage_Inlays(), this.getImageInlay(), null, "inlays", null, 0, -1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositeImage_Background(), this.getImage(), null, "background", null, 1, 1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(imageInlayEClass, ImageInlay.class, "ImageInlay", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImageInlay_Image(), this.getImage(), null, "image", null, 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImageInlay_Image(), this.getVulkanImage(), null, "image", null, 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInlay_Position(), theTypesPackage.getVector2i(), "position", "0;0", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInlay_Size(), ecorePackage.getEFloat(), "size", "1.0", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInlay_HorizontalRelative(), theTypesPackage.getEHorizontalRelative(), "horizontalRelative", "LEFT", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageInlay_VerticalRelative(), theTypesPackage.getEVerticalRelative(), "verticalRelative", "TOP", 1, 1, ImageInlay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(samplerEClass, Sampler.class, "Sampler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSampler_Image(), this.getImage(), null, "image", null, 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSampler_Image(), this.getVulkanImage(), null, "image", null, 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferDescriptorEClass, BufferDescriptor.class, "BufferDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferDescriptor_Buffer(), this.getIBuffer(), null, "buffer", null, 1, 1, BufferDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageDescriptorEClass, ImageDescriptor.class, "ImageDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImageDescriptor_Image(), this.getImage(), null, "image", null, 1, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImageDescriptor_Image(), this.getVulkanImage(), null, "image", null, 1, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getImageDescriptor_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageDescriptor_Layout(), theEnumerationPackage.getEImageLayout(), "layout", "GENERAL", 1, 1, ImageDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1612,10 +1586,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEClass(iMemoryChunkPartEClass, IMemoryChunkPart.class, "IMemoryChunkPart", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(bufferMemoryEClass, BufferMemory.class, "BufferMemory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferMemory_Buffers(), this.getIBufferObject(), null, "buffers", null, 0, -1, BufferMemory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iBufferObjectEClass, IBufferObject.class, "IBufferObject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIBufferObject_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, IBufferObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBufferMemory_Buffers(), this.getIBuffer(), null, "buffers", null, 0, -1, BufferMemory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(staticBufferEClass, StaticBuffer.class, "StaticBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStaticBuffer_Size(), ecorePackage.getELong(), "size", null, 0, 1, StaticBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1629,6 +1600,12 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getBufferViewer_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferViewer_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferViewer_Size(), ecorePackage.getELong(), "size", "0", 0, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(vulkanImageEClass, VulkanImage.class, "VulkanImage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(compositeImageEClass, CompositeImage.class, "CompositeImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeImage_Inlays(), this.getImageInlay(), null, "inlays", null, 0, -1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeImage_Background(), this.getVulkanImage(), null, "background", null, 1, 1, CompositeImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(staticImageEClass, StaticImage.class, "StaticImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStaticImage_FillWithZero(), ecorePackage.getEBoolean(), "fillWithZero", "false", 0, 1, StaticImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

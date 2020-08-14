@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.vulkan.model.resource.CompositeImage;
-import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageInlay;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 /**
@@ -36,7 +36,7 @@ import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
  *
  * @generated
  */
-public class CompositeImageImpl extends ImageImpl implements CompositeImage
+public class CompositeImageImpl extends VulkanImageImpl implements CompositeImage
 {
 	/**
 	 * The cached value of the '{@link #getInlays() <em>Inlays</em>}' containment reference list.
@@ -56,7 +56,7 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	 * @generated
 	 * @ordered
 	 */
-	protected Image background;
+	protected VulkanImage background;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,12 +100,12 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	 * @generated
 	 */
 	@Override
-	public Image getBackground()
+	public VulkanImage getBackground()
 	{
 		if (background != null && ((EObject)background).eIsProxy())
 		{
 			InternalEObject oldBackground = background;
-			background = (Image)eResolveProxy(oldBackground);
+			background = (VulkanImage)eResolveProxy(oldBackground);
 			if (background != oldBackground)
 			{
 				if (eNotificationRequired())
@@ -120,7 +120,7 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Image basicGetBackground()
+	public VulkanImage basicGetBackground()
 	{
 		return background;
 	}
@@ -131,9 +131,9 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 	 * @generated
 	 */
 	@Override
-	public void setBackground(Image newBackground)
+	public void setBackground(VulkanImage newBackground)
 	{
-		Image oldBackground = background;
+		VulkanImage oldBackground = background;
 		background = newBackground;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND, oldBackground, background));
@@ -190,7 +190,7 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 				getInlays().addAll((Collection<? extends ImageInlay>)newValue);
 				return;
 			case VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND:
-				setBackground((Image)newValue);
+				setBackground((VulkanImage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -210,7 +210,7 @@ public class CompositeImageImpl extends ImageImpl implements CompositeImage
 				getInlays().clear();
 				return;
 			case VulkanResourcePackage.COMPOSITE_IMAGE__BACKGROUND:
-				setBackground((Image)null);
+				setBackground((VulkanImage)null);
 				return;
 		}
 		super.eUnset(featureID);

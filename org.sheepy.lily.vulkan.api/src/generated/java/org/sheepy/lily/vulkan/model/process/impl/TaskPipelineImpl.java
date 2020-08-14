@@ -14,12 +14,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.core.model.resource.ResourcePkg;
-
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
+import org.sheepy.lily.vulkan.model.VulkanResourcePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
@@ -32,7 +31,7 @@ import org.sheepy.lily.vulkan.model.process.TaskPkg;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl#getVulkanResourcePkg <em>Vulkan Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl#getTaskPkgs <em>Task Pkgs</em>}</li>
  * </ul>
@@ -42,14 +41,14 @@ import org.sheepy.lily.vulkan.model.process.TaskPkg;
 public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements TaskPipeline
 {
 	/**
-	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getVulkanResourcePkg() <em>Vulkan Resource Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResourcePkg()
+	 * @see #getVulkanResourcePkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected ResourcePkg resourcePkg;
+	protected VulkanResourcePkg vulkanResourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -98,9 +97,9 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	 * @generated
 	 */
 	@Override
-	public ResourcePkg getResourcePkg()
+	public VulkanResourcePkg getVulkanResourcePkg()
 	{
-		return resourcePkg;
+		return vulkanResourcePkg;
 	}
 
 	/**
@@ -108,13 +107,13 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetVulkanResourcePkg(VulkanResourcePkg newVulkanResourcePkg, NotificationChain msgs)
 	{
-		ResourcePkg oldResourcePkg = resourcePkg;
-		resourcePkg = newResourcePkg;
+		VulkanResourcePkg oldVulkanResourcePkg = vulkanResourcePkg;
+		vulkanResourcePkg = newVulkanResourcePkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.TASK_PIPELINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG, oldVulkanResourcePkg, newVulkanResourcePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -126,20 +125,20 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(ResourcePkg newResourcePkg)
+	public void setVulkanResourcePkg(VulkanResourcePkg newVulkanResourcePkg)
 	{
-		if (newResourcePkg != resourcePkg)
+		if (newVulkanResourcePkg != vulkanResourcePkg)
 		{
 			NotificationChain msgs = null;
-			if (resourcePkg != null)
-				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.TASK_PIPELINE__RESOURCE_PKG, null, msgs);
-			if (newResourcePkg != null)
-				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.TASK_PIPELINE__RESOURCE_PKG, null, msgs);
-			msgs = basicSetResourcePkg(newResourcePkg, msgs);
+			if (vulkanResourcePkg != null)
+				msgs = ((InternalEObject)vulkanResourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG, null, msgs);
+			if (newVulkanResourcePkg != null)
+				msgs = ((InternalEObject)newVulkanResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG, null, msgs);
+			msgs = basicSetVulkanResourcePkg(newVulkanResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.TASK_PIPELINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG, newVulkanResourcePkg, newVulkanResourcePkg));
 	}
 
 	/**
@@ -217,8 +216,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
-				return basicSetResourcePkg(null, msgs);
+			case ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG:
+				return basicSetVulkanResourcePkg(null, msgs);
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				return basicSetDescriptorPkg(null, msgs);
 			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
@@ -237,8 +236,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
-				return getResourcePkg();
+			case ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG:
+				return getVulkanResourcePkg();
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				return getDescriptorPkg();
 			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
@@ -258,8 +257,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)newValue);
+			case ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG:
+				setVulkanResourcePkg((VulkanResourcePkg)newValue);
 				return;
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -282,8 +281,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)null);
+			case ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG:
+				setVulkanResourcePkg((VulkanResourcePkg)null);
 				return;
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
@@ -305,8 +304,8 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG:
-				return resourcePkg != null;
+			case ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG:
+				return vulkanResourcePkg != null;
 			case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG:
 				return descriptorPkg != null;
 			case ProcessPackage.TASK_PIPELINE__TASK_PKGS:
@@ -327,7 +326,7 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 		{
 			switch (derivedFeatureID)
 			{
-				case ProcessPackage.TASK_PIPELINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+				case ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG;
 				case ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG: return VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG;
 				default: return -1;
 			}
@@ -347,7 +346,7 @@ public abstract class TaskPipelineImpl extends AbstractPipelineImpl implements T
 		{
 			switch (baseFeatureID)
 			{
-				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return ProcessPackage.TASK_PIPELINE__RESOURCE_PKG;
+				case VulkanPackage.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG: return ProcessPackage.TASK_PIPELINE__VULKAN_RESOURCE_PKG;
 				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return ProcessPackage.TASK_PIPELINE__DESCRIPTOR_PKG;
 				default: return -1;
 			}

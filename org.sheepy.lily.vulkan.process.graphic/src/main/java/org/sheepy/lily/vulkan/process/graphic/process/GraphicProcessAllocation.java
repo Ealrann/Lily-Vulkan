@@ -4,7 +4,6 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -16,7 +15,7 @@ import org.sheepy.lily.vulkan.process.process.AbstractProcessAllocation;
 @ModelExtender(scope = GraphicProcess.class)
 @Allocation(context = IVulkanContext.class)
 @AllocationChild(features = GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION)
-@AllocationChild(features = {GraphicPackage.GRAPHIC_PROCESS__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
+@AllocationChild(features = {GraphicPackage.GRAPHIC_PROCESS__VULKAN_RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
 @AllocationChild(features = {GraphicPackage.GRAPHIC_PROCESS__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
 @AllocationChild(features = GraphicPackage.GRAPHIC_PROCESS__DESCRIPTOR_POOL)
 @AllocationChild(features = GraphicPackage.GRAPHIC_PROCESS__SUBPASSES)
@@ -30,9 +29,9 @@ public final class GraphicProcessAllocation extends AbstractProcessAllocation
 		super(process, vulkanContext);
 		subpassManager = new SubpassManager(process);
 
-		if (process.getResourcePkg() == null)
+		if (process.getVulkanResourcePkg() == null)
 		{
-			process.setResourcePkg(ResourceFactory.eINSTANCE.createResourcePkg());
+			process.setVulkanResourcePkg(VulkanFactory.eINSTANCE.createVulkanResourcePkg());
 		}
 		if (process.getDescriptorPkg() == null)
 		{

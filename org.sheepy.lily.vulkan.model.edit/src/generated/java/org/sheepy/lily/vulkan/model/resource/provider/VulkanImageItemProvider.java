@@ -8,24 +8,28 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
+
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.image.provider.ImageInfoItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Image} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.VulkanImage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageItemProvider extends ImageInfoItemProvider
+public class VulkanImageItemProvider extends ImageInfoItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -33,7 +37,7 @@ public class ImageItemProvider extends ImageInfoItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImageItemProvider(AdapterFactory adapterFactory)
+	public VulkanImageItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -88,10 +92,10 @@ public class ImageItemProvider extends ImageInfoItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Image)object).getName();
+		String label = ((VulkanImage)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Image_type") :
-			getString("_UI_Image_type") + " " + label;
+			getString("_UI_VulkanImage_type") :
+			getString("_UI_VulkanImage_type") + " " + label;
 	}
 
 
@@ -107,9 +111,9 @@ public class ImageItemProvider extends ImageInfoItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Image.class))
+		switch (notification.getFeatureID(VulkanImage.class))
 		{
-			case VulkanResourcePackage.IMAGE__NAME:
+			case VulkanResourcePackage.VULKAN_IMAGE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

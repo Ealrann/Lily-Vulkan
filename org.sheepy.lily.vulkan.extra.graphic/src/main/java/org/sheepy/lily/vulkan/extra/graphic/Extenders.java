@@ -9,8 +9,6 @@ import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.DescriptorProvide
 import org.sheepy.lily.vulkan.extra.graphic.rendering.task.RenderDrawTaskAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.task.RenderIndexedDrawTaskAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteCountSpecializationAdapter;
-import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteMonoSamplerProviderAdapter;
-import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteStructureAdapter;
 
 import java.util.List;
 
@@ -21,12 +19,12 @@ public final class Extenders implements IExtenderProvider
 	{
 		return List.of(GenericRendererMaintainerAdapter.class,
 					   DescriptorProviderAdapter.class,
-					   SpriteMonoSamplerProviderAdapter.class,
 					   RenderProxyConstantBufferAdapter.class,
 					   SpriteCountSpecializationAdapter.class,
 					   RenderDrawTaskAdapter.class,
 					   RenderIndexedDrawTaskAdapter.class,
-					   DataDescriptorsProviderAdapter.class,
-					   SpriteStructureAdapter.class);
+//					   SpriteStructureAdapter.class,
+//					   SpriteMonoSamplerProviderAdapter.class,
+					   DataDescriptorsProviderAdapter.class);
 	}
 }

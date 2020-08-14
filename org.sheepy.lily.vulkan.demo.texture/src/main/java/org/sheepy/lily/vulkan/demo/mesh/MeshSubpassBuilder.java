@@ -32,7 +32,8 @@ public final class MeshSubpassBuilder
 
 	public Subpass build(GraphicProcess process)
 	{
-		final var pipelines = buildPipelines();
+		final var res = GraphicFactory.eINSTANCE.createSubpass();
+		final var pipelines = buildPipelines(res);
 		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		pipelinePkg.getPipelines().addAll(pipelines);
 		final var attachmentRefPkg = GraphicFactory.eINSTANCE.createAttachmentRefPkg();
@@ -52,7 +53,6 @@ public final class MeshSubpassBuilder
 			attachmentRefPkg.getAttachmentRefs().add(depthRef);
 		}
 
-		final var res = GraphicFactory.eINSTANCE.createSubpass();
 		res.setWaitForStage(EPipelineStage.TOP_OF_PIPE_BIT);
 		res.setSyncStage(EPipelineStage.EARLY_FRAGMENT_TESTS_BIT);
 		res.setAttachmentRefPkg(attachmentRefPkg);
@@ -60,7 +60,7 @@ public final class MeshSubpassBuilder
 		return res;
 	}
 
-	private List<AbstractPipeline> buildPipelines()
+	private List<AbstractPipeline> buildPipelines(Subpass subpass)
 	{
 		final var module = meshConfiguration.module;
 
@@ -183,13 +183,15 @@ public final class MeshSubpassBuilder
 		taskList.add(bindIndexBuffer);
 		taskList.add(drawIndexed);
 
+		final var vulkanResourcePkg = VulkanFactory.eINSTANCE.createVulkanResourcePkg();
+		graphicPipeline.setVulkanResourcePkg(vulkanResourcePkg);
 		final var resourcePkg = ResourceFactory.eINSTANCE.createResourcePkg();
-		graphicPipeline.setResourcePkg(resourcePkg);
+		subpass.setResourcePkg(resourcePkg);
 
-		resourcePkg.getResources().add(vertexShader);
-		resourcePkg.getResources().add(fragmentShader);
-		resourcePkg.getResources().add(memoryChunk);
-		if (constantBuffer != null) resourcePkg.getResources().add(constantBuffer);
+		vulkanResourcePkg.getResources().add(vertexShader);
+		vulkanResourcePkg.getResources().add(fragmentShader);
+		vulkanResourcePkg.getResources().add(memoryChunk);
+		if (constantBuffer != null) vulkanResourcePkg.getResources().add(constantBuffer);
 
 		if (meshConfiguration.useTexture)
 		{
@@ -220,7 +222,7 @@ public final class MeshSubpassBuilder
 			sampledImageDescriptor.setSampler(sampler);
 			sampledImageDescriptor.setImage(imageViewer);
 
-			resourcePkg.getResources().add(sampler);
+			vulkanResourcePkg.getResources().add(sampler);
 			resourcePkg.getResources().add(imageFile);
 
 			final var descriptorSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();

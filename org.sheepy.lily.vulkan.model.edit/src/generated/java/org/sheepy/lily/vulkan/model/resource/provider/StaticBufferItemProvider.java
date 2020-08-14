@@ -123,9 +123,9 @@ public class StaticBufferItemProvider extends ItemProviderAdapter implements IEd
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IBufferObject_usages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IBufferObject_usages_feature", "_UI_IBufferObject_type"),
-				 VulkanResourcePackage.Literals.IBUFFER_OBJECT__USAGES,
+				 getString("_UI_IBuffer_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IBuffer_usages_feature", "_UI_IBuffer_type"),
+				 VulkanResourcePackage.Literals.IBUFFER__USAGES,
 				 true,
 				 false,
 				 false,

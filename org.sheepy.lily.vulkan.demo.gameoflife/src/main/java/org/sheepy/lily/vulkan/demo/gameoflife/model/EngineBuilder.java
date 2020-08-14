@@ -5,12 +5,8 @@ import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.core.model.cadence.Cadence;
 import org.sheepy.lily.core.model.cadence.CadenceFactory;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
-import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
-import org.sheepy.lily.vulkan.model.DescriptorPkg;
-import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.VulkanEngine;
-import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.*;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.*;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
@@ -47,7 +43,7 @@ public final class EngineBuilder
 	{
 		final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 
-		final var sharedResources = ResourceFactory.eINSTANCE.createResourcePkg();
+		final var sharedResources = VulkanFactory.eINSTANCE.createVulkanResourcePkg();
 		final var sharedDescriptors = VulkanFactory.eINSTANCE.createDescriptorPkg();
 
 		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
@@ -85,7 +81,7 @@ public final class EngineBuilder
 		engine.getProcesses().add(lifeProcess);
 		engine.getProcesses().add(pixelProcess);
 		engine.getProcesses().add(graphicProcess);
-		engine.setResourcePkg(sharedResources);
+		engine.setVulkanResourcePkg(sharedResources);
 		engine.setDescriptorPkg(sharedDescriptors);
 
 		return engine;
@@ -102,7 +98,7 @@ public final class EngineBuilder
 		colorAttachment.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
 	}
 
-	private void createComputeProcessPool(ResourcePkg sharedResources, DescriptorPkg sharedDescriptors)
+	private void createComputeProcessPool(VulkanResourcePkg sharedResources, DescriptorPkg sharedDescriptors)
 	{
 		lifeProcess = ComputeFactory.eINSTANCE.createComputeProcess();
 		pixelProcess = ComputeFactory.eINSTANCE.createComputeProcess();
@@ -314,7 +310,7 @@ public final class EngineBuilder
 		return descriptor;
 	}
 
-	private static IDescriptor newDescriptor(Image image)
+	private static IDescriptor newDescriptor(VulkanImage image)
 	{
 		final var descriptor = VulkanResourceFactory.eINSTANCE.createImageDescriptor();
 		descriptor.setType(EDescriptorType.STORAGE_IMAGE);

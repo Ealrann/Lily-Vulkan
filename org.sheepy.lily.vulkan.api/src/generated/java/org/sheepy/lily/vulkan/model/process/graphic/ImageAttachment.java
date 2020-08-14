@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.joml.Vector4fc;
-import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,12 +52,12 @@ public interface ImageAttachment extends ExtraAttachment
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Ref</em>' reference.
-	 * @see #setImageRef(Image)
+	 * @see #setImageRef(VulkanEngine)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImageAttachment_ImageRef()
 	 * @model
 	 * @generated
 	 */
-	Image getImageRef();
+	VulkanEngine getImageRef();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment#getImageRef <em>Image Ref</em>}' reference.
@@ -67,6 +67,6 @@ public interface ImageAttachment extends ExtraAttachment
 	 * @see #getImageRef()
 	 * @generated
 	 */
-	void setImageRef(Image value);
+	void setImageRef(VulkanEngine value);
 
 } // ImageAttachment

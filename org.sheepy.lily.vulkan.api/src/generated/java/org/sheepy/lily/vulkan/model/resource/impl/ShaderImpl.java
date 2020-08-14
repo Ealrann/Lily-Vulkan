@@ -17,10 +17,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.core.model.resource.FileResource;
-
-import org.sheepy.lily.core.model.resource.impl.IResourceImpl;
-
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
@@ -36,6 +34,7 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getFile <em>File</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getConstants <em>Constants</em>}</li>
@@ -43,8 +42,28 @@ import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
  *
  * @generated
  */
-public class ShaderImpl extends IResourceImpl implements Shader
+public class ShaderImpl extends LilyEObject implements Shader
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -104,6 +123,31 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	protected EClass eStaticClass()
 	{
 		return VulkanResourcePackage.Literals.SHADER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SHADER__NAME, oldName, name));
 	}
 
 	/**
@@ -224,6 +268,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.SHADER__NAME:
+				return getName();
 			case VulkanResourcePackage.SHADER__FILE:
 				return getFile();
 			case VulkanResourcePackage.SHADER__STAGE:
@@ -245,6 +291,9 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.SHADER__NAME:
+				setName((String)newValue);
+				return;
 			case VulkanResourcePackage.SHADER__FILE:
 				setFile((FileResource)newValue);
 				return;
@@ -269,6 +318,9 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.SHADER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case VulkanResourcePackage.SHADER__FILE:
 				setFile((FileResource)null);
 				return;
@@ -292,6 +344,8 @@ public class ShaderImpl extends IResourceImpl implements Shader
 	{
 		switch (featureID)
 		{
+			case VulkanResourcePackage.SHADER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.SHADER__FILE:
 				return file != null;
 			case VulkanResourcePackage.SHADER__STAGE:
@@ -313,7 +367,9 @@ public class ShaderImpl extends IResourceImpl implements Shader
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (stage: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", stage: ");
 		result.append(stage);
 		result.append(')');
 		return result.toString();

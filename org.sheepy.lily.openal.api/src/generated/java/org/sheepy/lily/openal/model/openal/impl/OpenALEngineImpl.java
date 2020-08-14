@@ -4,14 +4,12 @@ package org.sheepy.lily.openal.model.openal.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
+import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.openal.model.openal.OpenALEngine;
 import org.sheepy.lily.openal.model.openal.OpenalPackage;
 
@@ -38,7 +36,7 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 	 * @generated
 	 * @ordered
 	 */
-	protected org.sheepy.lily.core.model.resource.ResourcePkg resourcePkg;
+	protected ResourcePkg resourcePkg;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,12 +65,12 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 	 * @generated
 	 */
 	@Override
-	public org.sheepy.lily.core.model.resource.ResourcePkg getResourcePkg()
+	public ResourcePkg getResourcePkg()
 	{
 		if (resourcePkg != null && ((EObject)resourcePkg).eIsProxy())
 		{
 			InternalEObject oldResourcePkg = resourcePkg;
-			resourcePkg = (org.sheepy.lily.core.model.resource.ResourcePkg)eResolveProxy(oldResourcePkg);
+			resourcePkg = (ResourcePkg)eResolveProxy(oldResourcePkg);
 			if (resourcePkg != oldResourcePkg)
 			{
 				InternalEObject newResourcePkg = resourcePkg;
@@ -94,7 +92,7 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.sheepy.lily.core.model.resource.ResourcePkg basicGetResourcePkg()
+	public ResourcePkg basicGetResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -104,9 +102,9 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(org.sheepy.lily.core.model.resource.ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		org.sheepy.lily.core.model.resource.ResourcePkg oldResourcePkg = resourcePkg;
+		ResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -122,7 +120,7 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(org.sheepy.lily.core.model.resource.ResourcePkg newResourcePkg)
+	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -182,7 +180,7 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 		switch (featureID)
 		{
 			case OpenalPackage.OPEN_AL_ENGINE__RESOURCE_PKG:
-				setResourcePkg((org.sheepy.lily.core.model.resource.ResourcePkg)newValue);
+				setResourcePkg((ResourcePkg)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -199,7 +197,7 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 		switch (featureID)
 		{
 			case OpenalPackage.OPEN_AL_ENGINE__RESOURCE_PKG:
-				setResourcePkg((org.sheepy.lily.core.model.resource.ResourcePkg)null);
+				setResourcePkg((ResourcePkg)null);
 				return;
 		}
 		super.eUnset(featureID);

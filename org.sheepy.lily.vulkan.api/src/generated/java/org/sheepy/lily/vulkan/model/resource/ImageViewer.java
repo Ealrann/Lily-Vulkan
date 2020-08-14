@@ -20,7 +20,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface ImageViewer extends IMemoryChunkPart, Image {
+public interface ImageViewer extends IMemoryChunkPart, VulkanImage {
 	/**
 	 * Returns the value of the '<em><b>Data Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

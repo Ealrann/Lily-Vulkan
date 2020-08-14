@@ -451,13 +451,13 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
+	int GENERIC_RENDERER__VULKAN_RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.

@@ -9,14 +9,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.sheepy.lily.core.model.resource.IResource;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
-import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.VulkanImage;
 import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.image.impl.SamplerInfoImpl;
@@ -65,7 +63,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	 * @generated
 	 * @ordered
 	 */
-	protected Image image;
+	protected VulkanImage image;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,12 +117,12 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	 * @generated
 	 */
 	@Override
-	public Image getImage()
+	public VulkanImage getImage()
 	{
 		if (image != null && ((EObject)image).eIsProxy())
 		{
 			InternalEObject oldImage = image;
-			image = (Image)eResolveProxy(oldImage);
+			image = (VulkanImage)eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
 				if (eNotificationRequired())
@@ -139,7 +137,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Image basicGetImage()
+	public VulkanImage basicGetImage()
 	{
 		return image;
 	}
@@ -150,9 +148,9 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 	 * @generated
 	 */
 	@Override
-	public void setImage(Image newImage)
+	public void setImage(VulkanImage newImage)
 	{
-		Image oldImage = image;
+		VulkanImage oldImage = image;
 		image = newImage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.SAMPLER__IMAGE, oldImage, image));
@@ -191,7 +189,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 				setName((String)newValue);
 				return;
 			case VulkanResourcePackage.SAMPLER__IMAGE:
-				setImage((Image)newValue);
+				setImage((VulkanImage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -211,7 +209,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 				setName(NAME_EDEFAULT);
 				return;
 			case VulkanResourcePackage.SAMPLER__IMAGE:
-				setImage((Image)null);
+				setImage((VulkanImage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -251,7 +249,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class)
+		if (baseClass == IVulkanResource.class)
 		{
 			switch (derivedFeatureID)
 			{
@@ -277,7 +275,7 @@ public class SamplerImpl extends SamplerInfoImpl implements Sampler
 				default: return -1;
 			}
 		}
-		if (baseClass == IResource.class)
+		if (baseClass == IVulkanResource.class)
 		{
 			switch (baseFeatureID)
 			{

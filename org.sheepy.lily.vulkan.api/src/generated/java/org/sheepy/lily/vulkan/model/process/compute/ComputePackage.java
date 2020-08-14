@@ -70,13 +70,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__RESOURCE_PKG = ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG;
+	int COMPUTE_PROCESS__VULKAN_RESOURCE_PKG = ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -242,13 +242,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__ENABLED = ProcessPackage.VK_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.VK_PIPELINE__RESOURCE_PKG;
+	int COMPUTE_PIPELINE__VULKAN_RESOURCE_PKG = ProcessPackage.VK_PIPELINE__VULKAN_RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.

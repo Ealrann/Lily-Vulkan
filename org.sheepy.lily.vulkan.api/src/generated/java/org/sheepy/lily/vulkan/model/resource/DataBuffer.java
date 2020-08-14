@@ -20,7 +20,7 @@ import java.nio.ByteBuffer;
  * @model
  * @generated
  */
-public interface DataBuffer extends IBufferObject
+public interface DataBuffer extends IBuffer
 {
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute.

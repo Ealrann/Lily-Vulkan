@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
 import org.lwjgl.BufferUtils;
 import org.sheepy.lily.core.api.maintainer.MaintainerUtil;
-import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.extra.api.rendering.ISpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
@@ -32,14 +31,14 @@ public final class RenderPipelineBuilder
 
 		pipeline.setDescriptorPkg(VulkanFactory.eINSTANCE.createDescriptorPkg());
 		pipeline.getTaskPkgs().add(ProcessFactory.eINSTANCE.createTaskPkg());
-		pipeline.setResourcePkg(ResourceFactory.eINSTANCE.createResourcePkg());
+		pipeline.setVulkanResourcePkg(VulkanFactory.eINSTANCE.createVulkanResourcePkg());
 		pipeline.setDescriptorPool(VulkanResourceFactory.eINSTANCE.createDescriptorPool());
 
 		final var specializationData = prepareSpecializationBuffer(index, specialization);
 		final var constantBuffer = VulkanResourceFactory.eINSTANCE.createConstantBuffer();
 		constantBuffer.setData(specializationData);
 
-		pipeline.getResourcePkg().getResources().add(constantBuffer);
+		pipeline.getVulkanResourcePkg().getResources().add(constantBuffer);
 		pipeline.setSpecializationData(constantBuffer);
 
 		return pipeline;

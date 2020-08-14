@@ -55,8 +55,8 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated LilyVulkan -->
       <extender
-            uri="org.sheepy.lily.core.model.resource"
-            class="org.sheepy.lily.vulkan.model.resource.provider.VulkanResourceItemProviderAdapterFactory$ResourceChildCreationExtender"/>
+            uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.model.resource.provider.VulkanResourceItemProviderAdapterFactory$VulkanResourceChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
@@ -100,9 +100,6 @@
 
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated LilyVulkan -->
-      <extender
-            uri="org.sheepy.lily.core.model.resource"
-            class="org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory$ResourceChildCreationExtender"/>
       <extender
             uri="org.sheepy.lily.core.model.application"
             class="org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
