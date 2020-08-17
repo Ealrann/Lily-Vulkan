@@ -13,7 +13,7 @@ Export-Package: org.sheepy.lily.vulkan.model.enumeration.provider,
  org.sheepy.lily.vulkan.model.process.graphic.provider,
  org.sheepy.lily.vulkan.model.process.provider,
  org.sheepy.lily.vulkan.model.provider,
- org.sheepy.lily.vulkan.model.resource.provider
+ org.sheepy.lily.vulkan.model.vulkanresource.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.sheepy.lily.vulkan.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,

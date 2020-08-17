@@ -50,9 +50,9 @@
         upperBound="-1">
       <eGenericType eTypeParameter="#//GenericRenderer/T"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constantBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constantBuffer" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//TransferBuffer"/>
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//TransferBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorProviderPkg"
         eType="#//ResourceDescriptorProviderPkg" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specialization" eType="#//ISpecialization"
@@ -67,7 +67,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenderDataProvider" abstract="true"
-      interface="true" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//BufferDataProvider">
+      interface="true" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferDataProvider">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Structure"/>
     </eTypeParameters>
@@ -139,9 +139,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceDescriptorProviders"
         upperBound="-1" eType="#//ResourceDescriptorProvider" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderProxyConstantBuffer" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer">
+  <eClassifiers xsi:type="ecore:EClass" name="RenderProxyConstantBuffer" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ConstantBuffer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constantBuffer" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/resource.ecore#//ConstantBuffer"/>
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="partIndex" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>

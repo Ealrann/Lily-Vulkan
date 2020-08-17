@@ -4,7 +4,6 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAllocation;
 import org.sheepy.lily.vulkan.process.barrier.ImageBarrierAllocation;
-import org.sheepy.lily.vulkan.process.cadence.SwapBindingsTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.*;
 import org.sheepy.lily.vulkan.process.pipeline.task.*;
 
@@ -28,7 +27,6 @@ public class Extenders implements IExtenderProvider
 					   CompositeTaskRecorder.class,
 					   FlushTransferBufferTaskRecorder.class,
 					   CopyBufferTaskRecorder.class,
-					   SwapBindingsTaskAdapter.class,
 					   CompositePipelineAllocation.class,
 					   CompositePipelineRecorder.class);
 	}

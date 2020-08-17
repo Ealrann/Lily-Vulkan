@@ -1,10 +1,13 @@
 #version 450
 
+layout (constant_id = 0) const int textureCount = 1;
+
 precision lowp float;
 
 layout (binding = 0) uniform sampler2D nullTexture;
 layout (binding = 1) uniform sampler fontSampler;
-layout (binding = 2) uniform texture2D fontTexture;
+layout (binding = 2) uniform sampler textureSampler;
+layout (binding = 3) uniform texture2D textures[textureCount + 1];
 
 layout (push_constant) uniform PushConstants {
 	mat4 ProjMtx;
@@ -18,9 +21,11 @@ layout (location = 0) out vec4 outColor;
 
 void main()
 {
-  int index = pushConstants.descriptorId;
+  const int index = pushConstants.descriptorId;
   if (index == 0)
 	outColor = Frag_Color * texture(nullTexture, Frag_UV.st);
+  else if (index == 1)
+	outColor = vec4(Frag_Color.rgb, Frag_Color.a * texture(sampler2D(textures[0], fontSampler), Frag_UV.st));
   else
-	outColor = vec4(Frag_Color.rgb, Frag_Color.a * texture(sampler2D(fontTexture, fontSampler), Frag_UV.st));
+	outColor = texture(sampler2D(textures[index - 1], textureSampler), Frag_UV.st);
 }

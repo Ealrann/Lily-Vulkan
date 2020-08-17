@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="openal" nsURI="org.sheepy.lily.openal" nsPrefix="openal">
-  <eClassifiers xsi:type="ecore:EClass" name="OpenALEngine" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IEngine"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OpenALEngine" eSuperTypes="../../org.sheepy.lily.core.model/model/application.ecore#//IEngine">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourcePkg" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//ResourcePkg"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

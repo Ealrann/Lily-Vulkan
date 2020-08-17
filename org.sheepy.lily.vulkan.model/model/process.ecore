@@ -2,8 +2,8 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="process" nsURI="org.sheepy.lily.vulkan.model.process" nsPrefix="process">
   <eClassifiers xsi:type="ecore:EClass" name="AbstractProcess" abstract="true" eSuperTypes="vulkan.ecore#//IProcess">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//DescriptorPool" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" eType="ecore:EClass vulkanresource.ecore#//DescriptorPool"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitingFenceDuringAcquire"
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false">
@@ -36,14 +36,14 @@
         eType="#//TaskPkg" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VkPipeline" abstract="true" eSuperTypes="#//TaskPipeline">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" eType="ecore:EClass resource.ecore#//DescriptorPool"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPool" eType="ecore:EClass vulkanresource.ecore#//DescriptorPool"
         containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specializationData" eType="ecore:EClass resource.ecore#//ConstantBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specializationData" eType="ecore:EClass vulkanresource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pushConstantRanges" upperBound="-1"
         eType="ecore:EClass ../../org.sheepy.vulkan.model/model/pipeline.ecore#//PushConstantRange"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="layout" upperBound="-1"
-        eType="ecore:EClass resource.ecore#//DescriptorSet"/>
+        eType="ecore:EClass vulkanresource.ecore#//DescriptorSet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
@@ -81,7 +81,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BindDescriptorSets" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" upperBound="-1"
-        eType="ecore:EClass resource.ecore#//DescriptorSet"/>
+        eType="ecore:EClass vulkanresource.ecore#//DescriptorSet"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindPoint" lowerBound="1"
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBindPoint"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stride" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
@@ -93,27 +93,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PushConstantBuffer" eSuperTypes="#//PushConstant">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//ConstantBuffer"/>
+        eType="ecore:EClass vulkanresource.ecore#//ConstantBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FlushTransferBufferTask" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="transferBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//TransferBuffer"/>
+        eType="ecore:EClass vulkanresource.ecore#//TransferBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CopyBufferTask" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="srcBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//BufferReference" containment="true"/>
+        eType="ecore:EClass vulkanresource.ecore#//BufferReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dstBuffer" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//BufferReference" containment="true"/>
+        eType="ecore:EClass vulkanresource.ecore#//BufferReference" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IProcessExtension" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessExtensionPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
         eType="#//IProcessExtension" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SwapBindingsTask" eSuperTypes="../../org.sheepy.lily.core.model/model/cadence.ecore#//ICadenceTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//BindDescriptorSets"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorSets" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass resource.ecore#//DescriptorSet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessConfiguration" abstract="true"
       interface="true"/>
@@ -131,8 +126,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionRecorder" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="FetchBuffer" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//BufferReference" containment="true"/>
+        eType="ecore:EClass vulkanresource.ecore#//BufferReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
-        eType="ecore:EClass resource.ecore#//BufferDataProvider"/>
+        eType="ecore:EClass vulkanresource.ecore#//BufferDataProvider"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.DummyNotifier;
 import org.sheepy.lily.game.api.resource.image.IImageDataProviderAdapter;
-import org.sheepy.lily.vulkan.model.resource.FileImageDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.FileImageDataProvider;
 import org.sheepy.lily.vulkan.resource.image.backend.ImageBuffer;
 import org.sheepy.lily.vulkan.resource.image.backend.STBImageLoader;
 
@@ -23,7 +23,12 @@ public final class FileImageProviderAdapter extends DummyNotifier<IImageDataProv
 
 	private FileImageProviderAdapter(FileImageDataProvider dataProvider)
 	{
-		imageBuffer = new ImageBuffer(dataProvider.getFileImage().getFile());
+		final var fileImageContainment = dataProvider.getFileImageContainment();
+		final var fileImageReference = dataProvider.getFileImageReference();
+		assert fileImageContainment != null ^ fileImageReference != null;
+
+		final var fileImage = fileImageContainment != null ? fileImageContainment : fileImageReference;
+		imageBuffer = new ImageBuffer(fileImage.getFile());
 		imageBuffer.allocate();
 		size = imageBuffer.getImageSize();
 	}

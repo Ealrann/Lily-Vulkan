@@ -48,11 +48,10 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
-import org.sheepy.lily.vulkan.model.resource.BufferViewer;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-
-import org.sheepy.lily.vulkan.model.resource.util.VulkanResourceSwitch;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.util.VulkanResourceSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.

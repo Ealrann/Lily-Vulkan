@@ -7,8 +7,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import java.nio.ByteBuffer;
 

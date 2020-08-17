@@ -30,6 +30,8 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
 public final class ColorAttachmentAllocation implements IExtraAttachmentAllocation
 {
+	private static final String PREFIX = "[ColorAttachment]";
+
 	private final ColorAttachment colorAttachment;
 	private final int colorFormat;
 
@@ -48,7 +50,7 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 		colorFormat = format == 0 ? surfaceFormat : format;
 
 		colorImageBackend = createImage(context, surfaceAllocation);
-		colorImageView = createAndAllocateImageView(context.getLogicalDevice());
+		colorImageView = createAndAllocateImageView(context.getLogicalDevice(), colorAttachment.getName());
 		layoutTransition(context);
 	}
 
@@ -58,18 +60,17 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 		final int width = extent.x();
 		final int height = extent.y();
 		final int usage = VulkanModelUtil.getEnumeratedFlag(colorAttachment.getUsages());
-		final var imageBuilder = VkImage.newBuilder(width, height, colorFormat);
+		final var imageBuilder = VkImage.newBuilder(PREFIX + colorAttachment.getName(), width, height, colorFormat);
 		imageBuilder.usage(usage);
 		imageBuilder.initialLayout(colorAttachment.getInitialLayout());
 
-		return imageBuilder.buildNoFill(context);
+		return context.executeFunction(imageBuilder::build);
 	}
 
-	private VkImageView createAndAllocateImageView(LogicalDevice logicalDevice)
+	private VkImageView createAndAllocateImageView(LogicalDevice logicalDevice, String name)
 	{
 		final var device = logicalDevice.getVkDevice();
-		final var colorImageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
-		colorImageView.allocate(device, colorImageBackend);
+		final var colorImageView = new VkImageView(device, name, colorImageBackend, VK_IMAGE_ASPECT_COLOR_BIT);
 
 		return colorImageView;
 	}

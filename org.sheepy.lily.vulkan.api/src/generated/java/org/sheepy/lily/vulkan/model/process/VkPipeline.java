@@ -3,10 +3,9 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
 /**
@@ -88,7 +87,7 @@ public interface VkPipeline extends TaskPipeline
 
 	/**
 	 * Returns the value of the '<em><b>Layout</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layout</em>' reference list.

@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.notification.Feature;
 import org.sheepy.lily.core.api.notification.IFeatures;
 import org.sheepy.lily.core.api.notification.INotifier;
-import org.sheepy.lily.vulkan.model.resource.IBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
 
 import java.util.function.LongConsumer;
 

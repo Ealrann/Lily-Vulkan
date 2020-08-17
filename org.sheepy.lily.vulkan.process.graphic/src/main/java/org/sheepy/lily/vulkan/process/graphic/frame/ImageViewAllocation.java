@@ -24,6 +24,7 @@ import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, type = SwapChainAllocation.class)
 public final class ImageViewAllocation implements IImageViewManager, IExtender
 {
+	private static final String BASE_NAME = "SwapImageView_";
 	private static final int IMAGE_ASPECT = VK_IMAGE_ASPECT_COLOR_BIT;
 
 	private final List<VkImageView> vkImageViews;
@@ -39,9 +40,9 @@ public final class ImageViewAllocation implements IImageViewManager, IExtender
 		final List<VkImageView> vkImageViewsTmp = new ArrayList<>(imageCount);
 		for (int i = 0; i < imageCount; i++)
 		{
+			final var name = BASE_NAME + i;
 			final long imagePtr = swapChainAllocation.getImagePtr(i);
-			final var imageView = new VkImageView(IMAGE_ASPECT);
-			imageView.allocate(device, imagePtr, 1, colorFormat);
+			final var imageView = new VkImageView(device, name, imagePtr, 1, colorFormat, IMAGE_ASPECT);
 			vkImageViewsTmp.add(imageView);
 		}
 

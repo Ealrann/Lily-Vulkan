@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
 import org.sheepy.vulkan.model.enumeration.EBindPoint;
 
 /**
@@ -28,7 +28,7 @@ public interface BindDescriptorSets extends IPipelineTask
 {
 	/**
 	 * Returns the value of the '<em><b>Descriptor Sets</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descriptor Sets</em>' reference list.

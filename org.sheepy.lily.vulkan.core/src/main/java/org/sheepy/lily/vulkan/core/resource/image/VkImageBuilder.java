@@ -20,16 +20,19 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 	private ByteBuffer fillWith = null;
 	private EImageLayout initialLayout = null;
 	private int aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+	private String name;
 
-	public VkImageBuilder(int width, int height, int format)
+	public VkImageBuilder(String name, int width, int height, int format)
 	{
+		this.name = name;
 		this.width = width;
 		this.height = height;
 		this.format = format;
 	}
 
-	public VkImageBuilder(ImageInfo info, int width, int height)
+	public VkImageBuilder(String name, ImageInfo info, int width, int height)
 	{
+		this.name = name;
 		this.width = width;
 		this.height = height;
 		this.format = info.getFormat().getValue();
@@ -41,6 +44,7 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 
 	public VkImageBuilder(IVkImageBuilder builder)
 	{
+		this.name = builder.name();
 		this.width = builder.width();
 		this.height = builder.height();
 		this.format = builder.format();
@@ -166,6 +170,18 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 		return initialLayout;
 	}
 
+	@Override
+	public String name()
+	{
+		return name;
+	}
+
+	public AbstractVkImageBuilder name(String name)
+	{
+		this.name = name;
+		return this;
+	}
+
 	private static int log2nlz(int bits)
 	{
 		if (bits == 0) return 0;
@@ -174,6 +190,7 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 
 	static final class ImmutableBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 	{
+		private final String name;
 		private final int width;
 		private final int height;
 		private final int format;
@@ -187,6 +204,7 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 
 		public ImmutableBuilder(IVkImageBuilder builder)
 		{
+			this.name = builder.name();
 			this.width = builder.width();
 			this.height = builder.height();
 			this.format = builder.format();
@@ -263,6 +281,12 @@ public final class VkImageBuilder extends IVkImageBuilder.AbstractVkImageBuilder
 		public IVkImageBuilder copyImmutable()
 		{
 			return new ImmutableBuilder(this);
+		}
+
+		@Override
+		public String name()
+		{
+			return name;
 		}
 	}
 }

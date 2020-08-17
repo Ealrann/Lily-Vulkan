@@ -72,7 +72,7 @@ public class WaitProcessIdleImpl extends LilyEObject implements WaitProcessIdle
 	{
 		if (process != null && ((EObject)process).eIsProxy())
 		{
-			InternalEObject oldProcess = process;
+			InternalEObject oldProcess = (InternalEObject)process;
 			process = (IProcess)eResolveProxy(oldProcess);
 			if (process != oldProcess)
 			{

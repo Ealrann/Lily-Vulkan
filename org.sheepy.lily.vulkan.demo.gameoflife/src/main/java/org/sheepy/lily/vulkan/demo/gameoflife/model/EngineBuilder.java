@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.model.process.compute.*;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
-import org.sheepy.lily.vulkan.model.resource.*;
+import org.sheepy.lily.vulkan.model.vulkanresource.*;
 import org.sheepy.vulkan.model.enumeration.*;
 
 public final class EngineBuilder
@@ -81,7 +81,7 @@ public final class EngineBuilder
 		engine.getProcesses().add(lifeProcess);
 		engine.getProcesses().add(pixelProcess);
 		engine.getProcesses().add(graphicProcess);
-		engine.setVulkanResourcePkg(sharedResources);
+		engine.setResourcePkg(sharedResources);
 		engine.setDescriptorPkg(sharedDescriptors);
 
 		return engine;
@@ -310,12 +310,12 @@ public final class EngineBuilder
 		return descriptor;
 	}
 
-	private static IDescriptor newDescriptor(VulkanImage image)
+	private static IDescriptor newDescriptor(IVulkanImage image)
 	{
 		final var descriptor = VulkanResourceFactory.eINSTANCE.createImageDescriptor();
 		descriptor.setType(EDescriptorType.STORAGE_IMAGE);
 		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
-		descriptor.setImage(image);
+		descriptor.getImages().add(image);
 		return descriptor;
 	}
 }

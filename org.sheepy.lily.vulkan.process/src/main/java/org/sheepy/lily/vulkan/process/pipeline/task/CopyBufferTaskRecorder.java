@@ -12,11 +12,11 @@ import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
-import org.sheepy.lily.vulkan.core.resource.IVulkanBufferAllocation;
+import org.sheepy.lily.vulkan.core.resource.buffer.IVulkanBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.BufferReference;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,7 +4,6 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearIndexProviderAdapter;
 import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearVertexProviderAdapter;
-import org.sheepy.lily.vulkan.nuklear.resource.FontImageProviderAdapter;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPushConstantsAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.*;
 import org.sheepy.lily.vulkan.nuklear.scene.NuklearSubpassProvider;
@@ -32,7 +31,6 @@ public class Extenders implements IExtenderProvider
 					   NuklearVertexProviderAdapter.class,
 					   NuklearIndexProviderAdapter.class,
 					   NuklearSubpassProvider.class,
-					   NuklearContextLoader.class,
 					   NuklearFontAdapter.class,
 					   FontImageProviderAdapter.class);
 	}

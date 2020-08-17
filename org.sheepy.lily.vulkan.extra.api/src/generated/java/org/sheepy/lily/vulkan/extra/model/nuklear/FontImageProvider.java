@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.resource.ImageDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider;
 
 /**
  * <!-- begin-user-doc -->

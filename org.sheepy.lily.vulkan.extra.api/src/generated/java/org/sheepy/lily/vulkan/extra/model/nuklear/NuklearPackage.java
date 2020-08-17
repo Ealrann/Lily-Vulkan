@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->

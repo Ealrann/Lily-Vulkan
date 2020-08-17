@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
-import org.sheepy.lily.vulkan.model.resource.provider.BufferDataProviderItemProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.provider.BufferDataProviderItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider} object.

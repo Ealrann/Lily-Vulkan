@@ -7,9 +7,8 @@ import org.sheepy.lily.core.model.maintainer.Maintainer;
 
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->

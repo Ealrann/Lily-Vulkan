@@ -14,9 +14,9 @@ import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import java.nio.LongBuffer;
 import java.util.List;
@@ -95,8 +95,7 @@ public class DescriptorSetAllocation implements IDescriptorSetAllocation
 		allocInfo.pSetLayouts(layouts);
 
 		final var bDescriptorSet = stack.mallocLong(1);
-		Logger.check(FAILED_TO_ALLOCATE_DESCRIPTOR_SET,
-					 () -> vkAllocateDescriptorSets(device, allocInfo, bDescriptorSet));
+		Logger.check(vkAllocateDescriptorSets(device, allocInfo, bDescriptorSet), FAILED_TO_ALLOCATE_DESCRIPTOR_SET);
 		return bDescriptorSet.get(0);
 	}
 

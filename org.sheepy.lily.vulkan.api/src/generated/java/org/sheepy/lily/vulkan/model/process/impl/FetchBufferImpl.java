@@ -15,9 +15,8 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.BufferReference;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -228,7 +227,7 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	{
 		if (dataProvider != null && ((EObject)dataProvider).eIsProxy())
 		{
-			InternalEObject oldDataProvider = dataProvider;
+			InternalEObject oldDataProvider = (InternalEObject)dataProvider;
 			dataProvider = (BufferDataProvider)eResolveProxy(oldDataProvider);
 			if (dataProvider != oldDataProvider)
 			{

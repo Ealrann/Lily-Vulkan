@@ -3,11 +3,8 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.joml.Vector3ic;
-
-import org.sheepy.lily.core.model.resource.IImage;
-
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 
 /**
@@ -84,12 +81,12 @@ public interface AbstractBlitTask extends IPipelineTask
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Image</em>' reference.
-	 * @see #setSrcImage(IImage)
+	 * @see #setSrcImage(IVulkanImage)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAbstractBlitTask_SrcImage()
 	 * @model required="true"
 	 * @generated
 	 */
-	IImage getSrcImage();
+	IVulkanImage getSrcImage();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask#getSrcImage <em>Src Image</em>}' reference.
@@ -99,6 +96,6 @@ public interface AbstractBlitTask extends IPipelineTask
 	 * @see #getSrcImage()
 	 * @generated
 	 */
-	void setSrcImage(IImage value);
+	void setSrcImage(IVulkanImage value);
 
 } // AbstractBlitTask

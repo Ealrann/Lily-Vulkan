@@ -25,8 +25,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.DescriptorPkg} object.
@@ -165,51 +164,12 @@ public class DescriptorPkgItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 GraphicFactory.eINSTANCE.createAttachmentDescriptor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
 				 VulkanResourceFactory.eINSTANCE.createBufferDescriptor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
 				 VulkanResourceFactory.eINSTANCE.createImageDescriptor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 VulkanResourceFactory.eINSTANCE.createSamplerDescriptor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS,
-				 VulkanResourceFactory.eINSTANCE.createImageArrayDescriptor()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
-	{
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == VulkanPackage.Literals.DESCRIPTOR_PKG__DESCRIPTORS;
-
-		if (qualify)
-		{
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

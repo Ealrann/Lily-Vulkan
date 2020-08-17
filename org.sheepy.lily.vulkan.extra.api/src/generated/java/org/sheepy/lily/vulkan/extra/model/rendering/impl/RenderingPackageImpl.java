@@ -68,7 +68,7 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -322,7 +322,6 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		ActionPackage.eINSTANCE.eClass();
 		GraphicPackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
-		VulkanResourcePackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
@@ -330,6 +329,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
+		VulkanResourcePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);

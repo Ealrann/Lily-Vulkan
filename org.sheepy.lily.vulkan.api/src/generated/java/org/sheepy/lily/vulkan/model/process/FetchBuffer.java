@@ -2,8 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.BufferReference;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
 
 /**
  * <!-- begin-user-doc -->

@@ -8,9 +8,9 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.model.resource.BufferMemory;
-import org.sheepy.lily.vulkan.model.resource.BufferViewer;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 

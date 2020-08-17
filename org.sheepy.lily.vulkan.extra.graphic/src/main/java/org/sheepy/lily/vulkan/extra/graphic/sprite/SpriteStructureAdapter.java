@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureResourceAdapter;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
-import org.sheepy.lily.vulkan.model.resource.VulkanImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 
 import java.util.List;
 //

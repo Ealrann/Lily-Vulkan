@@ -6,23 +6,28 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.model.resource.ImageDescriptor;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
 
 @ModelExtender(scope = ImageDescriptor.class)
 @Adapter
 public final class ImageDescriptorAdapter implements IDescriptorAdapter
 {
 	private final ImageDescriptor descriptor;
+	private final int descriptorCount;
 
 	private ImageDescriptorAdapter(ImageDescriptor descriptor)
 	{
 		this.descriptor = descriptor;
+
+		final int viewCount = descriptor.getImages().size();
+		final int samplerCount = descriptor.getSampler() != null ? 1 : 0;
+		descriptorCount = Math.max(viewCount, samplerCount);
 	}
 
 	@Override
 	public int sizeInPool()
 	{
-		return 1;
+		return descriptorCount;
 	}
 
 	@Override
@@ -32,7 +37,7 @@ public final class ImageDescriptorAdapter implements IDescriptorAdapter
 
 		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(descriptor.getType().getValue());
-		res.descriptorCount(1);
+		res.descriptorCount(descriptorCount);
 		res.stageFlags(shaderStages);
 		return res;
 	}

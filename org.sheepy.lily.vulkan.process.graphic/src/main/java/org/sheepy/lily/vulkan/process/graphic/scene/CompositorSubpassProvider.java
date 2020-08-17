@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
-import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.GenericConstantBuffer;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 import java.io.IOException;

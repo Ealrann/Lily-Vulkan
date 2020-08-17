@@ -7,12 +7,12 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
-import org.sheepy.lily.vulkan.core.resource.IVulkanBufferAllocation;
+import org.sheepy.lily.vulkan.core.resource.buffer.IVulkanBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.resource.BufferReference;
-import org.sheepy.lily.vulkan.model.resource.EContextIndex;
-import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
+import org.sheepy.lily.vulkan.model.vulkanresource.EContextIndex;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import java.util.List;
 

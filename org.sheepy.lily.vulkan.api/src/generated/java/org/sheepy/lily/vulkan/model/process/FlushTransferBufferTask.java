@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->

@@ -15,7 +15,7 @@ import org.sheepy.lily.vulkan.process.process.AbstractProcessAllocation;
 @ModelExtender(scope = GraphicProcess.class)
 @Allocation(context = IVulkanContext.class)
 @AllocationChild(features = GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION)
-@AllocationChild(features = {GraphicPackage.GRAPHIC_PROCESS__VULKAN_RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
+@AllocationChild(features = {GraphicPackage.GRAPHIC_PROCESS__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
 @AllocationChild(features = {GraphicPackage.GRAPHIC_PROCESS__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
 @AllocationChild(features = GraphicPackage.GRAPHIC_PROCESS__DESCRIPTOR_POOL)
 @AllocationChild(features = GraphicPackage.GRAPHIC_PROCESS__SUBPASSES)
@@ -29,9 +29,9 @@ public final class GraphicProcessAllocation extends AbstractProcessAllocation
 		super(process, vulkanContext);
 		subpassManager = new SubpassManager(process);
 
-		if (process.getVulkanResourcePkg() == null)
+		if (process.getResourcePkg() == null)
 		{
-			process.setVulkanResourcePkg(VulkanFactory.eINSTANCE.createVulkanResourcePkg());
+			process.setResourcePkg(VulkanFactory.eINSTANCE.createVulkanResourcePkg());
 		}
 		if (process.getDescriptorPkg() == null)
 		{

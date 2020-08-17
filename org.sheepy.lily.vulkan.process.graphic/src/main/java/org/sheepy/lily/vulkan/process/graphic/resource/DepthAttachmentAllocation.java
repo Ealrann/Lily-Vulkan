@@ -55,7 +55,7 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 		final int height = extent.y();
 		final int usages = VulkanModelUtil.getEnumeratedFlag(depthAttachment.getUsages()) | VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
-		final var depthImageBuilder = VkImage.newBuilder(width, height, depthFormat);
+		final var depthImageBuilder = VkImage.newBuilder(depthAttachment.getName(), width, height, depthFormat);
 		depthImageBuilder.usage(usages);
 		depthImageBuilder.aspect(VK_IMAGE_ASPECT_DEPTH_BIT);
 
@@ -65,8 +65,10 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 	private VkImageView createAndAllocateImageView(LogicalDevice logicalDevice)
 	{
 		final var device = logicalDevice.getVkDevice();
-		final var depthImageView = new VkImageView(VK_IMAGE_ASPECT_DEPTH_BIT);
-		depthImageView.allocate(device, depthImageBackend);
+		final var depthImageView = new VkImageView(device,
+												   depthAttachment.getName(),
+												   depthImageBackend,
+												   VK_IMAGE_ASPECT_DEPTH_BIT);
 
 		return depthImageView;
 	}

@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;

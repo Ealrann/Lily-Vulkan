@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
 import org.joml.Vector2ic;
-import org.sheepy.lily.vulkan.model.resource.StaticImage;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;

@@ -11,7 +11,6 @@ module org.sheepy.lily.vulkan.process {
 	exports org.sheepy.lily.vulkan.process.pipeline.builder;
 	exports org.sheepy.lily.vulkan.process.process;
 
-	opens org.sheepy.lily.vulkan.process.cadence;
 	opens org.sheepy.lily.vulkan.process.barrier;
 	opens org.sheepy.lily.vulkan.process.pipeline;
 	opens org.sheepy.lily.vulkan.process.pipeline.task;

@@ -64,12 +64,12 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case VulkanPackage.VULKAN_ENGINE: return createVulkanEngine();
-			case VulkanPackage.VULKAN_RESOURCE_PKG: return createVulkanResourcePkg();
-			case VulkanPackage.RUN_PROCESS: return createRunProcess();
-			case VulkanPackage.WAIT_PROCESS_IDLE: return createWaitProcessIdle();
-			case VulkanPackage.DESCRIPTOR_PKG: return createDescriptorPkg();
-			case VulkanPackage.MOUSE_LOCATION: return createMouseLocation();
+			case VulkanPackage.VULKAN_ENGINE: return (EObject)createVulkanEngine();
+			case VulkanPackage.VULKAN_RESOURCE_PKG: return (EObject)createVulkanResourcePkg();
+			case VulkanPackage.RUN_PROCESS: return (EObject)createRunProcess();
+			case VulkanPackage.WAIT_PROCESS_IDLE: return (EObject)createWaitProcessIdle();
+			case VulkanPackage.DESCRIPTOR_PKG: return (EObject)createDescriptorPkg();
+			case VulkanPackage.MOUSE_LOCATION: return (EObject)createMouseLocation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

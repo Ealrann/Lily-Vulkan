@@ -16,11 +16,8 @@ import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
-import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
@@ -29,7 +26,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg;
@@ -68,8 +64,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -337,13 +333,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attachmentDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass compositorEClass = null;
 
 	/**
@@ -404,10 +393,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		// Initialize simple dependencies
 		ResourcePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
 		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
@@ -424,24 +411,24 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		ComputePackageImpl theComputePackage = (ComputePackageImpl)(registeredPackage instanceof ComputePackageImpl ? registeredPackage : ComputePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(registeredPackage instanceof ProcessPackageImpl ? registeredPackage : ProcessPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
-		VulkanResourcePackageImpl theVulkanResourcePackage = (VulkanResourcePackageImpl)(registeredPackage instanceof VulkanResourcePackageImpl ? registeredPackage : VulkanResourcePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
+		VulkanResourcePackageImpl theVulkanResourcePackage = (VulkanResourcePackageImpl)(registeredPackage instanceof VulkanResourcePackageImpl ? registeredPackage : VulkanResourcePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGraphicPackage.createPackageContents();
 		theComputePackage.createPackageContents();
 		theProcessPackage.createPackageContents();
-		theVulkanResourcePackage.createPackageContents();
 		theVulkanPackage.createPackageContents();
+		theVulkanResourcePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGraphicPackage.initializePackageContents();
 		theComputePackage.initializePackageContents();
 		theProcessPackage.initializePackageContents();
-		theVulkanResourcePackage.initializePackageContents();
 		theVulkanPackage.initializePackageContents();
+		theVulkanResourcePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theGraphicPackage.freeze();
@@ -1032,17 +1019,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	public EReference getSubpass_ExtensionPkg()
 	{
 		return (EReference)subpassEClass.getEStructuralFeatures().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSubpass_ResourcePkg()
-	{
-		return (EReference)subpassEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -1909,28 +1885,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getAttachmentDescriptor()
-	{
-		return attachmentDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAttachmentDescriptor_Attachment()
-	{
-		return (EReference)attachmentDescriptorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getCompositor()
 	{
 		return compositorEClass;
@@ -2110,7 +2064,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(subpassEClass, SUBPASS__SYNC_ACCESSES);
 		createEAttribute(subpassEClass, SUBPASS__FINISH_ACCESSES);
 		createEReference(subpassEClass, SUBPASS__EXTENSION_PKG);
-		createEReference(subpassEClass, SUBPASS__RESOURCE_PKG);
 
 		attachmentRefPkgEClass = createEClass(ATTACHMENT_REF_PKG);
 		createEReference(attachmentRefPkgEClass, ATTACHMENT_REF_PKG__ATTACHMENT_REFS);
@@ -2211,9 +2164,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(bindIndexBufferEClass, BIND_INDEX_BUFFER__INDEX_TYPE);
 		createEReference(bindIndexBufferEClass, BIND_INDEX_BUFFER__BUFFER);
 
-		attachmentDescriptorEClass = createEClass(ATTACHMENT_DESCRIPTOR);
-		createEReference(attachmentDescriptorEClass, ATTACHMENT_DESCRIPTOR__ATTACHMENT);
-
 		compositorEClass = createEClass(COMPOSITOR);
 		createEReference(compositorEClass, COMPOSITOR__VERTEX_SHADER);
 		createEReference(compositorEClass, COMPOSITOR__FRAGMENT_SHADER);
@@ -2256,9 +2206,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		ApplicationPackage theApplicationPackage = (ApplicationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplicationPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
-		MaintainerPackage theMaintainerPackage = (MaintainerPackage)EPackage.Registry.INSTANCE.getEPackage(MaintainerPackage.eNS_URI);
 		VulkanResourcePackage theVulkanResourcePackage = (VulkanResourcePackage)EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
+		MaintainerPackage theMaintainerPackage = (MaintainerPackage)EPackage.Registry.INSTANCE.getEPackage(MaintainerPackage.eNS_URI);
 		GraphicpipelinePackage theGraphicpipelinePackage = (GraphicpipelinePackage)EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
@@ -2277,7 +2226,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		subpassEClass.getESuperTypes().add(theVulkanPackage.getIResourceContainer());
 		subpassEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		attachmentEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		attachmentEClass.getESuperTypes().add(theResourcePackage.getIImage());
+		attachmentEClass.getESuperTypes().add(theVulkanResourcePackage.getIVulkanImage());
 		swapImageAttachmentEClass.getESuperTypes().add(this.getAttachment());
 		extraAttachmentEClass.getESuperTypes().add(this.getAttachment());
 		EGenericType g1 = createEGenericType(theProcessPackage.getAbstractProcess());
@@ -2303,7 +2252,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		setScissorEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		setViewportEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		bindIndexBufferEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
-		attachmentDescriptorEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
 		compositorEClass.getESuperTypes().add(theApplicationPackage.getICompositor());
 		compositorEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 
@@ -2374,7 +2322,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSubpass_SyncAccesses(), theEnumerationPackage.getEAccess(), "syncAccesses", null, 0, -1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpass_FinishAccesses(), theEnumerationPackage.getEAccess(), "finishAccesses", null, 0, -1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSubpass_ExtensionPkg(), theProcessPackage.getProcessExtensionPkg(), null, "extensionPkg", null, 0, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSubpass_ResourcePkg(), theResourcePackage.getResourcePkg(), null, "resourcePkg", null, 0, 1, Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attachmentRefPkgEClass, AttachmentRefPkg.class, "AttachmentRefPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttachmentRefPkg_AttachmentRefs(), this.getAttachmentRef(), null, "attachmentRefs", null, 0, -1, AttachmentRefPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2418,12 +2365,12 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEClass(abstractBlitTaskEClass, AbstractBlitTask.class, "AbstractBlitTask", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractBlitTask_Filter(), theEnumerationPackage.getEFilter(), "filter", "NEAREST", 0, 1, AbstractBlitTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractBlitTask_ClearColor(), theTypesPackage.getVector3i(), "clearColor", "0;0;0", 1, 1, AbstractBlitTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractBlitTask_SrcImage(), theResourcePackage.getIImage(), null, "srcImage", null, 1, 1, AbstractBlitTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractBlitTask_SrcImage(), theVulkanResourcePackage.getIVulkanImage(), null, "srcImage", null, 1, 1, AbstractBlitTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(blitToSwapImageEClass, BlitToSwapImage.class, "BlitToSwapImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(blitTaskEClass, BlitTask.class, "BlitTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBlitTask_DstImage(), theResourcePackage.getIImage(), null, "dstImage", null, 1, 1, BlitTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBlitTask_DstImage(), theVulkanResourcePackage.getIVulkanImage(), null, "dstImage", null, 1, 1, BlitTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(drawIndexedEClass, DrawIndexed.class, "DrawIndexed", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDrawIndexed_IndexCount(), ecorePackage.getEInt(), "indexCount", null, 1, 1, DrawIndexed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2474,9 +2421,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEClass(bindIndexBufferEClass, BindIndexBuffer.class, "BindIndexBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBindIndexBuffer_IndexType(), theEnumerationPackage.getEIndexType(), "indexType", "UINT32", 0, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBindIndexBuffer_Buffer(), theVulkanResourcePackage.getIBuffer(), null, "buffer", null, 0, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(attachmentDescriptorEClass, AttachmentDescriptor.class, "AttachmentDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttachmentDescriptor_Attachment(), this.getExtraAttachment(), null, "attachment", null, 1, 1, AttachmentDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositorEClass, Compositor.class, "Compositor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositor_VertexShader(), theVulkanResourcePackage.getShader(), null, "vertexShader", null, 1, 1, Compositor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

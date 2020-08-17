@@ -118,7 +118,7 @@ public class MouseLocationImpl extends LilyEObject implements MouseLocation
 	{
 		if (vulkanEngine != null && ((EObject)vulkanEngine).eIsProxy())
 		{
-			InternalEObject oldVulkanEngine = vulkanEngine;
+			InternalEObject oldVulkanEngine = (InternalEObject)vulkanEngine;
 			vulkanEngine = (VulkanEngine)eResolveProxy(oldVulkanEngine);
 			if (vulkanEngine != oldVulkanEngine)
 			{

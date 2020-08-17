@@ -896,31 +896,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AttachmentDescriptorItemProvider attachmentDescriptorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAttachmentDescriptorAdapter()
-	{
-		if (attachmentDescriptorItemProvider == null)
-		{
-			attachmentDescriptorItemProvider = new AttachmentDescriptorItemProvider(this);
-		}
-
-		return attachmentDescriptorItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Compositor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

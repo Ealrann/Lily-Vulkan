@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
+import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 
 public class GrowEngineFactory
 {
@@ -68,7 +68,7 @@ public class GrowEngineFactory
 		process.setPipelinePkg(pipelinePkg);
 
 		final var resourcePkg = VulkanFactory.eINSTANCE.createVulkanResourcePkg();
-		process.setVulkanResourcePkg(resourcePkg);
+		process.setResourcePkg(resourcePkg);
 		final var resourceList = resourcePkg.getResources();
 		resourceList.add(memoryChunk);
 

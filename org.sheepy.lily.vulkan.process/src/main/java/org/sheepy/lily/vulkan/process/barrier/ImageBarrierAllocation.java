@@ -7,10 +7,10 @@ import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAllocation;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
-import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageBarrier;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;

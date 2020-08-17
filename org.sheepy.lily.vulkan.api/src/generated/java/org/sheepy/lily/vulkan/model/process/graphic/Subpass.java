@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.application.ICompositor;
-import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
@@ -34,7 +33,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getSyncAccesses <em>Sync Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getFinishAccesses <em>Finish Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getExtensionPkg <em>Extension Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getResourcePkg <em>Resource Pkg</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass()
@@ -317,27 +315,5 @@ public interface Subpass extends IResourceContainer, LNamedElement
 	 * @generated
 	 */
 	void setExtensionPkg(ProcessExtensionPkg value);
-
-	/**
-	 * Returns the value of the '<em><b>Resource Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Resource Pkg</em>' containment reference.
-	 * @see #setResourcePkg(ResourcePkg)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpass_ResourcePkg()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ResourcePkg getResourcePkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getResourcePkg <em>Resource Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Resource Pkg</em>' containment reference.
-	 * @see #getResourcePkg()
-	 * @generated
-	 */
-	void setResourcePkg(ResourcePkg value);
 
 } // Subpass

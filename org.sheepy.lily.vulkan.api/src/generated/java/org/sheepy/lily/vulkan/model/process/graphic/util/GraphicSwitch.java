@@ -12,8 +12,6 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 
@@ -26,7 +24,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
-
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.Barrier;
 
@@ -165,6 +163,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseImageAttachment(imageAttachment);
 				if (result == null) result = caseExtraAttachment(imageAttachment);
 				if (result == null) result = caseAttachment(imageAttachment);
+				if (result == null) result = caseIVulkanImage(imageAttachment);
 				if (result == null) result = caseIImage(imageAttachment);
 				if (result == null) result = caseLNamedElement(imageAttachment);
 				if (result == null) result = defaultCase(theEObject);
@@ -176,6 +175,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseDepthAttachment(depthAttachment);
 				if (result == null) result = caseExtraAttachment(depthAttachment);
 				if (result == null) result = caseAttachment(depthAttachment);
+				if (result == null) result = caseIVulkanImage(depthAttachment);
 				if (result == null) result = caseIImage(depthAttachment);
 				if (result == null) result = caseLNamedElement(depthAttachment);
 				if (result == null) result = defaultCase(theEObject);
@@ -187,6 +187,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseColorAttachment(colorAttachment);
 				if (result == null) result = caseExtraAttachment(colorAttachment);
 				if (result == null) result = caseAttachment(colorAttachment);
+				if (result == null) result = caseIVulkanImage(colorAttachment);
 				if (result == null) result = caseIImage(colorAttachment);
 				if (result == null) result = caseLNamedElement(colorAttachment);
 				if (result == null) result = defaultCase(theEObject);
@@ -226,6 +227,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			{
 				Attachment attachment = (Attachment)theEObject;
 				T1 result = caseAttachment(attachment);
+				if (result == null) result = caseIVulkanImage(attachment);
 				if (result == null) result = caseIImage(attachment);
 				if (result == null) result = caseLNamedElement(attachment);
 				if (result == null) result = defaultCase(theEObject);
@@ -236,6 +238,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				SwapImageAttachment swapImageAttachment = (SwapImageAttachment)theEObject;
 				T1 result = caseSwapImageAttachment(swapImageAttachment);
 				if (result == null) result = caseAttachment(swapImageAttachment);
+				if (result == null) result = caseIVulkanImage(swapImageAttachment);
 				if (result == null) result = caseIImage(swapImageAttachment);
 				if (result == null) result = caseLNamedElement(swapImageAttachment);
 				if (result == null) result = defaultCase(theEObject);
@@ -246,6 +249,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				ExtraAttachment extraAttachment = (ExtraAttachment)theEObject;
 				T1 result = caseExtraAttachment(extraAttachment);
 				if (result == null) result = caseAttachment(extraAttachment);
+				if (result == null) result = caseIVulkanImage(extraAttachment);
 				if (result == null) result = caseIImage(extraAttachment);
 				if (result == null) result = caseLNamedElement(extraAttachment);
 				if (result == null) result = defaultCase(theEObject);
@@ -395,15 +399,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseBindIndexBuffer(bindIndexBuffer);
 				if (result == null) result = caseIPipelineTask(bindIndexBuffer);
 				if (result == null) result = caseLNamedElement(bindIndexBuffer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.ATTACHMENT_DESCRIPTOR:
-			{
-				AttachmentDescriptor attachmentDescriptor = (AttachmentDescriptor)theEObject;
-				T1 result = caseAttachmentDescriptor(attachmentDescriptor);
-				if (result == null) result = caseIDescriptor(attachmentDescriptor);
-				if (result == null) result = caseLNamedElement(attachmentDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -982,22 +977,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attachment Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attachment Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseAttachmentDescriptor(AttachmentDescriptor object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Compositor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1089,6 +1068,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIImage(IImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IVulkan Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IVulkan Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIVulkanImage(IVulkanImage object)
 	{
 		return null;
 	}
@@ -1249,22 +1244,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIPipelineTask(IPipelineTask object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIDescriptor(IDescriptor object)
 	{
 		return null;
 	}

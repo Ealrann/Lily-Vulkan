@@ -88,13 +88,13 @@ public interface SpritePackage extends EPackage
 	int SPRITE_RENDERER__ENABLED = RenderingPackage.GENERIC_RENDERER__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__VULKAN_RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__VULKAN_RESOURCE_PKG;
+	int SPRITE_RENDERER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.

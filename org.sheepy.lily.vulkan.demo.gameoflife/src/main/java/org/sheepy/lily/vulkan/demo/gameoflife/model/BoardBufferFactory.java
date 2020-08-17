@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
-import org.sheepy.lily.vulkan.model.resource.DataBuffer;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.DataBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 public class BoardBufferFactory

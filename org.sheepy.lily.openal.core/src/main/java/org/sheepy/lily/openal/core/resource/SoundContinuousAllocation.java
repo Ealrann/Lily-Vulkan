@@ -9,7 +9,7 @@ import org.sheepy.lily.game.api.allocation.IGameAllocationContext;
 import org.sheepy.lily.game.api.audio.AudioConfiguration;
 import org.sheepy.lily.game.api.audio.IAudioAllocation;
 import org.sheepy.lily.openal.core.engine.IOpenALAudioHandle;
-import org.sheepy.lily.openal.core.engine.OpenALEngineAdapter;
+import org.sheepy.lily.openal.core.engine.OpenALEngineAllocation;
 import org.sheepy.lily.openal.core.engine.context.ISoundContext;
 import org.sheepy.lily.openal.core.engine.descriptor.StreamSoundDescriptor;
 import org.sheepy.lily.openal.core.engine.handle.StreamPacket;
@@ -39,7 +39,7 @@ public final class SoundContinuousAllocation implements IAudioAllocation
 		sustainAudio = rawAudioBuffer.slice(attackMs, decayMs);
 		decayAudio = rawAudioBuffer.slice(decayMs, totalMs);
 		final var engine = ModelUtil.findParent(sound, OpenALEngine.class);
-		final var engineAdapter = engine.adapt(OpenALEngineAdapter.class);
+		final var engineAdapter = engine.adapt(OpenALEngineAllocation.class);
 		soundContext = engineAdapter.getContext();
 	}
 

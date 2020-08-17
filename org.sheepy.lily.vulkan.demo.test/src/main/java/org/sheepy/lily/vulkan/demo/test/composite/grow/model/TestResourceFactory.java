@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.demo.test.composite.grow.model;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.adapter.TestDataProviderAdapter;
-import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 class TestResourceFactory

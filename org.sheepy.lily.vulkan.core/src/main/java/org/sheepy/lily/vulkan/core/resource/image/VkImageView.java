@@ -1,42 +1,29 @@
 package org.sheepy.lily.vulkan.core.resource.image;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageViewCreateInfo;
+import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.util.Logger;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 public final class VkImageView
 {
 	private static final String FAILED_TO_CREATE_IMAGE_VIEW = "Failed to create image view";
+	public static final String VIEW_PREFIX = "[View]";
 
-	private final int aspectMask;
+	private final long imagePtr;
+	private final long imageViewPtr;
 
-	private int imageFormat;
-	private long imagePtr = 0;
-	private long imageViewPtr = 0;
-
-	public static VkImageView alloc(VkDevice device, long imageAddress, int format, int aspectMask)
+	public VkImageView(VkDevice device, String name, VkImage image, int aspectMask)
 	{
-		final VkImageView res = new VkImageView(aspectMask);
-		res.allocate(device, imageAddress, 1, format);
-		return res;
+		this(device, name, image.getPtr(), image.mipLevels, image.format, aspectMask);
 	}
 
-	public VkImageView(int aspectMask)
-	{
-		this.aspectMask = aspectMask;
-	}
-
-	public void allocate(VkDevice device, VkImage image)
-	{
-		allocate(device, image.getPtr(), image.mipLevels, image.format);
-	}
-
-	public void allocate(VkDevice device, long imagePtr, int levelCount, int format)
+	public VkImageView(VkDevice device, String name, long imagePtr, int levelCount, int format, int aspectMask)
 	{
 		this.imagePtr = imagePtr;
-		this.imageFormat = format;
 
 		final VkImageViewCreateInfo createInfo = VkImageViewCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO);
@@ -54,17 +41,17 @@ public final class VkImageView
 		createInfo.subresourceRange().layerCount(1);
 
 		final long[] aBuffer = new long[1];
-		Logger.check(	vkCreateImageView(device, createInfo, null, aBuffer),
-						FAILED_TO_CREATE_IMAGE_VIEW);
+		Logger.check(vkCreateImageView(device, createInfo, null, aBuffer), FAILED_TO_CREATE_IMAGE_VIEW);
 		imageViewPtr = aBuffer[0];
 
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.register(imageViewPtr, VIEW_PREFIX + name);
 		createInfo.free();
 	}
 
 	public void free(VkDevice device)
 	{
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(imageViewPtr);
 		vkDestroyImageView(device, imageViewPtr, null);
-		imageViewPtr = 0;
 	}
 
 	public long getPtr()
@@ -75,10 +62,5 @@ public final class VkImageView
 	public long getImagePtr()
 	{
 		return imagePtr;
-	}
-
-	public int getImageFormat()
-	{
-		return imageFormat;
 	}
 }

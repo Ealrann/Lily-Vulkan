@@ -5,9 +5,9 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.model.resource.BufferViewer;
-import org.sheepy.lily.vulkan.model.resource.IBuffer;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAdapter;
 
 import java.util.List;

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<graphic:Subpass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graphic="org.sheepy.lily.vulkan.model.process.graphic" xmlns:graphicpipeline="org.sheepy.vulkan.model.graphicpipeline" xmlns:process="org.sheepy.lily.vulkan.model.process" xmlns:resource="org.sheepy.lily.vulkan.model.resource" xmlns:resource_1="org.sheepy.lily.core.model.resource" name="PostEffect" waitForStage="COLOR_ATTACHMENT_OUTPUT_BIT" syncStage="FRAGMENT_SHADER_BIT" finishStage="COLOR_ATTACHMENT_OUTPUT_BIT">
+<graphic:Subpass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graphic="org.sheepy.lily.vulkan.model.process.graphic" xmlns:graphicpipeline="org.sheepy.vulkan.model.graphicpipeline" xmlns:process="org.sheepy.lily.vulkan.model.process" xmlns:resource="org.sheepy.lily.core.model.resource" xmlns:vulkanresource="org.sheepy.lily.vulkan.model.resource" name="ScreenEffect" waitForStage="COLOR_ATTACHMENT_OUTPUT_BIT" syncStage="FRAGMENT_SHADER_BIT" finishStage="COLOR_ATTACHMENT_OUTPUT_BIT">
   <resourcePkg>
-    <resources xsi:type="resource:Shader" name="ScreenVertex">
-      <file xsi:type="resource_1:StringModuleResource" path="screen_effect.vert.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
+    <resources xsi:type="vulkanresource:Shader" name="ScreenVertex">
+      <file xsi:type="resource:StringModuleResource" path="screen_effect.vert.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
     </resources>
-    <resources xsi:type="resource:Shader" name="ScreenFragment" stage="FRAGMENT_BIT">
-      <file xsi:type="resource_1:StringModuleResource" path="screen_effect.frag.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
+    <resources xsi:type="vulkanresource:Shader" name="ScreenFragment" stage="FRAGMENT_BIT">
+      <file xsi:type="resource:StringModuleResource" path="screen_effect.frag.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
     </resources>
-    <resources xsi:type="resource:GenericConstantBuffer" name="Fragment Constants"/>
+    <resources xsi:type="vulkanresource:GenericConstantBuffer" name="Fragment Constants"/>
   </resourcePkg>
   <descriptorPkg>
-    <descriptors xsi:type="graphic:AttachmentDescriptor" name="Scene" type="INPUT_ATTACHMENT">
+    <descriptors xsi:type="vulkanresource:ImageDescriptor" name="Scene" type="INPUT_ATTACHMENT" layout="SHADER_READ_ONLY_OPTIMAL">
       <shaderStages>FRAGMENT_BIT</shaderStages>
     </descriptors>
   </descriptorPkg>
+  <attachmentRefPkg>
+    <attachmentRefs layout="COLOR_ATTACHMENT_OPTIMAL"/>
+    <attachmentRefs layout="SHADER_READ_ONLY_OPTIMAL" type="Input"/>
+  </attachmentRefPkg>
   <pipelinePkg>
     <pipelines xsi:type="graphic:GraphicsPipeline" layout="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0" shaders="//@resourcePkg/@resources.0 //@resourcePkg/@resources.1">
       <taskPkgs>

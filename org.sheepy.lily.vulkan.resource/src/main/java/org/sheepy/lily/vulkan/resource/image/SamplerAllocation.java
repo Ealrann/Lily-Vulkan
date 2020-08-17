@@ -5,8 +5,8 @@ import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.resource.ISamplerAllocation;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
-import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
+import org.sheepy.lily.vulkan.model.vulkanresource.Sampler;
 import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 
 @ModelExtender(scope = Sampler.class)

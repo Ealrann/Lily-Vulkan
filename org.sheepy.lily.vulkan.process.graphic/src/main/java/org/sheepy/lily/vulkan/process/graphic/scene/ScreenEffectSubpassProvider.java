@@ -13,10 +13,10 @@ import org.sheepy.lily.core.model.application.SpecialEffect;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
-import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.lily.vulkan.model.vulkanresource.GenericConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import java.io.IOException;
@@ -40,20 +40,12 @@ public final class ScreenEffectSubpassProvider implements ICompositor_SubpassPro
 
 		subpass = loadSubpass();
 		final var attachmentRefPkg = subpass.getAttachmentRefPkg();
-		final var srcRef = GraphicFactory.eINSTANCE.createAttachmentRef();
-		srcRef.setLayout(EImageLayout.SHADER_READ_ONLY_OPTIMAL);
-		srcRef.setAttachment(srcAttachment);
-		srcRef.setType(EAttachmentType.INPUT);
-		final var dstRef = GraphicFactory.eINSTANCE.createAttachmentRef();
-		dstRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		dstRef.setAttachment(dstAttachment);
-		dstRef.setType(EAttachmentType.COLOR);
 
-		attachmentRefPkg.getAttachmentRefs().add(dstRef);
-		attachmentRefPkg.getAttachmentRefs().add(srcRef);
+		attachmentRefPkg.getAttachmentRefs().get(0).setAttachment(dstAttachment);
+		attachmentRefPkg.getAttachmentRefs().get(1).setAttachment(srcAttachment);
 
-		final var descriptor = (AttachmentDescriptor) subpass.getDescriptorPkg().getDescriptors().get(0);
-		descriptor.setAttachment(srcAttachment);
+		final var descriptor = (ImageDescriptor) subpass.getDescriptorPkg().getDescriptors().get(0);
+		descriptor.getImages().add(srcAttachment);
 
 		graphicPipeline = (GraphicsPipeline) subpass.getPipelinePkg().getPipelines().get(0);
 		constantBuffer = (GenericConstantBuffer) subpass.getResourcePkg().getResources().get(2);
@@ -91,7 +83,7 @@ public final class ScreenEffectSubpassProvider implements ICompositor_SubpassPro
 		shader.setFile(EcoreUtil.copy(effect.getShader()));
 		shader.setStage(EShaderStage.FRAGMENT_BIT);
 
-		subpass.getVulkanResourcePkg().getResources().add(shader);
+		subpass.getResourcePkg().getResources().add(shader);
 		graphicPipeline.getShaders().remove(1);
 		graphicPipeline.getShaders().add(shader);
 

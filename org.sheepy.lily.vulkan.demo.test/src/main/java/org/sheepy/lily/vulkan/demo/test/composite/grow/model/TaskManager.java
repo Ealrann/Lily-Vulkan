@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.resource.*;
+import org.sheepy.lily.vulkan.model.vulkanresource.*;
 import org.sheepy.vulkan.model.barrier.Barrier;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;

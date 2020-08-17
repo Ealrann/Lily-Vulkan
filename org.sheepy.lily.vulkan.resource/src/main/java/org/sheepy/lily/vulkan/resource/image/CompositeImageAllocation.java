@@ -14,13 +14,13 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
-import org.sheepy.lily.vulkan.model.resource.CompositeImage;
-import org.sheepy.lily.vulkan.model.resource.ImageInlay;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.CompositeImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageInlay;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -52,12 +52,11 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 
 		final var vkDevice = context.getVkDevice();
 		final var vkBackground = this.background.getVkImage();
-		final var builder = new VkImageBuilder(image, vkBackground.width, vkBackground.height).initialLayout(null);
+		final var builder =
+				new VkImageBuilder(image.getName(), image, vkBackground.width, vkBackground.height).initialLayout(null);
 
 		imageBackend = context.executeFunction(builder::build);
-
-		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
-		imageView.allocate(vkDevice, imageBackend);
+		imageView = new VkImageView(vkDevice, image.getName(), imageBackend, VK_IMAGE_ASPECT_COLOR_BIT);
 
 		context.executeCommand(this::assembleImage);
 	}

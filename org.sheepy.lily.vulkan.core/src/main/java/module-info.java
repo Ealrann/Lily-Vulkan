@@ -1,5 +1,7 @@
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.Extenders;
+import org.sheepy.lily.vulkan.core.debug.VulkanDebugService;
 
 module org.sheepy.lily.vulkan.core {
 	requires transitive org.sheepy.lily.vulkan.api;
@@ -38,4 +40,5 @@ module org.sheepy.lily.vulkan.core {
 	opens org.sheepy.lily.vulkan.core.variable;
 
 	provides IExtenderProvider with Extenders;
+	provides IVulkanDebugService with VulkanDebugService;
 }

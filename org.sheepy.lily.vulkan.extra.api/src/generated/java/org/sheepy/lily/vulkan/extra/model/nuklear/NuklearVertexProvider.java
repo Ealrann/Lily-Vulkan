@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 
 /**
  * <!-- begin-user-doc -->

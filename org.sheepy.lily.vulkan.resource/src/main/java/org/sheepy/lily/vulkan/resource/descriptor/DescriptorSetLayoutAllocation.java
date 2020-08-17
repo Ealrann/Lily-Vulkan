@@ -15,8 +15,8 @@ import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import static org.lwjgl.vulkan.VK10.*;
 

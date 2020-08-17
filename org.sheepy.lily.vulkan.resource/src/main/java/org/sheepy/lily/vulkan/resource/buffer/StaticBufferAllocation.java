@@ -7,8 +7,8 @@ import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.model.resource.BufferMemory;
-import org.sheepy.lily.vulkan.model.resource.StaticBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.StaticBuffer;
 import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 

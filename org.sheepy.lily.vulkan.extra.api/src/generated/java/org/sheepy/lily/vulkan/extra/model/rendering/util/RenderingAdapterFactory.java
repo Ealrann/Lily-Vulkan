@@ -21,8 +21,8 @@ import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -775,13 +775,13 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider <em>Buffer Data Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider <em>Buffer Data Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider
 	 * @generated
 	 */
 	public Adapter createBufferDataProviderAdapter()
@@ -805,13 +805,13 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer <em>Constant Buffer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer <em>Constant Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.ConstantBuffer
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer
 	 * @generated
 	 */
 	public Adapter createConstantBufferAdapter()

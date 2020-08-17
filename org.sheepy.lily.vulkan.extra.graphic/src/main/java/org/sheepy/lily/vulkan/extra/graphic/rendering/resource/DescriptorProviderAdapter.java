@@ -8,7 +8,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.resource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 
 import java.util.ArrayList;
 import java.util.List;

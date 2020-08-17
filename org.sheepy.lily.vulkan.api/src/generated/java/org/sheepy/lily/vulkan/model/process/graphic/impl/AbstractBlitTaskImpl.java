@@ -13,15 +13,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.joml.Vector3ic;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
-
-import org.sheepy.lily.core.model.resource.IImage;
-
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 
 /**
@@ -131,7 +128,7 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	 * @generated
 	 * @ordered
 	 */
-	protected IImage srcImage;
+	protected IVulkanImage srcImage;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -260,12 +257,12 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	 * @generated
 	 */
 	@Override
-	public IImage getSrcImage()
+	public IVulkanImage getSrcImage()
 	{
 		if (srcImage != null && ((EObject)srcImage).eIsProxy())
 		{
-			InternalEObject oldSrcImage = srcImage;
-			srcImage = (IImage)eResolveProxy(oldSrcImage);
+			InternalEObject oldSrcImage = (InternalEObject)srcImage;
+			srcImage = (IVulkanImage)eResolveProxy(oldSrcImage);
 			if (srcImage != oldSrcImage)
 			{
 				if (eNotificationRequired())
@@ -280,7 +277,7 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IImage basicGetSrcImage()
+	public IVulkanImage basicGetSrcImage()
 	{
 		return srcImage;
 	}
@@ -291,9 +288,9 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 	 * @generated
 	 */
 	@Override
-	public void setSrcImage(IImage newSrcImage)
+	public void setSrcImage(IVulkanImage newSrcImage)
 	{
-		IImage oldSrcImage = srcImage;
+		IVulkanImage oldSrcImage = srcImage;
 		srcImage = newSrcImage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ABSTRACT_BLIT_TASK__SRC_IMAGE, oldSrcImage, srcImage));
@@ -347,7 +344,7 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 				setClearColor((Vector3ic)newValue);
 				return;
 			case GraphicPackage.ABSTRACT_BLIT_TASK__SRC_IMAGE:
-				setSrcImage((IImage)newValue);
+				setSrcImage((IVulkanImage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -376,7 +373,7 @@ public abstract class AbstractBlitTaskImpl extends LilyEObject implements Abstra
 				setClearColor(CLEAR_COLOR_EDEFAULT);
 				return;
 			case GraphicPackage.ABSTRACT_BLIT_TASK__SRC_IMAGE:
-				setSrcImage((IImage)null);
+				setSrcImage((IVulkanImage)null);
 				return;
 		}
 		super.eUnset(featureID);

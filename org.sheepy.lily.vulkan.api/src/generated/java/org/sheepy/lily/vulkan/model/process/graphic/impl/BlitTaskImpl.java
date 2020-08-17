@@ -9,9 +9,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	 * @generated
 	 * @ordered
 	 */
-	protected IImage dstImage;
+	protected IVulkanImage dstImage;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,12 +65,12 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	 * @generated
 	 */
 	@Override
-	public IImage getDstImage()
+	public IVulkanImage getDstImage()
 	{
 		if (dstImage != null && ((EObject)dstImage).eIsProxy())
 		{
-			InternalEObject oldDstImage = dstImage;
-			dstImage = (IImage)eResolveProxy(oldDstImage);
+			InternalEObject oldDstImage = (InternalEObject)dstImage;
+			dstImage = (IVulkanImage)eResolveProxy(oldDstImage);
 			if (dstImage != oldDstImage)
 			{
 				if (eNotificationRequired())
@@ -85,7 +85,7 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IImage basicGetDstImage()
+	public IVulkanImage basicGetDstImage()
 	{
 		return dstImage;
 	}
@@ -96,9 +96,9 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 	 * @generated
 	 */
 	@Override
-	public void setDstImage(IImage newDstImage)
+	public void setDstImage(IVulkanImage newDstImage)
 	{
-		IImage oldDstImage = dstImage;
+		IVulkanImage oldDstImage = dstImage;
 		dstImage = newDstImage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.BLIT_TASK__DST_IMAGE, oldDstImage, dstImage));
@@ -132,7 +132,7 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 		switch (featureID)
 		{
 			case GraphicPackage.BLIT_TASK__DST_IMAGE:
-				setDstImage((IImage)newValue);
+				setDstImage((IVulkanImage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -149,7 +149,7 @@ public class BlitTaskImpl extends AbstractBlitTaskImpl implements BlitTask
 		switch (featureID)
 		{
 			case GraphicPackage.BLIT_TASK__DST_IMAGE:
-				setDstImage((IImage)null);
+				setDstImage((IVulkanImage)null);
 				return;
 		}
 		super.eUnset(featureID);

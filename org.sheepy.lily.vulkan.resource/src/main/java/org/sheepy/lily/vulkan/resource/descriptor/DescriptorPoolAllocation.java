@@ -16,8 +16,8 @@ import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public final class DescriptorPoolAllocation implements IExtender
 			for (final var descriptor : descriptorSet.getDescriptors())
 			{
 				final var adapter = descriptor.adapt(IDescriptorAdapter.class);
-				if (adapter.sizeInPool() >= 0)
+				if (adapter.sizeInPool() > 0)
 				{
 					poolSizeCounter++;
 				}
@@ -68,7 +68,7 @@ public final class DescriptorPoolAllocation implements IExtender
 				{
 					final var adapter = descriptor.adapt(IDescriptorAdapter.class);
 					final int sizeInPool = adapter.sizeInPool();
-					if (sizeInPool >= 0)
+					if (sizeInPool > 0)
 					{
 						final var p = poolSizes.get();
 						p.type(descriptor.getType().getValue());

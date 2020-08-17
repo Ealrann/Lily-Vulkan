@@ -35,8 +35,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.Compositor;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-
-import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +46,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl#getExtensionPkg <em>Extension Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl#getVertexShader <em>Vertex Shader</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.CompositorImpl#getFragmentShader <em>Fragment Shader</em>}</li>
@@ -69,6 +69,26 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	 * @ordered
 	 */
 	protected CompositorExtensionPkg extensionPkg;
+
+	/**
+	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ENABLED_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -246,6 +266,31 @@ public class CompositorImpl extends LilyEObject implements Compositor
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COMPOSITOR__EXTENSION_PKG, newExtensionPkg, newExtensionPkg));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEnabled(boolean newEnabled)
+	{
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COMPOSITOR__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -537,6 +582,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				if (resolve) return getExtensionPkg();
 				return basicGetExtensionPkg();
+			case GraphicPackage.COMPOSITOR__ENABLED:
+				return isEnabled();
 			case GraphicPackage.COMPOSITOR__NAME:
 				return getName();
 			case GraphicPackage.COMPOSITOR__VERTEX_SHADER:
@@ -570,6 +617,9 @@ public class CompositorImpl extends LilyEObject implements Compositor
 		{
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				setExtensionPkg((CompositorExtensionPkg)newValue);
+				return;
+			case GraphicPackage.COMPOSITOR__ENABLED:
+				setEnabled((Boolean)newValue);
 				return;
 			case GraphicPackage.COMPOSITOR__NAME:
 				setName((String)newValue);
@@ -611,6 +661,9 @@ public class CompositorImpl extends LilyEObject implements Compositor
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				setExtensionPkg((CompositorExtensionPkg)null);
 				return;
+			case GraphicPackage.COMPOSITOR__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
 			case GraphicPackage.COMPOSITOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -648,6 +701,8 @@ public class CompositorImpl extends LilyEObject implements Compositor
 		{
 			case GraphicPackage.COMPOSITOR__EXTENSION_PKG:
 				return extensionPkg != null;
+			case GraphicPackage.COMPOSITOR__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
 			case GraphicPackage.COMPOSITOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.COMPOSITOR__VERTEX_SHADER:
@@ -731,7 +786,9 @@ public class CompositorImpl extends LilyEObject implements Compositor
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
+		result.append(" (enabled: ");
+		result.append(enabled);
+		result.append(", name: ");
 		result.append(name);
 		result.append(')');
 		return result.toString();

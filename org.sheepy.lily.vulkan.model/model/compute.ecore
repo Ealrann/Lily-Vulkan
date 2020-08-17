@@ -10,7 +10,7 @@
         eType="#//ComputeConfiguration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputePipeline">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="shader" eType="ecore:EClass resource.ecore#//Shader"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shader" eType="ecore:EClass vulkanresource.ecore#//Shader"/>
     <eGenericSuperTypes eClassifier="ecore:EClass process.ecore#//VkPipeline"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainable">
       <eTypeArguments eClassifier="#//ComputePipeline"/>

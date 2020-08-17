@@ -13,7 +13,7 @@ import org.sheepy.lily.core.api.model.ILilyEObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.IResourceContainer#getVulkanResourcePkg <em>Vulkan Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.IResourceContainer#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.IResourceContainer#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  * </ul>
  *
@@ -25,26 +25,26 @@ import org.sheepy.lily.core.api.model.ILilyEObject;
 public interface IResourceContainer extends ILilyEObject
 {
 	/**
-	 * Returns the value of the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vulkan Resource Pkg</em>' containment reference.
-	 * @see #setVulkanResourcePkg(VulkanResourcePkg)
-	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIResourceContainer_VulkanResourcePkg()
+	 * @return the value of the '<em>Resource Pkg</em>' containment reference.
+	 * @see #setResourcePkg(VulkanResourcePkg)
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIResourceContainer_ResourcePkg()
 	 * @model containment="true"
 	 * @generated
 	 */
-	VulkanResourcePkg getVulkanResourcePkg();
+	VulkanResourcePkg getResourcePkg();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.IResourceContainer#getVulkanResourcePkg <em>Vulkan Resource Pkg</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.IResourceContainer#getResourcePkg <em>Resource Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Vulkan Resource Pkg</em>' containment reference.
-	 * @see #getVulkanResourcePkg()
+	 * @param value the new value of the '<em>Resource Pkg</em>' containment reference.
+	 * @see #getResourcePkg()
 	 * @generated
 	 */
-	void setVulkanResourcePkg(VulkanResourcePkg value);
+	void setResourcePkg(VulkanResourcePkg value);
 
 	/**
 	 * Returns the value of the '<em><b>Descriptor Pkg</b></em>' containment reference.

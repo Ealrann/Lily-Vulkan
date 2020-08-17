@@ -5,7 +5,7 @@ import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;

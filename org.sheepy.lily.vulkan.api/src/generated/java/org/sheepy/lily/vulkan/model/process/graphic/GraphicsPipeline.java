@@ -5,7 +5,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
-import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
@@ -40,7 +40,7 @@ public interface GraphicsPipeline extends VkPipeline, Maintainable<GraphicsPipel
 {
 	/**
 	 * Returns the value of the '<em><b>Shaders</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.Shader}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.vulkanresource.Shader}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shaders</em>' reference list.

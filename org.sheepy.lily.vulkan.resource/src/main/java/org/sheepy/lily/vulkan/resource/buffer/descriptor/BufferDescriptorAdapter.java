@@ -6,7 +6,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDescriptor;
 
 @ModelExtender(scope = BufferDescriptor.class)
 @Adapter

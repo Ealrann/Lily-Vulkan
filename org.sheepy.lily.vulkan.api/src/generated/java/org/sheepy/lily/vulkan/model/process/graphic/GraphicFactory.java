@@ -311,15 +311,6 @@ public interface GraphicFactory extends EFactory
 	BindIndexBuffer createBindIndexBuffer();
 
 	/**
-	 * Returns a new object of class '<em>Attachment Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attachment Descriptor</em>'.
-	 * @generated
-	 */
-	AttachmentDescriptor createAttachmentDescriptor();
-
-	/**
 	 * Returns a new object of class '<em>Compositor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -7,9 +7,9 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.resource.IVulkanBufferAllocation;
-import org.sheepy.lily.vulkan.model.resource.BufferDescriptor;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.core.resource.buffer.IVulkanBufferAllocation;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDescriptor;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 @ModelExtender(scope = BufferDescriptor.class)
 @Allocation

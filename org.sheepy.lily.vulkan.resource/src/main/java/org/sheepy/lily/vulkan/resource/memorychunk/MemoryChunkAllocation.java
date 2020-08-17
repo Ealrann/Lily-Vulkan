@@ -13,8 +13,8 @@ import org.sheepy.lily.vulkan.resource.util.DeviceResourceFiller;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
-import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 
 import java.util.List;

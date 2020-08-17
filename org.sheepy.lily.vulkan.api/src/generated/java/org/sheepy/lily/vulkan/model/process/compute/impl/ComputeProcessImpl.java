@@ -145,7 +145,7 @@ public class ComputeProcessImpl extends AbstractProcessImpl implements ComputePr
 	{
 		if (sourceEngine != null && ((EObject)sourceEngine).eIsProxy())
 		{
-			InternalEObject oldSourceEngine = sourceEngine;
+			InternalEObject oldSourceEngine = (InternalEObject)sourceEngine;
 			sourceEngine = (IEngine)eResolveProxy(oldSourceEngine);
 			if (sourceEngine != oldSourceEngine)
 			{

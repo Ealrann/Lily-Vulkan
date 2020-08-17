@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.nuklear.resource;
 
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
@@ -18,7 +17,6 @@ import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearIndexProviderAdapter;
 import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearVertexProviderAdapter;
@@ -62,18 +60,17 @@ public class NuklearContextAllocation implements IExtender
 		drawTaskMaintainer = new DrawTaskMaintainer(drawTask, vertexBuffer);
 
 		window = context.getWindow();
-		state = new NuklearState.Builder().build(defaultNkFont, window);
+		state = NuklearState.build(defaultNkFont, window);
 
-		final var pipeline = ModelUtil.findParent(nuklearContext, GraphicsPipeline.class);
-		vertexBaker = new NuklearVertexBaker(pipeline, state);
+		vertexBaker = new NuklearVertexBaker(state);
 
 		final var subpass = ModelUtil.findParent(nuklearContext, Subpass.class);
 		this.layoutManager = new LayoutManager(state.nkContext(),
 											   subpass,
-											   context,
+											   window,
 											   nuklearContext.getFont(),
 											   observatory);
-		final var inputCatcher = new NuklearInputCatcher(state.nkContext(), context.getWindow(), layoutManager);
+		final var inputCatcher = new NuklearInputCatcher(state.nkContext(), window, layoutManager);
 		inputManager.setInputCatcher(inputCatcher);
 	}
 
@@ -81,17 +78,6 @@ public class NuklearContextAllocation implements IExtender
 	public void free()
 	{
 		state.free();
-		layoutManager.free();
-	}
-
-	@Dispose
-	public void dispose()
-	{
-		final var imageDescriptor = nuklearContext.getImageArrayDescriptor();
-		if (imageDescriptor != null)
-		{
-			imageDescriptor.getImages().clear();
-		}
 	}
 
 	@Tick(priority = -10)

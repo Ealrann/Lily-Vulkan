@@ -10,10 +10,10 @@ import org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
-import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.*;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
@@ -33,7 +33,7 @@ public final class MeshSubpassBuilder
 	public Subpass build(GraphicProcess process)
 	{
 		final var res = GraphicFactory.eINSTANCE.createSubpass();
-		final var pipelines = buildPipelines(res);
+		final var pipelines = buildPipelines();
 		final var pipelinePkg = ProcessFactory.eINSTANCE.createPipelinePkg();
 		pipelinePkg.getPipelines().addAll(pipelines);
 		final var attachmentRefPkg = GraphicFactory.eINSTANCE.createAttachmentRefPkg();
@@ -60,7 +60,7 @@ public final class MeshSubpassBuilder
 		return res;
 	}
 
-	private List<AbstractPipeline> buildPipelines(Subpass subpass)
+	private List<AbstractPipeline> buildPipelines()
 	{
 		final var module = meshConfiguration.module;
 
@@ -184,9 +184,7 @@ public final class MeshSubpassBuilder
 		taskList.add(drawIndexed);
 
 		final var vulkanResourcePkg = VulkanFactory.eINSTANCE.createVulkanResourcePkg();
-		graphicPipeline.setVulkanResourcePkg(vulkanResourcePkg);
-		final var resourcePkg = ResourceFactory.eINSTANCE.createResourcePkg();
-		subpass.setResourcePkg(resourcePkg);
+		graphicPipeline.setResourcePkg(vulkanResourcePkg);
 
 		vulkanResourcePkg.getResources().add(vertexShader);
 		vulkanResourcePkg.getResources().add(fragmentShader);
@@ -202,7 +200,7 @@ public final class MeshSubpassBuilder
 			imageFile.setFile(imageFileResource);
 
 			final var textureProvider = VulkanResourceFactory.eINSTANCE.createFileImageDataProvider();
-			textureProvider.setFileImage(imageFile);
+			textureProvider.setFileImageContainment(imageFile);
 
 			final var imageViewer = VulkanResourceFactory.eINSTANCE.createImageViewer();
 			imageViewer.setDataProvider(textureProvider);
@@ -220,10 +218,9 @@ public final class MeshSubpassBuilder
 			sampledImageDescriptor.getShaderStages().add(EShaderStage.FRAGMENT_BIT);
 			sampledImageDescriptor.setLayout(EImageLayout.SHADER_READ_ONLY_OPTIMAL);
 			sampledImageDescriptor.setSampler(sampler);
-			sampledImageDescriptor.setImage(imageViewer);
+			sampledImageDescriptor.getImages().add(imageViewer);
 
 			vulkanResourcePkg.getResources().add(sampler);
-			resourcePkg.getResources().add(imageFile);
 
 			final var descriptorSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 			descriptorSet.getDescriptors().add(sampledImageDescriptor);

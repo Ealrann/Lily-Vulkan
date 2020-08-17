@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
 
 /**
  * <!-- begin-user-doc -->

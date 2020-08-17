@@ -14,7 +14,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-import org.sheepy.lily.vulkan.model.resource.provider.ConstantBufferItemProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.provider.ConstantBufferItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer} object.

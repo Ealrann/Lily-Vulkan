@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
+import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAllocation;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.engine.utils.VulkanEngineUtils;
@@ -26,10 +26,10 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 
 @ModelExtender(scope = VulkanEngine.class)
 @Allocation
-@AllocationChild(features = {VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
+@AllocationChild(features = {VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
 @AllocationChild(features = {VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
 @AllocationChild(features = VulkanPackage.VULKAN_ENGINE__PROCESSES)
-public final class VulkanEngineAllocation implements IVulkanEngineAdapter
+public final class VulkanEngineAllocation implements IVulkanEngineAllocation
 {
 	private final List<VkFence> fences = new ArrayList<>();
 	private final VulkanInputManager inputManager;

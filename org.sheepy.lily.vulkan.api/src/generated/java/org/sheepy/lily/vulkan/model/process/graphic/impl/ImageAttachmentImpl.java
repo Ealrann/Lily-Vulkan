@@ -119,7 +119,7 @@ public class ImageAttachmentImpl extends ExtraAttachmentImpl implements ImageAtt
 	{
 		if (imageRef != null && ((EObject)imageRef).eIsProxy())
 		{
-			InternalEObject oldImageRef = imageRef;
+			InternalEObject oldImageRef = (InternalEObject)imageRef;
 			imageRef = (VulkanEngine)eResolveProxy(oldImageRef);
 			if (imageRef != oldImageRef)
 			{

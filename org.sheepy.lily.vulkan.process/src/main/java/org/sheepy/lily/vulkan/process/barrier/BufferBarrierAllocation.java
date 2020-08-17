@@ -9,8 +9,8 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IBufferBarrierAllocation;
-import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER;
 

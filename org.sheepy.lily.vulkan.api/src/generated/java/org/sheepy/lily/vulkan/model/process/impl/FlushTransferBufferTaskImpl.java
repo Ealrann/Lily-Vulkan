@@ -14,7 +14,7 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -164,7 +164,7 @@ public class FlushTransferBufferTaskImpl extends LilyEObject implements FlushTra
 	{
 		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldTransferBuffer = transferBuffer;
+			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
 			if (transferBuffer != oldTransferBuffer)
 			{

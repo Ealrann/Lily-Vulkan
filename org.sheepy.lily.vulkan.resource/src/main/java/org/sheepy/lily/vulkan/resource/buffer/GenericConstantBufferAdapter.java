@@ -9,8 +9,8 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.variable.IModelVariableAdapter;
 import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.core.model.variable.VariablePackage;
-import org.sheepy.lily.vulkan.model.resource.GenericConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.GenericConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;

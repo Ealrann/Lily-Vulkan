@@ -300,7 +300,7 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	{
 		if (srcQueue != null && ((EObject)srcQueue).eIsProxy())
 		{
-			InternalEObject oldSrcQueue = srcQueue;
+			InternalEObject oldSrcQueue = (InternalEObject)srcQueue;
 			srcQueue = (AbstractProcess)eResolveProxy(oldSrcQueue);
 			if (srcQueue != oldSrcQueue)
 			{
@@ -345,7 +345,7 @@ public class PipelineBarrierImpl extends LilyEObject implements PipelineBarrier
 	{
 		if (dstQueue != null && ((EObject)dstQueue).eIsProxy())
 		{
-			InternalEObject oldDstQueue = dstQueue;
+			InternalEObject oldDstQueue = (InternalEObject)dstQueue;
 			dstQueue = (AbstractProcess)eResolveProxy(oldDstQueue);
 			if (dstQueue != oldDstQueue)
 			{

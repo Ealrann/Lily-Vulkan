@@ -5,8 +5,7 @@ package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-
-import org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferDataProviderImpl;
 
 /**
  * <!-- begin-user-doc -->

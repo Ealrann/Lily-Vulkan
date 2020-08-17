@@ -55,7 +55,10 @@ public class SubpassManager
 		for (int i = 0; i < compositors.size(); i++)
 		{
 			final var compositor = compositors.get(i);
-			setupScenePart(compositor);
+			if (compositor.isEnabled())
+			{
+				setupScenePart(compositor);
+			}
 		}
 		resolveAttachments();
 	}
@@ -65,7 +68,10 @@ public class SubpassManager
 		for (int i = 0; i < compositors.size(); i++)
 		{
 			final var compositor = compositors.get(i);
-			uninstallScenePart(compositor);
+			if (compositor.isEnabled())
+			{
+				uninstallScenePart(compositor);
+			}
 		}
 		resolveAttachments();
 	}

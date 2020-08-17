@@ -21,10 +21,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
-
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
 /**
@@ -166,7 +165,7 @@ public abstract class VkPipelineImpl extends TaskPipelineImpl implements VkPipel
 	{
 		if (specializationData != null && ((EObject)specializationData).eIsProxy())
 		{
-			InternalEObject oldSpecializationData = specializationData;
+			InternalEObject oldSpecializationData = (InternalEObject)specializationData;
 			specializationData = (ConstantBuffer)eResolveProxy(oldSpecializationData);
 			if (specializationData != oldSpecializationData)
 			{

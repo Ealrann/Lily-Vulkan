@@ -19,8 +19,8 @@ import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
 
 /**
  * <!-- begin-user-doc -->

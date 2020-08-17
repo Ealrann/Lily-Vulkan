@@ -3,6 +3,8 @@ package org.sheepy.lily.vulkan.core.resource.image;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VK10;
 import org.lwjgl.vulkan.VkImageCreateInfo;
+import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
@@ -29,6 +31,7 @@ public interface IVkImageBuilder
 	EImageLayout initialLayout();
 	IVkImageBuilder copyImmutable();
 	VkImageBuilder copy();
+	String name();
 
 	VkImage build(IRecordContext context);
 	VkImage buildNoFill(IVulkanContext context);
@@ -36,11 +39,12 @@ public interface IVkImageBuilder
 	abstract class AbstractVkImageBuilder implements IVkImageBuilder
 	{
 		private static final String CREATE_ERROR = "Failed to create image!";
+		private static final String IMAGE_PREFIX = "[Image]";
 
 		@Override
 		public VkImage buildNoFill(IVulkanContext context)
 		{
-			final long imagePtr = allocateImage(context);
+			final long imagePtr = allocateImage(context, name());
 			final var res = new VkImage(imagePtr,
 										width(),
 										height(),
@@ -57,15 +61,15 @@ public interface IVkImageBuilder
 		public VkImage build(IRecordContext context)
 		{
 			final var memoryBuilder = new MemoryBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-			final var res = buildWithMemory(context, memoryBuilder);
+			final var res = buildWithMemory(context, memoryBuilder, name());
 			final var memory = memoryBuilder.build(context);
 			res.linkMemory(memory);
 			return res;
 		}
 
-		public VkImage buildWithMemory(IRecordContext context, MemoryBuilder memoryBuilder)
+		public VkImage buildWithMemory(IRecordContext context, MemoryBuilder memoryBuilder, String name)
 		{
-			final long imagePtr = allocateImage(context);
+			final long imagePtr = allocateImage(context, name);
 			final var res = new VkImage(imagePtr,
 										width(),
 										height(),
@@ -95,7 +99,7 @@ public interface IVkImageBuilder
 			return res;
 		}
 
-		private long allocateImage(IVulkanContext context) throws AssertionError
+		private long allocateImage(IVulkanContext context, String name) throws AssertionError
 		{
 			final var stack = context.stack();
 			final var device = context.getVkDevice();
@@ -103,7 +107,9 @@ public interface IVkImageBuilder
 			final VkImageCreateInfo imageInfo = allocateInfo(stack);
 			final long[] aImageId = new long[1];
 			Logger.check(vkCreateImage(device, imageInfo, null, aImageId), CREATE_ERROR);
-			return aImageId[0];
+			final long imagePtr = aImageId[0];
+			if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.register(imagePtr, IMAGE_PREFIX + name);
+			return imagePtr;
 		}
 
 		private VkImageCreateInfo allocateInfo(MemoryStack stack)

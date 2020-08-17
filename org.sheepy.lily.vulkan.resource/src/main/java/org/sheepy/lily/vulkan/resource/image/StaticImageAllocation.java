@@ -9,13 +9,13 @@ import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
-import org.sheepy.lily.vulkan.model.resource.StaticImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryChunkPartAllocation;
 
 import java.nio.ByteBuffer;
@@ -32,7 +32,8 @@ public class StaticImageAllocation extends Notifier<IMemoryChunkPartAllocation.F
 {
 	private final StaticImage image;
 	private final VkImage imageBackend;
-	private final VkImageView imageView;
+
+	private VkImageView imageView;
 
 	public StaticImageAllocation(StaticImage image, ExecutionContext context)
 	{
@@ -40,10 +41,9 @@ public class StaticImageAllocation extends Notifier<IMemoryChunkPartAllocation.F
 		this.image = image;
 
 		final var size = image.getSize();
-		final var builder = new VkImageBuilder(image, size.x(), size.y());
+		final var builder = new VkImageBuilder(image.getName(), image, size.x(), size.y());
 
 		imageBackend = builder.buildNoFill(context);
-		imageView = new VkImageView(VK_IMAGE_ASPECT_COLOR_BIT);
 	}
 
 	@Free
@@ -63,7 +63,7 @@ public class StaticImageAllocation extends Notifier<IMemoryChunkPartAllocation.F
 	public void bindMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
 	{
 		imageBackend.bindMemory(vkDevice, memoryPtr, offset, size);
-		imageView.allocate(vkDevice, imageBackend);
+		imageView = new VkImageView(vkDevice, image.getName(), imageBackend, VK_IMAGE_ASPECT_COLOR_BIT);
 	}
 
 	@Override

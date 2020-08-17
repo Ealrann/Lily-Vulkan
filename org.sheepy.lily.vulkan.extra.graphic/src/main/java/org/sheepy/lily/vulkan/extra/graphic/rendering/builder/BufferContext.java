@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 
 public final class BufferContext
 {

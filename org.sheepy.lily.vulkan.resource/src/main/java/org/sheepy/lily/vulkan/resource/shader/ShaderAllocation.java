@@ -6,11 +6,13 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
+import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.pipeline.VkShaderStage;
 import org.sheepy.lily.vulkan.core.resource.IShaderAllocation;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
 
 import java.nio.LongBuffer;
 
@@ -22,6 +24,7 @@ import static org.lwjgl.vulkan.VK10.*;
 public final class ShaderAllocation implements IShaderAllocation
 {
 	private static final String FAILED_TO_CREATE_SHADER = "Failed to create shader";
+	private static final String SHADER_PREFIX = "[Shader]";
 
 	private final VkShaderStage shaderStage;
 	private final long shaderPtr;
@@ -34,12 +37,13 @@ public final class ShaderAllocation implements IShaderAllocation
 		final var stage = shader.getStage();
 
 		shaderStage = new VkShaderStage(stage, shaderPtr, specializationConstants);
-		// System.out.println(shaderBackend.getPtr() + " - " + shader.getName());
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.register(shaderPtr, SHADER_PREFIX + shader.getName());
 	}
 
 	@Free
 	public void free(ExecutionContext context)
 	{
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(shaderPtr);
 		final var vkDevice = context.getVkDevice();
 		vkDestroyShaderModule(vkDevice, shaderPtr, null);
 	}

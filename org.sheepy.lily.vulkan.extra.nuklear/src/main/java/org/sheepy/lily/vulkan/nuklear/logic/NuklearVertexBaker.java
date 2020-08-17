@@ -2,8 +2,6 @@ package org.sheepy.lily.vulkan.nuklear.logic;
 
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +12,13 @@ public final class NuklearVertexBaker implements IExtender
 {
 	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 
-	private final List<Long> texturePtrs = new ArrayList<>();
 	private final NuklearState state;
 
 	private int previousDrawedIndexes = 0;
 
-	public NuklearVertexBaker(GraphicsPipeline pipeline, NuklearState state)
+	public NuklearVertexBaker(NuklearState state)
 	{
 		this.state = state;
-
-		final var descriptorSet = pipeline.getDescriptorPool().getDescriptorSets().get(0);
-		reloadTexturePtrs(descriptorSet);
 	}
 
 	public List<DrawCommandData> buildDrawCommands()
@@ -80,7 +74,7 @@ public final class NuklearVertexBaker implements IExtender
 		return res;
 	}
 
-	public List<DrawCommandData> prepareDrawCommands()
+	private List<DrawCommandData> prepareDrawCommands()
 	{
 		final List<DrawCommandData> res = new ArrayList<>();
 		int drawedIndexes = 0;
@@ -95,9 +89,7 @@ public final class NuklearVertexBaker implements IExtender
 			if (elemCount > 0)
 			{
 				final var texturePtr = drawCommand.texture().ptr();
-				final int descriptorIndex = texturePtr > 1 ? texturePtrs.indexOf(texturePtr) + 2 : (int) texturePtr;
-
-				res.add(new DrawCommandData(drawCommand, descriptorIndex));
+				res.add(new DrawCommandData(drawCommand, (int) texturePtr));
 				drawedIndexes += elemCount;
 			}
 
@@ -111,26 +103,5 @@ public final class NuklearVertexBaker implements IExtender
 		}
 
 		return res;
-	}
-
-	private void reloadTexturePtrs(DescriptorSet descriptorSet)
-	{
-//		mouais, on va trouver un meilleur moyen de chercher ces pointeurs quand meme
-//
-//		texturePtrs.clear();
-//		for (final var descriptor : descriptorSet.getDescriptors())
-//		{
-//			final var allocation = descriptor.adapt(IDescriptorAllocation.class);
-//			final var vkDescriptor = allocation.getVkDescriptor();
-//			if (vkDescriptor instanceof VkImageArrayDescriptor)
-//			{
-//				final var viewPtrs = ((VkImageArrayDescriptor) vkDescriptor).getViewPtrs();
-//				for (int i = 0; i < viewPtrs.length; i++)
-//				{
-//					final var ptr = viewPtrs[i];
-//					texturePtrs.add(ptr);
-//				}
-//			}
-//		}
 	}
 }

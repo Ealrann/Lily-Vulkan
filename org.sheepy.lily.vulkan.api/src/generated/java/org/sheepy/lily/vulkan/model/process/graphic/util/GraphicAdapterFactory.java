@@ -14,8 +14,6 @@ import org.sheepy.lily.core.model.maintainer.Maintainable;
 
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 
@@ -28,7 +26,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
-
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.Barrier;
 
@@ -270,11 +268,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createBindIndexBufferAdapter();
 			}
 			@Override
-			public Adapter caseAttachmentDescriptor(AttachmentDescriptor object)
-			{
-				return createAttachmentDescriptorAdapter();
-			}
-			@Override
 			public Adapter caseCompositor(Compositor object)
 			{
 				return createCompositorAdapter();
@@ -303,6 +296,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIImage(IImage object)
 			{
 				return createIImageAdapter();
+			}
+			@Override
+			public Adapter caseIVulkanImage(IVulkanImage object)
+			{
+				return createIVulkanImageAdapter();
 			}
 			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
@@ -353,11 +351,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIPipelineTask(IPipelineTask object)
 			{
 				return createIPipelineTaskAdapter();
-			}
-			@Override
-			public Adapter caseIDescriptor(IDescriptor object)
-			{
-				return createIDescriptorAdapter();
 			}
 			@Override
 			public Adapter caseIInferenceObject(IInferenceObject object)
@@ -916,21 +909,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor <em>Attachment Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescriptor
-	 * @generated
-	 */
-	public Adapter createAttachmentDescriptorAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.Compositor <em>Compositor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1016,6 +994,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage <em>IVulkan Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage
+	 * @generated
+	 */
+	public Adapter createIVulkanImageAdapter()
 	{
 		return null;
 	}
@@ -1166,21 +1159,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPipelineTaskAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IDescriptor <em>IDescriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.IDescriptor
-	 * @generated
-	 */
-	public Adapter createIDescriptorAdapter()
 	{
 		return null;
 	}

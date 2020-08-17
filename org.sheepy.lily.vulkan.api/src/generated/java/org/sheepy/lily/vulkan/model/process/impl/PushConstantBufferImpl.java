@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	{
 		if (buffer != null && ((EObject)buffer).eIsProxy())
 		{
-			InternalEObject oldBuffer = buffer;
+			InternalEObject oldBuffer = (InternalEObject)buffer;
 			buffer = (ConstantBuffer)eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{

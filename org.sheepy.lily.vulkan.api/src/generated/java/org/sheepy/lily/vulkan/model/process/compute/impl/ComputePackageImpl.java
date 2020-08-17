@@ -15,11 +15,8 @@ import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
-import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
@@ -36,8 +33,8 @@ import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -146,10 +143,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Initialize simple dependencies
 		ResourcePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
 		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
@@ -166,24 +161,24 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl)(registeredPackage instanceof GraphicPackageImpl ? registeredPackage : GraphicPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(registeredPackage instanceof ProcessPackageImpl ? registeredPackage : ProcessPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
-		VulkanResourcePackageImpl theVulkanResourcePackage = (VulkanResourcePackageImpl)(registeredPackage instanceof VulkanResourcePackageImpl ? registeredPackage : VulkanResourcePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
+		VulkanResourcePackageImpl theVulkanResourcePackage = (VulkanResourcePackageImpl)(registeredPackage instanceof VulkanResourcePackageImpl ? registeredPackage : VulkanResourcePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theComputePackage.createPackageContents();
 		theGraphicPackage.createPackageContents();
 		theProcessPackage.createPackageContents();
-		theVulkanResourcePackage.createPackageContents();
 		theVulkanPackage.createPackageContents();
+		theVulkanResourcePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theComputePackage.initializePackageContents();
 		theGraphicPackage.initializePackageContents();
 		theProcessPackage.initializePackageContents();
-		theVulkanResourcePackage.initializePackageContents();
 		theVulkanPackage.initializePackageContents();
+		theVulkanResourcePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theComputePackage.freeze();

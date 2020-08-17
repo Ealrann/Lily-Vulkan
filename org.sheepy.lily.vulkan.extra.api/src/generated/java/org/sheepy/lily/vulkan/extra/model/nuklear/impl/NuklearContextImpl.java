@@ -15,9 +15,9 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
-import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.resource.StaticImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
+import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
+import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,7 +89,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 * @ordered
 	 */
-	protected ImageArrayDescriptor imageArrayDescriptor;
+	protected ImageDescriptor imageArrayDescriptor;
 
 	/**
 	 * The cached value of the '{@link #getVertexDataProvider() <em>Vertex Data Provider</em>}' reference.
@@ -259,7 +259,8 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public void setNullTexture(StaticImage newNullTexture) {
+	public void setNullTexture(StaticImage newNullTexture)
+	{
 		StaticImage oldNullTexture = nullTexture;
 		nullTexture = newNullTexture;
 		if (eNotificationRequired())
@@ -272,12 +273,12 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public ImageArrayDescriptor getImageArrayDescriptor()
+	public ImageDescriptor getImageArrayDescriptor()
 	{
 		if (imageArrayDescriptor != null && ((EObject)imageArrayDescriptor).eIsProxy())
 		{
 			InternalEObject oldImageArrayDescriptor = imageArrayDescriptor;
-			imageArrayDescriptor = (ImageArrayDescriptor)eResolveProxy(oldImageArrayDescriptor);
+			imageArrayDescriptor = (ImageDescriptor)eResolveProxy(oldImageArrayDescriptor);
 			if (imageArrayDescriptor != oldImageArrayDescriptor)
 			{
 				if (eNotificationRequired())
@@ -292,7 +293,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImageArrayDescriptor basicGetImageArrayDescriptor()
+	public ImageDescriptor basicGetImageArrayDescriptor()
 	{
 		return imageArrayDescriptor;
 	}
@@ -303,9 +304,9 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public void setImageArrayDescriptor(ImageArrayDescriptor newImageArrayDescriptor)
+	public void setImageArrayDescriptor(ImageDescriptor newImageArrayDescriptor)
 	{
-		ImageArrayDescriptor oldImageArrayDescriptor = imageArrayDescriptor;
+		ImageDescriptor oldImageArrayDescriptor = imageArrayDescriptor;
 		imageArrayDescriptor = newImageArrayDescriptor;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR, oldImageArrayDescriptor, imageArrayDescriptor));
@@ -548,7 +549,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 				setNullTexture((StaticImage)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
-				setImageArrayDescriptor((ImageArrayDescriptor)newValue);
+				setImageArrayDescriptor((ImageDescriptor)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
 				setVertexDataProvider((NuklearVertexProvider)newValue);
@@ -586,7 +587,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 				setNullTexture((StaticImage)null);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
-				setImageArrayDescriptor((ImageArrayDescriptor)null);
+				setImageArrayDescriptor((ImageDescriptor)null);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
 				setVertexDataProvider((NuklearVertexProvider)null);

@@ -22,7 +22,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl;
-import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DepthStencilState;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
@@ -175,7 +175,7 @@ public class GraphicsPipelineImpl extends VkPipelineImpl implements GraphicsPipe
 	{
 		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
-			InternalEObject oldMaintainer = maintainer;
+			InternalEObject oldMaintainer = (InternalEObject)maintainer;
 			maintainer = (Maintainer<GraphicsPipeline>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{

@@ -5,7 +5,6 @@ package org.sheepy.lily.openal.model.openal.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.model.LilyEObject;
@@ -66,33 +65,6 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 	 */
 	@Override
 	public ResourcePkg getResourcePkg()
-	{
-		if (resourcePkg != null && ((EObject)resourcePkg).eIsProxy())
-		{
-			InternalEObject oldResourcePkg = resourcePkg;
-			resourcePkg = (ResourcePkg)eResolveProxy(oldResourcePkg);
-			if (resourcePkg != oldResourcePkg)
-			{
-				InternalEObject newResourcePkg = resourcePkg;
-				NotificationChain msgs = oldResourcePkg.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OpenalPackage.OPEN_AL_ENGINE__RESOURCE_PKG, null, null);
-				if (newResourcePkg.eInternalContainer() == null)
-				{
-					msgs = newResourcePkg.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OpenalPackage.OPEN_AL_ENGINE__RESOURCE_PKG, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OpenalPackage.OPEN_AL_ENGINE__RESOURCE_PKG, oldResourcePkg, resourcePkg));
-			}
-		}
-		return resourcePkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResourcePkg basicGetResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -163,8 +135,7 @@ public class OpenALEngineImpl extends LilyEObject implements OpenALEngine
 		switch (featureID)
 		{
 			case OpenalPackage.OPEN_AL_ENGINE__RESOURCE_PKG:
-				if (resolve) return getResourcePkg();
-				return basicGetResourcePkg();
+				return getResourcePkg();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

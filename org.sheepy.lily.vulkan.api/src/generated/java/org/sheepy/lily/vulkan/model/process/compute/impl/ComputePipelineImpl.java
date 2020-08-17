@@ -15,7 +15,7 @@ import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.impl.VkPipelineImpl;
-import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,7 +85,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	{
 		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
-			InternalEObject oldMaintainer = maintainer;
+			InternalEObject oldMaintainer = (InternalEObject)maintainer;
 			maintainer = (Maintainer<ComputePipeline>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{
@@ -155,7 +155,7 @@ public class ComputePipelineImpl extends VkPipelineImpl implements ComputePipeli
 	{
 		if (shader != null && ((EObject)shader).eIsProxy())
 		{
-			InternalEObject oldShader = shader;
+			InternalEObject oldShader = (InternalEObject)shader;
 			shader = (Shader)eResolveProxy(oldShader);
 			if (shader != oldShader)
 			{

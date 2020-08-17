@@ -6,7 +6,7 @@ import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
@@ -21,11 +21,14 @@ import static org.lwjgl.vulkan.VK10.*;
 public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 {
 	private static final int FORMAT = EFormat.R8G8B8A8_UNORM_VALUE;
-	private static final IVkImageBuilder clearTextureBuilder = new VkImageBuilder(1, 1, FORMAT).usage(
+	private static final IVkImageBuilder clearTextureBuilder = new VkImageBuilder("BlitClearTexture",
+																				  1,
+																				  1,
+																				  FORMAT).usage(
 			VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_STORAGE_BIT)
-																							   .tiling(VK_IMAGE_TILING_OPTIMAL)
-																							   .mipLevels(1)
-																							   .copyImmutable();
+																						 .tiling(VK_IMAGE_TILING_OPTIMAL)
+																						 .mipLevels(1)
+																						 .copyImmutable();
 
 	private final long srcImagePtr;
 	private final VkImageBlit.Buffer clearRegions;

@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider;
-import org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferDataProviderImpl;
 
 /**
  * <!-- begin-user-doc -->

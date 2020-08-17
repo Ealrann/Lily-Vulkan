@@ -5,6 +5,7 @@ import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
+import org.sheepy.lily.vulkan.core.debug.DebugReportCallbackImpl;
 import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
 import org.sheepy.lily.vulkan.core.instance.loader.InstanceUtils;
 import org.sheepy.lily.vulkan.core.instance.loader.Layers;
@@ -91,23 +92,5 @@ public final class VulkanInstance
 		}
 
 		vkDestroyInstance(vkInstance, null);
-	}
-
-	private static final class DebugReportCallbackImpl extends VkDebugReportCallbackEXT
-	{
-		@Override
-		public int invoke(int flags,
-						  int objectType,
-						  long object,
-						  long location,
-						  int messageCode,
-						  long pLayerPrefix,
-						  long pMessage,
-						  long pUserData)
-		{
-			final String message = VkDebugReportCallbackEXT.getString(pMessage);
-			System.err.println("ERROR OCCURED: " + message);
-			return 0;
-		}
 	}
 }

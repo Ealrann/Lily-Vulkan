@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -17,7 +16,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
-import org.sheepy.lily.core.model.resource.ResourcePkg;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
@@ -36,7 +34,6 @@ import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getVulkanResourcePkg <em>Vulkan Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getProcesses <em>Processes</em>}</li>
@@ -55,17 +52,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 * @ordered
 	 */
-	protected ResourcePkg resourcePkg;
-
-	/**
-	 * The cached value of the '{@link #getVulkanResourcePkg() <em>Vulkan Resource Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVulkanResourcePkg()
-	 * @generated
-	 * @ordered
-	 */
-	protected VulkanResourcePkg vulkanResourcePkg;
+	protected VulkanResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -144,34 +131,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 */
 	@Override
-	public ResourcePkg getResourcePkg()
-	{
-		if (resourcePkg != null && ((EObject)resourcePkg).eIsProxy())
-		{
-			InternalEObject oldResourcePkg = resourcePkg;
-			resourcePkg = (ResourcePkg)eResolveProxy(oldResourcePkg);
-			if (resourcePkg != oldResourcePkg)
-			{
-				InternalEObject newResourcePkg = resourcePkg;
-				NotificationChain msgs = oldResourcePkg.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, null);
-				if (newResourcePkg.eInternalContainer() == null)
-				{
-					msgs = newResourcePkg.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, oldResourcePkg, resourcePkg));
-			}
-		}
-		return resourcePkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResourcePkg basicGetResourcePkg()
+	public VulkanResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
 	}
@@ -181,9 +141,9 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(VulkanResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		ResourcePkg oldResourcePkg = resourcePkg;
+		VulkanResourcePkg oldResourcePkg = resourcePkg;
 		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
@@ -199,7 +159,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 	 * @generated
 	 */
 	@Override
-	public void setResourcePkg(ResourcePkg newResourcePkg)
+	public void setResourcePkg(VulkanResourcePkg newResourcePkg)
 	{
 		if (newResourcePkg != resourcePkg)
 		{
@@ -213,56 +173,6 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public VulkanResourcePkg getVulkanResourcePkg()
-	{
-		return vulkanResourcePkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetVulkanResourcePkg(VulkanResourcePkg newVulkanResourcePkg, NotificationChain msgs)
-	{
-		VulkanResourcePkg oldVulkanResourcePkg = vulkanResourcePkg;
-		vulkanResourcePkg = newVulkanResourcePkg;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG, oldVulkanResourcePkg, newVulkanResourcePkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setVulkanResourcePkg(VulkanResourcePkg newVulkanResourcePkg)
-	{
-		if (newVulkanResourcePkg != vulkanResourcePkg)
-		{
-			NotificationChain msgs = null;
-			if (vulkanResourcePkg != null)
-				msgs = ((InternalEObject)vulkanResourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG, null, msgs);
-			if (newVulkanResourcePkg != null)
-				msgs = ((InternalEObject)newVulkanResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG, null, msgs);
-			msgs = basicSetVulkanResourcePkg(newVulkanResourcePkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG, newVulkanResourcePkg, newVulkanResourcePkg));
 	}
 
 	/**
@@ -382,8 +292,6 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return basicSetResourcePkg(null, msgs);
-			case VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG:
-				return basicSetVulkanResourcePkg(null, msgs);
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				return basicSetDescriptorPkg(null, msgs);
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
@@ -403,10 +311,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		switch (featureID)
 		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-				if (resolve) return getResourcePkg();
-				return basicGetResourcePkg();
-			case VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG:
-				return getVulkanResourcePkg();
+				return getResourcePkg();
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				return getDescriptorPkg();
 			case VulkanPackage.VULKAN_ENGINE__ENABLED:
@@ -431,10 +336,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		switch (featureID)
 		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)newValue);
-				return;
-			case VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG:
-				setVulkanResourcePkg((VulkanResourcePkg)newValue);
+				setResourcePkg((VulkanResourcePkg)newValue);
 				return;
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -465,10 +367,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		switch (featureID)
 		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
-				setResourcePkg((ResourcePkg)null);
-				return;
-			case VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG:
-				setVulkanResourcePkg((VulkanResourcePkg)null);
+				setResourcePkg((VulkanResourcePkg)null);
 				return;
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
@@ -498,8 +397,6 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		{
 			case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 				return resourcePkg != null;
-			case VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG:
-				return vulkanResourcePkg != null;
 			case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG:
 				return descriptorPkg != null;
 			case VulkanPackage.VULKAN_ENGINE__ENABLED:
@@ -524,7 +421,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		{
 			switch (derivedFeatureID)
 			{
-				case VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG;
+				case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG: return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
 				case VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG: return VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG;
 				default: return -1;
 			}
@@ -544,7 +441,7 @@ public class VulkanEngineImpl extends LilyEObject implements VulkanEngine
 		{
 			switch (baseFeatureID)
 			{
-				case VulkanPackage.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG: return VulkanPackage.VULKAN_ENGINE__VULKAN_RESOURCE_PKG;
+				case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG: return VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG;
 				case VulkanPackage.IRESOURCE_CONTAINER__DESCRIPTOR_PKG: return VulkanPackage.VULKAN_ENGINE__DESCRIPTOR_PKG;
 				default: return -1;
 			}

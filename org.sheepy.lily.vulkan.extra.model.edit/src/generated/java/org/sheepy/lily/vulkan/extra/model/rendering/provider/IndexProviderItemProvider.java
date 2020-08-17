@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-import org.sheepy.lily.vulkan.model.resource.provider.BufferDataProviderItemProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.provider.BufferDataProviderItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider} object.

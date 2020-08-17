@@ -4,6 +4,7 @@ package org.sheepy.lily.openal.model.openal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.action.ActionPackage;
@@ -123,6 +124,17 @@ public class OpenalPackageImpl extends EPackageImpl implements OpenalPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getOpenALEngine_ResourcePkg()
+	{
+		return (EReference)openALEngineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public OpenalFactory getOpenalFactory()
 	{
 		return (OpenalFactory)getEFactoryInstance();
@@ -149,6 +161,7 @@ public class OpenalPackageImpl extends EPackageImpl implements OpenalPackage
 
 		// Create classes and their features
 		openALEngineEClass = createEClass(OPEN_AL_ENGINE);
+		createEReference(openALEngineEClass, OPEN_AL_ENGINE__RESOURCE_PKG);
 	}
 
 	/**
@@ -177,6 +190,7 @@ public class OpenalPackageImpl extends EPackageImpl implements OpenalPackage
 
 		// Obtain other dependent packages
 		ApplicationPackage theApplicationPackage = (ApplicationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplicationPackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -187,6 +201,7 @@ public class OpenalPackageImpl extends EPackageImpl implements OpenalPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(openALEngineEClass, OpenALEngine.class, "OpenALEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOpenALEngine_ResourcePkg(), theResourcePackage.getResourcePkg(), null, "resourcePkg", null, 0, 1, OpenALEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

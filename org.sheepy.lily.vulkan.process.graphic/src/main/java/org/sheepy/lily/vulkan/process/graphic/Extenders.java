@@ -17,7 +17,6 @@ import org.sheepy.lily.vulkan.process.graphic.process.GraphicConfigurationAlloca
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAllocation;
 import org.sheepy.lily.vulkan.process.graphic.renderpass.RenderPassAllocation;
-import org.sheepy.lily.vulkan.process.graphic.resource.AttachmentDescriptorAllocation;
 import org.sheepy.lily.vulkan.process.graphic.resource.ColorAttachmentAllocation;
 import org.sheepy.lily.vulkan.process.graphic.resource.DepthAttachmentAllocation;
 import org.sheepy.lily.vulkan.process.graphic.scene.BackgroundImageSubpassProvider;
@@ -47,7 +46,6 @@ public class Extenders implements IExtenderProvider
 					   SetViewportAdapter.class,
 					   BackgroundImageSubpassProvider.class,
 					   ScreenEffectSubpassProvider.class,
-					   AttachmentDescriptorAllocation.class,
 					   ColorAttachmentAllocation.class,
 					   ViewportAdapter.class,
 					   CinemaViewportAdapter.class,

@@ -4,6 +4,7 @@ package org.sheepy.lily.openal.model.openal;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 
 /**
@@ -73,7 +74,7 @@ public interface OpenalPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPEN_AL_ENGINE__RESOURCE_PKG = ApplicationPackage.IENGINE__RESOURCE_PKG;
+	int OPEN_AL_ENGINE__RESOURCE_PKG = ApplicationPackage.IENGINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Open AL Engine</em>' class.
@@ -82,7 +83,7 @@ public interface OpenalPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPEN_AL_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 0;
+	int OPEN_AL_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Open AL Engine</em>' class.
@@ -103,6 +104,17 @@ public interface OpenalPackage extends EPackage
 	 * @generated
 	 */
 	EClass getOpenALEngine();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.openal.model.openal.OpenALEngine#getResourcePkg <em>Resource Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Resource Pkg</em>'.
+	 * @see org.sheepy.lily.openal.model.openal.OpenALEngine#getResourcePkg()
+	 * @see #getOpenALEngine()
+	 * @generated
+	 */
+	EReference getOpenALEngine_ResourcePkg();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -137,6 +149,13 @@ public interface OpenalPackage extends EPackage
 		 * @generated
 		 */
 		EClass OPEN_AL_ENGINE = eINSTANCE.getOpenALEngine();
+		/**
+		 * The meta object literal for the '<em><b>Resource Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPEN_AL_ENGINE__RESOURCE_PKG = eINSTANCE.getOpenALEngine_ResourcePkg();
 
 	}
 

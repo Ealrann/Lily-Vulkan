@@ -16,8 +16,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-
-import org.sheepy.lily.vulkan.model.resource.provider.ImageDataProviderItemProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.provider.ImageDataProviderItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider} object.

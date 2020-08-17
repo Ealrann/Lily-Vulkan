@@ -19,7 +19,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getVulkanResourcePkg <em>Vulkan Resource Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorPkg <em>Descriptor Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
@@ -47,14 +47,14 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
 public abstract class AbstractProcessImpl extends LilyEObject implements AbstractProcess
 {
 	/**
-	 * The cached value of the '{@link #getVulkanResourcePkg() <em>Vulkan Resource Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVulkanResourcePkg()
+	 * @see #getResourcePkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected VulkanResourcePkg vulkanResourcePkg;
+	protected VulkanResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorPkg() <em>Descriptor Pkg</em>}' containment reference.
@@ -233,9 +233,9 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public VulkanResourcePkg getVulkanResourcePkg()
+	public VulkanResourcePkg getResourcePkg()
 	{
-		return vulkanResourcePkg;
+		return resourcePkg;
 	}
 
 	/**
@@ -243,13 +243,13 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVulkanResourcePkg(VulkanResourcePkg newVulkanResourcePkg, NotificationChain msgs)
+	public NotificationChain basicSetResourcePkg(VulkanResourcePkg newResourcePkg, NotificationChain msgs)
 	{
-		VulkanResourcePkg oldVulkanResourcePkg = vulkanResourcePkg;
-		vulkanResourcePkg = newVulkanResourcePkg;
+		VulkanResourcePkg oldResourcePkg = resourcePkg;
+		resourcePkg = newResourcePkg;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG, oldVulkanResourcePkg, newVulkanResourcePkg);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -261,20 +261,20 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	 * @generated
 	 */
 	@Override
-	public void setVulkanResourcePkg(VulkanResourcePkg newVulkanResourcePkg)
+	public void setResourcePkg(VulkanResourcePkg newResourcePkg)
 	{
-		if (newVulkanResourcePkg != vulkanResourcePkg)
+		if (newResourcePkg != resourcePkg)
 		{
 			NotificationChain msgs = null;
-			if (vulkanResourcePkg != null)
-				msgs = ((InternalEObject)vulkanResourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG, null, msgs);
-			if (newVulkanResourcePkg != null)
-				msgs = ((InternalEObject)newVulkanResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG, null, msgs);
-			msgs = basicSetVulkanResourcePkg(newVulkanResourcePkg, msgs);
+			if (resourcePkg != null)
+				msgs = ((InternalEObject)resourcePkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
+			if (newResourcePkg != null)
+				msgs = ((InternalEObject)newResourcePkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null, msgs);
+			msgs = basicSetResourcePkg(newResourcePkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG, newVulkanResourcePkg, newVulkanResourcePkg));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, newResourcePkg, newResourcePkg));
 	}
 
 	/**
@@ -662,8 +662,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG:
-				return basicSetVulkanResourcePkg(null, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				return basicSetResourcePkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				return basicSetDescriptorPkg(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__CADENCE:
@@ -688,8 +688,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG:
-				return getVulkanResourcePkg();
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				return getResourcePkg();
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				return getDescriptorPkg();
 			case ProcessPackage.ABSTRACT_PROCESS__NAME:
@@ -724,8 +724,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG:
-				setVulkanResourcePkg((VulkanResourcePkg)newValue);
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				setResourcePkg((VulkanResourcePkg)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)newValue);
@@ -771,8 +771,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG:
-				setVulkanResourcePkg((VulkanResourcePkg)null);
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				setResourcePkg((VulkanResourcePkg)null);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				setDescriptorPkg((DescriptorPkg)null);
@@ -818,8 +818,8 @@ public abstract class AbstractProcessImpl extends LilyEObject implements Abstrac
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG:
-				return vulkanResourcePkg != null;
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+				return resourcePkg != null;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_PKG:
 				return descriptorPkg != null;
 			case ProcessPackage.ABSTRACT_PROCESS__NAME:

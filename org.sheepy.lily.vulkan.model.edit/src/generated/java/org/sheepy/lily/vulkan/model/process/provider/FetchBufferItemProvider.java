@@ -29,8 +29,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.FetchBuffer} object.
@@ -249,30 +248,6 @@ public class FetchBufferItemProvider
 			(createChildParameter
 				(ProcessPackage.Literals.FETCH_BUFFER__BUFFER_REFERENCE,
 				 VulkanResourceFactory.eINSTANCE.createBufferReference()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
-	{
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == ProcessPackage.Literals.FETCH_BUFFER__BUFFER_REFERENCE;
-
-		if (qualify)
-		{
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

@@ -10,10 +10,10 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.resource.BufferMemory;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public final class ResourceInstaller<T extends Structure>
 																									structure));
 
 		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
-		pipeline.getVulkanResourcePkg().getResources().add(memoryChunk);
+		pipeline.getResourcePkg().getResources().add(memoryChunk);
 
 		for (int i = 0; i < count; i++)
 		{
@@ -70,7 +70,7 @@ public final class ResourceInstaller<T extends Structure>
 
 				if (resourceDescriptors != null)
 				{
-					pipeline.getVulkanResourcePkg().getResources().addAll(resourceDescriptors.resources);
+					pipeline.getResourcePkg().getResources().addAll(resourceDescriptors.resources);
 					pipeline.getDescriptorPkg().getDescriptors().addAll(resourceDescriptors.descriptors);
 					res.addAll(resourceDescriptors.descriptors);
 				}

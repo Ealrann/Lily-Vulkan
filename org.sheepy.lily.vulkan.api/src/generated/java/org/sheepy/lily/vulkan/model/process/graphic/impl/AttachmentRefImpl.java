@@ -115,7 +115,7 @@ public class AttachmentRefImpl extends LilyEObject implements AttachmentRef
 	{
 		if (attachment != null && ((EObject)attachment).eIsProxy())
 		{
-			InternalEObject oldAttachment = attachment;
+			InternalEObject oldAttachment = (InternalEObject)attachment;
 			attachment = (Attachment)eResolveProxy(oldAttachment);
 			if (attachment != oldAttachment)
 			{

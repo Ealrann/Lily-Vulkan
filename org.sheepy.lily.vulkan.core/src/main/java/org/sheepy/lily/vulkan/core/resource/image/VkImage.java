@@ -3,7 +3,9 @@ package org.sheepy.lily.vulkan.core.resource.image;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.*;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
+import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
@@ -41,14 +43,14 @@ public final class VkImage
 	private long size = -1;
 	private Memory memory;
 
-	public static VkImageBuilder newBuilder(int width, int height, int format)
+	public static VkImageBuilder newBuilder(String name, int width, int height, int format)
 	{
-		return new VkImageBuilder(width, height, format);
+		return new VkImageBuilder(name, width, height, format);
 	}
 
-	public static VkImageBuilder newBuilder(ImageInfo info, int width, int height)
+	public static VkImageBuilder newBuilder(String name, ImageInfo info, int width, int height)
 	{
-		return new VkImageBuilder(info, width, height);
+		return new VkImageBuilder(name, info, width, height);
 	}
 
 	VkImage(long imagePtr,
@@ -221,7 +223,7 @@ public final class VkImage
 	public void free(ExecutionContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
-
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(imagePtr);
 		vkDestroyImage(logicalDevice.getVkDevice(), imagePtr, null);
 		if (memory != null) memory.free(context);
 		memoryPtr = 0;

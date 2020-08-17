@@ -18,7 +18,7 @@ import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.core.resource.IVkImageAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
@@ -173,7 +173,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		final boolean res = dirty;
 		// !! must remain here- vvv
 		dirty = false;
-// -------------------- ^^^
+		// -------------------- ^^^
 
 		final var nkContext = context.nkContext;
 		boolean labelPanelHovered = false;

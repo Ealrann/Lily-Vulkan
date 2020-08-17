@@ -23,7 +23,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -323,13 +322,12 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__ATTACHMENT_REF_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__ATTACHMENT_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__PIPELINE_PKG);
 			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__EXTENSION_PKG);
-			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__RESOURCE_PKG);
 		}
 		return childrenFeatures;
 	}
@@ -400,13 +398,12 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case GraphicPackage.SUBPASS__VULKAN_RESOURCE_PKG:
+			case GraphicPackage.SUBPASS__RESOURCE_PKG:
 			case GraphicPackage.SUBPASS__DESCRIPTOR_PKG:
 			case GraphicPackage.SUBPASS__ATTACHMENT_REF_PKG:
 			case GraphicPackage.SUBPASS__ATTACHMENT_PKG:
 			case GraphicPackage.SUBPASS__PIPELINE_PKG:
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
-			case GraphicPackage.SUBPASS__RESOURCE_PKG:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -427,7 +424,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 
 		newChildDescriptors.add
 			(createChildParameter
-				(VulkanPackage.Literals.IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG,
+				(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 				 VulkanFactory.eINSTANCE.createVulkanResourcePkg()));
 
 		newChildDescriptors.add
@@ -454,11 +451,6 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			(createChildParameter
 				(GraphicPackage.Literals.SUBPASS__EXTENSION_PKG,
 				 ProcessFactory.eINSTANCE.createProcessExtensionPkg()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.SUBPASS__RESOURCE_PKG,
-				 ResourceFactory.eINSTANCE.createResourcePkg()));
 	}
 
 	/**

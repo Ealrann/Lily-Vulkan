@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.vulkan.model.IProcess;
-import org.sheepy.lily.vulkan.model.resource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ public interface AbstractProcess extends IProcess
 	 * @return the value of the '<em>Descriptor Pool</em>' containment reference.
 	 * @see #setDescriptorPool(DescriptorPool)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_DescriptorPool()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	DescriptorPool getDescriptorPool();

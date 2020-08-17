@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-import org.sheepy.lily.vulkan.model.resource.IBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 
 /**

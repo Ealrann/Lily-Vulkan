@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.resource.ResourceFactory;
 import org.sheepy.lily.openal.model.openal.OpenALEngine;
 import org.sheepy.lily.openal.model.openal.OpenalPackage;
@@ -81,7 +80,7 @@ public class OpenALEngineItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ApplicationPackage.Literals.IENGINE__RESOURCE_PKG);
+			childrenFeatures.add(OpenalPackage.Literals.OPEN_AL_ENGINE__RESOURCE_PKG);
 		}
 		return childrenFeatures;
 	}
@@ -160,7 +159,7 @@ public class OpenALEngineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ApplicationPackage.Literals.IENGINE__RESOURCE_PKG,
+				(OpenalPackage.Literals.OPEN_AL_ENGINE__RESOURCE_PKG,
 				 ResourceFactory.eINSTANCE.createResourcePkg()));
 	}
 

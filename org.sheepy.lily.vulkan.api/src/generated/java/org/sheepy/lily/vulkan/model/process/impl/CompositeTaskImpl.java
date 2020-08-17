@@ -207,7 +207,7 @@ public class CompositeTaskImpl extends LilyEObject implements CompositeTask
 	{
 		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
-			InternalEObject oldMaintainer = maintainer;
+			InternalEObject oldMaintainer = (InternalEObject)maintainer;
 			maintainer = (Maintainer<CompositeTask>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{

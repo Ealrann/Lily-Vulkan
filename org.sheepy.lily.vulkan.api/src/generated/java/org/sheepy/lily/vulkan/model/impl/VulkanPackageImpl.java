@@ -13,11 +13,8 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
-import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
 import org.sheepy.lily.vulkan.model.IDescriptor;
@@ -37,8 +34,8 @@ import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
@@ -174,10 +171,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		// Initialize simple dependencies
 		ResourcePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
 		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
@@ -282,7 +277,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getIResourceContainer_VulkanResourcePkg()
+	public EReference getIResourceContainer_ResourcePkg()
 	{
 		return (EReference)iResourceContainerEClass.getEStructuralFeatures().get(0);
 	}
@@ -533,7 +528,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__FEATURES);
 
 		iResourceContainerEClass = createEClass(IRESOURCE_CONTAINER);
-		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__VULKAN_RESOURCE_PKG);
+		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__RESOURCE_PKG);
 		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__DESCRIPTOR_PKG);
 
 		vulkanResourcePkgEClass = createEClass(VULKAN_RESOURCE_PKG);
@@ -616,7 +611,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getVulkanEngine_Features(), theEnumerationPackage.getEPhysicalDeviceFeature(), "features", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIResourceContainer_VulkanResourcePkg(), this.getVulkanResourcePkg(), null, "vulkanResourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIResourceContainer_ResourcePkg(), this.getVulkanResourcePkg(), null, "resourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIResourceContainer_DescriptorPkg(), this.getDescriptorPkg(), null, "descriptorPkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vulkanResourcePkgEClass, VulkanResourcePkg.class, "VulkanResourcePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

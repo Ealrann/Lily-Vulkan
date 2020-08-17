@@ -116,7 +116,7 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		if (maintainer != null && ((EObject)maintainer).eIsProxy())
 		{
-			InternalEObject oldMaintainer = maintainer;
+			InternalEObject oldMaintainer = (InternalEObject)maintainer;
 			maintainer = (Maintainer<GraphicProcess>)eResolveProxy(oldMaintainer);
 			if (maintainer != oldMaintainer)
 			{

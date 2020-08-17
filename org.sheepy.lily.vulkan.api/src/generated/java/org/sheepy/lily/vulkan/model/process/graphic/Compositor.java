@@ -11,8 +11,7 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.variable.ModelVariablePkg;
 
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
-
-import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
 
 /**
  * <!-- begin-user-doc -->

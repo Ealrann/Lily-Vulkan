@@ -11,7 +11,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IResourceContainer" abstract="true"
       interface="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vulkanResourcePkg" eType="#//VulkanResourcePkg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourcePkg" eType="#//VulkanResourcePkg"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPkg" eType="#//DescriptorPkg"
         containment="true" resolveProxies="false"/>

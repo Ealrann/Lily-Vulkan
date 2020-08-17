@@ -18,8 +18,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.*;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
-import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.resource.ImageDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider;
 
 /**
  * <!-- begin-user-doc -->

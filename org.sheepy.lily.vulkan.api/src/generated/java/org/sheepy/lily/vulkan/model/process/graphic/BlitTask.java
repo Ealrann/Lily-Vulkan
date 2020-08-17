@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.sheepy.lily.core.model.resource.IImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,12 +27,12 @@ public interface BlitTask extends AbstractBlitTask
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Image</em>' reference.
-	 * @see #setDstImage(IImage)
+	 * @see #setDstImage(IVulkanImage)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getBlitTask_DstImage()
 	 * @model required="true"
 	 * @generated
 	 */
-	IImage getDstImage();
+	IVulkanImage getDstImage();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitTask#getDstImage <em>Dst Image</em>}' reference.
@@ -42,6 +42,6 @@ public interface BlitTask extends AbstractBlitTask
 	 * @see #getDstImage()
 	 * @generated
 	 */
-	void setDstImage(IImage value);
+	void setDstImage(IVulkanImage value);
 
 } // BlitTask

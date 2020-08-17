@@ -12,7 +12,7 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.util.SizeOf;
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;

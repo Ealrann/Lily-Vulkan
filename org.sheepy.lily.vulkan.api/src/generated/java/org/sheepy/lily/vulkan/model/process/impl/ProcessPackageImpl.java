@@ -15,11 +15,8 @@ import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
-import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
@@ -44,7 +41,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
-import org.sheepy.lily.vulkan.model.process.SwapBindingsTask;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
@@ -52,8 +48,8 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.model.resource.impl.VulkanResourcePackageImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -200,13 +196,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass swapBindingsTaskEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass processConfigurationEClass = null;
 
 	/**
@@ -281,10 +270,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Initialize simple dependencies
 		ResourcePackage.eINSTANCE.eClass();
-		UiPackage.eINSTANCE.eClass();
 		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
@@ -301,24 +288,24 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		ComputePackageImpl theComputePackage = (ComputePackageImpl)(registeredPackage instanceof ComputePackageImpl ? registeredPackage : ComputePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
 		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl)(registeredPackage instanceof GraphicPackageImpl ? registeredPackage : GraphicPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
-		VulkanResourcePackageImpl theVulkanResourcePackage = (VulkanResourcePackageImpl)(registeredPackage instanceof VulkanResourcePackageImpl ? registeredPackage : VulkanResourcePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl)(registeredPackage instanceof VulkanPackageImpl ? registeredPackage : VulkanPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
+		VulkanResourcePackageImpl theVulkanResourcePackage = (VulkanResourcePackageImpl)(registeredPackage instanceof VulkanResourcePackageImpl ? registeredPackage : VulkanResourcePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theProcessPackage.createPackageContents();
 		theComputePackage.createPackageContents();
 		theGraphicPackage.createPackageContents();
-		theVulkanResourcePackage.createPackageContents();
 		theVulkanPackage.createPackageContents();
+		theVulkanResourcePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theProcessPackage.initializePackageContents();
 		theComputePackage.initializePackageContents();
 		theGraphicPackage.initializePackageContents();
-		theVulkanResourcePackage.initializePackageContents();
 		theVulkanPackage.initializePackageContents();
+		theVulkanResourcePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theProcessPackage.freeze();
@@ -895,39 +882,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSwapBindingsTask()
-	{
-		return swapBindingsTaskEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSwapBindingsTask_Task()
-	{
-		return (EReference)swapBindingsTaskEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSwapBindingsTask_DescriptorSets()
-	{
-		return (EReference)swapBindingsTaskEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getProcessConfiguration()
 	{
 		return processConfigurationEClass;
@@ -1121,10 +1075,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		processExtensionPkgEClass = createEClass(PROCESS_EXTENSION_PKG);
 		createEReference(processExtensionPkgEClass, PROCESS_EXTENSION_PKG__EXTENSIONS);
 
-		swapBindingsTaskEClass = createEClass(SWAP_BINDINGS_TASK);
-		createEReference(swapBindingsTaskEClass, SWAP_BINDINGS_TASK__TASK);
-		createEReference(swapBindingsTaskEClass, SWAP_BINDINGS_TASK__DESCRIPTOR_SETS);
-
 		processConfigurationEClass = createEClass(PROCESS_CONFIGURATION);
 
 		processExecutionManagerEClass = createEClass(PROCESS_EXECUTION_MANAGER);
@@ -1171,7 +1121,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage)EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
 		MaintainerPackage theMaintainerPackage = (MaintainerPackage)EPackage.Registry.INSTANCE.getEPackage(MaintainerPackage.eNS_URI);
-		CadencePackage theCadencePackage = (CadencePackage)EPackage.Registry.INSTANCE.getEPackage(CadencePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1198,12 +1147,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		pushConstantBufferEClass.getESuperTypes().add(this.getPushConstant());
 		flushTransferBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 		copyBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
-		swapBindingsTaskEClass.getESuperTypes().add(theCadencePackage.getICadenceTask());
 		fetchBufferEClass.getESuperTypes().add(this.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractProcess_DescriptorPool(), theVulkanResourcePackage.getDescriptorPool(), null, "descriptorPool", null, 1, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_DescriptorPool(), theVulkanResourcePackage.getDescriptorPool(), null, "descriptorPool", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(), ecorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_ResetAllowed(), ecorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_ExtensionPkg(), this.getProcessExtensionPkg(), null, "extensionPkg", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1270,10 +1218,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(processExtensionPkgEClass, ProcessExtensionPkg.class, "ProcessExtensionPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProcessExtensionPkg_Extensions(), this.getIProcessExtension(), null, "extensions", null, 0, -1, ProcessExtensionPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(swapBindingsTaskEClass, SwapBindingsTask.class, "SwapBindingsTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSwapBindingsTask_Task(), this.getBindDescriptorSets(), null, "task", null, 1, 1, SwapBindingsTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSwapBindingsTask_DescriptorSets(), theVulkanResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 1, -1, SwapBindingsTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(processConfigurationEClass, ProcessConfiguration.class, "ProcessConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -27,7 +27,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.CopyBufferTask} object.

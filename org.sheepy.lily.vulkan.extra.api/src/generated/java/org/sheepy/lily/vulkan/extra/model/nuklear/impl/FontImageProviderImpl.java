@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-
-import org.sheepy.lily.vulkan.model.resource.impl.ImageDataProviderImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.ImageDataProviderImpl;
 
 /**
  * <!-- begin-user-doc -->

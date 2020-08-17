@@ -97,7 +97,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.SET_VIEWPORT: return createSetViewport();
 			case GraphicPackage.VERTEX_BINDING: return createVertexBinding();
 			case GraphicPackage.BIND_INDEX_BUFFER: return createBindIndexBuffer();
-			case GraphicPackage.ATTACHMENT_DESCRIPTOR: return createAttachmentDescriptor();
 			case GraphicPackage.COMPOSITOR: return createCompositor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -520,18 +519,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		BindIndexBufferImpl bindIndexBuffer = new BindIndexBufferImpl();
 		return bindIndexBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public AttachmentDescriptor createAttachmentDescriptor()
-	{
-		AttachmentDescriptorImpl attachmentDescriptor = new AttachmentDescriptorImpl();
-		return attachmentDescriptor;
 	}
 
 	/**

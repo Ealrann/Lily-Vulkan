@@ -4,37 +4,44 @@ import org.joml.Vector2ic;
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
+import org.sheepy.lily.core.model.resource.FileImage;
+import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.game.api.window.IWindow;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.graphic.IPhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.vulkanresource.FileImageDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageViewer;
+import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAllocation;
+import org.sheepy.lily.vulkan.nuklear.scene.NuklearSubpassProvider;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.lwjgl.nuklear.Nuklear.nk_clear;
 
 public final class LayoutManager
 {
-	private final Consumer<Vector2ic> resizeListener = this::onResize;
 	private final LayoutState layoutState;
 	private final List<IPanelAdapter> panelAdapters = new ArrayList<>();
+	private final Map<FileImage, IVulkanImage> imageMap;
 	private final IWindow window;
 	private final NkContext nkContext;
 	private final NuklearFont font;
 	private final GraphicProcess process;
 
-	private IExecutionContext context;
 	private ELayoutRequest layoutRequested = ELayoutRequest.None;
+	private final List<IImage> images;
 
 	private enum ELayoutRequest
 	{
@@ -43,17 +50,20 @@ public final class LayoutManager
 		IfNecessary
 	}
 
-	public LayoutManager(NkContext nkContext,
-						 Subpass subpass,
-						 IExecutionContext context,
+	public LayoutManager(final NkContext nkContext,
+						 final Subpass subpass,
+						 final IWindow window,
 						 final NuklearFont font,
-						 IObservatoryBuilder observatory)
+						 final IObservatoryBuilder observatory)
 	{
 		this.nkContext = nkContext;
 		this.font = font;
+		this.window = window;
 		final var ui = (UI) subpass.getCompositor();
+		images = List.copyOf(ui.getImages());
 		process = (GraphicProcess) subpass.eContainer();
 		layoutState = new LayoutState();
+		imageMap = buildImageMap(subpass);
 
 		observatory.focus(ui)
 				   .explore(UiPackage.UI__CURRENT_UI_PAGE)
@@ -61,10 +71,27 @@ public final class LayoutManager
 				   .adapt(IPanelAdapter.class)
 				   .gatherAdaptation(this::addPanelAdapter, this::removePanelAdapter);
 
-		this.context = context;
-		window = context.getWindow();
-		window.listen(resizeListener, IWindow.Features.Size);
+		observatory.focus(window).listen(this::onResize, IWindow.Features.Size);
+
 		requestLayout(true);
+	}
+
+	private static Map<FileImage, IVulkanImage> buildImageMap(Subpass subpass)
+	{
+		return subpass.getResourcePkg()
+					  .getResources()
+					  .stream()
+					  .filter(resource -> resource.getName().equals(NuklearSubpassProvider.IMAGE_MEMORY_CHUNK_NAME))
+					  .map(MemoryChunk.class::cast)
+					  .map(MemoryChunk::getParts)
+					  .flatMap(List::stream)
+					  .map(ImageViewer.class::cast)
+					  .collect(Collectors.toUnmodifiableMap(LayoutManager::resolveFileImage, viewer -> viewer));
+	}
+
+	private static FileImage resolveFileImage(final ImageViewer viewer)
+	{
+		return ((FileImageDataProvider) viewer.getDataProvider()).getFileImageReference();
 	}
 
 	private void addPanelAdapter(IPanelAdapter adapter)
@@ -82,12 +109,6 @@ public final class LayoutManager
 	private void onResize(Vector2ic size)
 	{
 		layoutRequested = ELayoutRequest.Force;
-	}
-
-	public void free()
-	{
-		window.sulk(resizeListener, IWindow.Features.Size);
-		this.context = null;
 	}
 
 	public void requestLayout(boolean full)
@@ -124,7 +145,7 @@ public final class LayoutManager
 
 		try (final var stack = MemoryStack.stackPush())
 		{
-			final var uiContext = new IPanelAdapter.UIContext(window, nkContext, fontMap, defaultFont, stack);
+			final var uiContext = new IPanelAdapter.UIContext(window, nkContext, fontMap, images, defaultFont, stack);
 			layoutState.layout(panelAdapters, uiContext, extent);
 		}
 
@@ -178,11 +199,6 @@ public final class LayoutManager
 	public boolean isDirty()
 	{
 		return layoutState.isDirty();
-	}
-
-	public boolean isFrameStarted()
-	{
-		return layoutState.hasStartedFrame();
 	}
 
 	public Vector2ic getExtent()

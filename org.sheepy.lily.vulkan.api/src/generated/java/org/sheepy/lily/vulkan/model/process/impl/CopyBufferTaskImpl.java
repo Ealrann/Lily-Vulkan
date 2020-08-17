@@ -13,7 +13,7 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.BufferReference;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
 
 /**
  * <!-- begin-user-doc -->

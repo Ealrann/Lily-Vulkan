@@ -6,8 +6,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -73,13 +71,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__VULKAN_RESOURCE_PKG = VulkanPackage.IPROCESS__VULKAN_RESOURCE_PKG;
+	int ABSTRACT_PROCESS__RESOURCE_PKG = VulkanPackage.IPROCESS__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -347,13 +345,13 @@ public interface ProcessPackage extends EPackage
 	int TASK_PIPELINE__ENABLED = ABSTRACT_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_PIPELINE__VULKAN_RESOURCE_PKG = ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
+	int TASK_PIPELINE__RESOURCE_PKG = ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -420,13 +418,13 @@ public interface ProcessPackage extends EPackage
 	int VK_PIPELINE__ENABLED = TASK_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VK_PIPELINE__VULKAN_RESOURCE_PKG = TASK_PIPELINE__VULKAN_RESOURCE_PKG;
+	int VK_PIPELINE__RESOURCE_PKG = TASK_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -575,13 +573,13 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE__ENABLED = TASK_PIPELINE__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Vulkan Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE__VULKAN_RESOURCE_PKG = TASK_PIPELINE__VULKAN_RESOURCE_PKG;
+	int PIPELINE__RESOURCE_PKG = TASK_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
@@ -1224,52 +1222,6 @@ public interface ProcessPackage extends EPackage
 	int PROCESS_EXTENSION_PKG_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl <em>Swap Bindings Task</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSwapBindingsTask()
-	 * @generated
-	 */
-	int SWAP_BINDINGS_TASK = 18;
-
-	/**
-	 * The feature id for the '<em><b>Task</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWAP_BINDINGS_TASK__TASK = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Sets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWAP_BINDINGS_TASK__DESCRIPTOR_SETS = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Swap Bindings Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWAP_BINDINGS_TASK_FEATURE_COUNT = CadencePackage.ICADENCE_TASK_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Swap Bindings Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWAP_BINDINGS_TASK_OPERATION_COUNT = CadencePackage.ICADENCE_TASK_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1277,7 +1229,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessConfiguration()
 	 * @generated
 	 */
-	int PROCESS_CONFIGURATION = 19;
+	int PROCESS_CONFIGURATION = 18;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -1305,7 +1257,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExecutionManager()
 	 * @generated
 	 */
-	int PROCESS_EXECUTION_MANAGER = 20;
+	int PROCESS_EXECUTION_MANAGER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Wait For Execution</b></em>' reference list.
@@ -1360,7 +1312,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getExecutionRecorder()
 	 * @generated
 	 */
-	int EXECUTION_RECORDER = 21;
+	int EXECUTION_RECORDER = 20;
 
 	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
@@ -1388,7 +1340,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getFetchBuffer()
 	 * @generated
 	 */
-	int FETCH_BUFFER = 22;
+	int FETCH_BUFFER = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1988,38 +1940,6 @@ public interface ProcessPackage extends EPackage
 	EReference getProcessExtensionPkg_Extensions();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask <em>Swap Bindings Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Swap Bindings Task</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.SwapBindingsTask
-	 * @generated
-	 */
-	EClass getSwapBindingsTask();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask#getTask <em>Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Task</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.SwapBindingsTask#getTask()
-	 * @see #getSwapBindingsTask()
-	 * @generated
-	 */
-	EReference getSwapBindingsTask_Task();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.SwapBindingsTask#getDescriptorSets <em>Descriptor Sets</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Descriptor Sets</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.SwapBindingsTask#getDescriptorSets()
-	 * @see #getSwapBindingsTask()
-	 * @generated
-	 */
-	EReference getSwapBindingsTask_DescriptorSets();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2581,32 +2501,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PROCESS_EXTENSION_PKG__EXTENSIONS = eINSTANCE.getProcessExtensionPkg_Extensions();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl <em>Swap Bindings Task</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.SwapBindingsTaskImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSwapBindingsTask()
-		 * @generated
-		 */
-		EClass SWAP_BINDINGS_TASK = eINSTANCE.getSwapBindingsTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Task</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SWAP_BINDINGS_TASK__TASK = eINSTANCE.getSwapBindingsTask_Task();
-
-		/**
-		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SWAP_BINDINGS_TASK__DESCRIPTOR_SETS = eINSTANCE.getSwapBindingsTask_DescriptorSets();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}' class.

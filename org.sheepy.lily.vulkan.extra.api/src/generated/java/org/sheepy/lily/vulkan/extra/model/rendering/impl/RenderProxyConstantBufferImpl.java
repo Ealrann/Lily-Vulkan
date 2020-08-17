@@ -11,9 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.ConstantBufferImpl;
 
 /**
  * <!-- begin-user-doc -->

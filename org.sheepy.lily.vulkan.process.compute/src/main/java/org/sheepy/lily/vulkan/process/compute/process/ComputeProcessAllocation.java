@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.process.process.AbstractProcessAllocation;
 @ModelExtender(scope = ComputeProcess.class)
 @Allocation(context = IVulkanContext.class)
 @AllocationChild(features = ComputePackage.COMPUTE_PROCESS__CONFIGURATION)
-@AllocationChild(features = {ComputePackage.COMPUTE_PROCESS__VULKAN_RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
+@AllocationChild(features = {ComputePackage.COMPUTE_PROCESS__RESOURCE_PKG, ResourcePackage.RESOURCE_PKG__RESOURCES})
 @AllocationChild(features = {ComputePackage.COMPUTE_PROCESS__DESCRIPTOR_PKG, VulkanPackage.DESCRIPTOR_PKG__DESCRIPTORS})
 @AllocationChild(features = ComputePackage.COMPUTE_PROCESS__DESCRIPTOR_POOL)
 @AllocationChild(features = {ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES})

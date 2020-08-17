@@ -4,9 +4,9 @@ package org.sheepy.lily.vulkan.extra.model.nuklear;
 
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.resource.ImageArrayDescriptor;
-import org.sheepy.lily.vulkan.model.resource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.resource.StaticImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
+import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
+import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,12 +81,12 @@ public interface NuklearContext extends IVulkanResource
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Array Descriptor</em>' reference.
-	 * @see #setImageArrayDescriptor(ImageArrayDescriptor)
+	 * @see #setImageArrayDescriptor(ImageDescriptor)
 	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_ImageArrayDescriptor()
 	 * @model
 	 * @generated
 	 */
-	ImageArrayDescriptor getImageArrayDescriptor();
+	ImageDescriptor getImageArrayDescriptor();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getImageArrayDescriptor <em>Image Array Descriptor</em>}' reference.
@@ -96,7 +96,7 @@ public interface NuklearContext extends IVulkanResource
 	 * @see #getImageArrayDescriptor()
 	 * @generated
 	 */
-	void setImageArrayDescriptor(ImageArrayDescriptor value);
+	void setImageArrayDescriptor(ImageDescriptor value);
 
 	/**
 	 * Returns the value of the '<em><b>Vertex Data Provider</b></em>' reference.

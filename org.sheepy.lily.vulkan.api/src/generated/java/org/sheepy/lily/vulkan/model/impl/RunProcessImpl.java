@@ -72,7 +72,7 @@ public class RunProcessImpl extends LilyEObject implements RunProcess
 	{
 		if (process != null && ((EObject)process).eIsProxy())
 		{
-			InternalEObject oldProcess = process;
+			InternalEObject oldProcess = (InternalEObject)process;
 			process = (IProcess)eResolveProxy(oldProcess);
 			if (process != oldProcess)
 			{

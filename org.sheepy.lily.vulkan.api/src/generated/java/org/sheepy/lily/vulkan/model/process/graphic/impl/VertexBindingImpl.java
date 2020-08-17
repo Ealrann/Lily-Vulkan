@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
-import org.sheepy.lily.vulkan.model.resource.IBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
 
 /**
  * <!-- begin-user-doc -->

@@ -2,9 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.types.LNamedElement;
-
+import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -32,7 +31,7 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
  * @model abstract="true"
  * @generated
  */
-public interface Attachment extends LNamedElement, IImage
+public interface Attachment extends LNamedElement, IVulkanImage
 {
 	/**
 	 * Returns the value of the '<em><b>Samples</b></em>' attribute.

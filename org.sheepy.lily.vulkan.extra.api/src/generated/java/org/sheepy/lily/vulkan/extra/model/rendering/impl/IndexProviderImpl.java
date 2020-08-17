@@ -13,8 +13,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
-
-import org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl;
+import org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferDataProviderImpl;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
 
 /**

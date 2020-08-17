@@ -13,8 +13,8 @@ import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
