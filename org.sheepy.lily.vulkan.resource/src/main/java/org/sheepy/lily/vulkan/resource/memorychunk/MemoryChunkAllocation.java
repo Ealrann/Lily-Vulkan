@@ -10,13 +10,13 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.resource.util.DeviceResourceFiller;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
+import org.sheepy.lily.vulkan.resource.util.DeviceResourceFiller;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -38,11 +38,11 @@ public final class MemoryChunkAllocation implements IExtender
 
 	private boolean needTransfer = false;
 
-	private MemoryChunkAllocation(MemoryChunk memoryChunk,
-								  ExecutionContext context,
-								  IAllocationState allocationState,
-								  IObservatoryBuilder observatory,
-								  @InjectDependency(index = 0) List<IMemoryChunkPartAllocation> memoryPartAllocations)
+	private MemoryChunkAllocation(final MemoryChunk memoryChunk,
+								  final ExecutionContext context,
+								  final IAllocationState allocationState,
+								  final IObservatoryBuilder observatory,
+								  @InjectDependency(index = 0) final List<IMemoryChunkPartAllocation> memoryPartAllocations)
 	{
 		this.memoryChunk = memoryChunk;
 		this.allocationState = allocationState;
@@ -108,13 +108,13 @@ public final class MemoryChunkAllocation implements IExtender
 		pushData(false);
 	}
 
-	private void pushData(boolean force)
+	private void pushData(final boolean force)
 	{
 		final var commands = streamFillCommands(force);
 		bufferPusher.fillData(commands);
 	}
 
-	private void recordTransfer(boolean force)
+	private void recordTransfer(final boolean force)
 	{
 		final var commands = streamFillCommands(force);
 		final var transferBuffer = memoryChunk.getTransferBuffer();
@@ -126,7 +126,7 @@ public final class MemoryChunkAllocation implements IExtender
 		}
 	}
 
-	private Stream<FillCommand> streamFillCommands(boolean force)
+	private Stream<FillCommand> streamFillCommands(final boolean force)
 	{
 		return memoryPartAllocations.stream().flatMap(p -> p.streamFillCommands(force));
 	}

@@ -42,12 +42,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/imageArrayDescriptor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/vertexDataProvider"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/indexDataProvider"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/vertexMemoryChunk"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/vertexBufferMemory"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/compositeDrawTask"/>
     </genClasses>
-    <genClasses ecoreClass="Nuklear.ecore#//NuklearFont">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearFont/fontImage"/>
-    </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//NuklearFont"/>
     <genClasses ecoreClass="Nuklear.ecore#//SelectorPanel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/buttonSizePx"/>
       <genFeatures createChild="false" propertyCategory="Selection Color" ecoreFeature="ecore:EAttribute Nuklear.ecore#//SelectorPanel/selectionR"/>
@@ -69,11 +67,7 @@
     <genClasses ecoreClass="Nuklear.ecore#//NuklearVertexProvider"/>
     <genClasses ecoreClass="Nuklear.ecore#//NuklearIndexProvider"/>
     <genClasses ecoreClass="Nuklear.ecore#//FontImageProvider">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nuklear.ecore#//FontImageProvider/fontUsages"/>
-    </genClasses>
-    <genClasses ecoreClass="Nuklear.ecore#//FontUsage">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//FontUsage/font"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//FontUsage/strings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//FontImageProvider/nuklearFont"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"

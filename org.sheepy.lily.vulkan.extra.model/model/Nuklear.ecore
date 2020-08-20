@@ -15,15 +15,12 @@
         eType="#//NuklearVertexProvider"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="indexDataProvider" lowerBound="1"
         eType="#//NuklearIndexProvider"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexMemoryChunk" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//MemoryChunk"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexBufferMemory" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferMemory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compositeDrawTask" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/process.ecore#//CompositeTask"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IVulkanResource">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fontImage" lowerBound="1"
-        eType="#//FontImageProvider"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NuklearFont" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IVulkanResource"/>
   <eClassifiers xsi:type="ecore:EClass" name="SelectorPanel" eSuperTypes="../../org.sheepy.lily.core.model/model/ui.ecore#//IPanel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="buttonSizePx" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="32"/>
@@ -72,12 +69,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NuklearVertexProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferDataProvider"/>
   <eClassifiers xsi:type="ecore:EClass" name="NuklearIndexProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferDataProvider"/>
   <eClassifiers xsi:type="ecore:EClass" name="FontImageProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ImageDataProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fontUsages" upperBound="-1"
-        eType="#//FontUsage" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FontUsage">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="font" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/ui.ecore#//Font"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strings" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nuklearFont" lowerBound="1"
+        eType="#//NuklearFont"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -3,7 +3,7 @@
   <resourcePkg/>
   <attachmentRefPkg/>
   <pipelinePkg>
-    <pipelines xsi:type="graphic:GraphicsPipeline" name="GUI" specializationData="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.10" layout="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2">
+    <pipelines xsi:type="graphic:GraphicsPipeline" name="GUI" specializationData="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6" layout="//@pipelinePkg/@pipelines.0/@descriptorPool/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.1 //@pipelinePkg/@pipelines.0/@resourcePkg/@resources.2">
       <resourcePkg>
         <resources xsi:type="vulkanresource:TransferBuffer" name="" size="4000000"/>
         <resources xsi:type="vulkanresource:Shader" name="NkVertex">
@@ -12,8 +12,19 @@
         <resources xsi:type="vulkanresource:Shader" name="NkFrag" stage="FRAGMENT_BIT">
           <file xsi:type="resource:StringModuleResource" name="Frag" path="ui.frag.spv" moduleName="org.sheepy.lily.vulkan.extra.nuklear"/>
         </resources>
-        <resources xsi:type="vulkanresource:MemoryChunk" name="NuklearVertexBuffer" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0">
-          <parts xsi:type="vulkanresource:BufferMemory">
+        <resources xsi:type="vulkanresource:Sampler" name="FontSampler"/>
+        <resources xsi:type="vulkanresource:Sampler" name="NullTextureSampler"/>
+        <resources xsi:type="vulkanresource:Sampler" minFilter="LINEAR" magFilter="LINEAR" name="ImageSampler"/>
+        <resources xsi:type="vulkanresource:ConstantBuffer" name="SpecializationData"/>
+        <resources xsi:type="nuklear:NuklearFont"/>
+        <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" nullTexture="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.10/@parts.0" imageArrayDescriptor="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.3" vertexDataProvider="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1/@buffers.0/@dataProvider" indexDataProvider="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1/@buffers.1/@dataProvider" vertexBufferMemory="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1" compositeDrawTask="//@pipelinePkg/@pipelines.0/@taskPkgs.1/@tasks.1"/>
+        <resources xsi:type="vulkanresource:MemoryChunk" name="NuklearVertexAndFontMemory" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0">
+          <parts xsi:type="vulkanresource:ImageViewer" name="FontImage" format="R8_UNORM">
+            <usages>Sampled</usages>
+            <usages>TransferDst</usages>
+            <dataProvider xsi:type="nuklear:FontImageProvider" nuklearFont="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7"/>
+          </parts>
+          <parts xsi:type="vulkanresource:BufferMemory" name="Nuklear Vertex">
             <buffers xsi:type="vulkanresource:BufferViewer" name="NkVertex">
               <usages>VERTEX_BUFFER_BIT</usages>
               <usages>TRANSFER_DST_BIT</usages>
@@ -25,36 +36,25 @@
               <dataProvider xsi:type="nuklear:NuklearIndexProvider"/>
             </buffers>
           </parts>
-          <parts xsi:type="vulkanresource:ImageViewer" name="FontImage" format="R8_UNORM">
-            <usages>Sampled</usages>
-            <usages>TransferDst</usages>
-            <dataProvider xsi:type="nuklear:FontImageProvider"/>
-          </parts>
         </resources>
-        <resources xsi:type="vulkanresource:Sampler" name="FontSampler"/>
         <resources xsi:type="vulkanresource:MemoryChunk" name="Static Resources">
           <parts xsi:type="vulkanresource:StaticImage" name="NullImage" size="1;1">
             <usages>Sampled</usages>
             <usages>TransferDst</usages>
           </parts>
         </resources>
-        <resources xsi:type="vulkanresource:Sampler" name="NullTextureSampler"/>
-        <resources xsi:type="nuklear:NuklearFont" fontImage="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3/@parts.1/@dataProvider"/>
-        <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" nullTexture="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5/@parts.0" vertexDataProvider="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3/@parts.0/@buffers.0/@dataProvider" indexDataProvider="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3/@parts.0/@buffers.1/@dataProvider" vertexMemoryChunk="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3" compositeDrawTask="//@pipelinePkg/@pipelines.0/@taskPkgs.1/@tasks.1"/>
-        <resources xsi:type="vulkanresource:Sampler" name="ImageSampler"/>
-        <resources xsi:type="vulkanresource:ConstantBuffer" name="SpecializationData"/>
       </resourcePkg>
       <descriptorPkg>
-        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="NullTexture" type="COMBINED_IMAGE_SAMPLER" images="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5/@parts.0" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.6" layout="SHADER_READ_ONLY_OPTIMAL">
+        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="NullTexture" type="COMBINED_IMAGE_SAMPLER" images="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.10/@parts.0" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.4" layout="SHADER_READ_ONLY_OPTIMAL">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
-        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="FontSampler" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.4">
+        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="FontSampler" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
-        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="ImageSampler" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9">
+        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="ImageSampler" sampler="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.5">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
-        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="ImageArrayDescriptor" type="SAMPLED_IMAGE" images="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3/@parts.1" layout="SHADER_READ_ONLY_OPTIMAL">
+        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="ImageArrayDescriptor" type="SAMPLED_IMAGE" images="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.0" layout="SHADER_READ_ONLY_OPTIMAL">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
       </descriptorPkg>
@@ -64,12 +64,12 @@
           <barriers xsi:type="vulkanresource:BufferBarrier" name="Index">
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>INDEX_READ_BIT</dstAccessMask>
-            <buffers buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3/@parts.0/@buffers.1"/>
+            <buffers buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1/@buffers.1"/>
           </barriers>
           <barriers xsi:type="vulkanresource:BufferBarrier" name="Vertex">
             <srcAccessMask>TRANSFER_WRITE_BIT</srcAccessMask>
             <dstAccessMask>VERTEX_ATTRIBUTE_READ_BIT</dstAccessMask>
-            <buffers buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.3/@parts.0/@buffers.0"/>
+            <buffers buffers="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1/@buffers.0"/>
           </barriers>
         </tasks>
       </taskPkgs>

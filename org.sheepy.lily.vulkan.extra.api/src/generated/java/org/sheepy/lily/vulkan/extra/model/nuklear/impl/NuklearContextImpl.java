@@ -15,8 +15,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
-import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 
 /**
@@ -33,7 +33,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getImageArrayDescriptor <em>Image Array Descriptor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getVertexDataProvider <em>Vertex Data Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getIndexDataProvider <em>Index Data Provider</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getVertexMemoryChunk <em>Vertex Memory Chunk</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getVertexBufferMemory <em>Vertex Buffer Memory</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getCompositeDrawTask <em>Composite Draw Task</em>}</li>
  * </ul>
  *
@@ -112,14 +112,14 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	protected NuklearIndexProvider indexDataProvider;
 
 	/**
-	 * The cached value of the '{@link #getVertexMemoryChunk() <em>Vertex Memory Chunk</em>}' reference.
+	 * The cached value of the '{@link #getVertexBufferMemory() <em>Vertex Buffer Memory</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVertexMemoryChunk()
+	 * @see #getVertexBufferMemory()
 	 * @generated
 	 * @ordered
 	 */
-	protected MemoryChunk vertexMemoryChunk;
+	protected BufferMemory vertexBufferMemory;
 
 	/**
 	 * The cached value of the '{@link #getCompositeDrawTask() <em>Composite Draw Task</em>}' reference.
@@ -408,19 +408,19 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public MemoryChunk getVertexMemoryChunk()
+	public BufferMemory getVertexBufferMemory()
 	{
-		if (vertexMemoryChunk != null && ((EObject)vertexMemoryChunk).eIsProxy())
+		if (vertexBufferMemory != null && ((EObject)vertexBufferMemory).eIsProxy())
 		{
-			InternalEObject oldVertexMemoryChunk = vertexMemoryChunk;
-			vertexMemoryChunk = (MemoryChunk)eResolveProxy(oldVertexMemoryChunk);
-			if (vertexMemoryChunk != oldVertexMemoryChunk)
+			InternalEObject oldVertexBufferMemory = vertexBufferMemory;
+			vertexBufferMemory = (BufferMemory)eResolveProxy(oldVertexBufferMemory);
+			if (vertexBufferMemory != oldVertexBufferMemory)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK, oldVertexMemoryChunk, vertexMemoryChunk));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY, oldVertexBufferMemory, vertexBufferMemory));
 			}
 		}
-		return vertexMemoryChunk;
+		return vertexBufferMemory;
 	}
 
 	/**
@@ -428,9 +428,9 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MemoryChunk basicGetVertexMemoryChunk()
+	public BufferMemory basicGetVertexBufferMemory()
 	{
-		return vertexMemoryChunk;
+		return vertexBufferMemory;
 	}
 
 	/**
@@ -439,12 +439,12 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public void setVertexMemoryChunk(MemoryChunk newVertexMemoryChunk)
+	public void setVertexBufferMemory(BufferMemory newVertexBufferMemory)
 	{
-		MemoryChunk oldVertexMemoryChunk = vertexMemoryChunk;
-		vertexMemoryChunk = newVertexMemoryChunk;
+		BufferMemory oldVertexBufferMemory = vertexBufferMemory;
+		vertexBufferMemory = newVertexBufferMemory;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK, oldVertexMemoryChunk, vertexMemoryChunk));
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY, oldVertexBufferMemory, vertexBufferMemory));
 	}
 
 	/**
@@ -519,9 +519,9 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
 				if (resolve) return getIndexDataProvider();
 				return basicGetIndexDataProvider();
-			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK:
-				if (resolve) return getVertexMemoryChunk();
-				return basicGetVertexMemoryChunk();
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY:
+				if (resolve) return getVertexBufferMemory();
+				return basicGetVertexBufferMemory();
 			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:
 				if (resolve) return getCompositeDrawTask();
 				return basicGetCompositeDrawTask();
@@ -557,8 +557,8 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
 				setIndexDataProvider((NuklearIndexProvider)newValue);
 				return;
-			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK:
-				setVertexMemoryChunk((MemoryChunk)newValue);
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY:
+				setVertexBufferMemory((BufferMemory)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:
 				setCompositeDrawTask((CompositeTask)newValue);
@@ -595,8 +595,8 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
 				setIndexDataProvider((NuklearIndexProvider)null);
 				return;
-			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK:
-				setVertexMemoryChunk((MemoryChunk)null);
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY:
+				setVertexBufferMemory((BufferMemory)null);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:
 				setCompositeDrawTask((CompositeTask)null);
@@ -627,8 +627,8 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 				return vertexDataProvider != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
 				return indexDataProvider != null;
-			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK:
-				return vertexMemoryChunk != null;
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY:
+				return vertexBufferMemory != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:
 				return compositeDrawTask != null;
 		}

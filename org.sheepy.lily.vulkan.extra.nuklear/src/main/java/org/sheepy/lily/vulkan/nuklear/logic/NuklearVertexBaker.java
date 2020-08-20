@@ -21,7 +21,7 @@ public final class NuklearVertexBaker implements IExtender
 		this.state = state;
 	}
 
-	public List<DrawCommandData> buildDrawCommands()
+	public List<DrawCommandData> bakeAndBuildDrawCommands()
 	{
 		final boolean vertexUpdated = fillVertexBuffer();
 

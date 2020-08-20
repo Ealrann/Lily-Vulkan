@@ -45,7 +45,7 @@ public final class NuklearSubpassProvider implements ICompositor_SubpassProvider
 	{
 		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
 		final var graphicsPipeline = (GraphicsPipeline) subpass.getPipelinePkg().getPipelines().get(0);
-		final var constantBuffer = (ConstantBuffer) graphicsPipeline.getResourcePkg().getResources().get(10);
+		final var constantBuffer = (ConstantBuffer) graphicsPipeline.getResourcePkg().getResources().get(6);
 		final var imageDescriptor = (ImageDescriptor) graphicsPipeline.getDescriptorPkg().getDescriptors().get(3);
 		final var descriptorImages = imageDescriptor.getImages();
 

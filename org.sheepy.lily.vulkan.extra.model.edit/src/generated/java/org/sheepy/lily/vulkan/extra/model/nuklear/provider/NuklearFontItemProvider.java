@@ -57,7 +57,6 @@ public class NuklearFontItemProvider extends ItemProviderAdapter implements IEdi
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addFontImagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,29 +80,6 @@ public class NuklearFontItemProvider extends ItemProviderAdapter implements IEdi
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Font Image feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFontImagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NuklearFont_fontImage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearFont_fontImage_feature", "_UI_NuklearFont_type"),
-				 NuklearPackage.Literals.NUKLEAR_FONT__FONT_IMAGE,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

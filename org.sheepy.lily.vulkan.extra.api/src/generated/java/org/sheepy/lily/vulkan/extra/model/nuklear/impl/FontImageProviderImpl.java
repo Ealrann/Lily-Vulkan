@@ -2,19 +2,14 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider;
-import org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.model.vulkanresource.impl.ImageDataProviderImpl;
 
@@ -26,7 +21,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.impl.ImageDataProviderImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontImageProviderImpl#getFontUsages <em>Font Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontImageProviderImpl#getNuklearFont <em>Nuklear Font</em>}</li>
  * </ul>
  *
  * @generated
@@ -34,14 +29,14 @@ import org.sheepy.lily.vulkan.model.vulkanresource.impl.ImageDataProviderImpl;
 public class FontImageProviderImpl extends ImageDataProviderImpl implements FontImageProvider
 {
 	/**
-	 * The cached value of the '{@link #getFontUsages() <em>Font Usages</em>}' containment reference list.
+	 * The cached value of the '{@link #getNuklearFont() <em>Nuklear Font</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFontUsages()
+	 * @see #getNuklearFont()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FontUsage> fontUsages;
+	protected NuklearFont nuklearFont;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,13 +65,29 @@ public class FontImageProviderImpl extends ImageDataProviderImpl implements Font
 	 * @generated
 	 */
 	@Override
-	public EList<FontUsage> getFontUsages()
+	public NuklearFont getNuklearFont()
 	{
-		if (fontUsages == null)
+		if (nuklearFont != null && ((EObject)nuklearFont).eIsProxy())
 		{
-			fontUsages = new EObjectContainmentEList<FontUsage>(FontUsage.class, this, NuklearPackage.FONT_IMAGE_PROVIDER__FONT_USAGES);
+			InternalEObject oldNuklearFont = nuklearFont;
+			nuklearFont = (NuklearFont)eResolveProxy(oldNuklearFont);
+			if (nuklearFont != oldNuklearFont)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.FONT_IMAGE_PROVIDER__NUKLEAR_FONT, oldNuklearFont, nuklearFont));
+			}
 		}
-		return fontUsages;
+		return nuklearFont;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NuklearFont basicGetNuklearFont()
+	{
+		return nuklearFont;
 	}
 
 	/**
@@ -85,14 +96,12 @@ public class FontImageProviderImpl extends ImageDataProviderImpl implements Font
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public void setNuklearFont(NuklearFont newNuklearFont)
 	{
-		switch (featureID)
-		{
-			case NuklearPackage.FONT_IMAGE_PROVIDER__FONT_USAGES:
-				return ((InternalEList<?>)getFontUsages()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		NuklearFont oldNuklearFont = nuklearFont;
+		nuklearFont = newNuklearFont;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.FONT_IMAGE_PROVIDER__NUKLEAR_FONT, oldNuklearFont, nuklearFont));
 	}
 
 	/**
@@ -105,8 +114,9 @@ public class FontImageProviderImpl extends ImageDataProviderImpl implements Font
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.FONT_IMAGE_PROVIDER__FONT_USAGES:
-				return getFontUsages();
+			case NuklearPackage.FONT_IMAGE_PROVIDER__NUKLEAR_FONT:
+				if (resolve) return getNuklearFont();
+				return basicGetNuklearFont();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,15 +126,13 @@ public class FontImageProviderImpl extends ImageDataProviderImpl implements Font
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.FONT_IMAGE_PROVIDER__FONT_USAGES:
-				getFontUsages().clear();
-				getFontUsages().addAll((Collection<? extends FontUsage>)newValue);
+			case NuklearPackage.FONT_IMAGE_PROVIDER__NUKLEAR_FONT:
+				setNuklearFont((NuklearFont)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,8 +148,8 @@ public class FontImageProviderImpl extends ImageDataProviderImpl implements Font
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.FONT_IMAGE_PROVIDER__FONT_USAGES:
-				getFontUsages().clear();
+			case NuklearPackage.FONT_IMAGE_PROVIDER__NUKLEAR_FONT:
+				setNuklearFont((NuklearFont)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -157,8 +165,8 @@ public class FontImageProviderImpl extends ImageDataProviderImpl implements Font
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.FONT_IMAGE_PROVIDER__FONT_USAGES:
-				return fontUsages != null && !fontUsages.isEmpty();
+			case NuklearPackage.FONT_IMAGE_PROVIDER__NUKLEAR_FONT:
+				return nuklearFont != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -207,13 +207,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Vertex Memory Chunk</b></em>' reference.
+	 * The feature id for the '<em><b>Vertex Buffer Memory</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 5;
+	int NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Composite Draw Task</b></em>' reference.
@@ -264,22 +264,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_FONT__NAME = VulkanPackage.IVULKAN_RESOURCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Font Image</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_FONT__FONT_IMAGE = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Font</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_FONT_FEATURE_COUNT = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 1;
+	int NUKLEAR_FONT_FEATURE_COUNT = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -783,13 +774,13 @@ public interface NuklearPackage extends EPackage
 	int FONT_IMAGE_PROVIDER__NAME = VulkanResourcePackage.IMAGE_DATA_PROVIDER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Font Usages</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Nuklear Font</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FONT_IMAGE_PROVIDER__FONT_USAGES = VulkanResourcePackage.IMAGE_DATA_PROVIDER_FEATURE_COUNT + 0;
+	int FONT_IMAGE_PROVIDER__NUKLEAR_FONT = VulkanResourcePackage.IMAGE_DATA_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Font Image Provider</em>' class.
@@ -808,52 +799,6 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int FONT_IMAGE_PROVIDER_OPERATION_COUNT = VulkanResourcePackage.IMAGE_DATA_PROVIDER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontUsageImpl <em>Font Usage</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontUsageImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getFontUsage()
-	 * @generated
-	 */
-	int FONT_USAGE = 9;
-
-	/**
-	 * The feature id for the '<em><b>Font</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_USAGE__FONT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Strings</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_USAGE__STRINGS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Font Usage</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_USAGE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Font Usage</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT_USAGE_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants <em>Push Constants</em>}'.
@@ -964,15 +909,15 @@ public interface NuklearPackage extends EPackage
 	EReference getNuklearContext_IndexDataProvider();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexMemoryChunk <em>Vertex Memory Chunk</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBufferMemory <em>Vertex Buffer Memory</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Vertex Memory Chunk</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexMemoryChunk()
+	 * @return the meta object for the reference '<em>Vertex Buffer Memory</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBufferMemory()
 	 * @see #getNuklearContext()
 	 * @generated
 	 */
-	EReference getNuklearContext_VertexMemoryChunk();
+	EReference getNuklearContext_VertexBufferMemory();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getCompositeDrawTask <em>Composite Draw Task</em>}'.
@@ -994,17 +939,6 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 */
 	EClass getNuklearFont();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontImage <em>Font Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Font Image</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont#getFontImage()
-	 * @see #getNuklearFont()
-	 * @generated
-	 */
-	EReference getNuklearFont_FontImage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel <em>Selector Panel</em>}'.
@@ -1210,47 +1144,15 @@ public interface NuklearPackage extends EPackage
 	EClass getFontImageProvider();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getFontUsages <em>Font Usages</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getNuklearFont <em>Nuklear Font</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Font Usages</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getFontUsages()
+	 * @return the meta object for the reference '<em>Nuklear Font</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getNuklearFont()
 	 * @see #getFontImageProvider()
 	 * @generated
 	 */
-	EReference getFontImageProvider_FontUsages();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage <em>Font Usage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Font Usage</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage
-	 * @generated
-	 */
-	EClass getFontUsage();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage#getFont <em>Font</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Font</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage#getFont()
-	 * @see #getFontUsage()
-	 * @generated
-	 */
-	EReference getFontUsage_Font();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage#getStrings <em>Strings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Strings</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage#getStrings()
-	 * @see #getFontUsage()
-	 * @generated
-	 */
-	EAttribute getFontUsage_Strings();
+	EReference getFontImageProvider_NuklearFont();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1360,12 +1262,12 @@ public interface NuklearPackage extends EPackage
 		EReference NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER = eINSTANCE.getNuklearContext_IndexDataProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Vertex Memory Chunk</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Vertex Buffer Memory</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK = eINSTANCE.getNuklearContext_VertexMemoryChunk();
+		EReference NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY = eINSTANCE.getNuklearContext_VertexBufferMemory();
 
 		/**
 		 * The meta object literal for the '<em><b>Composite Draw Task</b></em>' reference feature.
@@ -1384,14 +1286,6 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EClass NUKLEAR_FONT = eINSTANCE.getNuklearFont();
-
-		/**
-		 * The meta object literal for the '<em><b>Font Image</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NUKLEAR_FONT__FONT_IMAGE = eINSTANCE.getNuklearFont_FontImage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl <em>Selector Panel</em>}' class.
@@ -1558,38 +1452,12 @@ public interface NuklearPackage extends EPackage
 		EClass FONT_IMAGE_PROVIDER = eINSTANCE.getFontImageProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Font Usages</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Nuklear Font</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FONT_IMAGE_PROVIDER__FONT_USAGES = eINSTANCE.getFontImageProvider_FontUsages();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontUsageImpl <em>Font Usage</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontUsageImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getFontUsage()
-		 * @generated
-		 */
-		EClass FONT_USAGE = eINSTANCE.getFontUsage();
-
-		/**
-		 * The meta object literal for the '<em><b>Font</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FONT_USAGE__FONT = eINSTANCE.getFontUsage_Font();
-
-		/**
-		 * The meta object literal for the '<em><b>Strings</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FONT_USAGE__STRINGS = eINSTANCE.getFontUsage_Strings();
+		EReference FONT_IMAGE_PROVIDER__NUKLEAR_FONT = eINSTANCE.getFontImageProvider_NuklearFont();
 
 	}
 

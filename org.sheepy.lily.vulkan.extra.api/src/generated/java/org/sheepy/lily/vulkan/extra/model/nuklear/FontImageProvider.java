@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.extra.model.nuklear;
 
-import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider;
 
 /**
@@ -14,7 +13,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getFontUsages <em>Font Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getNuklearFont <em>Nuklear Font</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getFontImageProvider()
@@ -24,15 +23,25 @@ import org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider;
 public interface FontImageProvider extends ImageDataProvider
 {
 	/**
-	 * Returns the value of the '<em><b>Font Usages</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage}.
+	 * Returns the value of the '<em><b>Nuklear Font</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Font Usages</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getFontImageProvider_FontUsages()
-	 * @model containment="true"
+	 * @return the value of the '<em>Nuklear Font</em>' reference.
+	 * @see #setNuklearFont(NuklearFont)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getFontImageProvider_NuklearFont()
+	 * @model required="true"
 	 * @generated
 	 */
-	EList<FontUsage> getFontUsages();
+	NuklearFont getNuklearFont();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider#getNuklearFont <em>Nuklear Font</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nuklear Font</em>' reference.
+	 * @see #getNuklearFont()
+	 * @generated
+	 */
+	void setNuklearFont(NuklearFont value);
 
 } // FontImageProvider

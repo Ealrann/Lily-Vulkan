@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.nuklear.dataprovider;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
@@ -11,6 +10,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import java.nio.ByteBuffer;
 import java.util.List;
 
+import static org.lwjgl.nuklear.Nuklear.nnk_buffer_init_fixed;
+
 @ModelExtender(scope = NuklearIndexProvider.class)
 @Adapter(lazy = false)
 public final class NuklearIndexProviderAdapter extends Notifier<IBufferDataProviderAdapter.Features> implements
@@ -18,29 +19,26 @@ public final class NuklearIndexProviderAdapter extends Notifier<IBufferDataProvi
 {
 	public static final long INDEX_BUFFER_SIZE = (long) Math.pow(2, 16);
 
-	private final ByteBuffer stagingBuffer = MemoryUtil.memAlloc((int) INDEX_BUFFER_SIZE);
+	private long ebufPtr;
+	private Runnable endTask;
 
 	private NuklearIndexProviderAdapter()
 	{
 		super(List.of(Features.Size, Features.Data));
 	}
 
-	@Dispose
-	private void dispose()
+	public void requestUpdate(final long ebufPtr, final Runnable endTask)
 	{
-		MemoryUtil.memFree(stagingBuffer);
-	}
-
-	public ByteBuffer requestUpdate()
-	{
+		this.ebufPtr = ebufPtr;
+		this.endTask = endTask;
 		notify(Features.Data);
-		return stagingBuffer;
 	}
 
 	@Override
 	public void fill(ByteBuffer buffer)
 	{
-		MemoryUtil.memCopy(stagingBuffer, buffer);
+		nnk_buffer_init_fixed(ebufPtr, MemoryUtil.memAddress(buffer), INDEX_BUFFER_SIZE);
+		endTask.run();
 	}
 
 	@Override

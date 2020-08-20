@@ -63,7 +63,7 @@ public class NuklearContextItemProvider
 			addImageArrayDescriptorPropertyDescriptor(object);
 			addVertexDataProviderPropertyDescriptor(object);
 			addIndexDataProviderPropertyDescriptor(object);
-			addVertexMemoryChunkPropertyDescriptor(object);
+			addVertexBufferMemoryPropertyDescriptor(object);
 			addCompositeDrawTaskPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -208,20 +208,20 @@ public class NuklearContextItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Vertex Memory Chunk feature.
+	 * This adds a property descriptor for the Vertex Buffer Memory feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVertexMemoryChunkPropertyDescriptor(Object object)
+	protected void addVertexBufferMemoryPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearContext_vertexMemoryChunk_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_vertexMemoryChunk_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK,
+				 getString("_UI_NuklearContext_vertexBufferMemory_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_vertexBufferMemory_feature", "_UI_NuklearContext_type"),
+				 NuklearPackage.Literals.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY,
 				 true,
 				 false,
 				 true,

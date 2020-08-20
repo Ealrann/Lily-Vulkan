@@ -4,8 +4,8 @@ package org.sheepy.lily.vulkan.extra.model.nuklear;
 
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
-import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 
 /**
@@ -22,7 +22,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getImageArrayDescriptor <em>Image Array Descriptor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexDataProvider <em>Vertex Data Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexDataProvider <em>Index Data Provider</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexMemoryChunk <em>Vertex Memory Chunk</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBufferMemory <em>Vertex Buffer Memory</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getCompositeDrawTask <em>Composite Draw Task</em>}</li>
  * </ul>
  *
@@ -143,26 +143,26 @@ public interface NuklearContext extends IVulkanResource
 	void setIndexDataProvider(NuklearIndexProvider value);
 
 	/**
-	 * Returns the value of the '<em><b>Vertex Memory Chunk</b></em>' reference.
+	 * Returns the value of the '<em><b>Vertex Buffer Memory</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vertex Memory Chunk</em>' reference.
-	 * @see #setVertexMemoryChunk(MemoryChunk)
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_VertexMemoryChunk()
+	 * @return the value of the '<em>Vertex Buffer Memory</em>' reference.
+	 * @see #setVertexBufferMemory(BufferMemory)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_VertexBufferMemory()
 	 * @model required="true"
 	 * @generated
 	 */
-	MemoryChunk getVertexMemoryChunk();
+	BufferMemory getVertexBufferMemory();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexMemoryChunk <em>Vertex Memory Chunk</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBufferMemory <em>Vertex Buffer Memory</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Vertex Memory Chunk</em>' reference.
-	 * @see #getVertexMemoryChunk()
+	 * @param value the new value of the '<em>Vertex Buffer Memory</em>' reference.
+	 * @see #getVertexBufferMemory()
 	 * @generated
 	 */
-	void setVertexMemoryChunk(MemoryChunk value);
+	void setVertexBufferMemory(BufferMemory value);
 
 	/**
 	 * Returns the value of the '<em><b>Composite Draw Task</b></em>' reference.

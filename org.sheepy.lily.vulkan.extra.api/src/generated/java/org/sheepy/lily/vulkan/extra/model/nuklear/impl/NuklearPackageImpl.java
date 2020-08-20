@@ -26,7 +26,6 @@ import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider;
-import org.sheepy.lily.vulkan.extra.model.nuklear.FontUsage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
@@ -125,13 +124,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	private EClass fontImageProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass fontUsageEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -347,7 +339,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearContext_VertexMemoryChunk()
+	public EReference getNuklearContext_VertexBufferMemory()
 	{
 		return (EReference)nuklearContextEClass.getEStructuralFeatures().get(5);
 	}
@@ -372,17 +364,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	public EClass getNuklearFont()
 	{
 		return nuklearFontEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getNuklearFont_FontImage()
-	{
-		return (EReference)nuklearFontEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -600,42 +581,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getFontImageProvider_FontUsages()
+	public EReference getFontImageProvider_NuklearFont()
 	{
 		return (EReference)fontImageProviderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFontUsage()
-	{
-		return fontUsageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getFontUsage_Font()
-	{
-		return (EReference)fontUsageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFontUsage_Strings()
-	{
-		return (EAttribute)fontUsageEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -680,11 +628,10 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER);
-		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__VERTEX_MEMORY_CHUNK);
+		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK);
 
 		nuklearFontEClass = createEClass(NUKLEAR_FONT);
-		createEReference(nuklearFontEClass, NUKLEAR_FONT__FONT_IMAGE);
 
 		selectorPanelEClass = createEClass(SELECTOR_PANEL);
 		createEAttribute(selectorPanelEClass, SELECTOR_PANEL__BUTTON_SIZE_PX);
@@ -710,11 +657,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearIndexProviderEClass = createEClass(NUKLEAR_INDEX_PROVIDER);
 
 		fontImageProviderEClass = createEClass(FONT_IMAGE_PROVIDER);
-		createEReference(fontImageProviderEClass, FONT_IMAGE_PROVIDER__FONT_USAGES);
-
-		fontUsageEClass = createEClass(FONT_USAGE);
-		createEReference(fontUsageEClass, FONT_USAGE__FONT);
-		createEAttribute(fontUsageEClass, FONT_USAGE__STRINGS);
+		createEReference(fontImageProviderEClass, FONT_IMAGE_PROVIDER__NUKLEAR_FONT);
 	}
 
 	/**
@@ -774,11 +717,10 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEReference(getNuklearContext_ImageArrayDescriptor(), theVulkanResourcePackage.getImageDescriptor(), null, "imageArrayDescriptor", null, 0, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_VertexDataProvider(), this.getNuklearVertexProvider(), null, "vertexDataProvider", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_IndexDataProvider(), this.getNuklearIndexProvider(), null, "indexDataProvider", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNuklearContext_VertexMemoryChunk(), theVulkanResourcePackage.getMemoryChunk(), null, "vertexMemoryChunk", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearContext_VertexBufferMemory(), theVulkanResourcePackage.getBufferMemory(), null, "vertexBufferMemory", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_CompositeDrawTask(), theProcessPackage.getCompositeTask(), null, "compositeDrawTask", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearFontEClass, NuklearFont.class, "NuklearFont", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNuklearFont_FontImage(), this.getFontImageProvider(), null, "fontImage", null, 1, 1, NuklearFont.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(selectorPanelEClass, SelectorPanel.class, "SelectorPanel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSelectorPanel_ButtonSizePx(), ecorePackage.getEInt(), "buttonSizePx", "32", 1, 1, SelectorPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -804,11 +746,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEClass(nuklearIndexProviderEClass, NuklearIndexProvider.class, "NuklearIndexProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(fontImageProviderEClass, FontImageProvider.class, "FontImageProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFontImageProvider_FontUsages(), this.getFontUsage(), null, "fontUsages", null, 0, -1, FontImageProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(fontUsageEClass, FontUsage.class, "FontUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFontUsage_Font(), theUiPackage.getFont(), null, "font", null, 0, 1, FontUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFontUsage_Strings(), ecorePackage.getEString(), "strings", null, 0, -1, FontUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFontImageProvider_NuklearFont(), this.getNuklearFont(), null, "nuklearFont", null, 1, 1, FontImageProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

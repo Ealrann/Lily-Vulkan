@@ -1,18 +1,17 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
 import org.lwjgl.nuklear.NkUserFont;
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
-import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.nuklear.font.IFontAllocator;
 import org.sheepy.lily.vulkan.nuklear.font.NkFontLoader;
+import org.sheepy.lily.vulkan.nuklear.font.util.FontAllocator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,16 +20,25 @@ import java.util.Map;
 
 @ModelExtender(scope = NuklearFont.class)
 @Allocation(context = ExecutionContext.class)
-@AllocationDependency(features = NuklearPackage.NUKLEAR_FONT__FONT_IMAGE, type = FontImageProviderAdapter.class)
 public final class NuklearFontAllocation implements IExtender
 {
 	public final Map<Font, NkUserFont> fontMap;
 	private final List<NkFontLoader> fontLoaders;
+	private final List<FontAllocator> fontAllocators;
 
-	public NuklearFontAllocation(@InjectDependency(index = 0) FontImageProviderAdapter fontImageAllocation)
+	public NuklearFontAllocation(NuklearFont nulkearFont)
 	{
-		final var allocators = fontImageAllocation.getAllocators();
-		final var builder = new Builder(allocators);
+		final var fonts = nulkearFont.adapt(NuklearFontAdapter.class).getFonts();
+		fontAllocators = List.copyOf(buildAllocators(fonts));
+		try (final var stack = MemoryStack.stackPush())
+		{
+			for (final var allocator : fontAllocators)
+			{
+				allocator.allocate(stack);
+			}
+		}
+
+		final var builder = new Builder(fontAllocators);
 		this.fontMap = Map.copyOf(builder.fontMap);
 		this.fontLoaders = List.copyOf(builder.fontLoaders);
 
@@ -46,6 +54,10 @@ public final class NuklearFontAllocation implements IExtender
 		for (final var loader : fontLoaders)
 		{
 			loader.free();
+		}
+		for (final var allocator : fontAllocators)
+		{
+			allocator.free();
 		}
 	}
 
@@ -70,5 +82,20 @@ public final class NuklearFontAllocation implements IExtender
 			this.fontLoaders = fontLoaders;
 			this.fontMap = Map.copyOf(fontMap);
 		}
+	}
+
+	public List<FontAllocator> getAllocators()
+	{
+		return fontAllocators;
+	}
+
+	private static List<FontAllocator> buildAllocators(List<Font> fonts)
+	{
+		final List<FontAllocator> res = new ArrayList<>();
+		for (final var font : fonts)
+		{
+			res.add(new FontAllocator(font));
+		}
+		return res;
 	}
 }

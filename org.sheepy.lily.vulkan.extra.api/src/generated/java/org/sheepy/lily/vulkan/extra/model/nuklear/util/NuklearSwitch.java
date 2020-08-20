@@ -172,13 +172,6 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.FONT_USAGE:
-			{
-				FontUsage fontUsage = (FontUsage)theEObject;
-				T result = caseFontUsage(fontUsage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -323,22 +316,6 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseFontImageProvider(FontImageProvider object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Font Usage</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Font Usage</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFontUsage(FontUsage object)
 	{
 		return null;
 	}

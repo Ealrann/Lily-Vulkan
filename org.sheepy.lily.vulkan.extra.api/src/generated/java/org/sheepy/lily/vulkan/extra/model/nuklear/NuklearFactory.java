@@ -95,15 +95,6 @@ public interface NuklearFactory extends EFactory
 	FontImageProvider createFontImageProvider();
 
 	/**
-	 * Returns a new object of class '<em>Font Usage</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Font Usage</em>'.
-	 * @generated
-	 */
-	FontUsage createFontUsage();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
 import org.lwjgl.nuklear.NkContext;
-import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
@@ -26,12 +25,10 @@ import org.sheepy.lily.vulkan.nuklear.logic.LayoutManager;
 import org.sheepy.lily.vulkan.nuklear.logic.NuklearState;
 import org.sheepy.lily.vulkan.nuklear.logic.NuklearVertexBaker;
 
-import static org.lwjgl.nuklear.Nuklear.nnk_buffer_init_fixed;
-
 @ModelExtender(scope = NuklearContext.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(features = NuklearPackage.NUKLEAR_CONTEXT__FONT, type = NuklearFontAllocation.class)
-public class NuklearContextAllocation implements IExtender
+public final class NuklearContextAllocation implements IExtender
 {
 	public static final int FONT_TEXTURE_DESCRIPTOR_INDEX = 1;
 
@@ -42,10 +39,10 @@ public class NuklearContextAllocation implements IExtender
 	private final NuklearState state;
 	private final Window window;
 
-	public NuklearContextAllocation(NuklearContext nuklearContext,
-									ExecutionContext context,
-									IObservatoryBuilder observatory,
-									@InjectDependency(index = 0) NuklearFontAllocation fontAllocation)
+	private NuklearContextAllocation(NuklearContext nuklearContext,
+									 ExecutionContext context,
+									 IObservatoryBuilder observatory,
+									 @InjectDependency(index = 0) NuklearFontAllocation fontAllocation)
 	{
 		this.nuklearContext = nuklearContext;
 
@@ -55,7 +52,7 @@ public class NuklearContextAllocation implements IExtender
 		final var inputManager = (IVulkanInputManager) application.adapt(IInputManager.class);
 		final var defaultNkFont = fontAllocation.fontMap.get(defaultFont);
 
-		final var vertexBuffer = nuklearContext.getVertexMemoryChunk();
+		final var vertexBuffer = nuklearContext.getVertexBufferMemory();
 		final var drawTask = nuklearContext.getCompositeDrawTask();
 		drawTaskMaintainer = new DrawTaskMaintainer(drawTask, vertexBuffer);
 
@@ -72,6 +69,8 @@ public class NuklearContextAllocation implements IExtender
 											   observatory);
 		final var inputCatcher = new NuklearInputCatcher(state.nkContext(), window, layoutManager);
 		inputManager.setInputCatcher(inputCatcher);
+
+		layout();
 	}
 
 	@Free
@@ -81,29 +80,29 @@ public class NuklearContextAllocation implements IExtender
 	}
 
 	@Tick(priority = -10)
-	private void update()
+	private void layout()
 	{
 		if (layoutManager.update())
 		{
 			final var indexProvider = nuklearContext.getIndexDataProvider();
 			final var vertexProvider = nuklearContext.getVertexDataProvider();
-			final var indexProviderAdapter = indexProvider.adapt(NuklearIndexProviderAdapter.class);
 			final var vertexProviderAdapter = vertexProvider.adapt(NuklearVertexProviderAdapter.class);
+			final var indexProviderAdapter = indexProvider.adapt(NuklearIndexProviderAdapter.class);
 
-			final var indexBufferPtr = MemoryUtil.memAddress(indexProviderAdapter.requestUpdate());
-			final var vertexBufferPtr = MemoryUtil.memAddress(vertexProviderAdapter.requestUpdate());
-			final long ebufPtr = state.ebuf().address();
 			final long vbufPtr = state.vbuf().address();
+			final long ebufPtr = state.ebuf().address();
 
-			nnk_buffer_init_fixed(ebufPtr, indexBufferPtr, indexProviderAdapter.size());
-			nnk_buffer_init_fixed(vbufPtr, vertexBufferPtr, vertexProviderAdapter.size());
-
-			final var drawCommands = vertexBaker.buildDrawCommands();
-			drawTaskMaintainer.reloadTasks(drawCommands, window.getSize());
+			vertexProviderAdapter.requestUpdate(vbufPtr);
+			indexProviderAdapter.requestUpdate(ebufPtr, () -> {
+				final var drawCommands = vertexBaker.bakeAndBuildDrawCommands();
+				drawTaskMaintainer.reloadTasks(drawCommands, window.getSize());
+				layoutManager.clean();
+			});
+		}
+		else
+		{
 			layoutManager.clean();
 		}
-
-		layoutManager.clean();
 	}
 
 	public NkContext getNkContext()
