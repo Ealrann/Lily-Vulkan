@@ -71,24 +71,6 @@ public final class VkPipelineLayout
 		return layouts;
 	}
 
-	public void bindDescriptors(VkCommandBuffer commandBuffer, List<IDescriptorSetAllocation> sets, int bindPoint)
-	{
-		if (sets.size() > 0)
-		{
-			final var descriptorSetAddressBuffer = MemoryUtil.memAllocLong(sets.size());
-			descriptorSetAddressBuffer.clear();
-
-			for (int i = 0; i < sets.size(); i++)
-			{
-				final var set = sets.get(i);
-				descriptorSetAddressBuffer.put(set.getPtr());
-			}
-			descriptorSetAddressBuffer.flip();
-
-			vkCmdBindDescriptorSets(commandBuffer, bindPoint, pipelineLayout, 0, descriptorSetAddressBuffer, null);
-		}
-	}
-
 	private VkPushConstantRange.Buffer allocPushConstant(MemoryStack stack)
 	{
 		VkPushConstantRange.Buffer ranges = null;
