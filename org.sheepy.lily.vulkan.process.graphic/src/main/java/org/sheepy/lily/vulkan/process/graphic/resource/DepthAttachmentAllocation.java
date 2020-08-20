@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
@@ -12,6 +13,7 @@ import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.attachment.IDepthAttachmentAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
@@ -33,19 +35,28 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 {
 	private final DepthAttachment depthAttachment;
 	private final int depthFormat;
+	private final IAllocationState allocationState;
 	private final VkImage depthImageBackend;
 	private final VkImageView depthImageView;
 
 	public DepthAttachmentAllocation(DepthAttachment depthAttachment,
 									 ProcessContext context,
+									 IAllocationState allocationState,
 									 @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation)
 	{
 		this.depthAttachment = depthAttachment;
 
 		depthFormat = findDepthFormat(context.getPhysicalDevice());
+		this.allocationState = allocationState;
 		depthImageBackend = createDepthImage(context, surfaceAllocation);
 		depthImageView = createAndAllocateImageView(context.getLogicalDevice());
 		layoutTransitionOfDepthImage(context);
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		recordContext.lockAllocationDuringExecution(allocationState);
 	}
 
 	private VkImage createDepthImage(ProcessContext context, final PhysicalSurfaceAllocation surfaceAllocation)

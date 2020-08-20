@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.resource;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
@@ -9,6 +10,7 @@ import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
@@ -33,6 +35,7 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 	private static final String PREFIX = "[ColorAttachment]";
 
 	private final ColorAttachment colorAttachment;
+	private final IAllocationState allocationState;
 	private final int colorFormat;
 
 	private final VkImage colorImageBackend;
@@ -40,9 +43,11 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 
 	public ColorAttachmentAllocation(ColorAttachment colorAttachment,
 									 ProcessContext context,
+									 IAllocationState allocationState,
 									 @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation)
 	{
 		this.colorAttachment = colorAttachment;
+		this.allocationState = allocationState;
 
 		final var format = colorAttachment.getFormat().getValue();
 		final int surfaceFormat = surfaceAllocation.getColorDomain().format;
@@ -52,6 +57,12 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 		colorImageBackend = createImage(context, surfaceAllocation);
 		colorImageView = createAndAllocateImageView(context.getLogicalDevice(), colorAttachment.getName());
 		layoutTransition(context);
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		recordContext.lockAllocationDuringExecution(allocationState);
 	}
 
 	private VkImage createImage(ProcessContext context, PhysicalSurfaceAllocation surfaceAllocation)

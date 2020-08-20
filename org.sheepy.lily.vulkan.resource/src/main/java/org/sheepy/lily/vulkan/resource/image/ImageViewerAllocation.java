@@ -11,6 +11,7 @@ import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.image.IImageDataProviderAdapter;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
@@ -73,6 +74,12 @@ public final class ImageViewerAllocation extends Notifier<IMemoryChunkPartAlloca
 	{
 		needPush = true;
 		notify(Features.PushRequest);
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		notify(Features.Attach, recordContext);
 	}
 
 	@Free

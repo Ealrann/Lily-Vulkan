@@ -24,11 +24,15 @@ import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
 public final class ImageDescriptorAllocation implements IDescriptorAllocation
 {
 	private final VkImageDescriptor vkDescriptor;
+	private final List<IVkImageAllocation> imageAllocations;
+	private final SamplerAllocation samplerAllocation;
 
 	private ImageDescriptorAllocation(ImageDescriptor descriptor,
 									  @InjectDependency(index = 0) List<IVkImageAllocation> imageAllocations,
 									  @InjectDependency(index = 1) SamplerAllocation samplerAllocation)
 	{
+		this.imageAllocations = imageAllocations;
+		this.samplerAllocation = samplerAllocation;
 		final var viewPtrs = imageAllocations.stream().mapToLong(IVkImageAllocation::getViewPtr).toArray();
 		final long samplerPtr = samplerAllocation != null ? samplerAllocation.getSamplerPtr() : VK_NULL_HANDLE;
 
@@ -41,7 +45,8 @@ public final class ImageDescriptorAllocation implements IDescriptorAllocation
 	@Override
 	public void attach(final IRecordContext recordContext)
 	{
-		// TODO
+		imageAllocations.forEach(i -> i.attach(recordContext));
+		if(samplerAllocation != null) samplerAllocation.attach(recordContext);
 	}
 
 	@Override

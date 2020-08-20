@@ -6,6 +6,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageCopy;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
@@ -38,6 +39,7 @@ import static org.lwjgl.vulkan.VK10.*;
 public final class CompositeImageAllocation implements IVkImageAllocation
 {
 	private final CompositeImage image;
+	private final IAllocationState allocationState;
 	private final IVkImageAllocation background;
 
 	private VkImage imageBackend;
@@ -45,20 +47,30 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 
 	private CompositeImageAllocation(CompositeImage image,
 									 ExecutionContext context,
+									 IAllocationState allocationState,
 									 @InjectDependency(index = 0) IVkImageAllocation background)
 	{
 		this.image = image;
+		this.allocationState = allocationState;
 		this.background = background;
 
 		final var vkDevice = context.getVkDevice();
 		final var vkBackground = this.background.getVkImage();
-		final var builder =
-				new VkImageBuilder(image.getName(), image, vkBackground.width, vkBackground.height).initialLayout(null);
+		final var builder = new VkImageBuilder(image.getName(),
+											   image,
+											   vkBackground.width,
+											   vkBackground.height).initialLayout(null);
 
 		imageBackend = context.executeFunction(builder::build);
 		imageView = new VkImageView(vkDevice, image.getName(), imageBackend, VK_IMAGE_ASPECT_COLOR_BIT);
 
 		context.executeCommand(this::assembleImage);
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		recordContext.lockAllocationDuringExecution(allocationState);
 	}
 
 	private void assembleImage(IRecordContext recordContext)
