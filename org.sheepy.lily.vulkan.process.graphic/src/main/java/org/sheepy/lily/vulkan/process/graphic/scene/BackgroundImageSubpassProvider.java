@@ -13,7 +13,7 @@ import org.sheepy.lily.core.model.resource.FileImage;
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
-import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.VulkanResourcePkg;
 import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
@@ -34,18 +34,21 @@ public final class BackgroundImageSubpassProvider implements ICompositor_Subpass
 
 	private ImageBarrier imageBarrier;
 	private AbstractBlitTask blit;
+	private VulkanResourcePkg vulkanResourcePkg;
 
 	@NotifyChanged(featureIds = ApplicationPackage.BACKGROUND_IMAGE__SRC_IMAGE)
 	private void imageChanged(Notification notification)
 	{
-		final var newImage = (IVulkanImage) notification.getNewValue();
-		setupImage(newImage);
+		final var newImage = (IImage) notification.getNewValue();
+		setupImage(resolveSourceImage(newImage));
 	}
 
 	@Override
 	public Subpass build(BackgroundImage part, GraphicProcess process, IVulkanApiContext context)
 	{
 		final var subpass = loadSubpass();
+		vulkanResourcePkg = subpass.getResourcePkg();
+
 		final var swapUsages = context.getPhysicalDevice().supportedSwapUsages();
 		final var supportTransfer = swapUsages.contains(EImageUsage.TRANSFER_DST);
 		final var dstImage = (IVulkanImage) part.getDstImage();
@@ -56,7 +59,7 @@ public final class BackgroundImageSubpassProvider implements ICompositor_Subpass
 		final var blitPipeline = (Pipeline) pipelines.get(0);
 		final var tasks = blitPipeline.getTaskPkgs().get(0).getTasks();
 		final var pipelineBarrier = (PipelineBarrier) tasks.get(0);
-		final var srcImage = resolveSourceImage(subpass, part.getSrcImage());
+		final var srcImage = resolveSourceImage(part.getSrcImage());
 
 		imageBarrier = (ImageBarrier) pipelineBarrier.getBarriers().get(0);
 		blit = (AbstractBlitTask) tasks.get(1);
@@ -90,11 +93,11 @@ public final class BackgroundImageSubpassProvider implements ICompositor_Subpass
 		return subpass;
 	}
 
-	private static IVulkanImage resolveSourceImage(final Subpass subpass, final IImage srcImage)
+	private IVulkanImage resolveSourceImage(final IImage srcImage)
 	{
 		if (srcImage instanceof FileImage srcFileImage)
 		{
-			return createImage(subpass, srcFileImage);
+			return createImage(srcFileImage);
 		}
 		else
 		{
@@ -102,12 +105,11 @@ public final class BackgroundImageSubpassProvider implements ICompositor_Subpass
 		}
 	}
 
-	private static IVulkanImage createImage(final Subpass subpass, final FileImage image)
+	private IVulkanImage createImage(final FileImage image)
 	{
 		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
 		final var imageViewer = VulkanResourceFactory.eINSTANCE.createImageViewer();
 		final var fileDataProvider = VulkanResourceFactory.eINSTANCE.createFileImageDataProvider();
-		final var vulkanResourcePkg = VulkanFactory.eINSTANCE.createVulkanResourcePkg();
 
 		fileDataProvider.setFileImageReference(image);
 
@@ -119,7 +121,6 @@ public final class BackgroundImageSubpassProvider implements ICompositor_Subpass
 		imageViewer.setDataProvider(fileDataProvider);
 		memoryChunk.getParts().add(imageViewer);
 		vulkanResourcePkg.getResources().add(memoryChunk);
-		subpass.setResourcePkg(vulkanResourcePkg);
 
 		return imageViewer;
 	}
