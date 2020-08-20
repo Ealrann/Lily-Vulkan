@@ -51,7 +51,7 @@ public final class PushConstantBufferRecorder implements IRecordableExtender
 		if (data != null)
 		{
 			final var commandBuffer = context.commandBuffer;
-			final long layoutId = vkPipelineAdapter.getVkPipelineLayout().getId();
+			final long layoutId = vkPipelineAdapter.getVkPipelineLayout().getPtr();
 			final int stageFlags = VulkanModelUtil.getEnumeratedFlag(task.getStages());
 
 			vkCmdPushConstants(commandBuffer, layoutId, stageFlags, 0, data);

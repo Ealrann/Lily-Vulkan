@@ -38,7 +38,7 @@ public class NuklearPushConstantsAdapter implements IRecordableExtender
 	{
 		final var pipeline = ModelUtil.findParent(pushConstants, AbstractPipeline.class);
 		final var pipelineAdapter = pipeline.adaptNotNull(IPipelineAllocation.class);
-		final long layoutId = pipelineAdapter.getVkPipelineLayout().getId();
+		final long layoutId = pipelineAdapter.getVkPipelineLayout().getPtr();
 		final var commandBuffer = context.commandBuffer;
 
 		vkCmdPushConstants(commandBuffer, layoutId, STAGE_FLAGS, 0, buffer);

@@ -40,7 +40,7 @@ public class VkComputePipeline extends VkPipeline
 
 		final var pipelineCreateInfo = pipelineCreateInfos.get();
 		pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
-		pipelineCreateInfo.layout(pipelineLayout.getId());
+		pipelineCreateInfo.layout(pipelineLayout.getPtr());
 		shaderStage.fillInfo(stack, pipelineCreateInfo.stage(), specializationData);
 		pipelineCreateInfos.flip();
 

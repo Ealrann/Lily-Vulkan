@@ -1,12 +1,9 @@
 package org.sheepy.lily.vulkan.core.pipeline;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
@@ -126,7 +123,7 @@ public final class VkPipelineLayout
 		pipelineLayout = -1;
 	}
 
-	public long getId()
+	public long getPtr()
 	{
 		return pipelineLayout;
 	}

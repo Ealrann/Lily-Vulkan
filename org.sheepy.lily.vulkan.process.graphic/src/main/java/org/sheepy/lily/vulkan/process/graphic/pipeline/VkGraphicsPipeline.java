@@ -100,7 +100,7 @@ public class VkGraphicsPipeline extends VkPipeline
 		info.pColorBlendState(colorBlendBuilder.allocCreateInfo(stack, colorBlend));
 		if (dynamicState != null) info.pDynamicState(dynamicStateBuilder.allocCreateInfo(stack, dynamicState));
 
-		info.layout(pipelineLayout.getId());
+		info.layout(pipelineLayout.getPtr());
 		info.renderPass(renderPassAllocation.getPtr());
 		info.subpass(subpass);
 		info.basePipelineHandle(VK_NULL_HANDLE);
