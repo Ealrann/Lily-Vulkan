@@ -7,6 +7,7 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
+import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.resource.util.DeviceResourceFiller;
@@ -52,6 +53,7 @@ public final class MemoryChunkAllocation implements IExtender
 			partAllocation.registerMemory(builder);
 		}
 		this.memory = builder.build(context);
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.register(memory.ptr(), memoryChunk.getName());
 		bufferPusher = new DeviceResourceFiller(context);
 		useTransfer = memoryChunk.getTransferBuffer() != null;
 

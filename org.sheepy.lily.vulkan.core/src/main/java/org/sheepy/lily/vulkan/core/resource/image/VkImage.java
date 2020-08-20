@@ -223,8 +223,8 @@ public final class VkImage
 	public void free(ExecutionContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
-		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(imagePtr);
 		vkDestroyImage(logicalDevice.getVkDevice(), imagePtr, null);
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(imagePtr);
 		if (memory != null) memory.free(context);
 		memoryPtr = 0;
 	}

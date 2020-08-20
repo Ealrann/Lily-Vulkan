@@ -50,8 +50,8 @@ public final class VkImageView
 
 	public void free(VkDevice device)
 	{
-		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(imageViewPtr);
 		vkDestroyImageView(device, imageViewPtr, null);
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(imageViewPtr);
 	}
 
 	public long getPtr()

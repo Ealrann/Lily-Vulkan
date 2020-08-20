@@ -40,8 +40,7 @@ public class DescriptorSetAllocation implements IDescriptorSetAllocation
 	private final List<IDescriptorAllocation> allocations;
 	private final DescriptorPoolAllocation descriptorPool;
 
-	public DescriptorSetAllocation(final DescriptorSet descriptorSet,
-								   final ExecutionContext context,
+	public DescriptorSetAllocation(final ExecutionContext context,
 								   final @InjectDependency(index = 0) List<IDescriptorAllocation> descriptorAllocations,
 								   final @InjectDependency(index = 1) IDescriptorSetLayoutAllocation layoutAllocation,
 								   final @InjectDependency(index = 2) DescriptorPoolAllocation descriptorPool)
