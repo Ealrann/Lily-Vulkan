@@ -4,7 +4,6 @@ import org.joml.Vector2ic;
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.core.model.resource.FileImage;
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.ui.IPanel;
 import org.sheepy.lily.core.model.ui.UI;
@@ -14,19 +13,12 @@ import org.sheepy.lily.vulkan.api.graphic.IPhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.model.vulkanresource.FileImageDataProvider;
-import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
-import org.sheepy.lily.vulkan.model.vulkanresource.ImageViewer;
-import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAllocation;
-import org.sheepy.lily.vulkan.nuklear.scene.NuklearSubpassProvider;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.lwjgl.nuklear.Nuklear.nk_clear;
 
@@ -34,7 +26,6 @@ public final class LayoutManager
 {
 	private final LayoutState layoutState;
 	private final List<IPanelAdapter> panelAdapters = new ArrayList<>();
-	private final Map<FileImage, IVulkanImage> imageMap;
 	private final IWindow window;
 	private final NkContext nkContext;
 	private final NuklearFont font;
@@ -63,7 +54,6 @@ public final class LayoutManager
 		images = List.copyOf(ui.getImages());
 		process = (GraphicProcess) subpass.eContainer();
 		layoutState = new LayoutState();
-		imageMap = buildImageMap(subpass);
 
 		observatory.focus(ui)
 				   .explore(UiPackage.UI__CURRENT_UI_PAGE)
@@ -74,24 +64,6 @@ public final class LayoutManager
 		observatory.focus(window).listen(this::onResize, IWindow.Features.Size);
 
 		requestLayout(true);
-	}
-
-	private static Map<FileImage, IVulkanImage> buildImageMap(Subpass subpass)
-	{
-		return subpass.getResourcePkg()
-					  .getResources()
-					  .stream()
-					  .filter(resource -> resource.getName().equals(NuklearSubpassProvider.IMAGE_MEMORY_CHUNK_NAME))
-					  .map(MemoryChunk.class::cast)
-					  .map(MemoryChunk::getParts)
-					  .flatMap(List::stream)
-					  .map(ImageViewer.class::cast)
-					  .collect(Collectors.toUnmodifiableMap(LayoutManager::resolveFileImage, viewer -> viewer));
-	}
-
-	private static FileImage resolveFileImage(final ImageViewer viewer)
-	{
-		return ((FileImageDataProvider) viewer.getDataProvider()).getFileImageReference();
 	}
 
 	private void addPanelAdapter(IPanelAdapter adapter)
@@ -154,9 +126,11 @@ public final class LayoutManager
 
 	public void clean()
 	{
-		assert layoutState.hasStartedFrame();
-		nk_clear(nkContext);
-		layoutState.setStartedFrame(false);
+		if(layoutState.hasStartedFrame())
+		{
+			nk_clear(nkContext);
+			layoutState.setStartedFrame(false);
+		}
 		layoutState.setDirty(false);
 	}
 

@@ -102,6 +102,8 @@ public class NuklearContextAllocation implements IExtender
 			drawTaskMaintainer.reloadTasks(drawCommands, window.getSize());
 			layoutManager.clean();
 		}
+
+		layoutManager.clean();
 	}
 
 	public NkContext getNkContext()
