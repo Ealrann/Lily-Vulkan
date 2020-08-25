@@ -86,7 +86,7 @@ public final class BackgroundImageSubpassProvider implements ICompositor_Subpass
 			dstImageBarrier.setImage(colorAttachment);
 			blitTask.setDstImage(colorAttachment);
 
-			targetRef.setAttachment(colorAttachment);
+			targetRef.setAttachment((Attachment) part.getDstImage());
 		}
 
 		setupImage(srcImage);

@@ -7,7 +7,7 @@
     <attachmentRefs attachment="//@attachmentPkg/@extraAttachments.0" layout="SHADER_READ_ONLY_OPTIMAL" type="Input"/>
   </attachmentRefPkg>
   <attachmentPkg>
-    <extraAttachments xsi:type="graphic:ColorAttachment" loadOp="DONT_CARE" storeOp="DONT_CARE" stencilLoadOp="DONT_CARE" stencilStoreOp="DONT_CARE" initialLayout="TRANSFER_DST_OPTIMAL" finalLayout="SHADER_READ_ONLY_OPTIMAL">
+    <extraAttachments xsi:type="graphic:ColorAttachment" name="BackgroundImageCompatibilityColorAttachment" loadOp="DONT_CARE" storeOp="DONT_CARE" stencilLoadOp="DONT_CARE" stencilStoreOp="DONT_CARE" initialLayout="TRANSFER_DST_OPTIMAL" finalLayout="SHADER_READ_ONLY_OPTIMAL">
       <usages>TransferDst</usages>
       <usages>InputAttachement</usages>
     </extraAttachments>
@@ -39,7 +39,7 @@
         <tasks xsi:type="graphic:BlitTask"/>
       </taskPkgs>
     </pipelines>
-    <pipelines xsi:type="graphic:GraphicsPipeline" name="Compatibility" layout="//@pipelinePkg/@pipelines.2/@descriptorPool/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.2/@resourcePkg/@resources.0 //@pipelinePkg/@pipelines.2/@resourcePkg/@resources.1">
+    <pipelines xsi:type="graphic:GraphicsPipeline" name=" Compatibility" layout="//@pipelinePkg/@pipelines.2/@descriptorPool/@descriptorSets.0" shaders="//@pipelinePkg/@pipelines.2/@resourcePkg/@resources.0 //@pipelinePkg/@pipelines.2/@resourcePkg/@resources.1">
       <resourcePkg>
         <resources xsi:type="vulkanresource:Shader" name="BackgroundCompatVertex">
           <file xsi:type="resource:StringModuleResource" path="background_compat.vert.spv" moduleName="org.sheepy.lily.vulkan.process.graphic"/>
@@ -49,16 +49,18 @@
         </resources>
       </resourcePkg>
       <descriptorPkg>
-        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="Compat color" type="INPUT_ATTACHMENT" images="//@attachmentPkg/@extraAttachments.0">
+        <descriptors xsi:type="vulkanresource:ImageDescriptor" name="Compat color" type="INPUT_ATTACHMENT" images="//@attachmentPkg/@extraAttachments.0" layout="SHADER_READ_ONLY_OPTIMAL">
           <shaderStages>FRAGMENT_BIT</shaderStages>
         </descriptors>
       </descriptorPkg>
-      <taskPkgs>
+      <taskPkgs stage="PreRender">
         <tasks xsi:type="process:PipelineBarrier" name="SwapToTransfer" dstStage="TRANSFER_BIT">
           <barriers xsi:type="graphic:SwapImageBarrier" dstLayout="TRANSFER_DST_OPTIMAL">
             <dstAccessMask>TRANSFER_WRITE_BIT</dstAccessMask>
           </barriers>
         </tasks>
+      </taskPkgs>
+      <taskPkgs>
         <tasks xsi:type="process:BindDescriptorSets" descriptorSets="//@pipelinePkg/@pipelines.2/@descriptorPool/@descriptorSets.0"/>
         <tasks xsi:type="graphic:Draw" vertexCount="3"/>
       </taskPkgs>
