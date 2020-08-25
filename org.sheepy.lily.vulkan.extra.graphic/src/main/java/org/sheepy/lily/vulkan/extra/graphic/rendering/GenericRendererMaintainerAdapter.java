@@ -113,7 +113,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 		final var name = maintainer.getName();
 		final var className = classifier.getSimpleName();
 		final int count = structurePartDrawSetups.size();
-		System.out.println(String.format("Create %d pipelines for %s [%s].", count, name, className));
+		System.out.printf("Create %d pipelines for %s [%s].%n", count, name, className);
 	}
 
 	private void throwResolverNotFoundError() throws AssertionError

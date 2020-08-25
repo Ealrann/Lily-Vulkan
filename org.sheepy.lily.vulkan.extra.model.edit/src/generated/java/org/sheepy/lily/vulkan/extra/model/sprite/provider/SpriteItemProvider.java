@@ -191,17 +191,7 @@ public class SpriteItemProvider extends ItemProviderAdapter implements IEditingD
 		newChildDescriptors.add
 			(createChildParameter
 				(SpritePackage.Literals.SPRITE__FILE,
-				 ResourceFactory.eINSTANCE.createLocalResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SpritePackage.Literals.SPRITE__FILE,
-				 ResourceFactory.eINSTANCE.createModuleResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SpritePackage.Literals.SPRITE__FILE,
-				 ResourceFactory.eINSTANCE.createStringModuleResource()));
+				 ResourceFactory.eINSTANCE.createFileImage()));
 	}
 
 	/**

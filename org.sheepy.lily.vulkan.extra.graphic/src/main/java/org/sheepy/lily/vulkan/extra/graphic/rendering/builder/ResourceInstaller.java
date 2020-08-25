@@ -3,10 +3,7 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter.ResourceDescriptor;
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
-import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.extra.model.rendering.*;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -14,6 +11,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +37,7 @@ public final class ResourceInstaller<T extends Structure>
 
 		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
 		pipeline.getResourcePkg().getResources().add(memoryChunk);
+		memoryChunk.setTransferBuffer(maintainer.getTransferBuffer());
 
 		for (int i = 0; i < count; i++)
 		{
@@ -125,6 +124,15 @@ public final class ResourceInstaller<T extends Structure>
 
 			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
 			bufferViewer.setDataProvider(copy);
+			if (dataProvider instanceof IndexProvider)
+			{
+				bufferViewer.getUsages().add(EBufferUsage.INDEX_BUFFER_BIT);
+			}
+			else
+			{
+				bufferViewer.getUsages().add(EBufferUsage.VERTEX_BUFFER_BIT);
+			}
+			bufferViewer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
 
 			bufferMemory.getBuffers().add(bufferViewer);
 			final var bufferReference = VulkanResourceFactory.eINSTANCE.createBufferReference();

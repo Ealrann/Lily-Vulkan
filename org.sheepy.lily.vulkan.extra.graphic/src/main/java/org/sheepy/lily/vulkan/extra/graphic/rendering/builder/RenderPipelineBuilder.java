@@ -23,7 +23,7 @@ public final class RenderPipelineBuilder
 
 	public GraphicsPipeline build(int index, ISpecialization specialization)
 	{
-		final var pipeline = MaintainerUtil.instanciateMaintainer(renderer);
+		final var pipeline = MaintainerUtil.instanciateMaintainer(renderer, false);
 
 		final var range = pipeline.getPushConstantRanges();
 		final var rangeSize = range.get(0).getSize();

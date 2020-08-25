@@ -4,11 +4,14 @@ import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.IExtenderProvider;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.GenericRendererMaintainerAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.buffer.RenderProxyConstantBufferAdapter;
+import org.sheepy.lily.vulkan.extra.graphic.rendering.RenderPipelineAllocator;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.DataDescriptorsProviderAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.DescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.task.RenderDrawTaskAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.task.RenderIndexedDrawTaskAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteCountSpecializationAdapter;
+import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteMonoSamplerProviderAdapter;
+import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteStructureAdapter;
 
 import java.util.List;
 
@@ -23,8 +26,9 @@ public final class Extenders implements IExtenderProvider
 					   SpriteCountSpecializationAdapter.class,
 					   RenderDrawTaskAdapter.class,
 					   RenderIndexedDrawTaskAdapter.class,
-//					   SpriteStructureAdapter.class,
-//					   SpriteMonoSamplerProviderAdapter.class,
-					   DataDescriptorsProviderAdapter.class);
+					   SpriteStructureAdapter.class,
+					   SpriteMonoSamplerProviderAdapter.class,
+					   DataDescriptorsProviderAdapter.class,
+					   RenderPipelineAllocator.class);
 	}
 }

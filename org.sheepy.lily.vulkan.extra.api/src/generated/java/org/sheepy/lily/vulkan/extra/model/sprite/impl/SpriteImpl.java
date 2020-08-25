@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
-import org.sheepy.lily.core.model.resource.FileResource;
+import org.sheepy.lily.core.model.resource.FileImage;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
@@ -60,7 +60,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	 * @generated
 	 * @ordered
 	 */
-	protected FileResource file;
+	protected FileImage file;
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -124,7 +124,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	 * @generated
 	 */
 	@Override
-	public FileResource getFile()
+	public FileImage getFile()
 	{
 		return file;
 	}
@@ -134,9 +134,9 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(FileResource newFile, NotificationChain msgs)
+	public NotificationChain basicSetFile(FileImage newFile, NotificationChain msgs)
 	{
-		FileResource oldFile = file;
+		FileImage oldFile = file;
 		file = newFile;
 		if (eNotificationRequired())
 		{
@@ -152,7 +152,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 	 * @generated
 	 */
 	@Override
-	public void setFile(FileResource newFile)
+	public void setFile(FileImage newFile)
 	{
 		if (newFile != file)
 		{
@@ -264,7 +264,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 				getPresentedEntities().addAll((Collection<? extends PresentableEntity>)newValue);
 				return;
 			case SpritePackage.SPRITE__FILE:
-				setFile((FileResource)newValue);
+				setFile((FileImage)newValue);
 				return;
 			case SpritePackage.SPRITE__TYPE:
 				setType((SpriteType)newValue);
@@ -287,7 +287,7 @@ public class SpriteImpl extends LilyEObject implements Sprite
 				getPresentedEntities().clear();
 				return;
 			case SpritePackage.SPRITE__FILE:
-				setFile((FileResource)null);
+				setFile((FileImage)null);
 				return;
 			case SpritePackage.SPRITE__TYPE:
 				setType(TYPE_EDEFAULT);

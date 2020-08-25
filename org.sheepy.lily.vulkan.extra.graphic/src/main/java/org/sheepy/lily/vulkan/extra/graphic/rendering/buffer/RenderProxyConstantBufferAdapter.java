@@ -28,11 +28,11 @@ public class RenderProxyConstantBufferAdapter implements IConstantBufferUpdater
 		this.proxyConstantBuffer = constantBuffer;
 		nestedConstantBuffer = constantBuffer.getConstantBuffer();
 		updateBuffer();
-	}
-
-	@Load
-	private void load()
-	{
+//	}
+//
+//	@Load
+//	private void load()
+//	{
 		if (nestedConstantBuffer != null)
 		{
 			nestedConstantBuffer.listenNoParam(nestedBufferListener, VulkanResourcePackage.CONSTANT_BUFFER__DATA);

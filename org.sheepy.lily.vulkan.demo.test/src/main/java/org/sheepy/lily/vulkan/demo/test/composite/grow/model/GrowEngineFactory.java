@@ -15,7 +15,7 @@ public class GrowEngineFactory
 {
 	public static int MAX_COUNT = 200;
 
-	public static final int PART_COUNT = 10;
+	public static final int PART_COUNT = 1;
 
 	public static IEngine build()
 	{
