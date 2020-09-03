@@ -79,7 +79,7 @@ public final class GenericExecutionRecorder
 		final List<Consumer<EExecutionStatus>> listeners = new ArrayList<>();
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 
-		try (final var stack = MemoryStack.stackPush())
+		try
 		{
 			for (int i = 0; i < stages.size(); i++)
 			{

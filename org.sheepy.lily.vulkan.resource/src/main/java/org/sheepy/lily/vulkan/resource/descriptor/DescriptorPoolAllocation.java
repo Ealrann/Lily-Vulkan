@@ -25,7 +25,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 @ModelExtender(scope = DescriptorPool.class)
 @Allocation(context = ExecutionContext.class, reuseDirtyAllocations = true)
-@AllocationChild(reportStateToParent = true, features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS)
+@AllocationChild(features = VulkanResourcePackage.DESCRIPTOR_POOL__DESCRIPTOR_SETS)
 public final class DescriptorPoolAllocation implements IExtender
 {
 	private static final String FAILED_TO_CREATE_DESCRIPTOR_POOL = "Failed to create descriptor pool";
@@ -124,5 +124,10 @@ public final class DescriptorPoolAllocation implements IExtender
 	public long getPtr()
 	{
 		return ptr;
+	}
+
+	public void setObsolete()
+	{
+		allocationState.setAllocationObsolete();
 	}
 }

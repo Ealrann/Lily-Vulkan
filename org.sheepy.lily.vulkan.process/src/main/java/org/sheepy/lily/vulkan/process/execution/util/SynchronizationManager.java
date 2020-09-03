@@ -160,7 +160,7 @@ public final class SynchronizationManager
 			this.semaphoreCount = semaphoreCount;
 			while (executionSemaphores.size() < semaphoreCount)
 			{
-				executionSemaphores.add(new VkSemaphore(vkDevice));
+				executionSemaphores.add(new VkSemaphore(vkDevice, "SynchronizationManager"));
 			}
 		}
 

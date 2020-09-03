@@ -4,15 +4,17 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.lily.core.api.allocation.EAllocationStatus;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
 import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
@@ -40,7 +42,9 @@ public class DescriptorSetAllocation implements IDescriptorSetAllocation
 	private final List<IDescriptorAllocation> allocations;
 	private final DescriptorPoolAllocation descriptorPool;
 
-	public DescriptorSetAllocation(final ExecutionContext context,
+	public DescriptorSetAllocation(final DescriptorSet dSet,
+								   final ExecutionContext context,
+								   final IAllocationState allocationState,
 								   final @InjectDependency(index = 0) List<IDescriptorAllocation> descriptorAllocations,
 								   final @InjectDependency(index = 1) IDescriptorSetLayoutAllocation layoutAllocation,
 								   final @InjectDependency(index = 2) DescriptorPoolAllocation descriptorPool)
@@ -53,6 +57,16 @@ public class DescriptorSetAllocation implements IDescriptorSetAllocation
 		layoutPtr = layoutAllocation.getLayoutPtr();
 		descriptorSetPtr = allocateDescriptorSet(descriptorPoolPtr, stack);
 		allocations = descriptorAllocations;
+
+		allocationState.listenStatus(this::statusChanged);
+	}
+
+	private void statusChanged(final EAllocationStatus allocationStatus)
+	{
+		if (allocationStatus == EAllocationStatus.Obsolete)
+		{
+			descriptorPool.setObsolete();
+		}
 	}
 
 	@Override

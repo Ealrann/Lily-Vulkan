@@ -83,6 +83,7 @@ public class LogicalDevice implements ILogicalDevice
 		vkDevice = null;
 	}
 
+	@Override
 	public void waitIdle()
 	{
 		final int res = vkDeviceWaitIdle(vkDevice);

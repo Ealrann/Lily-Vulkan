@@ -18,9 +18,9 @@ import java.util.List;
 
 public abstract class AbstractProcessAllocation implements IProcessAdapter
 {
-	protected final AbstractProcess process;
-	protected final IVulkanContext vulkanContext;
-	protected final ProcessContext context;
+	private final AbstractProcess process;
+	private final IVulkanContext vulkanContext;
+	private final ProcessContext context;
 	private final List<IExecutionPlayer> runningRecorders = new LinkedList<>();
 
 	private long startPrepareNs = 0;

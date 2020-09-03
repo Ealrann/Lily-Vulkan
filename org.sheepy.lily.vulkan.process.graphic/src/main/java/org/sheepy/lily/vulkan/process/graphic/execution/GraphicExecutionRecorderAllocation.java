@@ -68,7 +68,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 		this.recordables = recordables;
 		this.process = ModelUtil.findParent(recorder, GraphicProcess.class);
 		this.commandBuffer = new GraphicCommandBuffer(context, surfaceAllocation, renderPassAllocation, framebufferPtr);
-		this.presentSemaphore = new VkSemaphore(context.getVkDevice());
+		this.presentSemaphore = new VkSemaphore(context.getVkDevice(), "GraphicExecutionRecorderAllocation");
 		final var presentQueue = surfaceAllocation.getPresentQueue().vkQueue;
 
 		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),

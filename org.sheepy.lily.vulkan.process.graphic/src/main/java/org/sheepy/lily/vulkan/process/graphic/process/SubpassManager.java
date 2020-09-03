@@ -44,7 +44,7 @@ public class SubpassManager
 		observatory.observe(scene);
 	}
 
-	public void stop(final IVulkanApiContext context)
+	public void stop()
 	{
 		observatory.shut(scene);
 		this.context = null;

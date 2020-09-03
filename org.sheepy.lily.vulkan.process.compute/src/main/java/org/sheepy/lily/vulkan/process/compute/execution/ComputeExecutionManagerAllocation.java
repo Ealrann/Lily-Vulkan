@@ -40,7 +40,7 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 
 		vkDevice = context.getVkDevice();
 		final int indexCount = executionManager.getIndexCount();
-		executionSemaphores = Stream.generate(() -> new VkSemaphore(vkDevice))
+		executionSemaphores = Stream.generate(() -> new VkSemaphore(vkDevice, "ComputeExecutionManagerAllocation"))
 									.limit(indexCount)
 									.collect(Collectors.toUnmodifiableList());
 		executionSemaphores.get(0).signalSemaphore(context);

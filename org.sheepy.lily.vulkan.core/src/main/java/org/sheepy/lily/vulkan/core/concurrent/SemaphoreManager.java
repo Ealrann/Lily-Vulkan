@@ -12,10 +12,12 @@ public class SemaphoreManager
 	private final List<Long> semaphorePtrs = new ArrayList<>();
 
 	private final IVulkanContext context;
+	private final String name;
 
-	public SemaphoreManager(IVulkanContext context)
+	public SemaphoreManager(IVulkanContext context, String name)
 	{
 		this.context = context;
+		this.name = name;
 	}
 
 	public VkSemaphore newSemaphore()
@@ -24,7 +26,7 @@ public class SemaphoreManager
 		{
 			throw new AssertionError("Object locked, can't create a Semaphore");
 		}
-		final VkSemaphore res = new VkSemaphore(context.getVkDevice());
+		final VkSemaphore res = new VkSemaphore(context.getVkDevice(), name);
 		semaphores.add(res);
 		semaphorePtrs.add(res.getPtr());
 		return res;

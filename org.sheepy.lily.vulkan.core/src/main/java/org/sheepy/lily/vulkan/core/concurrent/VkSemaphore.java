@@ -2,7 +2,9 @@ package org.sheepy.lily.vulkan.core.concurrent;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.concurrent.ISemaphore;
+import org.sheepy.lily.vulkan.core.debug.VulkanDebugService;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 
 import java.util.List;
@@ -13,7 +15,7 @@ public class VkSemaphore implements ISemaphore
 {
 	private final long semaphorePtr;
 
-	public VkSemaphore(VkDevice vkDdevice)
+	public VkSemaphore(VkDevice vkDdevice, String name)
 	{
 		final VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
 		semaphoreInfo.sType(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO);
@@ -27,6 +29,7 @@ public class VkSemaphore implements ISemaphore
 		}
 
 		semaphorePtr = aSemaphore[0];
+		if (DebugUtil.DEBUG_ENABLED) VulkanDebugService.INSTANCE.register(semaphorePtr, name);
 		semaphoreInfo.free();
 	}
 
@@ -49,5 +52,6 @@ public class VkSemaphore implements ISemaphore
 	public void free(VkDevice vkDdevice)
 	{
 		vkDestroySemaphore(vkDdevice, semaphorePtr, null);
+		if (DebugUtil.DEBUG_ENABLED) VulkanDebugService.INSTANCE.remove(semaphorePtr);
 	}
 }

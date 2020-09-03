@@ -29,8 +29,8 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	public int currentSize = INITIAL_SIZE;
 	private final List<PushData> previousPushs = new ArrayList<>();
 	private int pass = 0;
-	private int fetchPass = 0;
-	private int pushPass = 0;
+//	private int fetchPass = 0;
+//	private int pushPass = 0;
 	private boolean dirty = true;
 
 	public TestDataProviderAdapter()
@@ -54,7 +54,7 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 			notify(Features.Data);
 
 			dirty = true;
-			System.out.println("pass = " + pass);
+//			System.out.println("pass = " + pass);
 			pass++;
 		}
 	}
@@ -73,8 +73,8 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 			previous[i] = rand;
 		}
 
-		System.out.println("pushPass = " + pushPass);
-		pushPass++;
+//		System.out.println("pushPass = " + pushPass);
+//		pushPass++;
 		dirty = false;
 		previousPushs.add(new PushData(previous, pass));
 	}
@@ -92,13 +92,13 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 											   .collect(Collectors.toUnmodifiableList());
 
 
-			System.out.println("fetchPass = " + fetchPass);
+//			System.out.println("fetchPass = " + fetchPass);
 
-			if(pushDatas.size() != 1)
-				System.out.println(pushDatas.size());
+//			if(pushDatas.size() != 1)
+//				System.out.println(pushDatas.size());
 			assert pushDatas.size() == 1;
 
-			fetchPass++;
+//			fetchPass++;
 			previousPushs.removeAll(pushDatas);
 		}
 	}

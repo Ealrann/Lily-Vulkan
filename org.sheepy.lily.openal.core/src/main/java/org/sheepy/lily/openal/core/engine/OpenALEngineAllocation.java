@@ -52,7 +52,7 @@ public final class OpenALEngineAllocation implements IEngineAllocation
 	@Override
 	public void step()
 	{
-		IAllocationService.INSTANCE.updateAllocation(engine, allocationContext, IEngineAllocation.class);
+		IAllocationService.INSTANCE.updateAllocation(engine, null, IEngineAllocation.class);
 	}
 
 	@Override

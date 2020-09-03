@@ -42,7 +42,7 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 
 		final var process = (GraphicProcess) executionManager.eContainer();
 		final var vkDevice = context.getVkDevice();
-		imageAvailableSemaphore = new VkSemaphore(vkDevice);
+		imageAvailableSemaphore = new VkSemaphore(vkDevice, "GraphicExecutionManagerAllocation");
 		acquireWaitStage = process.getConfiguration().getAcquireWaitStage();
 		executionCount = swapChainAllocation.getImageCount();
 		setupRecorders(executionManager, executionCount);

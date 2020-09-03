@@ -33,14 +33,14 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	private final Capabilities capabilities;
 	private final VulkanQueue presentQueue;
 	private final VkSurface surface;
-	private final IAllocationState allocationConfigurator;
+	private final IAllocationState allocationState;
 	private final LogicalDevice logicalDevice;
 
-	private PhysicalSurfaceAllocation(PhysicalSurface physicalSurface,
-									  IAllocationState allocationConfigurator,
-									  ProcessContext context)
+	private PhysicalSurfaceAllocation(final PhysicalSurface physicalSurface,
+									  final IAllocationState allocationState,
+									  final ProcessContext context)
 	{
-		this.allocationConfigurator = allocationConfigurator;
+		this.allocationState = allocationState;
 		logicalDevice = context.getLogicalDevice();
 		final var vkPhysicalDevice = context.getVkPhysicalDevice();
 		final var vkInstance = context.getVkInstance();
@@ -75,6 +75,7 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	@Free
 	public void free(ProcessContext context)
 	{
+		logicalDevice.returnQueue(presentQueue);
 		final var window = context.getWindow();
 
 		window.sulkNoParam(dirtyListener, IWindow.Features.Size);
@@ -156,10 +157,7 @@ public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocati
 	@Override
 	public void setDirty()
 	{
-		allocationConfigurator.setAllocationObsolete();
-		logicalDevice.returnQueue(presentQueue);
-		// Some driver will refuse to alloc a new swapchain while the current one is in use.
-		logicalDevice.waitIdle();
+		allocationState.setAllocationObsolete();
 	}
 
 	public VulkanQueue getPresentQueue()

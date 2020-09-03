@@ -43,6 +43,6 @@ public final class GraphicProcessAllocation extends AbstractProcessAllocation
 	@Free
 	private void free()
 	{
-		subpassManager.stop(vulkanContext);
+		subpassManager.stop();
 	}
 }
