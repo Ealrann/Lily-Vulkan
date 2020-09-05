@@ -1,6 +1,7 @@
 package org.sheepy.lily.openal.core.engine;
 
 import org.sheepy.lily.core.api.allocation.IAllocationService;
+import org.sheepy.lily.core.api.allocation.IAllocator;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
@@ -22,13 +23,13 @@ public final class OpenALEngineAllocation implements IEngineAllocation
 {
 	private final ISoundContext context;
 	private final GameAllocationContext allocationContext;
-	private final OpenALEngine engine;
+	private final IAllocator allocator;
 
 	private OpenALEngineAllocation(OpenALEngine engine)
 	{
-		this.engine = engine;
 		allocationContext = new GameAllocationContext();
 		context = ISoundContext.newContext();
+		allocator = IAllocationService.INSTANCE.buildAllocator(engine, null, IEngineAllocation.class);
 	}
 
 	@ProvideContext
@@ -52,7 +53,7 @@ public final class OpenALEngineAllocation implements IEngineAllocation
 	@Override
 	public void step()
 	{
-		IAllocationService.INSTANCE.updateAllocation(engine, null, IEngineAllocation.class);
+		allocator.updateAllocation();
 	}
 
 	@Override

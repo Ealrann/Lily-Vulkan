@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.process.process;
 
 import org.sheepy.lily.core.api.allocation.IAllocationService;
+import org.sheepy.lily.core.api.allocation.IAllocator;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.ProvideContext;
 import org.sheepy.lily.core.api.cadence.IStatistics;
@@ -22,6 +23,7 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 	private final IVulkanContext vulkanContext;
 	private final ProcessContext context;
 	private final List<IExecutionPlayer> runningRecorders = new LinkedList<>();
+	private final IAllocator allocator;
 
 	private long startPrepareNs = 0;
 
@@ -31,6 +33,7 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 		this.vulkanContext = vulkanContext;
 		final var executionQueueType = process.adapt(InternalProcessAdapter.class).getExecutionQueueType();
 		context = new ProcessContext(vulkanContext, executionQueueType, isResetAllowed(), process);
+		allocator = IAllocationService.INSTANCE.buildAllocator(process, vulkanContext, IProcessAdapter.class);
 	}
 
 	@ProvideContext
@@ -67,7 +70,7 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 		}
 
 		checkFences();
-		IAllocationService.INSTANCE.updateAllocation(process, vulkanContext, IProcessAdapter.class);
+		allocator.updateAllocation();
 
 		final var nextPlayer = acquireNextPlayer();
 
