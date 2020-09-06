@@ -13,6 +13,7 @@ public interface IBufferBackend
 
 	long getAddress();
 
+	@Deprecated
 	void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size);
 
 	void pushData(IRecordContext recordContext, ByteBuffer data);

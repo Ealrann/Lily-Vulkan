@@ -67,7 +67,7 @@ public interface IVkImageBuilder
 			return res;
 		}
 
-		public VkImage buildWithMemory(IRecordContext context, MemoryBuilder memoryBuilder, String name)
+		private VkImage buildWithMemory(IRecordContext context, MemoryBuilder memoryBuilder, String name)
 		{
 			final long imagePtr = allocateImage(context, name);
 			final var res = new VkImage(imagePtr,

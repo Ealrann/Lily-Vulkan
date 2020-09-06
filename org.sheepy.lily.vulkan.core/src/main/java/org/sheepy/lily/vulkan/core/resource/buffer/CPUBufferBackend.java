@@ -6,11 +6,13 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.resource.BufferPointer;
+import org.sheepy.lily.vulkan.core.resource.memory.FunctionalMemoryBuilder;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 
 import java.nio.ByteBuffer;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import static org.lwjgl.system.MemoryUtil.memAddress;
 import static org.lwjgl.vulkan.VK10.*;
@@ -32,6 +34,7 @@ public final class CPUBufferBackend implements IBufferBackend
 		this.coherent = coherent;
 	}
 
+	@Deprecated
 	@Override
 	public void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
 	{
@@ -40,9 +43,11 @@ public final class CPUBufferBackend implements IBufferBackend
 		// System.out.println(Long.toHexString(bufferMemoryId));
 	}
 
+	@Deprecated
 	private void linkMemory(final Memory memory)
 	{
 		this.memory = memory;
+		this.memoryAddress = memory.ptr();
 	}
 
 	@Override
@@ -170,19 +175,13 @@ public final class CPUBufferBackend implements IBufferBackend
 
 		public CPUBufferBackend build(IVulkanContext context)
 		{
-			final var memoryBuilder = new MemoryBuilder(context, properties);
-			final var res = build(context, memoryBuilder);
-			final var memory = memoryBuilder.build(context);
-			res.linkMemory(memory);
-			return res;
-		}
-
-		public CPUBufferBackend build(IVulkanContext context, MemoryBuilder memoryBuilder)
-		{
 			info.computeAlignment(context.getPhysicalDevice());
-			final long address = VkBufferAllocator.allocate(context, info);
-			final var backend = new CPUBufferBackend(address, info.getAlignedSize(), info.coherent);
-			memoryBuilder.registerBuffer(address, backend::bindBufferMemory);
+			final long ptr = VkBufferAllocator.allocate(context, info);
+			final var memoryBuilder = new FunctionalMemoryBuilder(properties);
+			final var backend = new CPUBufferBackend(ptr, info.getAlignedSize(), info.coherent);
+			final var ptrs = Stream.of(new BufferPointer(ptr));
+			final var memory = memoryBuilder.buildMemory(context, ptrs);
+			backend.linkMemory(memory);
 			return backend;
 		}
 
