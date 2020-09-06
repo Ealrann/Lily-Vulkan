@@ -10,7 +10,7 @@ public class VkBufferAllocator
 {
 	public static long allocate(IVulkanContext context, BufferInfo bufferInfo)
 	{
-		assert bufferInfo.getTotalSize() != 0;
+		assert bufferInfo.getAlignedSize() != 0;
 
 		final var stack = context.stack();
 		final var device = context.getVkDevice();
@@ -27,7 +27,7 @@ public class VkBufferAllocator
 	{
 		final VkBufferCreateInfo bufferCreateInfo = VkBufferCreateInfo.callocStack(stack);
 		bufferCreateInfo.sType(VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO);
-		bufferCreateInfo.size(bufferInfo.getTotalSize());
+		bufferCreateInfo.size(bufferInfo.getAlignedSize());
 		bufferCreateInfo.usage(bufferInfo.usage);
 		bufferCreateInfo.sharingMode(VK_SHARING_MODE_EXCLUSIVE);
 

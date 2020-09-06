@@ -20,7 +20,6 @@ import java.util.List;
 public class ExecutionContext extends GameAllocationContext implements IVulkanContext, IExecutionContext
 {
 	private final IVulkanContext vulkanContext;
-	public final EQueueType queueType;
 
 	public VulkanQueue queue;
 	public CommandPool commandPool;
@@ -28,7 +27,6 @@ public class ExecutionContext extends GameAllocationContext implements IVulkanCo
 	public ExecutionContext(IVulkanContext vulkanContext, EQueueType queueType, boolean resetAllowed)
 	{
 		this.vulkanContext = vulkanContext;
-		this.queueType = queueType;
 
 		final var logicalDevice = vulkanContext.getLogicalDevice();
 		final var vkDevice = vulkanContext.getVkDevice();

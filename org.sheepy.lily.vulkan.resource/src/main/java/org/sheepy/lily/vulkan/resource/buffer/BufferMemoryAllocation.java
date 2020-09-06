@@ -62,6 +62,14 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 				   }, IBufferAdapter.Features.Size);
 	}
 
+	private GPUBufferBackend createBufferBackend(long size, int usage)
+	{
+		final var info = new BufferInfo(size, usage, false, true);
+		info.computeAlignment(context.getPhysicalDevice());
+		final long ptr = VkBufferAllocator.allocate(context, info);
+		return new GPUBufferBackend(info.getAlignedSize(), ptr);
+	}
+
 	@Override
 	public void registerMemory(MemoryBuilder memoryBuilder)
 	{
@@ -90,12 +98,6 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 		final var buffers = bufferMemory.getBuffers();
 		final long bufferPtr = bufferBackend.getAddress();
 
-//		final long size = computeSize ? buffers.stream()
-//											   .map(IBufferObjectAllocationAllocation::adapt)
-//											   .filter(bufferAllocation -> force || bufferAllocation.needPush())
-//											   .mapToLong(IBufferAllocation::getBindSize)
-//											   .sum() : 0;
-
 		return IntStream.range(0, buffers.size())
 						.mapToObj(this::newBufferData)
 						.filter(data -> force || data.bufferAllocation.needPush())
@@ -118,14 +120,6 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 													 alignmentData.offset(),
 													 alignmentData.size());
 		}
-	}
-
-	private GPUBufferBackend createBufferBackend(long size, int usage)
-	{
-		final var info = new BufferInfo(size, usage, false, true);
-		info.computeAlignment(context.getPhysicalDevice());
-		final long ptr = VkBufferAllocator.allocate(context, info);
-		return new GPUBufferBackend(info, ptr, null);
 	}
 
 	public long getBufferPtr()

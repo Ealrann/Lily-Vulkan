@@ -1,7 +1,11 @@
 package org.sheepy.lily.vulkan.core.util;
 
-public class VulkanDebugUtil
+public final class VulkanDebugUtil
 {
+	private VulkanDebugUtil()
+	{
+	}
+
 	public static boolean DEBUG_ENABLED;
 	static
 	{

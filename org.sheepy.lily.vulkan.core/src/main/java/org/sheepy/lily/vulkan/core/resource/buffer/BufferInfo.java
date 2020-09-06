@@ -8,40 +8,26 @@ public class BufferInfo
 	public final long size;
 	public final int usage;
 	public final boolean keptMapped;
-	public final int instanceCount;
 	public final boolean coherent;
 
-	private long instanceSize;
-	private long totalSize;
+	private long alignedSize;
 
 	public BufferInfo(long size, int usage, boolean keptMapped, boolean coherent)
-	{
-		this(size, usage, keptMapped, coherent, 1);
-	}
-
-	public BufferInfo(long size, int usage, boolean keptMapped, boolean coherent, int instanceCount)
 	{
 		this.size = size;
 		this.usage = usage;
 		this.keptMapped = keptMapped;
 		this.coherent = coherent;
-		this.instanceCount = instanceCount;
 	}
 
 	public void computeAlignment(PhysicalDevice device)
 	{
 		final long alignment = device.getBufferAlignement(usage, coherent);
-		instanceSize = AlignmentUtil.align(size, alignment);
-		totalSize = instanceSize * instanceCount;
+		alignedSize = AlignmentUtil.align(size, alignment);
 	}
 
-	public long getTotalSize()
+	public long getAlignedSize()
 	{
-		return totalSize;
-	}
-
-	public long getInstanceSize()
-	{
-		return instanceSize;
+		return alignedSize;
 	}
 }

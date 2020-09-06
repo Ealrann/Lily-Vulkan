@@ -155,7 +155,7 @@ public class PhysicalDevice implements IPhysicalDevice
 		public final DeviceExtensions.Builder deviceExtensions;
 		public final String name;
 		public final VkPhysicalDeviceMemoryProperties memProperties;
-		public int driverVersion;
+		public final int driverVersion;
 
 		public Builder(VkPhysicalDevice vkPhysicalDevice, Set<EDeviceExtension> extensions, MemoryStack stack)
 		{

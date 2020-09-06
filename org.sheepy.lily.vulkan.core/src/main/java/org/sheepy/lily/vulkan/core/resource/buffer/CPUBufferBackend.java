@@ -98,7 +98,7 @@ public final class CPUBufferBackend implements IBufferBackend
 		if (memoryMap == 0)
 		{
 			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-			vkMapMemory(vkDevice, memoryAddress, 0, info.getInstanceSize(), 0, pBuffer);
+			vkMapMemory(vkDevice, memoryAddress, 0, info.getAlignedSize(), 0, pBuffer);
 			memoryMap = pBuffer.get(0);
 			MemoryUtil.memFree(pBuffer);
 		}
