@@ -118,11 +118,7 @@ public final class VulkanContextAllocation extends GameAllocationContext impleme
 			final var vkInstance = createInstance(instanceName, extensionRequirement, stack);
 
 			final var dummySurface = window != null ? window.createSurface(vkInstance.getVkInstance()) : null;
-			final var physicalDevice = pickPhysicalDevice(stack,
-														  headless,
-														  vkInstance,
-														  extensionRequirement,
-														  dummySurface);
+			final var physicalDevice = pickPhysicalDevice(stack, headless, vkInstance, dummySurface);
 			final var logicalDevice = createLogicalDevice(stack, physicalDevice, queueTypes, features, dummySurface);
 			if (dummySurface != null) dummySurface.free();
 
@@ -151,14 +147,10 @@ public final class VulkanContextAllocation extends GameAllocationContext impleme
 		private static PhysicalDevice pickPhysicalDevice(MemoryStack stack,
 														 boolean headless,
 														 VulkanInstance vulkanInstance,
-														 InstanceExtensions extensionRequirement,
 														 VkSurface dummySurface)
 		{
 			final var extensions = headless ? EnumSet.noneOf(EDeviceExtension.class) : EnumSet.of(EDeviceExtension.VK_KHR_swapchain);
-			final var deviceSelector = new PhysicalDeviceSelector(vulkanInstance,
-																  extensionRequirement,
-																  extensions,
-																  dummySurface);
+			final var deviceSelector = new PhysicalDeviceSelector(vulkanInstance, extensions, dummySurface);
 			return deviceSelector.findBestPhysicalDevice(stack);
 		}
 

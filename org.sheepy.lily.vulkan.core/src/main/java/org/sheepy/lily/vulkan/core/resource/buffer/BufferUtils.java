@@ -10,7 +10,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 public class BufferUtils
 {
-
 	public static int flush(MemoryStack stack, VkDevice vkDevice, long bufferMemoryId)
 	{
 		return BufferUtils.flush(stack, vkDevice, bufferMemoryId, VK_WHOLE_SIZE, 0);

@@ -1,19 +1,18 @@
 package org.sheepy.lily.vulkan.core.device.data;
 
-import static org.lwjgl.vulkan.VK10.vkGetPhysicalDeviceProperties;
+import org.lwjgl.vulkan.VkPhysicalDevice;
+import org.lwjgl.vulkan.VkPhysicalDeviceLimits;
+import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
 
 import java.lang.reflect.Method;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.lwjgl.vulkan.VkPhysicalDeviceLimits;
-import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
+import static org.lwjgl.vulkan.VK10.vkGetPhysicalDeviceProperties;
 
 public class DeviceProperties
 {
-	public final VkPhysicalDeviceProperties vkDeviceProperties = VkPhysicalDeviceProperties
-			.create();
+	public final VkPhysicalDeviceProperties vkDeviceProperties = VkPhysicalDeviceProperties.create();
 
 	public DeviceProperties(VkPhysicalDevice vkPhysicalDevice)
 	{
@@ -33,14 +32,12 @@ public class DeviceProperties
 				{
 					final Object objectValue = method.invoke(limits, NO_ARGS);
 					final String value;
-					if (objectValue instanceof IntBuffer)
+					if (objectValue instanceof IntBuffer buffer)
 					{
-						final IntBuffer buffer = (IntBuffer) objectValue;
 						value = bufferToString(buffer, ", ");
 					}
-					else if (objectValue instanceof FloatBuffer)
+					else if (objectValue instanceof FloatBuffer buffer)
 					{
-						final FloatBuffer buffer = (FloatBuffer) objectValue;
 						value = bufferToString(buffer, ", ");
 					}
 					else
@@ -48,8 +45,9 @@ public class DeviceProperties
 						value = String.valueOf(objectValue);
 					}
 
-					System.out.println(String.format("\t%-48s: %-10s", method.getName(), value));
-				} catch (final Exception e)
+					System.out.printf("\t%-48s: %-10s%n", method.getName(), value);
+				}
+				catch (final Exception e)
 				{
 					e.printStackTrace();
 				}

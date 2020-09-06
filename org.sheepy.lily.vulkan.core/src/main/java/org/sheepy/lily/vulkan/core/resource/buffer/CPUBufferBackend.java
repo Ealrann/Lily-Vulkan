@@ -23,8 +23,6 @@ public final class CPUBufferBackend implements IBufferBackend
 	private long memoryAddress;
 	private Memory memory;
 	private long memoryMap = 0;
-	private int currentInstance = 0;
-	private long currentOffset = 0;
 
 	private CPUBufferBackend(BufferInfo info, long address)
 	{
@@ -75,8 +73,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void pushData(IRecordContext context, Consumer<ByteBuffer> dataProvider)
 	{
-		pushDataInternal(context,
-						 () -> dataProvider.accept(MemoryUtil.memByteBuffer(memoryMap, (int) info.size)));
+		pushDataInternal(context, () -> dataProvider.accept(MemoryUtil.memByteBuffer(memoryMap, (int) info.size)));
 	}
 
 	private void pushDataInternal(IVulkanContext vulkanContext, Runnable doPush)
@@ -96,13 +93,12 @@ public final class CPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	@Override
 	public long mapMemory(VkDevice vkDevice)
 	{
 		if (memoryMap == 0)
 		{
 			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-			vkMapMemory(vkDevice, memoryAddress, currentOffset, info.getInstanceSize(), 0, pBuffer);
+			vkMapMemory(vkDevice, memoryAddress, 0, info.getInstanceSize(), 0, pBuffer);
 			memoryMap = pBuffer.get(0);
 			MemoryUtil.memFree(pBuffer);
 		}
@@ -110,7 +106,6 @@ public final class CPUBufferBackend implements IBufferBackend
 		return memoryMap;
 	}
 
-	@Override
 	public void unmapMemory(VkDevice vkDevice)
 	{
 		if (memoryMap != 0)
@@ -120,55 +115,16 @@ public final class CPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	@Override
-	public void nextInstance(VkDevice vkDevice)
-	{
-		final int newInstance = (currentInstance + 1) % info.instanceCount;
-
-		if (newInstance != currentInstance)
-		{
-			final boolean wasMapped = memoryMap != 0;
-			if (wasMapped)
-			{
-				unmapMemory(vkDevice);
-			}
-
-			currentInstance = newInstance;
-			currentOffset = getOffset(currentInstance);
-
-			if (wasMapped)
-			{
-				mapMemory(vkDevice);
-			}
-		}
-	}
-
 	/**
 	 * Flush a memory range of the buffer to make it visible to the device
 	 *
 	 * @apiNote Only required for non-coherent memory
 	 */
-	@Override
 	public void flush(MemoryStack stack, VkDevice vkDevice)
 	{
 		if (info.coherent == false)
 		{
-			BufferUtils.flush(stack, vkDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
-		}
-	}
-
-	/**
-	 * Flush a memory range of the buffer to make it visible to the device
-	 *
-	 * @apiNote Only required for non-coherent memory
-	 */
-	public void flush(MemoryStack stack, VkDevice vkDevice, int instance)
-	{
-		if (info.coherent == false)
-		{
-			final long size = info.getInstanceSize();
-			final long offset = getOffset(instance);
-			BufferUtils.flush(stack, vkDevice, memoryAddress, size, offset);
+			BufferUtils.flush(stack, vkDevice, memoryAddress);
 		}
 	}
 
@@ -177,50 +133,12 @@ public final class CPUBufferBackend implements IBufferBackend
 	 *
 	 * @apiNote Only required for non-coherent memory
 	 */
-	@Override
 	public void invalidate(MemoryStack stack, VkDevice vkDevice)
 	{
 		if (info.coherent == false)
 		{
-			BufferUtils.invalidate(stack, vkDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+			BufferUtils.invalidate(stack, vkDevice, memoryAddress);
 		}
-	}
-
-	/**
-	 * Invalidate a memory range of the buffer to make it visible to the host
-	 *
-	 * @apiNote Only required for non-coherent memory
-	 */
-	public void invalidate(MemoryStack stack, VkDevice vkDevice, int instance)
-	{
-		if (info.coherent == false)
-		{
-			final long size = info.getInstanceSize();
-			final long offset = getOffset(instance);
-			BufferUtils.invalidate(stack, vkDevice, memoryAddress, size, offset);
-		}
-	}
-
-	private long getOffset(int instance)
-	{
-		return instance * info.getInstanceSize();
-	}
-
-	@Override
-	public long getInstanceOffset()
-	{
-		return currentOffset;
-	}
-
-	@Override
-	public long getInstanceSize()
-	{
-		return info.getInstanceSize();
-	}
-
-	public BufferInfo getInfos()
-	{
-		return info;
 	}
 
 	@Override
@@ -229,7 +147,6 @@ public final class CPUBufferBackend implements IBufferBackend
 		return address;
 	}
 
-	@Override
 	public long getMemoryAddress()
 	{
 		return memoryAddress;
@@ -238,11 +155,6 @@ public final class CPUBufferBackend implements IBufferBackend
 	public long getMemoryMap()
 	{
 		return memoryMap;
-	}
-
-	public int getCurrentInstance()
-	{
-		return currentInstance;
 	}
 
 	public static final class Builder

@@ -6,7 +6,6 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.engine.extension.EDeviceExtension;
-import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
 import org.sheepy.lily.vulkan.core.instance.VulkanInstance;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
@@ -23,7 +22,6 @@ public class PhysicalDeviceSelector
 {
 	private final VulkanInstance vulkanInstance;
 	private final List<DeviceScore> devices = new ArrayList<>();
-	private final InstanceExtensions instanceExtensions;
 	private final Set<EDeviceExtension> requiredDeviceExtensions;
 	private final VkSurface surface;
 
@@ -32,12 +30,10 @@ public class PhysicalDeviceSelector
 	private PointerBuffer pPhysicalDevices;
 
 	public PhysicalDeviceSelector(VulkanInstance vulkanInstance,
-								  InstanceExtensions extensionRequirement,
 								  Set<EDeviceExtension> requiredDeviceExtensions,
 								  VkSurface surface)
 	{
 		this.vulkanInstance = vulkanInstance;
-		this.instanceExtensions = extensionRequirement;
 		this.requiredDeviceExtensions = requiredDeviceExtensions;
 		this.surface = surface;
 	}
@@ -49,7 +45,7 @@ public class PhysicalDeviceSelector
 		devices.sort(Comparator.comparingInt(o -> o.score));
 		final var winner = devices.get(0).deviceBuilder;
 		if (DebugUtil.DEBUG_ENABLED) winner.printInfo(DebugUtil.DEBUG_VERBOSE_ENABLED);
-		return winner.build(instanceExtensions, surface, stack);
+		return winner.build(surface);
 	}
 
 	private void load(MemoryStack stack) throws AssertionError
@@ -76,10 +72,7 @@ public class PhysicalDeviceSelector
 			final int deviceScore = judge.rateDeviceSuitability(deviceBuilder);
 			if (DebugUtil.DEBUG_VERBOSE_ENABLED)
 			{
-				System.out.println(String.format("[%s (%d)]: %d points",
-												 deviceBuilder.name,
-												 deviceBuilder.driverVersion,
-												 deviceScore));
+				System.out.printf("[%s (%d)]: %d points", deviceBuilder.name, deviceBuilder.driverVersion, deviceScore);
 			}
 
 			devices.add(new DeviceScore(deviceBuilder, deviceScore));

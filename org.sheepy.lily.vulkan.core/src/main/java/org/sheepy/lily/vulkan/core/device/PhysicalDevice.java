@@ -8,12 +8,8 @@ import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
 import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
 import org.sheepy.lily.vulkan.core.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.core.device.data.DeviceProperties;
-import org.sheepy.lily.vulkan.core.device.data.DisplayInfo;
-import org.sheepy.lily.vulkan.core.device.loader.DisplayInformationLoader;
 import org.sheepy.lily.vulkan.core.engine.extension.DeviceExtensions;
 import org.sheepy.lily.vulkan.core.engine.extension.EDeviceExtension;
-import org.sheepy.lily.vulkan.core.engine.extension.EInstanceExtension;
-import org.sheepy.lily.vulkan.core.engine.extension.InstanceExtensions;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
@@ -32,7 +28,6 @@ public class PhysicalDevice implements IPhysicalDevice
 	public final DeviceExtensions deviceExtensions;
 	private final VkPhysicalDeviceMemoryProperties memProperties;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
-	private final List<DisplayInfo> displaysInfomation;
 	public final Set<EImageUsage> supportedSwapUsages;
 
 	public PhysicalDevice(VkPhysicalDevice vkPhysicalDevice,
@@ -40,7 +35,6 @@ public class PhysicalDevice implements IPhysicalDevice
 						  DeviceExtensions deviceExtensions,
 						  DeviceProperties deviceProperties,
 						  VkPhysicalDeviceMemoryProperties memProperties,
-						  List<DisplayInfo> displaysInfomation,
 						  Set<EImageUsage> supportedSwapUsages)
 	{
 		this.vkPhysicalDevice = vkPhysicalDevice;
@@ -48,7 +42,6 @@ public class PhysicalDevice implements IPhysicalDevice
 		this.deviceProperties = deviceProperties;
 		this.name = name;
 		this.memProperties = memProperties;
-		this.displaysInfomation = displaysInfomation;
 		this.supportedSwapUsages = supportedSwapUsages;
 	}
 
@@ -150,11 +143,6 @@ public class PhysicalDevice implements IPhysicalDevice
 		return alignment;
 	}
 
-	List<DisplayInfo> getDisplaysInfomation()
-	{
-		return displaysInfomation;
-	}
-
 	public VkPhysicalDeviceProperties getDeviceProperties()
 	{
 		return deviceProperties.vkDeviceProperties;
@@ -181,21 +169,14 @@ public class PhysicalDevice implements IPhysicalDevice
 			driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
 		}
 
-		public PhysicalDevice build(InstanceExtensions instanceExtensions, VkSurface dummySurface, MemoryStack stack)
+		public PhysicalDevice build(VkSurface dummySurface)
 		{
-			List<DisplayInfo> displaysInfomation = null;
-			if (instanceExtensions.extensions.contains(EInstanceExtension.VK_KHR_display.name))
-			{
-				displaysInfomation = DisplayInformationLoader.getDisplayInfos(stack, vkPhysicalDevice);
-			}
-
 			final var usages = swapUsages(dummySurface);
 			return new PhysicalDevice(vkPhysicalDevice,
 									  name,
 									  deviceExtensions.build(),
 									  deviceProperties,
 									  memProperties,
-									  displaysInfomation,
 									  usages);
 		}
 
@@ -246,7 +227,7 @@ public class PhysicalDevice implements IPhysicalDevice
 				final var heap = memProperties.memoryHeaps(i);
 				final var flag = heap.flags();
 				final var size = heap.size();
-				System.out.println(String.format("\tHeap %d: flags: %d - size: %d", i, flag, size));
+				System.out.printf("\tHeap %d: flags: %d - size: %d%n", i, flag, size);
 			}
 		}
 	}

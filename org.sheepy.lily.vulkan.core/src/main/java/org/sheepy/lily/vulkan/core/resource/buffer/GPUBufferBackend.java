@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
@@ -16,8 +15,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 public final class GPUBufferBackend implements IBufferBackend
 {
-	private static final String NO_STAGING_ERROR = "Memory mapping for GPUBuffer is only availlable if keepStagingBuffer is true.";
-
 	public static final int DEVICE_LOCAL = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
 	private final BufferInfo info;
@@ -26,8 +23,6 @@ public final class GPUBufferBackend implements IBufferBackend
 
 	private long memoryAddress;
 	private Memory memory;
-	private int currentInstance = 0;
-	private long currentOffset = 0;
 
 	public GPUBufferBackend(BufferInfo info, long address, CPUBufferBackend cpuBackend)
 	{
@@ -67,7 +62,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	{
 		final int size = (int) info.size;
 		pushDataInternal(recordContext,
-						 filler -> filler.fill(recordContext, dataProvider, currentOffset, size),
+						 filler -> filler.fill(recordContext, dataProvider, 0, size),
 						 cpuBackend -> cpuBackend.pushData(recordContext, dataProvider));
 	}
 
@@ -76,7 +71,7 @@ public final class GPUBufferBackend implements IBufferBackend
 	{
 		final int size = (int) Math.min(data.remaining(), info.size);
 		pushDataInternal(recordContext,
-						 filler -> filler.fill(recordContext, data, currentOffset, size),
+						 filler -> filler.fill(recordContext, data, 0, size),
 						 cpuBackend -> cpuBackend.pushData(recordContext, data));
 	}
 
@@ -107,40 +102,7 @@ public final class GPUBufferBackend implements IBufferBackend
 		final int size = (int) Math.min(stagingBuffer.info.size, info.size);
 		final long bufferPtr = stagingBuffer.getAddress();
 
-		BufferUtils.copyBuffer(recordContext.stack(),
-							   recordContext.vkCommandBuffer(),
-							   bufferPtr,
-							   0,
-							   address,
-							   currentOffset,
-							   size);
-	}
-
-	@Override
-	public long mapMemory(VkDevice vkDevice)
-	{
-		if (cpuBackend == null)
-		{
-			throwNoStagingError();
-		}
-
-		return cpuBackend.mapMemory(vkDevice);
-	}
-
-	@Override
-	public void unmapMemory(VkDevice vkDevice)
-	{
-		if (cpuBackend == null)
-		{
-			throwNoStagingError();
-		}
-
-		cpuBackend.unmapMemory(vkDevice);
-	}
-
-	private static void throwNoStagingError() throws AssertionError
-	{
-		throw new AssertionError(NO_STAGING_ERROR);
+		BufferUtils.copyBuffer(recordContext.stack(), recordContext.vkCommandBuffer(), bufferPtr, 0, address, 0, size);
 	}
 
 	public void pushStagging(IRecordContext recordContext)
@@ -148,57 +110,10 @@ public final class GPUBufferBackend implements IBufferBackend
 		pushData(recordContext, cpuBackend);
 	}
 
-	public BufferInfo getInfos()
-	{
-		return info;
-	}
-
-	@Override
-	public void nextInstance(VkDevice vkDevice)
-	{
-		currentInstance++;
-		if (currentInstance >= info.instanceCount)
-		{
-			currentInstance = 0;
-		}
-
-		currentOffset = currentInstance * info.getInstanceSize();
-	}
-
-	@Override
-	public long getInstanceOffset()
-	{
-		return currentOffset;
-	}
-
-	@Override
-	public long getInstanceSize()
-	{
-		return info.getInstanceSize();
-	}
-
 	@Override
 	public long getAddress()
 	{
 		return address;
-	}
-
-	@Override
-	public long getMemoryAddress()
-	{
-		return memoryAddress;
-	}
-
-	@Override
-	public void flush(MemoryStack stack, VkDevice vkDevice)
-	{
-		// Nothing to flush for device local buffer
-	}
-
-	@Override
-	public void invalidate(MemoryStack stack, VkDevice vkDevice)
-	{
-		// Nothing to invalidate for device local buffer
 	}
 
 	public static final class Builder

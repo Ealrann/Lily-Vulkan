@@ -46,6 +46,7 @@ public final class Logger
 
 	public static void log(String message)
 	{
+		//noinspection ConstantConditions
 		log(message, false);
 	}
 
