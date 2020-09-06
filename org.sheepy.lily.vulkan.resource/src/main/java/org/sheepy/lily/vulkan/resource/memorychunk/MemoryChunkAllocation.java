@@ -37,6 +37,7 @@ public final class MemoryChunkAllocation implements IExtender
 	private final boolean useTransfer;
 
 	private boolean needTransfer = false;
+	private boolean obsolete = false;
 
 	private MemoryChunkAllocation(final MemoryChunk memoryChunk,
 								  final ExecutionContext context,
@@ -62,6 +63,7 @@ public final class MemoryChunkAllocation implements IExtender
 			final var focus = observatory.focus(partAllocation);
 			focus.listenNoParam(this::requestUpdate, IMemoryChunkPartAllocation.Features.PushRequest);
 			focus.listen(this::attach, IMemoryChunkPartAllocation.Features.Attach);
+			focus.listen(this::markObsolete, IMemoryChunkPartAllocation.Features.Obsolete);
 		}
 
 		if (useTransfer)
@@ -95,7 +97,7 @@ public final class MemoryChunkAllocation implements IExtender
 	@Tick(priority = -11)
 	private void tick()
 	{
-		if (needTransfer)
+		if (needTransfer && !obsolete)
 		{
 			recordTransfer(false);
 			needTransfer = false;
@@ -134,6 +136,12 @@ public final class MemoryChunkAllocation implements IExtender
 	public void attach(final IRecordContext recordContext)
 	{
 		recordContext.lockAllocationDuringExecution(allocationState);
+	}
+
+	private void markObsolete()
+	{
+		obsolete = true;
+		allocationState.setAllocationObsolete();
 	}
 
 	private void logTransferError()

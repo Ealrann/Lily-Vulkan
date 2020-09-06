@@ -4,7 +4,6 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -21,7 +20,6 @@ import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryChunkPartAllocation;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
@@ -33,16 +31,14 @@ public class StaticImageAllocation extends Notifier<IMemoryChunkPartAllocation.F
 																						 IVkImageAllocation
 {
 	private final StaticImage image;
-	private final IAllocationState allocationState;
 	private final VkImage imageBackend;
 
 	private VkImageView imageView;
 
-	public StaticImageAllocation(StaticImage image, ExecutionContext context, IAllocationState allocationState)
+	public StaticImageAllocation(StaticImage image, ExecutionContext context)
 	{
-		super(List.of(Features.PushRequest, Features.Attach));
+		super(Features.Values);
 		this.image = image;
-		this.allocationState = allocationState;
 
 		final var size = image.getSize();
 		final var builder = new VkImageBuilder(image.getName(), image, size.x(), size.y());
@@ -61,7 +57,7 @@ public class StaticImageAllocation extends Notifier<IMemoryChunkPartAllocation.F
 	@Override
 	public void attach(final IRecordContext recordContext)
 	{
-		recordContext.lockAllocationDuringExecution(allocationState);
+		notify(Features.Attach, recordContext);
 	}
 
 	@Override

@@ -46,7 +46,7 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 								  ExecutionContext context,
 								  IObservatoryBuilder observatory)
 	{
-		super(List.of(Features.PushRequest, Features.Attach));
+		super(Features.Values);
 
 		this.bufferMemory = bufferMemory;
 		this.context = context;
@@ -56,7 +56,16 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 
 		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
 				   .adaptNotifier(IBufferAdapter.class)
-				   .listenNoParam(allocationState::setAllocationObsolete, IBufferAdapter.Features.Size);
+				   .listenNoParam(() -> {
+					   allocationState.setAllocationObsolete();
+					   notify(Features.Obsolete);
+				   }, IBufferAdapter.Features.Size);
+	}
+
+	@Override
+	public void registerMemory(MemoryBuilder memoryBuilder)
+	{
+		memoryBuilder.registerBuffer(bufferBackend.getAddress(), bufferBackend::bindBufferMemory);
 	}
 
 	@Free
@@ -95,9 +104,7 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 
 	private BufferData newBufferData(int index)
 	{
-		final var bufferAllocation = bufferMemory.getBuffers()
-												 .get(index)
-												 .adapt(IBufferAllocation.class);
+		final var bufferAllocation = bufferMemory.getBuffers().get(index).adapt(IBufferAllocation.class);
 		final var alignmentData = chunkInfo.data.get(index);
 		return new BufferData(bufferAllocation, alignmentData);
 	}
@@ -150,12 +157,6 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 	public void requestPush()
 	{
 		notify(Features.PushRequest);
-	}
-
-	@Override
-	public void registerMemory(MemoryBuilder memoryBuilder)
-	{
-		memoryBuilder.registerBuffer(bufferBackend.getAddress(), bufferBackend::bindBufferMemory);
 	}
 
 	public static record ChunkInfo(List<AlignmentData> data, long size, int usage)

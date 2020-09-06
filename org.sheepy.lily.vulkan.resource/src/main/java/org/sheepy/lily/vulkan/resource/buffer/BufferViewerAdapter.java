@@ -17,23 +17,21 @@ import java.util.List;
 public final class BufferViewerAdapter extends Notifier<IBufferAdapter.Features> implements IBufferAdapter
 {
 	private final BufferViewer bufferViewer;
-	private final IBufferDataProviderAdapter dataProviderAdapter;
 
 	private BufferViewerAdapter(BufferViewer bufferViewer, IObservatoryBuilder observatory)
 	{
 		super(List.of(Features.Size));
-		dataProviderAdapter = bufferViewer.getDataProvider().adapt(IBufferDataProviderAdapter.class);
+		final var dataProviderAdapter = bufferViewer.getDataProvider().adapt(IBufferDataProviderAdapter.class);
 		this.bufferViewer = bufferViewer;
 		bufferViewer.setSize(computeFreshSize(dataProviderAdapter.size()));
 
 		observatory.explore(VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER)
 				   .adaptNotifier(IBufferDataProviderAdapter.class)
-				   .listenNoParam(this::sizeRequest, IBufferDataProviderAdapter.Features.Size);
+				   .listen(this::sizeRequest, IBufferDataProviderAdapter.Features.Size);
 	}
 
-	private void sizeRequest()
+	private void sizeRequest(long requestedSize)
 	{
-		final long requestedSize = dataProviderAdapter.size();
 		if (needResize(requestedSize))
 		{
 			final long newSize = computeFreshSize(requestedSize);

@@ -23,7 +23,6 @@ import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryChunkPartAllocation;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
@@ -46,7 +45,7 @@ public final class ImageViewerAllocation extends Notifier<IMemoryChunkPartAlloca
 								 IObservatoryBuilder observatory,
 								 IAllocationState allocationState)
 	{
-		super(List.of(Features.PushRequest, Features.Attach));
+		super(Features.Values);
 
 		final var dataProviderAdapter = image.getDataProvider().adapt(IImageDataProviderAdapter.class);
 		this.image = image;
@@ -65,7 +64,10 @@ public final class ImageViewerAllocation extends Notifier<IMemoryChunkPartAlloca
 
 		final var dataProviderObservatory = observatory.explore(VulkanResourcePackage.IMAGE_VIEWER__DATA_PROVIDER)
 													   .adaptNotifier(IImageDataProviderAdapter.class);
-		dataProviderObservatory.listenNoParam(allocationState::setAllocationObsolete,
+		dataProviderObservatory.listenNoParam(() -> {
+												  allocationState.setAllocationObsolete();
+												  notify(Features.Obsolete);
+											  },
 											  IImageDataProviderAdapter.Features.Size);
 		dataProviderObservatory.listenNoParam(this::requestPush, IImageDataProviderAdapter.Features.Data);
 	}
