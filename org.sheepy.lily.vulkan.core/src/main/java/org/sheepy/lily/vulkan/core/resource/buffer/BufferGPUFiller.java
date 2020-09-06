@@ -42,7 +42,7 @@ public final class BufferGPUFiller
 	private static CPUBufferBackend createStagingBuffer(IRecordContext recordContext, long byteSize)
 	{
 		final int usage = STAGING_USAGE;
-		final var bufferInfo = new BufferInfo(byteSize, usage, false, true);
+		final var bufferInfo = new BufferInfo(byteSize, usage, true);
 		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 		return bufferBuilder.build(recordContext);
 	}

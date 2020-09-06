@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkBufferAllocator
+public final class VkBufferAllocator
 {
 	public static long allocate(IVulkanContext context, BufferInfo bufferInfo)
 	{

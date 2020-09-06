@@ -112,7 +112,7 @@ public final class VkImage
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 
-		final var bufferInfo = new BufferInfo(size, usage, false, true);
+		final var bufferInfo = new BufferInfo(size, usage, true);
 		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 		final var stagingBuffer = bufferBuilder.build(context);
 		bufferFiller.accept(stagingBuffer);

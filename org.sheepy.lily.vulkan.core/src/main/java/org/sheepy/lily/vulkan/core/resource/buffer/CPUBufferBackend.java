@@ -17,17 +17,19 @@ import static org.lwjgl.vulkan.VK10.*;
 
 public final class CPUBufferBackend implements IBufferBackend
 {
-	public final BufferInfo info;
 	private final long address;
+	private final long size;
+	private final boolean coherent;
 
 	private long memoryAddress;
 	private Memory memory;
 	private long memoryMap = 0;
 
-	private CPUBufferBackend(BufferInfo info, long address)
+	private CPUBufferBackend(long address, long size, boolean coherent)
 	{
-		this.info = info;
 		this.address = address;
+		this.size = size;
+		this.coherent = coherent;
 	}
 
 	@Override
@@ -36,10 +38,6 @@ public final class CPUBufferBackend implements IBufferBackend
 		memoryAddress = memoryPtr;
 		vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
 		// System.out.println(Long.toHexString(bufferMemoryId));
-		if (info.keptMapped)
-		{
-			mapMemory(vkDevice);
-		}
 	}
 
 	private void linkMemory(final Memory memory)
@@ -57,7 +55,7 @@ public final class CPUBufferBackend implements IBufferBackend
 			unmapMemory(vkDevice);
 		}
 
-//		System.out.println("free " + Long.toHexString(address));
+		// System.out.println("free " + Long.toHexString(address));
 		vkDestroyBuffer(vkDevice, address, null);
 		if (memory != null) memory.free(context);
 
@@ -67,13 +65,13 @@ public final class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void pushData(IRecordContext context, ByteBuffer data)
 	{
-		pushDataInternal(context, () -> MemoryUtil.memCopy(memAddress(data), memoryMap, info.size));
+		pushDataInternal(context, () -> MemoryUtil.memCopy(memAddress(data), memoryMap, size));
 	}
 
 	@Override
 	public void pushData(IRecordContext context, Consumer<ByteBuffer> dataProvider)
 	{
-		pushDataInternal(context, () -> dataProvider.accept(MemoryUtil.memByteBuffer(memoryMap, (int) info.size)));
+		pushDataInternal(context, () -> dataProvider.accept(MemoryUtil.memByteBuffer(memoryMap, (int) size)));
 	}
 
 	private void pushDataInternal(IVulkanContext vulkanContext, Runnable doPush)
@@ -84,13 +82,10 @@ public final class CPUBufferBackend implements IBufferBackend
 		}
 
 		final VkDevice vkDevice = vulkanContext.getVkDevice();
-		mapMemory(vkDevice);
+		final boolean wasMapped = memoryMap != 0;
+		if (!wasMapped) mapMemory(vkDevice);
 		doPush.run();
-
-		if (info.keptMapped == false)
-		{
-			unmapMemory(vkDevice);
-		}
+		if (!wasMapped) unmapMemory(vkDevice);
 	}
 
 	public long mapMemory(VkDevice vkDevice)
@@ -98,7 +93,7 @@ public final class CPUBufferBackend implements IBufferBackend
 		if (memoryMap == 0)
 		{
 			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-			vkMapMemory(vkDevice, memoryAddress, 0, info.getAlignedSize(), 0, pBuffer);
+			vkMapMemory(vkDevice, memoryAddress, 0, size, 0, pBuffer);
 			memoryMap = pBuffer.get(0);
 			MemoryUtil.memFree(pBuffer);
 		}
@@ -122,7 +117,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	 */
 	public void flush(MemoryStack stack, VkDevice vkDevice)
 	{
-		if (info.coherent == false)
+		if (coherent == false)
 		{
 			BufferUtils.flush(stack, vkDevice, memoryAddress);
 		}
@@ -135,7 +130,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	 */
 	public void invalidate(MemoryStack stack, VkDevice vkDevice)
 	{
-		if (info.coherent == false)
+		if (coherent == false)
 		{
 			BufferUtils.invalidate(stack, vkDevice, memoryAddress);
 		}
@@ -155,6 +150,11 @@ public final class CPUBufferBackend implements IBufferBackend
 	public long getMemoryMap()
 	{
 		return memoryMap;
+	}
+
+	public long getSize()
+	{
+		return size;
 	}
 
 	public static final class Builder
@@ -181,7 +181,7 @@ public final class CPUBufferBackend implements IBufferBackend
 		{
 			info.computeAlignment(context.getPhysicalDevice());
 			final long address = VkBufferAllocator.allocate(context, info);
-			final var backend = new CPUBufferBackend(info, address);
+			final var backend = new CPUBufferBackend(address, info.getAlignedSize(), info.coherent);
 			memoryBuilder.registerBuffer(address, backend::bindBufferMemory);
 			return backend;
 		}

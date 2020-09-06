@@ -64,7 +64,7 @@ public final class BufferMemoryAllocation extends Notifier<IMemoryChunkPartAlloc
 
 	private GPUBufferBackend createBufferBackend(long size, int usage)
 	{
-		final var info = new BufferInfo(size, usage, false, true);
+		final var info = new BufferInfo(size, usage, true);
 		info.computeAlignment(context.getPhysicalDevice());
 		final long ptr = VkBufferAllocator.allocate(context, info);
 		return new GPUBufferBackend(info.getAlignedSize(), ptr);

@@ -72,7 +72,7 @@ public final class DeviceResourceFiller
 		private static CPUBufferBackend createStagingBuffer(IVulkanContext context, long byteSize)
 		{
 			final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-			final var bufferInfo = new BufferInfo(byteSize, usage, false, false);
+			final var bufferInfo = new BufferInfo(byteSize, usage, false);
 			final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
 			return bufferBuilder.build(context);
 		}

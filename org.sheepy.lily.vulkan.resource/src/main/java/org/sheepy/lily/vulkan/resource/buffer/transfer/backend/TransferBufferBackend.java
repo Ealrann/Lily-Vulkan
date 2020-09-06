@@ -30,7 +30,7 @@ public final class TransferBufferBackend
 	private TransferBufferBackend(CPUBufferBackend bufferBackend)
 	{
 		this.bufferBackend = bufferBackend;
-		this.capacity = bufferBackend.info.getAlignedSize();
+		this.capacity = bufferBackend.getSize();
 		spaceManager = new MemorySpaceManager(capacity);
 	}
 
@@ -142,9 +142,10 @@ public final class TransferBufferBackend
 			final int pushUsage = usedToPush ? EBufferUsage.TRANSFER_SRC_BIT_VALUE : 0;
 			final int fetchUsage = usedToFetch ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
 			final int usage = pushUsage | fetchUsage;
-			final var info = new BufferInfo(capacity, usage, true, false);
+			final var info = new BufferInfo(capacity, usage, false);
 			final var bufferBuilder = new CPUBufferBackend.Builder(info);
 			final var bufferBackend = bufferBuilder.build(context);
+			bufferBackend.mapMemory(context.getVkDevice());
 			return new TransferBufferBackend(bufferBackend);
 		}
 	}
