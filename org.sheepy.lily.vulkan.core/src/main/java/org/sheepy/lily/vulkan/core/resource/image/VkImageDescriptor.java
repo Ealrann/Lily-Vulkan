@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 
-public class VkImageDescriptor implements IVkDescriptor
+public final class VkImageDescriptor implements IVkDescriptor
 {
 	private final long[] imageViewPtrs;
 	private final long samplerPtr;

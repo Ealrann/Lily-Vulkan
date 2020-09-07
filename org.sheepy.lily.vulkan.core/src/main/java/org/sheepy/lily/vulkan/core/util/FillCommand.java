@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.core.util;
 
-import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
 
 import java.nio.ByteBuffer;
 import java.util.function.Consumer;
@@ -14,12 +14,13 @@ public interface FillCommand
 	{
 	}
 
-	record FillImageCommand(DataProvider dataProvider, VkImage vkImage, boolean generateMipmap) implements FillCommand
+	record FillImageCommand(DataProvider dataProvider, ImageBackend image, boolean generateMipmap) implements
+																								   FillCommand
 	{
 		@Override
 		public long size()
 		{
-			return vkImage().getSize();
+			return image().size();
 		}
 	}
 

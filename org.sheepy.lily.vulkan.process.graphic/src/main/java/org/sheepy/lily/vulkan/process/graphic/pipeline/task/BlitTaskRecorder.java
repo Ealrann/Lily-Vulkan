@@ -39,6 +39,6 @@ public final class BlitTaskRecorder extends AbstractBlitTaskRecorder
 
 	private static Vector2ic getDstImageSize(VkImage dstVkImage)
 	{
-		return new Vector2i(dstVkImage.width, dstVkImage.height);
+		return new Vector2i(dstVkImage.width(), dstVkImage.height());
 	}
 }

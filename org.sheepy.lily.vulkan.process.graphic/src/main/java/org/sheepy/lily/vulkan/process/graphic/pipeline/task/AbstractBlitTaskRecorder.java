@@ -8,7 +8,7 @@ import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
-import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
@@ -33,7 +33,7 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 	private final long srcImagePtr;
 	private final VkImageBlit.Buffer clearRegions;
 	private final VkImageBlit.Buffer region;
-	private final VkImage clearTexture;
+	private final ImageBackend clearTexture;
 	private final AbstractBlitTask blitTask;
 	private final IAllocationState allocationState;
 
@@ -51,10 +51,10 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 
 		final int viewWidth = dstSize.x();
 		final int viewHeight = dstSize.y();
-		final float scale = Math.min((float) viewWidth / imageInfo.width, (float) viewHeight / imageInfo.height);
+		final float scale = Math.min((float) viewWidth / imageInfo.width(), (float) viewHeight / imageInfo.height());
 
-		final int dstWidth = Math.round(scale * imageInfo.width);
-		final int dstHeight = Math.round(scale * imageInfo.height);
+		final int dstWidth = Math.round(scale * imageInfo.width());
+		final int dstHeight = Math.round(scale * imageInfo.height());
 
 		int xOffset = 0;
 		int yOffset = 0;
@@ -97,8 +97,8 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
 
 		region = VkImageBlit.calloc(1);
 		fillRegion(region.get(0),
-				   imageInfo.width,
-				   imageInfo.height,
+				   imageInfo.width(),
+				   imageInfo.height(),
 				   xOffset,
 				   yOffset,
 				   xOffset + dstWidth,

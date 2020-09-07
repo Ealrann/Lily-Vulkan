@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.attachment.IDepthAttachmentAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
@@ -36,7 +37,7 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 	private final DepthAttachment depthAttachment;
 	private final int depthFormat;
 	private final IAllocationState allocationState;
-	private final VkImage depthImageBackend;
+	private final ImageBackend depthImageBackend;
 	private final VkImageView depthImageView;
 
 	public DepthAttachmentAllocation(DepthAttachment depthAttachment,
@@ -59,7 +60,7 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 		recordContext.lockAllocationDuringExecution(allocationState);
 	}
 
-	private VkImage createDepthImage(ProcessContext context, final PhysicalSurfaceAllocation surfaceAllocation)
+	private ImageBackend createDepthImage(ProcessContext context, final PhysicalSurfaceAllocation surfaceAllocation)
 	{
 		final var extent = surfaceAllocation.getExtent();
 		final int width = extent.x();
@@ -78,7 +79,7 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 		final var device = logicalDevice.getVkDevice();
 		final var depthImageView = new VkImageView(device,
 												   depthAttachment.getName(),
-												   depthImageBackend,
+												   depthImageBackend.vkImage(),
 												   VK_IMAGE_ASPECT_DEPTH_BIT);
 
 		return depthImageView;
@@ -144,13 +145,13 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 	}
 
 	@Override
-	public long getMemoryPtr()
+	public VkImage getVkImage()
 	{
-		return depthImageBackend.getMemoryPtr();
+		return depthImageBackend.vkImage();
 	}
 
 	@Override
-	public VkImage getVkImage()
+	public ImageBackend getImageBackend()
 	{
 		return depthImageBackend;
 	}
@@ -164,6 +165,7 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 	@Override
 	public Vector2ic getSize()
 	{
-		return new Vector2i(depthImageBackend.width, depthImageBackend.height);
+		final var vkImage = depthImageBackend.vkImage();
+		return new Vector2i(vkImage.width(), vkImage.height());
 	}
 }

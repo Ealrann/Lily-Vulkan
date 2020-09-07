@@ -98,15 +98,16 @@ public final class TransferCommandInserter
 			}
 			else if (command instanceof FillCommand.FillImageCommand fillImageCommand)
 			{
-				final var vkImage = fillImageCommand.vkImage();
+				final var image = fillImageCommand.image();
+				final var vkImage = image.vkImage();
 				return DataFlowCommandFactory.newPushImageCommand(ticket,
-																  vkImage,
+																  image,
 																  fillImageCommand.generateMipmap(),
 																  EPipelineStage.TRANSFER_BIT,
 																  List.of(),
 																  EPipelineStage.TRANSFER_BIT,
 																  List.of(EAccess.TRANSFER_WRITE_BIT),
-																  vkImage.initialLayout);
+																  vkImage.initialLayout());
 			}
 			// TODO https://openjdk.java.net/jeps/360 switch on sealed type. No need to return null anymore.
 			return null;

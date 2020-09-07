@@ -18,7 +18,7 @@ public final class VkImageView
 
 	public VkImageView(VkDevice device, String name, VkImage image, int aspectMask)
 	{
-		this(device, name, image.getPtr(), image.mipLevels, image.format, aspectMask);
+		this(device, name, image.getPtr(), image.mipLevels(), image.format(), aspectMask);
 	}
 
 	public VkImageView(VkDevice device, String name, long imagePtr, int levelCount, int format, int aspectMask)

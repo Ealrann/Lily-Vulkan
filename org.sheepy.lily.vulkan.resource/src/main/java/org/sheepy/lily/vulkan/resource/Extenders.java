@@ -31,7 +31,9 @@ public class Extenders implements IExtenderProvider
 					   TransferBufferAllocation.class,
 					   SamplerAllocation.class,
 					   ShaderAllocation.class,
+					   StaticImageAdapter.class,
 					   StaticImageAllocation.class,
+					   ImageViewerAdapter.class,
 					   ImageViewerAllocation.class,
 					   BufferDescriptorAllocation.class,
 					   BufferDescriptorAdapter.class,
@@ -52,6 +54,7 @@ public class Extenders implements IExtenderProvider
 					   DataBufferAllocation.class,
 					   StaticBufferAdapter.class,
 					   StaticBufferAllocation.class,
+					   BufferMemoryAdapter.class,
 					   BufferMemoryAllocation.class);
 	}
 }

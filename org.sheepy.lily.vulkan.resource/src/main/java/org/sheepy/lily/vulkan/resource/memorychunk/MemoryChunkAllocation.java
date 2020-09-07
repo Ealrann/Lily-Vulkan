@@ -13,6 +13,7 @@ import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
+import org.sheepy.lily.vulkan.model.vulkanresource.IMemoryChunkPart;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
@@ -25,13 +26,13 @@ import static org.lwjgl.vulkan.VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
 @ModelExtender(scope = MemoryChunk.class)
 @Allocation(context = ExecutionContext.class)
-@AllocationChild(allocateBeforeParent = true, features = VulkanResourcePackage.MEMORY_CHUNK__PARTS)
-@AllocationDependency(features = VulkanResourcePackage.MEMORY_CHUNK__PARTS, type = IMemoryChunkPartAllocation.class)
+@AllocationChild(features = VulkanResourcePackage.MEMORY_CHUNK__PARTS)
 public final class MemoryChunkAllocation implements IExtender
 {
+	private static final MemoryBuilder MEMORY_BUILDER = new MemoryBuilder(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+
 	private final MemoryChunk memoryChunk;
 	private final IAllocationState allocationState;
-	private final List<IMemoryChunkPartAllocation> memoryPartAllocations;
 	private final Memory memory;
 	private final DeviceResourceFiller bufferPusher;
 	private final boolean useTransfer;
@@ -42,30 +43,29 @@ public final class MemoryChunkAllocation implements IExtender
 	private MemoryChunkAllocation(final MemoryChunk memoryChunk,
 								  final ExecutionContext context,
 								  final IAllocationState allocationState,
-								  final IObservatoryBuilder observatory,
-								  @InjectDependency(index = 0) final List<IMemoryChunkPartAllocation> memoryPartAllocations)
+								  final IObservatoryBuilder observatory)
 	{
 		this.memoryChunk = memoryChunk;
 		this.allocationState = allocationState;
-		this.memoryPartAllocations = memoryPartAllocations;
-		final var builder = new MemoryBuilder(context, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-		for (final var partAllocation : memoryPartAllocations)
-		{
-			partAllocation.registerMemory(builder);
-		}
-		this.memory = builder.build(context);
+
+		final var resourcePointers = memoryChunk.getParts()
+												.stream()
+												.map(p -> p.adapt(IMemoryChunkPartAdapter.class))
+												.map(adapter -> adapter.newResource(context));
+
+		this.memory = MEMORY_BUILDER.buildMemory(context, resourcePointers);
 		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.register(memory.ptr(), memoryChunk.getName());
+
 		bufferPusher = new DeviceResourceFiller(context);
 		useTransfer = memoryChunk.getTransferBuffer() != null;
 
-		for (final var partAllocation : memoryPartAllocations)
-		{
-			final var focus = observatory.focus(partAllocation);
-			focus.listenNoParam(this::requestUpdate, IMemoryChunkPartAllocation.Features.PushRequest);
-			focus.listen(this::attach, IMemoryChunkPartAllocation.Features.Attach);
-			focus.listen(this::markObsolete, IMemoryChunkPartAllocation.Features.Obsolete);
-		}
+		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
+				   .listenNoParam(this::markObsolete);
+	}
 
+	@InjectChildren(index = 0, type = IMemoryChunkPartAllocation.class)
+	private void injectChildren(List<IMemoryChunkPartAllocation> memoryPartAllocations)
+	{
 		if (useTransfer)
 		{
 			recordTransfer(true);
@@ -82,7 +82,17 @@ public final class MemoryChunkAllocation implements IExtender
 		memory.free(context);
 	}
 
-	private void requestUpdate()
+	@Tick(priority = -11)
+	private void tick()
+	{
+		if (needTransfer && !obsolete)
+		{
+			recordTransfer(false);
+			needTransfer = false;
+		}
+	}
+
+	public void requestUpdate()
 	{
 		if (useTransfer)
 		{
@@ -91,16 +101,6 @@ public final class MemoryChunkAllocation implements IExtender
 		else
 		{
 			allocationState.requestUpdate();
-		}
-	}
-
-	@Tick(priority = -11)
-	private void tick()
-	{
-		if (needTransfer && !obsolete)
-		{
-			recordTransfer(false);
-			needTransfer = false;
 		}
 	}
 
@@ -130,7 +130,10 @@ public final class MemoryChunkAllocation implements IExtender
 
 	private Stream<FillCommand> streamFillCommands(final boolean force)
 	{
-		return memoryPartAllocations.stream().flatMap(p -> p.streamFillCommands(force));
+		return memoryChunk.getParts()
+						  .stream()
+						  .map(p -> p.adaptNotNull(IMemoryChunkPartAllocation.class))
+						  .flatMap(p -> p.streamFillCommands(force));
 	}
 
 	public void attach(final IRecordContext recordContext)
@@ -138,7 +141,7 @@ public final class MemoryChunkAllocation implements IExtender
 		recordContext.lockAllocationDuringExecution(allocationState);
 	}
 
-	private void markObsolete()
+	public void markObsolete()
 	{
 		obsolete = true;
 		allocationState.setAllocationObsolete();
@@ -148,5 +151,12 @@ public final class MemoryChunkAllocation implements IExtender
 	{
 		final var message = String.format("Transfer  of %s failed (TransferBuffer full ? )", memoryChunk.getName());
 		System.out.println(message);
+	}
+
+	public Memory.BoundResource getBoundResource(final IMemoryChunkPart memoryPart)
+	{
+		final int index = memoryChunk.getParts().indexOf(memoryPart);
+		assert index != -1;
+		return memory.resources().get(index);
 	}
 }

@@ -44,18 +44,6 @@ public final class AlignmentBuilder
 
 	public record AlignedResources(List<IAlignedResource> alignedResources, long size)
 	{
-		public void bindResources(final VkDevice vkDevice, final long ptr)
-		{
-			long offset = 0;
-			for (int i = 0; i < alignedResources.size(); i++)
-			{
-				final var alignedResource = alignedResources.get(i);
-				final var size = alignedResource.size();
-
-				alignedResource.bind(vkDevice, ptr, offset);
-				offset += size;
-			}
-		}
 	}
 
 	public interface IAlignedResource

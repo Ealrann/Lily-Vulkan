@@ -4,19 +4,22 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 public final class MipmapGenerator
 {
-	public static void generateMipmaps(final IRecordContext recordContext, VkImage image, EImageLayout targetLayout)
+	public static void generateMipmaps(final IRecordContext recordContext,
+									   final ImageBackend image,
+									   final EImageLayout targetLayout)
 	{
 		final var stack = recordContext.stack();
 		final var commandBuffer = recordContext.vkCommandBuffer();
 
 		final long imageAddress = image.getPtr();
+		final var vkImage = image.vkImage();
 
 		final VkImageBlit.Buffer blit = VkImageBlit.callocStack(1, stack);
 		final VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.callocStack(1, stack);
@@ -29,10 +32,10 @@ public final class MipmapGenerator
 		barrier.subresourceRange().layerCount(1);
 		barrier.subresourceRange().levelCount(1);
 
-		int mipWidth = image.width;
-		int mipHeight = image.height;
+		int mipWidth = vkImage.width();
+		int mipHeight = vkImage.height();
 
-		for (int i = 1; i < image.mipLevels; i++)
+		for (int i = 1; i < vkImage.mipLevels(); i++)
 		{
 			barrier.subresourceRange().baseMipLevel(i - 1);
 			barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
@@ -92,7 +95,7 @@ public final class MipmapGenerator
 			if (mipHeight > 1) mipHeight /= 2;
 		}
 
-		barrier.subresourceRange().baseMipLevel(image.mipLevels - 1);
+		barrier.subresourceRange().baseMipLevel(vkImage.mipLevels() - 1);
 		barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
 		barrier.newLayout(targetLayout.getValue());
 		barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkSemaphore implements ISemaphore
+public final class VkSemaphore implements ISemaphore
 {
 	private final long semaphorePtr;
 

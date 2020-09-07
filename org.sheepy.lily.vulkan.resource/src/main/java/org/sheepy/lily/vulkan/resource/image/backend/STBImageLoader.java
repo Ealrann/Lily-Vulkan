@@ -9,7 +9,7 @@ import org.joml.Vector2ic;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryUtil;
 
-public class STBImageLoader
+public final class STBImageLoader
 {
 	private int width;
 	private int height;

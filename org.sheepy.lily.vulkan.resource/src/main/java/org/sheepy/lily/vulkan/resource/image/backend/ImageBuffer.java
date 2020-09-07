@@ -7,7 +7,7 @@ import org.sheepy.lily.core.model.resource.FileResource;
 
 import java.nio.ByteBuffer;
 
-public class ImageBuffer
+public final class ImageBuffer
 {
 	public final FileResource resource;
 

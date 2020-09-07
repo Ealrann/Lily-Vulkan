@@ -33,7 +33,11 @@ public final class DeviceResourceFiller
 		// TODO create only one memory chunk for all the staging buffers
 		final List<FillCommand.FillBufferCommand> fillBufferCommands = new ArrayList<>();
 		final List<FillCommand.FillImageCommand> fillImageCommands = new ArrayList<>();
-		fillCommands.forEach(command -> {
+		final var it = fillCommands.iterator();
+
+		while (it.hasNext())
+		{
+			final var command = it.next();
 			if (command instanceof FillCommand.FillBufferCommand bufferCommand)
 			{
 				fillBufferCommands.add(bufferCommand);
@@ -42,7 +46,7 @@ public final class DeviceResourceFiller
 			{
 				fillImageCommands.add(imageCommand);
 			}
-		});
+		}
 
 		final var bufferPushCommand = new PushBuffersCommand(fillBufferCommands, context);
 		final var imagePushCommands = fillImageCommands.stream().map(PushImageCommand::new);
@@ -148,9 +152,9 @@ public final class DeviceResourceFiller
 		public void execute(IRecordContext context)
 		{
 			final var dataProvider = fillCommand.dataProvider();
-			final var vkImage = fillCommand.vkImage();
-			vkImage.fillWith(context, dataProvider);
-			MipmapGenerator.generateMipmaps(context, vkImage, vkImage.initialLayout);
+			final var image = fillCommand.image();
+			image.fillWith(context, dataProvider);
+			MipmapGenerator.generateMipmaps(context, image, image.vkImage().initialLayout());
 		}
 	}
 }

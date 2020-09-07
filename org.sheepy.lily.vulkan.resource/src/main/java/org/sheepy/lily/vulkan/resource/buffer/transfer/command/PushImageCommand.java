@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
 import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.image.util.MipmapGenerator;
@@ -18,7 +18,7 @@ import static org.lwjgl.vulkan.VK10.*;
 public final class PushImageCommand implements DataFlowCommand
 {
 	private final MemoryTicket ticket;
-	private final VkImage trgImage;
+	private final ImageBackend trgImage;
 	private final EPipelineStage srcStage;
 	private final List<EAccess> srcAccess;
 	private final EPipelineStage trgStage;
@@ -27,7 +27,7 @@ public final class PushImageCommand implements DataFlowCommand
 	private final boolean generateMipmaps;
 
 	public PushImageCommand(MemoryTicket ticket,
-							VkImage trgImage,
+							ImageBackend trgImage,
 							boolean generateMipmaps,
 							EPipelineStage srcStage,
 							List<EAccess> srcAccess,
@@ -57,6 +57,7 @@ public final class PushImageCommand implements DataFlowCommand
 		final var srcoffset = ticket.getOffset();
 		final var size = ticket.getSize();
 		final var stack = recordContext.stack();
+		final var vkImage = trgImage.vkImage();
 
 		// Submission guarantees the host write being complete, as per
 		// https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#synchronization-submission-host-writes
@@ -96,7 +97,7 @@ public final class PushImageCommand implements DataFlowCommand
 		region.imageSubresource().layerCount(1);
 
 		region.imageOffset().set(0, 0, 0);
-		region.imageExtent().set(trgImage.width, trgImage.height, 1);
+		region.imageExtent().set(vkImage.width(), vkImage.height(), 1);
 
 		final var dstImageLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
 		vkCmdCopyBufferToImage(commandBuffer, ticket.getBufferPtr(), trgImage.getPtr(), dstImageLayout, region);

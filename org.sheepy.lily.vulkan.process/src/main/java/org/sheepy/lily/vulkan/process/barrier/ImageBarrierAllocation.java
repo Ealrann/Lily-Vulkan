@@ -38,14 +38,14 @@ public class ImageBarrierAllocation implements IImageBarrierAllocation
 	@Override
 	public void fill(final VkImageMemoryBarrier info, final int index, final int srcQueueIndex, final int dstQueueIndex)
 	{
-		final var aspectMask = vkImage.aspect;
+		final var aspectMask = vkImage.aspect();
 
 		info.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		info.oldLayout(srcLayout.getValue());
 		info.newLayout(dstLayout.getValue());
 		info.image(vkImage.getPtr());
 		info.subresourceRange().baseMipLevel(0);
-		info.subresourceRange().levelCount(vkImage.mipLevels);
+		info.subresourceRange().levelCount(vkImage.mipLevels());
 		info.subresourceRange().baseArrayLayer(0);
 		info.subresourceRange().layerCount(1);
 		info.subresourceRange().aspectMask(aspectMask);

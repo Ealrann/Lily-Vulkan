@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
 
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
-import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -18,7 +18,7 @@ public final class DataFlowCommandFactory
 	}
 
 	public static PushImageCommand newPushImageCommand(MemoryTicket ticket,
-													   VkImage trgImage,
+													   ImageBackend trgImage,
 													   boolean generateMipmaps,
 													   EPipelineStage srcStage,
 													   List<EAccess> srcAccess,
@@ -26,7 +26,14 @@ public final class DataFlowCommandFactory
 													   List<EAccess> trgAccess,
 													   EImageLayout trgLayout)
 	{
-		return new PushImageCommand(ticket, trgImage, generateMipmaps, srcStage, srcAccess, trgStage, trgAccess, trgLayout);
+		return new PushImageCommand(ticket,
+									trgImage,
+									generateMipmaps,
+									srcStage,
+									srcAccess,
+									trgStage,
+									trgAccess,
+									trgLayout);
 	}
 
 	public static FetchCommand newFetchCommand(MemoryTicket ticket,

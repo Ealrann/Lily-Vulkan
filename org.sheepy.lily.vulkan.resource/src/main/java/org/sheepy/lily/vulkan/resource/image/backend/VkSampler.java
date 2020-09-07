@@ -8,7 +8,7 @@ import org.sheepy.vulkan.model.image.SamplerInfo;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkSampler
+public final class VkSampler
 {
 	private static final String FAILED_TO_CREATE_SAMPLER = "Failed to create texture sampler";
 

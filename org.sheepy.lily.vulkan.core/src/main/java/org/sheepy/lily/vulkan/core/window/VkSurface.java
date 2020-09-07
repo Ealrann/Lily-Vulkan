@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.KHRSurface.vkDestroySurfaceKHR;
 
-public class VkSurface
+public final class VkSurface
 {
 	public final long ptr;
 

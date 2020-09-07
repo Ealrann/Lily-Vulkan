@@ -20,7 +20,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFWVulkan.glfwCreateWindowSurface;
 import static org.lwjgl.glfw.GLFWVulkan.glfwGetRequiredInstanceExtensions;
 
-public class Window extends Notifier<IWindow.Features> implements IWindow
+public final class Window extends Notifier<IWindow.Features> implements IWindow
 {
 	private static final String FAILED_TO_CREATE_SURFACE = "Failed to create surface";
 

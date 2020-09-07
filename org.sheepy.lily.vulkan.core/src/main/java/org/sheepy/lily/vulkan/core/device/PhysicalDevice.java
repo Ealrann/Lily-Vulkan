@@ -17,7 +17,7 @@ import java.util.*;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class PhysicalDevice implements IPhysicalDevice
+public final class PhysicalDevice implements IPhysicalDevice
 {
 	private static final String FAILED_TO_FIND_SUPPORTED_FORMAT = "Failed to find supported format";
 	private static final String USING_GRAPHIC_DEVICE = "\nUsing Graphic Device: %s (%s)";

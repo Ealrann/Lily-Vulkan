@@ -5,7 +5,7 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 import java.nio.ByteBuffer;
 
-public class MeshConfiguration
+public final class MeshConfiguration
 {
 	public String texturePath = null;
 	public String vertexShaderPath = "triangle.vert.spv";

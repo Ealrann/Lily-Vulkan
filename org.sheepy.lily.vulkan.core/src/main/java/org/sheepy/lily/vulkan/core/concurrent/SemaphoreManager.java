@@ -5,7 +5,7 @@ import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SemaphoreManager
+public final class SemaphoreManager
 {
 	private boolean lock;
 	private final List<VkSemaphore> semaphores = new ArrayList<>();

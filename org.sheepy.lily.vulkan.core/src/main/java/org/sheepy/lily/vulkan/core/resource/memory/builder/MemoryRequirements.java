@@ -1,7 +1,5 @@
 package org.sheepy.lily.vulkan.core.resource.memory.builder;
 
-import org.sheepy.lily.vulkan.core.resource.memory.FunctionalMemoryBuilder;
-
 import java.util.List;
 
 public record MemoryRequirements(int memoryTypeBits, long alignement, List<ISizedResource> sizedResources)

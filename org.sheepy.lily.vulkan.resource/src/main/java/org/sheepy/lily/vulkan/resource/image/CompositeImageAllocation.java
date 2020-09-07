@@ -15,10 +15,7 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
-import org.sheepy.lily.vulkan.core.resource.image.VkImage;
-import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
-import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
+import org.sheepy.lily.vulkan.core.resource.image.*;
 import org.sheepy.lily.vulkan.model.vulkanresource.CompositeImage;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageInlay;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
@@ -42,7 +39,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 	private final IAllocationState allocationState;
 	private final IVkImageAllocation background;
 
-	private VkImage imageBackend;
+	private ImageBackend imageBackend;
 	private VkImageView imageView;
 
 	private CompositeImageAllocation(CompositeImage image,
@@ -58,11 +55,11 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 		final var vkBackground = this.background.getVkImage();
 		final var builder = new VkImageBuilder(image.getName(),
 											   image,
-											   vkBackground.width,
-											   vkBackground.height).initialLayout(null);
+											   vkBackground.width(),
+											   vkBackground.height()).initialLayout(null);
 
 		imageBackend = context.executeFunction(builder::build);
-		imageView = new VkImageView(vkDevice, image.getName(), imageBackend, VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView = new VkImageView(vkDevice, image.getName(), imageBackend.vkImage(), VK_IMAGE_ASPECT_COLOR_BIT);
 
 		context.executeCommand(this::assembleImage);
 	}
@@ -84,7 +81,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 		final var stack = recordContext.stack();
 		final var region = VkImageCopy.callocStack(1, stack);
 
-		fillRegion(region.get(0), vkBackground.width, vkBackground.height);
+		fillRegion(region.get(0), vkBackground.width(), vkBackground.height());
 
 		imageBackend.transitionImageLayout(stack,
 										   vkCommandBuffer,
@@ -105,7 +102,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 		final var blitRegion = VkImageBlit.callocStack(1, stack);
 		for (var inlay : image.getInlays())
 		{
-			blitInlay(vkCommandBuffer, stack, imageBackend, blitRegion, inlay);
+			blitInlay(vkCommandBuffer, stack, imageBackend.vkImage(), blitRegion, inlay);
 		}
 
 		imageBackend.transitionImageLayout(stack,
@@ -126,30 +123,32 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 	{
 		final var imageInlayAdapter = inlay.getImage().adapt(IVkImageAllocation.class);
 		final var vkImageInlay = imageInlayAdapter.getVkImage();
+		final var inlayBackend = imageInlayAdapter.getImageBackend();
 		final var imageInlayPtr = imageInlayAdapter.getImagePtr();
 		final var size = inlay.getSize();
-		final var trgSize = new Vector2i(Math.round(vkImageInlay.width * size), Math.round(vkImageInlay.height * size));
+		final var trgSize = new Vector2i(Math.round(vkImageInlay.width() * size),
+										 Math.round(vkImageInlay.height() * size));
 		final var inlayPosition = inlay.getPosition();
 
 		final int trgX = UIUtil.computeXRelative(inlay.getHorizontalRelative(),
-												 imageBackend.width,
+												 imageBackend.width(),
 												 inlayPosition.x(),
 												 trgSize.x);
 
 		final int trgY = UIUtil.computeYRelative(inlay.getVerticalRelative(),
-												 imageBackend.height,
+												 imageBackend.height(),
 												 inlayPosition.y(),
 												 trgSize.y);
 
 		fillRegion(blitRegion.get(0),
-				   vkImageInlay.width,
-				   vkImageInlay.height,
+				   vkImageInlay.width(),
+				   vkImageInlay.height(),
 				   trgX,
 				   trgY,
 				   trgX + trgSize.x,
 				   trgY + trgSize.y);
 
-		vkImageInlay.transitionFromInitialLayout(stack,
+		inlayBackend.transitionFromInitialLayout(stack,
 												 vkCommandBuffer,
 												 EPipelineStage.TRANSFER_BIT,
 												 EImageLayout.TRANSFER_SRC_OPTIMAL,
@@ -163,7 +162,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 					   blitRegion,
 					   EFilter.LINEAR_VALUE);
 
-		vkImageInlay.transitionToInitialLayout(stack,
+		inlayBackend.transitionToInitialLayout(stack,
 											   vkCommandBuffer,
 											   EPipelineStage.TRANSFER_BIT,
 											   EImageLayout.TRANSFER_SRC_OPTIMAL,
@@ -188,12 +187,6 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 	}
 
 	@Override
-	public long getMemoryPtr()
-	{
-		return imageBackend.getMemoryPtr();
-	}
-
-	@Override
 	public long getViewPtr()
 	{
 		return imageView.getPtr();
@@ -202,6 +195,12 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 	@Override
 	public VkImage getVkImage()
 	{
+		return imageBackend.vkImage();
+	}
+
+	@Override
+	public ImageBackend getImageBackend()
+	{
 		return imageBackend;
 	}
 
@@ -209,7 +208,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 	public Vector2ic getSize()
 	{
 		final var vkImage = getVkImage();
-		return new Vector2i(vkImage.width, vkImage.height);
+		return new Vector2i(vkImage.width(), vkImage.height());
 	}
 
 	private static void fillRegion(VkImageCopy region, final int width, final int height)

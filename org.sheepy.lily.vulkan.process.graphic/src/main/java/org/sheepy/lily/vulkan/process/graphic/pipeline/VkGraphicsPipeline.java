@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class VkGraphicsPipeline extends VkPipeline
+public final class VkGraphicsPipeline extends VkPipeline
 {
 	private static final String FAILED_TO_CREATE_GRAPHICS_PIPELINE = "Failed to create graphics pipeline";
 
@@ -42,7 +42,7 @@ public class VkGraphicsPipeline extends VkPipeline
 	private final ByteBuffer specializationData;
 	private final int subpass;
 
-	protected long pipelinePtr = 0;
+	private long pipelinePtr = 0;
 
 	public VkGraphicsPipeline(VkPipelineLayout pipelineLayout,
 							  ColorBlend colorBlend,

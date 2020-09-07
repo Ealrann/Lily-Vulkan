@@ -7,6 +7,7 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.resource.ImagePointer;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -14,6 +15,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
+import java.util.stream.Stream;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -33,7 +35,7 @@ public interface IVkImageBuilder
 	VkImageBuilder copy();
 	String name();
 
-	VkImage build(IRecordContext context);
+	ImageBackend build(IRecordContext context);
 	VkImage buildNoFill(IVulkanContext context);
 
 	abstract class AbstractVkImageBuilder implements IVkImageBuilder
@@ -58,43 +60,34 @@ public interface IVkImageBuilder
 		}
 
 		@Override
-		public VkImage build(IRecordContext context)
+		public ImageBackend build(IRecordContext context)
 		{
-			final var memoryBuilder = new MemoryBuilder(context, VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-			final var res = buildWithMemory(context, memoryBuilder, name());
-			final var memory = memoryBuilder.build(context);
-			res.linkMemory(memory);
-			return res;
-		}
+			final var memoryBuilder = new MemoryBuilder(VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+			final var imagePtr = new ImagePointer(allocateImage(context, name()));
+			final var vkImage = new VkImage(imagePtr.ptr(),
+											width(),
+											height(),
+											format(),
+											usage(),
+											tiling(),
+											mipLevels(),
+											initialLayout(),
+											aspect());
+			final var memory = memoryBuilder.buildMemory(context, Stream.of(imagePtr));
+			final var size = memory.resources().get(0).size();
+			final var res = new ImageBackend(vkImage, size, memory);
 
-		private VkImage buildWithMemory(IRecordContext context, MemoryBuilder memoryBuilder, String name)
-		{
-			final long imagePtr = allocateImage(context, name);
-			final var res = new VkImage(imagePtr,
-										width(),
-										height(),
-										format(),
-										usage(),
-										tiling(),
-										mipLevels(),
-										initialLayout(),
-										aspect());
+			if (fillWith() != null) res.fillWith(context, fillWith());
+			else if (fillWithZero()) res.fillWithZero(context, size);
 
-			memoryBuilder.registerImage(imagePtr, (vkDevice, memoryPtr, offset, memorySize) -> {
-				res.bindMemory(vkDevice, memoryPtr, offset, memorySize);
-
-				if (fillWith() != null) res.fillWith(context, fillWith());
-				else if (fillWithZero()) res.fillWithZero(context, memorySize);
-
-				if (initialLayout() != null)
-				{
-					res.transitionToInitialLayout(context.stack(),
-												  context.vkCommandBuffer(),
-												  EPipelineStage.TOP_OF_PIPE_BIT,
-												  EImageLayout.UNDEFINED,
-												  Collections.emptyList());
-				}
-			});
+			if (initialLayout() != null)
+			{
+				res.transitionToInitialLayout(context.stack(),
+											  context.vkCommandBuffer(),
+											  EPipelineStage.TOP_OF_PIPE_BIT,
+											  EImageLayout.UNDEFINED,
+											  Collections.emptyList());
+			}
 
 			return res;
 		}

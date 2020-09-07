@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
 
-public class VkInputStateDescriptor
+public final class VkInputStateDescriptor
 {
 	private final List<VkVertexBinding> bindings;
 	private final int attributeCount;

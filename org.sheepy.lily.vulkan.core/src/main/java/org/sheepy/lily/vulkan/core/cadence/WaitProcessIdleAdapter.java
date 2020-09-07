@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.model.WaitProcessIdle;
 
 @ModelExtender(scope = WaitProcessIdle.class)
 @Adapter(singleton = true)
-public class WaitProcessIdleAdapter implements ICadenceTaskAdapter
+public final class WaitProcessIdleAdapter implements ICadenceTaskAdapter
 {
 	@Override
 	public void execute(ICadenceTask task, ICadenceContext context)

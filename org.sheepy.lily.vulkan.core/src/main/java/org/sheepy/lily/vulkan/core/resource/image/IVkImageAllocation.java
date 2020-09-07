@@ -7,8 +7,8 @@ public interface IVkImageAllocation extends IImageAllocation
 {
 	long getImagePtr();
 	long getViewPtr();
-	long getMemoryPtr();
 
+	ImageBackend getImageBackend();
 	VkImage getVkImage();
 
 	void attach(final IRecordContext recordContext);

@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.resource.image.backend.VkSampler;
 
 @ModelExtender(scope = Sampler.class)
 @Allocation(context = IVulkanContext.class)
-public class SamplerAllocation implements ISamplerAllocation
+public final class SamplerAllocation implements ISamplerAllocation
 {
 	private final VkSampler vkSampler;
 	private final IVkImageAllocation imageAdapter;
@@ -27,7 +27,7 @@ public class SamplerAllocation implements ISamplerAllocation
 
 		if (imageAdapter != null)
 		{
-			final int mipLevels = imageAdapter.getVkImage().mipLevels;
+			final int mipLevels = imageAdapter.getVkImage().mipLevels();
 			sampler.setMaxLod(Math.max(mipLevels, sampler.getMaxLod()));
 		}
 

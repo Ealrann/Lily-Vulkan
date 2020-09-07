@@ -13,6 +13,7 @@ import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment;
@@ -38,7 +39,7 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 	private final IAllocationState allocationState;
 	private final int colorFormat;
 
-	private final VkImage colorImageBackend;
+	private final ImageBackend colorImageBackend;
 	private final VkImageView colorImageView;
 
 	public ColorAttachmentAllocation(ColorAttachment colorAttachment,
@@ -65,7 +66,7 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 		recordContext.lockAllocationDuringExecution(allocationState);
 	}
 
-	private VkImage createImage(ProcessContext context, PhysicalSurfaceAllocation surfaceAllocation)
+	private ImageBackend createImage(ProcessContext context, PhysicalSurfaceAllocation surfaceAllocation)
 	{
 		final var extent = surfaceAllocation.getExtent();
 		final int width = extent.x();
@@ -81,7 +82,10 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 	private VkImageView createAndAllocateImageView(LogicalDevice logicalDevice, String name)
 	{
 		final var device = logicalDevice.getVkDevice();
-		final var colorImageView = new VkImageView(device, name, colorImageBackend, VK_IMAGE_ASPECT_COLOR_BIT);
+		final var colorImageView = new VkImageView(device,
+												   name,
+												   colorImageBackend.vkImage(),
+												   VK_IMAGE_ASPECT_COLOR_BIT);
 
 		return colorImageView;
 	}
@@ -118,13 +122,13 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 	}
 
 	@Override
-	public long getMemoryPtr()
+	public VkImage getVkImage()
 	{
-		return colorImageBackend.getMemoryPtr();
+		return colorImageBackend.vkImage();
 	}
 
 	@Override
-	public VkImage getVkImage()
+	public ImageBackend getImageBackend()
 	{
 		return colorImageBackend;
 	}
@@ -144,6 +148,7 @@ public final class ColorAttachmentAllocation implements IExtraAttachmentAllocati
 	@Override
 	public Vector2ic getSize()
 	{
-		return new Vector2i(colorImageBackend.width, colorImageBackend.height);
+		final var vkImage = colorImageBackend.vkImage();
+		return new Vector2i(vkImage.width(), vkImage.height());
 	}
 }

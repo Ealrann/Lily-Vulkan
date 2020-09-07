@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public class LogicalDevice implements ILogicalDevice
+public final class LogicalDevice implements ILogicalDevice
 {
 	private static final String FAILED_TO_CREATE_LOGICAL_DEVICE = "Failed to create logical device";
 	private static final String WAIT_IDLE_FAILED = "Wait idle failed";

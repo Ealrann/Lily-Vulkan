@@ -7,7 +7,7 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.BufferPointer;
-import org.sheepy.lily.vulkan.core.resource.memory.FunctionalMemoryBuilder;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 
 import java.nio.ByteBuffer;
@@ -22,32 +22,16 @@ public final class CPUBufferBackend implements IBufferBackend
 	private final long address;
 	private final long size;
 	private final boolean coherent;
+	private final Memory memory;
 
-	private long memoryAddress;
-	private Memory memory;
 	private long memoryMap = 0;
 
-	private CPUBufferBackend(long address, long size, boolean coherent)
+	private CPUBufferBackend(long address, final Memory memory, long size, boolean coherent)
 	{
 		this.address = address;
 		this.size = size;
 		this.coherent = coherent;
-	}
-
-	@Deprecated
-	@Override
-	public void bindBufferMemory(VkDevice vkDevice, long memoryPtr, long offset, long size)
-	{
-		memoryAddress = memoryPtr;
-		vkBindBufferMemory(vkDevice, address, memoryAddress, offset);
-		// System.out.println(Long.toHexString(bufferMemoryId));
-	}
-
-	@Deprecated
-	private void linkMemory(final Memory memory)
-	{
 		this.memory = memory;
-		this.memoryAddress = memory.ptr();
 	}
 
 	@Override
@@ -63,8 +47,6 @@ public final class CPUBufferBackend implements IBufferBackend
 		// System.out.println("free " + Long.toHexString(address));
 		vkDestroyBuffer(vkDevice, address, null);
 		if (memory != null) memory.free(context);
-
-		memoryAddress = 0;
 	}
 
 	@Override
@@ -98,7 +80,7 @@ public final class CPUBufferBackend implements IBufferBackend
 		if (memoryMap == 0)
 		{
 			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-			vkMapMemory(vkDevice, memoryAddress, 0, size, 0, pBuffer);
+			vkMapMemory(vkDevice, memory.ptr(), 0, size, 0, pBuffer);
 			memoryMap = pBuffer.get(0);
 			MemoryUtil.memFree(pBuffer);
 		}
@@ -110,7 +92,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	{
 		if (memoryMap != 0)
 		{
-			vkUnmapMemory(vkDevice, memoryAddress);
+			vkUnmapMemory(vkDevice, memory.ptr());
 			memoryMap = 0;
 		}
 	}
@@ -124,7 +106,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	{
 		if (coherent == false)
 		{
-			BufferUtils.flush(stack, vkDevice, memoryAddress);
+			BufferUtils.flush(stack, vkDevice, memory.ptr());
 		}
 	}
 
@@ -137,7 +119,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	{
 		if (coherent == false)
 		{
-			BufferUtils.invalidate(stack, vkDevice, memoryAddress);
+			BufferUtils.invalidate(stack, vkDevice, memory.ptr());
 		}
 	}
 
@@ -149,7 +131,7 @@ public final class CPUBufferBackend implements IBufferBackend
 
 	public long getMemoryAddress()
 	{
-		return memoryAddress;
+		return memory.ptr();
 	}
 
 	public long getMemoryMap()
@@ -177,11 +159,10 @@ public final class CPUBufferBackend implements IBufferBackend
 		{
 			info.computeAlignment(context.getPhysicalDevice());
 			final long ptr = VkBufferAllocator.allocate(context, info);
-			final var memoryBuilder = new FunctionalMemoryBuilder(properties);
-			final var backend = new CPUBufferBackend(ptr, info.getAlignedSize(), info.coherent);
+			final var memoryBuilder = new MemoryBuilder(properties);
 			final var ptrs = Stream.of(new BufferPointer(ptr));
 			final var memory = memoryBuilder.buildMemory(context, ptrs);
-			backend.linkMemory(memory);
+			final var backend = new CPUBufferBackend(ptr, memory, info.getAlignedSize(), info.coherent);
 			return backend;
 		}
 
