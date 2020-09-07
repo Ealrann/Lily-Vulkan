@@ -6,7 +6,7 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 
-public class PresentModes
+public final class PresentModes
 {
 	public final int[] presentModes;
 

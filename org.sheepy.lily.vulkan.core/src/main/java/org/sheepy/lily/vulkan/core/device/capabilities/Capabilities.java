@@ -7,7 +7,7 @@ import org.lwjgl.vulkan.VkSurfaceCapabilitiesKHR;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 
-public class Capabilities
+public final class Capabilities
 {
 	private static final String FAILED_TO_GET_SURFACE_CAPABILITIES = "Failed to get physical device surface capabilities";
 

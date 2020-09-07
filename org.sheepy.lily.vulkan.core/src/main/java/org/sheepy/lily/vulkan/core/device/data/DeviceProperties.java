@@ -10,7 +10,7 @@ import java.nio.IntBuffer;
 
 import static org.lwjgl.vulkan.VK10.vkGetPhysicalDeviceProperties;
 
-public class DeviceProperties
+public final class DeviceProperties
 {
 	public final VkPhysicalDeviceProperties vkDeviceProperties = VkPhysicalDeviceProperties.create();
 
@@ -55,7 +55,7 @@ public class DeviceProperties
 		}
 	}
 
-	public static final String bufferToString(IntBuffer buffer, String delimiter)
+	public static String bufferToString(IntBuffer buffer, String delimiter)
 	{
 		final String[] values = new String[buffer.limit()];
 		for (int i = 0; i < buffer.limit(); i++)
@@ -66,7 +66,7 @@ public class DeviceProperties
 		return String.join(delimiter, values);
 	}
 
-	public static final String bufferToString(FloatBuffer buffer, String delimiter)
+	public static String bufferToString(FloatBuffer buffer, String delimiter)
 	{
 		final String[] values = new String[buffer.limit()];
 		for (int i = 0; i < buffer.limit(); i++)
