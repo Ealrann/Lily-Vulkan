@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util;
 
+import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -8,10 +10,12 @@ public final class MemorySpaceManager
 {
 	private final List<MemorySpace> memoryMap = new LinkedList<>();
 	private final long capacity;
+	private final long alignment;
 
-	public MemorySpaceManager(long capacity)
+	public MemorySpaceManager(final long capacity, long alignment)
 	{
 		this.capacity = capacity;
+		this.alignment = alignment;
 
 		init();
 	}
@@ -29,10 +33,12 @@ public final class MemorySpaceManager
 
 	public Optional<MemorySpace> reserveMemory(long size)
 	{
-		if (size <= capacity)
+		final var alignedSize = AlignmentUtil.align(size, alignment);
+
+		if (alignedSize <= capacity)
 		{
 			final var listIterator = memoryMap.listIterator();
-			final var allocator = new MemoryAllocator(listIterator, size);
+			final var allocator = new MemoryAllocator(listIterator, alignedSize);
 			return allocator.allocate();
 		}
 		else

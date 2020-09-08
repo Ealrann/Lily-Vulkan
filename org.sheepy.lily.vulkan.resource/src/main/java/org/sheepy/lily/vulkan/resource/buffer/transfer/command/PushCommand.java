@@ -28,7 +28,7 @@ public final class PushCommand implements DataFlowCommand
 		final var commandBuffer = recordContext.commandBuffer;
 		final var srcBuffer = ticket.getBufferPtr();
 		final var srcOffset = ticket.getOffset();
-		final var size = ticket.getSize();
+		final var size = ticket.getRequestedSize();
 		final var stack = recordContext.stack();
 
 		BufferUtils.copyBuffer(stack, commandBuffer, srcBuffer, srcOffset, trgBuffer, trgOffset, size);

@@ -6,7 +6,8 @@ public interface IMemoryTicket
 {
 	EReservationStatus getReservationStatus();
 	long getBufferPtr();
-	long getSize();
+	long getMemorySize();
+	long getRequestedSize();
 	long getOffset();
 	ByteBuffer toBuffer();
 	ByteBuffer toReadBuffer();

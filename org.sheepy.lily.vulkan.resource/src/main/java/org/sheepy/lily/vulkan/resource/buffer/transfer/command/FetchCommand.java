@@ -33,7 +33,7 @@ public final class FetchCommand implements DataFlowCommand
 	{
 		final var trgBuffer = ticket.getBufferPtr();
 		final var trgOffset = ticket.getOffset();
-		final var size = ticket.getSize();
+		final var size = ticket.getRequestedSize();
 		final var commandBuffer = recordContext.commandBuffer;
 		final var stack = recordContext.stack();
 

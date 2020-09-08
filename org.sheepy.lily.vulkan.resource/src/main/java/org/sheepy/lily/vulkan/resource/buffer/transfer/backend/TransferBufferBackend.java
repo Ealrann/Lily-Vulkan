@@ -27,11 +27,11 @@ public final class TransferBufferBackend
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
 
-	private TransferBufferBackend(CPUBufferBackend bufferBackend)
+	private TransferBufferBackend(CPUBufferBackend bufferBackend, final long nonCoherentAtomSize)
 	{
 		this.bufferBackend = bufferBackend;
 		this.capacity = bufferBackend.getSize();
-		spaceManager = new MemorySpaceManager(capacity);
+		spaceManager = new MemorySpaceManager(capacity, nonCoherentAtomSize);
 	}
 
 	public void free(ExecutionContext context)
@@ -49,13 +49,15 @@ public final class TransferBufferBackend
 		}
 		else
 		{
-			return spaceManager.reserveMemory(size).map(this::buildMemoryTicket).orElseGet(MemoryTicket::noSpaceLeft);
+			return spaceManager.reserveMemory(size)
+							   .map(space -> buildMemoryTicket(space, size))
+							   .orElseGet(MemoryTicket::noSpaceLeft);
 		}
 	}
 
-	private MemoryTicket buildMemoryTicket(final MemorySpace space)
+	private MemoryTicket buildMemoryTicket(final MemorySpace space, long size)
 	{
-		return newSuccessTicket(space);
+		return newSuccessTicket(space, size);
 	}
 
 	public void addTransferCommand(DataFlowCommand command)
@@ -106,9 +108,9 @@ public final class TransferBufferBackend
 		commands.clear();
 	}
 
-	private MemoryTicket newSuccessTicket(MemorySpace space)
+	private MemoryTicket newSuccessTicket(MemorySpace space, long requestedSize)
 	{
-		return new MemoryTicket(IMemoryTicket.EReservationStatus.SUCCESS, space, bufferBackend);
+		return new MemoryTicket(IMemoryTicket.EReservationStatus.SUCCESS, space, requestedSize, bufferBackend);
 	}
 
 	private static boolean checkMemoryReservation(final IDataFlowCommand command)
@@ -145,8 +147,11 @@ public final class TransferBufferBackend
 			final var info = new BufferInfo(capacity, usage, false);
 			final var bufferBuilder = new CPUBufferBackend.Builder(info);
 			final var bufferBackend = bufferBuilder.build(context);
+			final var deviceLimits = context.getPhysicalDevice().getDeviceProperties().limits();
+			final var nonCoherentAtomSize = deviceLimits.nonCoherentAtomSize();
 			bufferBackend.mapMemory(context.getVkDevice());
-			return new TransferBufferBackend(bufferBackend);
+
+			return new TransferBufferBackend(bufferBackend, nonCoherentAtomSize);
 		}
 	}
 }

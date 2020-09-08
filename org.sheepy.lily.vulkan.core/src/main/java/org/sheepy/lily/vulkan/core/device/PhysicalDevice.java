@@ -24,8 +24,8 @@ public final class PhysicalDevice implements IPhysicalDevice
 
 	public final VkPhysicalDevice vkPhysicalDevice;
 	public final String name;
-	public final DeviceProperties deviceProperties;
 	public final DeviceExtensions deviceExtensions;
+	private final DeviceProperties deviceProperties;
 	private final VkPhysicalDeviceMemoryProperties memProperties;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
 	public final Set<EImageUsage> supportedSwapUsages;

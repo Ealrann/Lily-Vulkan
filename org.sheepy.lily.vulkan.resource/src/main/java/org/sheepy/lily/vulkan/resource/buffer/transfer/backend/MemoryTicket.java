@@ -16,6 +16,7 @@ public final class MemoryTicket implements IMemoryTicket
 	public final MemorySpace memorySpace;
 
 	private final CPUBufferBackend stagingBuffer;
+	private final long requestedSize;
 
 	private EReservationStatus reservationStatus;
 
@@ -29,15 +30,19 @@ public final class MemoryTicket implements IMemoryTicket
 		return emptyTicket(IMemoryTicket.EReservationStatus.FAIL__NO_SPACE_LEFT);
 	}
 
-	public static MemoryTicket emptyTicket(IMemoryTicket.EReservationStatus status)
+	public static MemoryTicket emptyTicket(final IMemoryTicket.EReservationStatus status)
 	{
-		return new MemoryTicket(status, null, null);
+		return new MemoryTicket(status, null, 0, null);
 	}
 
-	public MemoryTicket(EReservationStatus reservationStatus, MemorySpace memorySpace, CPUBufferBackend stagingBuffer)
+	public MemoryTicket(final EReservationStatus reservationStatus,
+						final MemorySpace memorySpace,
+						final long requestedSize,
+						final CPUBufferBackend stagingBuffer)
 	{
 		this.reservationStatus = reservationStatus;
 		this.memorySpace = memorySpace;
+		this.requestedSize = requestedSize;
 		this.stagingBuffer = stagingBuffer;
 	}
 
@@ -65,8 +70,8 @@ public final class MemoryTicket implements IMemoryTicket
 	@Override
 	public ByteBuffer toBuffer()
 	{
-		return MemoryUtil.memByteBuffer(stagingBuffer.getMemoryMap() + memorySpace.getOffset(),
-										(int) memorySpace.getSize());
+		final long memAddress = stagingBuffer.getMemoryMap() + memorySpace.getOffset();
+		return MemoryUtil.memByteBuffer(memAddress, (int) requestedSize);
 	}
 
 	@Override
@@ -88,9 +93,15 @@ public final class MemoryTicket implements IMemoryTicket
 	}
 
 	@Override
-	public long getSize()
+	public long getMemorySize()
 	{
 		return memorySpace.getSize();
+	}
+
+	@Override
+	public long getRequestedSize()
+	{
+		return requestedSize;
 	}
 
 	@Override

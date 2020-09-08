@@ -55,7 +55,7 @@ public final class PushImageCommand implements DataFlowCommand
 		final var commandBuffer = recordContext.commandBuffer;
 		final var srcBuffer = ticket.getBufferPtr();
 		final var srcoffset = ticket.getOffset();
-		final var size = ticket.getSize();
+		final var size = ticket.getMemorySize();
 		final var stack = recordContext.stack();
 		final var vkImage = trgImage.vkImage();
 
