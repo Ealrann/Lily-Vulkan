@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import java.util.List;
 
 @ModelExtender(scope = CompositePipeline.class)
-@Allocation
+@Allocation(activator = ProcessPackage.COMPOSITE_PIPELINE__RECORD)
 @AllocationDependency(features = ProcessPackage.COMPOSITE_PIPELINE__PIPELINES, type = IRecordableExtender.class)
 public class CompositePipelineRecorder implements IRecordableExtender
 {
@@ -34,21 +34,13 @@ public class CompositePipelineRecorder implements IRecordableExtender
 	@Override
 	public void record(final RecordContext context)
 	{
-		if (isActive())
+		final int repeat = pipeline.getRepeat();
+		for (int i = 0; i < repeat; i++)
 		{
-			final int repeat = pipeline.getRepeat();
-			for (int i = 0; i < repeat; i++)
+			for (var pipeline : recordables)
 			{
-				for (var pipeline : recordables)
-				{
-					pipeline.record(context);
-				}
+				pipeline.record(context);
 			}
 		}
-	}
-
-	private boolean isActive()
-	{
-		return pipeline.isEnabled();
 	}
 }

@@ -1,15 +1,11 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
@@ -18,49 +14,35 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import java.util.List;
 
 @ModelExtender(scope = GraphicsPipeline.class)
-@Allocation(context = ProcessContext.class)
+@Allocation(context = ProcessContext.class, activator = GraphicPackage.GRAPHICS_PIPELINE__RECORD)
 @AllocationDependency(features = GraphicPackage.GRAPHICS_PIPELINE__TASK_PKGS, type = IRecordableExtender.class)
 @AllocationDependency(type = GraphicsPipelineAllocation.class)
 public final class GraphicsPipelineRecorder implements IRecordableExtender
 {
-	private final GraphicsPipeline pipeline;
 	private final List<IRecordableExtender> recorders;
 	private final GraphicsPipelineAllocation pipelineAllocation;
 
-	public GraphicsPipelineRecorder(GraphicsPipeline pipeline,
-									IAllocationState config,
-									IObservatoryBuilder observatory,
-									@InjectDependency(index = 0) List<IRecordableExtender> recorders,
+	public GraphicsPipelineRecorder(@InjectDependency(index = 0) List<IRecordableExtender> recorders,
 									@InjectDependency(index = 1) GraphicsPipelineAllocation pipelineAllocation)
 	{
-		this.pipeline = pipeline;
 		this.recorders = recorders;
 		this.pipelineAllocation = pipelineAllocation;
-		observatory.listenNoParam(config::setAllocationObsolete, ProcessPackage.ABSTRACT_PIPELINE__ENABLED);
 	}
 
 	@Override
 	public void record(RecordContext context)
 	{
-		if (isActive())
+		final var currentStage = context.stage;
+		final var vkPipeline = pipelineAllocation.getVkPipeline();
+		if (vkPipeline != null && currentStage == ECommandStage.MAIN)
 		{
-			final var currentStage = context.stage;
-			final var vkPipeline = pipeline.adapt(IPipelineAllocation.class).getVkPipeline();
-			if (vkPipeline != null && currentStage == ECommandStage.MAIN)
-			{
-				vkPipeline.bindPipeline(context.commandBuffer);
-			}
-			for (final var recorder : recorders)
-			{
-				recorder.record(context);
-			}
-
-			pipelineAllocation.attach(context);
+			vkPipeline.bindPipeline(context.commandBuffer);
 		}
-	}
+		for (final var recorder : recorders)
+		{
+			recorder.record(context);
+		}
 
-	private boolean isActive()
-	{
-		return pipeline.isEnabled();
+		pipelineAllocation.attach(context);
 	}
 }

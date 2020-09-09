@@ -128,6 +128,8 @@
         eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EAccess"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPkg" eType="ecore:EClass process.ecore#//ProcessExtensionPkg"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentRefPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentRefs" upperBound="-1"

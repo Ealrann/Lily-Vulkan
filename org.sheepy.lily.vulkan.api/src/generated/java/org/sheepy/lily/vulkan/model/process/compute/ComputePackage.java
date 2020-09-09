@@ -233,13 +233,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__NAME = ProcessPackage.VK_PIPELINE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__ENABLED = ProcessPackage.VK_PIPELINE__ENABLED;
+	int COMPUTE_PIPELINE__ALLOCATE = ProcessPackage.VK_PIPELINE__ALLOCATE;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__RECORD = ProcessPackage.VK_PIPELINE__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.

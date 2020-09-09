@@ -90,7 +90,7 @@ public abstract class AbstractProcessAllocation implements IProcessAdapter
 
 	private IExecutionPlayer acquireNextPlayer()
 	{
-		final var recorders = process.getExecutionManager().adapt(IExecutionManagerAdapter.class);
+		final var recorders = process.getExecutionManager().adaptNotNull(IExecutionManagerAdapter.class);
 		return recorders.acquire();
 	}
 

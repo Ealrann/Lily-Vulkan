@@ -28,7 +28,9 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractPipeline" abstract="true" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" unique="false"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allocate" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="record" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskPipeline" abstract="true" eSuperTypes="#//AbstractPipeline vulkan.ecore#//IResourceContainer">

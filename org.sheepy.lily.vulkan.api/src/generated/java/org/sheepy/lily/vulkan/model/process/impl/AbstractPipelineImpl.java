@@ -20,7 +20,8 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#isAllocate <em>Allocate</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#isRecord <em>Record</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,24 +49,44 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * The default value of the '{@link #isAllocate() <em>Allocate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
+	 * @see #isAllocate()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean ENABLED_EDEFAULT = true;
+	protected static final boolean ALLOCATE_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * The cached value of the '{@link #isAllocate() <em>Allocate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
+	 * @see #isAllocate()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean enabled = ENABLED_EDEFAULT;
+	protected boolean allocate = ALLOCATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isRecord() <em>Record</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRecord()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RECORD_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isRecord() <em>Record</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRecord()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean record = RECORD_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,9 +140,9 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	 * @generated
 	 */
 	@Override
-	public boolean isEnabled()
+	public boolean isAllocate()
 	{
-		return enabled;
+		return allocate;
 	}
 
 	/**
@@ -130,12 +151,37 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 	 * @generated
 	 */
 	@Override
-	public void setEnabled(boolean newEnabled)
+	public void setAllocate(boolean newAllocate)
 	{
-		boolean oldEnabled = enabled;
-		enabled = newEnabled;
+		boolean oldAllocate = allocate;
+		allocate = newAllocate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__ENABLED, oldEnabled, enabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__ALLOCATE, oldAllocate, allocate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isRecord()
+	{
+		return record;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRecord(boolean newRecord)
+	{
+		boolean oldRecord = record;
+		record = newRecord;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__RECORD, oldRecord, record));
 	}
 
 	/**
@@ -150,8 +196,10 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				return getName();
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-				return isEnabled();
+			case ProcessPackage.ABSTRACT_PIPELINE__ALLOCATE:
+				return isAllocate();
+			case ProcessPackage.ABSTRACT_PIPELINE__RECORD:
+				return isRecord();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,8 +217,11 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				setName((String)newValue);
 				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-				setEnabled((Boolean)newValue);
+			case ProcessPackage.ABSTRACT_PIPELINE__ALLOCATE:
+				setAllocate((Boolean)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PIPELINE__RECORD:
+				setRecord((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,8 +240,11 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-				setEnabled(ENABLED_EDEFAULT);
+			case ProcessPackage.ABSTRACT_PIPELINE__ALLOCATE:
+				setAllocate(ALLOCATE_EDEFAULT);
+				return;
+			case ProcessPackage.ABSTRACT_PIPELINE__RECORD:
+				setRecord(RECORD_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -208,8 +262,10 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PIPELINE__ALLOCATE:
+				return allocate != ALLOCATE_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PIPELINE__RECORD:
+				return record != RECORD_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -227,8 +283,10 @@ public abstract class AbstractPipelineImpl extends LilyEObject implements Abstra
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", enabled: ");
-		result.append(enabled);
+		result.append(", allocate: ");
+		result.append(allocate);
+		result.append(", record: ");
+		result.append(record);
 		result.append(')');
 		return result.toString();
 	}

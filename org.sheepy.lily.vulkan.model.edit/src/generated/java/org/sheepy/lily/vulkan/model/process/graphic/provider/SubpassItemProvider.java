@@ -74,6 +74,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			addWaitForAccessesPropertyDescriptor(object);
 			addSyncAccessesPropertyDescriptor(object);
 			addFinishAccessesPropertyDescriptor(object);
+			addEnabledPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -309,6 +310,29 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 	}
 
 	/**
+	 * This adds a property descriptor for the Enabled feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEnabledPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Subpass_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_enabled_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -396,6 +420,7 @@ public class SubpassItemProvider extends ItemProviderAdapter implements IEditing
 			case GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES:
 			case GraphicPackage.SUBPASS__SYNC_ACCESSES:
 			case GraphicPackage.SUBPASS__FINISH_ACCESSES:
+			case GraphicPackage.SUBPASS__ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GraphicPackage.SUBPASS__RESOURCE_PKG:

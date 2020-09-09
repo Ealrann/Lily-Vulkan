@@ -54,6 +54,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getSyncAccesses <em>Sync Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getFinishAccesses <em>Finish Accesses</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getExtensionPkg <em>Extension Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#isEnabled <em>Enabled</em>}</li>
  * </ul>
  *
  * @generated
@@ -279,6 +280,26 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @ordered
 	 */
 	protected ProcessExtensionPkg extensionPkg;
+
+	/**
+	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ENABLED_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -586,7 +607,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		if (compositor != null && ((EObject)compositor).eIsProxy())
 		{
-			InternalEObject oldCompositor = (InternalEObject)compositor;
+			InternalEObject oldCompositor = compositor;
 			compositor = (ICompositor)eResolveProxy(oldCompositor);
 			if (compositor != oldCompositor)
 			{
@@ -797,6 +818,31 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	 * @generated
 	 */
 	@Override
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEnabled(boolean newEnabled)
+	{
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__ENABLED, oldEnabled, enabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public VulkanResourcePkg getResourcePkg()
 	{
 		return resourcePkg;
@@ -910,6 +956,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return getFinishAccesses();
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				return getExtensionPkg();
+			case GraphicPackage.SUBPASS__ENABLED:
+				return isEnabled();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -976,6 +1024,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				setExtensionPkg((ProcessExtensionPkg)newValue);
 				return;
+			case GraphicPackage.SUBPASS__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1038,6 +1089,9 @@ public class SubpassImpl extends LilyEObject implements Subpass
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				setExtensionPkg((ProcessExtensionPkg)null);
 				return;
+			case GraphicPackage.SUBPASS__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1084,6 +1138,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 				return finishAccesses != null && !finishAccesses.isEmpty();
 			case GraphicPackage.SUBPASS__EXTENSION_PKG:
 				return extensionPkg != null;
+			case GraphicPackage.SUBPASS__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1155,6 +1211,8 @@ public class SubpassImpl extends LilyEObject implements Subpass
 		result.append(syncAccesses);
 		result.append(", finishAccesses: ");
 		result.append(finishAccesses);
+		result.append(", enabled: ");
+		result.append(enabled);
 		result.append(')');
 		return result.toString();
 	}

@@ -67,7 +67,8 @@ public class AbstractPipelineItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addEnabledPropertyDescriptor(object);
+			addAllocatePropertyDescriptor(object);
+			addRecordPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -96,20 +97,43 @@ public class AbstractPipelineItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Enabled feature.
+	 * This adds a property descriptor for the Allocate feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEnabledPropertyDescriptor(Object object)
+	protected void addAllocatePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AbstractPipeline_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractPipeline_enabled_feature", "_UI_AbstractPipeline_type"),
-				 ProcessPackage.Literals.ABSTRACT_PIPELINE__ENABLED,
+				 getString("_UI_AbstractPipeline_allocate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractPipeline_allocate_feature", "_UI_AbstractPipeline_type"),
+				 ProcessPackage.Literals.ABSTRACT_PIPELINE__ALLOCATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Record feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRecordPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractPipeline_record_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractPipeline_record_feature", "_UI_AbstractPipeline_type"),
+				 ProcessPackage.Literals.ABSTRACT_PIPELINE__RECORD,
 				 true,
 				 false,
 				 false,
@@ -149,7 +173,8 @@ public class AbstractPipelineItemProvider
 		switch (notification.getFeatureID(AbstractPipeline.class))
 		{
 			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
+			case ProcessPackage.ABSTRACT_PIPELINE__ALLOCATE:
+			case ProcessPackage.ABSTRACT_PIPELINE__RECORD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

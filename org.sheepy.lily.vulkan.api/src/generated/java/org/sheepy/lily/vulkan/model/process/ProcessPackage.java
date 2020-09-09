@@ -290,13 +290,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__ENABLED = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_PIPELINE__ALLOCATE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__RECORD = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
@@ -305,7 +314,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Abstract Pipeline</em>' class.
@@ -336,13 +345,22 @@ public interface ProcessPackage extends EPackage
 	int TASK_PIPELINE__NAME = ABSTRACT_PIPELINE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_PIPELINE__ENABLED = ABSTRACT_PIPELINE__ENABLED;
+	int TASK_PIPELINE__ALLOCATE = ABSTRACT_PIPELINE__ALLOCATE;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_PIPELINE__RECORD = ABSTRACT_PIPELINE__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -409,13 +427,22 @@ public interface ProcessPackage extends EPackage
 	int VK_PIPELINE__NAME = TASK_PIPELINE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VK_PIPELINE__ENABLED = TASK_PIPELINE__ENABLED;
+	int VK_PIPELINE__ALLOCATE = TASK_PIPELINE__ALLOCATE;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VK_PIPELINE__RECORD = TASK_PIPELINE__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -564,13 +591,22 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE__NAME = TASK_PIPELINE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE__ENABLED = TASK_PIPELINE__ENABLED;
+	int PIPELINE__ALLOCATE = TASK_PIPELINE__ALLOCATE;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__RECORD = TASK_PIPELINE__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -637,13 +673,22 @@ public interface ProcessPackage extends EPackage
 	int COMPOSITE_PIPELINE__NAME = ABSTRACT_PIPELINE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_PIPELINE__ENABLED = ABSTRACT_PIPELINE__ENABLED;
+	int COMPOSITE_PIPELINE__ALLOCATE = ABSTRACT_PIPELINE__ALLOCATE;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_PIPELINE__RECORD = ABSTRACT_PIPELINE__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Pipelines</b></em>' containment reference list.
@@ -1514,15 +1559,26 @@ public interface ProcessPackage extends EPackage
 	EClass getAbstractPipeline();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isAllocate <em>Allocate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#isEnabled()
+	 * @return the meta object for the attribute '<em>Allocate</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#isAllocate()
 	 * @see #getAbstractPipeline()
 	 * @generated
 	 */
-	EAttribute getAbstractPipeline_Enabled();
+	EAttribute getAbstractPipeline_Allocate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isRecord <em>Record</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Record</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#isRecord()
+	 * @see #getAbstractPipeline()
+	 * @generated
+	 */
+	EAttribute getAbstractPipeline_Record();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.TaskPipeline <em>Task Pipeline</em>}'.
@@ -2155,12 +2211,20 @@ public interface ProcessPackage extends EPackage
 		EClass ABSTRACT_PIPELINE = eINSTANCE.getAbstractPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Allocate</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABSTRACT_PIPELINE__ENABLED = eINSTANCE.getAbstractPipeline_Enabled();
+		EAttribute ABSTRACT_PIPELINE__ALLOCATE = eINSTANCE.getAbstractPipeline_Allocate();
+
+		/**
+		 * The meta object literal for the '<em><b>Record</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_PIPELINE__RECORD = eINSTANCE.getAbstractPipeline_Record();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl <em>Task Pipeline</em>}' class.

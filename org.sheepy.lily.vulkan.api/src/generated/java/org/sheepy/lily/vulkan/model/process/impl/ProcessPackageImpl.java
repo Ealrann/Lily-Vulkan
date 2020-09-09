@@ -442,9 +442,20 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAbstractPipeline_Enabled()
+	public EAttribute getAbstractPipeline_Allocate()
 	{
 		return (EAttribute)abstractPipelineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractPipeline_Record()
+	{
+		return (EAttribute)abstractPipelineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1020,7 +1031,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(iPipelineTaskEClass, IPIPELINE_TASK__ENABLED);
 
 		abstractPipelineEClass = createEClass(ABSTRACT_PIPELINE);
-		createEAttribute(abstractPipelineEClass, ABSTRACT_PIPELINE__ENABLED);
+		createEAttribute(abstractPipelineEClass, ABSTRACT_PIPELINE__ALLOCATE);
+		createEAttribute(abstractPipelineEClass, ABSTRACT_PIPELINE__RECORD);
 
 		taskPipelineEClass = createEClass(TASK_PIPELINE);
 		createEReference(taskPipelineEClass, TASK_PIPELINE__TASK_PKGS);
@@ -1164,7 +1176,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getIPipelineTask_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, IPipelineTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractPipelineEClass, AbstractPipeline.class, "AbstractPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractPipeline_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractPipeline_Allocate(), ecorePackage.getEBoolean(), "allocate", "true", 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractPipeline_Record(), ecorePackage.getEBoolean(), "record", "true", 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskPipelineEClass, TaskPipeline.class, "TaskPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTaskPipeline_TaskPkgs(), this.getTaskPkg(), null, "taskPkgs", null, 0, -1, TaskPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

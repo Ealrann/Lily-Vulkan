@@ -129,6 +129,7 @@
       <genFeatures createChild="false" propertyCategory="2 - Finish (for next subpass)"
           ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/finishAccesses"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Subpass/extensionPkg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//Subpass/enabled"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//AttachmentRefPkg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//AttachmentRefPkg/attachmentRefs"/>
@@ -253,7 +254,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//IPipelineTask/enabled"/>
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//AbstractPipeline">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractPipeline/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractPipeline/allocate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//AbstractPipeline/record"/>
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//TaskPipeline">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//TaskPipeline/taskPkgs"/>

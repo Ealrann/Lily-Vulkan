@@ -13,7 +13,8 @@ import org.sheepy.lily.core.model.types.LNamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isAllocate <em>Allocate</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isRecord <em>Record</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline()
@@ -23,26 +24,49 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 public interface AbstractPipeline extends LNamedElement
 {
 	/**
-	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
+	 * Returns the value of the '<em><b>Allocate</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(boolean)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_Enabled()
+	 * @return the value of the '<em>Allocate</em>' attribute.
+	 * @see #setAllocate(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_Allocate()
 	 * @model default="true" unique="false"
 	 * @generated
 	 */
-	boolean isEnabled();
+	boolean isAllocate();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isAllocate <em>Allocate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #isEnabled()
+	 * @param value the new value of the '<em>Allocate</em>' attribute.
+	 * @see #isAllocate()
 	 * @generated
 	 */
-	void setEnabled(boolean value);
+	void setAllocate(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Record</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Record</em>' attribute.
+	 * @see #setRecord(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_Record()
+	 * @model default="true" unique="false"
+	 * @generated
+	 */
+	boolean isRecord();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#isRecord <em>Record</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Record</em>' attribute.
+	 * @see #isRecord()
+	 * @generated
+	 */
+	void setRecord(boolean value);
 
 } // AbstractPipeline

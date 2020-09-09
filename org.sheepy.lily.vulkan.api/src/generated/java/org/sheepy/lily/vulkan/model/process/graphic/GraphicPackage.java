@@ -1261,13 +1261,22 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS__EXTENSION_PKG = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 13;
 
 	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__ENABLED = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 14;
+
+	/**
 	 * The number of structural features of the '<em>Subpass</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 14;
+	int SUBPASS_FEATURE_COUNT = VulkanPackage.IRESOURCE_CONTAINER_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of operations of the '<em>Subpass</em>' class.
@@ -1662,13 +1671,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__NAME = ProcessPackage.VK_PIPELINE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__ENABLED = ProcessPackage.VK_PIPELINE__ENABLED;
+	int GRAPHICS_PIPELINE__ALLOCATE = ProcessPackage.VK_PIPELINE__ALLOCATE;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__RECORD = ProcessPackage.VK_PIPELINE__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -3498,6 +3516,17 @@ public interface GraphicPackage extends EPackage
 	EReference getSubpass_ExtensionPkg();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#isEnabled()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_Enabled();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg <em>Attachment Ref Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4895,6 +4924,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference SUBPASS__EXTENSION_PKG = eINSTANCE.getSubpass_ExtensionPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__ENABLED = eINSTANCE.getSubpass_Enabled();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefPkgImpl <em>Attachment Ref Pkg</em>}' class.

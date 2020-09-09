@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import java.util.List;
 
 @ModelExtender(scope = Subpass.class)
-@Allocation
+@Allocation(activator = GraphicPackage.SUBPASS__ENABLED)
 @AllocationDependency(features = {GraphicPackage.SUBPASS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IRecordableExtender.class)
 public final class SubpassRecorder implements IRecordableExtender
 {

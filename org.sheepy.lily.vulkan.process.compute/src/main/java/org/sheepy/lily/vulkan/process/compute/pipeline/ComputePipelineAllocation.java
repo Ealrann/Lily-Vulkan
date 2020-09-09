@@ -10,13 +10,14 @@ import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.core.pipeline.VkPipelineLayout;
 import org.sheepy.lily.vulkan.core.resource.IShaderAllocation;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.stream.Collectors;
 
 @ModelExtender(scope = ComputePipeline.class)
-@Allocation(context = ProcessContext.class)
+@Allocation(context = ProcessContext.class, activator = ComputePackage.COMPUTE_PIPELINE__ALLOCATE)
 public final class ComputePipelineAllocation implements IPipelineAllocation
 {
 	private final VkComputePipeline vkPipeline;

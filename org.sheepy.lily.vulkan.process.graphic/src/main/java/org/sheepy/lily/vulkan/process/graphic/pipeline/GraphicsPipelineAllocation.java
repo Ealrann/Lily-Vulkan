@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ModelExtender(scope = GraphicsPipeline.class)
-@Allocation(context = ProcessContext.class)
+@Allocation(context = ProcessContext.class, activator = GraphicPackage.GRAPHICS_PIPELINE__ALLOCATE)
 @AllocationDependency(features = GraphicPackage.GRAPHICS_PIPELINE__SHADERS, type = IShaderAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, type = GraphicConfigurationAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
