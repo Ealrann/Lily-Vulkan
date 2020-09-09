@@ -5,7 +5,7 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
@@ -27,6 +27,7 @@ public final class BufferViewerAllocation implements IBufferAllocation
 	private final AlignmentData alignmentData;
 	private boolean needPush = true;
 
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	private BufferViewerAllocation(BufferViewer bufferViewer,
 								   IObservatoryBuilder observatory,
 								   @InjectDependency(index = 0) BufferMemoryAllocation bufferMemoryAllocation)
@@ -36,9 +37,9 @@ public final class BufferViewerAllocation implements IBufferAllocation
 		this.bufferMemoryAllocation = bufferMemoryAllocation;
 		this.alignmentData = bufferMemoryAllocation.getAlignmentData(bufferViewer);
 
-		final var dataProviderObservatory = observatory.explore(VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER)
-													   .adaptNotifier(IBufferDataProviderAdapter.class);
-		dataProviderObservatory.listenNoParam(this::requestPush, IBufferDataProviderAdapter.Features.Data);
+		observatory.explore(VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER).<IGenericBufferDataProviderAdapter.Features<?>, IGenericBufferDataProviderAdapter>adaptNotifier(
+				IGenericBufferDataProviderAdapter.class).listenNoParam(this::requestPush,
+																	   IGenericBufferDataProviderAdapter.Features.Data);
 	}
 
 	private void requestPush()
@@ -50,7 +51,7 @@ public final class BufferViewerAllocation implements IBufferAllocation
 	@Override
 	public void fillData(ByteBuffer buffer)
 	{
-		final var bufferDataProvider = bufferViewer.getDataProvider().adapt(IBufferDataProviderAdapter.class);
+		final var bufferDataProvider = bufferViewer.getDataProvider().adapt(IGenericBufferDataProviderAdapter.class);
 		bufferDataProvider.fill(buffer);
 		needPush = false;
 	}
