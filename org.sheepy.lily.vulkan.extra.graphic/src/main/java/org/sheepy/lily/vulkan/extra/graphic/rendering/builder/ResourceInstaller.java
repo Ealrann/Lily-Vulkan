@@ -5,7 +5,6 @@ import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter.ResourceDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.*;
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
@@ -20,20 +19,30 @@ import java.util.function.BiFunction;
 public final class ResourceInstaller<T extends Structure>
 {
 	private final GenericRenderer<T> maintainer;
-	private final List<BufferMemory> bufferMemories = new ArrayList<>();
-	private final List<DescriptorSet> dynamicBindings = new ArrayList<>();
-	private DescriptorSet staticBindings = null;
+	private final T structure;
+	private final GraphicsPipeline pipeline;
+	private final int drawCallOffset;
+	private final int count;
 
-	public ResourceInstaller(GenericRenderer<T> maintainer)
+	public ResourceInstaller(final GenericRenderer<T> maintainer,
+							 final T structure,
+							 final GraphicsPipeline pipeline,
+							 final int drawCallOffset,
+							 final int count)
 	{
 		this.maintainer = maintainer;
+		this.structure = structure;
+		this.pipeline = pipeline;
+		this.drawCallOffset = drawCallOffset;
+		this.count = count;
 	}
 
-	public void prepare(GraphicsPipeline pipeline, T structure, int count)
+	public PipelineBuildContext<T> prepare(final int part)
 	{
-		staticBindings = prepareResourceDescriptors(pipeline,
-													(adapter, provider) -> adapter.buildForPipeline(provider,
-																									structure));
+		final List<BufferMemory> bufferMemories = new ArrayList<>();
+		final List<DescriptorSet> dynamicBindings = new ArrayList<>();
+		final var staticBindings = prepareResourceDescriptors((adapter, provider) -> adapter.buildForPipeline(provider,
+																											  structure));
 
 		final var memoryChunk = VulkanResourceFactory.eINSTANCE.createMemoryChunk();
 		pipeline.getResourcePkg().getResources().add(memoryChunk);
@@ -44,19 +53,25 @@ public final class ResourceInstaller<T extends Structure>
 			final var buffer = prepareBufferMemory(memoryChunk, structure, i);
 			bufferMemories.add(buffer);
 
-			final var dynamicDescriptors = prepareResourceDescriptors(pipeline,
-																	  (adapter, provider) -> adapter.buildForPart(
-																			  provider,
-																			  buffer));
+			final var dynamicDescriptors = prepareResourceDescriptors((adapter, provider) -> adapter.buildForPart(
+					provider,
+					buffer));
 			if (dynamicDescriptors != null)
 			{
 				dynamicBindings.add(dynamicDescriptors);
 			}
 		}
+
+		return new PipelineBuildContext<>(structure,
+										  pipeline,
+										  part,
+										  drawCallOffset,
+										  bufferMemories,
+										  dynamicBindings,
+										  staticBindings);
 	}
 
-	private DescriptorSet prepareResourceDescriptors(GraphicsPipeline pipeline,
-													 BiFunction<IDescriptorProviderAdapter, ResourceDescriptorProvider, ResourceDescriptor> builder)
+	private DescriptorSet prepareResourceDescriptors(BiFunction<IDescriptorProviderAdapter, ResourceDescriptorProvider, ResourceDescriptor> builder)
 	{
 		final List<IDescriptor> res = new ArrayList<>();
 		final var descriptorProviderPkg = maintainer.getDescriptorProviderPkg();
@@ -90,22 +105,6 @@ public final class ResourceInstaller<T extends Structure>
 		}
 	}
 
-	public BufferContext setupBindTask(GraphicsPipeline pipeline, int part, int drawCall)
-	{
-		final var bufferMemory = bufferMemories.get(part);
-
-		final var bindDS = ProcessFactory.eINSTANCE.createBindDescriptorSets();
-		bindDS.getDescriptorSets().add(staticBindings);
-		if (dynamicBindings.isEmpty() == false)
-		{
-			bindDS.getDescriptorSets().add(dynamicBindings.get(part));
-		}
-
-		pipeline.getTaskPkgs().get(0).getTasks().add(bindDS);
-
-		return new BufferContext(pipeline, bufferMemory, drawCall);
-	}
-
 	private BufferMemory prepareBufferMemory(MemoryChunk memoryChunk, T structure, int part)
 	{
 		final var bufferMemory = VulkanResourceFactory.eINSTANCE.createBufferMemory();
@@ -124,15 +123,11 @@ public final class ResourceInstaller<T extends Structure>
 
 			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
 			bufferViewer.setDataProvider(copy);
-			if (dataProvider instanceof IndexProvider)
-			{
-				bufferViewer.getUsages().add(EBufferUsage.INDEX_BUFFER_BIT);
-			}
-			else
-			{
-				bufferViewer.getUsages().add(EBufferUsage.VERTEX_BUFFER_BIT);
-			}
-			bufferViewer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
+			final var usages = bufferViewer.getUsages();
+			usages.add(dataProvider instanceof IndexProvider
+							   ? EBufferUsage.INDEX_BUFFER_BIT
+							   : EBufferUsage.VERTEX_BUFFER_BIT);
+			usages.add(EBufferUsage.TRANSFER_DST_BIT);
 
 			bufferMemory.getBuffers().add(bufferViewer);
 			final var bufferReference = VulkanResourceFactory.eINSTANCE.createBufferReference();

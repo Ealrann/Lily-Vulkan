@@ -116,13 +116,22 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__NAME = RenderingPackage.GENERIC_RENDERER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_RENDERER__ENABLED = RenderingPackage.GENERIC_RENDERER__ENABLED;
+	int MESH_RENDERER__ALLOCATE = RenderingPackage.GENERIC_RENDERER__ALLOCATE;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__RECORD = RenderingPackage.GENERIC_RENDERER__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.

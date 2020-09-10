@@ -156,13 +156,6 @@
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//EntityPkg/T"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//EntityPkg/entities"/>
     </genClasses>
-    <genClasses ecoreClass="Rendering.ecore#//RenderDrawTask">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderDrawTask/vertexProviders"/>
-    </genClasses>
-    <genClasses ecoreClass="Rendering.ecore#//RenderIndexedDrawTask">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderIndexedDrawTask/indexProvider"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//RenderIndexedDrawTask/structure"/>
-    </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//PhysicalEntityVariable">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//PhysicalEntityVariable/entity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntityVariable/feature"/>

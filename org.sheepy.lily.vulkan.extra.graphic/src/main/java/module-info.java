@@ -8,7 +8,6 @@ module org.sheepy.lily.vulkan.extra.graphic {
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering;
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering.buffer;
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering.resource;
-	opens org.sheepy.lily.vulkan.extra.graphic.rendering.task;
 	opens org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 	provides IExtenderProvider with Extenders;

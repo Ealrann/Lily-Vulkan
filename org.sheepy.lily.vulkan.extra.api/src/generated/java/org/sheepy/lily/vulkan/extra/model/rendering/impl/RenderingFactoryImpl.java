@@ -78,8 +78,6 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG: return createResourceDescriptorProviderPkg();
 			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER: return createRenderProxyConstantBuffer();
 			case RenderingPackage.ISPECIALIZATION: return createISpecialization();
-			case RenderingPackage.RENDER_DRAW_TASK: return createRenderDrawTask();
-			case RenderingPackage.RENDER_INDEXED_DRAW_TASK: return createRenderIndexedDrawTask();
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE: return createPhysicalEntityVariable();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -274,30 +272,6 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		ISpecializationImpl iSpecialization = new ISpecializationImpl();
 		return iSpecialization;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public RenderDrawTask createRenderDrawTask()
-	{
-		RenderDrawTaskImpl renderDrawTask = new RenderDrawTaskImpl();
-		return renderDrawTask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public RenderIndexedDrawTask createRenderIndexedDrawTask()
-	{
-		RenderIndexedDrawTaskImpl renderIndexedDrawTask = new RenderIndexedDrawTaskImpl();
-		return renderIndexedDrawTask;
 	}
 
 	/**

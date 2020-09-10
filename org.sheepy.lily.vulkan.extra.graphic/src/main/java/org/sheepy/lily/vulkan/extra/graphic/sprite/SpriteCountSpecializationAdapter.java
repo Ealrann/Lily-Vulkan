@@ -33,6 +33,6 @@ public final class SpriteCountSpecializationAdapter implements ISpecializationAd
 
 	private static int structureResourceSize(final SpriteStructure s)
 	{
-		return s.adapt(IStructureResourceAdapter.class).getResources().size();
+		return s.adapt(IStructureResourceAdapter.class).getImages().size();
 	}
 }

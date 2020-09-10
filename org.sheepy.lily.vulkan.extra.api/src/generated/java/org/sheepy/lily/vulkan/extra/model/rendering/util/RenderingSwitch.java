@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.*;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
-import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -256,24 +255,6 @@ public class RenderingSwitch<T1> extends Switch<T1>
 			{
 				EntityPkg<?> entityPkg = (EntityPkg<?>)theEObject;
 				T1 result = caseEntityPkg(entityPkg);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RenderingPackage.RENDER_DRAW_TASK:
-			{
-				RenderDrawTask renderDrawTask = (RenderDrawTask)theEObject;
-				T1 result = caseRenderDrawTask(renderDrawTask);
-				if (result == null) result = caseIPipelineTask(renderDrawTask);
-				if (result == null) result = caseLNamedElement(renderDrawTask);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RenderingPackage.RENDER_INDEXED_DRAW_TASK:
-			{
-				RenderIndexedDrawTask renderIndexedDrawTask = (RenderIndexedDrawTask)theEObject;
-				T1 result = caseRenderIndexedDrawTask(renderIndexedDrawTask);
-				if (result == null) result = caseIPipelineTask(renderIndexedDrawTask);
-				if (result == null) result = caseLNamedElement(renderIndexedDrawTask);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -627,38 +608,6 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Render Draw Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Render Draw Task</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseRenderDrawTask(RenderDrawTask object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Render Indexed Draw Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Render Indexed Draw Task</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseRenderIndexedDrawTask(RenderIndexedDrawTask object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Physical Entity Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -846,22 +795,6 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseConstantBuffer(ConstantBuffer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Task</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline Task</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIPipelineTask(IPipelineTask object)
 	{
 		return null;
 	}

@@ -155,23 +155,6 @@
       <eGenericType eTypeParameter="#//EntityPkg/T"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderDrawTask" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/process.ecore#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexProviders" lowerBound="1"
-        upperBound="-1">
-      <eGenericType eClassifier="#//VertexProvider">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderIndexedDrawTask" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/process.ecore#//IPipelineTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="indexProvider" lowerBound="1">
-      <eGenericType eClassifier="#//IndexProvider">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="structure" lowerBound="1"
-        eType="#//Structure"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PhysicalEntityVariable" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//PhysicalEntity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"

@@ -43,11 +43,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.util.RenderingAdapterFactory
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.VulkanResourcePkg;
-import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.TaskPkg;
-
-import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
@@ -437,56 +432,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RenderDrawTaskItemProvider renderDrawTaskItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createRenderDrawTaskAdapter()
-	{
-		if (renderDrawTaskItemProvider == null)
-		{
-			renderDrawTaskItemProvider = new RenderDrawTaskItemProvider(this);
-		}
-
-		return renderDrawTaskItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RenderIndexedDrawTaskItemProvider renderIndexedDrawTaskItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createRenderIndexedDrawTaskAdapter()
-	{
-		if (renderIndexedDrawTaskItemProvider == null)
-		{
-			renderIndexedDrawTaskItemProvider = new RenderIndexedDrawTaskItemProvider(this);
-		}
-
-		return renderIndexedDrawTaskItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -673,8 +618,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (resourceDescriptorProviderPkgItemProvider != null) resourceDescriptorProviderPkgItemProvider.dispose();
 		if (renderProxyConstantBufferItemProvider != null) renderProxyConstantBufferItemProvider.dispose();
 		if (iSpecializationItemProvider != null) iSpecializationItemProvider.dispose();
-		if (renderDrawTaskItemProvider != null) renderDrawTaskItemProvider.dispose();
-		if (renderIndexedDrawTaskItemProvider != null) renderIndexedDrawTaskItemProvider.dispose();
 		if (physicalEntityVariableItemProvider != null) physicalEntityVariableItemProvider.dispose();
 	}
 
@@ -733,128 +676,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 					(createChildParameter
 						(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES,
 						 RenderingFactory.eINSTANCE.createPhysicalEntityVariable()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public ResourceLocator getResourceLocator()
-		{
-			return ExtraEditPlugin.INSTANCE;
-		}
-	}
-
-	/**
-	 * A child creation extender for the {@link ProcessPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class ProcessChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends ProcessSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseTaskPkg(TaskPkg object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.TASK_PKG__TASKS,
-						 RenderingFactory.eINSTANCE.createRenderDrawTask()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.TASK_PKG__TASKS,
-						 RenderingFactory.eINSTANCE.createRenderIndexedDrawTask()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseCompositeTask(CompositeTask object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-						 RenderingFactory.eINSTANCE.createRenderDrawTask()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-						 RenderingFactory.eINSTANCE.createRenderIndexedDrawTask()));
 
 				return null;
 			}

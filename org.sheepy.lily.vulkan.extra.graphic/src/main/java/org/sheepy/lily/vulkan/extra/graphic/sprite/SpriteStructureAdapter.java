@@ -38,6 +38,7 @@ public final class SpriteStructureAdapter implements IStructureResourceAdapter
 		return List.of(imageMemoryChunk);
 	}
 
+	@Override
 	public List<? extends IVulkanImage> getImages()
 	{
 		return images;

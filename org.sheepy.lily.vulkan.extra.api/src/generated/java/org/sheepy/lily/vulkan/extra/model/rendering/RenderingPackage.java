@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
@@ -442,13 +441,22 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
+	int GENERIC_RENDERER__ALLOCATE = GraphicPackage.GRAPHICS_PIPELINE__ALLOCATE;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__RECORD = GraphicPackage.GRAPHICS_PIPELINE__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -1260,126 +1268,6 @@ public interface RenderingPackage extends EPackage
 
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDrawTaskImpl <em>Render Draw Task</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDrawTaskImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderDrawTask()
-	 * @generated
-	 */
-	int RENDER_DRAW_TASK = 21;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DRAW_TASK__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DRAW_TASK__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Vertex Providers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DRAW_TASK__VERTEX_PROVIDERS = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Render Draw Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DRAW_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Render Draw Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_DRAW_TASK_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderIndexedDrawTaskImpl <em>Render Indexed Draw Task</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderIndexedDrawTaskImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderIndexedDrawTask()
-	 * @generated
-	 */
-	int RENDER_INDEXED_DRAW_TASK = 22;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_INDEXED_DRAW_TASK__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_INDEXED_DRAW_TASK__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Index Provider</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_INDEXED_DRAW_TASK__INDEX_PROVIDER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Structure</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_INDEXED_DRAW_TASK__STRUCTURE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Render Indexed Draw Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_INDEXED_DRAW_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Render Indexed Draw Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_INDEXED_DRAW_TASK_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityVariableImpl <em>Physical Entity Variable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1387,7 +1275,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPhysicalEntityVariable()
 	 * @generated
 	 */
-	int PHYSICAL_ENTITY_VARIABLE = 23;
+	int PHYSICAL_ENTITY_VARIABLE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1442,7 +1330,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
 	 * @generated
 	 */
-	int EPHYSICAL_ENTITY_FEATURE = 24;
+	int EPHYSICAL_ENTITY_FEATURE = 22;
 
 
 	/**
@@ -2030,59 +1918,6 @@ public interface RenderingPackage extends EPackage
 	EReference getEntityPkg_Entities();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask <em>Render Draw Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Render Draw Task</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask
-	 * @generated
-	 */
-	EClass getRenderDrawTask();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask#getVertexProviders <em>Vertex Providers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Vertex Providers</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderDrawTask#getVertexProviders()
-	 * @see #getRenderDrawTask()
-	 * @generated
-	 */
-	EReference getRenderDrawTask_VertexProviders();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask <em>Render Indexed Draw Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Render Indexed Draw Task</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask
-	 * @generated
-	 */
-	EClass getRenderIndexedDrawTask();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask#getIndexProvider <em>Index Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Index Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask#getIndexProvider()
-	 * @see #getRenderIndexedDrawTask()
-	 * @generated
-	 */
-	EReference getRenderIndexedDrawTask_IndexProvider();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask#getStructure <em>Structure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Structure</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderIndexedDrawTask#getStructure()
-	 * @see #getRenderIndexedDrawTask()
-	 * @generated
-	 */
-	EReference getRenderIndexedDrawTask_Structure();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable <em>Physical Entity Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2628,50 +2463,6 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference ENTITY_PKG__ENTITIES = eINSTANCE.getEntityPkg_Entities();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDrawTaskImpl <em>Render Draw Task</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderDrawTaskImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderDrawTask()
-		 * @generated
-		 */
-		EClass RENDER_DRAW_TASK = eINSTANCE.getRenderDrawTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Vertex Providers</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RENDER_DRAW_TASK__VERTEX_PROVIDERS = eINSTANCE.getRenderDrawTask_VertexProviders();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderIndexedDrawTaskImpl <em>Render Indexed Draw Task</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderIndexedDrawTaskImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderIndexedDrawTask()
-		 * @generated
-		 */
-		EClass RENDER_INDEXED_DRAW_TASK = eINSTANCE.getRenderIndexedDrawTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Index Provider</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RENDER_INDEXED_DRAW_TASK__INDEX_PROVIDER = eINSTANCE.getRenderIndexedDrawTask_IndexProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Structure</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RENDER_INDEXED_DRAW_TASK__STRUCTURE = eINSTANCE.getRenderIndexedDrawTask_Structure();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityVariableImpl <em>Physical Entity Variable</em>}' class.
