@@ -61,6 +61,8 @@
         lowerBound="1" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/process.ecore#//FlushTransferBufferTask"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="onePipelinePerPart" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maintaining" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../org.sheepy.lily.core.model/model/maintainer.ecore#//Maintainer">
       <eTypeArguments eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>

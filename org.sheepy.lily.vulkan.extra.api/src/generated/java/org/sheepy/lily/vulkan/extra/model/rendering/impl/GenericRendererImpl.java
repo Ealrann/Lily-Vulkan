@@ -53,6 +53,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getSpecialization <em>Specialization</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#getFlushTransferBufferTask <em>Flush Transfer Buffer Task</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#isOnePipelinePerPart <em>One Pipeline Per Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.GenericRendererImpl#isMaintaining <em>Maintaining</em>}</li>
  * </ul>
  *
  * @generated
@@ -158,6 +159,26 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * @ordered
 	 */
 	protected boolean onePipelinePerPart = ONE_PIPELINE_PER_PART_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isMaintaining() <em>Maintaining</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMaintaining()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean MAINTAINING_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isMaintaining() <em>Maintaining</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMaintaining()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean maintaining = MAINTAINING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -525,6 +546,31 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean isMaintaining()
+	{
+		return maintaining;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMaintaining(boolean newMaintaining)
+	{
+		boolean oldMaintaining = maintaining;
+		maintaining = newMaintaining;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.GENERIC_RENDERER__MAINTAINING, oldMaintaining, maintaining));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -590,6 +636,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return basicGetFlushTransferBufferTask();
 			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
 				return isOnePipelinePerPart();
+			case RenderingPackage.GENERIC_RENDERER__MAINTAINING:
+				return isMaintaining();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -634,6 +682,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
 				setOnePipelinePerPart((Boolean)newValue);
 				return;
+			case RenderingPackage.GENERIC_RENDERER__MAINTAINING:
+				setMaintaining((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -675,6 +726,9 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
 				setOnePipelinePerPart(ONE_PIPELINE_PER_PART_EDEFAULT);
 				return;
+			case RenderingPackage.GENERIC_RENDERER__MAINTAINING:
+				setMaintaining(MAINTAINING_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -707,6 +761,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 				return flushTransferBufferTask != null;
 			case RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART:
 				return onePipelinePerPart != ONE_PIPELINE_PER_PART_EDEFAULT;
+			case RenderingPackage.GENERIC_RENDERER__MAINTAINING:
+				return maintaining != MAINTAINING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -762,6 +818,8 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (onePipelinePerPart: ");
 		result.append(onePipelinePerPart);
+		result.append(", maintaining: ");
+		result.append(maintaining);
 		result.append(')');
 		return result.toString();
 	}

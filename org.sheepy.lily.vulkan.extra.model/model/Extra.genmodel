@@ -110,6 +110,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/specialization"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//GenericRenderer/flushTransferBufferTask"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//GenericRenderer/onePipelinePerPart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//GenericRenderer/maintaining"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Rendering.ecore#//RenderDataProvider">
       <genTypeParameters ecoreTypeParameter="Rendering.ecore#//RenderDataProvider/T"/>

@@ -39,7 +39,10 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 	@Load
 	public void load()
 	{
-		buildPipelines();
+		if (maintainer.isMaintaining())
+		{
+			buildPipelines();
+		}
 	}
 
 	private void buildPipelines()

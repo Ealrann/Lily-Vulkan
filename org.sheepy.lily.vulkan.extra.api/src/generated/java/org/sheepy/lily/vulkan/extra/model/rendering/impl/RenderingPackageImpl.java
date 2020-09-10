@@ -646,6 +646,17 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGenericRenderer_Maintaining()
+	{
+		return (EAttribute)genericRendererEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getRenderDataProvider()
 	{
 		return renderDataProviderEClass;
@@ -1057,6 +1068,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEReference(genericRendererEClass, GENERIC_RENDERER__SPECIALIZATION);
 		createEReference(genericRendererEClass, GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK);
 		createEAttribute(genericRendererEClass, GENERIC_RENDERER__ONE_PIPELINE_PER_PART);
+		createEAttribute(genericRendererEClass, GENERIC_RENDERER__MAINTAINING);
 
 		renderDataProviderEClass = createEClass(RENDER_DATA_PROVIDER);
 		createEReference(renderDataProviderEClass, RENDER_DATA_PROVIDER__DATA_SOURCE);
@@ -1229,6 +1241,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEReference(getGenericRenderer_Specialization(), this.getISpecialization(), null, "specialization", null, 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericRenderer_FlushTransferBufferTask(), theProcessPackage.getFlushTransferBufferTask(), null, "flushTransferBufferTask", null, 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGenericRenderer_OnePipelinePerPart(), ecorePackage.getEBoolean(), "onePipelinePerPart", "false", 1, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGenericRenderer_Maintaining(), ecorePackage.getEBoolean(), "maintaining", "true", 0, 1, GenericRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderDataProviderEClass, RenderDataProvider.class, "RenderDataProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(this.getRenderableDataSource());

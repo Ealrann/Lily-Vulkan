@@ -684,13 +684,22 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__ONE_PIPELINE_PER_PART = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Maintaining</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__MAINTAINING = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Generic Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 9;
+	int GENERIC_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Generic Renderer</em>' class.
@@ -1623,6 +1632,17 @@ public interface RenderingPackage extends EPackage
 	EAttribute getGenericRenderer_OnePipelinePerPart();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#isMaintaining <em>Maintaining</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maintaining</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer#isMaintaining()
+	 * @see #getGenericRenderer()
+	 * @generated
+	 */
+	EAttribute getGenericRenderer_Maintaining();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2213,6 +2233,14 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute GENERIC_RENDERER__ONE_PIPELINE_PER_PART = eINSTANCE.getGenericRenderer_OnePipelinePerPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Maintaining</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_RENDERER__MAINTAINING = eINSTANCE.getGenericRenderer_Maintaining();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}' class.

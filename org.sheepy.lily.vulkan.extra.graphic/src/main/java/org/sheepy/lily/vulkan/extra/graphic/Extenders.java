@@ -9,6 +9,7 @@ import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.DataDescriptorsPr
 import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.DescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteCountSpecializationAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteMonoSamplerProviderAdapter;
+import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteRendererDeactivator;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteStructureAdapter;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public final class Extenders implements IExtenderProvider
 	@Override
 	public List<Class<? extends IExtender>> classifiers()
 	{
-		return List.of(GenericRendererMaintainerAdapter.class,
+		return List.of(SpriteRendererDeactivator.class,
+					   GenericRendererMaintainerAdapter.class,
 					   DescriptorProviderAdapter.class,
 					   RenderProxyConstantBufferAdapter.class,
 					   SpriteCountSpecializationAdapter.class,

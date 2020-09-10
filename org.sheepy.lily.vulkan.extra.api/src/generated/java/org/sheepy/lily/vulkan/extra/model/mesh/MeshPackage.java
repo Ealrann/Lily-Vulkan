@@ -359,6 +359,15 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__ONE_PIPELINE_PER_PART = RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART;
 
 	/**
+	 * The feature id for the '<em><b>Maintaining</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__MAINTAINING = RenderingPackage.GENERIC_RENDERER__MAINTAINING;
+
+	/**
 	 * The number of structural features of the '<em>Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
