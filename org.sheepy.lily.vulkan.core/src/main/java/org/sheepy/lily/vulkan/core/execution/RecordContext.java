@@ -65,7 +65,7 @@ public final class RecordContext extends VulkanContext implements IRecordContext
 	private static final class RecordLocker
 	{
 		private final IAllocationState allocationState;
-		private final Deque<IAllocationState.Lock> locks = new ArrayDeque<>();
+		private IAllocationState.Lock lock = null;
 
 		public RecordLocker(IAllocationState allocationState)
 		{
@@ -83,12 +83,14 @@ public final class RecordContext extends VulkanContext implements IRecordContext
 
 		private void lock()
 		{
-			locks.add(allocationState.lockUntil());
+			assert lock == null;
+			lock = allocationState.lockUntil();
 		}
 
 		private void unlock()
 		{
-			locks.pop().unlock();
+			lock.unlock();
+			lock = null;
 		}
 	}
 }
