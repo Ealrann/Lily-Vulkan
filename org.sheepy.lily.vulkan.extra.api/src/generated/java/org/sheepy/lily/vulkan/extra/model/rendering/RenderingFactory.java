@@ -59,6 +59,15 @@ public interface RenderingFactory extends EFactory
 	<T extends Structure> DataProviderPkg<T> createDataProviderPkg();
 
 	/**
+	 * Returns a new object of class '<em>Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Provider</em>'.
+	 * @generated
+	 */
+	<T extends Structure> DataProvider<T> createDataProvider();
+
+	/**
 	 * Returns a new object of class '<em>Renderable Data Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -37,6 +37,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
@@ -153,6 +154,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EClass dataProviderPkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -701,6 +709,61 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getDataProvider()
+	{
+		return dataProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getDataProvider_DataProvider()
+	{
+		return (EReference)dataProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataProvider_Usages()
+	{
+		return (EAttribute)dataProviderEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataProvider_GrowFactor()
+	{
+		return (EAttribute)dataProviderEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataProvider_MinSize()
+	{
+		return (EAttribute)dataProviderEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getRenderableDataSource()
 	{
 		return renderableDataSourceEClass;
@@ -1076,6 +1139,12 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		dataProviderPkgEClass = createEClass(DATA_PROVIDER_PKG);
 		createEReference(dataProviderPkgEClass, DATA_PROVIDER_PKG__DATA_PROVIDERS);
 
+		dataProviderEClass = createEClass(DATA_PROVIDER);
+		createEReference(dataProviderEClass, DATA_PROVIDER__DATA_PROVIDER);
+		createEAttribute(dataProviderEClass, DATA_PROVIDER__USAGES);
+		createEAttribute(dataProviderEClass, DATA_PROVIDER__GROW_FACTOR);
+		createEAttribute(dataProviderEClass, DATA_PROVIDER__MIN_SIZE);
+
 		renderableDataSourceEClass = createEClass(RENDERABLE_DATA_SOURCE);
 		createEReference(renderableDataSourceEClass, RENDERABLE_DATA_SOURCE__STRUCTURE);
 		createEAttribute(renderableDataSourceEClass, RENDERABLE_DATA_SOURCE__PART);
@@ -1157,6 +1226,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		ETypeParameter genericRendererEClass_T = addETypeParameter(genericRendererEClass, "T");
 		ETypeParameter renderDataProviderEClass_T = addETypeParameter(renderDataProviderEClass, "T");
 		ETypeParameter dataProviderPkgEClass_T = addETypeParameter(dataProviderPkgEClass, "T");
+		ETypeParameter dataProviderEClass_T = addETypeParameter(dataProviderEClass, "T");
 		ETypeParameter renderableDataSourceEClass_T = addETypeParameter(renderableDataSourceEClass, "T");
 		ETypeParameter vertexProviderEClass_T = addETypeParameter(vertexProviderEClass, "T");
 		ETypeParameter indexProviderEClass_T = addETypeParameter(indexProviderEClass, "T");
@@ -1169,6 +1239,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		renderDataProviderEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
 		dataProviderPkgEClass_T.getEBounds().add(g1);
+		g1 = createEGenericType(this.getStructure());
+		dataProviderEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
 		renderableDataSourceEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(this.getStructure());
@@ -1250,10 +1322,19 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEReference(getRenderDataProvider_DataSource(), g1, null, "dataSource", null, 0, 1, RenderDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataProviderPkgEClass, DataProviderPkg.class, "DataProviderPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(this.getRenderDataProvider());
+		g1 = createEGenericType(this.getDataProvider());
 		g2 = createEGenericType(dataProviderPkgEClass_T);
 		g1.getETypeArguments().add(g2);
 		initEReference(getDataProviderPkg_DataProviders(), g1, null, "dataProviders", null, 1, -1, DataProviderPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dataProviderEClass, DataProvider.class, "DataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(this.getRenderDataProvider());
+		g2 = createEGenericType(dataProviderEClass_T);
+		g1.getETypeArguments().add(g2);
+		initEReference(getDataProvider_DataProvider(), g1, null, "dataProvider", null, 1, 1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataProvider_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 1, -1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataProvider_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1.5f", 1, 1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataProvider_MinSize(), ecorePackage.getELong(), "minSize", "0", 0, 1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderableDataSourceEClass, RenderableDataSource.class, "RenderableDataSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(renderableDataSourceEClass_T);

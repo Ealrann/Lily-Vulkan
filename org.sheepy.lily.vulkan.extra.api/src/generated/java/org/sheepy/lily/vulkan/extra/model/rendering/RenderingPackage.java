@@ -794,6 +794,70 @@ public interface RenderingPackage extends EPackage
 	int DATA_PROVIDER_PKG_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl <em>Data Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataProvider()
+	 * @generated
+	 */
+	int DATA_PROVIDER = 10;
+
+	/**
+	 * The feature id for the '<em><b>Data Provider</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER__DATA_PROVIDER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER__USAGES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER__GROW_FACTOR = 2;
+
+	/**
+	 * The feature id for the '<em><b>Min Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER__MIN_SIZE = 3;
+
+	/**
+	 * The number of structural features of the '<em>Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROVIDER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl <em>Renderable Data Source</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -801,7 +865,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderableDataSource()
 	 * @generated
 	 */
-	int RENDERABLE_DATA_SOURCE = 10;
+	int RENDERABLE_DATA_SOURCE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Structure</b></em>' reference.
@@ -848,7 +912,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getVertexProvider()
 	 * @generated
 	 */
-	int VERTEX_PROVIDER = 11;
+	int VERTEX_PROVIDER = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -894,7 +958,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIndexProvider()
 	 * @generated
 	 */
-	int INDEX_PROVIDER = 12;
+	int INDEX_PROVIDER = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -949,7 +1013,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceDescriptorProvider()
 	 * @generated
 	 */
-	int RESOURCE_DESCRIPTOR_PROVIDER = 13;
+	int RESOURCE_DESCRIPTOR_PROVIDER = 14;
 
 	/**
 	 * The number of structural features of the '<em>Resource Descriptor Provider</em>' class.
@@ -977,7 +1041,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDescriptorsProvider()
 	 * @generated
 	 */
-	int DESCRIPTORS_PROVIDER = 14;
+	int DESCRIPTORS_PROVIDER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Descriptors</b></em>' reference list.
@@ -1014,7 +1078,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataDescriptorsProvider()
 	 * @generated
 	 */
-	int DATA_DESCRIPTORS_PROVIDER = 15;
+	int DATA_DESCRIPTORS_PROVIDER = 16;
 
 	/**
 	 * The feature id for the '<em><b>Data Descriptors</b></em>' containment reference list.
@@ -1051,7 +1115,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataDescriptor()
 	 * @generated
 	 */
-	int DATA_DESCRIPTOR = 16;
+	int DATA_DESCRIPTOR = 17;
 
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' attribute.
@@ -1115,7 +1179,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceDescriptorProviderPkg()
 	 * @generated
 	 */
-	int RESOURCE_DESCRIPTOR_PROVIDER_PKG = 17;
+	int RESOURCE_DESCRIPTOR_PROVIDER_PKG = 18;
 
 	/**
 	 * The feature id for the '<em><b>Resource Descriptor Providers</b></em>' containment reference list.
@@ -1152,7 +1216,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderProxyConstantBuffer()
 	 * @generated
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER = 18;
+	int RENDER_PROXY_CONSTANT_BUFFER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1217,7 +1281,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getISpecialization()
 	 * @generated
 	 */
-	int ISPECIALIZATION = 19;
+	int ISPECIALIZATION = 20;
 
 	/**
 	 * The number of structural features of the '<em>ISpecialization</em>' class.
@@ -1246,7 +1310,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityPkg()
 	 * @generated
 	 */
-	int ENTITY_PKG = 20;
+	int ENTITY_PKG = 21;
 
 	/**
 	 * The feature id for the '<em><b>Entities</b></em>' containment reference list.
@@ -1284,7 +1348,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPhysicalEntityVariable()
 	 * @generated
 	 */
-	int PHYSICAL_ENTITY_VARIABLE = 21;
+	int PHYSICAL_ENTITY_VARIABLE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1339,7 +1403,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
 	 * @generated
 	 */
-	int EPHYSICAL_ENTITY_FEATURE = 22;
+	int EPHYSICAL_ENTITY_FEATURE = 23;
 
 
 	/**
@@ -1683,6 +1747,60 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EReference getDataProviderPkg_DataProviders();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider <em>Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProvider
+	 * @generated
+	 */
+	EClass getDataProvider();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataProvider <em>Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Data Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataProvider()
+	 * @see #getDataProvider()
+	 * @generated
+	 */
+	EReference getDataProvider_DataProvider();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getUsages <em>Usages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Usages</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getUsages()
+	 * @see #getDataProvider()
+	 * @generated
+	 */
+	EAttribute getDataProvider_Usages();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getGrowFactor <em>Grow Factor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Grow Factor</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getGrowFactor()
+	 * @see #getDataProvider()
+	 * @generated
+	 */
+	EAttribute getDataProvider_GrowFactor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getMinSize <em>Min Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Size</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getMinSize()
+	 * @see #getDataProvider()
+	 * @generated
+	 */
+	EAttribute getDataProvider_MinSize();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource <em>Renderable Data Source</em>}'.
@@ -2277,6 +2395,48 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference DATA_PROVIDER_PKG__DATA_PROVIDERS = eINSTANCE.getDataProviderPkg_DataProviders();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl <em>Data Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataProvider()
+		 * @generated
+		 */
+		EClass DATA_PROVIDER = eINSTANCE.getDataProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Provider</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATA_PROVIDER__DATA_PROVIDER = eINSTANCE.getDataProvider_DataProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Usages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_PROVIDER__USAGES = eINSTANCE.getDataProvider_Usages();
+
+		/**
+		 * The meta object literal for the '<em><b>Grow Factor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_PROVIDER__GROW_FACTOR = eINSTANCE.getDataProvider_GrowFactor();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_PROVIDER__MIN_SIZE = eINSTANCE.getDataProvider_MinSize();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl <em>Renderable Data Source</em>}' class.

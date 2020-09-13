@@ -118,13 +118,16 @@ public final class ResourceInstaller<T extends Structure>
 			dataSource.setPart(part);
 			dataSource.setStructure(structure);
 
-			final var copy = EcoreUtil.copy(dataProvider);
-			copy.setDataSource(dataSource);
+			final var renderDataProvider = EcoreUtil.copy(dataProvider.getDataProvider());
+			renderDataProvider.setDataSource(dataSource);
 
 			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
-			bufferViewer.setDataProvider(copy);
 			final var usages = bufferViewer.getUsages();
-			usages.add(dataProvider instanceof IndexProvider
+			bufferViewer.setDataProvider(renderDataProvider);
+			bufferViewer.setGrowFactor(dataProvider.getGrowFactor());
+			bufferViewer.setSize(dataProvider.getMinSize());
+			usages.addAll(dataProvider.getUsages());
+			usages.add(renderDataProvider instanceof IndexProvider
 							   ? EBufferUsage.INDEX_BUFFER_BIT
 							   : EBufferUsage.VERTEX_BUFFER_BIT);
 			usages.add(EBufferUsage.TRANSFER_DST_BIT);

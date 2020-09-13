@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
@@ -42,7 +42,7 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<RenderDataProvider<T>> dataProviders;
+	protected EList<DataProvider<T>> dataProviders;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,11 +71,11 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 	 * @generated
 	 */
 	@Override
-	public EList<RenderDataProvider<T>> getDataProviders()
+	public EList<DataProvider<T>> getDataProviders()
 	{
 		if (dataProviders == null)
 		{
-			dataProviders = new EObjectContainmentEList<RenderDataProvider<T>>(RenderDataProvider.class, this, RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS);
+			dataProviders = new EObjectContainmentEList<DataProvider<T>>(DataProvider.class, this, RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS);
 		}
 		return dataProviders;
 	}
@@ -125,7 +125,7 @@ public class DataProviderPkgImpl<T extends Structure> extends LilyEObject implem
 		{
 			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
 				getDataProviders().clear();
-				getDataProviders().addAll((Collection<? extends RenderDataProvider<T>>)newValue);
+				getDataProviders().addAll((Collection<? extends DataProvider<T>>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

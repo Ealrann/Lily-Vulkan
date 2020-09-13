@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,20 +21,21 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataProviderPkgItemProvider 
+public class DataProviderItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +50,7 @@ public class DataProviderPkgItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataProviderPkgItemProvider(AdapterFactory adapterFactory)
+	public DataProviderItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -66,8 +68,80 @@ public class DataProviderPkgItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addUsagesPropertyDescriptor(object);
+			addGrowFactorPropertyDescriptor(object);
+			addMinSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Usages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsagesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DataProvider_usages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DataProvider_usages_feature", "_UI_DataProvider_type"),
+				 RenderingPackage.Literals.DATA_PROVIDER__USAGES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Grow Factor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGrowFactorPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DataProvider_growFactor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DataProvider_growFactor_feature", "_UI_DataProvider_type"),
+				 RenderingPackage.Literals.DATA_PROVIDER__GROW_FACTOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Min Size feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMinSizePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DataProvider_minSize_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DataProvider_minSize_feature", "_UI_DataProvider_type"),
+				 RenderingPackage.Literals.DATA_PROVIDER__MIN_SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -84,7 +158,7 @@ public class DataProviderPkgItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS);
+			childrenFeatures.add(RenderingPackage.Literals.DATA_PROVIDER__DATA_PROVIDER);
 		}
 		return childrenFeatures;
 	}
@@ -104,7 +178,7 @@ public class DataProviderPkgItemProvider
 	}
 
 	/**
-	 * This returns DataProviderPkg.gif.
+	 * This returns DataProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,7 +186,7 @@ public class DataProviderPkgItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataProviderPkg"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataProvider"));
 	}
 
 	/**
@@ -124,7 +198,8 @@ public class DataProviderPkgItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_DataProviderPkg_type");
+		DataProvider<?> dataProvider = (DataProvider<?>)object;
+		return getString("_UI_DataProvider_type") + " " + dataProvider.getGrowFactor();
 	}
 
 
@@ -140,9 +215,14 @@ public class DataProviderPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DataProviderPkg.class))
+		switch (notification.getFeatureID(DataProvider.class))
 		{
-			case RenderingPackage.DATA_PROVIDER_PKG__DATA_PROVIDERS:
+			case RenderingPackage.DATA_PROVIDER__USAGES:
+			case RenderingPackage.DATA_PROVIDER__GROW_FACTOR:
+			case RenderingPackage.DATA_PROVIDER__MIN_SIZE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case RenderingPackage.DATA_PROVIDER__DATA_PROVIDER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -163,8 +243,13 @@ public class DataProviderPkgItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS,
-				 RenderingFactory.eINSTANCE.createDataProvider()));
+				(RenderingPackage.Literals.DATA_PROVIDER__DATA_PROVIDER,
+				 RenderingFactory.eINSTANCE.createVertexProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.DATA_PROVIDER__DATA_PROVIDER,
+				 RenderingFactory.eINSTANCE.createIndexProvider()));
 	}
 
 	/**

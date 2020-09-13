@@ -85,10 +85,27 @@
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataProviders" lowerBound="1"
         upperBound="-1" containment="true">
-      <eGenericType eClassifier="#//RenderDataProvider">
+      <eGenericType eClassifier="#//DataProvider">
         <eTypeArguments eTypeParameter="#//DataProviderPkg/T"/>
       </eGenericType>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataProvider">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Structure"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
+        containment="true">
+      <eGenericType eClassifier="#//RenderDataProvider">
+        <eTypeArguments eTypeParameter="#//DataProvider/T"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" lowerBound="1"
+        upperBound="-1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="growFactor" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1.5f"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
+        defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenderableDataSource">
     <eTypeParameters name="T">

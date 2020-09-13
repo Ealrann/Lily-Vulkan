@@ -69,6 +69,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
 			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
 			case RenderingPackage.DATA_PROVIDER_PKG: return createDataProviderPkg();
+			case RenderingPackage.DATA_PROVIDER: return createDataProvider();
 			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
 			case RenderingPackage.VERTEX_PROVIDER: return createVertexProvider();
 			case RenderingPackage.INDEX_PROVIDER: return createIndexProvider();
@@ -164,6 +165,18 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<T>();
 		return dataProviderPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public <T extends Structure> DataProvider<T> createDataProvider()
+	{
+		DataProviderImpl<T> dataProvider = new DataProviderImpl<T>();
+		return dataProvider;
 	}
 
 	/**

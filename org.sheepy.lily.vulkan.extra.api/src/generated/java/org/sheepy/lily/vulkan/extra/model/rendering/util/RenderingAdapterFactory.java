@@ -137,6 +137,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createDataProviderPkgAdapter();
 			}
 			@Override
+			public <T extends Structure> Adapter caseDataProvider(DataProvider<T> object)
+			{
+				return createDataProviderAdapter();
+			}
+			@Override
 			public <T extends Structure> Adapter caseRenderableDataSource(RenderableDataSource<T> object)
 			{
 				return createRenderableDataSourceAdapter();
@@ -424,6 +429,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDataProviderPkgAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider <em>Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProvider
+	 * @generated
+	 */
+	public Adapter createDataProviderAdapter()
 	{
 		return null;
 	}
