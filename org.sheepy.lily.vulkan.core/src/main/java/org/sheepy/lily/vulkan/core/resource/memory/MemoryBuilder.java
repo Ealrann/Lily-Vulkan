@@ -11,18 +11,17 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 
 import java.util.stream.Stream;
 
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
-import static org.lwjgl.vulkan.VK10.vkAllocateMemory;
+import static org.lwjgl.vulkan.VK10.*;
 
 public final class MemoryBuilder
 {
 	private static final String ALLOC_ERROR = "Failed to allocate buffer";
 
-	public final int properties;
+	public final Memory.Info info;
 
-	public MemoryBuilder(final int properties)
+	public MemoryBuilder(final Memory.Info info)
 	{
-		this.properties = properties;
+		this.info = info;
 	}
 
 	public Memory buildMemory(final IVulkanContext context,
@@ -36,7 +35,7 @@ public final class MemoryBuilder
 		final long ptr = allocateMemory(context, vkDevice, memReq.memoryTypeBits(), alignedResources.size());
 		final var binder = new MemoryBinder(alignedResources, vkDevice, ptr);
 		final var boundResources = binder.bindResources();
-		return new Memory(ptr, boundResources);
+		return new Memory(info, ptr, boundResources);
 	}
 
 	private long allocateMemory(final IVulkanContext context,
@@ -53,11 +52,23 @@ public final class MemoryBuilder
 	private VkMemoryAllocateInfo allocateInfo(final IVulkanContext context, int memoryTypeBits, long size)
 	{
 		final var physicalDevice = context.getPhysicalDevice();
-		final var findMemoryType = physicalDevice.findMemoryType(memoryTypeBits, properties);
+		final var findMemoryType = physicalDevice.findMemoryType(memoryTypeBits, computePropertyFlag());
 		final var allocInfo = VkMemoryAllocateInfo.callocStack(context.stack());
 		allocInfo.sType(VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO);
 		allocInfo.allocationSize(size);
 		allocInfo.memoryTypeIndex(findMemoryType);
 		return allocInfo;
+	}
+
+	private int computePropertyFlag()
+	{
+		if (info.hostVisible() == false)
+		{
+			return VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+		}
+		else
+		{
+			return VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | (info.coherent() ? VK_MEMORY_PROPERTY_HOST_COHERENT_BIT : 0);
+		}
 	}
 }

@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.backend;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
-import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpace;
 
 import java.nio.ByteBuffer;
@@ -15,7 +15,7 @@ public final class MemoryTicket implements IMemoryTicket
 {
 	public final MemorySpace memorySpace;
 
-	private final CPUBufferBackend stagingBuffer;
+	private final HostVisibleBufferBackend stagingBuffer;
 	private final long requestedSize;
 
 	private EReservationStatus reservationStatus;
@@ -38,7 +38,7 @@ public final class MemoryTicket implements IMemoryTicket
 	public MemoryTicket(final EReservationStatus reservationStatus,
 						final MemorySpace memorySpace,
 						final long requestedSize,
-						final CPUBufferBackend stagingBuffer)
+						final HostVisibleBufferBackend stagingBuffer)
 	{
 		this.reservationStatus = reservationStatus;
 		this.memorySpace = memorySpace;

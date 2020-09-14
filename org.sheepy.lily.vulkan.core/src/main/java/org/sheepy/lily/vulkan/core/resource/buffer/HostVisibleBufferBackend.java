@@ -7,8 +7,8 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.BufferPointer;
-import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
+import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 
 import java.nio.ByteBuffer;
 import java.util.function.Consumer;
@@ -17,21 +17,21 @@ import java.util.stream.Stream;
 import static org.lwjgl.system.MemoryUtil.memAddress;
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class CPUBufferBackend implements IBufferBackend
+public final class HostVisibleBufferBackend implements IBufferBackend
 {
 	private final long address;
 	private final long size;
-	private final boolean coherent;
 	private final Memory memory;
+	private final boolean freeMemory;
 
 	private long memoryMap = 0;
 
-	private CPUBufferBackend(long address, final Memory memory, long size, boolean coherent)
+	public HostVisibleBufferBackend(long address, long size, final Memory memory, final boolean freeMemory)
 	{
 		this.address = address;
 		this.size = size;
-		this.coherent = coherent;
 		this.memory = memory;
+		this.freeMemory = freeMemory;
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public final class CPUBufferBackend implements IBufferBackend
 
 		// System.out.println("free " + Long.toHexString(address));
 		vkDestroyBuffer(vkDevice, address, null);
-		if (memory != null) memory.free(context);
+		if (freeMemory) memory.free(context);
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	 */
 	public void flush(MemoryStack stack, VkDevice vkDevice)
 	{
-		if (coherent == false)
+		if (memory.info().coherent() == false)
 		{
 			BufferUtils.flush(stack, vkDevice, memory.ptr());
 		}
@@ -117,7 +117,7 @@ public final class CPUBufferBackend implements IBufferBackend
 	 */
 	public void invalidate(MemoryStack stack, VkDevice vkDevice)
 	{
-		if (coherent == false)
+		if (memory.info().coherent() == false)
 		{
 			BufferUtils.invalidate(stack, vkDevice, memory.ptr());
 		}
@@ -147,33 +147,22 @@ public final class CPUBufferBackend implements IBufferBackend
 	public static final class Builder
 	{
 		private final BufferInfo info;
-		private final int properties;
 
 		public Builder(BufferInfo info)
 		{
 			this.info = info;
-			this.properties = createPropertyMask(info.coherent);
 		}
 
-		public CPUBufferBackend build(IVulkanContext context)
+		public HostVisibleBufferBackend build(IVulkanContext context)
 		{
 			info.computeAlignment(context.getPhysicalDevice());
 			final long ptr = VkBufferAllocator.allocate(context, info);
-			final var memoryBuilder = new MemoryBuilder(properties);
+			final var info = new Memory.Info(true, this.info.coherent);
+			final var memoryBuilder = new MemoryBuilder(info);
 			final var ptrs = Stream.of(new BufferPointer(ptr));
 			final var memory = memoryBuilder.buildMemory(context, ptrs);
-			final var backend = new CPUBufferBackend(ptr, memory, info.getAlignedSize(), info.coherent);
+			final var backend = new HostVisibleBufferBackend(ptr, this.info.getAlignedSize(), memory, true);
 			return backend;
-		}
-
-		private static int createPropertyMask(boolean coherent)
-		{
-			int properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
-			if (coherent)
-			{
-				properties |= VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
-			}
-			return properties;
 		}
 	}
 }

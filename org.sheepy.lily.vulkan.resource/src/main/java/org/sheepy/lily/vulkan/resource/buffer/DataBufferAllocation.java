@@ -63,12 +63,6 @@ public class DataBufferAllocation implements IBufferAllocation
 	}
 
 	@Override
-	public long getMemoryPtr()
-	{
-		return 0;
-	}
-
-	@Override
 	public long getBindOffset()
 	{
 		return alignmentData.offset();
@@ -78,23 +72,5 @@ public class DataBufferAllocation implements IBufferAllocation
 	public long getBindSize()
 	{
 		return alignmentData.size();
-	}
-
-	@Override
-	public void flush()
-	{
-		throw new AssertionError("Unsupported Operation");
-	}
-
-	@Override
-	public void invalidate()
-	{
-		throw new AssertionError("Unsupported Operation");
-	}
-
-	@Override
-	public void pushData(ByteBuffer data)
-	{
-		throw new AssertionError("Unsupported Operation");
 	}
 }

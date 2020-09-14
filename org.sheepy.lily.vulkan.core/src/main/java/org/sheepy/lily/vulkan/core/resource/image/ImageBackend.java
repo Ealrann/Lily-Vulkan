@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
@@ -68,12 +68,12 @@ public final class ImageBackend
 
 	private void fillWithInternal(final IRecordContext context,
 								  final long size,
-								  final Consumer<CPUBufferBackend> bufferFiller)
+								  final Consumer<HostVisibleBufferBackend> bufferFiller)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 
 		final var bufferInfo = new BufferInfo(size, usage, true);
-		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
+		final var bufferBuilder = new HostVisibleBufferBackend.Builder(bufferInfo);
 		final var stagingBuffer = bufferBuilder.build(context);
 		bufferFiller.accept(stagingBuffer);
 

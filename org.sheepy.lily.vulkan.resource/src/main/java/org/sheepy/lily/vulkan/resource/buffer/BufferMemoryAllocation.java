@@ -6,7 +6,9 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.resource.buffer.GPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.DeviceLocalBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.IBufferBackend;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
@@ -29,8 +31,8 @@ import java.util.stream.Stream;
 public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 {
 	private final BufferMemory bufferMemory;
-	private final GPUBufferBackend bufferBackend;
-	private final List<AlignmentData> alignmentData;
+	private final IBufferBackend bufferBackend;
+	private final List<AlignmentData> alignmentDataList;
 	private final MemoryChunkAllocation chunkAllocation;
 
 	public BufferMemoryAllocation(BufferMemory bufferMemory,
@@ -39,11 +41,17 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 								  @InjectDependency(index = 0) MemoryChunkAllocation chunkAllocation)
 	{
 		this.bufferMemory = bufferMemory;
-		this.alignmentData = bufferMemory.adapt(BufferMemoryAdapter.class).getChunkInfo().data();
+		this.alignmentDataList = bufferMemory.adapt(BufferMemoryAdapter.class).getChunkInfo().data();
 		this.chunkAllocation = chunkAllocation;
 
 		final var boundResource = chunkAllocation.getBoundResource(bufferMemory);
-		bufferBackend = new GPUBufferBackend(boundResource.ptr(), boundResource.size());
+		final var memory = chunkAllocation.getMemory();
+		bufferBackend = memory.info().hostVisible()
+				? new HostVisibleBufferBackend(boundResource.ptr(),
+											   boundResource.size(),
+											   memory,
+											   false)
+				: new DeviceLocalBufferBackend(boundResource.ptr(), boundResource.size());
 
 		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
 				   .adaptNotifier(IBufferAdapter.class)
@@ -66,7 +74,7 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 
 	public AlignmentData getAlignmentData(IBuffer buffer)
 	{
-		return alignmentData.get(bufferMemory.getBuffers().indexOf(buffer));
+		return alignmentDataList.get(bufferMemory.getBuffers().indexOf(buffer));
 	}
 
 	@Override
@@ -84,7 +92,7 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 	private BufferData newBufferData(int index)
 	{
 		final var bufferAllocation = IBufferAllocation.adapt(bufferMemory.getBuffers().get(index));
-		return new BufferData(bufferAllocation, alignmentData.get(index));
+		return new BufferData(bufferAllocation, alignmentDataList.get(index));
 	}
 
 	private static record BufferData(IBufferAllocation bufferAllocation, AlignmentData alignmentData)

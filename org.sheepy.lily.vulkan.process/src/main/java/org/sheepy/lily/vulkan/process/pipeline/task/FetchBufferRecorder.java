@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
-import org.sheepy.lily.game.api.resource.buffer.IBufferAllocation;
+import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
 import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
-import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -65,7 +65,7 @@ public final class FetchBufferRecorder implements IRecordableExtender
 		private final ExecutionContext executionContext;
 		private final IBufferAllocation srcBuffer;
 		private final IBufferDataProviderAdapter dataProviderAdapter;
-		private final CPUBufferBackend stagingBuffer;
+		private final HostVisibleBufferBackend stagingBuffer;
 		private final long size;
 
 		public Fetcher(final ExecutionContext executionContext,
@@ -114,11 +114,11 @@ public final class FetchBufferRecorder implements IRecordableExtender
 			}
 		}
 
-		private CPUBufferBackend createStagingBuffer(long byteSize)
+		private HostVisibleBufferBackend createStagingBuffer(long byteSize)
 		{
 			final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 			final var bufferInfo = new BufferInfo(byteSize, usage, false);
-			final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
+			final var bufferBuilder = new HostVisibleBufferBackend.Builder(bufferInfo);
 			executionContext.stackPush();
 			final var res = bufferBuilder.build(executionContext);
 			executionContext.stackPop();

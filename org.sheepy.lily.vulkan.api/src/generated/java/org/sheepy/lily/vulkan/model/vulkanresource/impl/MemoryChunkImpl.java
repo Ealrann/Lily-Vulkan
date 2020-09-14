@@ -153,7 +153,7 @@ public class MemoryChunkImpl extends LilyEObject implements MemoryChunk
 	{
 		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
+			InternalEObject oldTransferBuffer = transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
 			if (transferBuffer != oldTransferBuffer)
 			{

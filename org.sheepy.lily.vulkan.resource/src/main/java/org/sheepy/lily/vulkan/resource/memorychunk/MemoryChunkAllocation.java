@@ -22,15 +22,11 @@ import org.sheepy.lily.vulkan.resource.util.DeviceResourceFiller;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.lwjgl.vulkan.VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
-
 @ModelExtender(scope = MemoryChunk.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationChild(features = VulkanResourcePackage.MEMORY_CHUNK__PARTS)
 public final class MemoryChunkAllocation implements IExtender
 {
-	private static final MemoryBuilder MEMORY_BUILDER = new MemoryBuilder(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-
 	private final MemoryChunk memoryChunk;
 	private final IAllocationState allocationState;
 	private final Memory memory;
@@ -53,14 +49,16 @@ public final class MemoryChunkAllocation implements IExtender
 												.map(p -> p.adapt(IMemoryChunkPartAdapter.class))
 												.map(adapter -> adapter.newResource(context));
 
-		this.memory = MEMORY_BUILDER.buildMemory(context, resourcePointers);
+		final var memoryInfo = new Memory.Info(false, true);
+		final var memoryBuilder = new MemoryBuilder(memoryInfo);
+
+		this.memory = memoryBuilder.buildMemory(context, resourcePointers);
 		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.register(memory.ptr(), memoryChunk.getName());
 
 		bufferPusher = new DeviceResourceFiller(context);
 		useTransfer = memoryChunk.getTransferBuffer() != null;
 
-		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
-				   .listenNoParam(this::markObsolete);
+		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS).listenNoParam(this::markObsolete);
 	}
 
 	@InjectChildren(index = 0, type = IMemoryChunkPartAllocation.class)
@@ -155,8 +153,18 @@ public final class MemoryChunkAllocation implements IExtender
 
 	public Memory.BoundResource getBoundResource(final IMemoryChunkPart memoryPart)
 	{
-		final int index = memoryChunk.getParts().indexOf(memoryPart);
+		final int index = partIndex(memoryPart);
 		assert index != -1;
 		return memory.resources().get(index);
+	}
+
+	public Memory getMemory()
+	{
+		return memory;
+	}
+
+	public int partIndex(final IMemoryChunkPart memoryPart)
+	{
+		return memoryChunk.getParts().indexOf(memoryPart);
 	}
 }

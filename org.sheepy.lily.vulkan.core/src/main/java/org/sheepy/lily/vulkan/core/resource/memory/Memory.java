@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.vkFreeMemory;
 
-public final record Memory(long ptr, List<BoundResource> resources)
+public final record Memory(Info info, long ptr, List<BoundResource> resources)
 {
 	public void free(IVulkanContext context)
 	{
@@ -17,6 +17,10 @@ public final record Memory(long ptr, List<BoundResource> resources)
 	}
 
 	public record BoundResource(long ptr, long size)
+	{
+	}
+
+	public record Info(boolean hostVisible, boolean coherent)
 	{
 	}
 }

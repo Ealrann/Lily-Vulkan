@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.FlushRecord;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpace;
@@ -21,13 +21,13 @@ public final class TransferBufferBackend
 {
 	private static final String MEMORY_RESERVATION_REJECTED = "MemoryTicket reservation was rejected";
 
-	public final CPUBufferBackend bufferBackend;
+	public final HostVisibleBufferBackend bufferBackend;
 
 	private final List<DataFlowCommand> commands = new ArrayList<>();
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
 
-	private TransferBufferBackend(CPUBufferBackend bufferBackend, final long nonCoherentAtomSize)
+	private TransferBufferBackend(HostVisibleBufferBackend bufferBackend, final long nonCoherentAtomSize)
 	{
 		this.bufferBackend = bufferBackend;
 		this.capacity = bufferBackend.getSize();
@@ -113,6 +113,7 @@ public final class TransferBufferBackend
 		return new MemoryTicket(IMemoryTicket.EReservationStatus.SUCCESS, space, requestedSize, bufferBackend);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	private static boolean checkMemoryReservation(final IDataFlowCommand command)
 	{
 		if (command.getMemoryTicket().getReservationStatus() == IMemoryTicket.EReservationStatus.FLUSHED)
@@ -145,7 +146,7 @@ public final class TransferBufferBackend
 			final int fetchUsage = usedToFetch ? EBufferUsage.TRANSFER_DST_BIT_VALUE : 0;
 			final int usage = pushUsage | fetchUsage;
 			final var info = new BufferInfo(capacity, usage, false);
-			final var bufferBuilder = new CPUBufferBackend.Builder(info);
+			final var bufferBuilder = new HostVisibleBufferBackend.Builder(info);
 			final var bufferBackend = bufferBuilder.build(context);
 			final var deviceLimits = context.getPhysicalDevice().getDeviceProperties().limits();
 			final var nonCoherentAtomSize = deviceLimits.nonCoherentAtomSize();

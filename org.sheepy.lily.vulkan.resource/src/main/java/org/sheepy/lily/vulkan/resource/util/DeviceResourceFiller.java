@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
-import org.sheepy.lily.vulkan.core.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
 import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.resource.image.util.MipmapGenerator;
 
@@ -62,7 +62,7 @@ public final class DeviceResourceFiller
 	private static final class PushBuffersCommand
 	{
 		private final List<FillCommand.FillBufferCommand> fillCommands;
-		private final CPUBufferBackend stagingBuffer;
+		private final HostVisibleBufferBackend stagingBuffer;
 		private final IVulkanContext context;
 
 		public PushBuffersCommand(List<FillCommand.FillBufferCommand> fillCommands, IVulkanContext context)
@@ -73,11 +73,11 @@ public final class DeviceResourceFiller
 			this.fillCommands = fillCommands;
 		}
 
-		private static CPUBufferBackend createStagingBuffer(IVulkanContext context, long byteSize)
+		private static HostVisibleBufferBackend createStagingBuffer(IVulkanContext context, long byteSize)
 		{
 			final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 			final var bufferInfo = new BufferInfo(byteSize, usage, false);
-			final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
+			final var bufferBuilder = new HostVisibleBufferBackend.Builder(bufferInfo);
 			return bufferBuilder.build(context);
 		}
 

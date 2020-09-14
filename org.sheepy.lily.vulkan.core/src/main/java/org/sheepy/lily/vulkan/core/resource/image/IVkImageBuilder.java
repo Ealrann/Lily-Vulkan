@@ -1,13 +1,13 @@
 package org.sheepy.lily.vulkan.core.resource.image;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VK10;
 import org.lwjgl.vulkan.VkImageCreateInfo;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.ImagePointer;
+import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -62,7 +62,8 @@ public interface IVkImageBuilder
 		@Override
 		public ImageBackend build(IRecordContext context)
 		{
-			final var memoryBuilder = new MemoryBuilder(VK10.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+			final var info = new Memory.Info(false, true);
+			final var memoryBuilder = new MemoryBuilder(info);
 			final var imagePtr = new ImagePointer(allocateImage(context, name()));
 			final var vkImage = new VkImage(imagePtr.ptr(),
 											width(),

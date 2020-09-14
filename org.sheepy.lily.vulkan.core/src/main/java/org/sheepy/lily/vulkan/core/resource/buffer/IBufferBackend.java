@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 

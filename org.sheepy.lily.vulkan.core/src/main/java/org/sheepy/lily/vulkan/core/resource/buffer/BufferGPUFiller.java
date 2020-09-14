@@ -30,7 +30,7 @@ public final class BufferGPUFiller
 		recordFill(recordContext, offset, size, stagingBuffer -> stagingBuffer.pushData(recordContext, sourceBuffer));
 	}
 
-	private void recordFill(IRecordContext recordContext, long offset, long size, Consumer<CPUBufferBackend> fillBuffer)
+	private void recordFill(IRecordContext recordContext, long offset, long size, Consumer<HostVisibleBufferBackend> fillBuffer)
 	{
 		final var stagingBuffer = createStagingBuffer(recordContext, size);
 		fillBuffer.accept(stagingBuffer);
@@ -39,21 +39,21 @@ public final class BufferGPUFiller
 		fillContext.fillAndListen(offset, size);
 	}
 
-	private static CPUBufferBackend createStagingBuffer(IRecordContext recordContext, long byteSize)
+	private static HostVisibleBufferBackend createStagingBuffer(IRecordContext recordContext, long byteSize)
 	{
 		final int usage = STAGING_USAGE;
 		final var bufferInfo = new BufferInfo(byteSize, usage, true);
-		final var bufferBuilder = new CPUBufferBackend.Builder(bufferInfo);
+		final var bufferBuilder = new HostVisibleBufferBackend.Builder(bufferInfo);
 		return bufferBuilder.build(recordContext);
 	}
 
 	private static final class FillContext
 	{
-		private final CPUBufferBackend stagingBuffer;
+		private final HostVisibleBufferBackend stagingBuffer;
 		private final long targetBufferPtr;
 		private final IRecordContext context;
 
-		public FillContext(CPUBufferBackend stagingBuffer, long targetBufferPtr, IRecordContext context)
+		public FillContext(HostVisibleBufferBackend stagingBuffer, long targetBufferPtr, IRecordContext context)
 		{
 			this.stagingBuffer = stagingBuffer;
 			this.targetBufferPtr = targetBufferPtr;

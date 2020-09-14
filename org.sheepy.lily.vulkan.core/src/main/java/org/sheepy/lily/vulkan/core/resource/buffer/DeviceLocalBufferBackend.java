@@ -9,12 +9,12 @@ import java.util.function.Consumer;
 
 import static org.lwjgl.vulkan.VK10.vkDestroyBuffer;
 
-public final class GPUBufferBackend implements IBufferBackend
+public final class DeviceLocalBufferBackend implements IBufferBackend
 {
 	private final long size;
 	private final long address;
 
-	public GPUBufferBackend(long address, long size)
+	public DeviceLocalBufferBackend(final long address, final long size)
 	{
 		this.address = address;
 		this.size = size;
