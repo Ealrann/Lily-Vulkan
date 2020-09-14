@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
+import org.sheepy.lily.vulkan.demo.test.composite.grow.model.TestResourceFactory;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 
 import java.nio.ByteBuffer;
@@ -14,12 +15,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@ModelExtender(scope = BufferDataProvider.class, name = TestDataProviderAdapter.NAME)
+@ModelExtender(scope = BufferDataProvider.class, name = TestResourceFactory.DATA_PROVIDER_NAME)
 @Adapter
 public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderAdapter.Features> implements
 																								 IBufferDataProviderAdapter
 {
-	public static final String NAME = "TestDataProvider";
 	public static final int MAX_SIZE = 1000000;
 	public static final int INITIAL_SIZE = 100000;
 	public static final int GROW_SIZE = 50000;
@@ -29,7 +29,7 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 	public int currentSize = INITIAL_SIZE;
 	private final List<PushData> previousPushs = new ArrayList<>();
 	private int pass = 0;
-//	private int fetchPass = 0;
+	//	private int fetchPass = 0;
 //	private int pushPass = 0;
 	private boolean dirty = true;
 
@@ -79,7 +79,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 		previousPushs.add(new PushData(previous, pass));
 	}
 
-	@Override
 	public void fetch(ByteBuffer buffer)
 	{
 		if (previousPushs.size() > 0)
@@ -90,7 +89,6 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 											   .filter(p -> p.values.length == size)
 											   .filter(p -> p.match(buffer.asIntBuffer()))
 											   .collect(Collectors.toUnmodifiableList());
-
 
 //			System.out.println("fetchPass = " + fetchPass);
 

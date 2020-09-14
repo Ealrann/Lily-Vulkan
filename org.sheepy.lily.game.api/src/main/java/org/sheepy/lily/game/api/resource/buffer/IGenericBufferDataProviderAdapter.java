@@ -22,7 +22,6 @@ public interface IGenericBufferDataProviderAdapter<T extends IGenericBufferDataP
 	}
 
 	void fill(ByteBuffer buffer);
-	void fetch(ByteBuffer buffer);
 
 	long size();
 }

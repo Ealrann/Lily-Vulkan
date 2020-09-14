@@ -10,8 +10,8 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
+import org.sheepy.lily.game.api.resource.buffer.IBufferFetchAdapter;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAllocation;
-import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
@@ -30,17 +30,14 @@ import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 @AllocationDependency(features = ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE, type = IBufferReferenceAllocation.class)
 public final class FetchBufferRecorder implements IRecordableExtender
 {
-	private final FetchBuffer task;
 	private final ExecutionContext executionContext;
 	private final IAllocationState allocationState;
 	private final IBufferReferenceAllocation bufferReferenceAllocation;
 
-	private FetchBufferRecorder(FetchBuffer task,
-								ExecutionContext executionContext,
+	private FetchBufferRecorder(ExecutionContext executionContext,
 								IAllocationState allocationState,
 								@InjectDependency(index = 0) IBufferReferenceAllocation bufferReferenceAllocation)
 	{
-		this.task = task;
 		this.executionContext = executionContext;
 		this.allocationState = allocationState;
 		this.bufferReferenceAllocation = bufferReferenceAllocation;
@@ -49,11 +46,12 @@ public final class FetchBufferRecorder implements IRecordableExtender
 	@Override
 	public void record(final RecordContext context)
 	{
-		final var srcBuffer = bufferReferenceAllocation.getBufferAllocations(context.index).get(0);
-		final var dataProviderAdapter = task.getDataProvider().adapt(IBufferDataProviderAdapter.class);
-		final var fetcher = new Fetcher(executionContext, srcBuffer, dataProviderAdapter);
+		final var srcBufferAllocation = bufferReferenceAllocation.getBufferAllocations(context.index).get(0);
+		final var srcBuffer = bufferReferenceAllocation.getBuffers(context.index).get(0);
+		final var dataFetcher = srcBuffer.adapt(IBufferFetchAdapter.class);
+		final var fetcher = new Fetcher(executionContext, srcBufferAllocation, dataFetcher);
 
-		srcBuffer.attach(context);
+		srcBufferAllocation.attach(context);
 
 		fetcher.record(context.commandBuffer);
 		context.listenExecution(fetcher::fetch);
@@ -64,17 +62,17 @@ public final class FetchBufferRecorder implements IRecordableExtender
 	{
 		private final ExecutionContext executionContext;
 		private final IBufferAllocation srcBuffer;
-		private final IBufferDataProviderAdapter dataProviderAdapter;
+		private final IBufferFetchAdapter dataFetcher;
 		private final HostVisibleBufferBackend stagingBuffer;
 		private final long size;
 
 		public Fetcher(final ExecutionContext executionContext,
 					   final IBufferAllocation srcBuffer,
-					   final IBufferDataProviderAdapter dataProviderAdapter)
+					   final IBufferFetchAdapter dataFetcher)
 		{
 			this.executionContext = executionContext;
 			this.srcBuffer = srcBuffer;
-			this.dataProviderAdapter = dataProviderAdapter;
+			this.dataFetcher = dataFetcher;
 			size = srcBuffer.getBindSize();
 
 			stagingBuffer = createStagingBuffer(srcBuffer.getBindSize());
@@ -104,7 +102,7 @@ public final class FetchBufferRecorder implements IRecordableExtender
 					stagingBuffer.invalidate(stack, executionContext.getVkDevice());
 				}
 				final var fetchBuffer = MemoryUtil.memByteBuffer(memoryPtr, (int) size);
-				dataProviderAdapter.fetch(fetchBuffer);
+				dataFetcher.fetch(fetchBuffer);
 				stagingBuffer.unmapMemory(executionContext.getVkDevice());
 				stagingBuffer.free(executionContext);
 			}

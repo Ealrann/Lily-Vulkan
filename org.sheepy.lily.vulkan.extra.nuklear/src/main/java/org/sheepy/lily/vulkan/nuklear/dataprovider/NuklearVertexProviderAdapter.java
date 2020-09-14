@@ -38,11 +38,6 @@ public final class NuklearVertexProviderAdapter extends Notifier<IBufferDataProv
 	}
 
 	@Override
-	public void fetch(ByteBuffer buffer)
-	{
-	}
-
-	@Override
 	public long size()
 	{
 		return VERTEX_BUFFER_SIZE;

@@ -42,11 +42,6 @@ public final class NuklearIndexProviderAdapter extends Notifier<IBufferDataProvi
 	}
 
 	@Override
-	public void fetch(ByteBuffer buffer)
-	{
-	}
-
-	@Override
 	public long size()
 	{
 		return INDEX_BUFFER_SIZE;
