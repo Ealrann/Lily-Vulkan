@@ -17,8 +17,8 @@ import org.sheepy.lily.vulkan.core.window.Window;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearIndexProviderAdapter;
-import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearVertexProviderAdapter;
+import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearIndexSupplier;
+import org.sheepy.lily.vulkan.nuklear.dataprovider.NuklearVertexSupplier;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.logic.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.logic.LayoutManager;
@@ -84,11 +84,10 @@ public final class NuklearContextAllocation implements IExtender
 	{
 		if (layoutManager.update())
 		{
-			final var indexProvider = nuklearContext.getIndexDataProvider();
-			final var vertexProvider = nuklearContext.getVertexDataProvider();
-			final var vertexProviderAdapter = vertexProvider.adapt(NuklearVertexProviderAdapter.class);
-			final var indexProviderAdapter = indexProvider.adapt(NuklearIndexProviderAdapter.class);
-
+			final var vertexBuffer = nuklearContext.getVertexBuffer();
+			final var indexBuffer = nuklearContext.getIndexBuffer();
+			final var vertexProviderAdapter = vertexBuffer.adapt(NuklearVertexSupplier.class);
+			final var indexProviderAdapter = indexBuffer.adapt(NuklearIndexSupplier.class);
 			final long vbufPtr = state.vbuf().address();
 			final long ebufPtr = state.ebuf().address();
 

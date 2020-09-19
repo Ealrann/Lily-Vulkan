@@ -318,7 +318,6 @@
     <genClasses image="false" ecoreClass="process.ecore#//ExecutionRecorder"/>
     <genClasses ecoreClass="process.ecore#//FetchBuffer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//FetchBuffer/bufferReference"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//FetchBuffer/dataProvider"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
@@ -394,7 +393,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//BufferReference/stride"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//BufferReference/indexType"/>
     </genClasses>
-    <genClasses ecoreClass="vulkanresource.ecore#//BufferDataProvider"/>
+    <genClasses image="false" ecoreClass="vulkanresource.ecore#//IBufferDataSource"/>
     <genClasses ecoreClass="vulkanresource.ecore#//ImageDataProvider"/>
     <genClasses ecoreClass="vulkanresource.ecore#//FileImageDataProvider">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkanresource.ecore#//FileImageDataProvider/fileImageReference"/>
@@ -448,10 +447,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//DataBuffer/data"/>
     </genClasses>
     <genClasses ecoreClass="vulkanresource.ecore#//BufferViewer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vulkanresource.ecore#//BufferViewer/dataProvider"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//BufferViewer/growFactor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//BufferViewer/growThreshold"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//BufferViewer/size"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkanresource.ecore#//BufferViewer/dataSource"/>
     </genClasses>
     <genClasses image="false" ecoreClass="vulkanresource.ecore#//IVulkanImage"/>
     <genClasses ecoreClass="vulkanresource.ecore#//CompositeImage">

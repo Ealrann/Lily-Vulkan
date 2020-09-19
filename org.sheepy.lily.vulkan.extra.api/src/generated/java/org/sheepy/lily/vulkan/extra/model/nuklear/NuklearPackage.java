@@ -189,22 +189,22 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Vertex Data Provider</b></em>' reference.
+	 * The feature id for the '<em><b>Vertex Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 3;
+	int NUKLEAR_CONTEXT__VERTEX_BUFFER = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Index Data Provider</b></em>' reference.
+	 * The feature id for the '<em><b>Index Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 4;
+	int NUKLEAR_CONTEXT__INDEX_BUFFER = VulkanPackage.IVULKAN_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Vertex Buffer Memory</b></em>' reference.
@@ -681,80 +681,6 @@ public interface NuklearPackage extends EPackage
 	int PANEL_VIEWER_OPERATION_COUNT = UiPackage.PANEL_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearVertexProviderImpl <em>Vertex Provider</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearVertexProviderImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearVertexProvider()
-	 * @generated
-	 */
-	int NUKLEAR_VERTEX_PROVIDER = 6;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_VERTEX_PROVIDER__NAME = VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Vertex Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_VERTEX_PROVIDER_FEATURE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Vertex Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_VERTEX_PROVIDER_OPERATION_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl <em>Index Provider</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearIndexProvider()
-	 * @generated
-	 */
-	int NUKLEAR_INDEX_PROVIDER = 7;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_INDEX_PROVIDER__NAME = VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Index Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_INDEX_PROVIDER_FEATURE_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Index Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_INDEX_PROVIDER_OPERATION_COUNT = VulkanResourcePackage.BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontImageProviderImpl <em>Font Image Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,7 +688,7 @@ public interface NuklearPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getFontImageProvider()
 	 * @generated
 	 */
-	int FONT_IMAGE_PROVIDER = 8;
+	int FONT_IMAGE_PROVIDER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -887,26 +813,26 @@ public interface NuklearPackage extends EPackage
 	EReference getNuklearContext_ImageArrayDescriptor();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexDataProvider <em>Vertex Data Provider</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBuffer <em>Vertex Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Vertex Data Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexDataProvider()
+	 * @return the meta object for the reference '<em>Vertex Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBuffer()
 	 * @see #getNuklearContext()
 	 * @generated
 	 */
-	EReference getNuklearContext_VertexDataProvider();
+	EReference getNuklearContext_VertexBuffer();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexDataProvider <em>Index Data Provider</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexBuffer <em>Index Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Index Data Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexDataProvider()
+	 * @return the meta object for the reference '<em>Index Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexBuffer()
 	 * @see #getNuklearContext()
 	 * @generated
 	 */
-	EReference getNuklearContext_IndexDataProvider();
+	EReference getNuklearContext_IndexBuffer();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBufferMemory <em>Vertex Buffer Memory</em>}'.
@@ -1114,26 +1040,6 @@ public interface NuklearPackage extends EPackage
 	EReference getPanelViewer_VariableResolver();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider <em>Vertex Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Vertex Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider
-	 * @generated
-	 */
-	EClass getNuklearVertexProvider();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider <em>Index Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Index Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider
-	 * @generated
-	 */
-	EClass getNuklearIndexProvider();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider <em>Font Image Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1246,20 +1152,20 @@ public interface NuklearPackage extends EPackage
 		EReference NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR = eINSTANCE.getNuklearContext_ImageArrayDescriptor();
 
 		/**
-		 * The meta object literal for the '<em><b>Vertex Data Provider</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Vertex Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER = eINSTANCE.getNuklearContext_VertexDataProvider();
+		EReference NUKLEAR_CONTEXT__VERTEX_BUFFER = eINSTANCE.getNuklearContext_VertexBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Index Data Provider</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Index Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER = eINSTANCE.getNuklearContext_IndexDataProvider();
+		EReference NUKLEAR_CONTEXT__INDEX_BUFFER = eINSTANCE.getNuklearContext_IndexBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Vertex Buffer Memory</b></em>' reference feature.
@@ -1420,26 +1326,6 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EReference PANEL_VIEWER__VARIABLE_RESOLVER = eINSTANCE.getPanelViewer_VariableResolver();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearVertexProviderImpl <em>Vertex Provider</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearVertexProviderImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearVertexProvider()
-		 * @generated
-		 */
-		EClass NUKLEAR_VERTEX_PROVIDER = eINSTANCE.getNuklearVertexProvider();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl <em>Index Provider</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearIndexProviderImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl#getNuklearIndexProvider()
-		 * @generated
-		 */
-		EClass NUKLEAR_INDEX_PROVIDER = eINSTANCE.getNuklearIndexProvider();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.FontImageProviderImpl <em>Font Image Provider</em>}' class.

@@ -66,6 +66,7 @@ public class RenderableDataSourceItemProvider
 
 			addStructurePropertyDescriptor(object);
 			addPartPropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,29 @@ public class RenderableDataSourceItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourcePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RenderableDataSource_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RenderableDataSource_dataSource_feature", "_UI_RenderableDataSource_type"),
+				 RenderingPackage.Literals.RENDERABLE_DATA_SOURCE__DATA_SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

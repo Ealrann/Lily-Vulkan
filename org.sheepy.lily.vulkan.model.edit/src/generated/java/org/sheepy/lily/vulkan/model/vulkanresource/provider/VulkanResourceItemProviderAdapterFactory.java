@@ -217,31 +217,6 @@ public class VulkanResourceItemProviderAdapterFactory extends VulkanResourceAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BufferDataProviderItemProvider bufferDataProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBufferDataProviderAdapter()
-	{
-		if (bufferDataProviderItemProvider == null)
-		{
-			bufferDataProviderItemProvider = new BufferDataProviderItemProvider(this);
-		}
-
-		return bufferDataProviderItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

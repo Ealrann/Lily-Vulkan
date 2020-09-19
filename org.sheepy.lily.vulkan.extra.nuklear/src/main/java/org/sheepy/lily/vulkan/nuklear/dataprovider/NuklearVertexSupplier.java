@@ -4,25 +4,23 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
+import org.sheepy.lily.game.api.resource.buffer.IBufferDataSupplier;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 
 import static org.lwjgl.nuklear.Nuklear.nnk_buffer_init_fixed;
 
-@ModelExtender(scope = NuklearVertexProvider.class)
+@ModelExtender(scope = BufferViewer.class, name = "NkVertex")
 @Adapter(lazy = false)
-public final class NuklearVertexProviderAdapter extends Notifier<IBufferDataProviderAdapter.Features> implements
-																									  IBufferDataProviderAdapter
+public final class NuklearVertexSupplier extends Notifier<IBufferDataSupplier.Features> implements IBufferDataSupplier
 {
 	public static final long VERTEX_BUFFER_SIZE = (long) Math.pow(2, 18);
 	private long vbufPtr;
 
-	private NuklearVertexProviderAdapter()
+	private NuklearVertexSupplier()
 	{
-		super(List.of(Features.Size, Features.Data));
+		super(Features.values);
 	}
 
 	public void requestUpdate(final long vbufPtr)

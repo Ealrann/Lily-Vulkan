@@ -44,7 +44,7 @@
     <eLiterals name="PUSH"/>
     <eLiterals name="FETCH" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BufferDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IBufferDataSource" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImageDataProvider" eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="FileImageDataProvider" eSuperTypes="#//ImageDataProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fileImageReference" lowerBound="1"
@@ -120,8 +120,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" unique="false" eType="#//ByteBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BufferViewer" eSuperTypes="#//IBuffer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
-        eType="#//BufferDataProvider" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="growFactor" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="growThreshold" lowerBound="1"
@@ -132,6 +130,7 @@
         <details key="property" value="None"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" eType="#//IBufferDataSource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IVulkanImage" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>

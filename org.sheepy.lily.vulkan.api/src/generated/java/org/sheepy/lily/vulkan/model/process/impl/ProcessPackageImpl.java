@@ -981,17 +981,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getFetchBuffer_DataProvider()
-	{
-		return (EReference)fetchBufferEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory)getEFactoryInstance();
@@ -1098,7 +1087,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		fetchBufferEClass = createEClass(FETCH_BUFFER);
 		createEReference(fetchBufferEClass, FETCH_BUFFER__BUFFER_REFERENCE);
-		createEReference(fetchBufferEClass, FETCH_BUFFER__DATA_PROVIDER);
 	}
 
 	/**
@@ -1243,7 +1231,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(fetchBufferEClass, FetchBuffer.class, "FetchBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFetchBuffer_BufferReference(), theVulkanResourcePackage.getBufferReference(), null, "bufferReference", null, 1, 1, FetchBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFetchBuffer_DataProvider(), theVulkanResourcePackage.getBufferDataProvider(), null, "dataProvider", null, 1, 1, FetchBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

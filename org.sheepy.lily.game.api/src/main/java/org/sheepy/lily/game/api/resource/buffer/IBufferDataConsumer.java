@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.extender.IExtender;
 
 import java.nio.ByteBuffer;
 
-public interface IBufferFetchAdapter extends IExtender
+public interface IBufferDataConsumer extends IExtender
 {
 	void fetch(ByteBuffer buffer);
 }

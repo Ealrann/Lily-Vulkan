@@ -68,15 +68,6 @@ public interface VulkanResourceFactory extends EFactory
 	BufferReference createBufferReference();
 
 	/**
-	 * Returns a new object of class '<em>Buffer Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Buffer Data Provider</em>'.
-	 * @generated
-	 */
-	BufferDataProvider createBufferDataProvider();
-
-	/**
 	 * Returns a new object of class '<em>Image Data Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

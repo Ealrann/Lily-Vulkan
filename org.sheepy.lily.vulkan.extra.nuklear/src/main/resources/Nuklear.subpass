@@ -17,7 +17,7 @@
         <resources xsi:type="vulkanresource:Sampler" minFilter="LINEAR" magFilter="LINEAR" name="ImageSampler"/>
         <resources xsi:type="vulkanresource:ConstantBuffer" name="SpecializationData"/>
         <resources xsi:type="nuklear:NuklearFont"/>
-        <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" nullTexture="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.10/@parts.0" imageArrayDescriptor="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.3" vertexDataProvider="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1/@buffers.0/@dataProvider" indexDataProvider="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1/@buffers.1/@dataProvider" vertexBufferMemory="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1" compositeDrawTask="//@pipelinePkg/@pipelines.0/@taskPkgs.1/@tasks.1"/>
+        <resources xsi:type="nuklear:NuklearContext" font="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.7" nullTexture="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.10/@parts.0" imageArrayDescriptor="//@pipelinePkg/@pipelines.0/@descriptorPkg/@descriptors.3" vertexBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1/@buffers.0" indexBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1/@buffers.1" vertexBufferMemory="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.9/@parts.1" compositeDrawTask="//@pipelinePkg/@pipelines.0/@taskPkgs.1/@tasks.1"/>
         <resources xsi:type="vulkanresource:MemoryChunk" name="NuklearVertexAndFontMemory" transferBuffer="//@pipelinePkg/@pipelines.0/@resourcePkg/@resources.0">
           <parts xsi:type="vulkanresource:ImageViewer" name="FontImage" format="R8_UNORM">
             <usages>Sampled</usages>
@@ -28,12 +28,10 @@
             <buffers xsi:type="vulkanresource:BufferViewer" name="NkVertex">
               <usages>VERTEX_BUFFER_BIT</usages>
               <usages>TRANSFER_DST_BIT</usages>
-              <dataProvider xsi:type="nuklear:NuklearVertexProvider"/>
             </buffers>
             <buffers xsi:type="vulkanresource:BufferViewer" name="NkIndex">
               <usages>INDEX_BUFFER_BIT</usages>
               <usages>TRANSFER_DST_BIT</usages>
-              <dataProvider xsi:type="nuklear:NuklearIndexProvider"/>
             </buffers>
           </parts>
         </resources>

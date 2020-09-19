@@ -9,9 +9,8 @@ import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.function.LongConsumer;
 
-public interface IGenericBufferDataProviderAdapter<T extends IGenericBufferDataProviderAdapter.Features<T>> extends
-																											IExtender,
-																											INotifier<T>
+public interface IGenericBufferDataSupplier<T extends IGenericBufferDataSupplier.Features<T>> extends IExtender,
+																									  INotifier<T>
 {
 	interface Features<T extends Features<T>> extends IFeatures<T>
 	{

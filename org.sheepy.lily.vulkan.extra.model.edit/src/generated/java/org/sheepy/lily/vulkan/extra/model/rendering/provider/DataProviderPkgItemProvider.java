@@ -165,6 +165,11 @@ public class DataProviderPkgItemProvider
 			(createChildParameter
 				(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS,
 				 RenderingFactory.eINSTANCE.createDataProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.DATA_PROVIDER_PKG__DATA_PROVIDERS,
+				 RenderingFactory.eINSTANCE.createIndexedDataDescription()));
 	}
 
 	/**

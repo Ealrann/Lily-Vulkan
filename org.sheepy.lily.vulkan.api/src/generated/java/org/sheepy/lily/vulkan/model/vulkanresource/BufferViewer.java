@@ -12,10 +12,10 @@ package org.sheepy.lily.vulkan.model.vulkanresource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataProvider <em>Data Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage#getBufferViewer()
@@ -24,28 +24,6 @@ package org.sheepy.lily.vulkan.model.vulkanresource;
  */
 public interface BufferViewer extends IBuffer
 {
-	/**
-	 * Returns the value of the '<em><b>Data Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Provider</em>' containment reference.
-	 * @see #setDataProvider(BufferDataProvider)
-	 * @see org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage#getBufferViewer_DataProvider()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	BufferDataProvider getDataProvider();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataProvider <em>Data Provider</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Provider</em>' containment reference.
-	 * @see #getDataProvider()
-	 * @generated
-	 */
-	void setDataProvider(BufferDataProvider value);
-
 	/**
 	 * Returns the value of the '<em><b>Grow Factor</b></em>' attribute.
 	 * The default value is <code>"1"</code>.
@@ -114,5 +92,27 @@ public interface BufferViewer extends IBuffer
 	 * @generated
 	 */
 	void setSize(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' reference.
+	 * @see #setDataSource(IBufferDataSource)
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage#getBufferViewer_DataSource()
+	 * @model
+	 * @generated
+	 */
+	IBufferDataSource getDataSource();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSource <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' reference.
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(IBufferDataSource value);
 
 } // BufferViewer

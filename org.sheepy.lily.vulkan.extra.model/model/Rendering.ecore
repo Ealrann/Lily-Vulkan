@@ -68,17 +68,6 @@
       <eTypeArguments eClassifier="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/graphic.ecore#//GraphicsPipeline"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderDataProvider" abstract="true"
-      interface="true" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferDataProvider">
-    <eTypeParameters name="T">
-      <eBounds eClassifier="#//Structure"/>
-    </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" containment="true">
-      <eGenericType eClassifier="#//RenderableDataSource">
-        <eTypeArguments eTypeParameter="#//RenderDataProvider/T"/>
-      </eGenericType>
-    </eStructuralFeatures>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataProviderPkg">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Structure"/>
@@ -94,20 +83,28 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Structure"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
-        containment="true">
-      <eGenericType eClassifier="#//RenderDataProvider">
-        <eTypeArguments eTypeParameter="#//DataProvider/T"/>
-      </eGenericType>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usages" lowerBound="1"
         upperBound="-1" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EBufferUsage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="growFactor" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="1.5f"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
         defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBufferDataSource"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bufferName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderableDataSource">
+  <eClassifiers xsi:type="ecore:EClass" name="IndexedDataDescription">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Structure"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexType" lowerBound="1"
+        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EIndexType"
+        defaultValueLiteral="UINT32"/>
+    <eGenericSuperTypes eClassifier="#//DataProvider">
+      <eTypeArguments eTypeParameter="#//IndexedDataDescription/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenderableDataSource" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBufferDataSource">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Structure"/>
     </eTypeParameters>
@@ -115,25 +112,7 @@
       <eGenericType eTypeParameter="#//RenderableDataSource/T"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VertexProvider">
-    <eTypeParameters name="T">
-      <eBounds eClassifier="#//Structure"/>
-    </eTypeParameters>
-    <eGenericSuperTypes eClassifier="#//RenderDataProvider">
-      <eTypeArguments eTypeParameter="#//VertexProvider/T"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IndexProvider">
-    <eTypeParameters name="T">
-      <eBounds eClassifier="#//Structure"/>
-    </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexType" lowerBound="1"
-        eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EIndexType"
-        defaultValueLiteral="UINT32"/>
-    <eGenericSuperTypes eClassifier="#//RenderDataProvider">
-      <eTypeArguments eTypeParameter="#//IndexProvider/T"/>
-    </eGenericSuperTypes>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBufferDataSource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResourceDescriptorProvider" abstract="true"
       interface="true"/>

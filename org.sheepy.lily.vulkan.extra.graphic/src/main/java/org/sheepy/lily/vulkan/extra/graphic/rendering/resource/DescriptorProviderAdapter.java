@@ -8,10 +8,11 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @ModelExtender(scope = DescriptorsProvider.class)
 @Adapter(singleton = true)
@@ -34,7 +35,7 @@ public class DescriptorProviderAdapter implements IDescriptorProviderAdapter
 	}
 
 	@Override
-	public ResourceDescriptor buildForPart(ResourceDescriptorProvider provider, BufferMemory bufferMemory)
+	public ResourceDescriptor buildForPart(ResourceDescriptorProvider provider, Stream<BufferViewer> bufferViewers)
 	{
 		return null;
 	}

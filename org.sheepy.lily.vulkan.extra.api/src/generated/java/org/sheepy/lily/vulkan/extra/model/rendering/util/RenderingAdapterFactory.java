@@ -20,8 +20,8 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 
 /**
  * <!-- begin-user-doc -->
@@ -127,11 +127,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createGenericRendererAdapter();
 			}
 			@Override
-			public <T extends Structure> Adapter caseRenderDataProvider(RenderDataProvider<T> object)
-			{
-				return createRenderDataProviderAdapter();
-			}
-			@Override
 			public <T extends Structure> Adapter caseDataProviderPkg(DataProviderPkg<T> object)
 			{
 				return createDataProviderPkgAdapter();
@@ -142,19 +137,14 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createDataProviderAdapter();
 			}
 			@Override
+			public <T extends Structure> Adapter caseIndexedDataDescription(IndexedDataDescription<T> object)
+			{
+				return createIndexedDataDescriptionAdapter();
+			}
+			@Override
 			public <T extends Structure> Adapter caseRenderableDataSource(RenderableDataSource<T> object)
 			{
 				return createRenderableDataSourceAdapter();
-			}
-			@Override
-			public <T extends Structure> Adapter caseVertexProvider(VertexProvider<T> object)
-			{
-				return createVertexProviderAdapter();
-			}
-			@Override
-			public <T extends Structure> Adapter caseIndexProvider(IndexProvider<T> object)
-			{
-				return createIndexProviderAdapter();
 			}
 			@Override
 			public Adapter caseResourceDescriptorProvider(ResourceDescriptorProvider object)
@@ -242,9 +232,9 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createMaintainerAdapter();
 			}
 			@Override
-			public Adapter caseBufferDataProvider(BufferDataProvider object)
+			public Adapter caseIBufferDataSource(IBufferDataSource object)
 			{
-				return createBufferDataProviderAdapter();
+				return createIBufferDataSourceAdapter();
 			}
 			@Override
 			public Adapter caseIVulkanResource(IVulkanResource object)
@@ -404,21 +394,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider <em>Render Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider
-	 * @generated
-	 */
-	public Adapter createRenderDataProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg <em>Data Provider Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -449,6 +424,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription <em>Indexed Data Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription
+	 * @generated
+	 */
+	public Adapter createIndexedDataDescriptionAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource <em>Renderable Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -459,36 +449,6 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createRenderableDataSourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider <em>Vertex Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider
-	 * @generated
-	 */
-	public Adapter createVertexProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider <em>Index Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider
-	 * @generated
-	 */
-	public Adapter createIndexProviderAdapter()
 	{
 		return null;
 	}
@@ -749,16 +709,16 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider <em>Buffer Data Provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource <em>IBuffer Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource
 	 * @generated
 	 */
-	public Adapter createBufferDataProviderAdapter()
+	public Adapter createIBufferDataSourceAdapter()
 	{
 		return null;
 	}

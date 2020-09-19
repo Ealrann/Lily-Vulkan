@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.lily.core.api.model.ILilyEObject;
 
+import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 /**
@@ -17,10 +18,11 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataProvider <em>Data Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getMinSize <em>Min Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getBufferName <em>Buffer Name</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getDataProvider()
@@ -30,28 +32,6 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  */
 public interface DataProvider<T extends Structure> extends ILilyEObject
 {
-	/**
-	 * Returns the value of the '<em><b>Data Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Provider</em>' containment reference.
-	 * @see #setDataProvider(RenderDataProvider)
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getDataProvider_DataProvider()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	RenderDataProvider<T> getDataProvider();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataProvider <em>Data Provider</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Provider</em>' containment reference.
-	 * @see #getDataProvider()
-	 * @generated
-	 */
-	void setDataProvider(RenderDataProvider<T> value);
-
 	/**
 	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
@@ -111,5 +91,49 @@ public interface DataProvider<T extends Structure> extends ILilyEObject
 	 * @generated
 	 */
 	void setMinSize(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' reference.
+	 * @see #setDataSource(IBufferDataSource)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getDataProvider_DataSource()
+	 * @model
+	 * @generated
+	 */
+	IBufferDataSource getDataSource();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataSource <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' reference.
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(IBufferDataSource value);
+
+	/**
+	 * Returns the value of the '<em><b>Buffer Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Buffer Name</em>' attribute.
+	 * @see #setBufferName(String)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getDataProvider_BufferName()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getBufferName();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getBufferName <em>Buffer Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Buffer Name</em>' attribute.
+	 * @see #getBufferName()
+	 * @generated
+	 */
+	void setBufferName(String value);
 
 } // DataProvider

@@ -68,24 +68,6 @@ public interface NuklearFactory extends EFactory
 	PanelViewer createPanelViewer();
 
 	/**
-	 * Returns a new object of class '<em>Vertex Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Vertex Provider</em>'.
-	 * @generated
-	 */
-	NuklearVertexProvider createNuklearVertexProvider();
-
-	/**
-	 * Returns a new object of class '<em>Index Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Index Provider</em>'.
-	 * @generated
-	 */
-	NuklearIndexProvider createNuklearIndexProvider();
-
-	/**
 	 * Returns a new object of class '<em>Font Image Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

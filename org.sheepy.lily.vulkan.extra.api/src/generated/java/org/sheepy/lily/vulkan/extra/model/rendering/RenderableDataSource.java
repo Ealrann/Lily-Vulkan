@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.rendering;
 
-import org.sheepy.lily.core.api.model.ILilyEObject;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,14 +15,14 @@ import org.sheepy.lily.core.api.model.ILilyEObject;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getStructure <em>Structure</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getPart <em>Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getRenderableDataSource()
  * @model
- * @extends ILilyEObject
  * @generated
  */
-public interface RenderableDataSource<T extends Structure> extends ILilyEObject
+public interface RenderableDataSource<T extends Structure> extends IBufferDataSource
 {
 	/**
 	 * Returns the value of the '<em><b>Structure</b></em>' reference.
@@ -67,5 +67,27 @@ public interface RenderableDataSource<T extends Structure> extends ILilyEObject
 	 * @generated
 	 */
 	void setPart(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' reference.
+	 * @see #setDataSource(IBufferDataSource)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getRenderableDataSource_DataSource()
+	 * @model
+	 * @generated
+	 */
+	IBufferDataSource getDataSource();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource#getDataSource <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' reference.
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(IBufferDataSource value);
 
 } // RenderableDataSource

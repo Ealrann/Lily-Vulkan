@@ -4,9 +4,10 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.game.api.resource.buffer.IBufferDataProviderAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IBufferDataConsumer;
+import org.sheepy.lily.game.api.resource.buffer.IBufferDataSupplier;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.model.TestResourceFactory;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -15,10 +16,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@ModelExtender(scope = BufferDataProvider.class, name = TestResourceFactory.DATA_PROVIDER_NAME)
+@ModelExtender(scope = BufferViewer.class, name = TestResourceFactory.BUFFER_NAME)
 @Adapter
-public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderAdapter.Features> implements
-																								 IBufferDataProviderAdapter
+public final class TestDataManager extends Notifier<IBufferDataSupplier.Features> implements IBufferDataSupplier,
+																							 IBufferDataConsumer
 {
 	public static final int MAX_SIZE = 1000000;
 	public static final int INITIAL_SIZE = 100000;
@@ -33,7 +34,7 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 //	private int pushPass = 0;
 	private boolean dirty = true;
 
-	public TestDataProviderAdapter()
+	private TestDataManager()
 	{
 		super(List.of(Features.Size, Features.Data));
 		random = new Random();
@@ -79,6 +80,7 @@ public final class TestDataProviderAdapter extends Notifier<IBufferDataProviderA
 		previousPushs.add(new PushData(previous, pass));
 	}
 
+	@Override
 	public void fetch(ByteBuffer buffer)
 	{
 		if (previousPushs.size() > 0)

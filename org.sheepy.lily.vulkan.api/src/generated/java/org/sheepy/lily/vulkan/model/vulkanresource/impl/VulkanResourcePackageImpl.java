@@ -46,7 +46,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
 
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferBarrier;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferDescriptor;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
@@ -61,6 +60,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.EFlushMode;
 import org.sheepy.lily.vulkan.model.vulkanresource.FileImageDataProvider;
 import org.sheepy.lily.vulkan.model.vulkanresource.GenericConstantBuffer;
 import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 import org.sheepy.lily.vulkan.model.vulkanresource.IMemoryChunkPart;
 import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageBarrier;
@@ -142,7 +142,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass bufferDataProviderEClass = null;
+	private EClass iBufferDataSourceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -594,9 +594,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EClass getBufferDataProvider()
+	public EClass getIBufferDataSource()
 	{
-		return bufferDataProviderEClass;
+		return iBufferDataSourceEClass;
 	}
 
 	/**
@@ -1045,20 +1045,9 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
-	public EReference getBufferViewer_DataProvider()
-	{
-		return (EReference)bufferViewerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getBufferViewer_GrowFactor()
 	{
-		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1069,7 +1058,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferViewer_GrowThreshold()
 	{
-		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1080,7 +1069,18 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	@Override
 	public EAttribute getBufferViewer_Size()
 	{
-		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBufferViewer_DataSource()
+	{
+		return (EReference)bufferViewerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1291,7 +1291,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(bufferReferenceEClass, BUFFER_REFERENCE__STRIDE);
 		createEAttribute(bufferReferenceEClass, BUFFER_REFERENCE__INDEX_TYPE);
 
-		bufferDataProviderEClass = createEClass(BUFFER_DATA_PROVIDER);
+		iBufferDataSourceEClass = createEClass(IBUFFER_DATA_SOURCE);
 
 		imageDataProviderEClass = createEClass(IMAGE_DATA_PROVIDER);
 
@@ -1348,10 +1348,10 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(dataBufferEClass, DATA_BUFFER__DATA);
 
 		bufferViewerEClass = createEClass(BUFFER_VIEWER);
-		createEReference(bufferViewerEClass, BUFFER_VIEWER__DATA_PROVIDER);
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_FACTOR);
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_THRESHOLD);
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__SIZE);
+		createEReference(bufferViewerEClass, BUFFER_VIEWER__DATA_SOURCE);
 
 		iVulkanImageEClass = createEClass(IVULKAN_IMAGE);
 
@@ -1419,7 +1419,6 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		constantBufferEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
 		genericConstantBufferEClass.getESuperTypes().add(this.getConstantBuffer());
 		iBufferEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		imageDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		fileImageDataProviderEClass.getESuperTypes().add(this.getImageDataProvider());
 		samplerEClass.getESuperTypes().add(theImagePackage.getSamplerInfo());
@@ -1470,7 +1469,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getBufferReference_Stride(), ecorePackage.getEInt(), "stride", "0", 0, 1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferReference_IndexType(), this.getEContextIndex(), "indexType", null, 1, 1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iBufferDataSourceEClass, IBufferDataSource.class, "IBufferDataSource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(imageDataProviderEClass, ImageDataProvider.class, "ImageDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1527,10 +1526,10 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getDataBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, DataBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferViewerEClass, BufferViewer.class, "BufferViewer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferViewer_DataProvider(), this.getBufferDataProvider(), null, "dataProvider", null, 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferViewer_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferViewer_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferViewer_Size(), ecorePackage.getELong(), "size", "0", 0, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBufferViewer_DataSource(), this.getIBufferDataSource(), null, "dataSource", null, 0, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iVulkanImageEClass, IVulkanImage.class, "IVulkanImage", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

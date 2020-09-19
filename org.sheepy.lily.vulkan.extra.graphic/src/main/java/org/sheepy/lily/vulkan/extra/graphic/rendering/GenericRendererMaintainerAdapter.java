@@ -90,11 +90,10 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 		}
 		else
 		{
-			final var dataProviders = renderSetup.dataProviders();
-			for (int i = 0; i < dataProviders.size(); i++)
+			final var buffers = renderSetup.buffers();
+			for (int i = 0; i < buffers.size(); i++)
 			{
-				final var dataProvider = dataProviders.get(i);
-				resolver = dataProvider.adapt(IEntityResolver.class);
+				resolver = buffers.get(i).adapt(IEntityResolver.class);
 				if (resolver != null)
 				{
 					break;

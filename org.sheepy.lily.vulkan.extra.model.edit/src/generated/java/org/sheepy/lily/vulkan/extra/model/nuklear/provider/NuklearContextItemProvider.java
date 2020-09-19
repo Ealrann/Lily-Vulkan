@@ -61,8 +61,8 @@ public class NuklearContextItemProvider
 			addFontPropertyDescriptor(object);
 			addNullTexturePropertyDescriptor(object);
 			addImageArrayDescriptorPropertyDescriptor(object);
-			addVertexDataProviderPropertyDescriptor(object);
-			addIndexDataProviderPropertyDescriptor(object);
+			addVertexBufferPropertyDescriptor(object);
+			addIndexBufferPropertyDescriptor(object);
 			addVertexBufferMemoryPropertyDescriptor(object);
 			addCompositeDrawTaskPropertyDescriptor(object);
 		}
@@ -162,20 +162,20 @@ public class NuklearContextItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Vertex Data Provider feature.
+	 * This adds a property descriptor for the Vertex Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVertexDataProviderPropertyDescriptor(Object object)
+	protected void addVertexBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearContext_vertexDataProvider_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_vertexDataProvider_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER,
+				 getString("_UI_NuklearContext_vertexBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_vertexBuffer_feature", "_UI_NuklearContext_type"),
+				 NuklearPackage.Literals.NUKLEAR_CONTEXT__VERTEX_BUFFER,
 				 true,
 				 false,
 				 true,
@@ -185,20 +185,20 @@ public class NuklearContextItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Index Data Provider feature.
+	 * This adds a property descriptor for the Index Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIndexDataProviderPropertyDescriptor(Object object)
+	protected void addIndexBufferPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearContext_indexDataProvider_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_indexDataProvider_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER,
+				 getString("_UI_NuklearContext_indexBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_indexBuffer_feature", "_UI_NuklearContext_type"),
+				 NuklearPackage.Literals.NUKLEAR_CONTEXT__INDEX_BUFFER,
 				 true,
 				 false,
 				 true,

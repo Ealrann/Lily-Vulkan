@@ -72,7 +72,6 @@ public class FetchBufferItemProvider
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
-			addDataProviderPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -119,29 +118,6 @@ public class FetchBufferItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Data Provider feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDataProviderPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FetchBuffer_dataProvider_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FetchBuffer_dataProvider_feature", "_UI_FetchBuffer_type"),
-				 ProcessPackage.Literals.FETCH_BUFFER__DATA_PROVIDER,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

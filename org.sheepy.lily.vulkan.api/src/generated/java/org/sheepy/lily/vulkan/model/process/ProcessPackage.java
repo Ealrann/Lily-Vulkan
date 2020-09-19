@@ -1415,22 +1415,13 @@ public interface ProcessPackage extends EPackage
 	int FETCH_BUFFER__BUFFER_REFERENCE = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Data Provider</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FETCH_BUFFER__DATA_PROVIDER = IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Fetch Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FETCH_BUFFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int FETCH_BUFFER_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Fetch Buffer</em>' class.
@@ -2080,17 +2071,6 @@ public interface ProcessPackage extends EPackage
 	EReference getFetchBuffer_BufferReference();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.FetchBuffer#getDataProvider <em>Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Data Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.FetchBuffer#getDataProvider()
-	 * @see #getFetchBuffer()
-	 * @generated
-	 */
-	EReference getFetchBuffer_DataProvider();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2637,14 +2617,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference FETCH_BUFFER__BUFFER_REFERENCE = eINSTANCE.getFetchBuffer_BufferReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Provider</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FETCH_BUFFER__DATA_PROVIDER = eINSTANCE.getFetchBuffer_DataProvider();
 
 	}
 

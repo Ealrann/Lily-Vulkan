@@ -382,41 +382,32 @@ public interface VulkanResourcePackage extends EPackage
 	int BUFFER_REFERENCE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferDataProviderImpl <em>Buffer Data Provider</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource <em>IBuffer Data Source</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferDataProviderImpl
-	 * @see org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl#getBufferDataProvider()
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl#getIBufferDataSource()
 	 * @generated
 	 */
-	int BUFFER_DATA_PROVIDER = 6;
+	int IBUFFER_DATA_SOURCE = 6;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The number of structural features of the '<em>IBuffer Data Source</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+	int IBUFFER_DATA_SOURCE_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
+	 * The number of operations of the '<em>IBuffer Data Source</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Buffer Data Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_DATA_PROVIDER_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+	int IBUFFER_DATA_SOURCE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.ImageDataProviderImpl <em>Image Data Provider</em>}' class.
@@ -1416,22 +1407,13 @@ public interface VulkanResourcePackage extends EPackage
 	int BUFFER_VIEWER__USAGES = IBUFFER__USAGES;
 
 	/**
-	 * The feature id for the '<em><b>Data Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_VIEWER__DATA_PROVIDER = IBUFFER_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Grow Factor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__GROW_FACTOR = IBUFFER_FEATURE_COUNT + 1;
+	int BUFFER_VIEWER__GROW_FACTOR = IBUFFER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Grow Threshold</b></em>' attribute.
@@ -1440,7 +1422,7 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__GROW_THRESHOLD = IBUFFER_FEATURE_COUNT + 2;
+	int BUFFER_VIEWER__GROW_THRESHOLD = IBUFFER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -1449,7 +1431,16 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER__SIZE = IBUFFER_FEATURE_COUNT + 3;
+	int BUFFER_VIEWER__SIZE = IBUFFER_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_VIEWER__DATA_SOURCE = IBUFFER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Buffer Viewer</em>' class.
@@ -2028,14 +2019,14 @@ public interface VulkanResourcePackage extends EPackage
 	EAttribute getBufferReference_IndexType();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider <em>Buffer Data Provider</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource <em>IBuffer Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Buffer Data Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider
+	 * @return the meta object for class '<em>IBuffer Data Source</em>'.
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource
 	 * @generated
 	 */
-	EClass getBufferDataProvider();
+	EClass getIBufferDataSource();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider <em>Image Data Provider</em>}'.
@@ -2462,17 +2453,6 @@ public interface VulkanResourcePackage extends EPackage
 	EClass getBufferViewer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataProvider <em>Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Data Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataProvider()
-	 * @see #getBufferViewer()
-	 * @generated
-	 */
-	EReference getBufferViewer_DataProvider();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getGrowFactor <em>Grow Factor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2504,6 +2484,17 @@ public interface VulkanResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBufferViewer_Size();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSource <em>Data Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Data Source</em>'.
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSource()
+	 * @see #getBufferViewer()
+	 * @generated
+	 */
+	EReference getBufferViewer_DataSource();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage <em>IVulkan Image</em>}'.
@@ -2826,14 +2817,14 @@ public interface VulkanResourcePackage extends EPackage
 		EAttribute BUFFER_REFERENCE__INDEX_TYPE = eINSTANCE.getBufferReference_IndexType();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferDataProviderImpl <em>Buffer Data Provider</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource <em>IBuffer Data Source</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferDataProviderImpl
-		 * @see org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl#getBufferDataProvider()
+		 * @see org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource
+		 * @see org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl#getIBufferDataSource()
 		 * @generated
 		 */
-		EClass BUFFER_DATA_PROVIDER = eINSTANCE.getBufferDataProvider();
+		EClass IBUFFER_DATA_SOURCE = eINSTANCE.getIBufferDataSource();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.ImageDataProviderImpl <em>Image Data Provider</em>}' class.
@@ -3188,14 +3179,6 @@ public interface VulkanResourcePackage extends EPackage
 		EClass BUFFER_VIEWER = eINSTANCE.getBufferViewer();
 
 		/**
-		 * The meta object literal for the '<em><b>Data Provider</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BUFFER_VIEWER__DATA_PROVIDER = eINSTANCE.getBufferViewer_DataProvider();
-
-		/**
 		 * The meta object literal for the '<em><b>Grow Factor</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3218,6 +3201,14 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BUFFER_VIEWER__SIZE = eINSTANCE.getBufferViewer_Size();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BUFFER_VIEWER__DATA_SOURCE = eINSTANCE.getBufferViewer_DataSource();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage <em>IVulkan Image</em>}' class.

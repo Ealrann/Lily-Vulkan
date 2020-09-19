@@ -11,11 +11,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 
@@ -31,8 +30,8 @@ import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getNullTexture <em>Null Texture</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getImageArrayDescriptor <em>Image Array Descriptor</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getVertexDataProvider <em>Vertex Data Provider</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getIndexDataProvider <em>Index Data Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getVertexBuffer <em>Vertex Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getIndexBuffer <em>Index Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getVertexBufferMemory <em>Vertex Buffer Memory</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearContextImpl#getCompositeDrawTask <em>Composite Draw Task</em>}</li>
  * </ul>
@@ -92,24 +91,24 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	protected ImageDescriptor imageArrayDescriptor;
 
 	/**
-	 * The cached value of the '{@link #getVertexDataProvider() <em>Vertex Data Provider</em>}' reference.
+	 * The cached value of the '{@link #getVertexBuffer() <em>Vertex Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVertexDataProvider()
+	 * @see #getVertexBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected NuklearVertexProvider vertexDataProvider;
+	protected IBuffer vertexBuffer;
 
 	/**
-	 * The cached value of the '{@link #getIndexDataProvider() <em>Index Data Provider</em>}' reference.
+	 * The cached value of the '{@link #getIndexBuffer() <em>Index Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIndexDataProvider()
+	 * @see #getIndexBuffer()
 	 * @generated
 	 * @ordered
 	 */
-	protected NuklearIndexProvider indexDataProvider;
+	protected IBuffer indexBuffer;
 
 	/**
 	 * The cached value of the '{@link #getVertexBufferMemory() <em>Vertex Buffer Memory</em>}' reference.
@@ -318,19 +317,19 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public NuklearVertexProvider getVertexDataProvider()
+	public IBuffer getVertexBuffer()
 	{
-		if (vertexDataProvider != null && ((EObject)vertexDataProvider).eIsProxy())
+		if (vertexBuffer != null && ((EObject)vertexBuffer).eIsProxy())
 		{
-			InternalEObject oldVertexDataProvider = vertexDataProvider;
-			vertexDataProvider = (NuklearVertexProvider)eResolveProxy(oldVertexDataProvider);
-			if (vertexDataProvider != oldVertexDataProvider)
+			InternalEObject oldVertexBuffer = vertexBuffer;
+			vertexBuffer = (IBuffer)eResolveProxy(oldVertexBuffer);
+			if (vertexBuffer != oldVertexBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER, oldVertexDataProvider, vertexDataProvider));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER, oldVertexBuffer, vertexBuffer));
 			}
 		}
-		return vertexDataProvider;
+		return vertexBuffer;
 	}
 
 	/**
@@ -338,9 +337,9 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearVertexProvider basicGetVertexDataProvider()
+	public IBuffer basicGetVertexBuffer()
 	{
-		return vertexDataProvider;
+		return vertexBuffer;
 	}
 
 	/**
@@ -349,12 +348,12 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public void setVertexDataProvider(NuklearVertexProvider newVertexDataProvider)
+	public void setVertexBuffer(IBuffer newVertexBuffer)
 	{
-		NuklearVertexProvider oldVertexDataProvider = vertexDataProvider;
-		vertexDataProvider = newVertexDataProvider;
+		IBuffer oldVertexBuffer = vertexBuffer;
+		vertexBuffer = newVertexBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER, oldVertexDataProvider, vertexDataProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER, oldVertexBuffer, vertexBuffer));
 	}
 
 	/**
@@ -363,19 +362,19 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public NuklearIndexProvider getIndexDataProvider()
+	public IBuffer getIndexBuffer()
 	{
-		if (indexDataProvider != null && ((EObject)indexDataProvider).eIsProxy())
+		if (indexBuffer != null && ((EObject)indexBuffer).eIsProxy())
 		{
-			InternalEObject oldIndexDataProvider = indexDataProvider;
-			indexDataProvider = (NuklearIndexProvider)eResolveProxy(oldIndexDataProvider);
-			if (indexDataProvider != oldIndexDataProvider)
+			InternalEObject oldIndexBuffer = indexBuffer;
+			indexBuffer = (IBuffer)eResolveProxy(oldIndexBuffer);
+			if (indexBuffer != oldIndexBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER, oldIndexDataProvider, indexDataProvider));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NuklearPackage.NUKLEAR_CONTEXT__INDEX_BUFFER, oldIndexBuffer, indexBuffer));
 			}
 		}
-		return indexDataProvider;
+		return indexBuffer;
 	}
 
 	/**
@@ -383,9 +382,9 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearIndexProvider basicGetIndexDataProvider()
+	public IBuffer basicGetIndexBuffer()
 	{
-		return indexDataProvider;
+		return indexBuffer;
 	}
 
 	/**
@@ -394,12 +393,12 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	 * @generated
 	 */
 	@Override
-	public void setIndexDataProvider(NuklearIndexProvider newIndexDataProvider)
+	public void setIndexBuffer(IBuffer newIndexBuffer)
 	{
-		NuklearIndexProvider oldIndexDataProvider = indexDataProvider;
-		indexDataProvider = newIndexDataProvider;
+		IBuffer oldIndexBuffer = indexBuffer;
+		indexBuffer = newIndexBuffer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER, oldIndexDataProvider, indexDataProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_CONTEXT__INDEX_BUFFER, oldIndexBuffer, indexBuffer));
 	}
 
 	/**
@@ -513,12 +512,12 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				if (resolve) return getImageArrayDescriptor();
 				return basicGetImageArrayDescriptor();
-			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
-				if (resolve) return getVertexDataProvider();
-				return basicGetVertexDataProvider();
-			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
-				if (resolve) return getIndexDataProvider();
-				return basicGetIndexDataProvider();
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER:
+				if (resolve) return getVertexBuffer();
+				return basicGetVertexBuffer();
+			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_BUFFER:
+				if (resolve) return getIndexBuffer();
+				return basicGetIndexBuffer();
 			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY:
 				if (resolve) return getVertexBufferMemory();
 				return basicGetVertexBufferMemory();
@@ -551,11 +550,11 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				setImageArrayDescriptor((ImageDescriptor)newValue);
 				return;
-			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
-				setVertexDataProvider((NuklearVertexProvider)newValue);
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER:
+				setVertexBuffer((IBuffer)newValue);
 				return;
-			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
-				setIndexDataProvider((NuklearIndexProvider)newValue);
+			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_BUFFER:
+				setIndexBuffer((IBuffer)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY:
 				setVertexBufferMemory((BufferMemory)newValue);
@@ -589,11 +588,11 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				setImageArrayDescriptor((ImageDescriptor)null);
 				return;
-			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
-				setVertexDataProvider((NuklearVertexProvider)null);
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER:
+				setVertexBuffer((IBuffer)null);
 				return;
-			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
-				setIndexDataProvider((NuklearIndexProvider)null);
+			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_BUFFER:
+				setIndexBuffer((IBuffer)null);
 				return;
 			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY:
 				setVertexBufferMemory((BufferMemory)null);
@@ -623,10 +622,10 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 				return nullTexture != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR:
 				return imageArrayDescriptor != null;
-			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER:
-				return vertexDataProvider != null;
-			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER:
-				return indexDataProvider != null;
+			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER:
+				return vertexBuffer != null;
+			case NuklearPackage.NUKLEAR_CONTEXT__INDEX_BUFFER:
+				return indexBuffer != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY:
 				return vertexBufferMemory != null;
 			case NuklearPackage.NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK:

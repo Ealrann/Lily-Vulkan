@@ -13,6 +13,7 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +25,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getStructure <em>Structure</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getPart <em>Part</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +61,16 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	 * @ordered
 	 */
 	protected int part = PART_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected IBufferDataSource dataSource;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,6 +170,51 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	 * @generated
 	 */
 	@Override
+	public IBufferDataSource getDataSource()
+	{
+		if (dataSource != null && ((EObject)dataSource).eIsProxy())
+		{
+			InternalEObject oldDataSource = dataSource;
+			dataSource = (IBufferDataSource)eResolveProxy(oldDataSource);
+			if (dataSource != oldDataSource)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.RENDERABLE_DATA_SOURCE__DATA_SOURCE, oldDataSource, dataSource));
+			}
+		}
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IBufferDataSource basicGetDataSource()
+	{
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDataSource(IBufferDataSource newDataSource)
+	{
+		IBufferDataSource oldDataSource = dataSource;
+		dataSource = newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.RENDERABLE_DATA_SOURCE__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -167,6 +224,9 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 				return basicGetStructure();
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				return getPart();
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__DATA_SOURCE:
+				if (resolve) return getDataSource();
+				return basicGetDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -188,6 +248,9 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				setPart((Integer)newValue);
 				return;
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__DATA_SOURCE:
+				setDataSource((IBufferDataSource)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -208,6 +271,9 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				setPart(PART_EDEFAULT);
 				return;
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__DATA_SOURCE:
+				setDataSource((IBufferDataSource)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -226,6 +292,8 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 				return structure != null;
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				return part != PART_EDEFAULT;
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__DATA_SOURCE:
+				return dataSource != null;
 		}
 		return super.eIsSet(featureID);
 	}

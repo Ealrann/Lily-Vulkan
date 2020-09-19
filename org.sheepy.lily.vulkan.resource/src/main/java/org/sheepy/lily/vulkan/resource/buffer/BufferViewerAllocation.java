@@ -5,12 +5,11 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataProviderAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataSupplier;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
-import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
@@ -37,9 +36,10 @@ public final class BufferViewerAllocation implements IBufferAllocation
 		this.bufferMemoryAllocation = bufferMemoryAllocation;
 		this.alignmentData = bufferMemoryAllocation.getAlignmentData(bufferViewer);
 
-		observatory.explore(VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER).<IGenericBufferDataProviderAdapter.Features<?>, IGenericBufferDataProviderAdapter>adaptNotifier(
-				IGenericBufferDataProviderAdapter.class).listenNoParam(this::requestPush,
-																	   IGenericBufferDataProviderAdapter.Features.Data);
+		observatory.<IGenericBufferDataSupplier.Features<?>, IGenericBufferDataSupplier>adaptNotifier(
+				IGenericBufferDataSupplier.class).listenNoParam(this::requestPush,
+																IGenericBufferDataSupplier.Features.Data);
+
 	}
 
 	private void requestPush()
@@ -51,7 +51,7 @@ public final class BufferViewerAllocation implements IBufferAllocation
 	@Override
 	public void fillData(ByteBuffer buffer)
 	{
-		final var bufferDataProvider = bufferViewer.getDataProvider().adapt(IGenericBufferDataProviderAdapter.class);
+		final var bufferDataProvider = bufferViewer.adaptNotNull(IGenericBufferDataSupplier.class);
 		bufferDataProvider.fill(buffer);
 		needPush = false;
 	}

@@ -1,10 +1,8 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
-import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
-import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexSupplier;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexSupplier;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.data.RenderPipelineSetup;
-
-import java.util.Objects;
 
 public final class DeactivationConfigurator
 {
@@ -23,17 +21,13 @@ public final class DeactivationConfigurator
 
 	private void setupDeactivatorWhenEmptyPipeline()
 	{
-		setup.dataProviders()
-			 .stream()
-			 .map(IIndexProviderAdapter::adapt)
-			 .filter(Objects::nonNull)
-			 .findAny()
+		setup.indexSuppliers()
 			 .ifPresentOrElse(this::setupDeactivatorOnIndexedPipeline, this::setupDeactivatorOnVertexPipeline);
 	}
 
-	private void setupDeactivatorOnIndexedPipeline(IIndexProviderAdapter indexProviderAdapter)
+	private void setupDeactivatorOnIndexedPipeline(IIndexSupplier indexProviderAdapter)
 	{
-		indexProviderAdapter.listen(this::checkActivationIndex, IIndexProviderAdapter.Features.IndexCount);
+		indexProviderAdapter.listen(this::checkActivationIndex, IIndexSupplier.Features.IndexCount);
 		checkActivationIndex(indexProviderAdapter.getIndexCount());
 	}
 
@@ -44,19 +38,15 @@ public final class DeactivationConfigurator
 
 	private void setupDeactivatorOnVertexPipeline()
 	{
-		setup.dataProviders()
-			 .stream()
-			 .map(IVertexProviderAdapter::adapt)
-			 .forEach(r -> r.listenNoParam(this::checkActivationVertex, IVertexProviderAdapter.Features.VertexCount));
+		setup.streamVertexSuppliers()
+			 .forEach(r -> r.listenNoParam(this::checkActivationVertex, IVertexSupplier.Features.VertexCount));
 		checkActivationVertex();
 	}
 
 	private void checkActivationVertex()
 	{
-		final var shouldDeactivate = setup.dataProviders()
-										  .stream()
-										  .map(IVertexProviderAdapter::adapt)
-										  .mapToInt(IVertexProviderAdapter::getVertexCount)
+		final var shouldDeactivate = setup.streamVertexSuppliers()
+										  .mapToInt(IVertexSupplier::getVertexCount)
 										  .allMatch(vertexCount -> vertexCount == 0);
 
 		deactivatePipeline(shouldDeactivate);

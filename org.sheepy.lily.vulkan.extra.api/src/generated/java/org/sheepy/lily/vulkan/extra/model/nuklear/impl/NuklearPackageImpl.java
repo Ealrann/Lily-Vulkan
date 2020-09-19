@@ -30,10 +30,8 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
@@ -103,20 +101,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	private EClass panelViewerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass nuklearVertexProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass nuklearIndexProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -317,7 +301,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearContext_VertexDataProvider()
+	public EReference getNuklearContext_VertexBuffer()
 	{
 		return (EReference)nuklearContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -328,7 +312,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearContext_IndexDataProvider()
+	public EReference getNuklearContext_IndexBuffer()
 	{
 		return (EReference)nuklearContextEClass.getEStructuralFeatures().get(4);
 	}
@@ -548,28 +532,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getNuklearVertexProvider()
-	{
-		return nuklearVertexProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getNuklearIndexProvider()
-	{
-		return nuklearIndexProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getFontImageProvider()
 	{
 		return fontImageProviderEClass;
@@ -626,8 +588,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__FONT);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__NULL_TEXTURE);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__IMAGE_ARRAY_DESCRIPTOR);
-		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__VERTEX_DATA_PROVIDER);
-		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__INDEX_DATA_PROVIDER);
+		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__VERTEX_BUFFER);
+		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__INDEX_BUFFER);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__VERTEX_BUFFER_MEMORY);
 		createEReference(nuklearContextEClass, NUKLEAR_CONTEXT__COMPOSITE_DRAW_TASK);
 
@@ -651,10 +613,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		panelViewerEClass = createEClass(PANEL_VIEWER);
 		createEReference(panelViewerEClass, PANEL_VIEWER__VARIABLE_RESOLVER);
-
-		nuklearVertexProviderEClass = createEClass(NUKLEAR_VERTEX_PROVIDER);
-
-		nuklearIndexProviderEClass = createEClass(NUKLEAR_INDEX_PROVIDER);
 
 		fontImageProviderEClass = createEClass(FONT_IMAGE_PROVIDER);
 		createEReference(fontImageProviderEClass, FONT_IMAGE_PROVIDER__NUKLEAR_FONT);
@@ -701,8 +659,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearFontEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
 		selectorPanelEClass.getESuperTypes().add(theUiPackage.getIPanel());
 		panelViewerEClass.getESuperTypes().add(theUiPackage.getPanel());
-		nuklearVertexProviderEClass.getESuperTypes().add(theVulkanResourcePackage.getBufferDataProvider());
-		nuklearIndexProviderEClass.getESuperTypes().add(theVulkanResourcePackage.getBufferDataProvider());
 		fontImageProviderEClass.getESuperTypes().add(theVulkanResourcePackage.getImageDataProvider());
 
 		// Initialize classes, features, and operations; add parameters
@@ -715,8 +671,8 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		initEReference(getNuklearContext_Font(), this.getNuklearFont(), null, "font", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_NullTexture(), theVulkanResourcePackage.getStaticImage(), null, "nullTexture", null, 0, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_ImageArrayDescriptor(), theVulkanResourcePackage.getImageDescriptor(), null, "imageArrayDescriptor", null, 0, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNuklearContext_VertexDataProvider(), this.getNuklearVertexProvider(), null, "vertexDataProvider", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNuklearContext_IndexDataProvider(), this.getNuklearIndexProvider(), null, "indexDataProvider", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearContext_VertexBuffer(), theVulkanResourcePackage.getIBuffer(), null, "vertexBuffer", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNuklearContext_IndexBuffer(), theVulkanResourcePackage.getIBuffer(), null, "indexBuffer", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_VertexBufferMemory(), theVulkanResourcePackage.getBufferMemory(), null, "vertexBufferMemory", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearContext_CompositeDrawTask(), theProcessPackage.getCompositeTask(), null, "compositeDrawTask", null, 1, 1, NuklearContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -740,10 +696,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		initEClass(panelViewerEClass, PanelViewer.class, "PanelViewer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPanelViewer_VariableResolver(), theVariablePackage.getDirectVariableResolver(), null, "variableResolver", null, 1, 1, PanelViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(nuklearVertexProviderEClass, NuklearVertexProvider.class, "NuklearVertexProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(nuklearIndexProviderEClass, NuklearIndexProvider.class, "NuklearIndexProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(fontImageProviderEClass, FontImageProvider.class, "FontImageProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFontImageProvider_NuklearFont(), this.getNuklearFont(), null, "nuklearFont", null, 1, 1, FontImageProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

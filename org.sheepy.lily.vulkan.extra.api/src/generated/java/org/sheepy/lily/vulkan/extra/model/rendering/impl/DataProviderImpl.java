@@ -5,11 +5,10 @@ package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -19,10 +18,10 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.api.model.LilyEObject;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderDataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
+import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 /**
@@ -33,26 +32,17 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getDataProvider <em>Data Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getMinSize <em>Min Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getBufferName <em>Buffer Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DataProviderImpl<T extends Structure> extends LilyEObject implements DataProvider<T>
 {
-	/**
-	 * The cached value of the '{@link #getDataProvider() <em>Data Provider</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected RenderDataProvider<T> dataProvider;
-
 	/**
 	 * The cached value of the '{@link #getUsages() <em>Usages</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -104,6 +94,36 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	protected long minSize = MIN_SIZE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected IBufferDataSource dataSource;
+
+	/**
+	 * The default value of the '{@link #getBufferName() <em>Buffer Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBufferName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String BUFFER_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getBufferName() <em>Buffer Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBufferName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String bufferName = BUFFER_NAME_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,56 +142,6 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	protected EClass eStaticClass()
 	{
 		return RenderingPackage.Literals.DATA_PROVIDER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public RenderDataProvider<T> getDataProvider()
-	{
-		return dataProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDataProvider(RenderDataProvider<T> newDataProvider, NotificationChain msgs)
-	{
-		RenderDataProvider<T> oldDataProvider = dataProvider;
-		dataProvider = newDataProvider;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.DATA_PROVIDER__DATA_PROVIDER, oldDataProvider, newDataProvider);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDataProvider(RenderDataProvider<T> newDataProvider)
-	{
-		if (newDataProvider != dataProvider)
-		{
-			NotificationChain msgs = null;
-			if (dataProvider != null)
-				msgs = ((InternalEObject)dataProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.DATA_PROVIDER__DATA_PROVIDER, null, msgs);
-			if (newDataProvider != null)
-				msgs = ((InternalEObject)newDataProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.DATA_PROVIDER__DATA_PROVIDER, null, msgs);
-			msgs = basicSetDataProvider(newDataProvider, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.DATA_PROVIDER__DATA_PROVIDER, newDataProvider, newDataProvider));
 	}
 
 	/**
@@ -245,14 +215,68 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public IBufferDataSource getDataSource()
 	{
-		switch (featureID)
+		if (dataSource != null && ((EObject)dataSource).eIsProxy())
 		{
-			case RenderingPackage.DATA_PROVIDER__DATA_PROVIDER:
-				return basicSetDataProvider(null, msgs);
+			InternalEObject oldDataSource = dataSource;
+			dataSource = (IBufferDataSource)eResolveProxy(oldDataSource);
+			if (dataSource != oldDataSource)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.DATA_PROVIDER__DATA_SOURCE, oldDataSource, dataSource));
+			}
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IBufferDataSource basicGetDataSource()
+	{
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDataSource(IBufferDataSource newDataSource)
+	{
+		IBufferDataSource oldDataSource = dataSource;
+		dataSource = newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.DATA_PROVIDER__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getBufferName()
+	{
+		return bufferName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBufferName(String newBufferName)
+	{
+		String oldBufferName = bufferName;
+		bufferName = newBufferName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.DATA_PROVIDER__BUFFER_NAME, oldBufferName, bufferName));
 	}
 
 	/**
@@ -265,14 +289,17 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DATA_PROVIDER__DATA_PROVIDER:
-				return getDataProvider();
 			case RenderingPackage.DATA_PROVIDER__USAGES:
 				return getUsages();
 			case RenderingPackage.DATA_PROVIDER__GROW_FACTOR:
 				return getGrowFactor();
 			case RenderingPackage.DATA_PROVIDER__MIN_SIZE:
 				return getMinSize();
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE:
+				if (resolve) return getDataSource();
+				return basicGetDataSource();
+			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
+				return getBufferName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -288,9 +315,6 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DATA_PROVIDER__DATA_PROVIDER:
-				setDataProvider((RenderDataProvider<T>)newValue);
-				return;
 			case RenderingPackage.DATA_PROVIDER__USAGES:
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
@@ -300,6 +324,12 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 				return;
 			case RenderingPackage.DATA_PROVIDER__MIN_SIZE:
 				setMinSize((Long)newValue);
+				return;
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE:
+				setDataSource((IBufferDataSource)newValue);
+				return;
+			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
+				setBufferName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,9 +345,6 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DATA_PROVIDER__DATA_PROVIDER:
-				setDataProvider((RenderDataProvider<T>)null);
-				return;
 			case RenderingPackage.DATA_PROVIDER__USAGES:
 				getUsages().clear();
 				return;
@@ -326,6 +353,12 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 				return;
 			case RenderingPackage.DATA_PROVIDER__MIN_SIZE:
 				setMinSize(MIN_SIZE_EDEFAULT);
+				return;
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE:
+				setDataSource((IBufferDataSource)null);
+				return;
+			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
+				setBufferName(BUFFER_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -341,14 +374,16 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	{
 		switch (featureID)
 		{
-			case RenderingPackage.DATA_PROVIDER__DATA_PROVIDER:
-				return dataProvider != null;
 			case RenderingPackage.DATA_PROVIDER__USAGES:
 				return usages != null && !usages.isEmpty();
 			case RenderingPackage.DATA_PROVIDER__GROW_FACTOR:
 				return growFactor != GROW_FACTOR_EDEFAULT;
 			case RenderingPackage.DATA_PROVIDER__MIN_SIZE:
 				return minSize != MIN_SIZE_EDEFAULT;
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE:
+				return dataSource != null;
+			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
+				return BUFFER_NAME_EDEFAULT == null ? bufferName != null : !BUFFER_NAME_EDEFAULT.equals(bufferName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -370,6 +405,8 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 		result.append(growFactor);
 		result.append(", minSize: ");
 		result.append(minSize);
+		result.append(", bufferName: ");
+		result.append(bufferName);
 		result.append(')');
 		return result.toString();
 	}

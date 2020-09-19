@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.vulkanresource.impl;
+package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -8,52 +8,53 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.lily.core.api.model.LilyEObject;
+import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
+import org.sheepy.vulkan.model.enumeration.EIndexType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Buffer Data Provider</b></em>'.
+ * An implementation of the model object '<em><b>Indexed Data Description</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferDataProviderImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.IndexedDataDescriptionImpl#getIndexType <em>Index Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BufferDataProviderImpl extends LilyEObject implements BufferDataProvider
+public class IndexedDataDescriptionImpl<T extends Structure> extends DataProviderImpl<T> implements IndexedDataDescription<T>
 {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getIndexType() <em>Index Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getIndexType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final EIndexType INDEX_TYPE_EDEFAULT = EIndexType.UINT32;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getIndexType() <em>Index Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getIndexType()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected EIndexType indexType = INDEX_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BufferDataProviderImpl()
+	protected IndexedDataDescriptionImpl()
 	{
 		super();
 	}
@@ -66,7 +67,7 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 	@Override
 	protected EClass eStaticClass()
 	{
-		return VulkanResourcePackage.Literals.BUFFER_DATA_PROVIDER;
+		return RenderingPackage.Literals.INDEXED_DATA_DESCRIPTION;
 	}
 
 	/**
@@ -75,9 +76,9 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 	 * @generated
 	 */
 	@Override
-	public String getName()
+	public EIndexType getIndexType()
 	{
-		return name;
+		return indexType;
 	}
 
 	/**
@@ -86,12 +87,12 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
+	public void setIndexType(EIndexType newIndexType)
 	{
-		String oldName = name;
-		name = newName;
+		EIndexType oldIndexType = indexType;
+		indexType = newIndexType == null ? INDEX_TYPE_EDEFAULT : newIndexType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.INDEXED_DATA_DESCRIPTION__INDEX_TYPE, oldIndexType, indexType));
 	}
 
 	/**
@@ -104,8 +105,8 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME:
-				return getName();
+			case RenderingPackage.INDEXED_DATA_DESCRIPTION__INDEX_TYPE:
+				return getIndexType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,8 +121,8 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME:
-				setName((String)newValue);
+			case RenderingPackage.INDEXED_DATA_DESCRIPTION__INDEX_TYPE:
+				setIndexType((EIndexType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,8 +138,8 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME:
-				setName(NAME_EDEFAULT);
+			case RenderingPackage.INDEXED_DATA_DESCRIPTION__INDEX_TYPE:
+				setIndexType(INDEX_TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -154,8 +155,8 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 	{
 		switch (featureID)
 		{
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case RenderingPackage.INDEXED_DATA_DESCRIPTION__INDEX_TYPE:
+				return indexType != INDEX_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -171,10 +172,10 @@ public class BufferDataProviderImpl extends LilyEObject implements BufferDataPro
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (indexType: ");
+		result.append(indexType);
 		result.append(')');
 		return result.toString();
 	}
 
-} //BufferDataProviderImpl
+} //IndexedDataDescriptionImpl

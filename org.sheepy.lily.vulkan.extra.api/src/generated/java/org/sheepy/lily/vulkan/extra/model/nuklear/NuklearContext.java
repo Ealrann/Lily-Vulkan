@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.extra.model.nuklear;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 
@@ -20,8 +21,8 @@ import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getNullTexture <em>Null Texture</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getImageArrayDescriptor <em>Image Array Descriptor</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexDataProvider <em>Vertex Data Provider</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexDataProvider <em>Index Data Provider</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBuffer <em>Vertex Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexBuffer <em>Index Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBufferMemory <em>Vertex Buffer Memory</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getCompositeDrawTask <em>Composite Draw Task</em>}</li>
  * </ul>
@@ -99,48 +100,48 @@ public interface NuklearContext extends IVulkanResource
 	void setImageArrayDescriptor(ImageDescriptor value);
 
 	/**
-	 * Returns the value of the '<em><b>Vertex Data Provider</b></em>' reference.
+	 * Returns the value of the '<em><b>Vertex Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vertex Data Provider</em>' reference.
-	 * @see #setVertexDataProvider(NuklearVertexProvider)
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_VertexDataProvider()
+	 * @return the value of the '<em>Vertex Buffer</em>' reference.
+	 * @see #setVertexBuffer(IBuffer)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_VertexBuffer()
 	 * @model required="true"
 	 * @generated
 	 */
-	NuklearVertexProvider getVertexDataProvider();
+	IBuffer getVertexBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexDataProvider <em>Vertex Data Provider</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getVertexBuffer <em>Vertex Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Vertex Data Provider</em>' reference.
-	 * @see #getVertexDataProvider()
+	 * @param value the new value of the '<em>Vertex Buffer</em>' reference.
+	 * @see #getVertexBuffer()
 	 * @generated
 	 */
-	void setVertexDataProvider(NuklearVertexProvider value);
+	void setVertexBuffer(IBuffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Index Data Provider</b></em>' reference.
+	 * Returns the value of the '<em><b>Index Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Index Data Provider</em>' reference.
-	 * @see #setIndexDataProvider(NuklearIndexProvider)
-	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_IndexDataProvider()
+	 * @return the value of the '<em>Index Buffer</em>' reference.
+	 * @see #setIndexBuffer(IBuffer)
+	 * @see org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage#getNuklearContext_IndexBuffer()
 	 * @model required="true"
 	 * @generated
 	 */
-	NuklearIndexProvider getIndexDataProvider();
+	IBuffer getIndexBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexDataProvider <em>Index Data Provider</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext#getIndexBuffer <em>Index Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Index Data Provider</em>' reference.
-	 * @see #getIndexDataProvider()
+	 * @param value the new value of the '<em>Index Buffer</em>' reference.
+	 * @see #getIndexBuffer()
 	 * @generated
 	 */
-	void setIndexDataProvider(NuklearIndexProvider value);
+	void setIndexBuffer(IBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Vertex Buffer Memory</b></em>' reference.

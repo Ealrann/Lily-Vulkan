@@ -72,7 +72,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 			case VulkanResourcePackage.CONSTANT_BUFFER: return createConstantBuffer();
 			case VulkanResourcePackage.GENERIC_CONSTANT_BUFFER: return createGenericConstantBuffer();
 			case VulkanResourcePackage.BUFFER_REFERENCE: return createBufferReference();
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER: return createBufferDataProvider();
 			case VulkanResourcePackage.IMAGE_DATA_PROVIDER: return createImageDataProvider();
 			case VulkanResourcePackage.FILE_IMAGE_DATA_PROVIDER: return createFileImageDataProvider();
 			case VulkanResourcePackage.IMAGE_INLAY: return createImageInlay();
@@ -196,18 +195,6 @@ public class VulkanResourceFactoryImpl extends EFactoryImpl implements VulkanRes
 	{
 		BufferReferenceImpl bufferReference = new BufferReferenceImpl();
 		return bufferReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public BufferDataProvider createBufferDataProvider()
-	{
-		BufferDataProviderImpl bufferDataProvider = new BufferDataProviderImpl();
-		return bufferDataProvider;
 	}
 
 	/**

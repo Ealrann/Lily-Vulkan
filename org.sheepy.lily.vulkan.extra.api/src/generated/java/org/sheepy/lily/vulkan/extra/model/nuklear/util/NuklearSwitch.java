@@ -18,7 +18,6 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.*;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider;
 
 /**
@@ -145,24 +144,6 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.NUKLEAR_VERTEX_PROVIDER:
-			{
-				NuklearVertexProvider nuklearVertexProvider = (NuklearVertexProvider)theEObject;
-				T result = caseNuklearVertexProvider(nuklearVertexProvider);
-				if (result == null) result = caseBufferDataProvider(nuklearVertexProvider);
-				if (result == null) result = caseLNamedElement(nuklearVertexProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case NuklearPackage.NUKLEAR_INDEX_PROVIDER:
-			{
-				NuklearIndexProvider nuklearIndexProvider = (NuklearIndexProvider)theEObject;
-				T result = caseNuklearIndexProvider(nuklearIndexProvider);
-				if (result == null) result = caseBufferDataProvider(nuklearIndexProvider);
-				if (result == null) result = caseLNamedElement(nuklearIndexProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case NuklearPackage.FONT_IMAGE_PROVIDER:
 			{
 				FontImageProvider fontImageProvider = (FontImageProvider)theEObject;
@@ -268,38 +249,6 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T casePanelViewer(PanelViewer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vertex Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vertex Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNuklearVertexProvider(NuklearVertexProvider object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Index Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Index Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNuklearIndexProvider(NuklearIndexProvider object)
 	{
 		return null;
 	}
@@ -476,22 +425,6 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T casePanel(Panel object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Buffer Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Buffer Data Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBufferDataProvider(BufferDataProvider object)
 	{
 		return null;
 	}

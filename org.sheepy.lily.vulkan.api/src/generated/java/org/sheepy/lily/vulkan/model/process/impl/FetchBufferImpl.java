@@ -6,7 +6,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -15,7 +14,6 @@ import org.sheepy.lily.core.api.model.LilyEObject;
 
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
 
 /**
@@ -29,7 +27,6 @@ import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl#getBufferReference <em>Buffer Reference</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl#getDataProvider <em>Data Provider</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,16 +82,6 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	 * @ordered
 	 */
 	protected BufferReference bufferReference;
-
-	/**
-	 * The cached value of the '{@link #getDataProvider() <em>Data Provider</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected BufferDataProvider dataProvider;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -223,51 +210,6 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 	 * @generated
 	 */
 	@Override
-	public BufferDataProvider getDataProvider()
-	{
-		if (dataProvider != null && ((EObject)dataProvider).eIsProxy())
-		{
-			InternalEObject oldDataProvider = (InternalEObject)dataProvider;
-			dataProvider = (BufferDataProvider)eResolveProxy(oldDataProvider);
-			if (dataProvider != oldDataProvider)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.FETCH_BUFFER__DATA_PROVIDER, oldDataProvider, dataProvider));
-			}
-		}
-		return dataProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BufferDataProvider basicGetDataProvider()
-	{
-		return dataProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDataProvider(BufferDataProvider newDataProvider)
-	{
-		BufferDataProvider oldDataProvider = dataProvider;
-		dataProvider = newDataProvider;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.FETCH_BUFFER__DATA_PROVIDER, oldDataProvider, dataProvider));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -294,9 +236,6 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 				return isEnabled();
 			case ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE:
 				return getBufferReference();
-			case ProcessPackage.FETCH_BUFFER__DATA_PROVIDER:
-				if (resolve) return getDataProvider();
-				return basicGetDataProvider();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -319,9 +258,6 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 				return;
 			case ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE:
 				setBufferReference((BufferReference)newValue);
-				return;
-			case ProcessPackage.FETCH_BUFFER__DATA_PROVIDER:
-				setDataProvider((BufferDataProvider)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -346,9 +282,6 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 			case ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE:
 				setBufferReference((BufferReference)null);
 				return;
-			case ProcessPackage.FETCH_BUFFER__DATA_PROVIDER:
-				setDataProvider((BufferDataProvider)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -369,8 +302,6 @@ public class FetchBufferImpl extends LilyEObject implements FetchBuffer
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE:
 				return bufferReference != null;
-			case ProcessPackage.FETCH_BUFFER__DATA_PROVIDER:
-				return dataProvider != null;
 		}
 		return super.eIsSet(featureID);
 	}

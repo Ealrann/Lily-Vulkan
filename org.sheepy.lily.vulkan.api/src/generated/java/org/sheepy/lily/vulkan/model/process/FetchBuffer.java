@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
 
 /**
@@ -15,7 +14,6 @@ import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.FetchBuffer#getBufferReference <em>Buffer Reference</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.FetchBuffer#getDataProvider <em>Data Provider</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getFetchBuffer()
@@ -45,27 +43,5 @@ public interface FetchBuffer extends IPipelineTask
 	 * @generated
 	 */
 	void setBufferReference(BufferReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Data Provider</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Provider</em>' reference.
-	 * @see #setDataProvider(BufferDataProvider)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getFetchBuffer_DataProvider()
-	 * @model required="true"
-	 * @generated
-	 */
-	BufferDataProvider getDataProvider();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.FetchBuffer#getDataProvider <em>Data Provider</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Provider</em>' reference.
-	 * @see #getDataProvider()
-	 * @generated
-	 */
-	void setDataProvider(BufferDataProvider value);
 
 } // FetchBuffer

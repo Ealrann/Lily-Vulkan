@@ -1,22 +1,19 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
-import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexProviderAdapter;
-import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexProviderAdapter;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexSupplier;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexSupplier;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.data.RenderPipelineSetup;
-import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
-import org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.Draw;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import java.util.ArrayList;
@@ -44,7 +41,7 @@ public final class DrawTaskConfigurator
 	{
 		final var part = context.part();
 		final int drawCall = part + context.drawCallOffset();
-		final var bufferMemory = context.bufferMemories().get(part);
+		final var bufferSetup = context.bufferSetups().get(part);
 		final var bindDS = ProcessFactory.eINSTANCE.createBindDescriptorSets();
 		final var descriptorSets = bindDS.getDescriptorSets();
 
@@ -53,7 +50,7 @@ public final class DrawTaskConfigurator
 
 		context.pipeline().getTaskPkgs().get(0).getTasks().add(bindDS);
 
-		return new BufferContext(context.pipeline(), context.structure(), bufferMemory, drawCall);
+		return new BufferContext(context.pipeline(), context.structure(), bufferSetup, drawCall);
 	}
 
 	private void install(BufferContext context)
@@ -61,18 +58,20 @@ public final class DrawTaskConfigurator
 		final var pipeline = context.pipeline();
 		final var taskPkg = pipeline.getTaskPkgs().get(0);
 		final var resourcePkg = pipeline.getResourcePkg();
-		final var bufferParts = context.bufferMemory().getBuffers();
-		final List<VertexProvider<?>> vertexProviders = new ArrayList<>();
+		final var bufferSetups = context.bufferGroup().bufferSetups();
 
 		final List<VertexBinding> vertexBufferRef = new ArrayList<>();
+		final List<BufferSetup> vertexBuffers = new ArrayList<>();
 		int indexIndex = -1;
 
-		for (int i = 0; i < bufferParts.size(); i++)
+		for (int i = 0; i < bufferSetups.size(); i++)
 		{
-			final var part = bufferParts.get(i);
-			final var provider = ((BufferViewer) part).getDataProvider();
+			final var bufferSetup = bufferSetups.get(i);
+			final var bufferViewer = bufferSetup.bufferViewer();
+			final var isIndexBuffer = bufferViewer.getUsages().contains(EBufferUsage.INDEX_BUFFER_BIT);
+			final var isVertexBuffer = bufferViewer.getUsages().contains(EBufferUsage.VERTEX_BUFFER_BIT);
 
-			if (provider instanceof IndexProvider)
+			if (isIndexBuffer)
 			{
 				if (indexIndex != -1)
 				{
@@ -81,12 +80,13 @@ public final class DrawTaskConfigurator
 
 				indexIndex = i;
 			}
-			else if (provider instanceof VertexProvider<?> vertexProvider)
+			else if (isVertexBuffer)
 			{
 				final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
-				vertexBinding.setBuffer(part);
+				vertexBinding.setBuffer(bufferViewer);
 				vertexBufferRef.add(vertexBinding);
-				vertexProviders.add(vertexProvider);
+
+				vertexBuffers.add(bufferSetup);
 			}
 		}
 
@@ -109,22 +109,23 @@ public final class DrawTaskConfigurator
 
 		if (indexIndex != -1)
 		{
-			final var part = bufferParts.get(indexIndex);
-			final var indexProvider = (IndexProvider<?>) ((BufferViewer) part).getDataProvider();
+			final var bufferSetup = bufferSetups.get(indexIndex);
 			final var indexedDraw = GraphicFactory.eINSTANCE.createDrawIndexed();
 			final var bindIndex = GraphicFactory.eINSTANCE.createBindIndexBuffer();
+			final var dataProvider = (IndexedDataDescription<?>) bufferSetup.dataProvider();
+			final var bufferViewer = bufferSetup.bufferViewer();
 
-			bindIndex.setBuffer(part);
-			bindIndex.setIndexType(indexProvider.getIndexType());
+			bindIndex.setBuffer(bufferViewer);
+			bindIndex.setIndexType(dataProvider.getIndexType());
 			taskPkg.getTasks().add(bindIndex);
 			taskPkg.getTasks().add(indexedDraw);
 
-			final var indexProviderAdapter = indexProvider.adapt(IIndexProviderAdapter.class);
+			final var indexProvider = bufferSetup.bufferViewer().adapt(IIndexSupplier.class);
 			structureAdapter.listen(indexedDraw::setInstanceCount, IStructureAdapter.Features.InstanceCount);
-			indexProviderAdapter.listen(indexedDraw::setIndexCount, IIndexProviderAdapter.Features.IndexCount);
+			indexProvider.listen(indexedDraw::setIndexCount, IIndexSupplier.Features.IndexCount);
 
 			indexedDraw.setInstanceCount(structureAdapter.getInstanceCount(context.structure));
-			indexedDraw.setIndexCount(indexProviderAdapter.getIndexCount());
+			indexedDraw.setIndexCount(indexProvider.getIndexCount());
 		}
 		else
 		{
@@ -134,40 +135,39 @@ public final class DrawTaskConfigurator
 			structureAdapter.listen(draw::setInstanceCount, IStructureAdapter.Features.InstanceCount);
 			draw.setInstanceCount(structureAdapter.getInstanceCount(context.structure));
 
-			for (final var vertexProvider : vertexProviders)
+			for (final var vertexSetup : vertexBuffers)
 			{
-				final var vertexProviderAdapter = vertexProvider.adapt(IVertexProviderAdapter.class);
-				vertexProviderAdapter.listenNoParam(() -> updateVertexCount(vertexProviders, draw),
-													IVertexProviderAdapter.Features.VertexCount);
+				final var vertexProviderAdapter = vertexSetup.bufferViewer().adapt(IVertexSupplier.class);
+				vertexProviderAdapter.listenNoParam(() -> updateVertexCount(vertexBuffers, draw),
+													IVertexSupplier.Features.VertexCount);
 			}
 
-			updateVertexCount(vertexProviders, draw);
+			updateVertexCount(vertexBuffers, draw);
 		}
 	}
 
-	private static void updateVertexCount(final List<VertexProvider<?>> vertexProviders, final Draw draw)
+	private static void updateVertexCount(final List<BufferSetup> vertexBuffers, final Draw draw)
 	{
-		final int vertexCount = vertexProviders.stream()
-											   .map(IVertexProviderAdapter::adapt)
-											   .mapToInt(IVertexProviderAdapter::getVertexCount)
-											   .sum();
+		final int vertexCount = vertexBuffers.stream()
+											 .map(BufferSetup::bufferViewer)
+											 .map(ds -> ds.adapt(IVertexSupplier.class))
+											 .mapToInt(IVertexSupplier::getVertexCount)
+											 .sum();
 
 		draw.setVertexCount(vertexCount);
 	}
 
 	private record BufferContext(GraphicsPipeline pipeline,
 								 Structure structure,
-								 BufferMemory bufferMemory,
+								 BufferGroupSetup bufferGroup,
 								 int drawCall)
 	{
 		public RenderPipelineSetup toRenderSetup()
 		{
-			final var dataProviders = bufferMemory.getBuffers()
-												  .stream()
-												  .map(BufferViewer.class::cast)
-												  .map(BufferViewer::getDataProvider)
-												  .map(BufferDataProvider.class::cast)
-												  .collect(Collectors.toUnmodifiableList());
+			final var dataProviders = bufferGroup.bufferSetups()
+												 .stream()
+												 .map(BufferSetup::bufferViewer)
+												 .collect(Collectors.toUnmodifiableList());
 
 			return new RenderPipelineSetup(pipeline, dataProviders, structure);
 		}

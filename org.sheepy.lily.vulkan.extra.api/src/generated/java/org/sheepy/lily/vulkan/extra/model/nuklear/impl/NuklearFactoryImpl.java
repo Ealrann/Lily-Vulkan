@@ -69,8 +69,6 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 			case NuklearPackage.NUKLEAR_FONT: return createNuklearFont();
 			case NuklearPackage.SELECTOR_PANEL: return createSelectorPanel();
 			case NuklearPackage.PANEL_VIEWER: return createPanelViewer();
-			case NuklearPackage.NUKLEAR_VERTEX_PROVIDER: return createNuklearVertexProvider();
-			case NuklearPackage.NUKLEAR_INDEX_PROVIDER: return createNuklearIndexProvider();
 			case NuklearPackage.FONT_IMAGE_PROVIDER: return createFontImageProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -135,30 +133,6 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	{
 		PanelViewerImpl panelViewer = new PanelViewerImpl();
 		return panelViewer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NuklearVertexProvider createNuklearVertexProvider()
-	{
-		NuklearVertexProviderImpl nuklearVertexProvider = new NuklearVertexProviderImpl();
-		return nuklearVertexProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NuklearIndexProvider createNuklearIndexProvider()
-	{
-		NuklearIndexProviderImpl nuklearIndexProvider = new NuklearIndexProviderImpl();
-		return nuklearIndexProvider;
 	}
 
 	/**

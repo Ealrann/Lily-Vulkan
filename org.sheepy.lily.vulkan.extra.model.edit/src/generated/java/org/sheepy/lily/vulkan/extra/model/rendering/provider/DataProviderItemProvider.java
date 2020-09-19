@@ -10,9 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -26,7 +23,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
@@ -71,6 +67,8 @@ public class DataProviderItemProvider
 			addUsagesPropertyDescriptor(object);
 			addGrowFactorPropertyDescriptor(object);
 			addMinSizePropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
+			addBufferNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -145,36 +143,49 @@ public class DataProviderItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Data Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	protected void addDataSourcePropertyDescriptor(Object object)
 	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.DATA_PROVIDER__DATA_PROVIDER);
-		}
-		return childrenFeatures;
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DataProvider_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DataProvider_dataSource_feature", "_UI_DataProvider_type"),
+				 RenderingPackage.Literals.DATA_PROVIDER__DATA_SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Buffer Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
+	protected void addBufferNamePropertyDescriptor(Object object)
 	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DataProvider_bufferName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DataProvider_bufferName_feature", "_UI_DataProvider_type"),
+				 RenderingPackage.Literals.DATA_PROVIDER__BUFFER_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -198,8 +209,10 @@ public class DataProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		DataProvider<?> dataProvider = (DataProvider<?>)object;
-		return getString("_UI_DataProvider_type") + " " + dataProvider.getGrowFactor();
+		String label = ((DataProvider<?>)object).getBufferName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataProvider_type") :
+			getString("_UI_DataProvider_type") + " " + label;
 	}
 
 
@@ -220,10 +233,8 @@ public class DataProviderItemProvider
 			case RenderingPackage.DATA_PROVIDER__USAGES:
 			case RenderingPackage.DATA_PROVIDER__GROW_FACTOR:
 			case RenderingPackage.DATA_PROVIDER__MIN_SIZE:
+			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case RenderingPackage.DATA_PROVIDER__DATA_PROVIDER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -240,16 +251,6 @@ public class DataProviderItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.DATA_PROVIDER__DATA_PROVIDER,
-				 RenderingFactory.eINSTANCE.createVertexProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.DATA_PROVIDER__DATA_PROVIDER,
-				 RenderingFactory.eINSTANCE.createIndexProvider()));
 	}
 
 	/**

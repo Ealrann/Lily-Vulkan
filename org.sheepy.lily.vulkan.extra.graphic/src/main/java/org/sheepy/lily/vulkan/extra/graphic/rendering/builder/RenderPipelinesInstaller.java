@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.data.RenderPipelineSetup;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
-import org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
@@ -41,7 +41,7 @@ public final class RenderPipelinesInstaller<T extends Structure>
 	private static boolean isContainingIndexData(GenericRenderer<?> maintainer)
 	{
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
-		return dataProviders.stream().anyMatch(IndexProvider.class::isInstance);
+		return dataProviders.stream().anyMatch(IndexedDataDescription.class::isInstance);
 	}
 
 	private static abstract class AbstractRenderPipelineInstaller<T extends Structure>

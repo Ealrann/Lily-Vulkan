@@ -136,11 +136,10 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER:
+			case VulkanResourcePackage.IBUFFER_DATA_SOURCE:
 			{
-				BufferDataProvider bufferDataProvider = (BufferDataProvider)theEObject;
-				T result = caseBufferDataProvider(bufferDataProvider);
-				if (result == null) result = caseLNamedElement(bufferDataProvider);
+				IBufferDataSource iBufferDataSource = (IBufferDataSource)theEObject;
+				T result = caseIBufferDataSource(iBufferDataSource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -430,17 +429,17 @@ public class VulkanResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Buffer Data Provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IBuffer Data Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Buffer Data Provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IBuffer Data Source</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBufferDataProvider(BufferDataProvider object)
+	public T caseIBufferDataSource(IBufferDataSource object)
 	{
 		return null;
 	}

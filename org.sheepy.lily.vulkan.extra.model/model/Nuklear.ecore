@@ -11,10 +11,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="font" lowerBound="1" eType="#//NuklearFont"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nullTexture" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//StaticImage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageArrayDescriptor" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ImageDescriptor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexDataProvider" lowerBound="1"
-        eType="#//NuklearVertexProvider"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="indexDataProvider" lowerBound="1"
-        eType="#//NuklearIndexProvider"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertexBuffer" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indexBuffer" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vertexBufferMemory" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferMemory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compositeDrawTask" lowerBound="1"
@@ -66,8 +66,6 @@
         eType="ecore:EClass ../../org.sheepy.lily.core.model/model/variable.ecore#//DirectVariableResolver"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearVertexProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferDataProvider"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NuklearIndexProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferDataProvider"/>
   <eClassifiers xsi:type="ecore:EClass" name="FontImageProvider" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ImageDataProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nuklearFont" lowerBound="1"
         eType="#//NuklearFont"/>

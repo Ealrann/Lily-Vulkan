@@ -5,11 +5,10 @@ package org.sheepy.lily.vulkan.model.vulkanresource.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -17,9 +16,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
-
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
@@ -34,10 +32,10 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getDataProvider <em>Data Provider</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,16 +71,6 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	 * @ordered
 	 */
 	protected EList<EBufferUsage> usages;
-
-	/**
-	 * The cached value of the '{@link #getDataProvider() <em>Data Provider</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected BufferDataProvider dataProvider;
 
 	/**
 	 * The default value of the '{@link #getGrowFactor() <em>Grow Factor</em>}' attribute.
@@ -145,6 +133,16 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	protected long size = SIZE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected IBufferDataSource dataSource;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -203,56 +201,6 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, VulkanResourcePackage.BUFFER_VIEWER__USAGES);
 		}
 		return usages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public BufferDataProvider getDataProvider()
-	{
-		return dataProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDataProvider(BufferDataProvider newDataProvider, NotificationChain msgs)
-	{
-		BufferDataProvider oldDataProvider = dataProvider;
-		dataProvider = newDataProvider;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, oldDataProvider, newDataProvider);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDataProvider(BufferDataProvider newDataProvider)
-	{
-		if (newDataProvider != dataProvider)
-		{
-			NotificationChain msgs = null;
-			if (dataProvider != null)
-				msgs = ((InternalEObject)dataProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, null, msgs);
-			if (newDataProvider != null)
-				msgs = ((InternalEObject)newDataProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, null, msgs);
-			msgs = basicSetDataProvider(newDataProvider, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER, newDataProvider, newDataProvider));
 	}
 
 	/**
@@ -336,14 +284,43 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public IBufferDataSource getDataSource()
 	{
-		switch (featureID)
+		if (dataSource != null && ((EObject)dataSource).eIsProxy())
 		{
-			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
-				return basicSetDataProvider(null, msgs);
+			InternalEObject oldDataSource = dataSource;
+			dataSource = (IBufferDataSource)eResolveProxy(oldDataSource);
+			if (dataSource != oldDataSource)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE, oldDataSource, dataSource));
+			}
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IBufferDataSource basicGetDataSource()
+	{
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDataSource(IBufferDataSource newDataSource)
+	{
+		IBufferDataSource oldDataSource = dataSource;
+		dataSource = newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE, oldDataSource, dataSource));
 	}
 
 	/**
@@ -360,14 +337,15 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 				return getName();
 			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
 				return getUsages();
-			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
-				return getDataProvider();
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 				return getGrowFactor();
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD:
 				return getGrowThreshold();
 			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				return getSize();
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE:
+				if (resolve) return getDataSource();
+				return basicGetDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -390,9 +368,6 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
 				return;
-			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
-				setDataProvider((BufferDataProvider)newValue);
-				return;
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 				setGrowFactor((Float)newValue);
 				return;
@@ -401,6 +376,9 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 				return;
 			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				setSize((Long)newValue);
+				return;
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE:
+				setDataSource((IBufferDataSource)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -422,9 +400,6 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
 				getUsages().clear();
 				return;
-			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
-				setDataProvider((BufferDataProvider)null);
-				return;
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 				setGrowFactor(GROW_FACTOR_EDEFAULT);
 				return;
@@ -433,6 +408,9 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 				return;
 			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				setSize(SIZE_EDEFAULT);
+				return;
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE:
+				setDataSource((IBufferDataSource)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -452,14 +430,14 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VulkanResourcePackage.BUFFER_VIEWER__USAGES:
 				return usages != null && !usages.isEmpty();
-			case VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER:
-				return dataProvider != null;
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 				return growFactor != GROW_FACTOR_EDEFAULT;
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD:
 				return growThreshold != GROW_THRESHOLD_EDEFAULT;
 			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
 				return size != SIZE_EDEFAULT;
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE:
+				return dataSource != null;
 		}
 		return super.eIsSet(featureID);
 	}

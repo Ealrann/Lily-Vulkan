@@ -68,6 +68,15 @@ public interface RenderingFactory extends EFactory
 	<T extends Structure> DataProvider<T> createDataProvider();
 
 	/**
+	 * Returns a new object of class '<em>Indexed Data Description</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Indexed Data Description</em>'.
+	 * @generated
+	 */
+	<T extends Structure> IndexedDataDescription<T> createIndexedDataDescription();
+
+	/**
 	 * Returns a new object of class '<em>Renderable Data Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,24 +84,6 @@ public interface RenderingFactory extends EFactory
 	 * @generated
 	 */
 	<T extends Structure> RenderableDataSource<T> createRenderableDataSource();
-
-	/**
-	 * Returns a new object of class '<em>Vertex Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Vertex Provider</em>'.
-	 * @generated
-	 */
-	<T extends Structure> VertexProvider<T> createVertexProvider();
-
-	/**
-	 * Returns a new object of class '<em>Index Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Index Provider</em>'.
-	 * @generated
-	 */
-	<T extends Structure> IndexProvider<T> createIndexProvider();
 
 	/**
 	 * Returns a new object of class '<em>Descriptors Provider</em>'.

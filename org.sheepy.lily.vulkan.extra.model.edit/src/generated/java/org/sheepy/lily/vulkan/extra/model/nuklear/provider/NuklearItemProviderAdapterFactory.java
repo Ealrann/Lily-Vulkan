@@ -51,7 +51,6 @@ import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageViewer;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.model.vulkanresource.util.VulkanResourceSwitch;
@@ -240,56 +239,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NuklearVertexProviderItemProvider nuklearVertexProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearVertexProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNuklearVertexProviderAdapter()
-	{
-		if (nuklearVertexProviderItemProvider == null)
-		{
-			nuklearVertexProviderItemProvider = new NuklearVertexProviderItemProvider(this);
-		}
-
-		return nuklearVertexProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NuklearIndexProviderItemProvider nuklearIndexProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearIndexProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNuklearIndexProviderAdapter()
-	{
-		if (nuklearIndexProviderItemProvider == null)
-		{
-			nuklearIndexProviderItemProvider = new NuklearIndexProviderItemProvider(this);
-		}
-
-		return nuklearIndexProviderItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -468,8 +417,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		if (nuklearFontItemProvider != null) nuklearFontItemProvider.dispose();
 		if (selectorPanelItemProvider != null) selectorPanelItemProvider.dispose();
 		if (panelViewerItemProvider != null) panelViewerItemProvider.dispose();
-		if (nuklearVertexProviderItemProvider != null) nuklearVertexProviderItemProvider.dispose();
-		if (nuklearIndexProviderItemProvider != null) nuklearIndexProviderItemProvider.dispose();
 		if (fontImageProviderItemProvider != null) fontImageProviderItemProvider.dispose();
 	}
 
@@ -728,26 +675,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseBufferViewer(BufferViewer object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
-						 NuklearFactory.eINSTANCE.createNuklearVertexProvider()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
-						 NuklearFactory.eINSTANCE.createNuklearIndexProvider()));
-
-				return null;
 			}
 			/**
 			 * <!-- begin-user-doc -->

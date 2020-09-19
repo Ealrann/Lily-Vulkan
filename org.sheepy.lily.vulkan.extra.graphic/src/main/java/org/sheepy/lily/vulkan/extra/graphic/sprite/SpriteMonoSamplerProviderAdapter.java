@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 import org.sheepy.vulkan.model.enumeration.*;
 import org.sheepy.vulkan.model.image.ImageFactory;
@@ -18,6 +18,7 @@ import org.sheepy.vulkan.model.image.ImagePackage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @ModelExtender(scope = SpriteMonoSamplerProvider.class)
 @Adapter(singleton = true)
@@ -26,7 +27,7 @@ public class SpriteMonoSamplerProviderAdapter implements IDescriptorProviderAdap
 	private static final List<EStructuralFeature> featureToCopy = List.copyOf(ImagePackage.Literals.SAMPLER_INFO.getEAllStructuralFeatures());
 
 	@Override
-	public ResourceDescriptor buildForPart(ResourceDescriptorProvider provider, BufferMemory bufferMemory)
+	public ResourceDescriptor buildForPart(ResourceDescriptorProvider provider, Stream<BufferViewer> bufferViewers)
 	{
 		return null;
 	}

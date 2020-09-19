@@ -44,9 +44,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.util.RenderingAdapterFactory
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.VulkanResourcePkg;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
-import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
-import org.sheepy.lily.vulkan.model.vulkanresource.util.VulkanResourceSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -232,6 +229,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IndexedDataDescriptionItemProvider indexedDataDescriptionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIndexedDataDescriptionAdapter()
+	{
+		if (indexedDataDescriptionItemProvider == null)
+		{
+			indexedDataDescriptionItemProvider = new IndexedDataDescriptionItemProvider(this);
+		}
+
+		return indexedDataDescriptionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,56 +276,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		}
 
 		return renderableDataSourceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VertexProviderItemProvider vertexProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.VertexProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVertexProviderAdapter()
-	{
-		if (vertexProviderItemProvider == null)
-		{
-			vertexProviderItemProvider = new VertexProviderItemProvider(this);
-		}
-
-		return vertexProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IndexProviderItemProvider indexProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.IndexProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIndexProviderAdapter()
-	{
-		if (indexProviderItemProvider == null)
-		{
-			indexProviderItemProvider = new IndexProviderItemProvider(this);
-		}
-
-		return indexProviderItemProvider;
 	}
 
 	/**
@@ -635,9 +607,8 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		if (presentableEntityItemProvider != null) presentableEntityItemProvider.dispose();
 		if (dataProviderPkgItemProvider != null) dataProviderPkgItemProvider.dispose();
 		if (dataProviderItemProvider != null) dataProviderItemProvider.dispose();
+		if (indexedDataDescriptionItemProvider != null) indexedDataDescriptionItemProvider.dispose();
 		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
-		if (vertexProviderItemProvider != null) vertexProviderItemProvider.dispose();
-		if (indexProviderItemProvider != null) indexProviderItemProvider.dispose();
 		if (descriptorsProviderItemProvider != null) descriptorsProviderItemProvider.dispose();
 		if (dataDescriptorsProviderItemProvider != null) dataDescriptorsProviderItemProvider.dispose();
 		if (dataDescriptorItemProvider != null) dataDescriptorItemProvider.dispose();
@@ -706,106 +677,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 				return null;
 			}
  
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public ResourceLocator getResourceLocator()
-		{
-			return ExtraEditPlugin.INSTANCE;
-		}
-	}
-
-	/**
-	 * A child creation extender for the {@link VulkanResourcePackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class VulkanResourceChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends VulkanResourceSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseBufferViewer(BufferViewer object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
-						 RenderingFactory.eINSTANCE.createVertexProvider()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_PROVIDER,
-						 RenderingFactory.eINSTANCE.createIndexProvider()));
-
-				return null;
-			}
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

@@ -70,9 +70,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
 			case RenderingPackage.DATA_PROVIDER_PKG: return createDataProviderPkg();
 			case RenderingPackage.DATA_PROVIDER: return createDataProvider();
+			case RenderingPackage.INDEXED_DATA_DESCRIPTION: return createIndexedDataDescription();
 			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
-			case RenderingPackage.VERTEX_PROVIDER: return createVertexProvider();
-			case RenderingPackage.INDEX_PROVIDER: return createIndexProvider();
 			case RenderingPackage.DESCRIPTORS_PROVIDER: return createDescriptorsProvider();
 			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER: return createDataDescriptorsProvider();
 			case RenderingPackage.DATA_DESCRIPTOR: return createDataDescriptor();
@@ -185,34 +184,22 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
+	public <T extends Structure> IndexedDataDescription<T> createIndexedDataDescription()
+	{
+		IndexedDataDescriptionImpl<T> indexedDataDescription = new IndexedDataDescriptionImpl<T>();
+		return indexedDataDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public <T extends Structure> RenderableDataSource<T> createRenderableDataSource()
 	{
 		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<T>();
 		return renderableDataSource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public <T extends Structure> VertexProvider<T> createVertexProvider()
-	{
-		VertexProviderImpl<T> vertexProvider = new VertexProviderImpl<T>();
-		return vertexProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public <T extends Structure> IndexProvider<T> createIndexProvider()
-	{
-		IndexProviderImpl<T> indexProvider = new IndexProviderImpl<T>();
-		return indexProvider;
 	}
 
 	/**

@@ -10,7 +10,7 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
-import org.sheepy.lily.game.api.resource.buffer.IBufferFetchAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IBufferDataConsumer;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
@@ -48,8 +48,8 @@ public final class FetchBufferRecorder implements IRecordableExtender
 	{
 		final var srcBufferAllocation = bufferReferenceAllocation.getBufferAllocations(context.index).get(0);
 		final var srcBuffer = bufferReferenceAllocation.getBuffers(context.index).get(0);
-		final var dataFetcher = srcBuffer.adapt(IBufferFetchAdapter.class);
-		final var fetcher = new Fetcher(executionContext, srcBufferAllocation, dataFetcher);
+		final var dataConsumerAdapter = srcBuffer.adaptNotNull(IBufferDataConsumer.class);
+		final var fetcher = new Fetcher(executionContext, srcBufferAllocation, dataConsumerAdapter);
 
 		srcBufferAllocation.attach(context);
 
@@ -62,17 +62,17 @@ public final class FetchBufferRecorder implements IRecordableExtender
 	{
 		private final ExecutionContext executionContext;
 		private final IBufferAllocation srcBuffer;
-		private final IBufferFetchAdapter dataFetcher;
+		private final IBufferDataConsumer dataConsumer;
 		private final HostVisibleBufferBackend stagingBuffer;
 		private final long size;
 
 		public Fetcher(final ExecutionContext executionContext,
 					   final IBufferAllocation srcBuffer,
-					   final IBufferFetchAdapter dataFetcher)
+					   final IBufferDataConsumer dataConsumer)
 		{
 			this.executionContext = executionContext;
 			this.srcBuffer = srcBuffer;
-			this.dataFetcher = dataFetcher;
+			this.dataConsumer = dataConsumer;
 			size = srcBuffer.getBindSize();
 
 			stagingBuffer = createStagingBuffer(srcBuffer.getBindSize());
@@ -102,7 +102,7 @@ public final class FetchBufferRecorder implements IRecordableExtender
 					stagingBuffer.invalidate(stack, executionContext.getVkDevice());
 				}
 				final var fetchBuffer = MemoryUtil.memByteBuffer(memoryPtr, (int) size);
-				dataFetcher.fetch(fetchBuffer);
+				dataConsumer.fetch(fetchBuffer);
 				stagingBuffer.unmapMemory(executionContext.getVkDevice());
 				stagingBuffer.free(executionContext);
 			}

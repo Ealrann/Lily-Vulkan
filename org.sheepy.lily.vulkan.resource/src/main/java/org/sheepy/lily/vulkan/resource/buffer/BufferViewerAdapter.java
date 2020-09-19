@@ -4,10 +4,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
-import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataProviderAdapter;
+import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataSupplier;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
-import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAdapter;
 
 import java.util.List;
@@ -23,14 +22,14 @@ public final class BufferViewerAdapter extends Notifier<IBufferAdapter.Features>
 	private BufferViewerAdapter(BufferViewer bufferViewer, IObservatoryBuilder observatory)
 	{
 		super(List.of(Features.Size));
-		final var dataProviderAdapter = bufferViewer.getDataProvider().adapt(IGenericBufferDataProviderAdapter.class);
 		this.bufferViewer = bufferViewer;
+		final var dataProviderAdapter = bufferViewer.adaptNotNull(IGenericBufferDataSupplier.class);
 		bufferViewer.setSize(computeFreshSize(dataProviderAdapter.size()));
 
 		//noinspection RedundantCast
-		observatory.explore(VulkanResourcePackage.BUFFER_VIEWER__DATA_PROVIDER).<IGenericBufferDataProviderAdapter.Features<?>, IGenericBufferDataProviderAdapter>adaptNotifier(
-				IGenericBufferDataProviderAdapter.class).listen((LongConsumer) this::sizeRequest,
-																IGenericBufferDataProviderAdapter.Features.Size);
+		observatory.<IGenericBufferDataSupplier.Features<?>, IGenericBufferDataSupplier>adaptNotifier(
+				IGenericBufferDataSupplier.class).listen((LongConsumer) this::sizeRequest,
+														 IGenericBufferDataSupplier.Features.Size);
 	}
 
 	private void sizeRequest(long requestedSize)

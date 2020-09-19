@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.vulkanresource.provider;
+package org.sheepy.lily.vulkan.extra.model.rendering.provider;
 
 
 import java.util.Collection;
@@ -9,39 +9,21 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider;
-import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.vulkanresource.BufferDataProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BufferDataProviderItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class IndexedDataDescriptionItemProvider extends DataProviderItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -49,7 +31,7 @@ public class BufferDataProviderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BufferDataProviderItemProvider(AdapterFactory adapterFactory)
+	public IndexedDataDescriptionItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -67,26 +49,26 @@ public class BufferDataProviderItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
+			addIndexTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Index Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
+	protected void addIndexTypePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 getString("_UI_IndexedDataDescription_indexType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IndexedDataDescription_indexType_feature", "_UI_IndexedDataDescription_type"),
+				 RenderingPackage.Literals.INDEXED_DATA_DESCRIPTION__INDEX_TYPE,
 				 true,
 				 false,
 				 false,
@@ -96,7 +78,7 @@ public class BufferDataProviderItemProvider
 	}
 
 	/**
-	 * This returns BufferDataProvider.gif.
+	 * This returns IndexedDataDescription.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -104,7 +86,7 @@ public class BufferDataProviderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BufferDataProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IndexedDataDescription"));
 	}
 
 	/**
@@ -116,10 +98,10 @@ public class BufferDataProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((BufferDataProvider)object).getName();
+		String label = ((IndexedDataDescription<?>)object).getBufferName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_BufferDataProvider_type") :
-			getString("_UI_BufferDataProvider_type") + " " + label;
+			getString("_UI_IndexedDataDescription_type") :
+			getString("_UI_IndexedDataDescription_type") + " " + label;
 	}
 
 
@@ -135,9 +117,9 @@ public class BufferDataProviderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BufferDataProvider.class))
+		switch (notification.getFeatureID(IndexedDataDescription.class))
 		{
-			case VulkanResourcePackage.BUFFER_DATA_PROVIDER__NAME:
+			case RenderingPackage.INDEXED_DATA_DESCRIPTION__INDEX_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -155,18 +137,6 @@ public class BufferDataProviderItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator()
-	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

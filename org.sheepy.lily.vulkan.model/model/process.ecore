@@ -129,7 +129,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="FetchBuffer" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
         eType="ecore:EClass vulkanresource.ecore#//BufferReference" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProvider" lowerBound="1"
-        eType="ecore:EClass vulkanresource.ecore#//BufferDataProvider"/>
   </eClassifiers>
 </ecore:EPackage>

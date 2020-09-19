@@ -1,12 +1,13 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IDescriptorProviderAdapter.ResourceDescriptor;
-import org.sheepy.lily.vulkan.extra.model.rendering.*;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
@@ -39,7 +40,7 @@ public final class ResourceInstaller<T extends Structure>
 
 	public PipelineBuildContext<T> prepare(final int part)
 	{
-		final List<BufferMemory> bufferMemories = new ArrayList<>();
+		final List<BufferGroupSetup> bufferSetups = new ArrayList<>();
 		final List<DescriptorSet> dynamicBindings = new ArrayList<>();
 		final var staticBindings = prepareResourceDescriptors((adapter, provider) -> adapter.buildForPipeline(provider,
 																											  structure));
@@ -51,11 +52,11 @@ public final class ResourceInstaller<T extends Structure>
 		for (int i = 0; i < count; i++)
 		{
 			final var buffer = prepareBufferMemory(memoryChunk, structure, i);
-			bufferMemories.add(buffer);
+			bufferSetups.add(buffer);
 
 			final var dynamicDescriptors = prepareResourceDescriptors((adapter, provider) -> adapter.buildForPart(
 					provider,
-					buffer));
+					buffer.bufferSetups().stream().map(BufferSetup::bufferViewer)));
 			if (dynamicDescriptors != null)
 			{
 				dynamicBindings.add(dynamicDescriptors);
@@ -66,7 +67,7 @@ public final class ResourceInstaller<T extends Structure>
 										  pipeline,
 										  part,
 										  drawCallOffset,
-										  bufferMemories,
+										  bufferSetups,
 										  dynamicBindings,
 										  staticBindings);
 	}
@@ -105,39 +106,38 @@ public final class ResourceInstaller<T extends Structure>
 		}
 	}
 
-	private BufferMemory prepareBufferMemory(MemoryChunk memoryChunk, T structure, int part)
+	private BufferGroupSetup prepareBufferMemory(MemoryChunk memoryChunk, T structure, int part)
 	{
 		final var bufferMemory = VulkanResourceFactory.eINSTANCE.createBufferMemory();
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
 		bufferMemory.setName(maintainer.getName());
 
+		final List<BufferSetup> res = new ArrayList<>();
 		for (int i = 0; i < dataProviders.size(); i++)
 		{
 			final var dataProvider = dataProviders.get(i);
 			final var dataSource = RenderingFactory.eINSTANCE.<T>createRenderableDataSource();
 			dataSource.setPart(part);
 			dataSource.setStructure(structure);
-
-			final var renderDataProvider = EcoreUtil.copy(dataProvider.getDataProvider());
-			renderDataProvider.setDataSource(dataSource);
+			dataSource.setDataSource(dataProvider.getDataSource());
 
 			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
 			final var usages = bufferViewer.getUsages();
-			bufferViewer.setDataProvider(renderDataProvider);
+			bufferViewer.setName(dataProvider.getBufferName());
 			bufferViewer.setGrowFactor(dataProvider.getGrowFactor());
 			bufferViewer.setSize(dataProvider.getMinSize());
+			bufferViewer.setDataSource(dataSource);
 			usages.addAll(dataProvider.getUsages());
-			usages.add(renderDataProvider instanceof IndexProvider
-							   ? EBufferUsage.INDEX_BUFFER_BIT
-							   : EBufferUsage.VERTEX_BUFFER_BIT);
 			usages.add(EBufferUsage.TRANSFER_DST_BIT);
 
 			bufferMemory.getBuffers().add(bufferViewer);
 			final var bufferReference = VulkanResourceFactory.eINSTANCE.createBufferReference();
 			bufferReference.getBuffers().add(bufferViewer);
+
+			res.add(new BufferSetup(bufferViewer, dataProvider));
 		}
 
 		memoryChunk.getParts().add(bufferMemory);
-		return bufferMemory;
+		return new BufferGroupSetup(List.copyOf(res));
 	}
 }
