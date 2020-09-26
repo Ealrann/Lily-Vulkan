@@ -22,6 +22,7 @@ import org.sheepy.lily.vulkan.process.graphic.resource.DepthAttachmentAllocation
 import org.sheepy.lily.vulkan.process.graphic.scene.BackgroundImageSubpassProvider;
 import org.sheepy.lily.vulkan.process.graphic.scene.ScreenEffectSubpassProvider;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class Extenders implements IExtenderProvider
@@ -59,5 +60,11 @@ public class Extenders implements IExtenderProvider
 					   GraphicConfigurationAllocation.class,
 					   SubpassAllocation.class,
 					   SubpassRecorder.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }

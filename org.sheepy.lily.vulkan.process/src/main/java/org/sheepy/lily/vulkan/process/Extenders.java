@@ -7,6 +7,7 @@ import org.sheepy.lily.vulkan.process.barrier.ImageBarrierAllocation;
 import org.sheepy.lily.vulkan.process.pipeline.*;
 import org.sheepy.lily.vulkan.process.pipeline.task.*;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class Extenders implements IExtenderProvider
@@ -29,5 +30,11 @@ public class Extenders implements IExtenderProvider
 					   CopyBufferTaskRecorder.class,
 					   CompositePipelineAllocation.class,
 					   CompositePipelineRecorder.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }

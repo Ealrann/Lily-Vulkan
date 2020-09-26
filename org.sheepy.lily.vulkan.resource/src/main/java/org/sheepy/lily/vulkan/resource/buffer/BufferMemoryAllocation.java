@@ -35,10 +35,10 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 	private final List<AlignmentData> alignmentDataList;
 	private final MemoryChunkAllocation chunkAllocation;
 
-	public BufferMemoryAllocation(BufferMemory bufferMemory,
-								  IAllocationState allocationState,
-								  IObservatoryBuilder observatory,
-								  @InjectDependency(index = 0) MemoryChunkAllocation chunkAllocation)
+	public BufferMemoryAllocation(final BufferMemory bufferMemory,
+								  final IAllocationState allocationState,
+								  final IObservatoryBuilder observatory,
+								  final @InjectDependency(index = 0) MemoryChunkAllocation chunkAllocation)
 	{
 		this.bufferMemory = bufferMemory;
 		this.alignmentDataList = bufferMemory.adapt(BufferMemoryAdapter.class).getChunkInfo().data();
@@ -62,7 +62,7 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 	}
 
 	@Free
-	public void free(ExecutionContext context)
+	public void free(final ExecutionContext context)
 	{
 		bufferBackend.free(context);
 	}
@@ -78,7 +78,7 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 	}
 
 	@Override
-	public Stream<FillCommand> streamFillCommands(boolean force)
+	public Stream<FillCommand> streamFillCommands(final boolean force)
 	{
 		final var buffers = bufferMemory.getBuffers();
 		final long bufferPtr = bufferBackend.getAddress();
@@ -89,7 +89,7 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 						.map(data -> data.buildFillCommand(bufferPtr));
 	}
 
-	private BufferData newBufferData(int index)
+	private BufferData newBufferData(final int index)
 	{
 		final var bufferAllocation = IBufferAllocation.adapt(bufferMemory.getBuffers().get(index));
 		return new BufferData(bufferAllocation, alignmentDataList.get(index));
@@ -97,7 +97,7 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 
 	private static record BufferData(IBufferAllocation bufferAllocation, AlignmentData alignmentData)
 	{
-		public FillCommand buildFillCommand(long bufferPtr)
+		public FillCommand buildFillCommand(final long bufferPtr)
 		{
 			return new FillCommand.FillBufferCommand(bufferAllocation::fillData,
 													 bufferPtr,

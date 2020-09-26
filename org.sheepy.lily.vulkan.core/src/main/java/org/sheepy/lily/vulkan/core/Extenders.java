@@ -8,6 +8,7 @@ import org.sheepy.lily.vulkan.core.engine.VulkanEngineAllocation;
 import org.sheepy.lily.vulkan.core.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.core.variable.MouseLocationAdapter;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class Extenders implements IExtenderProvider
@@ -20,5 +21,11 @@ public class Extenders implements IExtenderProvider
 					   RunProcessAdapter.class,
 					   MouseLocationAdapter.class,
 					   VulkanInputManager.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }

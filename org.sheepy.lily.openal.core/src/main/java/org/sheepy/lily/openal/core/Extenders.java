@@ -7,6 +7,7 @@ import org.sheepy.lily.openal.core.resource.MusicAllocation;
 import org.sheepy.lily.openal.core.resource.SoundAllocation;
 import org.sheepy.lily.openal.core.resource.SoundContinuousAllocation;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class Extenders implements IExtenderProvider
@@ -18,5 +19,11 @@ public class Extenders implements IExtenderProvider
 					   SoundAllocation.class,
 					   SoundContinuousAllocation.class,
 					   MusicAllocation.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }

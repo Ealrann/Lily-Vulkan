@@ -11,6 +11,7 @@ import org.sheepy.lily.vulkan.process.compute.pipeline.DispatchTaskAdapter;
 import org.sheepy.lily.vulkan.process.compute.process.ComputeProcessAdapter;
 import org.sheepy.lily.vulkan.process.compute.process.ComputeProcessAllocation;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class Extenders implements IExtenderProvider
@@ -26,5 +27,11 @@ public class Extenders implements IExtenderProvider
 					   ComputePipelineAllocation.class,
 					   ComputePipelineRecorder.class,
 					   DispatchTaskAdapter.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }

@@ -118,7 +118,7 @@ public final class MemoryChunkAllocation implements IExtender
 	{
 		final var commands = streamFillCommands(force);
 		final var transferBuffer = memoryChunk.getTransferBuffer();
-		final var transferBufferAllocation = transferBuffer.adapt(TransferBufferAllocation.class);
+		final var transferBufferAllocation = transferBuffer.adaptNotNull(TransferBufferAllocation.class);
 		final boolean res = transferBufferAllocation.queueFillCommands(commands);
 		if (!res && DebugUtil.DEBUG_ENABLED)
 		{

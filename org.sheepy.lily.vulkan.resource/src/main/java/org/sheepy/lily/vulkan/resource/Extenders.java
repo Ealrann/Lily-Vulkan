@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.resource.image.descriptor.ImageDescriptorAllocatio
 import org.sheepy.lily.vulkan.resource.memorychunk.MemoryChunkAllocation;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAllocation;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class Extenders implements IExtenderProvider
@@ -56,5 +57,11 @@ public class Extenders implements IExtenderProvider
 					   StaticBufferAllocation.class,
 					   BufferMemoryAdapter.class,
 					   BufferMemoryAllocation.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }

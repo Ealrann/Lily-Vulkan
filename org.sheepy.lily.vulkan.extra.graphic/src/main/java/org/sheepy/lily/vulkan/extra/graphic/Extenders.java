@@ -12,6 +12,7 @@ import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteMonoSamplerProviderAdap
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteRendererDeactivator;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.SpriteStructureAdapter;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public final class Extenders implements IExtenderProvider
@@ -28,5 +29,11 @@ public final class Extenders implements IExtenderProvider
 					   SpriteMonoSamplerProviderAdapter.class,
 					   DataDescriptorsProviderAdapter.class,
 					   RenderPipelineAllocator.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }

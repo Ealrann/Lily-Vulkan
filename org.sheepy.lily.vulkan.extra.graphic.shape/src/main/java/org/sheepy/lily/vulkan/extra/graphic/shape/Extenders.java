@@ -6,6 +6,7 @@ import org.sheepy.lily.vulkan.extra.graphic.shape.adapter.IcoSphereAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.shape.adapter.IcosahedronAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.shape.adapter.SphereAdapter;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class Extenders implements IExtenderProvider
@@ -14,5 +15,11 @@ public class Extenders implements IExtenderProvider
 	public List<Class<? extends IExtender>> classifiers()
 	{
 		return List.of(IcosahedronAdapter.class, IcoSphereAdapter.class, SphereAdapter.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }

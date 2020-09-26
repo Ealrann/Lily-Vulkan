@@ -9,6 +9,7 @@ import org.sheepy.lily.vulkan.nuklear.resource.*;
 import org.sheepy.lily.vulkan.nuklear.scene.NuklearSubpassProvider;
 import org.sheepy.lily.vulkan.nuklear.ui.*;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class Extenders implements IExtenderProvider
@@ -33,5 +34,11 @@ public class Extenders implements IExtenderProvider
 					   NuklearSubpassProvider.class,
 					   NuklearFontAdapter.class,
 					   FontImageProviderAdapter.class);
+	}
+
+	@Override
+	public MethodHandles.Lookup lookup()
+	{
+		return MethodHandles.lookup();
 	}
 }
