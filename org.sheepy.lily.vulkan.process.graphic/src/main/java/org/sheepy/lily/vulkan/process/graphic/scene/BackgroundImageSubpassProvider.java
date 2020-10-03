@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.resource.IResourceLoader;
+import org.sheepy.lily.core.api.resource.IResourceService;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.application.BackgroundImage;
 import org.sheepy.lily.core.model.resource.FileImage;
@@ -158,7 +158,7 @@ public final class BackgroundImageSubpassProvider implements ICompositor_Subpass
 		final var module = ScreenEffectSubpassProvider.class.getModule();
 		try
 		{
-			final var resourceLoader = IResourceLoader.INSTANCE;
+			final var resourceLoader = IResourceService.INSTANCE;
 			final var inputStream = module.getResourceAsStream(SUBPASS_PATH);
 			final var resource = resourceLoader.loadResource(inputStream);
 			final EObject subpass = resource.getContents().get(0);

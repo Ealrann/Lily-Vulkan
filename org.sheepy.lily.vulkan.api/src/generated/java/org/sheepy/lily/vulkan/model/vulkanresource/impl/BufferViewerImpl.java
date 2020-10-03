@@ -36,6 +36,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.impl.BufferViewerImpl#getDataSourceIdentifier <em>Data Source Identifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -141,6 +142,26 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	 * @ordered
 	 */
 	protected IBufferDataSource dataSource;
+
+	/**
+	 * The default value of the '{@link #getDataSourceIdentifier() <em>Data Source Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSourceIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DATA_SOURCE_IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDataSourceIdentifier() <em>Data Source Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSourceIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String dataSourceIdentifier = DATA_SOURCE_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -329,6 +350,31 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	 * @generated
 	 */
 	@Override
+	public String getDataSourceIdentifier()
+	{
+		return dataSourceIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDataSourceIdentifier(String newDataSourceIdentifier)
+	{
+		String oldDataSourceIdentifier = dataSourceIdentifier;
+		dataSourceIdentifier = newDataSourceIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER, oldDataSourceIdentifier, dataSourceIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -346,6 +392,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE:
 				if (resolve) return getDataSource();
 				return basicGetDataSource();
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER:
+				return getDataSourceIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -380,6 +428,9 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE:
 				setDataSource((IBufferDataSource)newValue);
 				return;
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER:
+				setDataSourceIdentifier((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -412,6 +463,9 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE:
 				setDataSource((IBufferDataSource)null);
 				return;
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER:
+				setDataSourceIdentifier(DATA_SOURCE_IDENTIFIER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -438,6 +492,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 				return size != SIZE_EDEFAULT;
 			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE:
 				return dataSource != null;
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER:
+				return DATA_SOURCE_IDENTIFIER_EDEFAULT == null ? dataSourceIdentifier != null : !DATA_SOURCE_IDENTIFIER_EDEFAULT.equals(dataSourceIdentifier);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -463,6 +519,8 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 		result.append(growThreshold);
 		result.append(", size: ");
 		result.append(size);
+		result.append(", dataSourceIdentifier: ");
+		result.append(dataSourceIdentifier);
 		result.append(')');
 		return result.toString();
 	}

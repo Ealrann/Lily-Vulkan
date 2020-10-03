@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.sprite.provider;
+package org.sheepy.lily.vulkan.model.process.provider;
 
 
 import java.util.Collection;
@@ -11,6 +11,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -18,16 +21,18 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
+import org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteSamplerProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SpriteSamplerProviderItemProvider 
+public class PipelineExtensionPkgItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -42,7 +47,7 @@ public class SpriteSamplerProviderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SpriteSamplerProviderItemProvider(AdapterFactory adapterFactory)
+	public PipelineExtensionPkgItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -65,7 +70,40 @@ public class SpriteSamplerProviderItemProvider
 	}
 
 	/**
-	 * This returns SpriteSamplerProvider.gif.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(ProcessPackage.Literals.PIPELINE_EXTENSION_PKG__EXTENSIONS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns PipelineExtensionPkg.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -73,7 +111,7 @@ public class SpriteSamplerProviderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SpriteSamplerProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PipelineExtensionPkg"));
 	}
 
 	/**
@@ -85,7 +123,7 @@ public class SpriteSamplerProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_SpriteSamplerProvider_type");
+		return getString("_UI_PipelineExtensionPkg_type");
 	}
 
 
@@ -100,6 +138,13 @@ public class SpriteSamplerProviderItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(PipelineExtensionPkg.class))
+		{
+			case ProcessPackage.PIPELINE_EXTENSION_PKG__EXTENSIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -125,7 +170,7 @@ public class SpriteSamplerProviderItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ExtraEditPlugin.INSTANCE;
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

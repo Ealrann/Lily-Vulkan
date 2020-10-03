@@ -1,22 +1,30 @@
-package org.sheepy.lily.vulkan.resource.image.backend;
+package org.sheepy.lily.vulkan.resource.image;
 
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.sheepy.lily.core.api.resource.IFileImageAdapter;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
+import org.sheepy.lily.core.model.resource.FileImage;
 import org.sheepy.lily.core.model.resource.FileResource;
+import org.sheepy.lily.vulkan.resource.image.backend.STBImageLoader;
 
 import java.nio.ByteBuffer;
 
-public final class ImageBuffer
+@ModelExtender(scope = FileImage.class)
+@Adapter
+public final class FileImageAdapter implements IFileImageAdapter
 {
 	public final FileResource resource;
 
 	private ByteBuffer byteBuffer = null;
-	private Vector2ic size;
+	private Vector2ic size = null;
 
-	public ImageBuffer(FileResource resource)
+	private FileImageAdapter(FileImage fileImage)
 	{
-		this.resource = resource;
+		this.resource = fileImage.getFile();
 	}
 
 	public void allocate()
@@ -29,6 +37,7 @@ public final class ImageBuffer
 		}
 	}
 
+	@Dispose
 	public void free()
 	{
 		if (byteBuffer != null)
@@ -38,8 +47,10 @@ public final class ImageBuffer
 		}
 	}
 
-	public Vector2ic getImageSize()
+	@Override
+	public Vector2ic size()
 	{
+		if (size == null) allocate();
 		return size;
 	}
 

@@ -229,10 +229,24 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ProcessPackage.IPIPELINE_EXTENSION:
+			{
+				IPipelineExtension iPipelineExtension = (IPipelineExtension)theEObject;
+				T1 result = caseIPipelineExtension(iPipelineExtension);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ProcessPackage.PROCESS_EXTENSION_PKG:
 			{
 				ProcessExtensionPkg processExtensionPkg = (ProcessExtensionPkg)theEObject;
 				T1 result = caseProcessExtensionPkg(processExtensionPkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.PIPELINE_EXTENSION_PKG:
+			{
+				PipelineExtensionPkg pipelineExtensionPkg = (PipelineExtensionPkg)theEObject;
+				T1 result = casePipelineExtensionPkg(pipelineExtensionPkg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -543,6 +557,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Extension</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline Extension</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIPipelineExtension(IPipelineExtension object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Extension Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -554,6 +584,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseProcessExtensionPkg(ProcessExtensionPkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Extension Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pipeline Extension Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 casePipelineExtensionPkg(PipelineExtensionPkg object)
 	{
 		return null;
 	}

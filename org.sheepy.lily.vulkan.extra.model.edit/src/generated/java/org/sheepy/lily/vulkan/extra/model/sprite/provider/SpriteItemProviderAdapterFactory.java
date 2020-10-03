@@ -27,8 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.util.SpriteAdapterFactory;
-import org.sheepy.lily.vulkan.model.process.CompositePipeline;
-import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 
@@ -83,128 +82,28 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SpriteRendererItemProvider spriteRendererItemProvider;
+	protected SpriteExtensionItemProvider spriteExtensionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSpriteRendererAdapter()
+	public Adapter createSpriteExtensionAdapter()
 	{
-		if (spriteRendererItemProvider == null)
+		if (spriteExtensionItemProvider == null)
 		{
-			spriteRendererItemProvider = new SpriteRendererItemProvider(this);
+			spriteExtensionItemProvider = new SpriteExtensionItemProvider(this);
 		}
 
-		return spriteRendererItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SpriteItemProvider spriteItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSpriteAdapter()
-	{
-		if (spriteItemProvider == null)
-		{
-			spriteItemProvider = new SpriteItemProvider(this);
-		}
-
-		return spriteItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SpriteMonoSamplerProviderItemProvider spriteMonoSamplerProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSpriteMonoSamplerProviderAdapter()
-	{
-		if (spriteMonoSamplerProviderItemProvider == null)
-		{
-			spriteMonoSamplerProviderItemProvider = new SpriteMonoSamplerProviderItemProvider(this);
-		}
-
-		return spriteMonoSamplerProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SpriteStructureItemProvider spriteStructureItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSpriteStructureAdapter()
-	{
-		if (spriteStructureItemProvider == null)
-		{
-			spriteStructureItemProvider = new SpriteStructureItemProvider(this);
-		}
-
-		return spriteStructureItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SpriteCountSpecializationItemProvider spriteCountSpecializationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSpriteCountSpecializationAdapter()
-	{
-		if (spriteCountSpecializationItemProvider == null)
-		{
-			spriteCountSpecializationItemProvider = new SpriteCountSpecializationItemProvider(this);
-		}
-
-		return spriteCountSpecializationItemProvider;
+		return spriteExtensionItemProvider;
 	}
 
 	/**
@@ -324,11 +223,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	@Override
 	public void dispose()
 	{
-		if (spriteRendererItemProvider != null) spriteRendererItemProvider.dispose();
-		if (spriteItemProvider != null) spriteItemProvider.dispose();
-		if (spriteMonoSamplerProviderItemProvider != null) spriteMonoSamplerProviderItemProvider.dispose();
-		if (spriteStructureItemProvider != null) spriteStructureItemProvider.dispose();
-		if (spriteCountSpecializationItemProvider != null) spriteCountSpecializationItemProvider.dispose();
+		if (spriteExtensionItemProvider != null) spriteExtensionItemProvider.dispose();
 	}
 
 	/**
@@ -380,27 +275,12 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 			 * @generated
 			 */
 			@Override
-			public Object casePipelinePkg(PipelinePkg object)
+			public Object casePipelineExtensionPkg(PipelineExtensionPkg object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-						 SpriteFactory.eINSTANCE.createSpriteRenderer()));
-
-				return null;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseCompositePipeline(CompositePipeline object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.COMPOSITE_PIPELINE__PIPELINES,
-						 SpriteFactory.eINSTANCE.createSpriteRenderer()));
+						(ProcessPackage.Literals.PIPELINE_EXTENSION_PKG__EXTENSIONS,
+						 SpriteFactory.eINSTANCE.createSpriteExtension()));
 
 				return null;
 			}

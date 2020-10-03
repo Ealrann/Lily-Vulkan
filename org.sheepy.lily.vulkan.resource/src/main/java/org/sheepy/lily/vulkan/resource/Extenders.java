@@ -40,6 +40,7 @@ public class Extenders implements IExtenderProvider
 					   BufferDescriptorAdapter.class,
 					   ImageDescriptorAdapter.class,
 					   ImageDescriptorAllocation.class,
+					   FileImageAdapter.class,
 					   LocalResourceAdapter.class,
 					   ModuleResourceAdapter.class,
 					   StringModuleResourceAdapter.class,

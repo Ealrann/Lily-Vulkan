@@ -164,25 +164,15 @@
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Sprite.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Sprite.ecore#//SpriteType">
-      <genEnumLiterals ecoreEnumLiteral="Sprite.ecore#//SpriteType/Floor"/>
-      <genEnumLiterals ecoreEnumLiteral="Sprite.ecore#//SpriteType/Wall"/>
-    </genEnums>
-    <genClasses ecoreClass="Sprite.ecore#//SpriteRenderer"/>
-    <genClasses ecoreClass="Sprite.ecore#//Sprite">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//Sprite/file"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//Sprite/type"/>
+    <genClasses ecoreClass="Sprite.ecore#//SpriteExtension">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteExtension/drawTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteExtension/indexBufferViewer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteExtension/vertexBufferViewer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteExtension/spritesDescriptor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteExtension/spriteDataSource"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteExtension/spritePipelineSpecialization"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteExtension/spriteImageMemory"/>
     </genClasses>
-    <genClasses ecoreClass="Sprite.ecore#//SpriteMonoSamplerProvider">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteMonoSamplerProvider/samplerInfo"/>
-    </genClasses>
-    <genClasses ecoreClass="Sprite.ecore#//SpriteStructure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteStructure/width"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sprite.ecore#//SpriteStructure/height"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteStructure/sprites"/>
-    </genClasses>
-    <genClasses ecoreClass="Sprite.ecore#//SpriteCountSpecialization">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteCountSpecialization/provider"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="Sprite.ecore#//ISpriteDataSource"/>
   </genPackages>
 </genmodel:GenModel>

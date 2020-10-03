@@ -3,7 +3,6 @@
 package org.sheepy.lily.vulkan.extra.model.sprite.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -65,11 +64,7 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case SpritePackage.SPRITE_RENDERER: return createSpriteRenderer();
-			case SpritePackage.SPRITE: return createSprite();
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER: return createSpriteMonoSamplerProvider();
-			case SpritePackage.SPRITE_STRUCTURE: return createSpriteStructure();
-			case SpritePackage.SPRITE_COUNT_SPECIALIZATION: return createSpriteCountSpecialization();
+			case SpritePackage.SPRITE_EXTENSION: return createSpriteExtension();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -81,114 +76,10 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	 * @generated
 	 */
 	@Override
-	public Object createFromString(EDataType eDataType, String initialValue)
+	public SpriteExtension createSpriteExtension()
 	{
-		switch (eDataType.getClassifierID())
-		{
-			case SpritePackage.SPRITE_TYPE:
-				return createSpriteTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
-			case SpritePackage.SPRITE_TYPE:
-				return convertSpriteTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SpriteRenderer createSpriteRenderer()
-	{
-		SpriteRendererImpl spriteRenderer = new SpriteRendererImpl();
-		return spriteRenderer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Sprite createSprite()
-	{
-		SpriteImpl sprite = new SpriteImpl();
-		return sprite;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SpriteMonoSamplerProvider createSpriteMonoSamplerProvider()
-	{
-		SpriteMonoSamplerProviderImpl spriteMonoSamplerProvider = new SpriteMonoSamplerProviderImpl();
-		return spriteMonoSamplerProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SpriteStructure createSpriteStructure()
-	{
-		SpriteStructureImpl spriteStructure = new SpriteStructureImpl();
-		return spriteStructure;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SpriteCountSpecialization createSpriteCountSpecialization()
-	{
-		SpriteCountSpecializationImpl spriteCountSpecialization = new SpriteCountSpecializationImpl();
-		return spriteCountSpecialization;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SpriteType createSpriteTypeFromString(EDataType eDataType, String initialValue)
-	{
-		SpriteType result = SpriteType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSpriteTypeToString(EDataType eDataType, Object instanceValue)
-	{
-		return instanceValue == null ? null : instanceValue.toString();
+		SpriteExtensionImpl spriteExtension = new SpriteExtensionImpl();
+		return spriteExtension;
 	}
 
 	/**

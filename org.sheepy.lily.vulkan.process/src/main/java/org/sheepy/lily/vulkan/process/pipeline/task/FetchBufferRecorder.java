@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
 import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
+import org.sheepy.lily.vulkan.core.resource.buffer.IBufferViewerAdapter;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -48,7 +49,8 @@ public final class FetchBufferRecorder implements IRecordableExtender
 	{
 		final var srcBufferAllocation = bufferReferenceAllocation.getBufferAllocations(context.index).get(0);
 		final var srcBuffer = bufferReferenceAllocation.getBuffers(context.index).get(0);
-		final var dataConsumerAdapter = srcBuffer.adaptNotNull(IBufferDataConsumer.class);
+		final var dataConsumerAdapter = srcBuffer.adapt(IBufferViewerAdapter.class)
+												 .adaptDataSource(IBufferDataConsumer.class);
 		final var fetcher = new Fetcher(executionContext, srcBufferAllocation, dataConsumerAdapter);
 
 		srcBufferAllocation.attach(context);

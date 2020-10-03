@@ -2,13 +2,12 @@
  */
 package org.sheepy.lily.vulkan.extra.model.sprite;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,625 +59,220 @@ public interface SpritePackage extends EPackage
 	SpritePackage eINSTANCE = org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererImpl <em>Renderer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteExtensionImpl <em>Extension</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteRenderer()
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteExtensionImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteExtension()
 	 * @generated
 	 */
-	int SPRITE_RENDERER = 0;
+	int SPRITE_EXTENSION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__NAME = RenderingPackage.GENERIC_RENDERER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Allocate</b></em>' attribute.
+	 * The feature id for the '<em><b>Draw Task</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__ALLOCATE = RenderingPackage.GENERIC_RENDERER__ALLOCATE;
+	int SPRITE_EXTENSION__DRAW_TASK = ProcessPackage.IPIPELINE_EXTENSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Record</b></em>' attribute.
+	 * The feature id for the '<em><b>Index Buffer Viewer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__RECORD = RenderingPackage.GENERIC_RENDERER__RECORD;
+	int SPRITE_EXTENSION__INDEX_BUFFER_VIEWER = ProcessPackage.IPIPELINE_EXTENSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vertex Buffer Viewer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__RESOURCE_PKG = RenderingPackage.GENERIC_RENDERER__RESOURCE_PKG;
+	int SPRITE_EXTENSION__VERTEX_BUFFER_VIEWER = ProcessPackage.IPIPELINE_EXTENSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Sprites Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__DESCRIPTOR_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PKG;
+	int SPRITE_EXTENSION__SPRITES_DESCRIPTOR = ProcessPackage.IPIPELINE_EXTENSION_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Task Pkgs</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sprite Data Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__TASK_PKGS = RenderingPackage.GENERIC_RENDERER__TASK_PKGS;
+	int SPRITE_EXTENSION__SPRITE_DATA_SOURCE = ProcessPackage.IPIPELINE_EXTENSION_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Pool</b></em>' containment reference.
+	 * The feature id for the '<em><b>Sprite Pipeline Specialization</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__DESCRIPTOR_POOL = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_POOL;
+	int SPRITE_EXTENSION__SPRITE_PIPELINE_SPECIALIZATION = ProcessPackage.IPIPELINE_EXTENSION_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Specialization Data</b></em>' reference.
+	 * The feature id for the '<em><b>Sprite Image Memory</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__SPECIALIZATION_DATA = RenderingPackage.GENERIC_RENDERER__SPECIALIZATION_DATA;
+	int SPRITE_EXTENSION__SPRITE_IMAGE_MEMORY = ProcessPackage.IPIPELINE_EXTENSION_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__PUSH_CONSTANT_RANGES = RenderingPackage.GENERIC_RENDERER__PUSH_CONSTANT_RANGES;
+	int SPRITE_EXTENSION_FEATURE_COUNT = ProcessPackage.IPIPELINE_EXTENSION_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Layout</b></em>' reference list.
+	 * The number of operations of the '<em>Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__LAYOUT = RenderingPackage.GENERIC_RENDERER__LAYOUT;
+	int SPRITE_EXTENSION_OPERATION_COUNT = ProcessPackage.IPIPELINE_EXTENSION_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource <em>ISprite Data Source</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getISpriteDataSource()
+	 * @generated
+	 */
+	int ISPRITE_DATA_SOURCE = 1;
+
+	/**
+	 * The number of structural features of the '<em>ISprite Data Source</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__MAINTAINER = RenderingPackage.GENERIC_RENDERER__MAINTAINER;
+	int ISPRITE_DATA_SOURCE_FEATURE_COUNT = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
+	 * The number of operations of the '<em>ISprite Data Source</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRITE_RENDERER__SHADERS = RenderingPackage.GENERIC_RENDERER__SHADERS;
+	int ISPRITE_DATA_SOURCE_OPERATION_COUNT = VulkanResourcePackage.IBUFFER_DATA_SOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extension</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension
 	 * @generated
-	 * @ordered
 	 */
-	int SPRITE_RENDERER__VIEWPORT_STATE = RenderingPackage.GENERIC_RENDERER__VIEWPORT_STATE;
+	EClass getSpriteExtension();
 
 	/**
-	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getDrawTask <em>Draw Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Draw Task</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getDrawTask()
+	 * @see #getSpriteExtension()
 	 * @generated
-	 * @ordered
 	 */
-	int SPRITE_RENDERER__INPUT_ASSEMBLY = RenderingPackage.GENERIC_RENDERER__INPUT_ASSEMBLY;
+	EReference getSpriteExtension_DrawTask();
 
 	/**
-	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getIndexBufferViewer <em>Index Buffer Viewer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Index Buffer Viewer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getIndexBufferViewer()
+	 * @see #getSpriteExtension()
 	 * @generated
-	 * @ordered
 	 */
-	int SPRITE_RENDERER__RASTERIZER = RenderingPackage.GENERIC_RENDERER__RASTERIZER;
+	EReference getSpriteExtension_IndexBufferViewer();
 
 	/**
-	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getVertexBufferViewer <em>Vertex Buffer Viewer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Vertex Buffer Viewer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getVertexBufferViewer()
+	 * @see #getSpriteExtension()
 	 * @generated
-	 * @ordered
 	 */
-	int SPRITE_RENDERER__COLOR_BLEND = RenderingPackage.GENERIC_RENDERER__COLOR_BLEND;
+	EReference getSpriteExtension_VertexBufferViewer();
 
 	/**
-	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getSpritesDescriptor <em>Sprites Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Sprites Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getSpritesDescriptor()
+	 * @see #getSpriteExtension()
 	 * @generated
-	 * @ordered
 	 */
-	int SPRITE_RENDERER__DYNAMIC_STATE = RenderingPackage.GENERIC_RENDERER__DYNAMIC_STATE;
+	EReference getSpriteExtension_SpritesDescriptor();
 
 	/**
-	 * The feature id for the '<em><b>Vertex Input State</b></em>' containment reference.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getSpriteDataSource <em>Sprite Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Sprite Data Source</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getSpriteDataSource()
+	 * @see #getSpriteExtension()
 	 * @generated
-	 * @ordered
 	 */
-	int SPRITE_RENDERER__VERTEX_INPUT_STATE = RenderingPackage.GENERIC_RENDERER__VERTEX_INPUT_STATE;
+	EReference getSpriteExtension_SpriteDataSource();
 
 	/**
-	 * The feature id for the '<em><b>Depth Stencil State</b></em>' containment reference.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getSpritePipelineSpecialization <em>Sprite Pipeline Specialization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Sprite Pipeline Specialization</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getSpritePipelineSpecialization()
+	 * @see #getSpriteExtension()
 	 * @generated
-	 * @ordered
 	 */
-	int SPRITE_RENDERER__DEPTH_STENCIL_STATE = RenderingPackage.GENERIC_RENDERER__DEPTH_STENCIL_STATE;
+	EReference getSpriteExtension_SpritePipelineSpecialization();
 
 	/**
-	 * The feature id for the '<em><b>Maintained</b></em>' reference list.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getSpriteImageMemory <em>Sprite Image Memory</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Sprite Image Memory</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension#getSpriteImageMemory()
+	 * @see #getSpriteExtension()
 	 * @generated
-	 * @ordered
 	 */
-	int SPRITE_RENDERER__MAINTAINED = RenderingPackage.GENERIC_RENDERER__MAINTAINED;
+	EReference getSpriteExtension_SpriteImageMemory();
 
 	/**
-	 * The feature id for the '<em><b>Data Provider Pkg</b></em>' containment reference.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource <em>ISprite Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__DATA_PROVIDER_PKG = RenderingPackage.GENERIC_RENDERER__DATA_PROVIDER_PKG;
-
-	/**
-	 * The feature id for the '<em><b>Rendered Structures</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__RENDERED_STRUCTURES = RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES;
-
-	/**
-	 * The feature id for the '<em><b>Constant Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__CONSTANT_BUFFER = RenderingPackage.GENERIC_RENDERER__CONSTANT_BUFFER;
-
-	/**
-	 * The feature id for the '<em><b>Transfer Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__TRANSFER_BUFFER = RenderingPackage.GENERIC_RENDERER__TRANSFER_BUFFER;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Provider Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__DESCRIPTOR_PROVIDER_PKG = RenderingPackage.GENERIC_RENDERER__DESCRIPTOR_PROVIDER_PKG;
-
-	/**
-	 * The feature id for the '<em><b>Specialization</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__SPECIALIZATION = RenderingPackage.GENERIC_RENDERER__SPECIALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Flush Transfer Buffer Task</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__FLUSH_TRANSFER_BUFFER_TASK = RenderingPackage.GENERIC_RENDERER__FLUSH_TRANSFER_BUFFER_TASK;
-
-	/**
-	 * The feature id for the '<em><b>One Pipeline Per Part</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__ONE_PIPELINE_PER_PART = RenderingPackage.GENERIC_RENDERER__ONE_PIPELINE_PER_PART;
-
-	/**
-	 * The feature id for the '<em><b>Maintaining</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER__MAINTAINING = RenderingPackage.GENERIC_RENDERER__MAINTAINING;
-
-	/**
-	 * The number of structural features of the '<em>Renderer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER_FEATURE_COUNT = RenderingPackage.GENERIC_RENDERER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Renderer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_RENDERER_OPERATION_COUNT = RenderingPackage.GENERIC_RENDERER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl <em>Sprite</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSprite()
+	 * @return the meta object for class '<em>ISprite Data Source</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource
 	 * @generated
 	 */
-	int SPRITE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Presented Entities</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE__PRESENTED_ENTITIES = RenderingPackage.PRESENTATION__PRESENTED_ENTITIES;
-
-	/**
-	 * The feature id for the '<em><b>File</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE__FILE = RenderingPackage.PRESENTATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE__TYPE = RenderingPackage.PRESENTATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Sprite</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_FEATURE_COUNT = RenderingPackage.PRESENTATION_FEATURE_COUNT + 2;
-
-
-	/**
-	 * The number of operations of the '<em>Sprite</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_OPERATION_COUNT = RenderingPackage.PRESENTATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl <em>Mono Sampler Provider</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteMonoSamplerProvider()
-	 * @generated
-	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Sampler Info</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO = RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Mono Sampler Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER_FEATURE_COUNT = RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Mono Sampler Provider</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_MONO_SAMPLER_PROVIDER_OPERATION_COUNT = RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl <em>Structure</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteStructure()
-	 * @generated
-	 */
-	int SPRITE_STRUCTURE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_STRUCTURE__WIDTH = RenderingPackage.STRUCTURE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_STRUCTURE__HEIGHT = RenderingPackage.STRUCTURE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Sprites</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_STRUCTURE__SPRITES = RenderingPackage.STRUCTURE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Structure</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_STRUCTURE_FEATURE_COUNT = RenderingPackage.STRUCTURE_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Structure</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_STRUCTURE_OPERATION_COUNT = RenderingPackage.STRUCTURE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteCountSpecializationImpl <em>Count Specialization</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteCountSpecializationImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteCountSpecialization()
-	 * @generated
-	 */
-	int SPRITE_COUNT_SPECIALIZATION = 4;
-
-	/**
-	 * The feature id for the '<em><b>Provider</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_COUNT_SPECIALIZATION__PROVIDER = RenderingPackage.ISPECIALIZATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Count Specialization</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_COUNT_SPECIALIZATION_FEATURE_COUNT = RenderingPackage.ISPECIALIZATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Count Specialization</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRITE_COUNT_SPECIALIZATION_OPERATION_COUNT = RenderingPackage.ISPECIALIZATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType <em>Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteType
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteType()
-	 * @generated
-	 */
-	int SPRITE_TYPE = 5;
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer <em>Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Renderer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer
-	 * @generated
-	 */
-	EClass getSpriteRenderer();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite <em>Sprite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Sprite</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.Sprite
-	 * @generated
-	 */
-	EClass getSprite();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getFile <em>File</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>File</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getFile()
-	 * @see #getSprite()
-	 * @generated
-	 */
-	EReference getSprite_File();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getType()
-	 * @see #getSprite()
-	 * @generated
-	 */
-	EAttribute getSprite_Type();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider <em>Mono Sampler Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Mono Sampler Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider
-	 * @generated
-	 */
-	EClass getSpriteMonoSamplerProvider();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo <em>Sampler Info</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Sampler Info</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider#getSamplerInfo()
-	 * @see #getSpriteMonoSamplerProvider()
-	 * @generated
-	 */
-	EReference getSpriteMonoSamplerProvider_SamplerInfo();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure <em>Structure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Structure</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure
-	 * @generated
-	 */
-	EClass getSpriteStructure();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getWidth <em>Width</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Width</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getWidth()
-	 * @see #getSpriteStructure()
-	 * @generated
-	 */
-	EAttribute getSpriteStructure_Width();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getHeight <em>Height</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getHeight()
-	 * @see #getSpriteStructure()
-	 * @generated
-	 */
-	EAttribute getSpriteStructure_Height();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getSprites <em>Sprites</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sprites</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure#getSprites()
-	 * @see #getSpriteStructure()
-	 * @generated
-	 */
-	EReference getSpriteStructure_Sprites();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization <em>Count Specialization</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Count Specialization</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization
-	 * @generated
-	 */
-	EClass getSpriteCountSpecialization();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization#getProvider <em>Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization#getProvider()
-	 * @see #getSpriteCountSpecialization()
-	 * @generated
-	 */
-	EReference getSpriteCountSpecialization_Provider();
-
-	/**
-	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Type</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteType
-	 * @generated
-	 */
-	EEnum getSpriteType();
+	EClass getISpriteDataSource();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -704,108 +298,72 @@ public interface SpritePackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererImpl <em>Renderer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteExtensionImpl <em>Extension</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteRendererImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteRenderer()
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteExtensionImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteExtension()
 		 * @generated
 		 */
-		EClass SPRITE_RENDERER = eINSTANCE.getSpriteRenderer();
+		EClass SPRITE_EXTENSION = eINSTANCE.getSpriteExtension();
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl <em>Sprite</em>}' class.
+		 * The meta object literal for the '<em><b>Draw Task</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSprite()
 		 * @generated
 		 */
-		EClass SPRITE = eINSTANCE.getSprite();
+		EReference SPRITE_EXTENSION__DRAW_TASK = eINSTANCE.getSpriteExtension_DrawTask();
 		/**
-		 * The meta object literal for the '<em><b>File</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Index Buffer Viewer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPRITE__FILE = eINSTANCE.getSprite_File();
+		EReference SPRITE_EXTENSION__INDEX_BUFFER_VIEWER = eINSTANCE.getSpriteExtension_IndexBufferViewer();
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Vertex Buffer Viewer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SPRITE__TYPE = eINSTANCE.getSprite_Type();
+		EReference SPRITE_EXTENSION__VERTEX_BUFFER_VIEWER = eINSTANCE.getSpriteExtension_VertexBufferViewer();
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl <em>Mono Sampler Provider</em>}' class.
+		 * The meta object literal for the '<em><b>Sprites Descriptor</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteMonoSamplerProviderImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteMonoSamplerProvider()
 		 * @generated
 		 */
-		EClass SPRITE_MONO_SAMPLER_PROVIDER = eINSTANCE.getSpriteMonoSamplerProvider();
+		EReference SPRITE_EXTENSION__SPRITES_DESCRIPTOR = eINSTANCE.getSpriteExtension_SpritesDescriptor();
 		/**
-		 * The meta object literal for the '<em><b>Sampler Info</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Sprite Data Source</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO = eINSTANCE.getSpriteMonoSamplerProvider_SamplerInfo();
+		EReference SPRITE_EXTENSION__SPRITE_DATA_SOURCE = eINSTANCE.getSpriteExtension_SpriteDataSource();
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl <em>Structure</em>}' class.
+		 * The meta object literal for the '<em><b>Sprite Pipeline Specialization</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteStructureImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteStructure()
 		 * @generated
 		 */
-		EClass SPRITE_STRUCTURE = eINSTANCE.getSpriteStructure();
+		EReference SPRITE_EXTENSION__SPRITE_PIPELINE_SPECIALIZATION = eINSTANCE.getSpriteExtension_SpritePipelineSpecialization();
 		/**
-		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Sprite Image Memory</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SPRITE_STRUCTURE__WIDTH = eINSTANCE.getSpriteStructure_Width();
+		EReference SPRITE_EXTENSION__SPRITE_IMAGE_MEMORY = eINSTANCE.getSpriteExtension_SpriteImageMemory();
 		/**
-		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource <em>ISprite Data Source</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getISpriteDataSource()
 		 * @generated
 		 */
-		EAttribute SPRITE_STRUCTURE__HEIGHT = eINSTANCE.getSpriteStructure_Height();
-		/**
-		 * The meta object literal for the '<em><b>Sprites</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SPRITE_STRUCTURE__SPRITES = eINSTANCE.getSpriteStructure_Sprites();
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteCountSpecializationImpl <em>Count Specialization</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteCountSpecializationImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteCountSpecialization()
-		 * @generated
-		 */
-		EClass SPRITE_COUNT_SPECIALIZATION = eINSTANCE.getSpriteCountSpecialization();
-		/**
-		 * The meta object literal for the '<em><b>Provider</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SPRITE_COUNT_SPECIALIZATION__PROVIDER = eINSTANCE.getSpriteCountSpecialization_Provider();
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteType <em>Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpriteType
-		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpriteType()
-		 * @generated
-		 */
-		EEnum SPRITE_TYPE = eINSTANCE.getSpriteType();
+		EClass ISPRITE_DATA_SOURCE = eINSTANCE.getISpriteDataSource();
 
 	}
 

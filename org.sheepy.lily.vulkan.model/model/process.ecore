@@ -32,6 +32,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="record" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPkg" eType="#//PipelineExtensionPkg"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskPipeline" abstract="true" eSuperTypes="#//AbstractPipeline vulkan.ecore#//IResourceContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="taskPkgs" upperBound="-1"
@@ -108,9 +110,15 @@
         eType="ecore:EClass vulkanresource.ecore#//BufferReference" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IProcessExtension" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IPipelineExtension" abstract="true"
+      interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessExtensionPkg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
         eType="#//IProcessExtension" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PipelineExtensionPkg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
+        eType="#//IPipelineExtension" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessConfiguration" abstract="true"
       interface="true"/>

@@ -62,7 +62,7 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 	}
 
 	@Free
-	public void free(final ExecutionContext context)
+	private void free(final ExecutionContext context)
 	{
 		bufferBackend.free(context);
 	}

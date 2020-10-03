@@ -2,10 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.sprite.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -37,14 +34,10 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 
-import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteCountSpecialization;
+import org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteMonoSamplerProvider;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteRenderer;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteStructure;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteType;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -73,42 +66,14 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass spriteRendererEClass = null;
+	private EClass spriteExtensionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass spriteEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass spriteMonoSamplerProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass spriteStructureEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass spriteCountSpecializationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum spriteTypeEEnum = null;
+	private EClass iSpriteDataSourceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -214,9 +179,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSpriteRenderer()
+	public EClass getSpriteExtension()
 	{
-		return spriteRendererEClass;
+		return spriteExtensionEClass;
 	}
 
 	/**
@@ -225,9 +190,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSprite()
+	public EReference getSpriteExtension_DrawTask()
 	{
-		return spriteEClass;
+		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -236,9 +201,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSprite_File()
+	public EReference getSpriteExtension_IndexBufferViewer()
 	{
-		return (EReference)spriteEClass.getEStructuralFeatures().get(0);
+		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -247,9 +212,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSprite_Type()
+	public EReference getSpriteExtension_VertexBufferViewer()
 	{
-		return (EAttribute)spriteEClass.getEStructuralFeatures().get(1);
+		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -258,9 +223,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSpriteMonoSamplerProvider()
+	public EReference getSpriteExtension_SpritesDescriptor()
 	{
-		return spriteMonoSamplerProviderEClass;
+		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -269,9 +234,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSpriteMonoSamplerProvider_SamplerInfo()
+	public EReference getSpriteExtension_SpriteDataSource()
 	{
-		return (EReference)spriteMonoSamplerProviderEClass.getEStructuralFeatures().get(0);
+		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -280,9 +245,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSpriteStructure()
+	public EReference getSpriteExtension_SpritePipelineSpecialization()
 	{
-		return spriteStructureEClass;
+		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -291,9 +256,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSpriteStructure_Width()
+	public EReference getSpriteExtension_SpriteImageMemory()
 	{
-		return (EAttribute)spriteStructureEClass.getEStructuralFeatures().get(0);
+		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -302,53 +267,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSpriteStructure_Height()
+	public EClass getISpriteDataSource()
 	{
-		return (EAttribute)spriteStructureEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSpriteStructure_Sprites()
-	{
-		return (EReference)spriteStructureEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getSpriteCountSpecialization()
-	{
-		return spriteCountSpecializationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSpriteCountSpecialization_Provider()
-	{
-		return (EReference)spriteCountSpecializationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EEnum getSpriteType()
-	{
-		return spriteTypeEEnum;
+		return iSpriteDataSourceEClass;
 	}
 
 	/**
@@ -382,25 +303,16 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		isCreated = true;
 
 		// Create classes and their features
-		spriteRendererEClass = createEClass(SPRITE_RENDERER);
+		spriteExtensionEClass = createEClass(SPRITE_EXTENSION);
+		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__DRAW_TASK);
+		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__INDEX_BUFFER_VIEWER);
+		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__VERTEX_BUFFER_VIEWER);
+		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITES_DESCRIPTOR);
+		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITE_DATA_SOURCE);
+		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITE_PIPELINE_SPECIALIZATION);
+		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITE_IMAGE_MEMORY);
 
-		spriteEClass = createEClass(SPRITE);
-		createEReference(spriteEClass, SPRITE__FILE);
-		createEAttribute(spriteEClass, SPRITE__TYPE);
-
-		spriteMonoSamplerProviderEClass = createEClass(SPRITE_MONO_SAMPLER_PROVIDER);
-		createEReference(spriteMonoSamplerProviderEClass, SPRITE_MONO_SAMPLER_PROVIDER__SAMPLER_INFO);
-
-		spriteStructureEClass = createEClass(SPRITE_STRUCTURE);
-		createEAttribute(spriteStructureEClass, SPRITE_STRUCTURE__WIDTH);
-		createEAttribute(spriteStructureEClass, SPRITE_STRUCTURE__HEIGHT);
-		createEReference(spriteStructureEClass, SPRITE_STRUCTURE__SPRITES);
-
-		spriteCountSpecializationEClass = createEClass(SPRITE_COUNT_SPECIALIZATION);
-		createEReference(spriteCountSpecializationEClass, SPRITE_COUNT_SPECIALIZATION__PROVIDER);
-
-		// Create enums
-		spriteTypeEEnum = createEEnum(SPRITE_TYPE);
+		iSpriteDataSourceEClass = createEClass(ISPRITE_DATA_SOURCE);
 	}
 
 	/**
@@ -428,46 +340,30 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		RenderingPackage theRenderingPackage = (RenderingPackage)EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
-		ImagePackage theImagePackage = (ImagePackage)EPackage.Registry.INSTANCE.getEPackage(ImagePackage.eNS_URI);
+		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		VulkanResourcePackage theVulkanResourcePackage = (VulkanResourcePackage)EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
+		GraphicPackage theGraphicPackage = (GraphicPackage)EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		EGenericType g1 = createEGenericType(theRenderingPackage.getGenericRenderer());
-		EGenericType g2 = createEGenericType(this.getSpriteStructure());
-		g1.getETypeArguments().add(g2);
-		spriteRendererEClass.getEGenericSuperTypes().add(g1);
-		spriteEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
-		spriteMonoSamplerProviderEClass.getESuperTypes().add(theRenderingPackage.getResourceDescriptorProvider());
-		spriteStructureEClass.getESuperTypes().add(theRenderingPackage.getStructure());
-		spriteCountSpecializationEClass.getESuperTypes().add(theRenderingPackage.getISpecialization());
+		spriteExtensionEClass.getESuperTypes().add(theProcessPackage.getIPipelineExtension());
+		spriteExtensionEClass.getESuperTypes().add(theVulkanResourcePackage.getIBufferDataSource());
+		iSpriteDataSourceEClass.getESuperTypes().add(theVulkanResourcePackage.getIBufferDataSource());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(spriteRendererEClass, SpriteRenderer.class, "SpriteRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(spriteExtensionEClass, SpriteExtension.class, "SpriteExtension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSpriteExtension_DrawTask(), theGraphicPackage.getDrawIndexed(), null, "drawTask", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpriteExtension_IndexBufferViewer(), theVulkanResourcePackage.getBufferViewer(), null, "indexBufferViewer", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpriteExtension_VertexBufferViewer(), theVulkanResourcePackage.getBufferViewer(), null, "vertexBufferViewer", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpriteExtension_SpritesDescriptor(), theVulkanResourcePackage.getImageDescriptor(), null, "spritesDescriptor", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpriteExtension_SpriteDataSource(), this.getISpriteDataSource(), null, "spriteDataSource", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpriteExtension_SpritePipelineSpecialization(), theVulkanResourcePackage.getConstantBuffer(), null, "spritePipelineSpecialization", null, 0, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpriteExtension_SpriteImageMemory(), theVulkanResourcePackage.getMemoryChunk(), null, "spriteImageMemory", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(spriteEClass, Sprite.class, "Sprite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSprite_File(), theResourcePackage.getFileImage(), null, "file", null, 1, 1, Sprite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSprite_Type(), this.getSpriteType(), "type", "Floor", 1, 1, Sprite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(spriteMonoSamplerProviderEClass, SpriteMonoSamplerProvider.class, "SpriteMonoSamplerProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpriteMonoSamplerProvider_SamplerInfo(), theImagePackage.getSamplerInfo(), null, "samplerInfo", null, 1, 1, SpriteMonoSamplerProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(spriteStructureEClass, SpriteStructure.class, "SpriteStructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSpriteStructure_Width(), ecorePackage.getEInt(), "width", null, 1, 1, SpriteStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSpriteStructure_Height(), ecorePackage.getEInt(), "height", null, 1, 1, SpriteStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpriteStructure_Sprites(), this.getSprite(), null, "sprites", null, 0, -1, SpriteStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(spriteCountSpecializationEClass, SpriteCountSpecialization.class, "SpriteCountSpecialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpriteCountSpecialization_Provider(), this.getSpriteMonoSamplerProvider(), null, "provider", null, 1, 1, SpriteCountSpecialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(spriteTypeEEnum, SpriteType.class, "SpriteType");
-		addEEnumLiteral(spriteTypeEEnum, SpriteType.FLOOR);
-		addEEnumLiteral(spriteTypeEEnum, SpriteType.WALL);
+		initEClass(iSpriteDataSourceEClass, ISpriteDataSource.class, "ISpriteDataSource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

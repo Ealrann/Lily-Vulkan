@@ -364,6 +364,31 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PipelineExtensionPkgItemProvider pipelineExtensionPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPipelineExtensionPkgAdapter()
+	{
+		if (pipelineExtensionPkgItemProvider == null)
+		{
+			pipelineExtensionPkgItemProvider = new PipelineExtensionPkgItemProvider(this);
+		}
+
+		return pipelineExtensionPkgItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.FetchBuffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

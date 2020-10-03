@@ -23,49 +23,13 @@ public interface SpriteFactory extends EFactory
 	SpriteFactory eINSTANCE = org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Renderer</em>'.
+	 * Returns a new object of class '<em>Extension</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Renderer</em>'.
+	 * @return a new object of class '<em>Extension</em>'.
 	 * @generated
 	 */
-	SpriteRenderer createSpriteRenderer();
-
-	/**
-	 * Returns a new object of class '<em>Sprite</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sprite</em>'.
-	 * @generated
-	 */
-	Sprite createSprite();
-
-	/**
-	 * Returns a new object of class '<em>Mono Sampler Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mono Sampler Provider</em>'.
-	 * @generated
-	 */
-	SpriteMonoSamplerProvider createSpriteMonoSamplerProvider();
-
-	/**
-	 * Returns a new object of class '<em>Structure</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Structure</em>'.
-	 * @generated
-	 */
-	SpriteStructure createSpriteStructure();
-
-	/**
-	 * Returns a new object of class '<em>Count Specialization</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Count Specialization</em>'.
-	 * @generated
-	 */
-	SpriteCountSpecialization createSpriteCountSpecialization();
+	SpriteExtension createSpriteExtension();
 
 	/**
 	 * Returns the package supported by this factory.

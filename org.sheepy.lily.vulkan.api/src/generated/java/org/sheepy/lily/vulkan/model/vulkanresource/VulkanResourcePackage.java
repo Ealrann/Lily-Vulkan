@@ -1443,13 +1443,22 @@ public interface VulkanResourcePackage extends EPackage
 	int BUFFER_VIEWER__DATA_SOURCE = IBUFFER_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Data Source Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER = IBUFFER_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Buffer Viewer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_VIEWER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 4;
+	int BUFFER_VIEWER_FEATURE_COUNT = IBUFFER_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Buffer Viewer</em>' class.
@@ -2497,6 +2506,17 @@ public interface VulkanResourcePackage extends EPackage
 	EReference getBufferViewer_DataSource();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSourceIdentifier <em>Data Source Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Source Identifier</em>'.
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSourceIdentifier()
+	 * @see #getBufferViewer()
+	 * @generated
+	 */
+	EAttribute getBufferViewer_DataSourceIdentifier();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage <em>IVulkan Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3209,6 +3229,14 @@ public interface VulkanResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference BUFFER_VIEWER__DATA_SOURCE = eINSTANCE.getBufferViewer_DataSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Source Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER = eINSTANCE.getBufferViewer_DataSourceIdentifier();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage <em>IVulkan Image</em>}' class.

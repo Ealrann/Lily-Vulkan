@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface IStructureResourceAdapter extends IExtender
 {
-	List<? extends IVulkanResource> getResources();
+	List<? extends IVulkanResource> createMemoryChunk();
 	List<? extends IVulkanImage> getImages();
 }

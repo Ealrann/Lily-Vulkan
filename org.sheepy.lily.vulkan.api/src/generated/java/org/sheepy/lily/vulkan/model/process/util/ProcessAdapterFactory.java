@@ -163,9 +163,19 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createIProcessExtensionAdapter();
 			}
 			@Override
+			public Adapter caseIPipelineExtension(IPipelineExtension object)
+			{
+				return createIPipelineExtensionAdapter();
+			}
+			@Override
 			public Adapter caseProcessExtensionPkg(ProcessExtensionPkg object)
 			{
 				return createProcessExtensionPkgAdapter();
+			}
+			@Override
+			public Adapter casePipelineExtensionPkg(PipelineExtensionPkg object)
+			{
+				return createPipelineExtensionPkgAdapter();
 			}
 			@Override
 			public Adapter caseProcessConfiguration(ProcessConfiguration object)
@@ -484,6 +494,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipelineExtension <em>IPipeline Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineExtension
+	 * @generated
+	 */
+	public Adapter createIPipelineExtensionAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg <em>Extension Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -494,6 +519,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createProcessExtensionPkgAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg <em>Pipeline Extension Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg
+	 * @generated
+	 */
+	public Adapter createPipelineExtensionPkgAdapter()
 	{
 		return null;
 	}

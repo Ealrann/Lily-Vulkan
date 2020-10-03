@@ -71,6 +71,7 @@ public class BufferViewerItemProvider
 			addGrowFactorPropertyDescriptor(object);
 			addGrowThresholdPropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
+			addDataSourceIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -191,6 +192,29 @@ public class BufferViewerItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Source Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourceIdentifierPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BufferViewer_dataSourceIdentifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BufferViewer_dataSourceIdentifier_feature", "_UI_BufferViewer_type"),
+				 VulkanResourcePackage.Literals.BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns BufferViewer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,6 +261,7 @@ public class BufferViewerItemProvider
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_FACTOR:
 			case VulkanResourcePackage.BUFFER_VIEWER__GROW_THRESHOLD:
 			case VulkanResourcePackage.BUFFER_VIEWER__SIZE:
+			case VulkanResourcePackage.BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

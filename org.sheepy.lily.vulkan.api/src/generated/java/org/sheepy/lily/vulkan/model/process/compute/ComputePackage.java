@@ -251,6 +251,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__RECORD = ProcessPackage.VK_PIPELINE__RECORD;
 
 	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__EXTENSION_PKG = ProcessPackage.VK_PIPELINE__EXTENSION_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

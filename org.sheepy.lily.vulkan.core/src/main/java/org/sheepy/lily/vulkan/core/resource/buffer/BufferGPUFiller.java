@@ -30,7 +30,10 @@ public final class BufferGPUFiller
 		recordFill(recordContext, offset, size, stagingBuffer -> stagingBuffer.pushData(recordContext, sourceBuffer));
 	}
 
-	private void recordFill(IRecordContext recordContext, long offset, long size, Consumer<HostVisibleBufferBackend> fillBuffer)
+	private void recordFill(IRecordContext recordContext,
+							long offset,
+							long size,
+							Consumer<HostVisibleBufferBackend> fillBuffer)
 	{
 		final var stagingBuffer = createStagingBuffer(recordContext, size);
 		fillBuffer.accept(stagingBuffer);

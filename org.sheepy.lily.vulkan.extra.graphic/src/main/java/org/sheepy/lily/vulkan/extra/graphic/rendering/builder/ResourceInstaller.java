@@ -63,6 +63,12 @@ public final class ResourceInstaller<T extends Structure>
 			}
 		}
 
+		if (part == 0)
+		{
+			if (staticBindings != null) pipeline.getLayout().add(staticBindings);
+			if (dynamicBindings.isEmpty() == false) pipeline.getLayout().add(dynamicBindings.get(0));
+		}
+
 		return new PipelineBuildContext<>(structure,
 										  pipeline,
 										  part,
@@ -97,7 +103,6 @@ public final class ResourceInstaller<T extends Structure>
 			final var dSet = VulkanResourceFactory.eINSTANCE.createDescriptorSet();
 			dSet.getDescriptors().addAll(res);
 			pipeline.getDescriptorPool().getDescriptorSets().add(dSet);
-			pipeline.getLayout().add(dSet);
 			return dSet;
 		}
 		else

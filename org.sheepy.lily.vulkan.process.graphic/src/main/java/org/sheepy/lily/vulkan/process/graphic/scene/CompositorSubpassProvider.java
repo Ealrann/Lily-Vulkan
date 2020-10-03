@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.scene;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.resource.IResourceLoader;
+import org.sheepy.lily.core.api.resource.IResourceService;
 import org.sheepy.lily.core.model.variable.ModelVariablePkg;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
 import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
@@ -102,7 +102,7 @@ public class CompositorSubpassProvider implements ICompositor_SubpassProvider<Co
 		try
 		{
 			final var path = PIPELINE_PATH;
-			final var resourceLoader = IResourceLoader.INSTANCE;
+			final var resourceLoader = IResourceService.INSTANCE;
 			final var inputStream = module.getResourceAsStream(path);
 			final var resource = resourceLoader.loadResource(inputStream);
 			final var res = (Subpass) resource.getContents().get(0);

@@ -16,6 +16,7 @@ package org.sheepy.lily.vulkan.model.vulkanresource;
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getGrowThreshold <em>Grow Threshold</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSourceIdentifier <em>Data Source Identifier</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage#getBufferViewer()
@@ -114,5 +115,27 @@ public interface BufferViewer extends IBuffer
 	 * @generated
 	 */
 	void setDataSource(IBufferDataSource value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Source Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source Identifier</em>' attribute.
+	 * @see #setDataSourceIdentifier(String)
+	 * @see org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage#getBufferViewer_DataSourceIdentifier()
+	 * @model
+	 * @generated
+	 */
+	String getDataSourceIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer#getDataSourceIdentifier <em>Data Source Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source Identifier</em>' attribute.
+	 * @see #getDataSourceIdentifier()
+	 * @generated
+	 */
+	void setDataSourceIdentifier(String value);
 
 } // BufferViewer

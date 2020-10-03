@@ -1089,6 +1089,17 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBufferViewer_DataSourceIdentifier()
+	{
+		return (EAttribute)bufferViewerEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIVulkanImage()
 	{
 		return iVulkanImageEClass;
@@ -1352,6 +1363,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__GROW_THRESHOLD);
 		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__SIZE);
 		createEReference(bufferViewerEClass, BUFFER_VIEWER__DATA_SOURCE);
+		createEAttribute(bufferViewerEClass, BUFFER_VIEWER__DATA_SOURCE_IDENTIFIER);
 
 		iVulkanImageEClass = createEClass(IVULKAN_IMAGE);
 
@@ -1530,6 +1542,7 @@ public class VulkanResourcePackageImpl extends EPackageImpl implements VulkanRes
 		initEAttribute(getBufferViewer_GrowThreshold(), ecorePackage.getEFloat(), "growThreshold", "1", 1, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBufferViewer_Size(), ecorePackage.getELong(), "size", "0", 0, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBufferViewer_DataSource(), this.getIBufferDataSource(), null, "dataSource", null, 0, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferViewer_DataSourceIdentifier(), ecorePackage.getEString(), "dataSourceIdentifier", null, 0, 1, BufferViewer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iVulkanImageEClass, IVulkanImage.class, "IVulkanImage", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

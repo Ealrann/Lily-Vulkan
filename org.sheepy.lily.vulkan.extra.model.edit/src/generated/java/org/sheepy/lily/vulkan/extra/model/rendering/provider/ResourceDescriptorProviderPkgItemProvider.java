@@ -27,8 +27,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
 
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
-
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg} object.
  * <!-- begin-user-doc -->
@@ -172,11 +170,6 @@ public class ResourceDescriptorProviderPkgItemProvider
 			(createChildParameter
 				(RenderingPackage.Literals.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS,
 				 RenderingFactory.eINSTANCE.createDataDescriptorsProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.RESOURCE_DESCRIPTOR_PROVIDER_PKG__RESOURCE_DESCRIPTOR_PROVIDERS,
-				 SpriteFactory.eINSTANCE.createSpriteMonoSamplerProvider()));
 	}
 
 	/**

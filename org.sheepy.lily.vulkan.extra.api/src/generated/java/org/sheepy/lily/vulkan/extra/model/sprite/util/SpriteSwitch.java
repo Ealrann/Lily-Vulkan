@@ -6,20 +6,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-import org.sheepy.lily.core.model.maintainer.Maintainable;
-import org.sheepy.lily.core.model.maintainer.Maintainer;
-import org.sheepy.lily.core.model.types.LNamedElement;
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
-import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
-import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
-import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.sprite.*;
-import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
-import org.sheepy.lily.vulkan.model.process.TaskPipeline;
-import org.sheepy.lily.vulkan.model.process.VkPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.IPipelineExtension;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +23,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
  * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage
  * @generated
  */
-public class SpriteSwitch<T1> extends Switch<T1>
+public class SpriteSwitch<T> extends Switch<T>
 {
 	/**
 	 * The cached model package
@@ -80,55 +69,24 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	protected T1 doSwitch(int classifierID, EObject theEObject)
+	protected T doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
-			case SpritePackage.SPRITE_RENDERER:
+			case SpritePackage.SPRITE_EXTENSION:
 			{
-				SpriteRenderer spriteRenderer = (SpriteRenderer)theEObject;
-				T1 result = caseSpriteRenderer(spriteRenderer);
-				if (result == null) result = caseGenericRenderer(spriteRenderer);
-				if (result == null) result = caseGraphicsPipeline(spriteRenderer);
-				if (result == null) result = caseMaintainer(spriteRenderer);
-				if (result == null) result = caseVkPipeline(spriteRenderer);
-				if (result == null) result = caseMaintainable(spriteRenderer);
-				if (result == null) result = caseTaskPipeline(spriteRenderer);
-				if (result == null) result = caseAbstractPipeline(spriteRenderer);
-				if (result == null) result = caseIResourceContainer(spriteRenderer);
-				if (result == null) result = caseLNamedElement(spriteRenderer);
+				SpriteExtension spriteExtension = (SpriteExtension)theEObject;
+				T result = caseSpriteExtension(spriteExtension);
+				if (result == null) result = caseIPipelineExtension(spriteExtension);
+				if (result == null) result = caseIBufferDataSource(spriteExtension);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpritePackage.SPRITE:
+			case SpritePackage.ISPRITE_DATA_SOURCE:
 			{
-				Sprite sprite = (Sprite)theEObject;
-				T1 result = caseSprite(sprite);
-				if (result == null) result = casePresentation(sprite);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SpritePackage.SPRITE_MONO_SAMPLER_PROVIDER:
-			{
-				SpriteMonoSamplerProvider spriteMonoSamplerProvider = (SpriteMonoSamplerProvider)theEObject;
-				T1 result = caseSpriteMonoSamplerProvider(spriteMonoSamplerProvider);
-				if (result == null) result = caseResourceDescriptorProvider(spriteMonoSamplerProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SpritePackage.SPRITE_STRUCTURE:
-			{
-				SpriteStructure spriteStructure = (SpriteStructure)theEObject;
-				T1 result = caseSpriteStructure(spriteStructure);
-				if (result == null) result = caseStructure(spriteStructure);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SpritePackage.SPRITE_COUNT_SPECIALIZATION:
-			{
-				SpriteCountSpecialization spriteCountSpecialization = (SpriteCountSpecialization)theEObject;
-				T1 result = caseSpriteCountSpecialization(spriteCountSpecialization);
-				if (result == null) result = caseISpecialization(spriteCountSpecialization);
+				ISpriteDataSource iSpriteDataSource = (ISpriteDataSource)theEObject;
+				T result = caseISpriteDataSource(iSpriteDataSource);
+				if (result == null) result = caseIBufferDataSource(iSpriteDataSource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,289 +95,65 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Renderer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Extension</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Renderer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Extension</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSpriteRenderer(SpriteRenderer object)
+	public T caseSpriteExtension(SpriteExtension object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sprite</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ISprite Data Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sprite</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ISprite Data Source</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSprite(Sprite object)
+	public T caseISpriteDataSource(ISpriteDataSource object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mono Sampler Provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IBuffer Data Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mono Sampler Provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IBuffer Data Source</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSpriteMonoSamplerProvider(SpriteMonoSamplerProvider object)
+	public T caseIBufferDataSource(IBufferDataSource object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Structure</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Extension</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Structure</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline Extension</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSpriteStructure(SpriteStructure object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Count Specialization</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Count Specialization</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseSpriteCountSpecialization(SpriteCountSpecialization object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseLNamedElement(LNamedElement object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseAbstractPipeline(AbstractPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IResource Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IResource Container</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIResourceContainer(IResourceContainer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Task Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Task Pipeline</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseTaskPipeline(TaskPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vk Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vk Pipeline</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseVkPipeline(VkPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Maintainable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Maintainable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T extends Maintainable<T>> T1 caseMaintainable(Maintainable<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Graphics Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Graphics Pipeline</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseGraphicsPipeline(GraphicsPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Maintainer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Maintainer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T extends Maintainable<T>> T1 caseMaintainer(Maintainer<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generic Renderer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generic Renderer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T extends Structure> T1 caseGenericRenderer(GenericRenderer<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Presentation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Presentation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 casePresentation(Presentation object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource Descriptor Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource Descriptor Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseResourceDescriptorProvider(ResourceDescriptorProvider object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Structure</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Structure</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseStructure(Structure object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ISpecialization</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ISpecialization</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseISpecialization(ISpecialization object)
+	public T caseIPipelineExtension(IPipelineExtension object)
 	{
 		return null;
 	}
@@ -436,7 +170,7 @@ public class SpriteSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	public T1 defaultCase(EObject object)
+	public T defaultCase(EObject object)
 	{
 		return null;
 	}

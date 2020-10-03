@@ -131,6 +131,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" eType="#//IBufferDataSource"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSourceIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IVulkanImage" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/resource.ecore#//IImage"/>

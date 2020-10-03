@@ -39,11 +39,11 @@ public final class ImageViewerAllocation implements IMemoryChunkPartAllocation, 
 
 	private boolean needPush = true;
 
-	public ImageViewerAllocation(ImageViewer image,
-								 ExecutionContext context,
-								 IObservatoryBuilder observatory,
-								 IAllocationState allocationState,
-								 @InjectDependency(index = 0) final MemoryChunkAllocation chunkAllocation)
+	public ImageViewerAllocation(final ImageViewer image,
+								 final ExecutionContext context,
+								 final IObservatoryBuilder observatory,
+								 final IAllocationState allocationState,
+								 final @InjectDependency(index = 0) MemoryChunkAllocation chunkAllocation)
 	{
 		this.chunkAllocation = chunkAllocation;
 		this.image = image;
@@ -74,7 +74,7 @@ public final class ImageViewerAllocation implements IMemoryChunkPartAllocation, 
 	}
 
 	@Free
-	public void free(ExecutionContext context)
+	private void free(final ExecutionContext context)
 	{
 		final var vkDevice = context.getVkDevice();
 		imageView.free(vkDevice);

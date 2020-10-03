@@ -308,13 +308,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__RECORD = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__EXTENSION_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Abstract Pipeline</em>' class.
@@ -361,6 +370,15 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int TASK_PIPELINE__RECORD = ABSTRACT_PIPELINE__RECORD;
+
+	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_PIPELINE__EXTENSION_PKG = ABSTRACT_PIPELINE__EXTENSION_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -443,6 +461,15 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int VK_PIPELINE__RECORD = TASK_PIPELINE__RECORD;
+
+	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VK_PIPELINE__EXTENSION_PKG = TASK_PIPELINE__EXTENSION_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -609,6 +636,15 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE__RECORD = TASK_PIPELINE__RECORD;
 
 	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__EXTENSION_PKG = TASK_PIPELINE__EXTENSION_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -689,6 +725,15 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int COMPOSITE_PIPELINE__RECORD = ABSTRACT_PIPELINE__RECORD;
+
+	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_PIPELINE__EXTENSION_PKG = ABSTRACT_PIPELINE__EXTENSION_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Pipelines</b></em>' containment reference list.
@@ -1230,6 +1275,34 @@ public interface ProcessPackage extends EPackage
 	int IPROCESS_EXTENSION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineExtension <em>IPipeline Extension</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineExtension
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineExtension()
+	 * @generated
+	 */
+	int IPIPELINE_EXTENSION = 17;
+
+	/**
+	 * The number of structural features of the '<em>IPipeline Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_EXTENSION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IPipeline Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_EXTENSION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExtensionPkgImpl <em>Extension Pkg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1237,7 +1310,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExtensionPkg()
 	 * @generated
 	 */
-	int PROCESS_EXTENSION_PKG = 17;
+	int PROCESS_EXTENSION_PKG = 18;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1267,6 +1340,43 @@ public interface ProcessPackage extends EPackage
 	int PROCESS_EXTENSION_PKG_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineExtensionPkgImpl <em>Pipeline Extension Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineExtensionPkgImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineExtensionPkg()
+	 * @generated
+	 */
+	int PIPELINE_EXTENSION_PKG = 19;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_EXTENSION_PKG__EXTENSIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Pipeline Extension Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_EXTENSION_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Pipeline Extension Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_EXTENSION_PKG_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1274,7 +1384,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessConfiguration()
 	 * @generated
 	 */
-	int PROCESS_CONFIGURATION = 18;
+	int PROCESS_CONFIGURATION = 20;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -1302,7 +1412,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessExecutionManager()
 	 * @generated
 	 */
-	int PROCESS_EXECUTION_MANAGER = 19;
+	int PROCESS_EXECUTION_MANAGER = 21;
 
 	/**
 	 * The feature id for the '<em><b>Wait For Execution</b></em>' reference list.
@@ -1357,7 +1467,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getExecutionRecorder()
 	 * @generated
 	 */
-	int EXECUTION_RECORDER = 20;
+	int EXECUTION_RECORDER = 22;
 
 	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
@@ -1385,7 +1495,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getFetchBuffer()
 	 * @generated
 	 */
-	int FETCH_BUFFER = 21;
+	int FETCH_BUFFER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1570,6 +1680,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getAbstractPipeline_Record();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getExtensionPkg <em>Extension Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Extension Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getExtensionPkg()
+	 * @see #getAbstractPipeline()
+	 * @generated
+	 */
+	EReference getAbstractPipeline_ExtensionPkg();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.TaskPipeline <em>Task Pipeline</em>}'.
@@ -1966,6 +2087,16 @@ public interface ProcessPackage extends EPackage
 	EClass getIProcessExtension();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IPipelineExtension <em>IPipeline Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IPipeline Extension</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineExtension
+	 * @generated
+	 */
+	EClass getIPipelineExtension();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg <em>Extension Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1985,6 +2116,27 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getProcessExtensionPkg_Extensions();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg <em>Pipeline Extension Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pipeline Extension Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg
+	 * @generated
+	 */
+	EClass getPipelineExtensionPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg#getExtensions <em>Extensions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Extensions</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg#getExtensions()
+	 * @see #getPipelineExtensionPkg()
+	 * @generated
+	 */
+	EReference getPipelineExtensionPkg_Extensions();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}'.
@@ -2205,6 +2357,14 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ABSTRACT_PIPELINE__RECORD = eINSTANCE.getAbstractPipeline_Record();
+
+		/**
+		 * The meta object literal for the '<em><b>Extension Pkg</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PIPELINE__EXTENSION_PKG = eINSTANCE.getAbstractPipeline_ExtensionPkg();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.TaskPipelineImpl <em>Task Pipeline</em>}' class.
@@ -2529,6 +2689,16 @@ public interface ProcessPackage extends EPackage
 		EClass IPROCESS_EXTENSION = eINSTANCE.getIProcessExtension();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineExtension <em>IPipeline Extension</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.IPipelineExtension
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineExtension()
+		 * @generated
+		 */
+		EClass IPIPELINE_EXTENSION = eINSTANCE.getIPipelineExtension();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExtensionPkgImpl <em>Extension Pkg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2545,6 +2715,24 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PROCESS_EXTENSION_PKG__EXTENSIONS = eINSTANCE.getProcessExtensionPkg_Extensions();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineExtensionPkgImpl <em>Pipeline Extension Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineExtensionPkgImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineExtensionPkg()
+		 * @generated
+		 */
+		EClass PIPELINE_EXTENSION_PKG = eINSTANCE.getPipelineExtensionPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Extensions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PIPELINE_EXTENSION_PKG__EXTENSIONS = eINSTANCE.getPipelineExtensionPkg_Extensions();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}' class.

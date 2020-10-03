@@ -122,6 +122,15 @@ public interface ProcessFactory extends EFactory
 	ProcessExtensionPkg createProcessExtensionPkg();
 
 	/**
+	 * Returns a new object of class '<em>Pipeline Extension Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pipeline Extension Pkg</em>'.
+	 * @generated
+	 */
+	PipelineExtensionPkg createPipelineExtensionPkg();
+
+	/**
 	 * Returns a new object of class '<em>Fetch Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

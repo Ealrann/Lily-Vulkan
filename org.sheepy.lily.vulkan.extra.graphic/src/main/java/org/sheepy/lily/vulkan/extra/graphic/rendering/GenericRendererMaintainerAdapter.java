@@ -42,6 +42,10 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 		if (maintainer.isMaintaining())
 		{
 			buildPipelines();
+
+//			final var fileURI = URI.createFileURI("/home/ealrann/test.xmi");
+//			final var root = EcoreUtil.copy(EcoreUtil.getRootContainer(maintainer));
+//			IResourceService.INSTANCE.saveResource(root, fileURI);
 		}
 	}
 

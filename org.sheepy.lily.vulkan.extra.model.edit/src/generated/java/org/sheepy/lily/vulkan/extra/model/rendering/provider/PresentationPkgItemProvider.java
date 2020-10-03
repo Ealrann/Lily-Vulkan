@@ -26,8 +26,6 @@ import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
-
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg} object.
  * <!-- begin-user-doc -->
@@ -181,11 +179,6 @@ public class PresentationPkgItemProvider
 			(createChildParameter
 				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
 				 MeshFactory.eINSTANCE.createIcoSphere()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
-				 SpriteFactory.eINSTANCE.createSpriteStructure()));
 	}
 
 	/**

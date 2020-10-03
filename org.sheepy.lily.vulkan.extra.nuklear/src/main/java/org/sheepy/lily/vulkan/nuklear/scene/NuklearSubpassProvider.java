@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.BufferUtils;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.resource.IResourceLoader;
+import org.sheepy.lily.core.api.resource.IResourceService;
 import org.sheepy.lily.core.model.resource.FileImage;
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.ui.UI;
@@ -101,7 +101,7 @@ public final class NuklearSubpassProvider implements ICompositor_SubpassProvider
 		final var module = NuklearSubpassProvider.class.getModule();
 		try
 		{
-			final var resourceLoader = IResourceLoader.INSTANCE;
+			final var resourceLoader = IResourceService.INSTANCE;
 			final var inputStream = module.getResourceAsStream(PIPELINE_PATH);
 			final var resource = resourceLoader.loadResource(inputStream);
 			final EObject subpass = resource.getContents().get(0);

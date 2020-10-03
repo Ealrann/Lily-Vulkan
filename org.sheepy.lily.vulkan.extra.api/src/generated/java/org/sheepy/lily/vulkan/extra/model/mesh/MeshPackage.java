@@ -134,6 +134,15 @@ public interface MeshPackage extends EPackage
 	int MESH_RENDERER__RECORD = RenderingPackage.GENERIC_RENDERER__RECORD;
 
 	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__EXTENSION_PKG = RenderingPackage.GENERIC_RENDERER__EXTENSION_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -459,6 +459,15 @@ public interface RenderingPackage extends EPackage
 	int GENERIC_RENDERER__RECORD = GraphicPackage.GRAPHICS_PIPELINE__RECORD;
 
 	/**
+	 * The feature id for the '<em><b>Extension Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RENDERER__EXTENSION_PKG = GraphicPackage.GRAPHICS_PIPELINE__EXTENSION_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

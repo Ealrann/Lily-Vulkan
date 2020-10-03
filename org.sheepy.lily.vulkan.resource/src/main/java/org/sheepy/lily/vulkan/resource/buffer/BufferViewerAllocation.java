@@ -8,6 +8,7 @@ import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataSupplier;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.resource.buffer.IBufferViewerAdapter;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAllocation;
@@ -26,20 +27,20 @@ public final class BufferViewerAllocation implements IBufferAllocation
 	private final AlignmentData alignmentData;
 	private boolean needPush = true;
 
-	@SuppressWarnings({"unchecked", "rawtypes"})
-	private BufferViewerAllocation(BufferViewer bufferViewer,
-								   IObservatoryBuilder observatory,
-								   @InjectDependency(index = 0) BufferMemoryAllocation bufferMemoryAllocation)
+	@SuppressWarnings("unchecked")
+	private BufferViewerAllocation(final BufferViewer bufferViewer,
+								   final IObservatoryBuilder observatory,
+								   final @InjectDependency(index = 0) BufferMemoryAllocation bufferMemoryAllocation)
 	{
 		this.bufferViewer = bufferViewer;
 		this.bufferPtr = bufferMemoryAllocation.getBufferPtr();
 		this.bufferMemoryAllocation = bufferMemoryAllocation;
 		this.alignmentData = bufferMemoryAllocation.getAlignmentData(bufferViewer);
 
-		observatory.<IGenericBufferDataSupplier.Features<?>, IGenericBufferDataSupplier>adaptNotifier(
-				IGenericBufferDataSupplier.class).listenNoParam(this::requestPush,
-																IGenericBufferDataSupplier.Features.Data);
+		final var dataSupplier = bufferViewer.adapt(IBufferViewerAdapter.class)
+											 .adaptDataSource(IGenericBufferDataSupplier.class);
 
+		observatory.focus(dataSupplier).listenNoParam(this::requestPush, IGenericBufferDataSupplier.Features.Data);
 	}
 
 	private void requestPush()
@@ -51,8 +52,9 @@ public final class BufferViewerAllocation implements IBufferAllocation
 	@Override
 	public void fillData(ByteBuffer buffer)
 	{
-		final var bufferDataProvider = bufferViewer.adaptNotNull(IGenericBufferDataSupplier.class);
-		bufferDataProvider.fill(buffer);
+		final var dataSupplier = bufferViewer.adapt(IBufferViewerAdapter.class)
+											 .adaptDataSource(IGenericBufferDataSupplier.class);
+		dataSupplier.fill(buffer);
 		needPush = false;
 	}
 
