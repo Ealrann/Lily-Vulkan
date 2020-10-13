@@ -98,7 +98,7 @@ public class IndexedDataDescriptionItemProvider extends DataProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((IndexedDataDescription<?>)object).getBufferName();
+		String label = ((IndexedDataDescription<?>)object).getDataSourceName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_IndexedDataDescription_type") :
 			getString("_UI_IndexedDataDescription_type") + " " + label;

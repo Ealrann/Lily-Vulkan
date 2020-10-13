@@ -22,7 +22,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getMinSize <em>Min Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataSource <em>Data Source</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getBufferName <em>Buffer Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataSourceName <em>Data Source Name</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getDataProvider()
@@ -115,25 +115,25 @@ public interface DataProvider<T extends Structure> extends ILilyEObject
 	void setDataSource(IBufferDataSource value);
 
 	/**
-	 * Returns the value of the '<em><b>Buffer Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Data Source Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Buffer Name</em>' attribute.
-	 * @see #setBufferName(String)
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getDataProvider_BufferName()
+	 * @return the value of the '<em>Data Source Name</em>' attribute.
+	 * @see #setDataSourceName(String)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getDataProvider_DataSourceName()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getBufferName();
+	String getDataSourceName();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getBufferName <em>Buffer Name</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataSourceName <em>Data Source Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Buffer Name</em>' attribute.
-	 * @see #getBufferName()
+	 * @param value the new value of the '<em>Data Source Name</em>' attribute.
+	 * @see #getDataSourceName()
 	 * @generated
 	 */
-	void setBufferName(String value);
+	void setDataSourceName(String value);
 
 } // DataProvider

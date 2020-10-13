@@ -27,6 +27,8 @@ import java.util.stream.Stream;
 @AllocationChild(features = VulkanResourcePackage.MEMORY_CHUNK__PARTS)
 public final class MemoryChunkAllocation implements IExtender
 {
+	private static final MemoryBuilder MEMORY_BUILDER = new MemoryBuilder(new Memory.Info(false, true));
+
 	private final MemoryChunk memoryChunk;
 	private final IAllocationState allocationState;
 	private final Memory memory;
@@ -49,11 +51,11 @@ public final class MemoryChunkAllocation implements IExtender
 												.map(p -> p.adapt(IMemoryChunkPartAdapter.class))
 												.map(adapter -> adapter.newResource(context));
 
-		final var memoryInfo = new Memory.Info(false, true);
-		final var memoryBuilder = new MemoryBuilder(memoryInfo);
-
-		this.memory = memoryBuilder.buildMemory(context, resourcePointers);
-		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.register(memory.ptr(), memoryChunk.getName());
+		final var debug = DebugUtil.DEBUG_ENABLED;
+		this.memory = debug
+				? MEMORY_BUILDER.buildDebug(context, resourcePointers, this::throwMemoryCreationException)
+				: MEMORY_BUILDER.build(context, resourcePointers);
+		if (debug) IVulkanDebugService.INSTANCE.register(memory.ptr(), memoryChunk.getName());
 
 		bufferPusher = new DeviceResourceFiller(context);
 		useTransfer = memoryChunk.getTransferBuffer() != null;
@@ -166,5 +168,10 @@ public final class MemoryChunkAllocation implements IExtender
 	public int partIndex(final IMemoryChunkPart memoryPart)
 	{
 		return memoryChunk.getParts().indexOf(memoryPart);
+	}
+
+	private void throwMemoryCreationException(final String reason)
+	{
+		throw new IllegalStateException("Error when allocating Memory [" + memoryChunk.getName() + "], reason: " + reason);
 	}
 }

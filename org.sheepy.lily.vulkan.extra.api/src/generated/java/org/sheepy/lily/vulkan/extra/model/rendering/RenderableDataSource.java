@@ -2,6 +2,8 @@
  */
 package org.sheepy.lily.vulkan.extra.model.rendering;
 
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 
 /**
@@ -22,7 +24,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
  * @model
  * @generated
  */
-public interface RenderableDataSource<T extends Structure> extends IBufferDataSource
+public interface RenderableDataSource<T extends Structure> extends IBufferDataSource, LNamedElement, IVulkanResource
 {
 	/**
 	 * Returns the value of the '<em><b>Structure</b></em>' reference.

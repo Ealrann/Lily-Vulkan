@@ -74,7 +74,7 @@ public interface IVkImageBuilder
 											mipLevels(),
 											initialLayout(),
 											aspect());
-			final var memory = memoryBuilder.buildMemory(context, Stream.of(imagePtr));
+			final var memory = memoryBuilder.build(context, Stream.of(imagePtr));
 			final var size = memory.resources().get(0).size();
 			final var res = new ImageBackend(vkImage, size, memory);
 

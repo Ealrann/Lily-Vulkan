@@ -768,6 +768,11 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 				newChildDescriptors.add
 					(createChildParameter
 						(VulkanPackage.Literals.VULKAN_RESOURCE_PKG__RESOURCES,
+						 RenderingFactory.eINSTANCE.createRenderableDataSource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanPackage.Literals.VULKAN_RESOURCE_PKG__RESOURCES,
 						 RenderingFactory.eINSTANCE.createRenderProxyConstantBuffer()));
 
 				return null;

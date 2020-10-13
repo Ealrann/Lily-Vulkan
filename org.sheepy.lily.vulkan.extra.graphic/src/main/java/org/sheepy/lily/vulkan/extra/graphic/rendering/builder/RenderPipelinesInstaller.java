@@ -100,8 +100,7 @@ public final class RenderPipelinesInstaller<T extends Structure>
 		@Override
 		protected PipelineBuildContext<T> prepareIndex(final int index)
 		{
-			final var pipelineBuildContext = resourceInstaller.prepare(index);
-			return pipelineBuildContext;
+			return resourceInstaller.prepare(index);
 		}
 	}
 
@@ -133,8 +132,7 @@ public final class RenderPipelinesInstaller<T extends Structure>
 																  pipeline,
 																  drawCallOffset,
 																  count);
-			final var resourceContext = resourceInstaller.prepare(index);
-			return resourceContext;
+			return resourceInstaller.prepare(index);
 		}
 	}
 }

@@ -160,7 +160,7 @@ public final class HostVisibleBufferBackend implements IBufferBackend
 			final var info = new Memory.Info(true, this.info.coherent);
 			final var memoryBuilder = new MemoryBuilder(info);
 			final var ptrs = Stream.of(new BufferPointer(ptr));
-			final var memory = memoryBuilder.buildMemory(context, ptrs);
+			final var memory = memoryBuilder.build(context, ptrs);
 			final var backend = new HostVisibleBufferBackend(ptr, this.info.getAlignedSize(), memory, true);
 			return backend;
 		}

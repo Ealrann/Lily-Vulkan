@@ -726,7 +726,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getDataProvider_BufferName()
+	public EAttribute getDataProvider_DataSourceName()
 	{
 		return (EAttribute)dataProviderEClass.getEStructuralFeatures().get(4);
 	}
@@ -1114,7 +1114,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEAttribute(dataProviderEClass, DATA_PROVIDER__GROW_FACTOR);
 		createEAttribute(dataProviderEClass, DATA_PROVIDER__MIN_SIZE);
 		createEReference(dataProviderEClass, DATA_PROVIDER__DATA_SOURCE);
-		createEAttribute(dataProviderEClass, DATA_PROVIDER__BUFFER_NAME);
+		createEAttribute(dataProviderEClass, DATA_PROVIDER__DATA_SOURCE_NAME);
 
 		indexedDataDescriptionEClass = createEClass(INDEXED_DATA_DESCRIPTION);
 		createEAttribute(indexedDataDescriptionEClass, INDEXED_DATA_DESCRIPTION__INDEX_TYPE);
@@ -1229,6 +1229,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		g1.getETypeArguments().add(g2);
 		indexedDataDescriptionEClass.getEGenericSuperTypes().add(g1);
 		renderableDataSourceEClass.getESuperTypes().add(theVulkanResourcePackage.getIBufferDataSource());
+		renderableDataSourceEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		renderableDataSourceEClass.getESuperTypes().add(theVulkanPackage.getIVulkanResource());
 		descriptorsProviderEClass.getESuperTypes().add(this.getResourceDescriptorProvider());
 		dataDescriptorsProviderEClass.getESuperTypes().add(this.getResourceDescriptorProvider());
 		renderProxyConstantBufferEClass.getESuperTypes().add(theVulkanResourcePackage.getConstantBuffer());
@@ -1286,7 +1288,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEAttribute(getDataProvider_GrowFactor(), ecorePackage.getEFloat(), "growFactor", "1.5f", 1, 1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataProvider_MinSize(), ecorePackage.getELong(), "minSize", "0", 0, 1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataProvider_DataSource(), theVulkanResourcePackage.getIBufferDataSource(), null, "dataSource", null, 0, 1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDataProvider_BufferName(), ecorePackage.getEString(), "bufferName", null, 1, 1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataProvider_DataSourceName(), ecorePackage.getEString(), "dataSourceName", null, 1, 1, DataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(indexedDataDescriptionEClass, IndexedDataDescription.class, "IndexedDataDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIndexedDataDescription_IndexType(), theEnumerationPackage.getEIndexType(), "indexType", "UINT32", 1, 1, IndexedDataDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

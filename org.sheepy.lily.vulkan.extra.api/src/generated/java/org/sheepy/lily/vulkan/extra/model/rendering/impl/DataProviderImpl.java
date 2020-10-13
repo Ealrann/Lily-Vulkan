@@ -36,7 +36,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getGrowFactor <em>Grow Factor</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getMinSize <em>Min Size</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getDataSource <em>Data Source</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getBufferName <em>Buffer Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.DataProviderImpl#getDataSourceName <em>Data Source Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -104,24 +104,24 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	protected IBufferDataSource dataSource;
 
 	/**
-	 * The default value of the '{@link #getBufferName() <em>Buffer Name</em>}' attribute.
+	 * The default value of the '{@link #getDataSourceName() <em>Data Source Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBufferName()
+	 * @see #getDataSourceName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String BUFFER_NAME_EDEFAULT = null;
+	protected static final String DATA_SOURCE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBufferName() <em>Buffer Name</em>}' attribute.
+	 * The cached value of the '{@link #getDataSourceName() <em>Data Source Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBufferName()
+	 * @see #getDataSourceName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String bufferName = BUFFER_NAME_EDEFAULT;
+	protected String dataSourceName = DATA_SOURCE_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -260,9 +260,9 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	 * @generated
 	 */
 	@Override
-	public String getBufferName()
+	public String getDataSourceName()
 	{
-		return bufferName;
+		return dataSourceName;
 	}
 
 	/**
@@ -271,12 +271,12 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	 * @generated
 	 */
 	@Override
-	public void setBufferName(String newBufferName)
+	public void setDataSourceName(String newDataSourceName)
 	{
-		String oldBufferName = bufferName;
-		bufferName = newBufferName;
+		String oldDataSourceName = dataSourceName;
+		dataSourceName = newDataSourceName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.DATA_PROVIDER__BUFFER_NAME, oldBufferName, bufferName));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.DATA_PROVIDER__DATA_SOURCE_NAME, oldDataSourceName, dataSourceName));
 	}
 
 	/**
@@ -298,8 +298,8 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE:
 				if (resolve) return getDataSource();
 				return basicGetDataSource();
-			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
-				return getBufferName();
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE_NAME:
+				return getDataSourceName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -328,8 +328,8 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE:
 				setDataSource((IBufferDataSource)newValue);
 				return;
-			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
-				setBufferName((String)newValue);
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE_NAME:
+				setDataSourceName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -357,8 +357,8 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE:
 				setDataSource((IBufferDataSource)null);
 				return;
-			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
-				setBufferName(BUFFER_NAME_EDEFAULT);
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE_NAME:
+				setDataSourceName(DATA_SOURCE_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -382,8 +382,8 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 				return minSize != MIN_SIZE_EDEFAULT;
 			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE:
 				return dataSource != null;
-			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
-				return BUFFER_NAME_EDEFAULT == null ? bufferName != null : !BUFFER_NAME_EDEFAULT.equals(bufferName);
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE_NAME:
+				return DATA_SOURCE_NAME_EDEFAULT == null ? dataSourceName != null : !DATA_SOURCE_NAME_EDEFAULT.equals(dataSourceName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -405,8 +405,8 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 		result.append(growFactor);
 		result.append(", minSize: ");
 		result.append(minSize);
-		result.append(", bufferName: ");
-		result.append(bufferName);
+		result.append(", dataSourceName: ");
+		result.append(dataSourceName);
 		result.append(')');
 		return result.toString();
 	}

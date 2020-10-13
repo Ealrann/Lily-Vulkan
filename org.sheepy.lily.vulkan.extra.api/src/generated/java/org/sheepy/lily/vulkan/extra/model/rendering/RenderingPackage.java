@@ -803,13 +803,13 @@ public interface RenderingPackage extends EPackage
 	int DATA_PROVIDER__DATA_SOURCE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Buffer Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Data Source Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROVIDER__BUFFER_NAME = 4;
+	int DATA_PROVIDER__DATA_SOURCE_NAME = 4;
 
 	/**
 	 * The number of structural features of the '<em>Data Provider</em>' class.
@@ -876,13 +876,13 @@ public interface RenderingPackage extends EPackage
 	int INDEXED_DATA_DESCRIPTION__DATA_SOURCE = DATA_PROVIDER__DATA_SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Buffer Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Data Source Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDEXED_DATA_DESCRIPTION__BUFFER_NAME = DATA_PROVIDER__BUFFER_NAME;
+	int INDEXED_DATA_DESCRIPTION__DATA_SOURCE_NAME = DATA_PROVIDER__DATA_SOURCE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Index Type</b></em>' attribute.
@@ -922,13 +922,22 @@ public interface RenderingPackage extends EPackage
 	int RENDERABLE_DATA_SOURCE = 11;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDERABLE_DATA_SOURCE__NAME = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Structure</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERABLE_DATA_SOURCE__STRUCTURE = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 0;
+	int RENDERABLE_DATA_SOURCE__STRUCTURE = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' attribute.
@@ -937,7 +946,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERABLE_DATA_SOURCE__PART = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 1;
+	int RENDERABLE_DATA_SOURCE__PART = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' reference.
@@ -946,7 +955,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERABLE_DATA_SOURCE__DATA_SOURCE = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 2;
+	int RENDERABLE_DATA_SOURCE__DATA_SOURCE = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Renderable Data Source</em>' class.
@@ -955,7 +964,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERABLE_DATA_SOURCE_FEATURE_COUNT = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 3;
+	int RENDERABLE_DATA_SOURCE_FEATURE_COUNT = VulkanResourcePackage.IBUFFER_DATA_SOURCE_FEATURE_COUNT + 4;
 
 
 	/**
@@ -1744,15 +1753,15 @@ public interface RenderingPackage extends EPackage
 	EReference getDataProvider_DataSource();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getBufferName <em>Buffer Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataSourceName <em>Data Source Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Buffer Name</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getBufferName()
+	 * @return the meta object for the attribute '<em>Data Source Name</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.DataProvider#getDataSourceName()
 	 * @see #getDataProvider()
 	 * @generated
 	 */
-	EAttribute getDataProvider_BufferName();
+	EAttribute getDataProvider_DataSourceName();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription <em>Indexed Data Description</em>}'.
@@ -2374,12 +2383,12 @@ public interface RenderingPackage extends EPackage
 		EReference DATA_PROVIDER__DATA_SOURCE = eINSTANCE.getDataProvider_DataSource();
 
 		/**
-		 * The meta object literal for the '<em><b>Buffer Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Data Source Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATA_PROVIDER__BUFFER_NAME = eINSTANCE.getDataProvider_BufferName();
+		EAttribute DATA_PROVIDER__DATA_SOURCE_NAME = eINSTANCE.getDataProvider_DataSourceName();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.IndexedDataDescriptionImpl <em>Indexed Data Description</em>}' class.

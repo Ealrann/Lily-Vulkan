@@ -10,8 +10,7 @@ public record PipelineBuildContext<T extends Structure>(T structure,
 														GraphicsPipeline pipeline,
 														int part,
 														int drawCallOffset,
-														List<BufferGroupSetup> bufferSetups,
+														BufferGroupSetup bufferSetup,
 														List<DescriptorSet> dynamicBindings,
 														DescriptorSet staticBindings)
-{
-}
+{}

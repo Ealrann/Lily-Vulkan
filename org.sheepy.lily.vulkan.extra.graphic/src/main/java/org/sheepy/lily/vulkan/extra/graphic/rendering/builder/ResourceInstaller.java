@@ -7,6 +7,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IDescriptor;
+import org.sheepy.lily.vulkan.model.VulkanResourcePkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
@@ -23,7 +24,6 @@ public final class ResourceInstaller<T extends Structure>
 	private final T structure;
 	private final GraphicsPipeline pipeline;
 	private final int drawCallOffset;
-	private final int count;
 
 	public ResourceInstaller(final GenericRenderer<T> maintainer,
 							 final T structure,
@@ -35,12 +35,10 @@ public final class ResourceInstaller<T extends Structure>
 		this.structure = structure;
 		this.pipeline = pipeline;
 		this.drawCallOffset = drawCallOffset;
-		this.count = count;
 	}
 
 	public PipelineBuildContext<T> prepare(final int part)
 	{
-		final List<BufferGroupSetup> bufferSetups = new ArrayList<>();
 		final List<DescriptorSet> dynamicBindings = new ArrayList<>();
 		final var staticBindings = prepareResourceDescriptors((adapter, provider) -> adapter.buildForPipeline(provider,
 																											  structure));
@@ -49,19 +47,20 @@ public final class ResourceInstaller<T extends Structure>
 		pipeline.getResourcePkg().getResources().add(memoryChunk);
 		memoryChunk.setTransferBuffer(maintainer.getTransferBuffer());
 
-		for (int i = 0; i < count; i++)
-		{
-			final var buffer = prepareBufferMemory(memoryChunk, structure, i);
-			bufferSetups.add(buffer);
+//		for (int i = 0; i < count; i++)
+//		{
+		final BufferGroupSetup bufferSetup = prepareBufferMemory(memoryChunk, structure, part);
 
-			final var dynamicDescriptors = prepareResourceDescriptors((adapter, provider) -> adapter.buildForPart(
-					provider,
-					buffer.bufferSetups().stream().map(BufferSetup::bufferViewer)));
-			if (dynamicDescriptors != null)
-			{
-				dynamicBindings.add(dynamicDescriptors);
-			}
+		final var dynamicDescriptors = prepareResourceDescriptors((adapter, provider) -> adapter.buildForPart(provider,
+																											  bufferSetup
+																													  .bufferSetups()
+																													  .stream()
+																													  .map(BufferSetup::bufferViewer)));
+		if (dynamicDescriptors != null)
+		{
+			dynamicBindings.add(dynamicDescriptors);
 		}
+//		}
 
 		if (part == 0)
 		{
@@ -73,7 +72,7 @@ public final class ResourceInstaller<T extends Structure>
 										  pipeline,
 										  part,
 										  drawCallOffset,
-										  bufferSetups,
+										  bufferSetup,
 										  dynamicBindings,
 										  staticBindings);
 	}
@@ -111,10 +110,11 @@ public final class ResourceInstaller<T extends Structure>
 		}
 	}
 
-	private BufferGroupSetup prepareBufferMemory(MemoryChunk memoryChunk, T structure, int part)
+	private BufferGroupSetup prepareBufferMemory(final MemoryChunk memoryChunk, final T structure, final int part)
 	{
 		final var bufferMemory = VulkanResourceFactory.eINSTANCE.createBufferMemory();
 		final var dataProviders = maintainer.getDataProviderPkg().getDataProviders();
+		final var resourcePkg = (VulkanResourcePkg) memoryChunk.eContainer();
 		bufferMemory.setName(maintainer.getName());
 
 		final List<BufferSetup> res = new ArrayList<>();
@@ -125,10 +125,11 @@ public final class ResourceInstaller<T extends Structure>
 			dataSource.setPart(part);
 			dataSource.setStructure(structure);
 			dataSource.setDataSource(dataProvider.getDataSource());
+			dataSource.setName(dataProvider.getDataSourceName());
+			resourcePkg.getResources().add(dataSource);
 
 			final var bufferViewer = VulkanResourceFactory.eINSTANCE.createBufferViewer();
 			final var usages = bufferViewer.getUsages();
-			bufferViewer.setName(dataProvider.getBufferName());
 			bufferViewer.setGrowFactor(dataProvider.getGrowFactor());
 			bufferViewer.setSize(dataProvider.getMinSize());
 			bufferViewer.setDataSource(dataSource);

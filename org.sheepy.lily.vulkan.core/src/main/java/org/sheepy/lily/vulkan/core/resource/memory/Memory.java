@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 
 import java.util.List;
 
-import static org.lwjgl.vulkan.VK10.vkFreeMemory;
+import static org.lwjgl.vulkan.VK10.*;
 
 public final record Memory(Info info, long ptr, List<BoundResource> resources)
 {
@@ -17,10 +17,20 @@ public final record Memory(Info info, long ptr, List<BoundResource> resources)
 	}
 
 	public record BoundResource(long ptr, long size)
-	{
-	}
+	{}
 
 	public record Info(boolean hostVisible, boolean coherent)
 	{
+		public int propertyFlag()
+		{
+			if (hostVisible() == false)
+			{
+				return VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+			}
+			else
+			{
+				return VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | (coherent() ? VK_MEMORY_PROPERTY_HOST_COHERENT_BIT : 0);
+			}
+		}
 	}
 }

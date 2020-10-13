@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
@@ -64,11 +65,35 @@ public class RenderableDataSourceItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addStructurePropertyDescriptor(object);
 			addPartPropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -161,8 +186,10 @@ public class RenderableDataSourceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		RenderableDataSource<?> renderableDataSource = (RenderableDataSource<?>)object;
-		return getString("_UI_RenderableDataSource_type") + " " + renderableDataSource.getPart();
+		String label = ((RenderableDataSource<?>)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_RenderableDataSource_type") :
+			getString("_UI_RenderableDataSource_type") + " " + label;
 	}
 
 
@@ -180,6 +207,7 @@ public class RenderableDataSourceItemProvider
 
 		switch (notification.getFeatureID(RenderableDataSource.class))
 		{
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__NAME:
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

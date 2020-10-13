@@ -68,7 +68,7 @@ public class DataProviderItemProvider
 			addGrowFactorPropertyDescriptor(object);
 			addMinSizePropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
-			addBufferNamePropertyDescriptor(object);
+			addDataSourceNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -166,20 +166,20 @@ public class DataProviderItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Buffer Name feature.
+	 * This adds a property descriptor for the Data Source Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBufferNamePropertyDescriptor(Object object)
+	protected void addDataSourceNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DataProvider_bufferName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataProvider_bufferName_feature", "_UI_DataProvider_type"),
-				 RenderingPackage.Literals.DATA_PROVIDER__BUFFER_NAME,
+				 getString("_UI_DataProvider_dataSourceName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DataProvider_dataSourceName_feature", "_UI_DataProvider_type"),
+				 RenderingPackage.Literals.DATA_PROVIDER__DATA_SOURCE_NAME,
 				 true,
 				 false,
 				 false,
@@ -209,7 +209,7 @@ public class DataProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((DataProvider<?>)object).getBufferName();
+		String label = ((DataProvider<?>)object).getDataSourceName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DataProvider_type") :
 			getString("_UI_DataProvider_type") + " " + label;
@@ -233,7 +233,7 @@ public class DataProviderItemProvider
 			case RenderingPackage.DATA_PROVIDER__USAGES:
 			case RenderingPackage.DATA_PROVIDER__GROW_FACTOR:
 			case RenderingPackage.DATA_PROVIDER__MIN_SIZE:
-			case RenderingPackage.DATA_PROVIDER__BUFFER_NAME:
+			case RenderingPackage.DATA_PROVIDER__DATA_SOURCE_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

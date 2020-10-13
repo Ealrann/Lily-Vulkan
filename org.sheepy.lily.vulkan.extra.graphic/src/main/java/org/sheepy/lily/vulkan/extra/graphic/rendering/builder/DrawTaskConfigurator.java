@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.builder;
 
+import org.sheepy.lily.vulkan.core.resource.buffer.IBufferViewerAdapter;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexSupplier;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexSupplier;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
@@ -41,7 +42,7 @@ public final class DrawTaskConfigurator
 	{
 		final var part = context.part();
 		final int drawCall = part + context.drawCallOffset();
-		final var bufferSetup = context.bufferSetups().get(part);
+		final var bufferSetup = context.bufferSetup();
 		final var bindDS = ProcessFactory.eINSTANCE.createBindDescriptorSets();
 		final var descriptorSets = bindDS.getDescriptorSets();
 
@@ -130,17 +131,19 @@ public final class DrawTaskConfigurator
 		else
 		{
 			final var draw = GraphicFactory.eINSTANCE.createDraw();
+			final Runnable listener = () -> updateVertexCount(vertexBuffers, draw);
+
 			taskPkg.getTasks().add(draw);
 
 			structureAdapter.listen(draw::setInstanceCount, IStructureAdapter.Features.InstanceCount);
 			draw.setInstanceCount(structureAdapter.getInstanceCount(context.structure));
 
-			for (final var vertexSetup : vertexBuffers)
-			{
-				final var vertexProviderAdapter = vertexSetup.bufferViewer().adapt(IVertexSupplier.class);
-				vertexProviderAdapter.listenNoParam(() -> updateVertexCount(vertexBuffers, draw),
-													IVertexSupplier.Features.VertexCount);
-			}
+			vertexBuffers.stream()
+						 .map(BufferSetup::bufferViewer)
+						 .map(bufferViewer -> bufferViewer.adapt(IBufferViewerAdapter.class))
+						 .map(bva -> bva.adaptDataSource(IVertexSupplier.class))
+						 .forEach(vertexSupplier -> vertexSupplier.listenNoParam(listener,
+																				 IVertexSupplier.Features.VertexCount));
 
 			updateVertexCount(vertexBuffers, draw);
 		}
@@ -150,7 +153,8 @@ public final class DrawTaskConfigurator
 	{
 		final int vertexCount = vertexBuffers.stream()
 											 .map(BufferSetup::bufferViewer)
-											 .map(ds -> ds.adapt(IVertexSupplier.class))
+											 .map(bv -> bv.adapt(IBufferViewerAdapter.class))
+											 .map(bva -> bva.adaptDataSource(IVertexSupplier.class))
 											 .mapToInt(IVertexSupplier::getVertexCount)
 											 .sum();
 

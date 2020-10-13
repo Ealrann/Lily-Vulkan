@@ -90,7 +90,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBufferDataSource"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bufferName" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSourceName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IndexedDataDescription">
@@ -104,7 +104,7 @@
       <eTypeArguments eTypeParameter="#//IndexedDataDescription/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderableDataSource" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBufferDataSource">
+  <eClassifiers xsi:type="ecore:EClass" name="RenderableDataSource" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBufferDataSource ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement ../../org.sheepy.lily.vulkan.model/model/vulkan.ecore#//IVulkanResource">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Structure"/>
     </eTypeParameters>

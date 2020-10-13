@@ -10,9 +10,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.model.LilyEObject;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 
 /**
@@ -23,6 +26,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getStructure <em>Structure</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getPart <em>Part</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderableDataSourceImpl#getDataSource <em>Data Source</em>}</li>
@@ -32,6 +36,26 @@ import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
  */
 public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject implements RenderableDataSource<T>
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getStructure() <em>Structure</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -91,6 +115,31 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	protected EClass eStaticClass()
 	{
 		return RenderingPackage.Literals.RENDERABLE_DATA_SOURCE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.RENDERABLE_DATA_SOURCE__NAME, oldName, name));
 	}
 
 	/**
@@ -219,6 +268,8 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	{
 		switch (featureID)
 		{
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__NAME:
+				return getName();
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
 				if (resolve) return getStructure();
 				return basicGetStructure();
@@ -242,6 +293,9 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	{
 		switch (featureID)
 		{
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__NAME:
+				setName((String)newValue);
+				return;
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
 				setStructure((T)newValue);
 				return;
@@ -265,6 +319,9 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	{
 		switch (featureID)
 		{
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
 				setStructure((T)null);
 				return;
@@ -288,6 +345,8 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	{
 		switch (featureID)
 		{
+			case RenderingPackage.RENDERABLE_DATA_SOURCE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__STRUCTURE:
 				return structure != null;
 			case RenderingPackage.RENDERABLE_DATA_SOURCE__PART:
@@ -304,12 +363,66 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == LNamedElement.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case RenderingPackage.RENDERABLE_DATA_SOURCE__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == IVulkanResource.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == LNamedElement.class)
+		{
+			switch (baseFeatureID)
+			{
+				case TypesPackage.LNAMED_ELEMENT__NAME: return RenderingPackage.RENDERABLE_DATA_SOURCE__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == IVulkanResource.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString()
 	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (part: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", part: ");
 		result.append(part);
 		result.append(')');
 		return result.toString();

@@ -9,9 +9,11 @@ import org.sheepy.lily.vulkan.core.resource.memory.builder.MemoryBinder;
 import org.sheepy.lily.vulkan.core.resource.memory.builder.MemoryRequirementsBuilder;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+import static org.lwjgl.vulkan.VK10.vkAllocateMemory;
 
 public final class MemoryBuilder
 {
@@ -24,51 +26,71 @@ public final class MemoryBuilder
 		this.info = info;
 	}
 
-	public Memory buildMemory(final IVulkanContext context,
-							  final Stream<? extends IVulkanResourcePointer> resourcePointers)
+	public Memory build(final IVulkanContext context, final Stream<? extends IVulkanResourcePointer> resourcePointers)
+	{
+		final var allocationContext = prepare(context, resourcePointers);
+		return allocationContext.allocateMemory(allocationContext);
+	}
+
+	public Memory buildDebug(final IVulkanContext context,
+							 final Stream<? extends IVulkanResourcePointer> resourcePointers,
+							 final Consumer<String> logger)
+	{
+		final var allocationContext = prepare(context, resourcePointers);
+		allocationContext.verify(logger);
+		return allocationContext.allocateMemory(allocationContext);
+	}
+
+	private MemoryAllocationContext prepare(final IVulkanContext context,
+											final Stream<? extends IVulkanResourcePointer> resourcePointers)
 	{
 		final var memReqBuilder = new MemoryRequirementsBuilder(context);
 		final var memReq = memReqBuilder.build(resourcePointers);
 		final var alignmentBuilder = new AlignmentBuilder(memReq);
 		final var alignedResources = alignmentBuilder.build();
 		final var vkDevice = context.getVkDevice();
-		final long ptr = allocateMemory(context, vkDevice, memReq.memoryTypeBits(), alignedResources.size());
-		final var binder = new MemoryBinder(alignedResources, vkDevice, ptr);
-		final var boundResources = binder.bindResources();
-		return new Memory(info, ptr, boundResources);
+		return new MemoryAllocationContext(context, memReq.memoryTypeBits(), info, alignedResources, vkDevice);
 	}
 
-	private long allocateMemory(final IVulkanContext context,
-								final VkDevice vkDevice,
-								final int memoryTypeBits,
-								final long size)
+	private record MemoryAllocationContext(IVulkanContext context,
+										   int memoryTypeBits,
+										   Memory.Info info,
+										   AlignmentBuilder.AlignedResources alignedResources,
+										   VkDevice vkDevice)
 	{
-		final var allocInfo = allocateInfo(context, memoryTypeBits, size);
-		final long[] aMemoryId = new long[1];
-		Logger.check(ALLOC_ERROR, () -> vkAllocateMemory(vkDevice, allocInfo, null, aMemoryId));
-		return aMemoryId[0];
-	}
-
-	private VkMemoryAllocateInfo allocateInfo(final IVulkanContext context, int memoryTypeBits, long size)
-	{
-		final var physicalDevice = context.getPhysicalDevice();
-		final var findMemoryType = physicalDevice.findMemoryType(memoryTypeBits, computePropertyFlag());
-		final var allocInfo = VkMemoryAllocateInfo.callocStack(context.stack());
-		allocInfo.sType(VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO);
-		allocInfo.allocationSize(size);
-		allocInfo.memoryTypeIndex(findMemoryType);
-		return allocInfo;
-	}
-
-	private int computePropertyFlag()
-	{
-		if (info.hostVisible() == false)
+		public void verify(final Consumer<String> logger)
 		{
-			return VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+			if(alignedResources.size() == 0) logger.accept("Size is 0.");
+			if(memoryTypeBits == 0) logger.accept("Memory typpe is 0");
 		}
-		else
+
+		public Memory allocateMemory(final MemoryAllocationContext allocationContext)
 		{
-			return VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | (info.coherent() ? VK_MEMORY_PROPERTY_HOST_COHERENT_BIT : 0);
+			final long ptr = allocateMemory();
+			final var binder = new MemoryBinder(allocationContext.alignedResources(),
+												allocationContext.vkDevice(),
+												ptr);
+			final var boundResources = binder.bindResources();
+			return new Memory(info, ptr, boundResources);
+		}
+
+		private long allocateMemory()
+		{
+			final var allocInfo = allocateInfo();
+			final long[] aMemoryId = new long[1];
+			Logger.check(ALLOC_ERROR, () -> vkAllocateMemory(vkDevice, allocInfo, null, aMemoryId));
+			return aMemoryId[0];
+		}
+
+		private VkMemoryAllocateInfo allocateInfo()
+		{
+			final var physicalDevice = context.getPhysicalDevice();
+			final var findMemoryType = physicalDevice.findMemoryType(memoryTypeBits, info.propertyFlag());
+			final var allocInfo = VkMemoryAllocateInfo.callocStack(context.stack());
+			allocInfo.sType(VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO);
+			allocInfo.allocationSize(alignedResources.size());
+			allocInfo.memoryTypeIndex(findMemoryType);
+			return allocInfo;
 		}
 	}
 }

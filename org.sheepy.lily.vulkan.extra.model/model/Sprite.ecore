@@ -10,8 +10,7 @@
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//BufferViewer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="spritesDescriptor" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ImageDescriptor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="spriteDataSource" lowerBound="1"
-        eType="#//ISpriteDataSource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="spriteDataSource" eType="#//ISpriteDataSource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="spritePipelineSpecialization"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ConstantBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="spriteImageMemory" lowerBound="1"

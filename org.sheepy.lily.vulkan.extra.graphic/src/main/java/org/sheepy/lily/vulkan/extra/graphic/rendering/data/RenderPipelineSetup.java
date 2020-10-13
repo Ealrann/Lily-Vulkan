@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering.data;
 
+import org.sheepy.lily.vulkan.core.resource.buffer.IBufferViewerAdapter;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexSupplier;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IVertexSupplier;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
@@ -31,7 +32,7 @@ public record RenderPipelineSetup(GraphicsPipeline pipeline, List<BufferViewer> 
 
 	private static IVertexSupplier adaptVertexSupplier(final BufferViewer b)
 	{
-		return b.adapt(IVertexSupplier.class);
+		return b.adapt(IBufferViewerAdapter.class).adaptDataSource(IVertexSupplier.class);
 	}
 
 	private static IIndexSupplier adaptIndexSupplier(final BufferViewer b)

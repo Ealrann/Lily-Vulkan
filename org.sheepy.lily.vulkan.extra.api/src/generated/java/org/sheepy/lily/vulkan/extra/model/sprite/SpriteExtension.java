@@ -130,7 +130,7 @@ public interface SpriteExtension extends IPipelineExtension, IBufferDataSource
 	 * @return the value of the '<em>Sprite Data Source</em>' reference.
 	 * @see #setSpriteDataSource(ISpriteDataSource)
 	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#getSpriteExtension_SpriteDataSource()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	ISpriteDataSource getSpriteDataSource();

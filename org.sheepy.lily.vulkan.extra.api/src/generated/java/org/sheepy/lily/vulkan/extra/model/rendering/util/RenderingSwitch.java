@@ -181,6 +181,8 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				RenderableDataSource<?> renderableDataSource = (RenderableDataSource<?>)theEObject;
 				T1 result = caseRenderableDataSource(renderableDataSource);
 				if (result == null) result = caseIBufferDataSource(renderableDataSource);
+				if (result == null) result = caseIVulkanResource(renderableDataSource);
+				if (result == null) result = caseLNamedElement(renderableDataSource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
