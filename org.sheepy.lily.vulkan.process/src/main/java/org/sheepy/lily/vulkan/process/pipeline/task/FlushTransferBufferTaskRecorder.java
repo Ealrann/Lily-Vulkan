@@ -38,6 +38,7 @@ public final class FlushTransferBufferTaskRecorder implements IRecordableExtende
 	private void transferQueueChanged()
 	{
 		needRecord = true;
+		allocationState.setAllocationObsolete();
 	}
 
 	@Override
