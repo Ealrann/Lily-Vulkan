@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -41,8 +42,14 @@ public final class GenericConstantBufferAdapter implements IExtender
 				   .listenNoParam(() -> valueDirty = true, IModelVariableAdapter.Features.Value);
 	}
 
+	@Load
+	private void load()
+	{
+		update();
+	}
+
 	@Tick
-	private void tick()
+	private void update()
 	{
 		if (bufferDirty)
 		{
