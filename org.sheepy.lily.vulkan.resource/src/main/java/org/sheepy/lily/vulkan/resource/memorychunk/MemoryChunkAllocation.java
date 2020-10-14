@@ -149,7 +149,8 @@ public final class MemoryChunkAllocation implements IExtender
 
 	private void logTransferError()
 	{
-		final var message = String.format("Transfer  of %s failed (TransferBuffer full ? )", memoryChunk.getName());
+		final var message = String.format("Transfer of MemoryChunkParts [%s] failed (TransferBuffer full?)",
+										  memoryChunk.getName());
 		System.out.println(message);
 	}
 

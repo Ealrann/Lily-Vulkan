@@ -109,7 +109,7 @@ public final class TransferCommandInserter
 																  List.of(EAccess.TRANSFER_WRITE_BIT),
 																  vkImage.initialLayout());
 			}
-			// TODO https://openjdk.java.net/jeps/360 switch on sealed type. No need to return null anymore.
+			// TODO https://bugs.openjdk.java.net/browse/JDK-8213076 switch on sealed type. No need to return null anymore.
 			return null;
 		}
 	}

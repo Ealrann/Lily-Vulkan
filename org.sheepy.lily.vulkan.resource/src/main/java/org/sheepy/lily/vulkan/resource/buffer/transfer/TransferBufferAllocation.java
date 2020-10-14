@@ -13,7 +13,6 @@ import org.sheepy.lily.vulkan.core.util.FillCommand;
 import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.TransferBufferBackend;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommand;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.util.TransferCommandInserter;
 
 import java.util.List;
@@ -79,16 +78,10 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 	@Override
 	public void flush(RecordContext context)
 	{
-		if(isEmpty() == false)
+		if (isEmpty() == false)
 		{
 			backendBuffer.recordFlush(context, vkDevice);
 			notify(Features.TransferQueueChange);
 		}
-	}
-
-	public void addTransferCommand(final DataFlowCommand command)
-	{
-		backendBuffer.addTransferCommand(command);
-		notify(Features.TransferQueueChange);
 	}
 }
