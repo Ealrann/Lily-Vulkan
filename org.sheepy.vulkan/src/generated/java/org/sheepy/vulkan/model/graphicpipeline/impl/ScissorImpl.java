@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.joml.Vector2ic;
 import org.sheepy.lily.core.api.model.LilyEObject;
+import org.sheepy.lily.core.model.types.TypesFactory;
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.graphicpipeline.Scissor;
 
@@ -75,7 +77,7 @@ public class ScissorImpl extends LilyEObject implements Scissor
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Vector2ic EXTENT_EDEFAULT = null;
+	protected static final Vector2ic EXTENT_EDEFAULT = (Vector2ic)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getVector2i(), "0;0");
 
 	/**
 	 * The cached value of the '{@link #getExtent() <em>Extent</em>}' attribute.

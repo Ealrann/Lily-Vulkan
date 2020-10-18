@@ -1122,7 +1122,7 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		initEClass(scissorEClass, Scissor.class, "Scissor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getScissor_OffsetX(), ecorePackage.getEInt(), "offsetX", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getScissor_OffsetY(), ecorePackage.getEInt(), "offsetY", "0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getScissor_Extent(), theTypesPackage.getVector2i(), "extent", null, 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScissor_Extent(), theTypesPackage.getVector2i(), "extent", "0;0", 0, 1, Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(depthStencilStateEClass, DepthStencilState.class, "DepthStencilState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDepthStencilState_DepthTest(), ecorePackage.getEBoolean(), "depthTest", "true", 1, 1, DepthStencilState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

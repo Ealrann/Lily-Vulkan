@@ -24,14 +24,12 @@ public class ViewportStateBuilder
 		viewportState = VkPipelineViewportStateCreateInfo.callocStack(stack);
 		viewportState.sType(VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO);
 
-		if (vState instanceof StaticViewportState)
+		if (vState instanceof StaticViewportState state)
 		{
-			final var state = (StaticViewportState) vState;
 			fillStaticStateInfo(stack, swapExtent, state);
 		}
-		else if (vState instanceof DynamicViewportState)
+		else if (vState instanceof DynamicViewportState state)
 		{
-			final var state = (DynamicViewportState) vState;
 			fillDynamicStateInfo(state);
 		}
 
@@ -70,7 +68,7 @@ public class ViewportStateBuilder
 			scissors.offset().set(offsetX, offsetY);
 
 			final var extent = scissor.getExtent();
-			if (extent == null)
+			if (extent == null || extent.equals(0, 0))
 			{
 				scissors.extent().set(swapExtent.x(), swapExtent.y());
 			}

@@ -151,7 +151,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="offsetY" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extent" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector2i"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extent" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector2i"
+        defaultValueLiteral="0;0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DepthStencilState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="depthTest" lowerBound="1"

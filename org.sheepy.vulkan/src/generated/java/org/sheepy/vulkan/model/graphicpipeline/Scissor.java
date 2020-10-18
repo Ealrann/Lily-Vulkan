@@ -74,12 +74,13 @@ public interface Scissor extends ILilyEObject
 
 	/**
 	 * Returns the value of the '<em><b>Extent</b></em>' attribute.
+	 * The default value is <code>"0;0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extent</em>' attribute.
 	 * @see #setExtent(Vector2ic)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getScissor_Extent()
-	 * @model dataType="org.sheepy.lily.core.model.types.Vector2i"
+	 * @model default="0;0" dataType="org.sheepy.lily.core.model.types.Vector2i"
 	 * @generated
 	 */
 	Vector2ic getExtent();
