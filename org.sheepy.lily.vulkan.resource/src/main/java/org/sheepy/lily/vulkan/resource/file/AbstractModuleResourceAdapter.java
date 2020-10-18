@@ -12,7 +12,6 @@ public abstract class AbstractModuleResourceAdapter extends FileResourceAdapter
 	protected InputStream getInputStream(FileResource resource)
 	{
 		final var moduleResource = (AbstractModuleResource) resource;
-
 		final var path = moduleResource.getPath();
 		final var module = getModule(moduleResource);
 
@@ -23,8 +22,8 @@ public abstract class AbstractModuleResourceAdapter extends FileResourceAdapter
 		catch (final IOException e)
 		{
 			e.printStackTrace();
+			return InputStream.nullInputStream();
 		}
-		return null;
 	}
 
 	protected abstract Module getModule(AbstractModuleResource resource);

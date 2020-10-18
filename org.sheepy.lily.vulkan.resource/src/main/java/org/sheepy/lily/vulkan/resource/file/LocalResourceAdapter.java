@@ -27,8 +27,7 @@ public class LocalResourceAdapter extends FileResourceAdapter
 		catch (final FileNotFoundException e)
 		{
 			e.printStackTrace();
+			return InputStream.nullInputStream();
 		}
-
-		return null;
 	}
 }
