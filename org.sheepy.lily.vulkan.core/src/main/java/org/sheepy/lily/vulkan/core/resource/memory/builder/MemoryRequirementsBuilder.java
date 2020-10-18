@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.resource.BufferPointer;
 import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
 import org.sheepy.lily.vulkan.core.resource.ImagePointer;
-import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
+import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

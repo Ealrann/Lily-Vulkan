@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.DeviceLocalBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.IBufferBackend;
-import org.sheepy.lily.vulkan.core.util.FillCommand;
+import org.sheepy.lily.vulkan.core.resource.util.FillCommand;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
@@ -21,6 +21,7 @@ import org.sheepy.lily.vulkan.resource.memorychunk.MemoryChunkAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -81,28 +82,29 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 	public Stream<FillCommand> streamFillCommands(final boolean force)
 	{
 		final var buffers = bufferMemory.getBuffers();
-		final long bufferPtr = bufferBackend.getAddress();
+		final var bufferPtr = bufferBackend.getAddress();
+		final var regions = IntStream.range(0, buffers.size())
+									 .mapToObj(this::newBufferAlignmentWrapper)
+									 .filter(data -> force || data.bufferAllocation.needPush())
+									 .map(BufferAlignmentWrapper::toRegion)
+									 .collect(Collectors.toUnmodifiableList());
 
-		return IntStream.range(0, buffers.size())
-						.mapToObj(this::newBufferData)
-						.filter(data -> force || data.bufferAllocation.needPush())
-						.map(data -> data.buildFillCommand(bufferPtr));
+		return Stream.of(new FillCommand.FillBufferCommand(bufferPtr, regions));
 	}
 
-	private BufferData newBufferData(final int index)
+	private BufferAlignmentWrapper newBufferAlignmentWrapper(final int index)
 	{
 		final var bufferAllocation = IBufferAllocation.adapt(bufferMemory.getBuffers().get(index));
-		return new BufferData(bufferAllocation, alignmentDataList.get(index));
+		return new BufferAlignmentWrapper(bufferAllocation, alignmentDataList.get(index));
 	}
 
-	private static record BufferData(IBufferAllocation bufferAllocation, AlignmentData alignmentData)
+	record BufferAlignmentWrapper(IBufferAllocation bufferAllocation, AlignmentData alignmentData)
 	{
-		public FillCommand buildFillCommand(final long bufferPtr)
+		public FillCommand.RegionFillInfo toRegion()
 		{
-			return new FillCommand.FillBufferCommand(bufferAllocation::fillData,
-													 bufferPtr,
-													 alignmentData.offset(),
-													 alignmentData.size());
+			return new FillCommand.RegionFillInfo(bufferAllocation::fillData,
+												  alignmentData.offset(),
+												  alignmentData.size());
 		}
 	}
 

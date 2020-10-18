@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.core.util;
+package org.sheepy.lily.vulkan.core.resource.util;
 
 public final class AlignmentUtil
 {

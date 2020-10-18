@@ -20,7 +20,6 @@ public record VkImage
 		 int mipLevels,
 		 EImageLayout initialLayout,
 		 int aspect)
-
 {
 	public static VkImageBuilder newBuilder(String name, int width, int height, int format)
 	{

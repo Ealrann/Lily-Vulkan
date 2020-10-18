@@ -1,22 +1,20 @@
-package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
+package org.sheepy.lily.vulkan.resource.util.command;
 
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
-import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
-import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 
 import java.util.function.Consumer;
 
-public final class FetchCommand implements DataFlowCommand
+public final class FetchBufferData implements IDataFlow
 {
 	private final MemoryTicket ticket;
 	private final long srcBuffer;
 	private final long srcOffset;
-	private final Consumer<IMemoryTicket> transferDone;
+	private final Consumer<MemoryTicket> transferDone;
 
-	public FetchCommand(MemoryTicket ticket, long srcBuffer, long srcOffset, Consumer<IMemoryTicket> transferDone)
+	public FetchBufferData(MemoryTicket ticket, long srcBuffer, long srcOffset, Consumer<MemoryTicket> transferDone)
 	{
 		assert srcBuffer != 0;
 		assert srcOffset >= 0;
@@ -29,7 +27,7 @@ public final class FetchCommand implements DataFlowCommand
 	}
 
 	@Override
-	public void execute(RecordContext recordContext)
+	public void record(RecordContext recordContext)
 	{
 		final var trgBuffer = ticket.getBufferPtr();
 		final var trgOffset = ticket.getOffset();
@@ -50,12 +48,6 @@ public final class FetchCommand implements DataFlowCommand
 	}
 
 	@Override
-	public MemoryTicket getMemoryTicket()
-	{
-		return ticket;
-	}
-
-	@Override
 	public EFlowType getFlowType()
 	{
 		return EFlowType.FETCH;
@@ -70,9 +62,9 @@ public final class FetchCommand implements DataFlowCommand
 	private static final class TransferDone implements Consumer<EExecutionStatus>
 	{
 		private final MemoryTicket ticket;
-		private final Consumer<IMemoryTicket> transferDone;
+		private final Consumer<MemoryTicket> transferDone;
 
-		private TransferDone(final MemoryTicket ticket, final Consumer<IMemoryTicket> transferDone)
+		private TransferDone(final MemoryTicket ticket, final Consumer<MemoryTicket> transferDone)
 		{
 			this.ticket = ticket;
 			this.transferDone = transferDone;

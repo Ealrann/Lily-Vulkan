@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
-import org.sheepy.lily.vulkan.core.util.FillCommand;
+import org.sheepy.lily.vulkan.core.resource.util.FillCommand;
 import org.sheepy.lily.vulkan.model.vulkanresource.IMemoryChunkPart;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
@@ -94,14 +94,8 @@ public final class MemoryChunkAllocation implements IExtender
 
 	public void requestUpdate()
 	{
-		if (useTransfer)
-		{
-			needTransfer = true;
-		}
-		else
-		{
-			allocationState.requestUpdate();
-		}
+		if (useTransfer) needTransfer = true;
+		else allocationState.requestUpdate();
 	}
 
 	@Update

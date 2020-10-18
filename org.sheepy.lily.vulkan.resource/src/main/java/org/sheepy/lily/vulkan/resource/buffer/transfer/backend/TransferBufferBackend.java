@@ -2,16 +2,13 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.backend;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
-import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
-import org.sheepy.lily.vulkan.core.resource.transfer.IDataFlowCommand;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.FlushRecord;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpace;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpaceManager;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommand;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 import java.util.ArrayList;
@@ -23,7 +20,7 @@ public final class TransferBufferBackend
 
 	public final HostVisibleBufferBackend bufferBackend;
 
-	private final List<DataFlowCommand> commands = new ArrayList<>();
+	private final List<TransferCommand> commands = new ArrayList<>();
 	private final long capacity;
 	private final MemorySpaceManager spaceManager;
 
@@ -60,7 +57,7 @@ public final class TransferBufferBackend
 		return newSuccessTicket(space, size);
 	}
 
-	public void addTransferCommand(DataFlowCommand command)
+	public void addTransferCommand(final TransferCommand command)
 	{
 		assert checkMemoryReservation(command);
 		commands.add(command);
@@ -82,11 +79,11 @@ public final class TransferBufferBackend
 		clear();
 	}
 
-	private void executionDone(EExecutionStatus status, List<DataFlowCommand> commands)
+	private void executionDone(EExecutionStatus status, List<TransferCommand> commands)
 	{
 		switch (status)
 		{
-			case Done -> commands.stream().map(DataFlowCommand::getMemoryTicket).forEach(this::releaseTicket);
+			case Done -> commands.stream().map(TransferCommand::memoryTicket).forEach(this::releaseTicket);
 			case Canceled -> this.commands.addAll(commands);
 		}
 	}
@@ -102,7 +99,7 @@ public final class TransferBufferBackend
 		for (int i = 0; i < commands.size(); i++)
 		{
 			final var command = commands.get(i);
-			final var ticket = command.getMemoryTicket();
+			final var ticket = command.memoryTicket();
 			ticket.markFlushed();
 		}
 		commands.clear();
@@ -110,17 +107,17 @@ public final class TransferBufferBackend
 
 	private MemoryTicket newSuccessTicket(MemorySpace space, long requestedSize)
 	{
-		return new MemoryTicket(IMemoryTicket.EReservationStatus.SUCCESS, space, requestedSize, bufferBackend);
+		return new MemoryTicket(MemoryTicket.EReservationStatus.SUCCESS, space, requestedSize, bufferBackend);
 	}
 
 	@SuppressWarnings("SameReturnValue")
-	private static boolean checkMemoryReservation(final IDataFlowCommand command)
+	private static boolean checkMemoryReservation(final TransferCommand command)
 	{
-		if (command.getMemoryTicket().getReservationStatus() == IMemoryTicket.EReservationStatus.FLUSHED)
+		if (command.memoryTicket().getReservationStatus() == MemoryTicket.EReservationStatus.FLUSHED)
 		{
 			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
 		}
-		else if (command.getMemoryTicket().getReservationStatus() != IMemoryTicket.EReservationStatus.SUCCESS)
+		else if (command.memoryTicket().getReservationStatus() != MemoryTicket.EReservationStatus.SUCCESS)
 		{
 			throw new IllegalStateException(MEMORY_RESERVATION_REJECTED);
 		}

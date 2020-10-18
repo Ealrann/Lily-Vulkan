@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
+import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 
 public final class BufferInfo
 {

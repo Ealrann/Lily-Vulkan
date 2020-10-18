@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
-import org.sheepy.lily.vulkan.core.util.FillCommand;
+import org.sheepy.lily.vulkan.core.resource.util.FillCommand;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IMemoryChunkPartAllocation;

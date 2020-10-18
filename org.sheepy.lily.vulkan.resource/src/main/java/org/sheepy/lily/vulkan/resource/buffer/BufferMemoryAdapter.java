@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.core.resource.BufferPointer;
 import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.VkBufferAllocator;
-import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
+import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAdapter;

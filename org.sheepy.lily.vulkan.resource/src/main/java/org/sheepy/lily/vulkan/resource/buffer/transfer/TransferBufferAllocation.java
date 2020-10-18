@@ -5,13 +5,11 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.Notifier;
-import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.resource.buffer.InternalTransferBufferAllocation;
-import org.sheepy.lily.vulkan.core.util.FillCommand;
+import org.sheepy.lily.vulkan.core.resource.buffer.ITransferBufferAllocation;
+import org.sheepy.lily.vulkan.core.resource.util.FillCommand;
 import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.TransferBufferBackend;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.util.TransferCommandInserter;
 
@@ -20,8 +18,8 @@ import java.util.stream.Stream;
 
 @ModelExtender(scope = TransferBuffer.class)
 @Allocation(context = ExecutionContext.class)
-public class TransferBufferAllocation extends Notifier<InternalTransferBufferAllocation.Features> implements
-																								  InternalTransferBufferAllocation
+public class TransferBufferAllocation extends Notifier<ITransferBufferAllocation.Features> implements
+																						   ITransferBufferAllocation
 {
 	private final TransferBufferBackend backendBuffer;
 	private final VkDevice vkDevice;
@@ -47,25 +45,10 @@ public class TransferBufferAllocation extends Notifier<InternalTransferBufferAll
 		backendBuffer.free(context);
 	}
 
-	@Override
-	public MemoryTicket reserveMemory(long size)
-	{
-		return backendBuffer.reserveMemory(size);
-	}
-
-	@Override
-	public void releaseTicket(IMemoryTicket ticket)
-	{
-		backendBuffer.releaseTicket((MemoryTicket) ticket);
-	}
-
 	public boolean queueFillCommands(Stream<FillCommand> commands)
 	{
 		final var result = commandInserter.queueCommands(commands);
-		if (result)
-		{
-			notify(Features.TransferQueueChange);
-		}
+		if (result) notify(Features.TransferQueueChange);
 		return result;
 	}
 

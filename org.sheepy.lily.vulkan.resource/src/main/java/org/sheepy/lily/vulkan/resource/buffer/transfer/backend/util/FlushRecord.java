@@ -5,8 +5,8 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
-import org.sheepy.lily.vulkan.resource.buffer.transfer.command.DataFlowCommand;
+import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.TransferCommand;
+import org.sheepy.lily.vulkan.resource.util.command.EFlowType;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,9 +17,9 @@ import static org.lwjgl.vulkan.VK10.vkInvalidateMappedMemoryRanges;
 public final class FlushRecord
 {
 	private final VkDevice vkDevice;
-	private final List<DataFlowCommand> commands;
+	private final List<TransferCommand> commands;
 
-	public FlushRecord(VkDevice vkDevice, Collection<DataFlowCommand> commands)
+	public FlushRecord(VkDevice vkDevice, Collection<TransferCommand> commands)
 	{
 		this.vkDevice = vkDevice;
 		this.commands = List.copyOf(commands);
@@ -36,7 +36,7 @@ public final class FlushRecord
 			{
 				final var command = commands.get(i);
 				// System.out.println(command.toString());
-				command.execute(recordContext);
+				command.dataFlow().record(recordContext);
 			}
 		}
 	}
@@ -58,8 +58,8 @@ public final class FlushRecord
 	{
 		final var mappedRange = VkMappedMemoryRange.mallocStack(commands.size(), stack);
 		commands.stream()
-				.filter(c -> c.getFlowType() == EFlowType.PUSH)
-				.map(DataFlowCommand::getMemoryTicket)
+				.filter(c -> c.dataFlow().getFlowType() == EFlowType.PUSH)
+				.map(TransferCommand::memoryTicket)
 				.forEach(ticket -> ticket.fillMemoryRange(mappedRange.get()));
 		mappedRange.flip();
 		vkFlushMappedMemoryRanges(vkDevice, mappedRange);
@@ -69,8 +69,8 @@ public final class FlushRecord
 	{
 		final var mappedRange = VkMappedMemoryRange.malloc(commands.size());
 		commands.stream()
-				.filter(c -> c.getFlowType() == EFlowType.FETCH)
-				.map(DataFlowCommand::getMemoryTicket)
+				.filter(c -> c.dataFlow().getFlowType() == EFlowType.FETCH)
+				.map(TransferCommand::memoryTicket)
 				.forEach(ticket -> ticket.fillMemoryRange(mappedRange.get()));
 		mappedRange.flip();
 		return new Invalidator(vkDevice, mappedRange);

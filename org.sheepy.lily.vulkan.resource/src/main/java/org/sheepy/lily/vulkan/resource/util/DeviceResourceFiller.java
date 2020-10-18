@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
 import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
-import org.sheepy.lily.vulkan.core.util.FillCommand;
+import org.sheepy.lily.vulkan.core.resource.util.FillCommand;
 import org.sheepy.lily.vulkan.resource.image.util.MipmapGenerator;
 
 import java.util.ArrayList;
@@ -90,9 +90,12 @@ public final class DeviceResourceFiller
 				long position = stagingPtr;
 				for (final var fillCommand : fillCommands)
 				{
-					final long size = fillCommand.size();
-					fillCommand.dataProvider().fillBuffer(MemoryUtil.memByteBuffer(position, (int) size));
-					position += size;
+					for (final var fillInfo : fillCommand.fillInfo())
+					{
+						final long size = fillInfo.size();
+						fillInfo.dataProvider().fillBuffer(MemoryUtil.memByteBuffer(position, (int) size));
+						position += size;
+					}
 				}
 				try (final var stack = MemoryStack.stackPush())
 				{
@@ -112,11 +115,14 @@ public final class DeviceResourceFiller
 
 				for (final var fillCommand : fillCommands)
 				{
-					final long size = fillCommand.size();
-					final long dstOffset = fillCommand.offset();
-					final long deviceBufferPtr = fillCommand.bufferPtr();
-					fillBuffer(stack, vkCommandBuffer, deviceBufferPtr, offset, dstOffset, size);
-					offset += size;
+					for (final var fillInfo : fillCommand.fillInfo())
+					{
+						final long size = fillInfo.size();
+						final long dstOffset = fillInfo.offset();
+						final long deviceBufferPtr = fillCommand.bufferPtr();
+						fillBuffer(stack, vkCommandBuffer, deviceBufferPtr, offset, dstOffset, size);
+						offset += size;
+					}
 				}
 
 				context.listenExecution(status -> {

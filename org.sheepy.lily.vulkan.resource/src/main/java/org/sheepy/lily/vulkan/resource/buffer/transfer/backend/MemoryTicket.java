@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.resource.buffer.transfer.backend;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
-import org.sheepy.lily.vulkan.api.resource.transfer.IMemoryTicket;
 import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util.MemorySpace;
 
@@ -11,8 +10,17 @@ import java.nio.ByteBuffer;
 import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE;
 
-public final class MemoryTicket implements IMemoryTicket
+public final class MemoryTicket
 {
+	public enum EReservationStatus
+	{
+		SUCCESS,
+		FLUSHED,
+		FAIL__NO_SPACE_LEFT,
+		ERROR__REQUEST_TOO_BIG,
+		RELEASED
+	}
+
 	public final MemorySpace memorySpace;
 
 	private final HostVisibleBufferBackend stagingBuffer;
@@ -22,15 +30,15 @@ public final class MemoryTicket implements IMemoryTicket
 
 	public static MemoryTicket requestToBig()
 	{
-		return emptyTicket(IMemoryTicket.EReservationStatus.ERROR__REQUEST_TOO_BIG);
+		return emptyTicket(MemoryTicket.EReservationStatus.ERROR__REQUEST_TOO_BIG);
 	}
 
 	public static MemoryTicket noSpaceLeft()
 	{
-		return emptyTicket(IMemoryTicket.EReservationStatus.FAIL__NO_SPACE_LEFT);
+		return emptyTicket(MemoryTicket.EReservationStatus.FAIL__NO_SPACE_LEFT);
 	}
 
-	public static MemoryTicket emptyTicket(final IMemoryTicket.EReservationStatus status)
+	public static MemoryTicket emptyTicket(final MemoryTicket.EReservationStatus status)
 	{
 		return new MemoryTicket(status, null, 0, null);
 	}
@@ -55,31 +63,20 @@ public final class MemoryTicket implements IMemoryTicket
 						memorySpace.getSize());
 	}
 
-	@Override
-	public IMemoryTicket.EReservationStatus getReservationStatus()
+	public MemoryTicket.EReservationStatus getReservationStatus()
 	{
 		return reservationStatus;
 	}
 
-	@Override
 	public long getBufferPtr()
 	{
 		return stagingBuffer.getAddress();
 	}
 
-	@Override
 	public ByteBuffer toBuffer()
 	{
 		final long memAddress = stagingBuffer.getMemoryMap() + memorySpace.getOffset();
 		return MemoryUtil.memByteBuffer(memAddress, (int) requestedSize);
-	}
-
-	@Override
-	public ByteBuffer toReadBuffer()
-	{
-		final var res = toBuffer();
-		res.limit(res.capacity());
-		return res;
 	}
 
 	public void markFlushed()
@@ -92,19 +89,16 @@ public final class MemoryTicket implements IMemoryTicket
 		reservationStatus = EReservationStatus.RELEASED;
 	}
 
-	@Override
 	public long getMemorySize()
 	{
 		return memorySpace.getSize();
 	}
 
-	@Override
 	public long getRequestedSize()
 	{
 		return requestedSize;
 	}
 
-	@Override
 	public long getOffset()
 	{
 		return memorySpace.getOffset();

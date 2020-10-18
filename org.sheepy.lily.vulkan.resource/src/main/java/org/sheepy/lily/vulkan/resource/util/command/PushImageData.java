@@ -1,10 +1,9 @@
-package org.sheepy.lily.vulkan.resource.buffer.transfer.command;
+package org.sheepy.lily.vulkan.resource.util.command;
 
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
-import org.sheepy.lily.vulkan.core.resource.transfer.EFlowType;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.backend.MemoryTicket;
 import org.sheepy.lily.vulkan.resource.image.util.MipmapGenerator;
 import org.sheepy.vulkan.model.enumeration.EAccess;
@@ -15,7 +14,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public final class PushImageCommand implements DataFlowCommand
+public final class PushImageData implements IDataFlow
 {
 	private final MemoryTicket ticket;
 	private final ImageBackend trgImage;
@@ -26,14 +25,14 @@ public final class PushImageCommand implements DataFlowCommand
 	private final EImageLayout trgLayout;
 	private final boolean generateMipmaps;
 
-	public PushImageCommand(MemoryTicket ticket,
-							ImageBackend trgImage,
-							boolean generateMipmaps,
-							EPipelineStage srcStage,
-							List<EAccess> srcAccess,
-							EPipelineStage trgStage,
-							List<EAccess> trgAccess,
-							EImageLayout trgLayout)
+	public PushImageData(MemoryTicket ticket,
+						 ImageBackend trgImage,
+						 boolean generateMipmaps,
+						 EPipelineStage srcStage,
+						 List<EAccess> srcAccess,
+						 EPipelineStage trgStage,
+						 List<EAccess> trgAccess,
+						 EImageLayout trgLayout)
 	{
 		assert srcStage != null;
 		assert ticket != null;
@@ -50,7 +49,7 @@ public final class PushImageCommand implements DataFlowCommand
 	}
 
 	@Override
-	public void execute(final RecordContext recordContext)
+	public void record(final RecordContext recordContext)
 	{
 		final var commandBuffer = recordContext.commandBuffer;
 		final var srcBuffer = ticket.getBufferPtr();
@@ -117,12 +116,6 @@ public final class PushImageCommand implements DataFlowCommand
 										   blitAccess,
 										   trgAccess);
 		}
-	}
-
-	@Override
-	public MemoryTicket getMemoryTicket()
-	{
-		return ticket;
 	}
 
 	@Override

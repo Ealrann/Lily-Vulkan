@@ -212,7 +212,7 @@ public class ScissorItemProvider extends ItemProviderAdapter implements IEditing
 		newChildDescriptors.add
 			(createChildParameter
 				(GraphicpipelinePackage.Literals.SCISSOR__EXTENT,
-				 TypesFactory.eINSTANCE.createFromString(TypesPackage.Literals.VECTOR2I, null))); // TODO: ensure this is a valid literal value
+				 TypesFactory.eINSTANCE.createFromString(TypesPackage.Literals.VECTOR2I, "0;0")));
 	}
 
 	/**

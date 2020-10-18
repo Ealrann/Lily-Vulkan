@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.resource.buffer.transfer.backend.util;
 
-import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
+import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 
 import java.util.LinkedList;
 import java.util.List;

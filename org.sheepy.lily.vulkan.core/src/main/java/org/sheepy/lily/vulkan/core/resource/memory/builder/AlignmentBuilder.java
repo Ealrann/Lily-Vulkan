@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.core.resource.memory.builder;
 
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.core.util.AlignmentUtil;
+import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
