@@ -22,8 +22,8 @@ public final class GraphicsPipelineRecorder implements IRecordableExtender
 	private final List<IRecordableExtender> recorders;
 	private final GraphicsPipelineAllocation pipelineAllocation;
 
-	public GraphicsPipelineRecorder(@InjectDependency(index = 0) List<IRecordableExtender> recorders,
-									@InjectDependency(index = 1) GraphicsPipelineAllocation pipelineAllocation)
+	private GraphicsPipelineRecorder(final @InjectDependency(index = 0) List<IRecordableExtender> recorders,
+									 final @InjectDependency(index = 1) GraphicsPipelineAllocation pipelineAllocation)
 	{
 		this.recorders = recorders;
 		this.pipelineAllocation = pipelineAllocation;

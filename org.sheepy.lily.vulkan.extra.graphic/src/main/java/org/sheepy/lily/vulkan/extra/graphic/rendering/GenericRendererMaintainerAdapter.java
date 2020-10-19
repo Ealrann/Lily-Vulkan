@@ -1,12 +1,9 @@
 package org.sheepy.lily.vulkan.extra.graphic.rendering;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.resource.IResourceService;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IEntityResolver;
