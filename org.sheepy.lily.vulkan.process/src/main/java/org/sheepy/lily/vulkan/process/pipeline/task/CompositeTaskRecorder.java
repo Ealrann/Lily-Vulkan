@@ -14,22 +14,23 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import java.util.List;
 
 @ModelExtender(scope = CompositeTask.class)
-@Allocation(context = IProcessContext.class)
+@Allocation(context = IProcessContext.class, activator = ProcessPackage.COMPOSITE_TASK__ENABLED)
 @AllocationChild(allocateBeforeParent = true, features = ProcessPackage.COMPOSITE_TASK__TASKS)
 @AllocationDependency(features = ProcessPackage.COMPOSITE_TASK__TASKS, type = IRecordableExtender.class)
-public class CompositeTaskRecorder implements IRecordableExtender
+public final class CompositeTaskRecorder implements IRecordableExtender
 {
 	private final CompositeTask task;
 	private final List<IRecordableExtender> children;
 
-	public CompositeTaskRecorder(CompositeTask task, @InjectDependency(index = 0) List<IRecordableExtender> recorders)
+	private CompositeTaskRecorder(final CompositeTask task,
+								  final @InjectDependency(index = 0) List<IRecordableExtender> recorders)
 	{
 		this.task = task;
 		this.children = recorders;
 	}
 
 	@Override
-	public void record(RecordContext recordContext)
+	public void record(final RecordContext recordContext)
 	{
 		for (int repeat = 0; repeat < task.getRepeatCount(); repeat++)
 		{
