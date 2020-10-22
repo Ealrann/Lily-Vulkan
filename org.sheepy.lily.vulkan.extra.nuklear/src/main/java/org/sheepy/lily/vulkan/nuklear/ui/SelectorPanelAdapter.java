@@ -18,7 +18,6 @@ import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.util.UIUtil;
-import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.extra.api.nuklear.ISelectorInputProviderAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.nuklear.ui.internal.SelectorButtonDrawer;
@@ -26,7 +25,6 @@ import org.sheepy.lily.vulkan.nuklear.util.ProgressTimer;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -107,12 +105,6 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		dirty = true;
 	}
 
-	@Override
-	public Collection<? extends IImage> getImages()
-	{
-		return inputProviderAdapter.getUsedImages();
-	}
-
 	private List<LineData> buildLineDatas(List<?> elements)
 	{
 		final boolean right = panel.getHorizontalRelative() == EHorizontalRelative.RIGHT;
@@ -176,6 +168,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		// -------------------- ^^^
 
 		final var nkContext = context.nkContext;
+		final var stack = context.stack;
 		boolean labelPanelHovered = false;
 		boolean buttonPanelHovered = false;
 
@@ -220,12 +213,19 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 				nk_end(nkContext);
 			}
 
-			if (buttonDrawer.draw(nkContext,
-								  isSelected,
-								  data.getNkImage(),
-								  data.color,
-								  data.panelButton1Id,
-								  data.rectButton))
+			final NkImage nkImage;
+			if (data.image != null)
+			{
+				final var imageIndex = context.imageIndex(data.image);
+				nkImage = NkImage.callocStack(stack);
+				nk_image_ptr(imageIndex, nkImage);
+			}
+			else
+			{
+				nkImage = null;
+			}
+
+			if (buttonDrawer.draw(nkContext, isSelected, nkImage, data.color, data.panelButton1Id, data.rectButton))
 			{
 				var newSelection = data.element;
 				if (panel.isUnsettable() && selectedElement == newSelection)
@@ -370,20 +370,6 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		private static NkColor allocColor(Vector3fc color)
 		{
 			return NkColor.calloc().set((byte) color.x(), (byte) color.y(), (byte) color.z(), (byte) 255);
-		}
-
-		public NkImage getNkImage()
-		{
-			if (image != null)
-			{
-				final var imageAdapter = image.adapt(IVkImageAllocation.class);
-				nk_image_ptr(imageAdapter.getViewPtr(), nkImage);
-				return nkImage;
-			}
-			else
-			{
-				return null;
-			}
 		}
 
 		public void free()

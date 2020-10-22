@@ -142,7 +142,6 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 			if (backgroundImage != null)
 			{
 				final var imageIndex = context.imageIndex(backgroundImage);
-
 				final var nkImage = NkImage.callocStack(stack);
 				nk_image_ptr(imageIndex, nkImage);
 				final var canvas = nk_window_get_canvas(nkContext);

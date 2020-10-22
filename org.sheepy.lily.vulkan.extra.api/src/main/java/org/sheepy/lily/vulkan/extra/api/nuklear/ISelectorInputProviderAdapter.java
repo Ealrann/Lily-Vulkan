@@ -17,6 +17,4 @@ public interface ISelectorInputProviderAdapter extends IExtender
 	IImage getImage(Object element);
 
 	Vector3fc getColor(Object element);
-
-	Collection<? extends IImage> getUsedImages();
 }
