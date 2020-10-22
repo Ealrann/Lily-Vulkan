@@ -1,32 +1,31 @@
 package org.sheepy.lily.vulkan.resource.image.backend;
 
-import static org.lwjgl.stb.STBImage.STBI_rgb_alpha;
-
-import java.nio.ByteBuffer;
-
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryUtil;
 
+import java.nio.ByteBuffer;
+
+import static org.lwjgl.stb.STBImage.STBI_rgb_alpha;
+
 public final class STBImageLoader
 {
-	private int width;
-	private int height;
-	private ByteBuffer pixels;
-
-	public void allocBuffer(ByteBuffer bufferedImage)
+	public static ImageBuffer load(ByteBuffer bufferedImage)
 	{
 		final int[] texWidth = new int[1];
 		final int[] texHeight = new int[1];
 		final int[] texChannels = new int[1];
-		pixels = STBImage.stbi_load_from_memory(bufferedImage,
-												texWidth,
-												texHeight,
-												texChannels,
-												STBI_rgb_alpha);
-		width = texWidth[0];
-		height = texHeight[0];
+
+		final var pixels = STBImage.stbi_load_from_memory(bufferedImage,
+														  texWidth,
+														  texHeight,
+														  texChannels,
+														  STBI_rgb_alpha);
+		final var width = texWidth[0];
+		final var height = texHeight[0];
+
+		return new ImageBuffer(width, height, pixels);
 	}
 
 	public static Vector2ic getSize(ByteBuffer bufferedImage)
@@ -39,23 +38,11 @@ public final class STBImageLoader
 		return new Vector2i(texWidth[0], texHeight[0]);
 	}
 
-	public int getWidth()
+	public record ImageBuffer(int width, int height, ByteBuffer pixels)
 	{
-		return width;
-	}
-
-	public int getHeight()
-	{
-		return height;
-	}
-
-	public ByteBuffer getBuffer()
-	{
-		return pixels;
-	}
-
-	public void free()
-	{
-		MemoryUtil.memFree(pixels);
+		public void free()
+		{
+			MemoryUtil.memFree(pixels);
+		}
 	}
 }

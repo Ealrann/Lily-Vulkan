@@ -43,7 +43,7 @@ public final class ImageBackend
 
 	public void free(ExecutionContext context)
 	{
-		vkImage.free(context);
+		vkImage.free(context.getVkDevice());
 		if (memory != null) memory.free(context);
 	}
 
@@ -117,7 +117,7 @@ public final class ImageBackend
 		region.imageExtent().set(vkImage.width(), vkImage.height(), 1);
 
 		final var dstImageLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
-		vkCmdCopyBufferToImage(commandBuffer, bufferPtr, vkImage.imagePtr(), dstImageLayout, region);
+		vkCmdCopyBufferToImage(commandBuffer, bufferPtr, vkImage.ptr(), dstImageLayout, region);
 
 		region.free();
 	}
@@ -168,7 +168,7 @@ public final class ImageBackend
 		barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		barrierInfo.oldLayout(srcLayout.getValue());
 		barrierInfo.newLayout(dstLayout.getValue());
-		barrierInfo.image(vkImage.getPtr());
+		barrierInfo.image(vkImage.ptr());
 		barrierInfo.subresourceRange().baseMipLevel(0);
 		barrierInfo.subresourceRange().levelCount(vkImage.mipLevels());
 		barrierInfo.subresourceRange().baseArrayLayer(0);
@@ -182,7 +182,7 @@ public final class ImageBackend
 
 	public long getPtr()
 	{
-		return vkImage.getPtr();
+		return vkImage.ptr();
 	}
 
 	public long size()

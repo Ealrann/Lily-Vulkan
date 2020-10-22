@@ -1,25 +1,25 @@
 package org.sheepy.lily.vulkan.core.resource.image;
 
 import org.lwjgl.vulkan.VK10;
+import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
-import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.image.ImageInfo;
 
 import static org.lwjgl.vulkan.VK10.vkDestroyImage;
 
-public record VkImage
-		(long imagePtr,
-		 int width,
-		 int height,
-		 int format,
-		 int usage,
-		 int properties,
-		 int tiling,
-		 int mipLevels,
-		 EImageLayout initialLayout,
-		 int aspect)
+public record VkImage(long ptr,
+					  int width,
+					  int height,
+					  int format,
+					  int usage,
+					  int properties,
+					  int tiling,
+					  int mipLevels,
+					  EImageLayout initialLayout,
+					  int aspect) implements IVulkanResourcePointer
 {
 	public static VkImageBuilder newBuilder(String name, int width, int height, int format)
 	{
@@ -53,15 +53,10 @@ public record VkImage
 			 aspect);
 	}
 
-	public void free(ExecutionContext context)
+	@Override
+	public void free(VkDevice vkDevice)
 	{
-		final var logicalDevice = context.getLogicalDevice();
-		vkDestroyImage(logicalDevice.getVkDevice(), imagePtr, null);
-		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(imagePtr);
-	}
-
-	public long getPtr()
-	{
-		return imagePtr;
+		if (DebugUtil.DEBUG_ENABLED) IVulkanDebugService.INSTANCE.remove(ptr);
+		vkDestroyImage(vkDevice, ptr, null);
 	}
 }

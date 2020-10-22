@@ -6,5 +6,5 @@ import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
 
 public interface IMemoryChunkPartAdapter extends IExtender
 {
-	IVulkanResourcePointer newResource(IVulkanContext context);
+	IVulkanResourcePointer allocateVulkanResource(IVulkanContext context);
 }

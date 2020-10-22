@@ -10,12 +10,12 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.resource.buffer.VkBuffer;
+import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.resource.util.FillCommand;
-import org.sheepy.lily.vulkan.model.vulkanresource.IMemoryChunkPart;
-import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
-import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.*;
 import org.sheepy.lily.vulkan.resource.buffer.transfer.TransferBufferAllocation;
 import org.sheepy.lily.vulkan.resource.util.DeviceResourceFiller;
 
@@ -49,7 +49,7 @@ public final class MemoryChunkAllocation implements IExtender
 		final var resourcePointers = memoryChunk.getParts()
 												.stream()
 												.map(p -> p.adapt(IMemoryChunkPartAdapter.class))
-												.map(adapter -> adapter.newResource(context));
+												.map(adapter -> adapter.allocateVulkanResource(context));
 
 		final var debug = DebugUtil.DEBUG_ENABLED;
 		this.memory = debug
@@ -148,7 +148,19 @@ public final class MemoryChunkAllocation implements IExtender
 		System.out.println(message);
 	}
 
-	public Memory.BoundResource getBoundResource(final IMemoryChunkPart memoryPart)
+	@SuppressWarnings("unchecked")
+	public <T extends StaticImage & ImageViewer> Memory.BoundResource<VkImage> getBoundResource(final T imageMemory)
+	{
+		return (Memory.BoundResource<VkImage>) getBoundResource((IMemoryChunkPart) imageMemory);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Memory.BoundResource<VkBuffer> getBoundResource(final BufferMemory bufferMemory)
+	{
+		return (Memory.BoundResource<VkBuffer>) getBoundResource((IMemoryChunkPart) bufferMemory);
+	}
+
+	public Memory.BoundResource<?> getBoundResource(final IMemoryChunkPart memoryPart)
 	{
 		final int index = partIndex(memoryPart);
 		assert index != -1;

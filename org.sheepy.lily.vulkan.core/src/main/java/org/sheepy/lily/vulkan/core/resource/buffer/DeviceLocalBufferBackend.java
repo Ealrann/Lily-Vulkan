@@ -7,16 +7,14 @@ import org.sheepy.lily.vulkan.core.util.VulkanDebugUtil;
 import java.nio.ByteBuffer;
 import java.util.function.Consumer;
 
-import static org.lwjgl.vulkan.VK10.vkDestroyBuffer;
-
 public final class DeviceLocalBufferBackend implements IBufferBackend
 {
+	private final VkBuffer vkBuffer;
 	private final long size;
-	private final long address;
 
-	public DeviceLocalBufferBackend(final long address, final long size)
+	public DeviceLocalBufferBackend(final VkBuffer vkBuffer, final long size)
 	{
-		this.address = address;
+		this.vkBuffer = vkBuffer;
 		this.size = size;
 	}
 
@@ -25,7 +23,7 @@ public final class DeviceLocalBufferBackend implements IBufferBackend
 	{
 		// System.out.println("free " + Long.toHexString(address));
 		final var vkDevice = context.getVkDevice();
-		vkDestroyBuffer(vkDevice, address, null);
+		vkBuffer.free(context.getVkDevice());
 	}
 
 	@Override
@@ -44,7 +42,7 @@ public final class DeviceLocalBufferBackend implements IBufferBackend
 
 	public void pushDataInternal(Consumer<BufferGPUFiller> fillWithFiller)
 	{
-		final var bufferFiller = new BufferGPUFiller(address);
+		final var bufferFiller = new BufferGPUFiller(vkBuffer.ptr());
 		fillWithFiller.accept(bufferFiller);
 
 		if (VulkanDebugUtil.DEBUG_ENABLED)
@@ -56,6 +54,6 @@ public final class DeviceLocalBufferBackend implements IBufferBackend
 	@Override
 	public long getAddress()
 	{
-		return address;
+		return vkBuffer.ptr();
 	}
 }

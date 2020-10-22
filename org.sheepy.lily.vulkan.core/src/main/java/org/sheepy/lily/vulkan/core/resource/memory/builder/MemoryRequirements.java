@@ -1,33 +1,36 @@
 package org.sheepy.lily.vulkan.core.resource.memory.builder;
 
+import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
+import org.sheepy.lily.vulkan.core.resource.buffer.VkBuffer;
+import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+
 import java.util.List;
 
-public record MemoryRequirements(int memoryTypeBits, long alignement, List<ISizedResource> sizedResources)
+public record MemoryRequirements(int memoryTypeBits, long alignement, List<? extends ISizedResource<?>> sizedResources)
 {
-	public interface ISizedResource
+	public interface ISizedResource<T extends IVulkanResourcePointer>
 	{
-		long ptr();
+		T vkResource();
 		long size();
 
-		AlignmentBuilder.IAlignedResource buildAlignedResource(final long size);
+		AlignmentBuilder.IAlignedResource<T> buildAlignedResource(final long size);
 	}
 
-	public record SizedImage(long ptr, long size) implements ISizedResource
+	public record SizedImage(VkImage vkResource, long size) implements ISizedResource<VkImage>
 	{
 		@Override
-		public AlignmentBuilder.IAlignedResource buildAlignedResource(final long size)
+		public AlignmentBuilder.IAlignedResource<VkImage> buildAlignedResource(final long size)
 		{
-			return new AlignmentBuilder.AlignedImage(ptr, size);
+			return new AlignmentBuilder.AlignedImage(vkResource, size);
 		}
 	}
 
-	public record SizedBuffer(long ptr, long size) implements ISizedResource
+	public record SizedBuffer(VkBuffer vkResource, long size) implements ISizedResource<VkBuffer>
 	{
 		@Override
-		public AlignmentBuilder.IAlignedResource buildAlignedResource(final long size)
+		public AlignmentBuilder.IAlignedResource<VkBuffer> buildAlignedResource(final long size)
 		{
-			return new AlignmentBuilder.AlignedBuffer(ptr, size);
+			return new AlignmentBuilder.AlignedBuffer(vkResource, size);
 		}
 	}
-
 }

@@ -5,7 +5,6 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.game.api.resource.image.IImageDataProviderAdapter;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
-import org.sheepy.lily.vulkan.core.resource.ImagePointer;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.vulkanresource.ImageViewer;
@@ -31,7 +30,7 @@ public final class ImageViewerAdapter implements IMemoryChunkPartAdapter
 	}
 
 	@Override
-	public IVulkanResourcePointer newResource(final IVulkanContext context)
+	public IVulkanResourcePointer allocateVulkanResource(final IVulkanContext context)
 	{
 		final var dataProviderAdapter = image.getDataProvider().adapt(IImageDataProviderAdapter.class);
 		final var size = dataProviderAdapter.size();
@@ -46,6 +45,6 @@ public final class ImageViewerAdapter implements IMemoryChunkPartAdapter
 
 		imageBackend = builder.buildNoFill(context);
 
-		return new ImagePointer(imageBackend.getPtr());
+		return imageBackend;
 	}
 }

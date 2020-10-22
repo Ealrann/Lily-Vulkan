@@ -19,7 +19,7 @@ import static org.lwjgl.system.MemoryUtil.memAddress;
 @ModelExtender(scope = DataBuffer.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(parent = BufferMemory.class, type = BufferMemoryAllocation.class)
-public class DataBufferAllocation implements IBufferAllocation
+public final class DataBufferAllocation implements IBufferAllocation
 {
 	private final DataBuffer buffer;
 	private final long bufferPtr;

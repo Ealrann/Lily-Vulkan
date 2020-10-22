@@ -17,7 +17,7 @@ import java.nio.ByteBuffer;
 @ModelExtender(scope = StaticBuffer.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(parent = BufferMemory.class, type = BufferMemoryAllocation.class)
-public class StaticBufferAllocation implements IBufferAllocation
+public final class StaticBufferAllocation implements IBufferAllocation
 {
 	private final StaticBuffer buffer;
 	private final long bufferPtr;

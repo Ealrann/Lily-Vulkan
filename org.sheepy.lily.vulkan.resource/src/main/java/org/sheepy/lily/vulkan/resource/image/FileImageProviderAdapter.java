@@ -17,7 +17,7 @@ import java.nio.ByteBuffer;
 public final class FileImageProviderAdapter extends DummyNotifier<IImageDataProviderAdapter.Features> implements
 																									  IImageDataProviderAdapter
 {
-	private final FileImageAdapter imageBuffer;
+	private final FileImageAdapter imageAdapter;
 
 	private FileImageProviderAdapter(FileImageDataProvider dataProvider)
 	{
@@ -26,30 +26,29 @@ public final class FileImageProviderAdapter extends DummyNotifier<IImageDataProv
 		assert fileImageContainment != null ^ fileImageReference != null;
 
 		final var fileImage = fileImageContainment != null ? fileImageContainment : fileImageReference;
-		imageBuffer = fileImage.adapt(FileImageAdapter.class);
-		imageBuffer.allocate();
+		imageAdapter = fileImage.adapt(FileImageAdapter.class);
+		imageAdapter.allocate();
 	}
 
 	@Dispose
 	private void dispose()
 	{
-		imageBuffer.free();
+		imageAdapter.free();
 	}
 
 	@Override
 	public void fill(final ByteBuffer buffer)
 	{
-		final var imageLoader = new STBImageLoader();
-		imageBuffer.allocate();
-		imageLoader.allocBuffer(imageBuffer.getByteBuffer());
-		MemoryUtil.memCopy(imageLoader.getBuffer(), buffer);
-		imageLoader.free();
-		imageBuffer.free();
+		imageAdapter.allocate();
+		final var pixelBuffer = STBImageLoader.load(imageAdapter.getByteBuffer());
+		MemoryUtil.memCopy(pixelBuffer.pixels(), buffer);
+		imageAdapter.free();
+		pixelBuffer.free();
 	}
 
 	@Override
 	public Vector2ic size()
 	{
-		return imageBuffer.size();
+		return imageAdapter.size();
 	}
 }

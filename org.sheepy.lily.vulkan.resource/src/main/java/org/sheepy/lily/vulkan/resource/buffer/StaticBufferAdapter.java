@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.resource.memorychunk.IBufferAdapter;
 
 @ModelExtender(scope = StaticBuffer.class)
 @Adapter(singleton = true)
-public class StaticBufferAdapter extends DummyNotifier<IBufferAdapter.Features> implements IBufferAdapter
+public final class StaticBufferAdapter extends DummyNotifier<IBufferAdapter.Features> implements IBufferAdapter
 {
 	@Override
 	public long getSize(final IBuffer buffer)

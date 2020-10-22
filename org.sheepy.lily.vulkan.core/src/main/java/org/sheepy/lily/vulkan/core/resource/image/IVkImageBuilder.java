@@ -6,7 +6,6 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
-import org.sheepy.lily.vulkan.core.resource.ImagePointer;
 import org.sheepy.lily.vulkan.core.resource.memory.Memory;
 import org.sheepy.lily.vulkan.core.resource.memory.MemoryBuilder;
 import org.sheepy.lily.vulkan.core.util.Logger;
@@ -64,8 +63,8 @@ public interface IVkImageBuilder
 		{
 			final var info = new Memory.Info(false, true);
 			final var memoryBuilder = new MemoryBuilder(info);
-			final var imagePtr = new ImagePointer(allocateImage(context, name()));
-			final var vkImage = new VkImage(imagePtr.ptr(),
+			final var ptr = allocateImage(context, name());
+			final var vkImage = new VkImage(ptr,
 											width(),
 											height(),
 											format(),
@@ -74,7 +73,7 @@ public interface IVkImageBuilder
 											mipLevels(),
 											initialLayout(),
 											aspect());
-			final var memory = memoryBuilder.build(context, Stream.of(imagePtr));
+			final var memory = memoryBuilder.build(context, Stream.of(vkImage));
 			final var size = memory.resources().get(0).size();
 			final var res = new ImageBackend(vkImage, size, memory);
 

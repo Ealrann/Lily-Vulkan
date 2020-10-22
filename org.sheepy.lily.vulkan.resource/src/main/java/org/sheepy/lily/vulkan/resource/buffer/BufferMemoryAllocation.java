@@ -48,11 +48,11 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 		final var boundResource = chunkAllocation.getBoundResource(bufferMemory);
 		final var memory = chunkAllocation.getMemory();
 		bufferBackend = memory.info().hostVisible()
-				? new HostVisibleBufferBackend(boundResource.ptr(),
+				? new HostVisibleBufferBackend(boundResource.vkResource(),
 											   boundResource.size(),
 											   memory,
 											   false)
-				: new DeviceLocalBufferBackend(boundResource.ptr(), boundResource.size());
+				: new DeviceLocalBufferBackend(boundResource.vkResource(), boundResource.size());
 
 		observatory.explore(VulkanResourcePackage.MEMORY_CHUNK__PARTS)
 				   .adaptNotifier(IBufferAdapter.class)

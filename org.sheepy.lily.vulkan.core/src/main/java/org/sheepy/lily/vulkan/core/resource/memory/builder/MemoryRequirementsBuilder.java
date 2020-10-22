@@ -3,9 +3,9 @@ package org.sheepy.lily.vulkan.core.resource.memory.builder;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkMemoryRequirements;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
-import org.sheepy.lily.vulkan.core.resource.BufferPointer;
 import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
-import org.sheepy.lily.vulkan.core.resource.ImagePointer;
+import org.sheepy.lily.vulkan.core.resource.buffer.VkBuffer;
+import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 
 import java.util.stream.Collectors;
@@ -39,7 +39,7 @@ public final class MemoryRequirementsBuilder
 		return new MemoryRequirements(memoryTypeBits, alignement, alignedDescriptions);
 	}
 
-	private MemoryRequirements.ISizedResource updateRequirementsAndSizeResource(final IVulkanResourcePointer description)
+	private MemoryRequirements.ISizedResource<?> updateRequirementsAndSizeResource(final IVulkanResourcePointer description)
 	{
 		final var wrapper = IResourceWrapper.of(description);
 		wrapper.fillMemoryRequirements(device, requirementBuffer);
@@ -48,18 +48,18 @@ public final class MemoryRequirementsBuilder
 		return wrapper.buildSizedResource(requirementBuffer.size());
 	}
 
-	public interface IResourceWrapper
+	public interface IResourceWrapper<T extends IVulkanResourcePointer>
 	{
 		void fillMemoryRequirements(VkDevice device, VkMemoryRequirements memoryRequirements);
-		MemoryRequirements.ISizedResource buildSizedResource(long size);
+		MemoryRequirements.ISizedResource<T> buildSizedResource(long size);
 
-		static IResourceWrapper of(IVulkanResourcePointer description)
+		static IResourceWrapper<?> of(IVulkanResourcePointer description)
 		{
-			if (description instanceof BufferPointer bufferPointer)
+			if (description instanceof VkBuffer bufferPointer)
 			{
 				return new BufferWrapper(bufferPointer);
 			}
-			else if (description instanceof ImagePointer imagePointer)
+			else if (description instanceof VkImage imagePointer)
 			{
 				return new ImageWrapper(imagePointer);
 			}
@@ -70,7 +70,7 @@ public final class MemoryRequirementsBuilder
 		}
 	}
 
-	public record BufferWrapper(IVulkanResourcePointer resourcePointer) implements IResourceWrapper
+	public record BufferWrapper(VkBuffer resourcePointer) implements IResourceWrapper<VkBuffer>
 	{
 		@Override
 		public void fillMemoryRequirements(final VkDevice device, final VkMemoryRequirements memoryRequirements)
@@ -79,13 +79,13 @@ public final class MemoryRequirementsBuilder
 		}
 
 		@Override
-		public MemoryRequirements.ISizedResource buildSizedResource(final long size)
+		public MemoryRequirements.ISizedResource<VkBuffer> buildSizedResource(final long size)
 		{
-			return new MemoryRequirements.SizedBuffer(resourcePointer.ptr(), size);
+			return new MemoryRequirements.SizedBuffer(resourcePointer, size);
 		}
 	}
 
-	public record ImageWrapper(IVulkanResourcePointer resourcePointer) implements IResourceWrapper
+	public record ImageWrapper(VkImage resourcePointer) implements IResourceWrapper<VkImage>
 	{
 		@Override
 		public void fillMemoryRequirements(final VkDevice device, final VkMemoryRequirements memoryRequirements)
@@ -94,9 +94,9 @@ public final class MemoryRequirementsBuilder
 		}
 
 		@Override
-		public MemoryRequirements.ISizedResource buildSizedResource(final long size)
+		public MemoryRequirements.ISizedResource<VkImage> buildSizedResource(final long size)
 		{
-			return new MemoryRequirements.SizedImage(resourcePointer.ptr(), size);
+			return new MemoryRequirements.SizedImage(resourcePointer, size);
 		}
 	}
 }

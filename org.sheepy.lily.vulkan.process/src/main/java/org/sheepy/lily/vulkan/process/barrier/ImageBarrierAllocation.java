@@ -43,7 +43,7 @@ public class ImageBarrierAllocation implements IImageBarrierAllocation
 		info.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		info.oldLayout(srcLayout.getValue());
 		info.newLayout(dstLayout.getValue());
-		info.image(vkImage.getPtr());
+		info.image(vkImage.ptr());
 		info.subresourceRange().baseMipLevel(0);
 		info.subresourceRange().levelCount(vkImage.mipLevels());
 		info.subresourceRange().baseArrayLayer(0);

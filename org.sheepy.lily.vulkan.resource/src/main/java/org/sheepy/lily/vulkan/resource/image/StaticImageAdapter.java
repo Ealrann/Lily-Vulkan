@@ -4,7 +4,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
-import org.sheepy.lily.vulkan.core.resource.ImagePointer;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.image.VkImageBuilder;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
@@ -29,13 +28,13 @@ public final class StaticImageAdapter implements IMemoryChunkPartAdapter
 	}
 
 	@Override
-	public IVulkanResourcePointer newResource(final IVulkanContext context)
+	public IVulkanResourcePointer allocateVulkanResource(final IVulkanContext context)
 	{
 		final var size = image.getSize();
 		final var builder = new VkImageBuilder(image.getName(), image, size.x(), size.y());
 
 		imageBackend = builder.buildNoFill(context);
 
-		return new ImagePointer(imageBackend.getPtr());
+		return imageBackend;
 	}
 }

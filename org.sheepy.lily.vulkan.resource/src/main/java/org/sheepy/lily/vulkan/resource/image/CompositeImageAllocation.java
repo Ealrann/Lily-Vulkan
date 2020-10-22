@@ -75,7 +75,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 		final var vkBackground = background.getVkImage();
 		final var initialLayout = image.getInitialLayout();
 
-		final var srcPtr = vkBackground.getPtr();
+		final var srcPtr = vkBackground.ptr();
 		final var trgPtr = imageBackend.getPtr();
 		final var vkCommandBuffer = recordContext.vkCommandBuffer();
 		final var stack = recordContext.stack();
@@ -157,7 +157,7 @@ public final class CompositeImageAllocation implements IVkImageAllocation
 		vkCmdBlitImage(vkCommandBuffer,
 					   imageInlayPtr,
 					   EImageLayout.TRANSFER_SRC_OPTIMAL_VALUE,
-					   imageBackend.getPtr(),
+					   imageBackend.ptr(),
 					   EImageLayout.TRANSFER_DST_OPTIMAL_VALUE,
 					   blitRegion,
 					   EFilter.LINEAR_VALUE);

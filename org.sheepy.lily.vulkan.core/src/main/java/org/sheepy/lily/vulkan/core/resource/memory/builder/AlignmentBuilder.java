@@ -1,6 +1,9 @@
 package org.sheepy.lily.vulkan.core.resource.memory.builder;
 
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
+import org.sheepy.lily.vulkan.core.resource.buffer.VkBuffer;
+import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 
 import java.util.List;
@@ -32,7 +35,7 @@ public final class AlignmentBuilder
 		return new AlignedResources(alignedResources, position);
 	}
 
-	private IAlignedResource buildAlignedResource(MemoryRequirements.ISizedResource resource)
+	private <T extends IVulkanResourcePointer> IAlignedResource<T> buildAlignedResource(MemoryRequirements.ISizedResource<T> resource)
 	{
 		final long initialPosition = position;
 		position += resource.size();
@@ -42,33 +45,32 @@ public final class AlignmentBuilder
 		return resource.buildAlignedResource(alignedSize);
 	}
 
-	public record AlignedResources(List<IAlignedResource> alignedResources, long size)
-	{
-	}
+	public record AlignedResources(List<? extends IAlignedResource<?>> alignedResources, long size)
+	{}
 
-	public interface IAlignedResource
+	public interface IAlignedResource<T extends IVulkanResourcePointer>
 	{
-		long ptr();
+		T vkResource();
 		long size();
 
 		void bind(VkDevice vkDevice, long memoryPtr, long offset);
 	}
 
-	public record AlignedImage(long ptr, long size) implements IAlignedResource
+	public record AlignedImage(VkImage vkResource, long size) implements IAlignedResource<VkImage>
 	{
 		@Override
 		public void bind(final VkDevice vkDevice, final long memoryPtr, final long offset)
 		{
-			vkBindImageMemory(vkDevice, ptr, memoryPtr, offset);
+			vkBindImageMemory(vkDevice, vkResource.ptr(), memoryPtr, offset);
 		}
 	}
 
-	public record AlignedBuffer(long ptr, long size) implements IAlignedResource
+	public record AlignedBuffer(VkBuffer vkResource, long size) implements IAlignedResource<VkBuffer>
 	{
 		@Override
 		public void bind(final VkDevice vkDevice, final long memoryPtr, final long offset)
 		{
-			vkBindBufferMemory(vkDevice, ptr, memoryPtr, offset);
+			vkBindBufferMemory(vkDevice, vkResource.ptr(), memoryPtr, offset);
 		}
 	}
 }

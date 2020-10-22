@@ -6,7 +6,6 @@ import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.core.resource.BufferPointer;
 import org.sheepy.lily.vulkan.core.resource.IVulkanResourcePointer;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.VkBufferAllocator;
@@ -35,14 +34,13 @@ public final class BufferMemoryAdapter implements IMemoryChunkPartAdapter
 	}
 
 	@Override
-	public IVulkanResourcePointer newResource(IVulkanContext context)
+	public IVulkanResourcePointer allocateVulkanResource(IVulkanContext context)
 	{
 		chunkInfo = new ChunkInfo(buildAlignmentData(context.getPhysicalDevice(), bufferMemory));
 		final var info = new BufferInfo(chunkInfo.size(), chunkInfo.usage(), true);
 		info.computeAlignment(context.getPhysicalDevice());
-		final long ptr = VkBufferAllocator.allocate(context, info);
 
-		return new BufferPointer(ptr);
+		return VkBufferAllocator.allocate(context, info, bufferMemory.getName());
 	}
 
 	public ChunkInfo getChunkInfo()
