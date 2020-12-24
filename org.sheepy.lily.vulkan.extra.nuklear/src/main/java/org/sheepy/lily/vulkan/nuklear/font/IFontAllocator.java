@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.nuklear.font;
 
 import org.lwjgl.system.Struct;
-import org.sheepy.lily.core.api.notification.Feature;
-import org.sheepy.lily.core.api.notification.IFeatures;
-import org.sheepy.lily.core.api.notification.INotifier;
+import org.logoce.notification.api.Feature;
+import org.logoce.notification.api.IFeatures;
+import org.logoce.notification.api.INotifier;
 import org.sheepy.lily.core.model.ui.Font;
 
 import java.util.List;

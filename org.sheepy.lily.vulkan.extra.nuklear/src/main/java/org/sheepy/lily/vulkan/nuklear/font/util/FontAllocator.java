@@ -6,7 +6,7 @@ import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.stb.STBTTPackedchar.Buffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.Struct;
-import org.sheepy.lily.core.api.notification.Notifier;
+import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.nuklear.font.IFontAllocator;
 import org.sheepy.lily.vulkan.nuklear.font.IFontTableInfo;

@@ -5,7 +5,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.DummyNotifier;
+import org.logoce.notification.api.DummyNotifier;
 import org.sheepy.lily.game.api.resource.image.IImageDataProviderAdapter;
 import org.sheepy.lily.vulkan.model.vulkanresource.FileImageDataProvider;
 import org.sheepy.lily.vulkan.resource.image.backend.STBImageLoader;

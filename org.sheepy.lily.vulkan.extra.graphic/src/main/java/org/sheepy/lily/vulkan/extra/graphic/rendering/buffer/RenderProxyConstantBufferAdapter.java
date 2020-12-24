@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering.buffer;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;

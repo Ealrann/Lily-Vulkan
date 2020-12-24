@@ -4,7 +4,7 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.Notifier;
+import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.buffer.ITransferBufferAllocation;

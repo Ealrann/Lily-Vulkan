@@ -393,7 +393,7 @@
     <genClasses image="false" ecoreClass="vulkanresource.ecore#//IBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//IBuffer/usages"/>
     </genClasses>
-    <genClasses ecoreClass="vulkanresource.ecore#//BufferReference">
+    <genClasses ecoreClass="vulkanresource.ecore#//BufferReference" labelFeature="#//vulkanresource/BufferReference/indexType">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vulkanresource.ecore#//BufferReference/buffers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//BufferReference/stride"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vulkanresource.ecore#//BufferReference/indexType"/>

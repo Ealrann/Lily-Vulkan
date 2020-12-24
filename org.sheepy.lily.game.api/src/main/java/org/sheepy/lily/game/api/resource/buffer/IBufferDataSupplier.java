@@ -1,6 +1,6 @@
 package org.sheepy.lily.game.api.resource.buffer;
 
-import org.sheepy.lily.core.api.notification.Feature;
+import org.logoce.notification.api.Feature;
 
 import java.util.List;
 

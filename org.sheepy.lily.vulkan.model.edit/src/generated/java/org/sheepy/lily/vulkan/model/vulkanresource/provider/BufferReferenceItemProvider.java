@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
+import org.sheepy.lily.vulkan.model.vulkanresource.EContextIndex;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 /**
@@ -162,8 +163,11 @@ public class BufferReferenceItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		BufferReference bufferReference = (BufferReference)object;
-		return getString("_UI_BufferReference_type") + " " + bufferReference.getStride();
+		EContextIndex labelValue = ((BufferReference)object).getIndexType();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BufferReference_type") :
+			getString("_UI_BufferReference_type") + " " + label;
 	}
 
 

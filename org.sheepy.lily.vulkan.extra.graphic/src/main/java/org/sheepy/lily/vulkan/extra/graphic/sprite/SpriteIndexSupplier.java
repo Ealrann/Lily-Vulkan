@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.Notifier;
+import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IIndexSupplier;
 import org.sheepy.lily.vulkan.extra.api.sprite.ISpriteVertexSupplier;

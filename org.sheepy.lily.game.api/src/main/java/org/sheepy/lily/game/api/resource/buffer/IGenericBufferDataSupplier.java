@@ -1,9 +1,9 @@
 package org.sheepy.lily.game.api.resource.buffer;
 
 import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.notification.Feature;
-import org.sheepy.lily.core.api.notification.IFeatures;
-import org.sheepy.lily.core.api.notification.INotifier;
+import org.logoce.notification.api.Feature;
+import org.logoce.notification.api.IFeatures;
+import org.logoce.notification.api.INotifier;
 
 import java.nio.ByteBuffer;
 import java.util.List;

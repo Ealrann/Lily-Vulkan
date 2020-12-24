@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.Notifier;
+import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataSupplier;
 import org.sheepy.lily.vulkan.core.resource.buffer.IBufferViewerAdapter;

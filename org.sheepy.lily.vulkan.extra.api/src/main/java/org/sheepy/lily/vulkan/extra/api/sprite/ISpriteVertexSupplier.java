@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.extra.api.sprite;
 
-import org.sheepy.lily.core.api.notification.Feature;
+import org.logoce.notification.api.Feature;
 import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataSupplier;
 
 import java.util.List;

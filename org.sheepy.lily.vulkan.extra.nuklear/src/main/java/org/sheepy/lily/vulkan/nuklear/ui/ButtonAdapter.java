@@ -4,7 +4,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.action.IActionAdapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.Notifier;
+import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.model.action.Action;
 import org.sheepy.lily.core.model.ui.Button;
 import org.sheepy.lily.core.model.ui.Font;

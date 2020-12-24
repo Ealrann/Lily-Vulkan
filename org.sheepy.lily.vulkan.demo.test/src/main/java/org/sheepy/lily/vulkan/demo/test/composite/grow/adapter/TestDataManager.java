@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.demo.test.composite.grow.adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.ModelExtender;
-import org.sheepy.lily.core.api.notification.Notifier;
+import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataConsumer;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataSupplier;
 import org.sheepy.lily.vulkan.demo.test.composite.grow.model.TestResourceFactory;

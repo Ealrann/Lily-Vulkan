@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.input.event.*;
-import org.sheepy.lily.core.api.notification.Notifier;
+import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
