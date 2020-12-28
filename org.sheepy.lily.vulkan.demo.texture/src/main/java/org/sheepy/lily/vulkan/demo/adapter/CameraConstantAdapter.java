@@ -6,6 +6,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -18,7 +19,8 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 @ModelExtender(scope = ConstantBuffer.class, name = CameraConstantAdapter.DEMO_CAMERA)
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public class CameraConstantAdapter implements IExtender
 {
 	public static final String DEMO_CAMERA = "DemoCameraPushConstant";
@@ -45,7 +47,8 @@ public class CameraConstantAdapter implements IExtender
 	public CameraConstantAdapter(ConstantBuffer buffer)
 	{
 		this.buffer = buffer;
-		this.scene = ModelUtil.getApplication(buffer).getScene();
+		this.scene = ModelUtil.getApplication(buffer)
+							  .getScene();
 	}
 
 	@Load
@@ -70,9 +73,11 @@ public class CameraConstantAdapter implements IExtender
 		final int width = size.x();
 		final int height = size.y();
 
-		model.identity().rotate((float) rotation, AXIS);
+		model.identity()
+			 .rotate((float) rotation, AXIS);
 
-		view.identity().lookAt(EYE_LOCATION, CENTER_LOCATION, UP_AXIS);
+		view.identity()
+			.lookAt(EYE_LOCATION, CENTER_LOCATION, UP_AXIS);
 
 		proj.identity();
 		proj.scale(1, -1, 1);

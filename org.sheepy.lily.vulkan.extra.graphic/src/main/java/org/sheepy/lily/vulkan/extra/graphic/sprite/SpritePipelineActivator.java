@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
@@ -12,7 +13,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import java.util.function.IntConsumer;
 
 @ModelExtender(scope = SpriteExtension.class)
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public final class SpritePipelineActivator implements IExtender
 {
 	private SpritePipelineActivator(final SpriteExtension spriteExtension, final IObservatoryBuilder observatory)

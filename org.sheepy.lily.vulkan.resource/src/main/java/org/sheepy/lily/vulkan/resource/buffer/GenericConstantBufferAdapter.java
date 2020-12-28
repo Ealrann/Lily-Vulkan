@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ModelExtender(scope = GenericConstantBuffer.class)
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public final class GenericConstantBufferAdapter implements IExtender
 {
 	private final GenericConstantBuffer constantBuffer;

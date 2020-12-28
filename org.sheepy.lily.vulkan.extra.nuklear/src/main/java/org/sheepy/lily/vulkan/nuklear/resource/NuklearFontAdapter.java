@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.nuklear.resource;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.util.AdapterDeployer;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
@@ -25,7 +26,8 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 @ModelExtender(scope = NuklearFont.class)
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public final class NuklearFontAdapter extends Notifier<NuklearFontAdapter.Features> implements IExtender
 {
 	interface Features extends IFeatures<Features>

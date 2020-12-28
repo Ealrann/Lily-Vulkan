@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
@@ -22,7 +23,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ModelExtender(scope = GenericRenderer.class, inherited = true)
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public final class GenericRendererMaintainerAdapter<T extends Structure> implements IGenericRendererAdapter
 {
 	private static final EClass RENDERER_ECLASS = RenderingPackage.Literals.GENERIC_RENDERER;
@@ -97,7 +99,8 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 			final var buffers = renderSetup.buffers();
 			for (int i = 0; i < buffers.size(); i++)
 			{
-				resolver = buffers.get(i).adapt(IEntityResolver.class);
+				resolver = buffers.get(i)
+								  .adapt(IEntityResolver.class);
 				if (resolver != null)
 				{
 					break;
@@ -124,7 +127,6 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 	private void throwResolverNotFoundError() throws AssertionError
 	{
 		throw new AssertionError("The StructureAdapter or one DataProviderAdapter of " + maintainer.eClass()
-																								   .getName() + " must implements " + IEntityResolver.class
-				.getSimpleName());
+																								   .getName() + " must implements " + IEntityResolver.class.getSimpleName());
 	}
 }

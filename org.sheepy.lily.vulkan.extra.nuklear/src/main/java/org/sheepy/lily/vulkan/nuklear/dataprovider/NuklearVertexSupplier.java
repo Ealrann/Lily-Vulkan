@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.nuklear.dataprovider;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataSupplier;
@@ -12,7 +13,8 @@ import java.nio.ByteBuffer;
 import static org.lwjgl.nuklear.Nuklear.nnk_buffer_init_fixed;
 
 @ModelExtender(scope = BufferViewer.class, name = "NkVertex")
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public final class NuklearVertexSupplier extends Notifier<IBufferDataSupplier.Features> implements IBufferDataSupplier
 {
 	public static final long VERTEX_BUFFER_SIZE = (long) Math.pow(2, 18);

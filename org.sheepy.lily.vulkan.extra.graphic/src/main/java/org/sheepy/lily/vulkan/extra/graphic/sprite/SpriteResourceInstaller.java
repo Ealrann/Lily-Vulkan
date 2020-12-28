@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.extender.IExtender;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
@@ -15,7 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ModelExtender(scope = SpriteExtension.class)
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public final class SpriteResourceInstaller implements IExtender
 {
 	private final MemoryChunk imageMemory;

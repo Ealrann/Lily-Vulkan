@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering.buffer;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.vulkan.api.resource.buffer.IConstantBufferUpdater;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
@@ -12,7 +13,8 @@ import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import java.nio.ByteBuffer;
 
 @ModelExtender(scope = RenderProxyConstantBuffer.class)
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public class RenderProxyConstantBufferAdapter implements IConstantBufferUpdater
 {
 	private final RenderProxyConstantBuffer proxyConstantBuffer;

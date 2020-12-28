@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.process.graphic.renderpass;
 
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.extender.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
@@ -8,7 +9,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPass;
 
 @ModelExtender(scope = RenderPass.class)
-@Adapter(lazy = false)
+@Adapter
+@AutoLoad
 public final class RenderPassAdapter
 {
 	private final RenderPass renderPass;
@@ -25,14 +27,17 @@ public final class RenderPassAdapter
 
 	private void addAttachment(final ExtraAttachment attachment)
 	{
-		if (renderPass.getAttachments().contains(attachment) == false)
+		if (renderPass.getAttachments()
+					  .contains(attachment) == false)
 		{
-			renderPass.getAttachments().add(attachment);
+			renderPass.getAttachments()
+					  .add(attachment);
 		}
 	}
 
 	private void removeAttachment(final ExtraAttachment attachment)
 	{
-		renderPass.getAttachments().remove(attachment);
+		renderPass.getAttachments()
+				  .remove(attachment);
 	}
 }
