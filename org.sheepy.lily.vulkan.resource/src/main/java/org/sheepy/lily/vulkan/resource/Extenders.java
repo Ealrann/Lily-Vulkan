@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.resource;
 
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.resource.buffer.*;
 import org.sheepy.lily.vulkan.resource.buffer.descriptor.BufferDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.descriptor.BufferDescriptorAllocation;
@@ -22,10 +22,10 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAllocation;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-public class Extenders implements IExtenderProvider
+public class Extenders implements IAdapterProvider
 {
 	@Override
-	public List<Class<? extends IExtender>> classifiers()
+	public List<Class<? extends IAdapter>> classifiers()
 	{
 		return List.of(CompositeImageAllocation.class,
 					   FileImageProviderAdapter.class,

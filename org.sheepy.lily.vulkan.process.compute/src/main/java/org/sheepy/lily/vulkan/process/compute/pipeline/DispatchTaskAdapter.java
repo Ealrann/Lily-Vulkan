@@ -1,16 +1,16 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 
 import static org.lwjgl.vulkan.VK10.vkCmdDispatch;
 
 @ModelExtender(scope = DispatchTask.class)
 @Adapter
-public final class DispatchTaskAdapter implements IRecordableExtender
+public final class DispatchTaskAdapter implements IRecordableAdapter
 {
 	private final DispatchTask task;
 

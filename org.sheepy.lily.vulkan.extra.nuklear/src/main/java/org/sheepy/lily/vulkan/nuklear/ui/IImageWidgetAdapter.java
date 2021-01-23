@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface IImageWidgetAdapter extends IExtender
+public interface IImageWidgetAdapter extends IAdapter
 {}

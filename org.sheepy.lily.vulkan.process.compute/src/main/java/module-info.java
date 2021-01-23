@@ -1,8 +1,7 @@
-import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.process.compute.Extenders;
 
-module org.sheepy.lily.vulkan.process.compute
-{
+module org.sheepy.lily.vulkan.process.compute {
 	requires transitive org.sheepy.lily.vulkan.api;
 
 	requires org.sheepy.lily.vulkan.core;
@@ -12,5 +11,5 @@ module org.sheepy.lily.vulkan.process.compute
 	opens org.sheepy.lily.vulkan.process.compute.pipeline;
 	opens org.sheepy.lily.vulkan.process.compute.process;
 
-	provides IExtenderProvider with Extenders;
+	provides IAdapterProvider with Extenders;
 }

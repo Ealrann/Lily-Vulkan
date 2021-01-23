@@ -9,7 +9,7 @@ import org.sheepy.lily.core.api.allocation.annotation.ProvideContext;
 import org.sheepy.lily.core.api.cadence.ETickerClock;
 import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.engine.IEngineAllocation;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.game.core.allocation.GameAllocationContext;
 import org.sheepy.lily.openal.core.engine.context.ISoundContext;

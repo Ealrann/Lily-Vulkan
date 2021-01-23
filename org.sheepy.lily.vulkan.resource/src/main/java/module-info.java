@@ -1,4 +1,4 @@
-import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.resource.Extenders;
 
 module org.sheepy.lily.vulkan.resource {
@@ -18,5 +18,5 @@ module org.sheepy.lily.vulkan.resource {
 	opens org.sheepy.lily.vulkan.resource.memorychunk;
 	opens org.sheepy.lily.vulkan.resource.shader;
 
-	provides IExtenderProvider with Extenders;
+	provides IAdapterProvider with Extenders;
 }

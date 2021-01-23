@@ -4,10 +4,10 @@ import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.CompositePipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -15,16 +15,16 @@ import java.util.List;
 
 @ModelExtender(scope = CompositePipeline.class)
 @Allocation(activator = ProcessPackage.COMPOSITE_PIPELINE__RECORD)
-@AllocationDependency(features = ProcessPackage.COMPOSITE_PIPELINE__PIPELINES, type = IRecordableExtender.class)
-public class CompositePipelineRecorder implements IRecordableExtender
+@AllocationDependency(features = ProcessPackage.COMPOSITE_PIPELINE__PIPELINES, type = IRecordableAdapter.class)
+public class CompositePipelineRecorder implements IRecordableAdapter
 {
 	private final CompositePipeline pipeline;
-	private final List<IRecordableExtender> recordables;
+	private final List<IRecordableAdapter> recordables;
 
 	public CompositePipelineRecorder(CompositePipeline pipeline,
 									 IAllocationState configuration,
 									 IObservatoryBuilder observatory,
-									 @InjectDependency(index = 0) List<IRecordableExtender> recordables)
+									 @InjectDependency(index = 0) List<IRecordableAdapter> recordables)
 	{
 		this.pipeline = pipeline;
 		this.recordables = recordables;

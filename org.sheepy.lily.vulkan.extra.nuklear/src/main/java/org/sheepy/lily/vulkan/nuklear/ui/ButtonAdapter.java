@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.nuklear.ui;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.action.IActionAdapter;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
 import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.model.action.Action;
 import org.sheepy.lily.core.model.ui.Button;

@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
 import org.sheepy.lily.core.api.model.LilyEObject;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Load;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;

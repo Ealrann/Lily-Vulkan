@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.demo.triangle;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.model.application.GenericScenePart;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;

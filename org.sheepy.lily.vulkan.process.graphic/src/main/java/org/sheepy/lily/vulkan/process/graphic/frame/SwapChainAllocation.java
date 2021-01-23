@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainAllocation;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
@@ -34,7 +34,7 @@ import static org.lwjgl.vulkan.VK10.*;
 @Allocation(context = ProcessContext.class)
 @AllocationChild(features = GraphicPackage.SWAPCHAIN_CONFIGURATION__COLOR_ATTACHMENT)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE, type = PhysicalSurfaceAllocation.class)
-public final class SwapChainAllocation implements ISwapChainAllocation, IExtender
+public final class SwapChainAllocation implements ISwapChainAllocation, IAdapter
 {
 	private static final String FAILED_TO_CREATE_SWAP_CHAIN = "Failed to create swap chain";
 	private static boolean first = true;

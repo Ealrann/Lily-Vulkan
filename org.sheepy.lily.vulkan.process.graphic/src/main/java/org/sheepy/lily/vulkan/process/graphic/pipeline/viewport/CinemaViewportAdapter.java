@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.viewport;
 
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.game.api.graphic.IViewportAdapter;
 import org.sheepy.vulkan.model.graphicpipeline.CinemaViewport;
 

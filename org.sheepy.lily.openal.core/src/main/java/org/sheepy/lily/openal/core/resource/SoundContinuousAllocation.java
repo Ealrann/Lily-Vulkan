@@ -2,7 +2,7 @@ package org.sheepy.lily.openal.core.resource;
 
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.resource.SoundContinuous;
 import org.sheepy.lily.game.api.allocation.IGameAllocationContext;

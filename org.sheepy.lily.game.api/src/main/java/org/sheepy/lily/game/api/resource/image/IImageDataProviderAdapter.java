@@ -1,7 +1,7 @@
 package org.sheepy.lily.game.api.resource.image;
 
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 import org.logoce.notification.api.Feature;
 import org.logoce.notification.api.IFeatures;
 import org.logoce.notification.api.INotifier;
@@ -9,7 +9,7 @@ import org.logoce.notification.api.INotifier;
 import java.nio.ByteBuffer;
 import java.util.function.Consumer;
 
-public interface IImageDataProviderAdapter extends IExtender, INotifier<IImageDataProviderAdapter.Features>
+public interface IImageDataProviderAdapter extends IAdapter, INotifier<IImageDataProviderAdapter.Features>
 {
 	interface Features extends IFeatures<Features>
 	{

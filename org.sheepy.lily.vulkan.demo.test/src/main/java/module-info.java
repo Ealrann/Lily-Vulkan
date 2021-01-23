@@ -1,4 +1,4 @@
-import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.demo.test.composite.Extenders;
 
 module org.sheepy.lily.vulkan.demo.test {
@@ -12,5 +12,5 @@ module org.sheepy.lily.vulkan.demo.test {
 	opens org.sheepy.lily.vulkan.demo.test.composite.grow;
 	opens org.sheepy.lily.vulkan.demo.test.composite.grow.adapter;
 
-	provides IExtenderProvider with Extenders;
+	provides IAdapterProvider with Extenders;
 }

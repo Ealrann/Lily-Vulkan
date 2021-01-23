@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Dispose;
+import org.sheepy.lily.core.api.adapter.Load;
+import org.logoce.extender.api.ModelExtender;
 import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;

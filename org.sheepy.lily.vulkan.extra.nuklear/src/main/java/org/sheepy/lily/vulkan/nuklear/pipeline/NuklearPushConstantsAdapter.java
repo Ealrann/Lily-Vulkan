@@ -1,13 +1,13 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Dispose;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -18,7 +18,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
 @ModelExtender(scope = NuklearPushConstants.class)
 @Adapter
-public class NuklearPushConstantsAdapter implements IRecordableExtender
+public class NuklearPushConstantsAdapter implements IRecordableAdapter
 {
 	public static final int STAGE_FLAGS = EShaderStage.VERTEX_BIT_VALUE | EShaderStage.FRAGMENT_BIT_VALUE;
 	public static final int SIZE = 16 * 4 + 4;

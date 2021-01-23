@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.extra.api.rendering;
 
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 
-public interface IGenericRendererAdapter extends IExtender
+public interface IGenericRendererAdapter extends IAdapter
 {
 	PresentableEntity resolvePresentedEntity(RenderPointer renderPointer);
 }

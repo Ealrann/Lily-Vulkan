@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.nuklear.dataprovider;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.logoce.adapter.api.Adapter;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataSupplier;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;

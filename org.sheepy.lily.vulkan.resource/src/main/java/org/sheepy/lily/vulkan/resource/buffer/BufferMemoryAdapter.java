@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.logoce.adapter.api.Adapter;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.device.PhysicalDevice;

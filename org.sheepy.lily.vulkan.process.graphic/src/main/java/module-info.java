@@ -1,4 +1,4 @@
-import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.process.graphic.Extenders;
 
 module org.sheepy.lily.vulkan.process.graphic {
@@ -18,5 +18,5 @@ module org.sheepy.lily.vulkan.process.graphic {
 	opens org.sheepy.lily.vulkan.process.graphic.renderpass;
 	opens org.sheepy.lily.vulkan.process.graphic.scene;
 
-	provides IExtenderProvider with Extenders;
+	provides IAdapterProvider with Extenders;
 }

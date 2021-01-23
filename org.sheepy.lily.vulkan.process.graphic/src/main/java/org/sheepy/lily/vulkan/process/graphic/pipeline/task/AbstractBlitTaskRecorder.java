@@ -5,7 +5,7 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageBuilder;
 import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
@@ -18,7 +18,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public abstract class AbstractBlitTaskRecorder implements IRecordableExtender
+public abstract class AbstractBlitTaskRecorder implements IRecordableAdapter
 {
 	private static final int FORMAT = EFormat.R8G8B8A8_UNORM_VALUE;
 	private static final IVkImageBuilder clearTextureBuilder = new VkImageBuilder("BlitClearTexture",

@@ -2,9 +2,9 @@ package org.sheepy.lily.vulkan.core.descriptor;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface IDescriptorAdapter extends IExtender
+public interface IDescriptorAdapter extends IAdapter
 {
 	int sizeInPool();
 	VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack);

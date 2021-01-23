@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.process.graphic.execution;
 
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 @AllocationChild(features = GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION}, type = SwapChainAllocation.class)
-public final class GraphicExecutionManagerAllocation extends ExecutionManagerAllocation implements IExtender
+public final class GraphicExecutionManagerAllocation extends ExecutionManagerAllocation implements IAdapter
 {
 	private final VkSemaphore imageAvailableSemaphore;
 	private final ImageAcquirer imageAcquirer;

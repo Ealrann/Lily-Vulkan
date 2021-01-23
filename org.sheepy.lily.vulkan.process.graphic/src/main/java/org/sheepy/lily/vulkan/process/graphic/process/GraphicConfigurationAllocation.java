@@ -5,8 +5,8 @@ import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 @AllocationChild(features = GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS)
 @AllocationChild(features = GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS)
 @AllocationChild(features = GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION)
-public final class GraphicConfigurationAllocation implements IExtender
+public final class GraphicConfigurationAllocation implements IAdapter
 {
 	private final GraphicConfiguration configuration;
 	private final IAllocationState allocationState;

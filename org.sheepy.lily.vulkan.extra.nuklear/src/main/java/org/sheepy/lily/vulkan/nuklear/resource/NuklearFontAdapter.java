@@ -1,15 +1,15 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.util.AdapterDeployer;
-import org.sheepy.lily.core.api.cadence.AutoLoad;
-import org.sheepy.lily.core.api.cadence.Tick;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Dispose;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.logoce.notification.api.Feature;
 import org.logoce.notification.api.IFeatures;
 import org.logoce.notification.api.Notifier;
+import org.sheepy.lily.core.api.adapter.AdapterDeployer;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
+import org.sheepy.lily.core.api.cadence.Tick;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.FontPkg;
@@ -28,7 +28,7 @@ import java.util.function.Consumer;
 @ModelExtender(scope = NuklearFont.class)
 @Adapter
 @AutoLoad
-public final class NuklearFontAdapter extends Notifier<NuklearFontAdapter.Features> implements IExtender
+public final class NuklearFontAdapter extends Notifier<NuklearFontAdapter.Features> implements IAdapter
 {
 	interface Features extends IFeatures<Features>
 	{

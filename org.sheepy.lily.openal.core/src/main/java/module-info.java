@@ -1,8 +1,7 @@
-import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.openal.core.Extenders;
 
-module org.sheepy.lily.openal.core
-{
+module org.sheepy.lily.openal.core {
 	requires org.sheepy.lily.openal.api;
 	requires org.sheepy.lily.game.core;
 
@@ -12,5 +11,5 @@ module org.sheepy.lily.openal.core
 	opens org.sheepy.lily.openal.core.engine;
 	opens org.sheepy.lily.openal.core.resource;
 
-	provides IExtenderProvider with Extenders;
+	provides IAdapterProvider with Extenders;
 }

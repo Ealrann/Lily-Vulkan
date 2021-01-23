@@ -6,8 +6,8 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.core.resource.attachment.IExtraAttachmentAllocation;
 import org.sheepy.lily.vulkan.core.util.Logger;
@@ -29,7 +29,7 @@ import static org.lwjgl.vulkan.VK10.*;
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION, type = SwapChainAllocation.class)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS, type = ImageViewAllocation.class)
 @AllocationDependency(parent = GraphicConfiguration.class, features = GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS, type = RenderPassAllocation.class)
-public final class FramebufferAllocation implements IFramebufferManager, IExtender
+public final class FramebufferAllocation implements IFramebufferManager, IAdapter
 {
 	private static final String FAILED_TO_CREATE_FRAMEBUFFER = "Failed to create framebuffer";
 

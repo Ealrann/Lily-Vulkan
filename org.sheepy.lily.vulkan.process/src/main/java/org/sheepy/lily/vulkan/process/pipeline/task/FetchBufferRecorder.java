@@ -8,13 +8,13 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataConsumer;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAllocation;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferInfo;
 import org.sheepy.lily.vulkan.core.resource.buffer.BufferUtils;
@@ -29,7 +29,7 @@ import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 @Allocation(context = ExecutionContext.class)
 @AllocationChild(allocateBeforeParent = true, features = ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE)
 @AllocationDependency(features = ProcessPackage.FETCH_BUFFER__BUFFER_REFERENCE, type = IBufferReferenceAllocation.class)
-public final class FetchBufferRecorder implements IRecordableExtender
+public final class FetchBufferRecorder implements IRecordableAdapter
 {
 	private final ExecutionContext executionContext;
 	private final IAllocationState allocationState;

@@ -6,8 +6,8 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.sheepy.lily.core.api.cadence.Tick;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.ModelUtil;
@@ -28,7 +28,7 @@ import org.sheepy.lily.vulkan.nuklear.logic.NuklearVertexBaker;
 @ModelExtender(scope = NuklearContext.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationDependency(features = NuklearPackage.NUKLEAR_CONTEXT__FONT, type = NuklearFontAllocation.class)
-public final class NuklearContextAllocation implements IExtender
+public final class NuklearContextAllocation implements IAdapter
 {
 	public static final int FONT_TEXTURE_DESCRIPTOR_INDEX = 1;
 

@@ -8,13 +8,13 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.barrier.IBarrierAllocation;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAllocation;
 import org.sheepy.lily.vulkan.core.device.LogicalDevice;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.core.process.InternalProcessAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
@@ -32,7 +32,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
 @Allocation(context = ProcessContext.class)
 @AllocationChild(allocateBeforeParent = true, features = ProcessPackage.PIPELINE_BARRIER__BARRIERS)
 @AllocationDependency(features = ProcessPackage.PIPELINE_BARRIER__BARRIERS, type = IBarrierAllocation.class)
-public final class PipelineBarrierRecorder implements IRecordableExtender
+public final class PipelineBarrierRecorder implements IRecordableAdapter
 {
 	private final int srcStage;
 	private final int dstStage;

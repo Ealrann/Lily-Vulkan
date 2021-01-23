@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.api.graphic;
 
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface IPhysicalSurfaceAllocation extends IExtender
+public interface IPhysicalSurfaceAllocation extends IAdapter
 {
 	Vector2ic getExtent();
 	VkColorDomain getColorDomain();

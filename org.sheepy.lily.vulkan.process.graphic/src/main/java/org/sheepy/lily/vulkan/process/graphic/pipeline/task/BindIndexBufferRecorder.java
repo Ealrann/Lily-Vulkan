@@ -3,9 +3,9 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.core.resource.buffer.IVulkanBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -15,7 +15,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdBindIndexBuffer;
 @ModelExtender(scope = BindIndexBuffer.class)
 @Allocation
 @AllocationDependency(features = GraphicPackage.BIND_INDEX_BUFFER__BUFFER, type = IVulkanBufferAllocation.class)
-public final class BindIndexBufferRecorder implements IRecordableExtender
+public final class BindIndexBufferRecorder implements IRecordableAdapter
 {
 	private final BindIndexBuffer task;
 	private final IVulkanBufferAllocation buffer;

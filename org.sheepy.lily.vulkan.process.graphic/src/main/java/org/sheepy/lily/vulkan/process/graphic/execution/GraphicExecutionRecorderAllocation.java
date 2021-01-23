@@ -2,13 +2,13 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -35,7 +35,7 @@ import static org.lwjgl.vulkan.VK10.*;
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS}, type = RenderPassAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS}, type = ImageViewAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION}, type = FramebufferAllocation.class)
-@AllocationDependency(parent = GraphicProcess.class, features = GraphicPackage.GRAPHIC_PROCESS__SUBPASSES, type = IRecordableExtender.class)
+@AllocationDependency(parent = GraphicProcess.class, features = GraphicPackage.GRAPHIC_PROCESS__SUBPASSES, type = IRecordableAdapter.class)
 public final class GraphicExecutionRecorderAllocation implements IExecutionRecorderAllocation
 {
 	private static final List<ECommandStage> stages = List.of(ECommandStage.PRE_RENDER,
@@ -49,7 +49,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	private final GenericExecutionRecorder executionRecorder;
 	private final List<VkSemaphore> signalSemaphores;
 
-	private List<IRecordableExtender> recordables;
+	private List<IRecordableAdapter> recordables;
 	private int subpassCount;
 	private boolean needRecord = true;
 
@@ -60,7 +60,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 											  @InjectDependency(index = 1) SwapChainAllocation swapChainAllocation,
 											  @InjectDependency(index = 2) RenderPassAllocation renderPassAllocation,
 											  @InjectDependency(index = 4) FramebufferAllocation framebufferAllocation,
-											  @InjectDependency(index = 5) List<IRecordableExtender> recordables)
+											  @InjectDependency(index = 5) List<IRecordableAdapter> recordables)
 	{
 		final int index = recorder.getIndex();
 		final var framebufferPtr = framebufferAllocation.getFramebufferAddresses().get(index);
@@ -96,7 +96,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@UpdateDependency(index = 5)
-	private void updateRecordables(List<IRecordableExtender> recordables)
+	private void updateRecordables(List<IRecordableAdapter> recordables)
 	{
 		this.recordables = recordables;
 		needRecord = true;

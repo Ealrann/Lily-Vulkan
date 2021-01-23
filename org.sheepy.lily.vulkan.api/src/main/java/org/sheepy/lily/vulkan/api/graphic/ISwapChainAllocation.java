@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.api.graphic;
 
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface ISwapChainAllocation extends IExtender
+public interface ISwapChainAllocation extends IAdapter
 {
 	long getPtr();
 	long getImagePtr(int index);

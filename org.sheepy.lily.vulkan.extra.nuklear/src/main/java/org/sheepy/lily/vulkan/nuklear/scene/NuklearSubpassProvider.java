@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.nuklear.scene;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.BufferUtils;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.resource.IResourceService;
 import org.sheepy.lily.core.model.resource.FileImage;
 import org.sheepy.lily.core.model.resource.IImage;

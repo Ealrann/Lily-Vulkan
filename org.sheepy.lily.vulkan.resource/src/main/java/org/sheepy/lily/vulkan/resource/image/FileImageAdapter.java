@@ -2,9 +2,9 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Dispose;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.resource.IFileImageAdapter;
 import org.sheepy.lily.core.api.resource.IFileResourceAdapter;
 import org.sheepy.lily.core.model.resource.FileImage;

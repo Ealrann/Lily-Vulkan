@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.model.ui.DynamicRowLayout;
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.vulkan.nuklear.ui.IPanelAdapter.UIContext;

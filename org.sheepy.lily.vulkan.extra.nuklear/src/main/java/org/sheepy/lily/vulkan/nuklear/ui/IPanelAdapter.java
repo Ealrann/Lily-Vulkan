@@ -4,7 +4,7 @@ import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkUserFont;
 import org.lwjgl.nuklear.Nuklear;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IPanel;
@@ -13,7 +13,7 @@ import org.sheepy.lily.game.api.window.IWindow;
 import java.util.List;
 import java.util.Map;
 
-public interface IPanelAdapter extends IExtender
+public interface IPanelAdapter extends IAdapter
 {
 	boolean layout(UIContext context);
 	boolean isHovered();

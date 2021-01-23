@@ -3,10 +3,10 @@ package org.sheepy.lily.vulkan.process.compute.pipeline;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
@@ -19,16 +19,16 @@ import java.util.List;
 @ModelExtender(scope = ComputePipeline.class)
 @Allocation(context = ProcessContext.class, activator = ComputePackage.COMPUTE_PIPELINE__RECORD)
 @AllocationDependency(type = ComputePipelineAllocation.class)
-@AllocationDependency(features = ComputePackage.COMPUTE_PIPELINE__TASK_PKGS, type = IRecordableExtender.class)
-public final class ComputePipelineRecorder implements IRecordableExtender
+@AllocationDependency(features = ComputePackage.COMPUTE_PIPELINE__TASK_PKGS, type = IRecordableAdapter.class)
+public final class ComputePipelineRecorder implements IRecordableAdapter
 {
 	private final ComputePipelineAllocation pipelineAllocation;
-	private final List<IRecordableExtender> recorders;
+	private final List<IRecordableAdapter> recorders;
 	private final ECommandStage bindStage;
 
 	private ComputePipelineRecorder(final ComputePipeline pipeline,
 									final @InjectDependency(index = 0) ComputePipelineAllocation pipelineAllocation,
-									final @InjectDependency(index = 1) List<IRecordableExtender> recorders)
+									final @InjectDependency(index = 1) List<IRecordableAdapter> recorders)
 	{
 		this.pipelineAllocation = pipelineAllocation;
 		this.recorders = recorders;

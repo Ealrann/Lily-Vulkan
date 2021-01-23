@@ -1,17 +1,17 @@
 package org.sheepy.lily.vulkan.nuklear.resource;
 
 import org.lwjgl.BufferUtils;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Load;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
 
 @ModelExtender(scope = StaticImage.class, name = NullTextureLoader.MODEL_OBJECT_NAME)
 @Adapter(singleton = true)
 @AutoLoad
-public class NullTextureLoader implements IExtender
+public class NullTextureLoader implements IAdapter
 {
 	public static final String MODEL_OBJECT_NAME = "NullImage";
 

@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.core.resource.buffer;
 
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface IBufferViewerAdapter extends IExtender
+public interface IBufferViewerAdapter extends IAdapter
 {
-	<T extends IExtender> T adaptDataSource(final Class<T> type);
+	<T extends IAdapter> T adaptDataSource(final Class<T> type);
 }

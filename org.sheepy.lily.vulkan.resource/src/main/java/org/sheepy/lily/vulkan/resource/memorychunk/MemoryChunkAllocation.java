@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.resource.memorychunk;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.core.api.cadence.Tick;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.debug.IVulkanDebugService;
@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 @ModelExtender(scope = MemoryChunk.class)
 @Allocation(context = ExecutionContext.class)
 @AllocationChild(features = VulkanResourcePackage.MEMORY_CHUNK__PARTS)
-public final class MemoryChunkAllocation implements IExtender
+public final class MemoryChunkAllocation implements IAdapter
 {
 	private static final MemoryBuilder MEMORY_BUILDER = new MemoryBuilder(new Memory.Info(false, true));
 

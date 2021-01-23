@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.core.cadence;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.logoce.adapter.api.Adapter;
 import org.sheepy.lily.core.api.cadence.ICadenceContext;
 import org.sheepy.lily.core.api.cadence.ICadenceTaskAdapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.model.cadence.ICadenceTask;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.model.RunProcess;

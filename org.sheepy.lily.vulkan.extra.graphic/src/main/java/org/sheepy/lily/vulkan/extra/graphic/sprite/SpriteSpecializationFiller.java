@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.logoce.adapter.api.Adapter;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.extra.api.sprite.ISpriteSupplier;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension;
@@ -16,7 +16,7 @@ import java.nio.ByteBuffer;
 @ModelExtender(scope = SpriteExtension.class)
 @Adapter
 @AutoLoad
-public final class SpriteSpecializationFiller implements IExtender
+public final class SpriteSpecializationFiller implements IAdapter
 {
 	private static final int BYTES = 2 * Integer.BYTES;
 

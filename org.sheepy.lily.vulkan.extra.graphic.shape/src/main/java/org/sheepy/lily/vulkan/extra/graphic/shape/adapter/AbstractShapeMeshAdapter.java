@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.extra.graphic.shape.adapter;
 
 import org.joml.Vector3d;
 import org.lwjgl.util.par.ParShapesMesh;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.Dispose;
 import org.logoce.notification.api.DummyNotifier;
 import org.sheepy.lily.vulkan.extra.api.mesh.IMeshStructureAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;

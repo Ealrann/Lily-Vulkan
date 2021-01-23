@@ -6,8 +6,8 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.game.api.window.IWindow;
 import org.sheepy.lily.vulkan.api.graphic.IPhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.api.graphic.VkColorDomain;
@@ -25,7 +25,7 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @ModelExtender(scope = PhysicalSurface.class)
 @Allocation(context = ProcessContext.class)
-public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocation, IExtender
+public final class PhysicalSurfaceAllocation implements IPhysicalSurfaceAllocation, IAdapter
 {
 	private final ISurfaceListener dirtyListener = this::setDirty;
 	private final VkColorDomain colorDomain;

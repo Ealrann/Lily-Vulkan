@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.game.api.resource.buffer.IGenericBufferDataSupplier;
@@ -35,7 +35,7 @@ public final class BufferViewerAdapter extends Notifier<IBufferAdapter.Features>
 	}
 
 	@Override
-	public <T extends IExtender> T adaptDataSource(final Class<T> type)
+	public <T extends IAdapter> T adaptDataSource(final Class<T> type)
 	{
 		final var identifier = bufferViewer.getDataSourceIdentifier();
 		final var dataSource = bufferViewer.getDataSource() != null ? bufferViewer.getDataSource() : bufferViewer;

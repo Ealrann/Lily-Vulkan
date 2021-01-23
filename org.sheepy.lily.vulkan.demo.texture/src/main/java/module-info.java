@@ -1,8 +1,7 @@
-import org.sheepy.lily.core.api.extender.IExtenderProvider;
+import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.demo.Extenders;
 
-module org.sheepy.lily.vulkan.demo.texture
-{
+module org.sheepy.lily.vulkan.demo.texture {
 	requires org.sheepy.lily.vulkan.api;
 
 	exports org.sheepy.lily.vulkan.demo.mesh;
@@ -16,5 +15,5 @@ module org.sheepy.lily.vulkan.demo.texture
 	opens org.sheepy.lily.vulkan.demo.rotating;
 	opens org.sheepy.lily.vulkan.demo.triangle;
 
-	provides IExtenderProvider with Extenders;
+	provides IAdapterProvider with Extenders;
 }

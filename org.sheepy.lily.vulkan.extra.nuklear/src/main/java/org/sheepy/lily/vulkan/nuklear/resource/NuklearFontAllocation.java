@@ -4,8 +4,8 @@ import org.lwjgl.nuklear.NkUserFont;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 @ModelExtender(scope = NuklearFont.class)
 @Allocation(context = ExecutionContext.class)
-public final class NuklearFontAllocation implements IExtender
+public final class NuklearFontAllocation implements IAdapter
 {
 	public final Map<Font, NkUserFont> fontMap;
 	private final List<NkFontLoader> fontLoaders;

@@ -2,12 +2,12 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @ModelExtender(scope = ComputeExecutionRecorder.class)
 @Allocation(context = ProcessContext.class, reuseDirtyAllocations = true)
-@AllocationDependency(parent = ComputeProcess.class, features = {ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IRecordableExtender.class)
+@AllocationDependency(parent = ComputeProcess.class, features = {ComputePackage.COMPUTE_PROCESS__PIPELINE_PKG, ProcessPackage.PIPELINE_PKG__PIPELINES}, type = IRecordableAdapter.class)
 public final class ComputeExecutionRecorderAllocation implements IExecutionRecorderAllocation
 {
 	private static final List<ECommandStage> stages = List.of(ECommandStage.MAIN);
@@ -31,13 +31,13 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 	private final ComputeCommandBuffer commandBuffer;
 	private final GenericExecutionRecorder executionRecorder;
 
-	private List<IRecordableExtender> recordables;
+	private List<IRecordableAdapter> recordables;
 	private boolean needRecord = true;
 
 	private ComputeExecutionRecorderAllocation(ComputeExecutionRecorder recorder,
 											   ProcessContext context,
 											   IAllocationState config,
-											   @InjectDependency(index = 0) List<IRecordableExtender> recordables)
+											   @InjectDependency(index = 0) List<IRecordableAdapter> recordables)
 	{
 		commandBuffer = new ComputeCommandBuffer(context);
 		this.recordables = recordables;
@@ -55,7 +55,7 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@UpdateDependency(index = 0)
-	private void updateRecorders(List<IRecordableExtender> recordables)
+	private void updateRecorders(List<IRecordableAdapter> recordables)
 	{
 		this.recordables = recordables;
 		needRecord = true;

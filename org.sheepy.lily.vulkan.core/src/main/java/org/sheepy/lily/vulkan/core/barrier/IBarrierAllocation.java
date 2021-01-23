@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.core.barrier;
 
 import org.lwjgl.system.NativeResource;
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface IBarrierAllocation<T extends NativeResource> extends IExtender
+public interface IBarrierAllocation<T extends NativeResource> extends IAdapter
 {
 	void fill(T info, int index, int srcQueueIndex, int dstQueueIndex);
 }

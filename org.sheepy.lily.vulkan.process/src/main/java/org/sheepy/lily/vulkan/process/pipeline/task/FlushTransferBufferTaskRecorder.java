@@ -4,10 +4,10 @@ import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.core.resource.buffer.ITransferBufferAllocation;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -15,7 +15,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 @ModelExtender(scope = FlushTransferBufferTask.class)
 @Allocation
 @AllocationDependency(features = ProcessPackage.FLUSH_TRANSFER_BUFFER_TASK__TRANSFER_BUFFER, type = ITransferBufferAllocation.class)
-public final class FlushTransferBufferTaskRecorder implements IRecordableExtender
+public final class FlushTransferBufferTaskRecorder implements IRecordableAdapter
 {
 	private final IAllocationState allocationState;
 	private final ITransferBufferAllocation transferBuffer;

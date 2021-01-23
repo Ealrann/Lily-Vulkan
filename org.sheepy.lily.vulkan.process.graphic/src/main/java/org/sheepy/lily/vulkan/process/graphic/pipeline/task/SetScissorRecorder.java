@@ -1,17 +1,17 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.lwjgl.vulkan.VkRect2D;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
 
 import static org.lwjgl.vulkan.VK10.vkCmdSetScissor;
 
 @ModelExtender(scope = SetScissor.class)
 @Adapter
-public final class SetScissorRecorder implements IRecordableExtender
+public final class SetScissorRecorder implements IRecordableAdapter
 {
 	private final VkRect2D.Buffer scissorRect = VkRect2D.create(1);
 	private final SetScissor task;

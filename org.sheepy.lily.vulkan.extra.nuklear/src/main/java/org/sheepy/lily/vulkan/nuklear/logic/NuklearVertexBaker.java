@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.nuklear.logic;
 
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 import org.sheepy.lily.core.api.util.DebugUtil;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.lwjgl.nuklear.Nuklear.*;
 
-public final class NuklearVertexBaker implements IExtender
+public final class NuklearVertexBaker implements IAdapter
 {
 	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 

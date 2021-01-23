@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.core.variable;
 
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Dispose;
+import org.sheepy.lily.core.api.adapter.Load;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.input.event.CursorLocationEvent;
 import org.logoce.notification.api.Notifier;

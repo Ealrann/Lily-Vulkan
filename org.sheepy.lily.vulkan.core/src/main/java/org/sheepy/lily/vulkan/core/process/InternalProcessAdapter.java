@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.core.process;
 
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 import org.sheepy.lily.vulkan.core.execution.queue.EQueueType;
 
-public interface InternalProcessAdapter extends IExtender
+public interface InternalProcessAdapter extends IAdapter
 {
 	EQueueType getExecutionQueueType();
 	boolean needPresentQueue();

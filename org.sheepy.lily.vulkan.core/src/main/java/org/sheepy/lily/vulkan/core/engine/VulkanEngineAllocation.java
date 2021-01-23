@@ -5,7 +5,7 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.ProvideContext;
 import org.sheepy.lily.core.api.cadence.ICadenceAdapter;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAllocation;

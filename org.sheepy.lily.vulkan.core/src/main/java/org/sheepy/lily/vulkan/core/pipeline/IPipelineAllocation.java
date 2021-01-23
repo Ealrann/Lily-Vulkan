@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.core.pipeline;
 
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface IPipelineAllocation extends IExtender
+public interface IPipelineAllocation extends IAdapter
 {
 	VkPipelineLayout getVkPipelineLayout();
 	VkPipeline getVkPipeline();

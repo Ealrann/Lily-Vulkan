@@ -1,8 +1,8 @@
 package org.sheepy.lily.game.api.audio;
 
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface IAudioAllocation extends IExtender
+public interface IAudioAllocation extends IAdapter
 {
 	IAudioHandle play(AudioConfiguration config);
 

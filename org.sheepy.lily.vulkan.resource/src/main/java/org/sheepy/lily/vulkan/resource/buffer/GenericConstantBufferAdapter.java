@@ -1,12 +1,12 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Load;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.cadence.Tick;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.api.variable.IModelVariableAdapter;
 import org.sheepy.lily.core.model.variable.IModelVariable;
@@ -21,7 +21,7 @@ import java.util.List;
 @ModelExtender(scope = GenericConstantBuffer.class)
 @Adapter
 @AutoLoad
-public final class GenericConstantBufferAdapter implements IExtender
+public final class GenericConstantBufferAdapter implements IAdapter
 {
 	private final GenericConstantBuffer constantBuffer;
 	private final List<AdaptedVariableEntry<?>> adaptedVariables = new ArrayList<>();

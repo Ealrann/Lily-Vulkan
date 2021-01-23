@@ -3,13 +3,13 @@ package org.sheepy.lily.vulkan.demo.adapter;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
-import org.sheepy.lily.core.api.adapter.annotation.Load;
+import org.logoce.adapter.api.Adapter;
+import org.sheepy.lily.core.api.adapter.Dispose;
+import org.sheepy.lily.core.api.adapter.Load;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.cadence.Tick;
-import org.sheepy.lily.core.api.extender.IExtender;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.core.model.application.Scene;
 import org.sheepy.lily.vulkan.api.util.SizeOf;
@@ -21,7 +21,7 @@ import java.nio.FloatBuffer;
 @ModelExtender(scope = ConstantBuffer.class, name = CameraConstantAdapter.DEMO_CAMERA)
 @Adapter
 @AutoLoad
-public class CameraConstantAdapter implements IExtender
+public class CameraConstantAdapter implements IAdapter
 {
 	public static final String DEMO_CAMERA = "DemoCameraPushConstant";
 	public static final int SIZE_OF = SizeOf.MATRIX4F;

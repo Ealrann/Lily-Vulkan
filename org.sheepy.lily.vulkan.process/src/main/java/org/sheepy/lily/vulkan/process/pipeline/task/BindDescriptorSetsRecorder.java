@@ -3,13 +3,13 @@ package org.sheepy.lily.vulkan.process.pipeline.task;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.sheepy.lily.core.api.extender.ModelExtender;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetAllocation;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableExtender;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -23,7 +23,7 @@ import static org.lwjgl.vulkan.VK10.vkCmdBindDescriptorSets;
 @ModelExtender(scope = BindDescriptorSets.class)
 @Allocation
 @AllocationDependency(features = ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS, type = IDescriptorSetAllocation.class)
-public final class BindDescriptorSetsRecorder implements IRecordableExtender
+public final class BindDescriptorSetsRecorder implements IRecordableAdapter
 {
 	private final BindDescriptorSets task;
 	private final List<IDescriptorSetAllocation> descriptorSets;

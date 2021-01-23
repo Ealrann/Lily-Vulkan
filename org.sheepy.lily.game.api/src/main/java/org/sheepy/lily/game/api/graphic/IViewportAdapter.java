@@ -1,9 +1,9 @@
 package org.sheepy.lily.game.api.graphic;
 
 import org.joml.Vector2ic;
-import org.sheepy.lily.core.api.extender.IExtender;
+import org.logoce.extender.api.IAdapter;
 
-public interface IViewportAdapter extends IExtender
+public interface IViewportAdapter extends IAdapter
 {
 	ViewportInfo getInfo(Vector2ic screenSize);
 
