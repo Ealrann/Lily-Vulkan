@@ -41,7 +41,7 @@ subprojects {
 
 	afterEvaluate {
 		repositories {
-			jcenter()
+			mavenCentral()
 			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 			maven {
 				url "https://maven.pkg.github.com/ealrann/emf-standalone"
