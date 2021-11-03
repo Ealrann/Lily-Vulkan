@@ -71,7 +71,7 @@ public final class DescriptorSetLayoutAllocation implements IDescriptorSetLayout
 	private long allocateLayout(final MemoryStack stack)
 	{
 		final var layoutBindings = createLayoutBinding(stack);
-		final var layoutInfo = VkDescriptorSetLayoutCreateInfo.callocStack(stack);
+		final var layoutInfo = VkDescriptorSetLayoutCreateInfo.calloc(stack);
 		layoutInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO);
 		layoutInfo.pBindings(layoutBindings);
 
@@ -84,7 +84,7 @@ public final class DescriptorSetLayoutAllocation implements IDescriptorSetLayout
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack)
 	{
 		final int size = descriptorCount();
-		final var layoutBindings = VkDescriptorSetLayoutBinding.callocStack(size, stack);
+		final var layoutBindings = VkDescriptorSetLayoutBinding.calloc(size, stack);
 
 		int index = 0;
 		for (final var descriptor : descriptorSet.getDescriptors())

@@ -26,7 +26,7 @@ public class VkSubpassDescriptionAllocator
 	public VkSubpassDescription.Buffer allocate(MemoryStack stack, List<Subpass> subpasses)
 	{
 		final int size = Math.max(1, subpasses.size());
-		final var vkSubpasses = VkSubpassDescription.callocStack(size, stack);
+		final var vkSubpasses = VkSubpassDescription.calloc(size, stack);
 
 		if (subpasses.isEmpty() == false)
 		{
@@ -34,7 +34,7 @@ public class VkSubpassDescriptionAllocator
 		}
 		else
 		{
-			final var colorAttachmentRef = VkAttachmentReference.callocStack(1, stack);
+			final var colorAttachmentRef = VkAttachmentReference.calloc(1, stack);
 			colorAttachmentRef.attachment(0);
 			colorAttachmentRef.layout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL_VALUE);
 			colorAttachmentRef.get();
@@ -89,7 +89,7 @@ public class VkSubpassDescriptionAllocator
 								final Consumer<VkAttachmentReference.Buffer> installer)
 	{
 		final int attachmentCount = refs.size();
-		final var attachmentRefBuffer = VkAttachmentReference.callocStack(attachmentCount, stack);
+		final var attachmentRefBuffer = VkAttachmentReference.calloc(attachmentCount, stack);
 		for (final AttachmentRef ref : refs)
 		{
 			fillAttachmentRef(ref, attachmentRefBuffer.get());
@@ -102,7 +102,7 @@ public class VkSubpassDescriptionAllocator
 								final AttachmentRef ref,
 								final Consumer<VkAttachmentReference> installer)
 	{
-		final var vkAttachmentRef = VkAttachmentReference.callocStack(stack);
+		final var vkAttachmentRef = VkAttachmentReference.calloc(stack);
 		fillAttachmentRef(ref, vkAttachmentRef);
 		installer.accept(vkAttachmentRef);
 	}

@@ -56,7 +56,7 @@ public final class FlushRecord
 
 	private void flushPushMemoryRange(final MemoryStack stack)
 	{
-		final var mappedRange = VkMappedMemoryRange.mallocStack(commands.size(), stack);
+		final var mappedRange = VkMappedMemoryRange.malloc(commands.size(), stack);
 		commands.stream()
 				.filter(c -> c.dataFlow().getFlowType() == EFlowType.PUSH)
 				.map(TransferCommand::memoryTicket)

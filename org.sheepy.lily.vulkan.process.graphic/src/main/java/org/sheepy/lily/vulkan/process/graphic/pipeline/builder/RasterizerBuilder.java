@@ -11,7 +11,7 @@ public class RasterizerBuilder
 	public VkPipelineRasterizationStateCreateInfo allocCreateInfo(	MemoryStack stack,
 																	Rasterizer rasterizer)
 	{
-		final var rasterizerInfo = VkPipelineRasterizationStateCreateInfo.mallocStack(stack);
+		final var rasterizerInfo = VkPipelineRasterizationStateCreateInfo.malloc(stack);
 		rasterizerInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO);
 		rasterizerInfo.rasterizerDiscardEnable(rasterizer.isDiscardEnable());
 		rasterizerInfo.polygonMode(rasterizer.getPolygonMode().getValue());

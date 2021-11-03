@@ -17,7 +17,7 @@ public abstract class AbstractCommandBuffer implements ICommandBuffer
 		final long commandPoolPtr = context.getCommandPool().getPtr();
 		final var vkDevice = context.getVkDevice();
 
-		final var allocInfo = VkCommandBufferAllocateInfo.callocStack(stack);
+		final var allocInfo = VkCommandBufferAllocateInfo.calloc(stack);
 		allocInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO);
 		allocInfo.commandPool(commandPoolPtr);
 		allocInfo.level(VK_COMMAND_BUFFER_LEVEL_PRIMARY);

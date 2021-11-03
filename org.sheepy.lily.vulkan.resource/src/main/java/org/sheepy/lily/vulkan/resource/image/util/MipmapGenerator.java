@@ -21,8 +21,8 @@ public final class MipmapGenerator
 		final long imageAddress = image.getPtr();
 		final var vkImage = image.vkImage();
 
-		final VkImageBlit.Buffer blit = VkImageBlit.callocStack(1, stack);
-		final VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.callocStack(1, stack);
+		final VkImageBlit.Buffer blit = VkImageBlit.calloc(1, stack);
+		final VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1, stack);
 		barrier.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		barrier.image(imageAddress);
 		barrier.srcQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);

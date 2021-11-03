@@ -60,7 +60,7 @@ public final class DescriptorPoolAllocation implements IAdapter
 		poolSize = poolSizeCounter;
 		if (poolSize > 0)
 		{
-			final var poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
+			final var poolSizes = VkDescriptorPoolSize.calloc(poolSize);
 			for (int i = 0; i < descriptorSetCount; i++)
 			{
 				final var descriptorSet = descriptorSets.get(i);
@@ -78,7 +78,7 @@ public final class DescriptorPoolAllocation implements IAdapter
 			}
 			poolSizes.flip();
 
-			final var poolInfo = VkDescriptorPoolCreateInfo.callocStack();
+			final var poolInfo = VkDescriptorPoolCreateInfo.calloc();
 			poolInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO);
 			poolInfo.pPoolSizes(poolSizes);
 			poolInfo.maxSets(descriptorSetCount);
@@ -99,7 +99,7 @@ public final class DescriptorPoolAllocation implements IAdapter
 	{
 		try (final var stack = MemoryStack.stackPush())
 		{
-			final var descriptorWrites = VkWriteDescriptorSet.callocStack(poolSize, stack);
+			final var descriptorWrites = VkWriteDescriptorSet.calloc(poolSize, stack);
 			for (final var setAllocation : setAllocations)
 			{
 				setAllocation.updateDescriptorSet(descriptorWrites, stack);

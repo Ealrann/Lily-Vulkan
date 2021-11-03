@@ -110,7 +110,7 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 		final var nkContext = context.nkContext;
 		updateWindow(context);
 
-		rect = NkRect.mallocStack(stack);
+		rect = NkRect.malloc(stack);
 		final int width = panel.getWidth();
 		final int height = panel.getHeight();
 		final int x = UIUtil.computeXRelative(window.getSize(), panel);
@@ -142,14 +142,14 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 			if (backgroundImage != null)
 			{
 				final var imageIndex = context.imageIndex(backgroundImage);
-				final var nkImage = NkImage.callocStack(stack);
+				final var nkImage = NkImage.calloc(stack);
 				nk_image_ptr(imageIndex, nkImage);
 				final var canvas = nk_window_get_canvas(nkContext);
 				if (canvas != null)
 				{
-					final NkColor color = NkColor.callocStack(stack);
+					final NkColor color = NkColor.calloc(stack);
 					color.set((byte) 255, (byte) 255, (byte) 255, (byte) 255);
-					final var region = NkRect.mallocStack(stack);
+					final var region = NkRect.malloc(stack);
 					nk_window_get_content_region(nkContext, region);
 					nk_draw_image(canvas, region, nkImage, color);
 				}

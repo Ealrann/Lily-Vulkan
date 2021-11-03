@@ -37,7 +37,7 @@ public final class VkImageDescriptor implements IVkDescriptor
 	@Override
 	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
-		final var imageInfos = VkDescriptorImageInfo.callocStack(descriptorCount, stack);
+		final var imageInfos = VkDescriptorImageInfo.calloc(descriptorCount, stack);
 		for (int i = 0; i < descriptorCount; i++)
 		{
 			final var viewPtr = i < imageViewPtrs.length ? imageViewPtrs[i] : 0;

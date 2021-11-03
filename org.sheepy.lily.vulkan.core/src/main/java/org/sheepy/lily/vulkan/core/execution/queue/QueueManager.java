@@ -160,7 +160,7 @@ public class QueueManager
 				familyCount++;
 			}
 		}
-		final var queueCreateInfos = VkDeviceQueueCreateInfo.mallocStack(familyCount, stack);
+		final var queueCreateInfos = VkDeviceQueueCreateInfo.malloc(familyCount, stack);
 
 		for (final var familyHolder : queueFamilyHolders)
 		{

@@ -29,7 +29,7 @@ public final class VkSampler
 	public void allocate(IVulkanContext context)
 	{
 		final var stack = context.stack();
-		final var samplerInfo = VkSamplerCreateInfo.callocStack(stack);
+		final var samplerInfo = VkSamplerCreateInfo.calloc(stack);
 		samplerInfo.sType(VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO);
 		samplerInfo.magFilter(info.getMagFilter().getValue());
 		samplerInfo.minFilter(info.getMinFilter().getValue());

@@ -36,13 +36,14 @@ public final class VkBufferAllocator
 
 	private static VkBufferCreateInfo allocateInfo(MemoryStack stack, BufferInfo bufferInfo)
 	{
-		return VkBufferCreateInfo.callocStack(stack)
+		return VkBufferCreateInfo.calloc(stack)
 								 .set(VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
 									  VK_NULL_HANDLE,
 									  0,
 									  bufferInfo.getAlignedSize(),
 									  bufferInfo.usage,
 									  VK_SHARING_MODE_EXCLUSIVE,
+									  0,
 									  null);
 	}
 }

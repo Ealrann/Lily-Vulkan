@@ -38,7 +38,7 @@ public final class VkPipelineLayout
 
 		// Create compute pipeline
 		final long[] aLayout = new long[1];
-		final var info = VkPipelineLayoutCreateInfo.callocStack(stack)
+		final var info = VkPipelineLayoutCreateInfo.calloc(stack)
 												   .set(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO,
 														VK_NULL_HANDLE,
 														0,
@@ -78,7 +78,7 @@ public final class VkPipelineLayout
 		if (constantRanges.isEmpty() == false)
 		{
 			final int rangeCount = constantRanges.size();
-			ranges = VkPushConstantRange.callocStack(rangeCount, stack);
+			ranges = VkPushConstantRange.calloc(rangeCount, stack);
 			for (int i = 0; i < rangeCount; i++)
 			{
 				final var constantRange = constantRanges.get(i);

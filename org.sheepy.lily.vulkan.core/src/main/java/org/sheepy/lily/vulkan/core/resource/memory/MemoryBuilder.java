@@ -86,7 +86,7 @@ public final class MemoryBuilder
 		{
 			final var physicalDevice = context.getPhysicalDevice();
 			final var findMemoryType = physicalDevice.findMemoryType(memoryTypeBits, info.propertyFlag());
-			final var allocInfo = VkMemoryAllocateInfo.callocStack(context.stack());
+			final var allocInfo = VkMemoryAllocateInfo.calloc(context.stack());
 			allocInfo.sType(VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO);
 			allocInfo.allocationSize(alignedResources.size());
 			allocInfo.memoryTypeIndex(findMemoryType);

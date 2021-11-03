@@ -11,7 +11,7 @@ public class DepthStencilBuilder
 	public VkPipelineDepthStencilStateCreateInfo allocCreateInfo(	MemoryStack stack,
 																	DepthStencilState depthStencilState)
 	{
-		final var depthStencil = VkPipelineDepthStencilStateCreateInfo.callocStack(stack);
+		final var depthStencil = VkPipelineDepthStencilStateCreateInfo.calloc(stack);
 		depthStencil.sType(VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO);
 		depthStencil.depthTestEnable(depthStencilState.isDepthTest());
 		depthStencil.depthWriteEnable(depthStencilState.isDepthWrite());

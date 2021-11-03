@@ -20,7 +20,7 @@ public class DynamicStateBuilder
 		}
 		dynamicStates.flip();
 
-		final var vkDynamicState = VkPipelineDynamicStateCreateInfo.mallocStack(stack);
+		final var vkDynamicState = VkPipelineDynamicStateCreateInfo.malloc(stack);
 		vkDynamicState.sType(VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO);
 		vkDynamicState.pDynamicStates(dynamicStates);
 		vkDynamicState.pNext(VK_NULL_HANDLE);

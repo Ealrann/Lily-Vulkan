@@ -39,7 +39,7 @@ public class VkBufferDescriptor implements IVkDescriptor
 
 	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)
 	{
-		final var bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
+		final var bufferInfo = VkDescriptorBufferInfo.calloc(1, stack);
 		bufferInfo.buffer(bufferPtr);
 		bufferInfo.offset(offset);
 		bufferInfo.range(range);

@@ -63,7 +63,7 @@ public final class SwapChainAllocation implements ISwapChainAllocation, IAdapter
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
 		final var targetPresentMode = selectPresentMode(context, swapchainConfiguration, surface);
 
-		final var createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
+		final var createInfo = VkSwapchainCreateInfoKHR.calloc(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
 		createInfo.surface(surface.ptr);
 		createInfo.minImageCount(imageCount);

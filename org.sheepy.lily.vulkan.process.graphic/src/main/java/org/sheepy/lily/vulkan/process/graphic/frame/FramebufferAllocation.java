@@ -80,7 +80,7 @@ public final class FramebufferAllocation implements IFramebufferManager, IAdapte
 														   LongBuffer attachments)
 	{
 		final var extent = surfaceAllocation.getExtent();
-		final var createInfo = VkFramebufferCreateInfo.callocStack(stack);
+		final var createInfo = VkFramebufferCreateInfo.calloc(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO);
 		createInfo.renderPass(renderPassAllocation.getPtr());
 		createInfo.width(extent.x());

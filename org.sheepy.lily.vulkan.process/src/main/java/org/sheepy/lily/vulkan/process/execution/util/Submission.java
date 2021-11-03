@@ -59,7 +59,7 @@ public final class Submission
 		}
 		bSignalSemaphores.flip();
 
-		submitInfo = VkSubmitInfo.callocStack(stack);
+		submitInfo = VkSubmitInfo.calloc(stack);
 		submitInfo.sType(VK_STRUCTURE_TYPE_SUBMIT_INFO);
 		submitInfo.waitSemaphoreCount(waitSemaphores.size());
 		submitInfo.pWaitSemaphores(bWaitSemaphores);

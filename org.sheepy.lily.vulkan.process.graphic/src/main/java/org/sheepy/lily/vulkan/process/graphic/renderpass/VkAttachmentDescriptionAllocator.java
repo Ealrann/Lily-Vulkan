@@ -19,7 +19,7 @@ public final class VkAttachmentDescriptionAllocator
 
 	public VkAttachmentDescription.Buffer allocate(final MemoryStack stack, final List<Attachment> attachments)
 	{
-		final var attachmentsBuffer = VkAttachmentDescription.callocStack(attachments.size(), stack);
+		final var attachmentsBuffer = VkAttachmentDescription.calloc(attachments.size(), stack);
 		for (final var attachmentDescription : attachments)
 		{
 			fillAttachment(attachmentsBuffer.get(), attachmentDescription);

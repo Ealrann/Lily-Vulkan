@@ -102,7 +102,7 @@ public final class DeviceExtensions
 			final int[] extensionCount = new int[1];
 
 			vkEnumerateDeviceExtensionProperties(vkPhysicalDevice, (ByteBuffer) null, extensionCount, null);
-			final var availableExtensions = VkExtensionProperties.callocStack(extensionCount[0], stack);
+			final var availableExtensions = VkExtensionProperties.calloc(extensionCount[0], stack);
 
 			vkEnumerateDeviceExtensionProperties(vkPhysicalDevice,
 												 (ByteBuffer) null,

@@ -87,7 +87,7 @@ public final class VkGraphicsPipeline extends VkPipeline
 
 		// Create Pipeline
 		// -----------------------
-		final var info = VkGraphicsPipelineCreateInfo.callocStack(1, stack);
+		final var info = VkGraphicsPipelineCreateInfo.calloc(1, stack);
 		info.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
 		info.pStages(shaderStageBuilder.allocShaderStageInfo(stack, shaderStages, specializationData));
 		info.pVertexInputState(vertexDescriptor.allocCreateInfo(stack));

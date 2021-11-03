@@ -30,7 +30,7 @@ public final class BufferDescriptorAdapter implements IDescriptorAdapter
 	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		final var res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		final var res = VkDescriptorSetLayoutBinding.calloc(stack);
 		res.descriptorType(descriptorType);
 		res.descriptorCount(1);
 		res.stageFlags(shaderStages);

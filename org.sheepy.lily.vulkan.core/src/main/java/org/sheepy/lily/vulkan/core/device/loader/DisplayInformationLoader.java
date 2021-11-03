@@ -22,7 +22,7 @@ public class DisplayInformationLoader
 		final int count = countBuffer.get(0);
 		if (count > 0)
 		{
-			final VkDisplayPropertiesKHR.Buffer properties = VkDisplayPropertiesKHR.callocStack(count, stack);
+			final VkDisplayPropertiesKHR.Buffer properties = VkDisplayPropertiesKHR.calloc(count, stack);
 
 			vkGetPhysicalDeviceDisplayPropertiesKHR(device, countBuffer, properties);
 

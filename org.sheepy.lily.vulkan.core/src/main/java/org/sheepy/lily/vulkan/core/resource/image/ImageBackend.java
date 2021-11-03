@@ -163,7 +163,7 @@ public final class ImageBackend
 									  Collection<EAccess> srcAccessMask,
 									  Collection<EAccess> dstAccessMask)
 	{
-		final VkImageMemoryBarrier.Buffer barrierInfo = VkImageMemoryBarrier.callocStack(1, stack);
+		final VkImageMemoryBarrier.Buffer barrierInfo = VkImageMemoryBarrier.calloc(1, stack);
 
 		barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		barrierInfo.oldLayout(srcLayout.getValue());

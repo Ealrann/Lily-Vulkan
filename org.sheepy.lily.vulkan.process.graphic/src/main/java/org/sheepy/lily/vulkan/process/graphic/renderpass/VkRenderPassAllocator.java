@@ -50,7 +50,7 @@ public final class VkRenderPassAllocator
 		final var dependencyAllocator = new VkSubpassDependencyAllocator();
 		final var dependencies = dependencyAllocator.allocate(stack, renderSubpasses);
 
-		final var createInfo = VkRenderPassCreateInfo.callocStack(stack);
+		final var createInfo = VkRenderPassCreateInfo.calloc(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO);
 		createInfo.pAttachments(attachments);
 		createInfo.pSubpasses(subpasses);

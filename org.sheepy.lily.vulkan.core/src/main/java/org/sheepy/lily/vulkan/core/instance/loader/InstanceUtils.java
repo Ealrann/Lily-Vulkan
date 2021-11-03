@@ -18,7 +18,7 @@ public final class InstanceUtils
 											VkInstance vkInstance,
 											VkDebugReportCallbackEXT callback)
 	{
-		final var createInfo = VkDebugReportCallbackCreateInfoEXT.callocStack(stack);
+		final var createInfo = VkDebugReportCallbackCreateInfoEXT.calloc(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT);
 		createInfo.flags(VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT);
 		createInfo.pfnCallback(callback);

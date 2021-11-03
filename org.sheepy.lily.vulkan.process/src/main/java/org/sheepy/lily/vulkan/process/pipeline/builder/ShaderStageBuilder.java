@@ -17,11 +17,11 @@ public class ShaderStageBuilder
 
 		if (vkShaderStages.isEmpty())
 		{
-			shaderStages = VkPipelineShaderStageCreateInfo.callocStack(1, stack);
+			shaderStages = VkPipelineShaderStageCreateInfo.calloc(1, stack);
 		}
 		else
 		{
-			shaderStages = VkPipelineShaderStageCreateInfo.callocStack(vkShaderStages.size(),
+			shaderStages = VkPipelineShaderStageCreateInfo.calloc(vkShaderStages.size(),
 					stack);
 			for (final var shaderStage : vkShaderStages)
 			{

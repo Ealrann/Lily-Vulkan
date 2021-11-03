@@ -91,7 +91,7 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 
 	public VkBufferMemoryBarrier.Buffer allocateBufferInfo(MemoryStack stack, int index)
 	{
-		final var res = VkBufferMemoryBarrier.callocStack(bufferBarrierSize, stack);
+		final var res = VkBufferMemoryBarrier.calloc(bufferBarrierSize, stack);
 		for (int i = 0; i < bufferBarrierSize; i++)
 		{
 			final var bufferBarrier = bufferBarriers.get(i);
@@ -105,7 +105,7 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 	public VkImageMemoryBarrier.Buffer allocateImageInfo(MemoryStack stack, int index)
 	{
 		final int size = imageBarriers.size();
-		final var res = VkImageMemoryBarrier.callocStack(size, stack);
+		final var res = VkImageMemoryBarrier.calloc(size, stack);
 
 		for (final var imageBarrier : imageBarriers)
 		{

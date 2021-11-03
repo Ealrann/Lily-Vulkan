@@ -21,7 +21,7 @@ public class ViewportStateBuilder
 															 Vector2ic swapExtent,
 															 ViewportState vState)
 	{
-		viewportState = VkPipelineViewportStateCreateInfo.callocStack(stack);
+		viewportState = VkPipelineViewportStateCreateInfo.calloc(stack);
 		viewportState.sType(VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO);
 
 		if (vState instanceof StaticViewportState state)
@@ -45,7 +45,7 @@ public class ViewportStateBuilder
 	private void fillStaticStateInfo(MemoryStack stack, Vector2ic swapExtent, StaticViewportState state)
 	{
 		// Viewports and scissors
-		final VkViewport.Buffer viewports = VkViewport.callocStack(state.getViewports().size(), stack);
+		final VkViewport.Buffer viewports = VkViewport.calloc(state.getViewports().size(), stack);
 		for (final var viewport : state.getViewports())
 		{
 			final var adapter = viewport.adaptNotNull(IViewportAdapter.class);
@@ -60,7 +60,7 @@ public class ViewportStateBuilder
 		}
 		viewports.flip();
 
-		final VkRect2D.Buffer scissors = VkRect2D.callocStack(state.getScissors().size(), stack);
+		final VkRect2D.Buffer scissors = VkRect2D.calloc(state.getScissors().size(), stack);
 		for (final Scissor scissor : state.getScissors())
 		{
 			final int offsetX = scissor.getOffsetX();

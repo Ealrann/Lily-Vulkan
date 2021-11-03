@@ -36,7 +36,7 @@ public class VkComputePipeline extends VkPipeline
 
 		// Create Pipeline
 		// -----------------------
-		final var pipelineCreateInfos = VkComputePipelineCreateInfo.callocStack(1, stack);
+		final var pipelineCreateInfos = VkComputePipelineCreateInfo.calloc(1, stack);
 
 		final var pipelineCreateInfo = pipelineCreateInfos.get();
 		pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);

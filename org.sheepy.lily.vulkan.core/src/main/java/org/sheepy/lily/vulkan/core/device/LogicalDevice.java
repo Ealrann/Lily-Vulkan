@@ -39,7 +39,7 @@ public final class LogicalDevice implements ILogicalDevice
 		final var queueCreateInfos = queueManager.allocQueueInfos(stack);
 		final var extensionsBuffer = physicalDevice.deviceExtensions.allocBuffer(stack);
 		final var deviceFeatures = allocPhysicalFeatures(stack);
-		final var createInfo = VkDeviceCreateInfo.mallocStack(stack)
+		final var createInfo = VkDeviceCreateInfo.malloc(stack)
 												 .set(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
 													  VK_NULL_HANDLE,
 													  0,
@@ -60,7 +60,7 @@ public final class LogicalDevice implements ILogicalDevice
 
 	private VkPhysicalDeviceFeatures allocPhysicalFeatures(MemoryStack stack)
 	{
-		final var deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);
+		final var deviceFeatures = VkPhysicalDeviceFeatures.calloc(stack);
 		deviceFeatures.samplerAnisotropy(true);
 
 		final boolean fillModeNonSolid = features.contains(EPhysicalFeature.FILL_MODE_NON_SOLID);

@@ -104,7 +104,7 @@ public class Layers
 
 			if (count > 0)
 			{
-				final var instanceLayers = VkLayerProperties.mallocStack(count, stack);
+				final var instanceLayers = VkLayerProperties.malloc(count, stack);
 				vkEnumerateInstanceLayerProperties(ip, instanceLayers);
 
 				for (int i = 0; i < count; i++)

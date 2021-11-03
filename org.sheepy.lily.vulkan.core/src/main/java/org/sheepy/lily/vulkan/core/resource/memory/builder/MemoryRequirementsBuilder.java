@@ -25,7 +25,7 @@ public final class MemoryRequirementsBuilder
 	public MemoryRequirementsBuilder(final IVulkanContext context)
 	{
 		device = context.getVkDevice();
-		requirementBuffer = VkMemoryRequirements.mallocStack(context.stack());
+		requirementBuffer = VkMemoryRequirements.malloc(context.stack());
 	}
 
 	public MemoryRequirements build(final Stream<? extends IVulkanResourcePointer> resourcePointers)

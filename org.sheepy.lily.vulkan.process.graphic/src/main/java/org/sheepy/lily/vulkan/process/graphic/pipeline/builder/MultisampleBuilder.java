@@ -9,7 +9,7 @@ public class MultisampleBuilder
 {
 	public VkPipelineMultisampleStateCreateInfo allocCreateInfo(MemoryStack stack)
 	{
-		final var multisampling = VkPipelineMultisampleStateCreateInfo.mallocStack(stack);
+		final var multisampling = VkPipelineMultisampleStateCreateInfo.malloc(stack);
 		multisampling.sType(VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO);
 		multisampling.sampleShadingEnable(false);
 		multisampling.rasterizationSamples(VK_SAMPLE_COUNT_1_BIT);

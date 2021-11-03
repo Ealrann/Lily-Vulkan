@@ -44,7 +44,7 @@ public final class CommandPool
 		{
 			// Command Pool
 			// ------------------
-			final VkCommandPoolCreateInfo poolInfo = VkCommandPoolCreateInfo.callocStack(stack);
+			final VkCommandPoolCreateInfo poolInfo = VkCommandPoolCreateInfo.calloc(stack);
 			poolInfo.sType(VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO);
 			poolInfo.queueFamilyIndex(queueIndex);
 			poolInfo.flags(allowReset ? VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT : 0);

@@ -25,7 +25,7 @@ public final class PushBufferData implements IDataFlow
 	{
 		final var commandBuffer = recordContext.commandBuffer;
 		final var stack = recordContext.stack();
-		final var copyRegions = VkBufferCopy.mallocStack(regions.size(), stack);
+		final var copyRegions = VkBufferCopy.malloc(regions.size(), stack);
 
 		regions.forEach(region -> region.fill(copyRegions.get()));
 		copyRegions.flip();

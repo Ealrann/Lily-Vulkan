@@ -102,7 +102,7 @@ public class DescriptorSetAllocation implements IDescriptorSetAllocation
 		layouts.put(layoutPtr);
 		layouts.flip();
 
-		final var allocInfo = VkDescriptorSetAllocateInfo.callocStack(stack);
+		final var allocInfo = VkDescriptorSetAllocateInfo.calloc(stack);
 		allocInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO);
 		allocInfo.descriptorPool(descriptorPoolPtr);
 		allocInfo.pSetLayouts(layouts);

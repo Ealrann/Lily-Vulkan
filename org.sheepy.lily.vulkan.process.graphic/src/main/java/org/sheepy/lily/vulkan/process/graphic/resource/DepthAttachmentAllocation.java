@@ -91,7 +91,7 @@ public final class DepthAttachmentAllocation implements IDepthAttachmentAllocati
 		if (dstLayout != EImageLayout.UNDEFINED)
 		{
 			final var stack = context.stack();
-			final var barrierInfo = VkImageMemoryBarrier.callocStack(1, stack);
+			final var barrierInfo = VkImageMemoryBarrier.calloc(1, stack);
 			final var srcStage = EPipelineStage.TOP_OF_PIPE_BIT_VALUE;
 			final var dstStage = EPipelineStage.EARLY_FRAGMENT_TESTS_BIT_VALUE;
 			final var srcLayout = EImageLayout.UNDEFINED;

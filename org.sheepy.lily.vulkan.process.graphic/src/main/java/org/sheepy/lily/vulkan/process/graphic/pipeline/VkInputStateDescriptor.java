@@ -33,7 +33,7 @@ public final class VkInputStateDescriptor
 
 	public VkPipelineVertexInputStateCreateInfo allocCreateInfo(MemoryStack stack)
 	{
-		final var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.mallocStack(stack);
+		final var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.malloc(stack);
 		final var bindingDescription = allocBindingDescription(stack);
 		final var attributeDescriptions = allocAttributeDescriptions(stack);
 
@@ -48,7 +48,7 @@ public final class VkInputStateDescriptor
 
 	public VkVertexInputBindingDescription.Buffer allocBindingDescription(MemoryStack stack)
 	{
-		final var bindingDescriptions = VkVertexInputBindingDescription.mallocStack(bindings.size(), stack);
+		final var bindingDescriptions = VkVertexInputBindingDescription.malloc(bindings.size(), stack);
 
 		for (int i = 0; i < bindings.size(); i++)
 		{
@@ -61,7 +61,7 @@ public final class VkInputStateDescriptor
 
 	public VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions(MemoryStack stack)
 	{
-		final var attributeDescriptions = VkVertexInputAttributeDescription.mallocStack(attributeCount, stack);
+		final var attributeDescriptions = VkVertexInputAttributeDescription.malloc(attributeCount, stack);
 
 		int location = 0;
 		for (int bindingIndex = 0; bindingIndex < bindings.size(); bindingIndex++)
@@ -96,15 +96,6 @@ public final class VkInputStateDescriptor
 		}
 	}
 
-	public static final class VkAttributeDescription
-	{
-		public final int format;
-		public final int offset;
-
-		public VkAttributeDescription(int format, int offset)
-		{
-			this.format = format;
-			this.offset = offset;
-		}
-	}
+	public record VkAttributeDescription(int format, int offset)
+	{}
 }

@@ -217,7 +217,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 			if (data.image != null)
 			{
 				final var imageIndex = context.imageIndex(data.image);
-				nkImage = NkImage.callocStack(stack);
+				nkImage = NkImage.calloc(stack);
 				nk_image_ptr(imageIndex, nkImage);
 			}
 			else

@@ -60,7 +60,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 	@Override
 	public void start(ECommandStage stage)
 	{
-		final var beginInfo = VkCommandBufferBeginInfo.callocStack(stack);
+		final var beginInfo = VkCommandBufferBeginInfo.calloc(stack);
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
 		beginInfo.flags(VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
 

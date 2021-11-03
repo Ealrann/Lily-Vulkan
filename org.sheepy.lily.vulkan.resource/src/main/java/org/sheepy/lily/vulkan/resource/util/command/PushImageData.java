@@ -74,7 +74,7 @@ public final class PushImageData implements IDataFlow
 									   srcAccess,
 									   blitAccess);
 
-		final var barriers = VkBufferMemoryBarrier.callocStack(1, stack);
+		final var barriers = VkBufferMemoryBarrier.calloc(1, stack);
 		final var hostBarrier = barriers.get(0);
 		hostBarrier.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
 		hostBarrier.buffer(srcBuffer);
@@ -85,7 +85,7 @@ public final class PushImageData implements IDataFlow
 
 		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), blitStage.getValue(), 0, null, barriers, null);
 
-		final VkBufferImageCopy.Buffer region = VkBufferImageCopy.callocStack(1, stack);
+		final VkBufferImageCopy.Buffer region = VkBufferImageCopy.calloc(1, stack);
 		region.bufferOffset(ticket.getOffset());
 		region.bufferRowLength(0);
 		region.bufferImageHeight(0);

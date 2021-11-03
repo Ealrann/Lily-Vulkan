@@ -23,7 +23,7 @@ public final class DeviceLocalBufferBackend implements IBufferBackend
 	{
 		// System.out.println("free " + Long.toHexString(address));
 		final var vkDevice = context.getVkDevice();
-		vkBuffer.free(context.getVkDevice());
+		vkBuffer.free(vkDevice);
 	}
 
 	@Override

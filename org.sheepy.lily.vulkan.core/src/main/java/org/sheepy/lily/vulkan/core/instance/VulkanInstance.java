@@ -39,7 +39,7 @@ public final class VulkanInstance
 
 	public void allocate(MemoryStack stack)
 	{
-		final var appInfo = VkApplicationInfo.mallocStack(stack)
+		final var appInfo = VkApplicationInfo.malloc(stack)
 											 .set(VK_STRUCTURE_TYPE_APPLICATION_INFO,
 												  VK_NULL_HANDLE,
 												  stack.UTF8(title),
@@ -50,7 +50,7 @@ public final class VulkanInstance
 
 		final var requiredExtensions = instanceExtensions.allocBuffer(stack);
 		final var layersBuffer = layers.allocateBuffer(stack);
-		final var createInfo = VkInstanceCreateInfo.mallocStack(stack)
+		final var createInfo = VkInstanceCreateInfo.malloc(stack)
 												   .set(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
 														VK_NULL_HANDLE,
 														0,

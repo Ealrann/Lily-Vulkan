@@ -10,7 +10,7 @@ public class InputAssemblyBuilder
 {
 	public VkPipelineInputAssemblyStateCreateInfo allocCreateInfo(MemoryStack stack, InputAssembly info)
 	{
-		final var inputAssembly = VkPipelineInputAssemblyStateCreateInfo.mallocStack();
+		final var inputAssembly = VkPipelineInputAssemblyStateCreateInfo.malloc();
 		inputAssembly.sType(VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO);
 		inputAssembly.topology(info.getPrimitiveTopology().getValue());
 		inputAssembly.primitiveRestartEnable(info.isPrimitiveRestartEnabled());

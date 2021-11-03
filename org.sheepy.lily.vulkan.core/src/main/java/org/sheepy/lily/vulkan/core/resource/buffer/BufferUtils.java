@@ -30,7 +30,7 @@ public final class BufferUtils
 	 */
 	public static int flush(MemoryStack stack, VkDevice vkDevice, long bufferMemoryId, long size, long offset)
 	{
-		final var mappedRange = VkMappedMemoryRange.callocStack(1, stack);
+		final var mappedRange = VkMappedMemoryRange.calloc(1, stack);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
 		mappedRange.memory(bufferMemoryId);
 		mappedRange.offset(offset);
@@ -54,7 +54,7 @@ public final class BufferUtils
 	 */
 	public static int invalidate(MemoryStack stack, VkDevice vkDevice, long bufferMemoryId, long size, long offset)
 	{
-		final var mappedRange = VkMappedMemoryRange.callocStack(1, stack);
+		final var mappedRange = VkMappedMemoryRange.calloc(1, stack);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
 		mappedRange.memory(bufferMemoryId);
 		mappedRange.offset(offset);
@@ -70,7 +70,7 @@ public final class BufferUtils
 								  long dstOffset,
 								  long size)
 	{
-		final var copyRegion = VkBufferCopy.mallocStack(1, stack);
+		final var copyRegion = VkBufferCopy.malloc(1, stack);
 		copyRegion.srcOffset(srcOffset);
 		copyRegion.dstOffset(dstOffset);
 		copyRegion.size(size);

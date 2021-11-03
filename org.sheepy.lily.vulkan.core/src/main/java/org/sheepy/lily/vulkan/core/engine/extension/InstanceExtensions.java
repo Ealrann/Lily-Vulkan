@@ -112,7 +112,7 @@ public final class InstanceExtensions
 
 			if (count != 0)
 			{
-				final var instanceExtensions = VkExtensionProperties.mallocStack(count, stack);
+				final var instanceExtensions = VkExtensionProperties.malloc(count, stack);
 				vkEnumerateInstanceExtensionProperties((String) null, ip, instanceExtensions);
 
 				for (int i = 0; i < count; i++)

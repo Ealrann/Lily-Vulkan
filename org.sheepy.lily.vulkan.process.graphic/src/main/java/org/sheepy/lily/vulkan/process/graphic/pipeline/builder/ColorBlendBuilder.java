@@ -13,7 +13,7 @@ public class ColorBlendBuilder
 	public VkPipelineColorBlendStateCreateInfo allocCreateInfo(MemoryStack stack, ColorBlend colorBlend)
 	{
 		final int size = colorBlend.getAttachments().size();
-		final var colorBlendAttachments = VkPipelineColorBlendAttachmentState.callocStack(size, stack);
+		final var colorBlendAttachments = VkPipelineColorBlendAttachmentState.calloc(size, stack);
 		for (final ColorBlendAttachment attachement : colorBlend.getAttachments())
 		{
 			final var colorBlendAttachment = colorBlendAttachments.get();
@@ -39,7 +39,7 @@ public class ColorBlendBuilder
 		}
 		colorBlendAttachments.flip();
 
-		final var colorBlending = VkPipelineColorBlendStateCreateInfo.mallocStack(stack);
+		final var colorBlending = VkPipelineColorBlendStateCreateInfo.malloc(stack);
 		colorBlending.sType(VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO);
 		colorBlending.logicOpEnable(colorBlend.isLogicOpEnable());
 		colorBlending.logicOp(colorBlend.getLogicOp().getValue());

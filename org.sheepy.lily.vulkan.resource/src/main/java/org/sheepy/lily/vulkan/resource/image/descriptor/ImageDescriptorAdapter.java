@@ -35,7 +35,7 @@ public final class ImageDescriptorAdapter implements IDescriptorAdapter
 	{
 		final var shaderStages = VulkanModelUtil.getEnumeratedFlag(descriptor.getShaderStages());
 
-		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.calloc(stack);
 		res.descriptorType(descriptor.getType().getValue());
 		res.descriptorCount(descriptorCount);
 		res.stageFlags(shaderStages);

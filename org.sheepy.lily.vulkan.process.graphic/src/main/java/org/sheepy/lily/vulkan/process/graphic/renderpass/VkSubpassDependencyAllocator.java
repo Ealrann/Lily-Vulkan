@@ -21,7 +21,7 @@ public final class VkSubpassDependencyAllocator
 		previousFinishAccess = List.of();
 
 		final int size = Math.max(1, subpasses.size());
-		final var dependencies = VkSubpassDependency.callocStack(size, stack);
+		final var dependencies = VkSubpassDependency.calloc(size, stack);
 		if (subpasses.isEmpty() == false)
 		{
 			for (int i = 0; i < size; i++)

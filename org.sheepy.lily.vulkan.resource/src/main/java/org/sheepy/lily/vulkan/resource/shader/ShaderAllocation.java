@@ -61,7 +61,7 @@ public final class ShaderAllocation implements IShaderAllocation
 		final var vkDevice = context.getVkDevice();
 		final var stack = context.stack();
 		final var fileAdapter = shaderResource.adapt(IFileResourceAdapter.class);
-		final var moduleCreateInfo = VkShaderModuleCreateInfo.mallocStack(stack);
+		final var moduleCreateInfo = VkShaderModuleCreateInfo.malloc(stack);
 		final var shaderCode = fileAdapter.allocByteBuffer(shaderResource);
 		moduleCreateInfo.sType(VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO);
 		moduleCreateInfo.pCode(shaderCode);

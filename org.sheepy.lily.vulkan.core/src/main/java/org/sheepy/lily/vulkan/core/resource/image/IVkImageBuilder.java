@@ -107,7 +107,7 @@ public interface IVkImageBuilder
 
 		private VkImageCreateInfo allocateInfo(MemoryStack stack)
 		{
-			final VkImageCreateInfo imageInfo = VkImageCreateInfo.callocStack(stack);
+			final VkImageCreateInfo imageInfo = VkImageCreateInfo.calloc(stack);
 
 			imageInfo.sType(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO);
 			imageInfo.imageType(VK_IMAGE_TYPE_2D);

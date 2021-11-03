@@ -64,7 +64,7 @@ public final class FontImageProviderAdapter extends Notifier<IImageDataProviderA
 
 			cdata = STBTTPackedchar.calloc(codepointMap.codepointCount);
 
-			final STBTTPackContext pc = STBTTPackContext.mallocStack(stack);
+			final STBTTPackContext pc = STBTTPackContext.malloc(stack);
 			stbtt_PackBegin(pc, bitmap, BASE_FONTIMAGE_WIDTH, BASE_FONTIMAGE_HEIGHT, 0, 1, NULL);
 			stbtt_PackSetOversampling(pc, H_OVERSAMPLING, V_OVERSAMPLING);
 

@@ -66,7 +66,7 @@ public final class VkShaderStage
 		if (specializationConstants.isEmpty() == false)
 		{
 			final int constantCount = specializationConstants.size();
-			final var mapEntries = VkSpecializationMapEntry.mallocStack(constantCount, stack);
+			final var mapEntries = VkSpecializationMapEntry.malloc(constantCount, stack);
 
 			int offset = 0;
 			for (int i = 0; i < constantCount; i++)
@@ -83,7 +83,7 @@ public final class VkShaderStage
 
 			mapEntries.flip();
 
-			speInfo = VkSpecializationInfo.callocStack(stack);
+			speInfo = VkSpecializationInfo.calloc(stack);
 			speInfo.set(mapEntries, specializationData);
 		}
 		return speInfo;
