@@ -5,3 +5,6 @@
 	path = Lily-vulkan
 	url = https://github.com/Ealrann/Lily-vulkan.git
 	branch = master
+[submodule "Logoce"]
+	path = Logoce
+	url = https://github.com/Ealrann/Logoce.git
