@@ -95,23 +95,27 @@ public final class DeviceExtensions
 			return new DeviceExtensions(extensions);
 		}
 
-		private static List<String> gatherAvailableExtensions(VkPhysicalDevice vkPhysicalDevice,
+		private static List<String> gatherAvailableExtensions(final VkPhysicalDevice vkPhysicalDevice,
 															  final MemoryStack stack)
 		{
 			final List<String> extensions = new ArrayList<>();
 			final int[] extensionCount = new int[1];
 
 			vkEnumerateDeviceExtensionProperties(vkPhysicalDevice, (ByteBuffer) null, extensionCount, null);
-			final var availableExtensions = VkExtensionProperties.calloc(extensionCount[0], stack);
 
-			vkEnumerateDeviceExtensionProperties(vkPhysicalDevice,
-												 (ByteBuffer) null,
-												 extensionCount,
-												 availableExtensions);
-
-			for (final VkExtensionProperties extension : availableExtensions)
+			try (final var subStack = MemoryStack.stackPush())
 			{
-				extensions.add(extension.extensionNameString());
+				final var availableExtensions = VkExtensionProperties.calloc(extensionCount[0], subStack);
+
+				vkEnumerateDeviceExtensionProperties(vkPhysicalDevice,
+													 (ByteBuffer) null,
+													 extensionCount,
+													 availableExtensions);
+
+				for (final VkExtensionProperties extension : availableExtensions)
+				{
+					extensions.add(extension.extensionNameString());
+				}
 			}
 
 			return extensions;
