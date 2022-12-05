@@ -11,17 +11,13 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.core.window.VkSurface;
 
 import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.lwjgl.vulkan.VK10.vkEnumeratePhysicalDevices;
 
 public class PhysicalDeviceSelector
 {
 	private final VulkanInstance vulkanInstance;
-	private final List<DeviceScore> devices = new ArrayList<>();
 	private final Set<EDeviceExtension> requiredDeviceExtensions;
 	private final VkSurface surface;
 
@@ -41,9 +37,10 @@ public class PhysicalDeviceSelector
 	public PhysicalDevice findBestPhysicalDevice(MemoryStack stack)
 	{
 		load(stack);
-		gatherDevices(stack);
-		devices.sort(Comparator.comparingInt(o -> o.score));
-		final var winner = devices.get(0).deviceBuilder;
+		final var bestDevice = gatherDevices(stack).stream()
+												   .max(Comparator.comparing(DeviceScore::score))
+												   .orElseThrow(NoSuchElementException::new);
+		final var winner = bestDevice.deviceBuilder;
 		if (DebugUtil.DEBUG_ENABLED) winner.printInfo(DebugUtil.DEBUG_VERBOSE_ENABLED);
 		return winner.build(surface);
 	}
@@ -60,8 +57,9 @@ public class PhysicalDeviceSelector
 		Logger.check(err, "Failed to get physical devices");
 	}
 
-	private void gatherDevices(MemoryStack stack)
+	private List<DeviceScore> gatherDevices(MemoryStack stack)
 	{
+		final List<DeviceScore> res = new ArrayList<>();
 		final var vkInstance = vulkanInstance.getVkInstance();
 		final var judge = new PhysicalDeviceJudge(surface);
 
@@ -70,24 +68,18 @@ public class PhysicalDeviceSelector
 			final var vkPhysicalDevice = new VkPhysicalDevice(pPhysicalDevices.get(i), vkInstance);
 			final var deviceBuilder = new PhysicalDevice.Builder(vkPhysicalDevice, requiredDeviceExtensions, stack);
 			final int deviceScore = judge.rateDeviceSuitability(deviceBuilder);
-			if (DebugUtil.DEBUG_VERBOSE_ENABLED)
+			if (DebugUtil.DEBUG_ENABLED)
 			{
 				System.out.printf("[%s (%d)]: %d points", deviceBuilder.name, deviceBuilder.driverVersion, deviceScore);
 			}
 
-			devices.add(new DeviceScore(deviceBuilder, deviceScore));
+			res.add(new DeviceScore(deviceBuilder, deviceScore));
 		}
+
+		return res;
 	}
 
-	public static final class DeviceScore
+	private record DeviceScore(PhysicalDevice.Builder deviceBuilder, int score)
 	{
-		public final PhysicalDevice.Builder deviceBuilder;
-		public final int score;
-
-		DeviceScore(PhysicalDevice.Builder deviceBuilder, int score)
-		{
-			this.deviceBuilder = deviceBuilder;
-			this.score = score;
-		}
 	}
 }
