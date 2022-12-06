@@ -50,18 +50,21 @@ public final class NuklearInputCatcher implements IInputCatcher
 			case GLFW_KEY_BACKSPACE -> nk_input_key(nkContext, NK_KEY_BACKSPACE, press);
 			case GLFW_KEY_UP -> nk_input_key(nkContext, NK_KEY_UP, press);
 			case GLFW_KEY_DOWN -> nk_input_key(nkContext, NK_KEY_DOWN, press);
-			case GLFW_KEY_HOME -> {
+			case GLFW_KEY_HOME ->
+			{
 				nk_input_key(nkContext, NK_KEY_TEXT_START, press);
 				nk_input_key(nkContext, NK_KEY_SCROLL_START, press);
 			}
-			case GLFW_KEY_END -> {
+			case GLFW_KEY_END ->
+			{
 				nk_input_key(nkContext, NK_KEY_TEXT_END, press);
 				nk_input_key(nkContext, NK_KEY_SCROLL_END, press);
 			}
 			case GLFW_KEY_PAGE_DOWN -> nk_input_key(nkContext, NK_KEY_SCROLL_DOWN, press);
 			case GLFW_KEY_PAGE_UP -> nk_input_key(nkContext, NK_KEY_SCROLL_UP, press);
 			case GLFW_KEY_LEFT_SHIFT, GLFW_KEY_RIGHT_SHIFT -> nk_input_key(nkContext, NK_KEY_SHIFT, press);
-			case GLFW_KEY_LEFT_CONTROL, GLFW_KEY_RIGHT_CONTROL -> {
+			case GLFW_KEY_LEFT_CONTROL, GLFW_KEY_RIGHT_CONTROL ->
+			{
 				if (press)
 				{
 					nk_input_key(nkContext, NK_KEY_COPY, glfwGetKey(windowId, GLFW_KEY_C) == GLFW_PRESS);
@@ -162,7 +165,8 @@ public final class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public boolean isCursorThere()
 	{
-		return nk_window_is_any_hovered(nkContext);
+		// nk_window_is_any_hovered(nkContext)
+		return layoutManager.getHoveredPanel() != null;
 	}
 
 	@Override
@@ -179,11 +183,10 @@ public final class NuklearInputCatcher implements IInputCatcher
 		}
 		else if (mouse.grabbed())
 		{
-			final float prevX = mouse.prev().x();
-			final float prevY = mouse.prev().y();
-			glfwSetCursorPos(windowId, prevX, prevY);
-			mouse.pos().x(prevX);
-			mouse.pos().y(prevY);
+			final var prev = mouse.prev();
+			final var current = mouse.pos();
+			glfwSetCursorPos(windowId, prev.x(), prev.y());
+			current.set(prev);
 			res = true;
 		}
 		else if (mouse.ungrab())

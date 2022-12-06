@@ -73,7 +73,7 @@ public final class SelectorButtonDrawer
 
 		if (nk_begin(nkContext, id, rect, STYLE))
 		{
-			isHovered = nk_window_is_hovered(nkContext);
+			isHovered = nk_input_is_mouse_hovering_rect(nkContext.input(), rect);
 
 			nk_layout_row_dynamic(nkContext, buttonSize, 1);
 			if (image != null)

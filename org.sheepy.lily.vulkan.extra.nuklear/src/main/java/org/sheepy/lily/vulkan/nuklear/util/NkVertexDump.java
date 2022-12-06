@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.nuklear.util;
 
-import java.nio.ByteBuffer;
-
 import org.lwjgl.system.MemoryUtil;
+
+import java.nio.ByteBuffer;
 
 public class NkVertexDump
 {
@@ -23,17 +23,16 @@ public class NkVertexDump
 			final int a = (color >> 24) & 255;
 			final int index = i / 5;
 
-			if (x != 0 || y != 0)
-				System.out.print(String.format(	"%d| p:{%.0f, %.0f}, uv:{%.2f, %.2f}, rgb:{%d, %d, %d, %d}\n",
-												index,
-												x,
-												y,
-												u,
-												v,
-												r,
-												g,
-												b,
-												a));
+			if (x != 0 || y != 0) System.out.printf("%d| p:{%.0f, %.0f}, uv:{%.2f, %.2f}, rgb:{%d, %d, %d, %d}\n",
+													index,
+													x,
+													y,
+													u,
+													v,
+													r,
+													g,
+													b,
+													a);
 		}
 	}
 
@@ -47,8 +46,7 @@ public class NkVertexDump
 			final int i2 = buffer.getShort();
 			final int i3 = buffer.getShort();
 
-			if (i1 != 0 || i2 != 0 || i3 != 0)
-				System.out.print(String.format("i:{%d, %d, %d}\n", i1, i2, i3));
+			if (i1 != 0 || i2 != 0 || i3 != 0) System.out.printf("i:{%d, %d, %d}\n", i1, i2, i3);
 		}
 	}
 }

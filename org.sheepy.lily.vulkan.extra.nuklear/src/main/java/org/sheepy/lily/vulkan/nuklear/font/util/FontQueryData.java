@@ -52,7 +52,7 @@ public class FontQueryData
 				fontAllocator.fillPackedQuad(quad, index);
 
 				final var patternGlyph = patternGlyphs.get();
-				final var hMetric = tableData.hMetric;
+				final var hMetric = tableData.hMetric();
 				final float width = quad.x1() - quad.x0();
 				final float height = quad.y1() - quad.y0();
 				final float offsetX = quad.x0();

@@ -31,7 +31,7 @@ final class CodepointTable
 		for (int i = 0; i < loadedChars.size(); i++)
 		{
 			final var currentCodepoint = loadedChars.get(i);
-			if (currentCodepoint.codepoint == codepoint)
+			if (currentCodepoint.codepoint() == codepoint)
 			{
 				return i;
 			}

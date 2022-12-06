@@ -5,12 +5,16 @@ package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.extra.model.nuklear.*;
+import org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFont;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
+import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
+import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 
 /**
  * <!-- begin-user-doc -->

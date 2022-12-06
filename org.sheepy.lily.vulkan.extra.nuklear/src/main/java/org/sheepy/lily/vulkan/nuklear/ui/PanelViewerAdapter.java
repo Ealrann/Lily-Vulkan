@@ -5,7 +5,6 @@ import org.logoce.adapter.api.Adapter;
 import org.sheepy.lily.core.api.adapter.Load;
 import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
-import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 import org.sheepy.lily.vulkan.extra.api.nuklear.IControlProviderAdapter;
@@ -82,11 +81,5 @@ public final class PanelViewerAdapter extends PanelAdapter implements IPanelAdap
 		}
 
 		return res;
-	}
-
-	@Override
-	public Panel getPanel()
-	{
-		return super.getPanel();
 	}
 }

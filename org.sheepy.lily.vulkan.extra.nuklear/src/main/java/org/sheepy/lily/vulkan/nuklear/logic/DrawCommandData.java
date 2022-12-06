@@ -19,10 +19,11 @@ public class DrawCommandData
 	{
 		final int elemCount = cmd.elem_count();
 
-		xOffset = (int) (cmd.clip_rect().x() * fb_scale_x);
-		yOffset = (int) (cmd.clip_rect().y() * fb_scale_y);
-		xExtent = (int) (cmd.clip_rect().w() * fb_scale_x);
-		yExtent = (int) (cmd.clip_rect().h() * fb_scale_y);
+		final var rect = cmd.clip_rect();
+		xOffset = (int) (rect.x() * fb_scale_x);
+		yOffset = (int) (rect.y() * fb_scale_y);
+		xExtent = (int) (rect.w() * fb_scale_x);
+		yExtent = (int) (rect.h() * fb_scale_y);
 
 		this.descriptorIndex = descriptorIndex;
 		this.elemCount = elemCount;

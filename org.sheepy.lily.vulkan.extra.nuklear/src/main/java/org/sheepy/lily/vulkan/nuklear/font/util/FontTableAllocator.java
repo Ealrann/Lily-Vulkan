@@ -128,13 +128,11 @@ public final class FontTableAllocator implements IFontTableInfo
 		return false;
 	}
 
-	@Override
 	public int getLoadedCharCount()
 	{
 		return charCount;
 	}
 
-	@Override
 	public int indexOf(int codepoint)
 	{
 		int res = 0;

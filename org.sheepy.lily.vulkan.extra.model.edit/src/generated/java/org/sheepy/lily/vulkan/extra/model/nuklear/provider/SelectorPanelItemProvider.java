@@ -8,11 +8,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -24,11 +21,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
-
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariableFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
@@ -40,7 +34,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SelectorPanelItemProvider 
+public class SelectorPanelItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -78,6 +72,7 @@ public class SelectorPanelItemProvider
 			addVerticalRelativePropertyDescriptor(object);
 			addHorizontalRelativePropertyDescriptor(object);
 			addCatchInputsPropertyDescriptor(object);
+			addReportingHoverPropertyDescriptor(object);
 			addButtonSizePxPropertyDescriptor(object);
 			addSelectionRPropertyDescriptor(object);
 			addSelectionGPropertyDescriptor(object);
@@ -203,7 +198,30 @@ public class SelectorPanelItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BehaviourPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Reporting Hover feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReportingHoverPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IPanel_reportingHover_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPanel_reportingHover_feature", "_UI_IPanel_type"),
+				 UiPackage.Literals.IPANEL__REPORTING_HOVER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_BehaviourPropertyCategory"),
 				 null));
 	}
 
@@ -518,6 +536,7 @@ public class SelectorPanelItemProvider
 			case NuklearPackage.SELECTOR_PANEL__VERTICAL_RELATIVE:
 			case NuklearPackage.SELECTOR_PANEL__HORIZONTAL_RELATIVE:
 			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
+			case NuklearPackage.SELECTOR_PANEL__REPORTING_HOVER:
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_R:
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_G:

@@ -1,14 +1,14 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
 import org.joml.Vector2ic;
+import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
+import org.logoce.notification.api.Notifier;
 import org.lwjgl.nuklear.NkColor;
 import org.lwjgl.nuklear.NkImage;
 import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.system.MemoryUtil;
-import org.logoce.adapter.api.Adapter;
 import org.sheepy.lily.core.api.adapter.Dispose;
-import org.logoce.extender.api.ModelExtender;
-import org.logoce.notification.api.Notifier;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
@@ -35,7 +35,7 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 	private boolean dirty = true;
 	private boolean hovered = false;
 
-	public PanelAdapter(Panel panel)
+	public PanelAdapter(final Panel panel)
 	{
 		super(List.of(Features.Text));
 		this.panel = panel;
@@ -127,11 +127,13 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 		boderColor.b((byte) panel.getBorderColor().z());
 		boderColor.a((byte) panel.getBorderColor().w());
 
-		if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
-		{
-			hovered = nk_window_is_hovered(nkContext);
+		final var drawChildren = nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style);
 
-			if (nk_window_is_collapsed(nkContext, textBuffer) && (style & NK_WINDOW_MINIMIZED) != 0)
+		if (drawChildren)
+		{
+			hovered = nk_input_is_mouse_hovering_rect(context.nkContext.input(), rect);
+
+			if ((style & NK_WINDOW_MINIMIZED) != 0)
 			{
 				style ^= NK_WINDOW_MINIMIZED;
 				dirty = true;
@@ -163,12 +165,15 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 				res |= adapter.layout(context, child);
 			}
 		}
-		else if ((style & NK_WINDOW_MINIMIZED) == 0)
+		else
 		{
-			hovered = false;
-			style |= NK_WINDOW_MINIMIZED;
-			res = true;
-			dirty = true;
+			hovered = nk_window_is_hovered(nkContext);
+			if ((style & NK_WINDOW_MINIMIZED) == 0 && nk_window_is_collapsed(nkContext, textBuffer))
+			{
+				style |= NK_WINDOW_MINIMIZED;
+				res = true;
+				dirty = true;
+			}
 		}
 
 		nk_end(nkContext);
@@ -198,7 +203,7 @@ public class PanelAdapter extends Notifier<ITextWidgetAdapter.Features> implemen
 	@Override
 	public boolean isHovered()
 	{
-		return hovered;
+		return panel.isReportingHover() && hovered;
 	}
 
 	@Override

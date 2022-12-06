@@ -14,7 +14,7 @@ import static org.lwjgl.nuklear.Nuklear.*;
 import static org.lwjgl.system.MemoryUtil.nmemAllocChecked;
 import static org.lwjgl.system.MemoryUtil.nmemFree;
 
-public final record NuklearState(NkAllocator allocator, NkContext nkContext, NkBuffer cmds, NkBuffer vbuf, NkBuffer ebuf, NkDrawNullTexture nkNullTexture, NkConvertConfig config)
+public record NuklearState(NkAllocator allocator, NkContext nkContext, NkBuffer cmds, NkBuffer vbuf, NkBuffer ebuf, NkDrawNullTexture nkNullTexture, NkConvertConfig config)
 {
 	private static final int BUFFER_INITIAL_SIZE = 4 * 1024;
 	private static final int VERTEX_SIZE = 20;

@@ -337,6 +337,15 @@ public interface NuklearPackage extends EPackage
 	int SELECTOR_PANEL__CATCH_INPUTS = UiPackage.IPANEL__CATCH_INPUTS;
 
 	/**
+	 * The feature id for the '<em><b>Reporting Hover</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTOR_PANEL__REPORTING_HOVER = UiPackage.IPANEL__REPORTING_HOVER;
+
+	/**
 	 * The feature id for the '<em><b>Button Size Px</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -553,6 +562,15 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int PANEL_VIEWER__CATCH_INPUTS = UiPackage.PANEL__CATCH_INPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Reporting Hover</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_VIEWER__REPORTING_HOVER = UiPackage.PANEL__REPORTING_HOVER;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.

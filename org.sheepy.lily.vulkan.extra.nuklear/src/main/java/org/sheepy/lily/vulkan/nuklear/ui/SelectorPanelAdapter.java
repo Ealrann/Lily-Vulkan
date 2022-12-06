@@ -199,7 +199,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 				{
 					if (panel.isDetectHoverOnLabels())
 					{
-						hovered |= nk_window_is_hovered(nkContext);
+						hovered |= nk_input_is_mouse_hovering_rect(context.nkContext.input(), data.rectLabel);
 					}
 
 					if (showText || panel.isAutoHideLabels() == false)
@@ -242,7 +242,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 
 		if (panel.isAutoHideLabels() && panel.isPrintLabels())
 		{
-			updateHoverStatus(labelPanelHovered || buttonPanelHovered);
+			updateFadeStatus(labelPanelHovered || buttonPanelHovered);
 		}
 
 		buttonDrawer.finish();
@@ -257,7 +257,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 		return dirty || fadeTimer.isRunning();
 	}
 
-	private void updateHoverStatus(boolean hovered)
+	private void updateFadeStatus(boolean hovered)
 	{
 		if (hovered)
 		{
@@ -333,7 +333,7 @@ public final class SelectorPanelAdapter extends Notifier<ITextWidgetAdapter.Feat
 	@Override
 	public boolean isHovered()
 	{
-		return hovered;
+		return panel.isReportingHover() && hovered;
 	}
 
 	private static final class LineData

@@ -3,30 +3,25 @@
 package org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.joml.Vector2ic;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.inference.InferencePackage;
-
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.types.EHorizontalRelative;
 import org.sheepy.lily.core.model.types.EVerticalRelative;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.core.model.ui.IUIElement;
 import org.sheepy.lily.core.model.variable.DirectVariableResolver;
-
 import org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
@@ -44,6 +39,7 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getVerticalRelative <em>Vertical Relative</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getHorizontalRelative <em>Horizontal Relative</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isCatchInputs <em>Catch Inputs</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#isReportingHover <em>Reporting Hover</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getButtonSizePx <em>Button Size Px</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getSelectionR <em>Selection R</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.nuklear.impl.SelectorPanelImpl#getSelectionG <em>Selection G</em>}</li>
@@ -161,6 +157,26 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 	 * @ordered
 	 */
 	protected boolean catchInputs = CATCH_INPUTS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isReportingHover() <em>Reporting Hover</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReportingHover()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean REPORTING_HOVER_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isReportingHover() <em>Reporting Hover</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReportingHover()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean reportingHover = REPORTING_HOVER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getButtonSizePx() <em>Button Size Px</em>}' attribute.
@@ -526,6 +542,31 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 		catchInputs = newCatchInputs;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS, oldCatchInputs, catchInputs));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isReportingHover()
+	{
+		return reportingHover;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setReportingHover(boolean newReportingHover)
+	{
+		boolean oldReportingHover = reportingHover;
+		reportingHover = newReportingHover;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.SELECTOR_PANEL__REPORTING_HOVER, oldReportingHover, reportingHover));
 	}
 
 	/**
@@ -927,6 +968,8 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return getHorizontalRelative();
 			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
 				return isCatchInputs();
+			case NuklearPackage.SELECTOR_PANEL__REPORTING_HOVER:
+				return isReportingHover();
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 				return getButtonSizePx();
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_R:
@@ -979,6 +1022,9 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return;
 			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
 				setCatchInputs((Boolean)newValue);
+				return;
+			case NuklearPackage.SELECTOR_PANEL__REPORTING_HOVER:
+				setReportingHover((Boolean)newValue);
 				return;
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 				setButtonSizePx((Integer)newValue);
@@ -1045,6 +1091,9 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
 				setCatchInputs(CATCH_INPUTS_EDEFAULT);
 				return;
+			case NuklearPackage.SELECTOR_PANEL__REPORTING_HOVER:
+				setReportingHover(REPORTING_HOVER_EDEFAULT);
+				return;
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 				setButtonSizePx(BUTTON_SIZE_PX_EDEFAULT);
 				return;
@@ -1105,6 +1154,8 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 				return horizontalRelative != HORIZONTAL_RELATIVE_EDEFAULT;
 			case NuklearPackage.SELECTOR_PANEL__CATCH_INPUTS:
 				return catchInputs != CATCH_INPUTS_EDEFAULT;
+			case NuklearPackage.SELECTOR_PANEL__REPORTING_HOVER:
+				return reportingHover != REPORTING_HOVER_EDEFAULT;
 			case NuklearPackage.SELECTOR_PANEL__BUTTON_SIZE_PX:
 				return buttonSizePx != BUTTON_SIZE_PX_EDEFAULT;
 			case NuklearPackage.SELECTOR_PANEL__SELECTION_R:
@@ -1273,6 +1324,8 @@ public class SelectorPanelImpl extends LilyEObject implements SelectorPanel
 		result.append(horizontalRelative);
 		result.append(", catchInputs: ");
 		result.append(catchInputs);
+		result.append(", reportingHover: ");
+		result.append(reportingHover);
 		result.append(", buttonSizePx: ");
 		result.append(buttonSizePx);
 		result.append(", selectionR: ");
