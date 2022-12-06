@@ -42,6 +42,7 @@ public final class VkPipelineLayout
 												   .set(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO,
 														VK_NULL_HANDLE,
 														0,
+														descriptorSets.size(),
 														layouts,
 														pPushConstantRanges);
 
