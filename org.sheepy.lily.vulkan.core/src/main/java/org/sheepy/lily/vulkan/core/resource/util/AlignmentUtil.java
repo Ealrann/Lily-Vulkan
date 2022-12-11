@@ -2,11 +2,9 @@ package org.sheepy.lily.vulkan.core.resource.util;
 
 public final class AlignmentUtil
 {
-	public static long align(final long position, final long alignment)
+	public static long align(final long size, final long alignment)
 	{
-		final double alignmentFactor = (double) position / alignment;
-		final long chunks = (long) Math.ceil(alignmentFactor);
-		return (chunks * alignment);
+		return (size-1) - Math.floorMod((size-1), alignment) + alignment;
 	}
 
 	public static long leastCommonMultiple(long number1, long number2)
