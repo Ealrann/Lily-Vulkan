@@ -13,7 +13,6 @@ import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @ModelExtender(scope = DataDescriptorsProvider.class)
@@ -29,7 +28,7 @@ public class DataDescriptorsProviderAdapter implements IDescriptorProviderAdapte
 	@Override
 	public ResourceDescriptor buildForPart(ResourceDescriptorProvider provider, Stream<BufferViewer> bufferViewers)
 	{
-		final List<BufferViewer> bufferViewerList = bufferViewers.collect(Collectors.toUnmodifiableList());
+		final List<BufferViewer> bufferViewerList = bufferViewers.toList();
 		final List<IDescriptor> descriptors = new ArrayList<>();
 
 		final var dataDescriptors = ((DataDescriptorsProvider) provider).getDataDescriptors();

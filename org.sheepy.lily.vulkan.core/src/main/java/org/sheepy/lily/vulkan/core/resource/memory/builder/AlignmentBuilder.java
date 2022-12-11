@@ -7,7 +7,6 @@ import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.lwjgl.vulkan.VK10.vkBindBufferMemory;
 import static org.lwjgl.vulkan.VK10.vkBindImageMemory;
@@ -27,10 +26,7 @@ public final class AlignmentBuilder
 	{
 		position = 0;
 
-		final var alignedResources = memReq.sizedResources()
-										   .stream()
-										   .map(this::buildAlignedResource)
-										   .collect(Collectors.toUnmodifiableList());
+		final var alignedResources = memReq.sizedResources().stream().map(this::buildAlignedResource).toList();
 
 		return new AlignedResources(alignedResources, position);
 	}
@@ -46,7 +42,8 @@ public final class AlignmentBuilder
 	}
 
 	public record AlignedResources(List<? extends IAlignedResource<?>> alignedResources, long size)
-	{}
+	{
+	}
 
 	public interface IAlignedResource<T extends IVulkanResourcePointer>
 	{

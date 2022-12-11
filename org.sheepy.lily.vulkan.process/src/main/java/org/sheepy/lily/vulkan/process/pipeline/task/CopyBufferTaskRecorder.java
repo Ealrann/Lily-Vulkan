@@ -103,7 +103,7 @@ public final class CopyBufferTaskRecorder implements IRecordableAdapter
 		final var copyConfiguration = bufferConfigurationMap.entrySet()
 															.stream()
 															.map(CopyBufferTaskRecorder::newCopyData)
-															.collect(Collectors.toUnmodifiableList());
+															.toList();
 		return new CopyPass(copyConfiguration);
 	}
 
@@ -112,7 +112,7 @@ public final class CopyBufferTaskRecorder implements IRecordableAdapter
 		return new CopyConfiguration(entry.getValue().get(0), entry.getValue());
 	}
 
-	private static record BufferCopyConfiguration(IVulkanBufferAllocation srcBuffer, IVulkanBufferAllocation dstBuffer)
+	private record BufferCopyConfiguration(IVulkanBufferAllocation srcBuffer, IVulkanBufferAllocation dstBuffer)
 	{
 		private BufferCopyConfigurationPtr toPtrConfiguration()
 		{
@@ -120,11 +120,11 @@ public final class CopyBufferTaskRecorder implements IRecordableAdapter
 		}
 	}
 
-	private static record BufferCopyConfigurationPtr(long srcPtr, long dstPtr)
+	private record BufferCopyConfigurationPtr(long srcPtr, long dstPtr)
 	{
 	}
 
-	private static record CopyPass(List<CopyConfiguration> copyData)
+	private record CopyPass(List<CopyConfiguration> copyData)
 	{
 
 		private void record(RecordContext context)
@@ -138,7 +138,7 @@ public final class CopyBufferTaskRecorder implements IRecordableAdapter
 		}
 	}
 
-	private static record CopyConfiguration(BufferCopyConfiguration bufferCopyConfiguration, VkBufferCopy.Buffer vkBufferCopy)
+	private record CopyConfiguration(BufferCopyConfiguration bufferCopyConfiguration, VkBufferCopy.Buffer vkBufferCopy)
 	{
 		public CopyConfiguration(BufferCopyConfiguration bufferCopyConfiguration,
 								 List<BufferCopyConfiguration> copyConfigurations)

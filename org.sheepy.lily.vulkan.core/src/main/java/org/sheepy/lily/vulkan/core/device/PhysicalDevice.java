@@ -162,7 +162,7 @@ public final class PhysicalDevice implements IPhysicalDevice
 			this.vkPhysicalDevice = vkPhysicalDevice;
 			deviceProperties = new DeviceProperties(vkPhysicalDevice);
 			name = deviceProperties.vkDeviceProperties.deviceNameString();
-			deviceExtensions = new DeviceExtensions.Builder(vkPhysicalDevice, stack);
+			deviceExtensions = new DeviceExtensions.Builder(vkPhysicalDevice);
 			for (var extension : extensions) deviceExtensions.requires(extension);
 			memProperties = VkPhysicalDeviceMemoryProperties.calloc();
 			vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice, memProperties);

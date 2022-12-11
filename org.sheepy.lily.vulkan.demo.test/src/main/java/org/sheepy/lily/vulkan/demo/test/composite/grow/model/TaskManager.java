@@ -11,7 +11,6 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public final class TaskManager
 {
@@ -26,7 +25,7 @@ public final class TaskManager
 										.flatMap(List::stream)
 										.map(BufferViewer.class::cast)
 										.map(TaskManager::buildFetchContext)
-										.collect(Collectors.toUnmodifiableList());
+										.toList();
 	}
 
 	private static FetchContext buildFetchContext(BufferViewer bufferViewer)

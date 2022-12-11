@@ -139,7 +139,7 @@ public final class HostVisibleBufferBackend implements IBufferBackend
 		return size;
 	}
 
-	public static final record Builder(BufferInfo info)
+	public record Builder(BufferInfo info)
 	{
 		public HostVisibleBufferBackend build(final IVulkanContext context)
 		{

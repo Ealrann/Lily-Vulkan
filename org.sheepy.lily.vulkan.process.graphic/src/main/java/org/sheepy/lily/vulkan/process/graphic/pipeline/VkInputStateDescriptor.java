@@ -85,7 +85,7 @@ public final class VkInputStateDescriptor
 	public static final class VkVertexBinding
 	{
 		public final EInputRate inputRate;
-		public int strideLength;
+		public final int strideLength;
 		public final List<VkAttributeDescription> attributes;
 
 		public VkVertexBinding(EInputRate inputRate, int strideLength, List<VkAttributeDescription> attributes)

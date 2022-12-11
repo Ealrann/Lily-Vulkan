@@ -69,7 +69,7 @@ public final class BufferMemoryAdapter implements IMemoryChunkPartAdapter
 		return List.copyOf(tmpData);
 	}
 
-	public static record ChunkInfo(List<AlignmentData> data, long size, int usage)
+	public record ChunkInfo(List<AlignmentData> data, long size, int usage)
 	{
 		public ChunkInfo(List<AlignmentData> data)
 		{

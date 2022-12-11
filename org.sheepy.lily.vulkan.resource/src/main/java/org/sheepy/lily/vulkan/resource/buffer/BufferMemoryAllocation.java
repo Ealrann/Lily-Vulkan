@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.IRecordContext;
@@ -21,7 +21,6 @@ import org.sheepy.lily.vulkan.resource.memorychunk.MemoryChunkAllocation;
 import org.sheepy.lily.vulkan.resource.memorychunk.util.AlignmentData;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -87,7 +86,7 @@ public final class BufferMemoryAllocation implements IMemoryChunkPartAllocation
 									 .mapToObj(this::newBufferAlignmentWrapper)
 									 .filter(data -> force || data.bufferAllocation.needPush())
 									 .map(BufferAlignmentWrapper::toRegion)
-									 .collect(Collectors.toUnmodifiableList());
+									 .toList();
 
 		return Stream.of(new FillCommand.FillBufferCommand(bufferPtr, regions));
 	}

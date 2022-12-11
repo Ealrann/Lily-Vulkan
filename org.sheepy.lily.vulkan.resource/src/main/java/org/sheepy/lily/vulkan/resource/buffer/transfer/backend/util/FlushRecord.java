@@ -76,7 +76,7 @@ public final class FlushRecord
 		return new Invalidator(vkDevice, mappedRange);
 	}
 
-	private static record Invalidator(VkDevice vkDevice, VkMappedMemoryRange.Buffer ranges)
+	private record Invalidator(VkDevice vkDevice, VkMappedMemoryRange.Buffer ranges)
 	{
 		public void invalidate(EExecutionStatus status)
 		{

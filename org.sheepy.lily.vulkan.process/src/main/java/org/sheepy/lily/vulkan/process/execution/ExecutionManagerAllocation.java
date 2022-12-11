@@ -11,7 +11,6 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class ExecutionManagerAllocation implements IExecutionManagerAdapter
@@ -33,7 +32,7 @@ public abstract class ExecutionManagerAllocation implements IExecutionManagerAda
 		{
 			try (final var stack = MemoryStack.stackPush())
 			{
-				final var waitSemaphores = streamWaitData(false).collect(Collectors.toUnmodifiableList());
+				final var waitSemaphores = streamWaitData(false).toList();
 				final var dummySubmission = new Submission(stack, List.of(), waitSemaphores, List.of());
 				dummySubmission.submit(context.getQueue().vkQueue, VK10.VK_NULL_HANDLE);
 				lastExecutedRecorder = null;
@@ -43,7 +42,7 @@ public abstract class ExecutionManagerAllocation implements IExecutionManagerAda
 		else
 		{
 			final int semaphoreCount = executionManager.getWaitedBy().size();
-			final var waitSemaphores = streamWaitData(true).collect(Collectors.toUnmodifiableList());
+			final var waitSemaphores = streamWaitData(true).toList();
 			final var recorder = getRecorders().get(index);
 			recorder.prepare(waitSemaphores, semaphoreCount);
 			lastExecutedRecorder = recorder;

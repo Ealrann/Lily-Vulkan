@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
+import org.logoce.extender.api.ModelExtender;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
@@ -8,7 +9,6 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.vulkan.core.barrier.IBarrierAllocation;
 import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAllocation;
@@ -23,7 +23,6 @@ import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAllocation;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 import static org.lwjgl.vulkan.VK10.vkCmdPipelineBarrier;
@@ -72,7 +71,7 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 		return barrierAllocations.stream()
 								 .filter(barrierType::isInstance)
 								 .map(barrierType::cast)
-								 .collect(Collectors.toUnmodifiableList());
+								 .toList();
 	}
 
 	@Override

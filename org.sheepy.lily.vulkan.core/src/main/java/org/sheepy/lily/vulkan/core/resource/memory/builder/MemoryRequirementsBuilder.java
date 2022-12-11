@@ -8,7 +8,6 @@ import org.sheepy.lily.vulkan.core.resource.buffer.VkBuffer;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.core.resource.util.AlignmentUtil;
 
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.lwjgl.vulkan.VK10.vkGetBufferMemoryRequirements;
@@ -34,7 +33,7 @@ public final class MemoryRequirementsBuilder
 		alignement = 1;
 
 		final var alignedDescriptions = resourcePointers.map(this::updateRequirementsAndSizeResource)
-														.collect(Collectors.toUnmodifiableList());
+														.toList();
 
 		return new MemoryRequirements(memoryTypeBits, alignement, alignedDescriptions);
 	}

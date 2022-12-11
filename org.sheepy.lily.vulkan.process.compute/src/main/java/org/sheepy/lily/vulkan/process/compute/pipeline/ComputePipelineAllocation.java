@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
-import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IPipelineAllocation;
@@ -13,8 +13,6 @@ import org.sheepy.lily.vulkan.core.resource.IShaderAllocation;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-
-import java.util.stream.Collectors;
 
 @ModelExtender(scope = ComputePipeline.class)
 @Allocation(context = ProcessContext.class, activator = ComputePackage.COMPUTE_PIPELINE__ALLOCATE)
@@ -33,7 +31,7 @@ public final class ComputePipelineAllocation implements IPipelineAllocation
 		final var sets = pipeline.getLayout()
 								 .stream()
 								 .map(set -> set.adapt(IDescriptorSetLayoutAllocation.class))
-								 .collect(Collectors.toUnmodifiableList());
+								 .toList();
 
 		vkPipelineLayout = new VkPipelineLayout(sets, pushConstantRanges);
 		vkPipelineLayout.allocate(context);

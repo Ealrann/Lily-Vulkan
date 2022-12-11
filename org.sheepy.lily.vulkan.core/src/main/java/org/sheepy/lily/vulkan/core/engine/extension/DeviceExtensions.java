@@ -40,9 +40,9 @@ public final class DeviceExtensions
 		private final List<String> availableExtensions;
 		private boolean lackOfMandatoryExtensions;
 
-		public Builder(VkPhysicalDevice vkPhysicalDevice, MemoryStack stack)
+		public Builder(VkPhysicalDevice vkPhysicalDevice)
 		{
-			availableExtensions = gatherAvailableExtensions(vkPhysicalDevice, stack);
+			availableExtensions = gatherAvailableExtensions(vkPhysicalDevice);
 		}
 
 		public Builder requires(EDeviceExtension extension)
@@ -96,8 +96,7 @@ public final class DeviceExtensions
 			return new DeviceExtensions(extensions);
 		}
 
-		private static List<String> gatherAvailableExtensions(final VkPhysicalDevice vkPhysicalDevice,
-															  final MemoryStack stack)
+		private static List<String> gatherAvailableExtensions(final VkPhysicalDevice vkPhysicalDevice)
 		{
 			final int[] extensionCount = new int[1];
 
@@ -112,9 +111,7 @@ public final class DeviceExtensions
 													 extensionCount,
 													 availableExtensions);
 
-				return availableExtensions.stream()
-										  .map(VkExtensionProperties::extensionNameString)
-										  .toList();
+				return availableExtensions.stream().map(VkExtensionProperties::extensionNameString).toList();
 			}
 		}
 	}

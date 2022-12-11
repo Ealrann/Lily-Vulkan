@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
+import org.logoce.extender.api.ModelExtender;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
-import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
@@ -16,7 +16,6 @@ import org.sheepy.lily.vulkan.process.execution.WaitData;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @ModelExtender(scope = ComputeExecutionManager.class)
@@ -42,7 +41,7 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 		final int indexCount = executionManager.getIndexCount();
 		executionSemaphores = Stream.generate(() -> new VkSemaphore(vkDevice, "ComputeExecutionManagerAllocation"))
 									.limit(indexCount)
-									.collect(Collectors.toUnmodifiableList());
+									.toList();
 		executionSemaphores.get(0).signalSemaphore(context);
 	}
 

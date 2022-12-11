@@ -1,11 +1,11 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.core.descriptor.IDescriptorSetLayoutAllocation;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
@@ -24,7 +24,6 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ModelExtender(scope = GraphicsPipeline.class)
 @Allocation(context = ProcessContext.class, activator = GraphicPackage.GRAPHICS_PIPELINE__ALLOCATE)
@@ -53,7 +52,7 @@ public final class GraphicsPipelineAllocation implements IPipelineAllocation
 		final var sets = pipeline.getLayout()
 								 .stream()
 								 .map(set -> set.adapt(IDescriptorSetLayoutAllocation.class))
-								 .collect(Collectors.toUnmodifiableList());
+								 .toList();
 
 		vkPipelineLayout = new VkPipelineLayout(sets, pushConstantRanges);
 		vkPipelineLayout.allocate(context);

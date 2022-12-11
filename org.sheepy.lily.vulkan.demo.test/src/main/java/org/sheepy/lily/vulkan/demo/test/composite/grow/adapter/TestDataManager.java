@@ -90,7 +90,7 @@ public final class TestDataManager extends Notifier<IBufferDataSupplier.Features
 			final var pushDatas = previousPushs.stream()
 											   .filter(p -> p.values.length == size)
 											   .filter(p -> p.match(buffer.asIntBuffer()))
-											   .collect(Collectors.toUnmodifiableList());
+											   .toList();
 
 //			System.out.println("fetchPass = " + fetchPass);
 

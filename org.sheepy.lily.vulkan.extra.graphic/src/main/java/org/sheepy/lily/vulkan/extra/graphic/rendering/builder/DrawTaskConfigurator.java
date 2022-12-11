@@ -19,7 +19,6 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public final class DrawTaskConfigurator
 {
@@ -171,7 +170,7 @@ public final class DrawTaskConfigurator
 			final var dataProviders = bufferGroup.bufferSetups()
 												 .stream()
 												 .map(BufferSetup::bufferViewer)
-												 .collect(Collectors.toUnmodifiableList());
+												 .toList();
 
 			return new RenderPipelineSetup(pipeline, dataProviders, structure);
 		}

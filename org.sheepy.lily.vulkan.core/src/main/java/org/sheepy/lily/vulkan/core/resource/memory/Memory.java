@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public final record Memory(Info info, long ptr, List<BoundResource<?>> resources)
+public record Memory(Info info, long ptr, List<BoundResource<?>> resources)
 {
 	public void free(IVulkanContext context)
 	{

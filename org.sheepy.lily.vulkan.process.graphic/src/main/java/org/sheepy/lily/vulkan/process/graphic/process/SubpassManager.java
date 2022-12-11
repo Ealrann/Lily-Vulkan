@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class SubpassManager
 {
@@ -89,7 +88,7 @@ public class SubpassManager
 										  .filter(ExtraAttachment.class::isInstance)
 										  .map(ExtraAttachment.class::cast)
 										  .distinct()
-										  .collect(Collectors.toUnmodifiableList());
+										  .toList();
 
 		final var passAttachments = renderPass.getAttachments();
 		if (!newAttachments.equals(passAttachments))

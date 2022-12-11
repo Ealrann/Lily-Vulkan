@@ -53,7 +53,7 @@ public final class TransferCommandInserter
 		backendBuffer.addTransferCommand(command.pushCommand);
 	}
 
-	private static record CommandWrapper(TransferCommand pushCommand, FillCommand fillCommand)
+	private record CommandWrapper(TransferCommand pushCommand, FillCommand fillCommand)
 	{
 		private void fillMemory()
 		{

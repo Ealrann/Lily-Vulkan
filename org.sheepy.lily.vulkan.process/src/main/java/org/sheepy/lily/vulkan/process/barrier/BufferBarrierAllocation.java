@@ -22,19 +22,19 @@ public final class BufferBarrierAllocation implements IBufferBarrierAllocation
 {
 	private final int srcAccessMask;
 	private final int dstAccessMask;
-	private final IBufferReferenceAllocation buffers;
+	private final IBufferReferenceAllocation bufferReferenceAllocation;
 
 	public BufferBarrierAllocation(BufferBarrier barrier,
-								   @InjectDependency(index = 0) IBufferReferenceAllocation buffers)
+								   @InjectDependency(index = 0) IBufferReferenceAllocation bufferReferenceAllocation)
 	{
 		srcAccessMask = VulkanModelUtil.getEnumeratedFlag(barrier.getSrcAccessMask());
 		dstAccessMask = VulkanModelUtil.getEnumeratedFlag(barrier.getDstAccessMask());
-		this.buffers = buffers;
+		this.bufferReferenceAllocation = bufferReferenceAllocation;
 	}
 
 	public int barrierCount()
 	{
-		return buffers.getBufferCountPerInstance();
+		return bufferReferenceAllocation.getBufferCountPerInstance();
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public final class BufferBarrierAllocation implements IBufferBarrierAllocation
 					 final int srcQueueIndex,
 					 final int dstQueueIndex)
 	{
-		for (final var buffer : buffers.getBufferAllocations(index))
+		for (final var buffer : bufferReferenceAllocation.getBufferAllocations(index))
 		{
 			final long ptr = buffer.getPtr();
 			final long bindOffset = buffer.getBindOffset();

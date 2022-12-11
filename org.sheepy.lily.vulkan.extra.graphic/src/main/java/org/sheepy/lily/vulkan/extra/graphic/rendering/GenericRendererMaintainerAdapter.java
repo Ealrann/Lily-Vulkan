@@ -2,9 +2,9 @@ package org.sheepy.lily.vulkan.extra.graphic.rendering;
 
 import org.eclipse.emf.ecore.EClass;
 import org.logoce.adapter.api.Adapter;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.adapter.Load;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
-import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.api.mesh.data.IEntityResolver;
@@ -20,7 +20,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ModelExtender(scope = GenericRenderer.class, inherited = true)
 @Adapter
@@ -63,7 +62,7 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 
 			renderPipelineSetups = structureDrawInstaller.install(structure, drawCall)
 														 .map(DeactivationConfigurator::configure)
-														 .collect(Collectors.toUnmodifiableList());
+														 .toList();
 
 			drawCall += renderPipelineSetups.size();
 		}

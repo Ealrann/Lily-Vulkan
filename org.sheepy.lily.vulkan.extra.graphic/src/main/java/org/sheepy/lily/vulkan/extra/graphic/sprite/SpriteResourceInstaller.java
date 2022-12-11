@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 import org.logoce.adapter.api.Adapter;
-import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.logoce.extender.api.IAdapter;
 import org.logoce.extender.api.ModelExtender;
+import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.notification.observatory.IObservatoryBuilder;
 import org.sheepy.lily.core.model.resource.FileImage;
 import org.sheepy.lily.vulkan.extra.api.sprite.ISpriteSupplier;
@@ -13,7 +13,6 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ModelExtender(scope = SpriteExtension.class)
 @Adapter
@@ -32,7 +31,7 @@ public final class SpriteResourceInstaller implements IAdapter
 
 		observatory.focus(spriteSupplier).listen(this::loadSprites, ISpriteSupplier.Features.Sprites);
 
-		loadSprites(spriteSupplier.images().collect(Collectors.toUnmodifiableList()), List.of());
+		loadSprites(spriteSupplier.images().toList(), List.of());
 	}
 
 	private void loadSprites(List<FileImage> addedSprites, List<FileImage> removedSprites)
