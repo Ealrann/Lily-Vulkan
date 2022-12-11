@@ -40,7 +40,7 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 	private final List<BufferBarrierAllocation> bufferBarriers;
 	private final int srcQueueIndex;
 	private final int dstQueueIndex;
-	private final int bufferBarrierSize;
+	private final int bufferBarrierAllocSize;
 
 	public PipelineBarrierRecorder(PipelineBarrier pipelineBarrier,
 								   ProcessContext context,
@@ -60,7 +60,7 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 		dstQueueIndex = getQueueFamillyIndex(logicalDevice, dstQueue);
 		imageBarriers = filterBarriers(barrierAllocations, IImageBarrierAllocation.class);
 		bufferBarriers = filterBarriers(barrierAllocations, BufferBarrierAllocation.class);
-		bufferBarrierSize = bufferBarriers.stream().mapToInt(BufferBarrierAllocation::barrierCount).sum();
+		bufferBarrierAllocSize = bufferBarriers.stream().mapToInt(BufferBarrierAllocation::barrierCount).sum();
 
 		observatory.listenNoParam(allocationState::setAllocationObsolete, ProcessPackage.PIPELINE_BARRIER__ENABLED);
 	}
@@ -90,8 +90,8 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 
 	public VkBufferMemoryBarrier.Buffer allocateBufferInfo(MemoryStack stack, int index)
 	{
-		final var res = VkBufferMemoryBarrier.calloc(bufferBarrierSize, stack);
-		for (int i = 0; i < bufferBarrierSize; i++)
+		final var res = VkBufferMemoryBarrier.calloc(bufferBarrierAllocSize, stack);
+		for (int i = 0; i < bufferBarriers.size(); i++)
 		{
 			final var bufferBarrier = bufferBarriers.get(i);
 			bufferBarrier.fill(res, index, srcQueueIndex, dstQueueIndex);

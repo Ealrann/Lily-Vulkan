@@ -39,7 +39,8 @@ public final class BufferReferenceAllocation implements IBufferReferenceAllocati
 	@Override
 	public int getBufferCountPerInstance()
 	{
-		return bufferReference.getStride();
+		final var stride = bufferReference.getStride();
+		return stride == 0 ? bufferAllocations.size() : stride;
 	}
 
 	@Override
