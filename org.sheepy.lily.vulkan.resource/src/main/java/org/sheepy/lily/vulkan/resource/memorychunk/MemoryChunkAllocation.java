@@ -68,7 +68,7 @@ public final class MemoryChunkAllocation implements IAdapter
 	{
 		if (useTransfer)
 		{
-			recordTransfer(true);
+			queueTransferCommands(true);
 		}
 		else
 		{
@@ -87,7 +87,7 @@ public final class MemoryChunkAllocation implements IAdapter
 	{
 		if (needTransfer && !obsolete)
 		{
-			recordTransfer(false);
+			queueTransferCommands(false);
 			needTransfer = false;
 		}
 	}
@@ -110,7 +110,7 @@ public final class MemoryChunkAllocation implements IAdapter
 		bufferPusher.fillData(commands);
 	}
 
-	private void recordTransfer(final boolean force)
+	private void queueTransferCommands(final boolean force)
 	{
 		final var commands = streamFillCommands(force);
 		final var transferBuffer = memoryChunk.getTransferBuffer();
