@@ -131,6 +131,7 @@ public final class SynchronizationManager
 
 		void free(VkDevice vkDevice)
 		{
+			waitIdle();
 			fence.free();
 			executionSemaphores.forEach(s -> s.free(vkDevice));
 		}

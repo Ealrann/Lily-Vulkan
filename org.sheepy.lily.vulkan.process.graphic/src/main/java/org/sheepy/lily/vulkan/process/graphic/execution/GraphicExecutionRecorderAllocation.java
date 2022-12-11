@@ -43,14 +43,13 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 															  ECommandStage.POST_RENDER);
 
 	private final GraphicCommandBuffer commandBuffer;
-	private final GraphicProcess process;
 	private final PresentSubmission presentSubmission;
 	private final VkSemaphore presentSemaphore;
 	private final GenericExecutionRecorder executionRecorder;
 	private final List<VkSemaphore> signalSemaphores;
+	private final int subpassCount;
 
 	private List<IRecordableAdapter> recordables;
-	private int subpassCount;
 	private boolean needRecord = true;
 
 	public GraphicExecutionRecorderAllocation(GraphicExecutionRecorder recorder,
@@ -66,22 +65,23 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 		final var framebufferPtr = framebufferAllocation.getFramebufferAddresses().get(index);
 
 		this.recordables = recordables;
-		this.process = ModelUtil.findParent(recorder, GraphicProcess.class);
 		this.commandBuffer = new GraphicCommandBuffer(context, surfaceAllocation, renderPassAllocation, framebufferPtr);
 		this.presentSemaphore = new VkSemaphore(context.getVkDevice(), "GraphicExecutionRecorderAllocation");
 		final var presentQueue = surfaceAllocation.getPresentQueue().vkQueue;
 
-		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),
-													   presentQueue,
-													   index,
-													   presentSemaphore);
-		countSubpasses();
+		final var process = ModelUtil.findParent(recorder, GraphicProcess.class);
+		this.subpassCount = countSubpasses(process);
 		executionRecorder = new GenericExecutionRecorder(commandBuffer,
 														 context,
 														 allocationState,
 														 index,
 														 1,
 														 this::recordCommand);
+
+		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),
+													   presentQueue,
+													   index,
+													   presentSemaphore);
 
 		signalSemaphores = List.of(presentSemaphore);
 	}
@@ -152,7 +152,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 		return res.fence();
 	}
 
-	private void countSubpasses()
+	private static int countSubpasses(GraphicProcess process)
 	{
 		int res = 0;
 		for (final var subpass : process.getSubpasses())
@@ -163,7 +163,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 				res = subpassIndex;
 			}
 		}
-		subpassCount = res;
+		return res;
 	}
 
 	@Override
