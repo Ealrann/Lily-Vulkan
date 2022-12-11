@@ -44,7 +44,7 @@ public final class SemaphoreManager
 	}
 
 	/**
-	 * If lock, creation of Semaphore will be forbidden
+	 * If locked, creation of Semaphore will be forbidden
 	 */
 	public void lock(boolean value)
 	{
