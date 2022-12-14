@@ -162,7 +162,7 @@ public final class GenericExecutionRecorder
 		return currentSyncUnit.getSemaphores().get(semaphoreIndex++);
 	}
 
-	public static record SubmitResult(IFenceView fence, int result)
+	public record SubmitResult(IFenceView fence, int result)
 	{
 	}
 }

@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 @ModelExtender(scope = ComputeExecutionManager.class)
 @Allocation(context = ProcessContext.class)
 @AllocationChild(features = ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS)
-public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation
+public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation<ComputeExecutionRecorderAllocation>
 {
 	private final ComputeExecutionManager executionManager;
 	private final List<VkSemaphore> executionSemaphores;
@@ -74,6 +74,12 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 	protected List<ComputeExecutionRecorderAllocation> getRecorders()
 	{
 		return recorders;
+	}
+
+	@Override
+	protected List<VkSemaphore> signalSemaphores()
+	{
+		return List.of();
 	}
 
 	@Override

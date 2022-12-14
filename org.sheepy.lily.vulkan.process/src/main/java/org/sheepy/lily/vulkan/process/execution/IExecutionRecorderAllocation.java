@@ -9,5 +9,5 @@ import java.util.List;
 public interface IExecutionRecorderAllocation extends IExecutionPlayer, IAdapter
 {
 	VkSemaphore borrowSemaphore();
-	void prepare(List<WaitData> waitSemaphores, int executionSemaphoreCount);
+	void prepare(List<WaitData> waitSemaphores, List<VkSemaphore> signalSemaphores, int executionSemaphoreCount);
 }

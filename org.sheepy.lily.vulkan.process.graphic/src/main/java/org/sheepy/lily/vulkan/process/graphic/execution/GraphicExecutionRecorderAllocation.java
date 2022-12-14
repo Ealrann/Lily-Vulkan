@@ -1,14 +1,15 @@
 package org.sheepy.lily.vulkan.process.graphic.execution;
 
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -44,9 +45,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 
 	private final GraphicCommandBuffer commandBuffer;
 	private final PresentSubmission presentSubmission;
-	private final VkSemaphore presentSemaphore;
 	private final GenericExecutionRecorder executionRecorder;
-	private final List<VkSemaphore> signalSemaphores;
 	private final int subpassCount;
 
 	private List<IRecordableAdapter> recordables;
@@ -66,10 +65,10 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 
 		this.recordables = recordables;
 		this.commandBuffer = new GraphicCommandBuffer(context, surfaceAllocation, renderPassAllocation, framebufferPtr);
-		this.presentSemaphore = new VkSemaphore(context.getVkDevice(), "GraphicExecutionRecorderAllocation");
 		final var presentQueue = surfaceAllocation.getPresentQueue().vkQueue;
-
 		final var process = ModelUtil.findParent(recorder, GraphicProcess.class);
+		final var manager = (GraphicExecutionManager) recorder.eContainer();
+		final var presentSemaphore = manager.adapt(GraphicExecutionManagerAllocation.class).getPresentSemaphore();
 		this.subpassCount = countSubpasses(process);
 		executionRecorder = new GenericExecutionRecorder(commandBuffer,
 														 context,
@@ -78,12 +77,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 														 1,
 														 this::recordCommand);
 
-		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),
-													   presentQueue,
-													   index,
-													   presentSemaphore);
-
-		signalSemaphores = List.of(presentSemaphore);
+		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(), presentQueue, index, presentSemaphore);
 	}
 
 	@Free
@@ -91,7 +85,6 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	{
 		executionRecorder.free(context.getVkDevice());
 		commandBuffer.free(context);
-		presentSemaphore.free(context.getVkDevice());
 		presentSubmission.free();
 	}
 
@@ -103,7 +96,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@Override
-	public void prepare(final List<WaitData> waitSemaphores, int semaphoreCount)
+	public void prepare(final List<WaitData> waitSemaphores, List<VkSemaphore> signalSemaphores, int semaphoreCount)
 	{
 		executionRecorder.prepare(waitSemaphores, signalSemaphores, semaphoreCount);
 

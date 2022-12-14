@@ -62,9 +62,9 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@Override
-	public void prepare(final List<WaitData> waitSemaphores, int executionSemaphoreCount)
+	public void prepare(final List<WaitData> waitSemaphores, List<VkSemaphore> signalSemaphores, int executionSemaphoreCount)
 	{
-		executionRecorder.prepare(waitSemaphores, List.of(), executionSemaphoreCount);
+		executionRecorder.prepare(waitSemaphores, signalSemaphores, executionSemaphoreCount);
 
 		if (needRecord)
 		{

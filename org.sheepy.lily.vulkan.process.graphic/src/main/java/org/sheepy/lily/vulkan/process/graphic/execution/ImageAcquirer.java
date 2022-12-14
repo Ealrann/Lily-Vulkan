@@ -18,23 +18,20 @@ public final class ImageAcquirer
 
 	private final int[] nextImageArray = new int[1];
 	private final VkDevice vkDevice;
-	private final long semaphorePtr;
 
 	private long swapChainPtr;
 	private IPhysicalSurfaceAllocation surfaceManager;
 
 	public ImageAcquirer(VkDevice vkDevice,
-						 long semaphorePtr,
 						 PhysicalSurfaceAllocation surfaceAllocation,
 						 long swapChainPtr)
 	{
-		this.semaphorePtr = semaphorePtr;
 		this.swapChainPtr = swapChainPtr;
 		this.vkDevice = vkDevice;
 		this.surfaceManager = surfaceAllocation;
 	}
 
-	public int acquireNextImage()
+	public int acquireNextImage(long semaphorePtr)
 	{
 		final int res = vkAcquireNextImageKHR(vkDevice, swapChainPtr, TIMEOUT_NS, semaphorePtr, 0, nextImageArray);
 

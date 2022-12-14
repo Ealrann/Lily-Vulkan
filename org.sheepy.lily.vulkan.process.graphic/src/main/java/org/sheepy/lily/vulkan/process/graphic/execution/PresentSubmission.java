@@ -73,9 +73,4 @@ public class PresentSubmission
 			}
 		}
 	}
-
-	public VkPresentInfoKHR getPresentInfo()
-	{
-		return presentInfo;
-	}
 }

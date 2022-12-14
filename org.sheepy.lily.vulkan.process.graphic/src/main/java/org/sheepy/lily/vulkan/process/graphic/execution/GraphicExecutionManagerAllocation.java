@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.process.graphic.execution;
 
-import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.logoce.extender.api.IAdapter;
 import org.logoce.extender.api.ModelExtender;
+import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.core.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -24,9 +24,11 @@ import java.util.stream.Stream;
 @AllocationChild(features = GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION}, type = SwapChainAllocation.class)
-public final class GraphicExecutionManagerAllocation extends ExecutionManagerAllocation implements IAdapter
+public final class GraphicExecutionManagerAllocation extends ExecutionManagerAllocation<GraphicExecutionRecorderAllocation> implements
+																						IExecutionManagerAdapter
 {
 	private final VkSemaphore imageAvailableSemaphore;
+	private final VkSemaphore presentSemaphore;
 	private final ImageAcquirer imageAcquirer;
 	private final int executionCount;
 	private final EPipelineStage acquireWaitStage;
@@ -43,13 +45,11 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 		final var process = (GraphicProcess) executionManager.eContainer();
 		final var vkDevice = context.getVkDevice();
 		imageAvailableSemaphore = new VkSemaphore(vkDevice, "GraphicExecutionManagerAllocation");
+		presentSemaphore = new VkSemaphore(context.getVkDevice(), "GraphicExecutionRecorderAllocation");
 		acquireWaitStage = process.getConfiguration().getAcquireWaitStage();
 		executionCount = swapChainAllocation.getImageCount();
 		setupRecorders(executionManager, executionCount);
-		imageAcquirer = new ImageAcquirer(vkDevice,
-										  imageAvailableSemaphore.getPtr(),
-										  surfaceAllocation,
-										  swapChainAllocation.getPtr());
+		imageAcquirer = new ImageAcquirer(vkDevice, surfaceAllocation, swapChainAllocation.getPtr());
 	}
 
 	@InjectChildren(index = 0, type = GraphicExecutionRecorderAllocation.class)
@@ -97,12 +97,21 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 	{
 		final var vkDevice = context.getVkDevice();
 		imageAvailableSemaphore.free(vkDevice);
+		presentSemaphore.free(vkDevice);
+	}
+
+	@Override
+	protected List<VkSemaphore> signalSemaphores()
+	{
+		return List.of(presentSemaphore);
 	}
 
 	@Override
 	public IExecutionPlayer acquire()
 	{
-		return acquire(imageAcquirer.acquireNextImage());
+		final var image = imageAcquirer.acquireNextImage(imageAvailableSemaphore.getPtr());
+		final var recorder = acquire(image);
+		return recorder;
 	}
 
 	@Override
@@ -120,5 +129,10 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 	protected List<GraphicExecutionRecorderAllocation> getRecorders()
 	{
 		return recorders;
+	}
+
+	public VkSemaphore getPresentSemaphore()
+	{
+		return presentSemaphore;
 	}
 }
