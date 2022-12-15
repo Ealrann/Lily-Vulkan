@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
-import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
@@ -22,7 +21,6 @@ import java.util.stream.Stream;
 public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation<ComputeExecutionRecorderAllocation>
 {
 	private final ComputeExecutionManager executionManager;
-
 	private List<ComputeExecutionRecorderAllocation> recorders;
 	private int index = -1;
 
@@ -38,17 +36,6 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 	private void updateRecorders(List<ComputeExecutionRecorderAllocation> recorders)
 	{
 		this.recorders = recorders;
-	}
-
-	@Override
-	public int getExecutionCount()
-	{
-		return executionManager.getIndexCount();
-	}
-
-	@Free
-	public void free(ProcessContext context)
-	{
 	}
 
 	@Override

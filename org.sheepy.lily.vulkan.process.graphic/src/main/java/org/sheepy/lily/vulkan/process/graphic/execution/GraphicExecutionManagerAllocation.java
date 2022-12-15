@@ -57,12 +57,6 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 		this.recorders = recorders;
 	}
 
-	@Override
-	public int getExecutionCount()
-	{
-		return executionCount;
-	}
-
 	private static void setupRecorders(GraphicExecutionManager executionManager, int count)
 	{
 		final var recorders = executionManager.getRecorders();

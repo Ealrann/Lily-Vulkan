@@ -7,5 +7,4 @@ public interface IExecutionManagerAdapter extends IAdapter
 {
 	IExecutionPlayer acquireNextPlayer();
 	void waitIdle();
-	int getExecutionCount();
 }
