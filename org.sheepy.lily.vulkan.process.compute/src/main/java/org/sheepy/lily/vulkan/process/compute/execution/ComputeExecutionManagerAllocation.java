@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.process.compute.execution;
 
 import org.logoce.extender.api.ModelExtender;
-import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
@@ -24,8 +23,6 @@ import java.util.stream.Stream;
 public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation<ComputeExecutionRecorderAllocation>
 {
 	private final ComputeExecutionManager executionManager;
-	private final List<VkSemaphore> executionSemaphores;
-	private final VkDevice vkDevice;
 
 	private List<ComputeExecutionRecorderAllocation> recorders;
 	private int index = -1;
@@ -36,13 +33,6 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 
 		this.executionManager = executionManager;
 		setupRecorders(executionManager);
-
-		vkDevice = context.getVkDevice();
-		final int indexCount = executionManager.getIndexCount();
-		executionSemaphores = Stream.generate(() -> new VkSemaphore(vkDevice, "ComputeExecutionManagerAllocation"))
-									.limit(indexCount)
-									.toList();
-		executionSemaphores.get(0).signalSemaphore(context);
 	}
 
 	@InjectChildren(index = 0, type = ComputeExecutionRecorderAllocation.class)
@@ -60,7 +50,6 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 	@Free
 	public void free(ProcessContext context)
 	{
-		executionSemaphores.forEach(semaphore -> semaphore.free(context.getVkDevice()));
 	}
 
 	@Override
