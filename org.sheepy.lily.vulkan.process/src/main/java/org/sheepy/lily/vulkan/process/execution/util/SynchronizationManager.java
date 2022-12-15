@@ -70,6 +70,7 @@ public final class SynchronizationManager
 		private final List<VkSemaphore> executionSemaphores = new ArrayList<>();
 		private List<Consumer<EExecutionStatus>> listeners = null;
 		private int semaphoreCount;
+		private int borrowIndex = 0;
 
 		SyncUnit(VkFence fence)
 		{
@@ -136,7 +137,18 @@ public final class SynchronizationManager
 			executionSemaphores.forEach(s -> s.free(vkDevice));
 		}
 
-		public void notify(EExecutionStatus status, boolean removeListeners)
+		public void start()
+		{
+			borrowIndex = 0;
+			notify(EExecutionStatus.Started, false);
+		}
+
+		public void cancel()
+		{
+			notify(EExecutionStatus.Canceled, true);
+		}
+
+		private void notify(EExecutionStatus status, boolean removeListeners)
 		{
 			if (listeners != null)
 			{
@@ -168,6 +180,11 @@ public final class SynchronizationManager
 		public List<VkSemaphore> getSemaphores()
 		{
 			return executionSemaphores.subList(0, semaphoreCount);
+		}
+
+		public VkSemaphore borrowSemaphore()
+		{
+			return getSemaphores().get(borrowIndex++);
 		}
 	}
 }

@@ -90,7 +90,7 @@ public record NuklearState(NkAllocator allocator, NkContext nkContext, NkBuffer 
 		nkNullTexture.uv().set(0.5f, 0.5f);
 
 		final var config = NkConvertConfig.create();
-		config.null_texture(nkNullTexture);
+		config.tex_null(nkNullTexture);
 		config.vertex_layout(VERTEX_LAYOUT);
 		config.vertex_size(VERTEX_SIZE);
 		config.vertex_alignment(4);

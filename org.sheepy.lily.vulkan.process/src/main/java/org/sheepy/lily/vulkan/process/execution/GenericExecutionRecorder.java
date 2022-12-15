@@ -35,7 +35,6 @@ public final class GenericExecutionRecorder
 
 	private List<WaitData> waitSemaphores;
 	private List<VkSemaphore> signalSemaphores;
-	private int semaphoreIndex = 0;
 	private SynchronizationManager.SyncUnit currentSyncUnit = null;
 
 	public GenericExecutionRecorder(AbstractCommandBuffer commandBuffer,
@@ -106,7 +105,6 @@ public final class GenericExecutionRecorder
 	{
 		try (final var stack = MemoryStack.stackPush())
 		{
-			semaphoreIndex = 0;
 			final var submission = new Submission(stack,
 												  List.of(commandBuffer.getVkCommandBuffer()),
 												  waitSemaphores,
@@ -115,14 +113,14 @@ public final class GenericExecutionRecorder
 			allocationState.lockAllocation();
 
 			final var queue = context.getQueue().vkQueue;
-			currentSyncUnit.notify(EExecutionStatus.Started, false);
+			currentSyncUnit.start();
 			final var res = submission.submit(queue, currentSyncUnit.fence.getPtr());
 
 			Logger.check(res, FAILED_SUBMIT, true);
 
 			if (res != VK_SUCCESS)
 			{
-				currentSyncUnit.notify(EExecutionStatus.Canceled, true);
+				currentSyncUnit.cancel();
 
 				if (DebugUtil.DEBUG_ENABLED)
 				{
@@ -159,7 +157,7 @@ public final class GenericExecutionRecorder
 
 	public VkSemaphore borrowSemaphore()
 	{
-		return currentSyncUnit.getSemaphores().get(semaphoreIndex++);
+		return currentSyncUnit.borrowSemaphore();
 	}
 
 	public record SubmitResult(IFenceView fence, int result)
