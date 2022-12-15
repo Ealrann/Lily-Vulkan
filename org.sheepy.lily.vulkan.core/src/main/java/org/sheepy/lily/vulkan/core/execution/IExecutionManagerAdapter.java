@@ -5,7 +5,7 @@ import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 
 public interface IExecutionManagerAdapter extends IAdapter
 {
-	IExecutionPlayer acquire();
+	IExecutionPlayer acquireNextPlayer();
 	void waitIdle();
 	int getExecutionCount();
 }

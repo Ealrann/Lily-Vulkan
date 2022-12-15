@@ -2,7 +2,6 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 
 import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
@@ -25,7 +24,7 @@ import java.util.stream.Stream;
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION}, type = SwapChainAllocation.class)
 public final class GraphicExecutionManagerAllocation extends ExecutionManagerAllocation<GraphicExecutionRecorderAllocation> implements
-																						IExecutionManagerAdapter
+																															IExecutionManagerAdapter
 {
 	private final VkSemaphore imageAvailableSemaphore;
 	private final VkSemaphore presentSemaphore;
@@ -107,11 +106,9 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 	}
 
 	@Override
-	public IExecutionPlayer acquire()
+	protected int acquire()
 	{
-		final var image = imageAcquirer.acquireNextImage(imageAvailableSemaphore.getPtr());
-		final var recorder = acquire(image);
-		return recorder;
+		return imageAcquirer.acquireNextImage(imageAvailableSemaphore.getPtr());
 	}
 
 	@Override

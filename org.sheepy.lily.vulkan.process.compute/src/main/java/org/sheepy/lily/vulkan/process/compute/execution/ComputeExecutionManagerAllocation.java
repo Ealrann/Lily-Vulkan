@@ -5,7 +5,6 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
-import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
@@ -53,10 +52,9 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 	}
 
 	@Override
-	public IExecutionPlayer acquire()
+	protected int acquire()
 	{
-		index = (index + 1) % executionManager.getIndexCount();
-		return acquire(index);
+		return index = (index + 1) % executionManager.getIndexCount();
 	}
 
 	@Override

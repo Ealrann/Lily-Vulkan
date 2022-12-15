@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.execution;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VK10;
+import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
@@ -26,32 +27,35 @@ public abstract class ExecutionManagerAllocation<T extends IExecutionRecorderAll
 		this.context = context;
 	}
 
-	protected final T acquire(int index)
+	@Override
+	public IExecutionPlayer acquireNextPlayer()
 	{
-		if (index == -1)
-		{
-			dummySubmission();
-			return null;
-		}
-		else
-		{
-			final int semaphoreCount = executionManager.getWaitedBy().size();
-			final var waitSemaphores = streamWaitData(true).toList();
-			final var recorder = getRecorders().get(index);
-			recorder.prepare(waitSemaphores, signalSemaphores(), semaphoreCount);
-			lastExecutedRecorder = recorder;
-			return recorder;
-		}
+		final int index = acquire();
+		return preparePlayer(index);
 	}
 
-	private void dummySubmission()
+	private T preparePlayer(int index)
+	{
+		return index == -1 ? doDummySubmission() : prepareSubmission(index);
+	}
+
+	private T prepareSubmission(final int index)
+	{
+		final int semaphoreCount = executionManager.getWaitedBy().size();
+		final var waitSemaphores = streamWaitData(true).toList();
+		final var recorder = getRecorders().get(index);
+		recorder.prepare(waitSemaphores, signalSemaphores(), semaphoreCount);
+		return lastExecutedRecorder = recorder;
+	}
+
+	private T doDummySubmission()
 	{
 		try (final var stack = MemoryStack.stackPush())
 		{
 			final var waitSemaphores = streamWaitData(false).toList();
 			final var dummySubmission = new Submission(stack, List.of(), waitSemaphores, List.of());
 			dummySubmission.submit(context.getQueue().vkQueue, VK10.VK_NULL_HANDLE);
-			lastExecutedRecorder = null;
+			return lastExecutedRecorder = null;
 		}
 	}
 
@@ -87,6 +91,8 @@ public abstract class ExecutionManagerAllocation<T extends IExecutionRecorderAll
 			return res;
 		}
 	}
+
+	protected abstract int acquire();
 
 	protected abstract List<T> getRecorders();
 
