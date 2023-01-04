@@ -4,16 +4,38 @@ package org.sheepy.lily.vulkan.model.process.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-
-import org.sheepy.lily.vulkan.model.process.*;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
+import org.sheepy.lily.vulkan.model.process.CompositePipeline;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
+import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.FetchBuffer;
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
+import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
+import org.sheepy.lily.vulkan.model.process.IPipelineExtension;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.IProcessExtension;
+import org.sheepy.lily.vulkan.model.process.Pipeline;
+import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
+import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.PushConstant;
+import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.TaskPipeline;
+import org.sheepy.lily.vulkan.model.process.TaskPkg;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,7 +97,7 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcessSwitch<Adapter> modelSwitch = new ProcessSwitch<Adapter>()
+	protected ProcessSwitch<Adapter> modelSwitch = new ProcessSwitch<>()
 		{
 			@Override
 			public Adapter caseAbstractProcess(AbstractProcess object)
@@ -196,6 +218,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseFetchBuffer(FetchBuffer object)
 			{
 				return createFetchBufferAdapter();
+			}
+			@Override
+			public Adapter caseICommandBuffer(ICommandBuffer object)
+			{
+				return createICommandBufferAdapter();
 			}
 			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
@@ -594,6 +621,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createFetchBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ICommandBuffer <em>ICommand Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ICommandBuffer
+	 * @generated
+	 */
+	public Adapter createICommandBufferAdapter()
 	{
 		return null;
 	}

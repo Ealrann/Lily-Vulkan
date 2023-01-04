@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public abstract class SingleTimeCommand extends AbstractCommandBuffer
+public abstract class SingleTimeCommand extends AbstractCommandBufferHelper
 {
 	protected final ExecutionContext executionContext;
 	private final MemoryStack stack;

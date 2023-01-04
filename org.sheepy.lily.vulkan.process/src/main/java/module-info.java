@@ -6,6 +6,7 @@ module org.sheepy.lily.vulkan.process {
 	requires transitive org.sheepy.lily.vulkan.core;
 
 	exports org.sheepy.lily.vulkan.process.execution;
+	exports org.sheepy.lily.vulkan.process.execution.util;
 	exports org.sheepy.lily.vulkan.process.pipeline;
 	exports org.sheepy.lily.vulkan.process.pipeline.task;
 	exports org.sheepy.lily.vulkan.process.pipeline.builder;

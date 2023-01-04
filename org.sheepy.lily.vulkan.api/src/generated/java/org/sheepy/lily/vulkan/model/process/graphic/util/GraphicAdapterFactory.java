@@ -4,28 +4,62 @@ package org.sheepy.lily.vulkan.model.process.graphic.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.model.application.ICompositor;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
-
 import org.sheepy.lily.core.model.resource.IImage;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.*;
+import org.sheepy.lily.vulkan.model.process.graphic.AbstractBlitTask;
+import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
+import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
+import org.sheepy.lily.vulkan.model.process.graphic.Compositor;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.Draw;
+import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
+import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageViews;
+import org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPass;
+import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
+import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.vulkanresource.IVulkanImage;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 import org.sheepy.vulkan.model.barrier.Barrier;
@@ -90,7 +124,7 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GraphicSwitch<Adapter> modelSwitch = new GraphicSwitch<Adapter>()
+	protected GraphicSwitch<Adapter> modelSwitch = new GraphicSwitch<>()
 		{
 			@Override
 			public Adapter caseGraphicConfiguration(GraphicConfiguration object)
@@ -273,6 +307,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createCompositorAdapter();
 			}
 			@Override
+			public Adapter caseGraphicCommandBuffer(GraphicCommandBuffer object)
+			{
+				return createGraphicCommandBufferAdapter();
+			}
+			@Override
 			public Adapter caseProcessConfiguration(ProcessConfiguration object)
 			{
 				return createProcessConfigurationAdapter();
@@ -361,6 +400,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseICompositor(ICompositor object)
 			{
 				return createICompositorAdapter();
+			}
+			@Override
+			public Adapter caseICommandBuffer(ICommandBuffer object)
+			{
+				return createICommandBufferAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -924,6 +968,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer <em>Command Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer
+	 * @generated
+	 */
+	public Adapter createGraphicCommandBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1189,6 +1248,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createICompositorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ICommandBuffer <em>ICommand Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ICommandBuffer
+	 * @generated
+	 */
+	public Adapter createICommandBufferAdapter()
 	{
 		return null;
 	}

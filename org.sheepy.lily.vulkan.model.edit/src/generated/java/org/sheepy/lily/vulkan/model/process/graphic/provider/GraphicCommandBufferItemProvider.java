@@ -20,16 +20,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicExecutionRecorderItemProvider
+public class GraphicCommandBufferItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +45,7 @@ public class GraphicExecutionRecorderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphicExecutionRecorderItemProvider(AdapterFactory adapterFactory)
+	public GraphicCommandBufferItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -63,7 +64,7 @@ public class GraphicExecutionRecorderItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIndexPropertyDescriptor(object);
-			addCommandBufferPropertyDescriptor(object);
+			addSubmittedByPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -80,9 +81,9 @@ public class GraphicExecutionRecorderItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GraphicExecutionRecorder_index_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicExecutionRecorder_index_feature", "_UI_GraphicExecutionRecorder_type"),
-				 GraphicPackage.Literals.GRAPHIC_EXECUTION_RECORDER__INDEX,
+				 getString("_UI_ICommandBuffer_index_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ICommandBuffer_index_feature", "_UI_ICommandBuffer_type"),
+				 ProcessPackage.Literals.ICOMMAND_BUFFER__INDEX,
 				 true,
 				 false,
 				 false,
@@ -92,20 +93,20 @@ public class GraphicExecutionRecorderItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Command Buffer feature.
+	 * This adds a property descriptor for the Submitted By feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCommandBufferPropertyDescriptor(Object object)
+	protected void addSubmittedByPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GraphicExecutionRecorder_commandBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicExecutionRecorder_commandBuffer_feature", "_UI_GraphicExecutionRecorder_type"),
-				 GraphicPackage.Literals.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER,
+				 getString("_UI_GraphicCommandBuffer_submittedBy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicCommandBuffer_submittedBy_feature", "_UI_GraphicCommandBuffer_type"),
+				 GraphicPackage.Literals.GRAPHIC_COMMAND_BUFFER__SUBMITTED_BY,
 				 true,
 				 false,
 				 true,
@@ -115,7 +116,7 @@ public class GraphicExecutionRecorderItemProvider
 	}
 
 	/**
-	 * This returns GraphicExecutionRecorder.gif.
+	 * This returns GraphicCommandBuffer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -123,7 +124,7 @@ public class GraphicExecutionRecorderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GraphicExecutionRecorder"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GraphicCommandBuffer"));
 	}
 
 	/**
@@ -135,8 +136,8 @@ public class GraphicExecutionRecorderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		GraphicExecutionRecorder graphicExecutionRecorder = (GraphicExecutionRecorder)object;
-		return getString("_UI_GraphicExecutionRecorder_type") + " " + graphicExecutionRecorder.getIndex();
+		GraphicCommandBuffer graphicCommandBuffer = (GraphicCommandBuffer)object;
+		return getString("_UI_GraphicCommandBuffer_type") + " " + graphicCommandBuffer.getIndex();
 	}
 
 
@@ -152,9 +153,9 @@ public class GraphicExecutionRecorderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GraphicExecutionRecorder.class))
+		switch (notification.getFeatureID(GraphicCommandBuffer.class))
 		{
-			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__INDEX:
+			case GraphicPackage.GRAPHIC_COMMAND_BUFFER__INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

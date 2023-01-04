@@ -6,20 +6,15 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
 import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
-
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 /**
@@ -219,7 +214,7 @@ public class BufferViewerImpl extends LilyEObject implements BufferViewer
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, VulkanResourcePackage.BUFFER_VIEWER__USAGES);
+			usages = new EDataTypeUniqueEList<>(EBufferUsage.class, this, VulkanResourcePackage.BUFFER_VIEWER__USAGES);
 		}
 		return usages;
 	}

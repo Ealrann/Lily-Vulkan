@@ -3,15 +3,19 @@ package org.sheepy.lily.vulkan.core.execution;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
+
+import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-public abstract class AbstractCommandBuffer implements ICommandBuffer
+public abstract class AbstractCommandBufferHelper implements ICommandBufferHelper
 {
 	protected final VkCommandBuffer vkCommandBuffer;
 
-	public AbstractCommandBuffer(ExecutionContext context)
+	public AbstractCommandBufferHelper(ExecutionContext context)
 	{
 		final var stack = context.stack();
 		final long commandPoolPtr = context.getCommandPool().getPtr();
@@ -43,4 +47,7 @@ public abstract class AbstractCommandBuffer implements ICommandBuffer
 	{
 		return vkCommandBuffer;
 	}
+
+	protected abstract void start(ECommandStage stage);
+	protected abstract void end(ECommandStage stage);
 }

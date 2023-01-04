@@ -8,10 +8,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
@@ -70,6 +68,7 @@ public class GraphicExecutionManagerItemProvider extends ProcessExecutionManager
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_EXECUTION_MANAGER__RECORDERS);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_EXECUTION_MANAGER__COMMAND_BUFFERS);
 		}
 		return childrenFeatures;
 	}
@@ -132,6 +131,7 @@ public class GraphicExecutionManagerItemProvider extends ProcessExecutionManager
 		switch (notification.getFeatureID(GraphicExecutionManager.class))
 		{
 			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS:
+			case GraphicPackage.GRAPHIC_EXECUTION_MANAGER__COMMAND_BUFFERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -154,6 +154,11 @@ public class GraphicExecutionManagerItemProvider extends ProcessExecutionManager
 			(createChildParameter
 				(GraphicPackage.Literals.GRAPHIC_EXECUTION_MANAGER__RECORDERS,
 				 GraphicFactory.eINSTANCE.createGraphicExecutionRecorder()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GraphicPackage.Literals.GRAPHIC_EXECUTION_MANAGER__COMMAND_BUFFERS,
+				 GraphicFactory.eINSTANCE.createGraphicCommandBuffer()));
 	}
 
 }

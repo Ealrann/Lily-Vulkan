@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 
 @ModelExtender(scope = ComputeExecutionManager.class)
 @Allocation(context = ProcessContext.class)
+@AllocationChild(features = ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS)
 @AllocationChild(features = ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS)
 public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation<ComputeExecutionRecorderAllocation>
 {
@@ -32,7 +33,7 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 		setupRecorders(executionManager);
 	}
 
-	@InjectChildren(index = 0, type = ComputeExecutionRecorderAllocation.class)
+	@InjectChildren(index = 1, type = ComputeExecutionRecorderAllocation.class)
 	private void updateRecorders(List<ComputeExecutionRecorderAllocation> recorders)
 	{
 		this.recorders = recorders;
@@ -70,8 +71,14 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 			recorders.clear();
 			for (int i = 0; i < executionManager.getIndexCount(); i++)
 			{
+				final var commandBuffer = ComputeFactory.eINSTANCE.createComputeCommandBuffer();
+				commandBuffer.setIndex(i);
+				executionManager.getCommandBuffers().add(commandBuffer);
+
 				final var computeExecutionRecorder = ComputeFactory.eINSTANCE.createComputeExecutionRecorder();
 				computeExecutionRecorder.setIndex(i);
+				computeExecutionRecorder.setCommandBuffer(commandBuffer);
+
 				recorders.add(computeExecutionRecorder);
 			}
 		}

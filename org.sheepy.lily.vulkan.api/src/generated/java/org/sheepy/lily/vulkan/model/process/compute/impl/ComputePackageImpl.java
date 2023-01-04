@@ -8,12 +8,10 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.sheepy.lily.core.model.action.ActionPackage;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
-
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -21,7 +19,7 @@ import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
+import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
@@ -36,7 +34,6 @@ import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.lily.vulkan.model.vulkanresource.impl.VulkanResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
-
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.image.ImagePackage;
@@ -91,6 +88,13 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	private EClass computeExecutionRecorderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass computeCommandBufferEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -348,6 +352,17 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
+	public EReference getComputeExecutionManager_CommandBuffers()
+	{
+		return (EReference)computeExecutionManagerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getComputeExecutionRecorder()
 	{
 		return computeExecutionRecorderEClass;
@@ -362,6 +377,39 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	public EAttribute getComputeExecutionRecorder_Index()
 	{
 		return (EAttribute)computeExecutionRecorderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getComputeExecutionRecorder_CommandBuffer()
+	{
+		return (EReference)computeExecutionRecorderEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getComputeCommandBuffer()
+	{
+		return computeCommandBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getComputeCommandBuffer_SubmittedBy()
+	{
+		return (EReference)computeCommandBufferEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -413,9 +461,14 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computeExecutionManagerEClass = createEClass(COMPUTE_EXECUTION_MANAGER);
 		createEReference(computeExecutionManagerEClass, COMPUTE_EXECUTION_MANAGER__RECORDERS);
 		createEAttribute(computeExecutionManagerEClass, COMPUTE_EXECUTION_MANAGER__INDEX_COUNT);
+		createEReference(computeExecutionManagerEClass, COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS);
 
 		computeExecutionRecorderEClass = createEClass(COMPUTE_EXECUTION_RECORDER);
 		createEAttribute(computeExecutionRecorderEClass, COMPUTE_EXECUTION_RECORDER__INDEX);
+		createEReference(computeExecutionRecorderEClass, COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER);
+
+		computeCommandBufferEClass = createEClass(COMPUTE_COMMAND_BUFFER);
+		createEReference(computeCommandBufferEClass, COMPUTE_COMMAND_BUFFER__SUBMITTED_BY);
 	}
 
 	/**
@@ -464,6 +517,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computeConfigurationEClass.getESuperTypes().add(theProcessPackage.getProcessConfiguration());
 		computeExecutionManagerEClass.getESuperTypes().add(theProcessPackage.getProcessExecutionManager());
 		computeExecutionRecorderEClass.getESuperTypes().add(theProcessPackage.getExecutionRecorder());
+		computeCommandBufferEClass.getESuperTypes().add(theProcessPackage.getICommandBuffer());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -484,9 +538,14 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		initEClass(computeExecutionManagerEClass, ComputeExecutionManager.class, "ComputeExecutionManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComputeExecutionManager_Recorders(), this.getComputeExecutionRecorder(), null, "recorders", null, 0, -1, ComputeExecutionManager.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComputeExecutionManager_IndexCount(), ecorePackage.getEInt(), "indexCount", "1", 1, 1, ComputeExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputeExecutionManager_CommandBuffers(), this.getComputeCommandBuffer(), null, "CommandBuffers", null, 0, -1, ComputeExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computeExecutionRecorderEClass, ComputeExecutionRecorder.class, "ComputeExecutionRecorder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getComputeExecutionRecorder_Index(), ecorePackage.getEInt(), "index", null, 0, 1, ComputeExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputeExecutionRecorder_CommandBuffer(), this.getComputeCommandBuffer(), this.getComputeCommandBuffer_SubmittedBy(), "commandBuffer", null, 1, 1, ComputeExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(computeCommandBufferEClass, ComputeCommandBuffer.class, "ComputeCommandBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComputeCommandBuffer_SubmittedBy(), this.getComputeExecutionRecorder(), this.getComputeExecutionRecorder_CommandBuffer(), "submittedBy", null, 0, -1, ComputeCommandBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

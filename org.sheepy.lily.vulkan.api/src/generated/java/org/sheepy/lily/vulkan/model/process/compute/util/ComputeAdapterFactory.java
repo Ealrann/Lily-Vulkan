@@ -4,25 +4,29 @@ package org.sheepy.lily.vulkan.model.process.compute.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
-import org.sheepy.lily.vulkan.model.process.compute.*;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
+import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,7 +88,7 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComputeSwitch<Adapter> modelSwitch = new ComputeSwitch<Adapter>()
+	protected ComputeSwitch<Adapter> modelSwitch = new ComputeSwitch<>()
 		{
 			@Override
 			public Adapter caseComputeProcess(ComputeProcess object)
@@ -115,6 +119,11 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseComputeExecutionRecorder(ComputeExecutionRecorder object)
 			{
 				return createComputeExecutionRecorderAdapter();
+			}
+			@Override
+			public Adapter caseComputeCommandBuffer(ComputeCommandBuffer object)
+			{
+				return createComputeCommandBufferAdapter();
 			}
 			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
@@ -175,6 +184,11 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseExecutionRecorder(ExecutionRecorder object)
 			{
 				return createExecutionRecorderAdapter();
+			}
+			@Override
+			public Adapter caseICommandBuffer(ICommandBuffer object)
+			{
+				return createICommandBufferAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -283,6 +297,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createComputeExecutionRecorderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer <em>Command Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer
+	 * @generated
+	 */
+	public Adapter createComputeCommandBufferAdapter()
 	{
 		return null;
 	}
@@ -463,6 +492,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createExecutionRecorderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ICommandBuffer <em>ICommand Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ICommandBuffer
+	 * @generated
+	 */
+	public Adapter createICommandBufferAdapter()
 	{
 		return null;
 	}

@@ -4,14 +4,37 @@ package org.sheepy.lily.vulkan.model.process.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-
-import org.sheepy.lily.vulkan.model.process.*;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
+import org.sheepy.lily.vulkan.model.process.CompositePipeline;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
+import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.FetchBuffer;
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
+import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
+import org.sheepy.lily.vulkan.model.process.IPipelineExtension;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.IProcessExtension;
+import org.sheepy.lily.vulkan.model.process.Pipeline;
+import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
+import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
+import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.PushConstant;
+import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.TaskPipeline;
+import org.sheepy.lily.vulkan.model.process.TaskPkg;
+import org.sheepy.lily.vulkan.model.process.VkPipeline;
 
 /**
  * <!-- begin-user-doc -->
@@ -277,6 +300,13 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				T1 result = caseFetchBuffer(fetchBuffer);
 				if (result == null) result = caseIPipelineTask(fetchBuffer);
 				if (result == null) result = caseLNamedElement(fetchBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.ICOMMAND_BUFFER:
+			{
+				ICommandBuffer iCommandBuffer = (ICommandBuffer)theEObject;
+				T1 result = caseICommandBuffer(iCommandBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -664,6 +694,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseFetchBuffer(FetchBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ICommand Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ICommand Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseICommandBuffer(ICommandBuffer object)
 	{
 		return null;
 	}

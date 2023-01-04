@@ -3,30 +3,41 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
-import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.process.execution.AbstractProcessCommandBufferHelper;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassRecorder;
 import org.sheepy.lily.vulkan.process.graphic.renderpass.RenderPassAllocation;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
+import java.util.List;
+
 import static org.lwjgl.vulkan.VK10.*;
 
-public class GraphicCommandBuffer extends AbstractCommandBuffer
+public final class GraphicCommandBufferHelper extends AbstractProcessCommandBufferHelper
 {
+	private static final List<ECommandStage> stages = List.of(ECommandStage.PRE_RENDER,
+															  ECommandStage.MAIN,
+															  ECommandStage.POST_RENDER);
 	private static final String FAILED_TO_RECORD_COMMAND_BUFFER = "Failed to record command buffer";
 	private static final String FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER = "Failed to begin recording command buffer";
 
 	private final VkClearValue.Buffer clearValues;
 	private final VkRenderPassBeginInfo renderPassBeginInfo;
 	private final VkCommandBufferBeginInfo beginInfo;
+	private final int subpassCount;
 
-	public GraphicCommandBuffer(ExecutionContext context,
-								PhysicalSurfaceAllocation surfaceAllocation,
-								RenderPassAllocation renderPassAllocation,
-								long framebufferPtr)
+	public GraphicCommandBufferHelper(ExecutionContext context,
+									  PhysicalSurfaceAllocation surfaceAllocation,
+									  RenderPassAllocation renderPassAllocation,
+									  long framebufferPtr,
+									  int subpassCount)
 	{
-		super(context);
+		super(context, stages);
+		this.subpassCount = subpassCount;
 
 		final var clearInfos = renderPassAllocation.getClearInfos();
 		final int clearCount = clearInfos.size();
@@ -75,7 +86,34 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 	}
 
 	@Override
-	public void start(ECommandStage stage)
+	protected void recordStage(List<IRecordableAdapter> recordables, final RecordContext recordContext)
+	{
+		final var stage = recordContext.stage;
+		int current = 0;
+
+		while (current < subpassCount)
+		{
+			if (stage == ECommandStage.MAIN && current != 0)
+			{
+				vkCmdNextSubpass(vkCommandBuffer, VK_SUBPASS_CONTENTS_INLINE);
+			}
+
+			for (int i = 0; i < recordables.size(); i++)
+			{
+				final var subpass = (SubpassRecorder) recordables.get(i);
+				final int subpassIndex = subpass.getSubpassIndex();
+				if (stage != ECommandStage.MAIN || subpassIndex == current)
+				{
+					subpass.record(recordContext);
+				}
+			}
+
+			current++;
+		}
+	}
+
+	@Override
+	protected void start(ECommandStage stage)
 	{
 		switch (stage)
 		{
@@ -86,7 +124,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 	}
 
 	@Override
-	public void end(ECommandStage stage)
+	protected void end(ECommandStage stage)
 	{
 		switch (stage)
 		{

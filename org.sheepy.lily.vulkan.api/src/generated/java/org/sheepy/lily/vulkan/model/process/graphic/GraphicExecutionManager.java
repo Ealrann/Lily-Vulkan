@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager#getRecorders <em>Recorders</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager#getCommandBuffers <em>Command Buffers</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicExecutionManager()
@@ -35,4 +36,16 @@ public interface GraphicExecutionManager extends ProcessExecutionManager
 	 * @generated
 	 */
 	EList<GraphicExecutionRecorder> getRecorders();
+
+	/**
+	 * Returns the value of the '<em><b>Command Buffers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Command Buffers</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicExecutionManager_CommandBuffers()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GraphicCommandBuffer> getCommandBuffers();
 } // GraphicExecutionManager

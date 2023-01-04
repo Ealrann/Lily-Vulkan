@@ -3,34 +3,23 @@
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
-
 import org.sheepy.lily.core.model.application.CompositorExtensionPkg;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.core.model.variable.ModelVariablePkg;
-
 import org.sheepy.lily.vulkan.model.DescriptorPkg;
-
 import org.sheepy.lily.vulkan.model.process.graphic.Attachment;
 import org.sheepy.lily.vulkan.model.process.graphic.Compositor;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
@@ -418,7 +407,7 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	{
 		if (colorAttachments == null)
 		{
-			colorAttachments = new EObjectResolvingEList<Attachment>(Attachment.class, this, GraphicPackage.COMPOSITOR__COLOR_ATTACHMENTS);
+			colorAttachments = new EObjectResolvingEList<>(Attachment.class, this, GraphicPackage.COMPOSITOR__COLOR_ATTACHMENTS);
 		}
 		return colorAttachments;
 	}
@@ -433,7 +422,7 @@ public class CompositorImpl extends LilyEObject implements Compositor
 	{
 		if (inputAttachments == null)
 		{
-			inputAttachments = new EObjectResolvingEList<ExtraAttachment>(ExtraAttachment.class, this, GraphicPackage.COMPOSITOR__INPUT_ATTACHMENTS);
+			inputAttachments = new EObjectResolvingEList<>(ExtraAttachment.class, this, GraphicPackage.COMPOSITOR__INPUT_ATTACHMENTS);
 		}
 		return inputAttachments;
 	}

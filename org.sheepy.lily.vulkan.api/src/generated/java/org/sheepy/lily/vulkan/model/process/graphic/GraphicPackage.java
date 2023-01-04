@@ -9,10 +9,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 /**
@@ -194,13 +192,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_EXECUTION_MANAGER__RECORDERS = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Command Buffers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_EXECUTION_MANAGER__COMMAND_BUFFERS = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Execution Manager</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_EXECUTION_MANAGER_FEATURE_COUNT = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 1;
+	int GRAPHIC_EXECUTION_MANAGER_FEATURE_COUNT = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Execution Manager</em>' class.
@@ -231,13 +238,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_EXECUTION_RECORDER__INDEX = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Command Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
+	int GRAPHIC_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Execution Recorder</em>' class.
@@ -2946,6 +2962,52 @@ public interface GraphicPackage extends EPackage
 	int COMPOSITOR_OPERATION_COUNT = ApplicationPackage.ICOMPOSITOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicCommandBufferImpl <em>Command Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicCommandBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicCommandBuffer()
+	 * @generated
+	 */
+	int GRAPHIC_COMMAND_BUFFER = 36;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_COMMAND_BUFFER__INDEX = ProcessPackage.ICOMMAND_BUFFER__INDEX;
+
+	/**
+	 * The feature id for the '<em><b>Submitted By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_COMMAND_BUFFER__SUBMITTED_BY = ProcessPackage.ICOMMAND_BUFFER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Command Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_COMMAND_BUFFER_FEATURE_COUNT = ProcessPackage.ICOMMAND_BUFFER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Command Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_COMMAND_BUFFER_OPERATION_COUNT = ProcessPackage.ICOMMAND_BUFFER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2953,7 +3015,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getEAttachmentType()
 	 * @generated
 	 */
-	int EATTACHMENT_TYPE = 36;
+	int EATTACHMENT_TYPE = 37;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
@@ -3053,6 +3115,17 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicExecutionManager_Recorders();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager#getCommandBuffers <em>Command Buffers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Command Buffers</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager#getCommandBuffers()
+	 * @see #getGraphicExecutionManager()
+	 * @generated
+	 */
+	EReference getGraphicExecutionManager_CommandBuffers();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder <em>Execution Recorder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3072,6 +3145,17 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getGraphicExecutionRecorder_Index();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder#getCommandBuffer <em>Command Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Command Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder#getCommandBuffer()
+	 * @see #getGraphicExecutionRecorder()
+	 * @generated
+	 */
+	EReference getGraphicExecutionRecorder_CommandBuffer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorDomain <em>Color Domain</em>}'.
@@ -4449,6 +4533,27 @@ public interface GraphicPackage extends EPackage
 	EReference getCompositor_DescriptorPkg();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer <em>Command Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Command Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer
+	 * @generated
+	 */
+	EClass getGraphicCommandBuffer();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer#getSubmittedBy <em>Submitted By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Submitted By</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer#getSubmittedBy()
+	 * @see #getGraphicCommandBuffer()
+	 * @generated
+	 */
+	EReference getGraphicCommandBuffer_SubmittedBy();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4559,6 +4664,14 @@ public interface GraphicPackage extends EPackage
 		EReference GRAPHIC_EXECUTION_MANAGER__RECORDERS = eINSTANCE.getGraphicExecutionManager_Recorders();
 
 		/**
+		 * The meta object literal for the '<em><b>Command Buffers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHIC_EXECUTION_MANAGER__COMMAND_BUFFERS = eINSTANCE.getGraphicExecutionManager_CommandBuffers();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicExecutionRecorderImpl <em>Execution Recorder</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4575,6 +4688,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute GRAPHIC_EXECUTION_RECORDER__INDEX = eINSTANCE.getGraphicExecutionRecorder_Index();
+
+		/**
+		 * The meta object literal for the '<em><b>Command Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER = eINSTANCE.getGraphicExecutionRecorder_CommandBuffer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorDomainImpl <em>Color Domain</em>}' class.
@@ -5665,6 +5786,24 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference COMPOSITOR__DESCRIPTOR_PKG = eINSTANCE.getCompositor_DescriptorPkg();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicCommandBufferImpl <em>Command Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicCommandBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicCommandBuffer()
+		 * @generated
+		 */
+		EClass GRAPHIC_COMMAND_BUFFER = eINSTANCE.getGraphicCommandBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Submitted By</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHIC_COMMAND_BUFFER__SUBMITTED_BY = eINSTANCE.getGraphicCommandBuffer_SubmittedBy();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}' enum.

@@ -16,6 +16,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getRecorders <em>Recorders</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getIndexCount <em>Index Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getCommandBuffers <em>Command Buffers</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputeExecutionManager()
@@ -59,4 +60,16 @@ public interface ComputeExecutionManager extends ProcessExecutionManager
 	 * @generated
 	 */
 	void setIndexCount(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Command Buffers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Command Buffers</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputeExecutionManager_CommandBuffers()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ComputeCommandBuffer> getCommandBuffers();
 } // ComputeExecutionManager

@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
@@ -515,13 +514,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_EXECUTION_MANAGER__INDEX_COUNT = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Command Buffers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Execution Manager</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_EXECUTION_MANAGER_FEATURE_COUNT = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 2;
+	int COMPUTE_EXECUTION_MANAGER_FEATURE_COUNT = ProcessPackage.PROCESS_EXECUTION_MANAGER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Execution Manager</em>' class.
@@ -552,13 +560,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_EXECUTION_RECORDER__INDEX = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Command Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
+	int COMPUTE_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Execution Recorder</em>' class.
@@ -568,6 +585,52 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTE_EXECUTION_RECORDER_OPERATION_COUNT = ProcessPackage.EXECUTION_RECORDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeCommandBufferImpl <em>Command Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputeCommandBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeCommandBuffer()
+	 * @generated
+	 */
+	int COMPUTE_COMMAND_BUFFER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_COMMAND_BUFFER__INDEX = ProcessPackage.ICOMMAND_BUFFER__INDEX;
+
+	/**
+	 * The feature id for the '<em><b>Submitted By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_COMMAND_BUFFER__SUBMITTED_BY = ProcessPackage.ICOMMAND_BUFFER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Command Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_COMMAND_BUFFER_FEATURE_COUNT = ProcessPackage.ICOMMAND_BUFFER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Command Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_COMMAND_BUFFER_OPERATION_COUNT = ProcessPackage.ICOMMAND_BUFFER_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.
@@ -719,6 +782,17 @@ public interface ComputePackage extends EPackage
 	EAttribute getComputeExecutionManager_IndexCount();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getCommandBuffers <em>Command Buffers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Command Buffers</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager#getCommandBuffers()
+	 * @see #getComputeExecutionManager()
+	 * @generated
+	 */
+	EReference getComputeExecutionManager_CommandBuffers();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder <em>Execution Recorder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -738,6 +812,38 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getComputeExecutionRecorder_Index();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder#getCommandBuffer <em>Command Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Command Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder#getCommandBuffer()
+	 * @see #getComputeExecutionRecorder()
+	 * @generated
+	 */
+	EReference getComputeExecutionRecorder_CommandBuffer();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer <em>Command Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Command Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer
+	 * @generated
+	 */
+	EClass getComputeCommandBuffer();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer#getSubmittedBy <em>Submitted By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Submitted By</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer#getSubmittedBy()
+	 * @see #getComputeCommandBuffer()
+	 * @generated
+	 */
+	EReference getComputeCommandBuffer_SubmittedBy();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -886,6 +992,14 @@ public interface ComputePackage extends EPackage
 		EAttribute COMPUTE_EXECUTION_MANAGER__INDEX_COUNT = eINSTANCE.getComputeExecutionManager_IndexCount();
 
 		/**
+		 * The meta object literal for the '<em><b>Command Buffers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS = eINSTANCE.getComputeExecutionManager_CommandBuffers();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionRecorderImpl <em>Execution Recorder</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -902,6 +1016,32 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute COMPUTE_EXECUTION_RECORDER__INDEX = eINSTANCE.getComputeExecutionRecorder_Index();
+
+		/**
+		 * The meta object literal for the '<em><b>Command Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER = eINSTANCE.getComputeExecutionRecorder_CommandBuffer();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeCommandBufferImpl <em>Command Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputeCommandBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeCommandBuffer()
+		 * @generated
+		 */
+		EClass COMPUTE_COMMAND_BUFFER = eINSTANCE.getComputeCommandBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Submitted By</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTE_COMMAND_BUFFER__SUBMITTED_BY = eINSTANCE.getComputeCommandBuffer_SubmittedBy();
 
 	}
 

@@ -5,12 +5,17 @@ package org.sheepy.lily.vulkan.model.process.compute.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.model.process.compute.*;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
+import org.sheepy.lily.vulkan.model.process.compute.DispatchTask;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,12 +69,13 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ComputePackage.COMPUTE_PROCESS: return (EObject)createComputeProcess();
-			case ComputePackage.COMPUTE_PIPELINE: return (EObject)createComputePipeline();
-			case ComputePackage.DISPATCH_TASK: return (EObject)createDispatchTask();
-			case ComputePackage.COMPUTE_CONFIGURATION: return (EObject)createComputeConfiguration();
-			case ComputePackage.COMPUTE_EXECUTION_MANAGER: return (EObject)createComputeExecutionManager();
-			case ComputePackage.COMPUTE_EXECUTION_RECORDER: return (EObject)createComputeExecutionRecorder();
+			case ComputePackage.COMPUTE_PROCESS: return createComputeProcess();
+			case ComputePackage.COMPUTE_PIPELINE: return createComputePipeline();
+			case ComputePackage.DISPATCH_TASK: return createDispatchTask();
+			case ComputePackage.COMPUTE_CONFIGURATION: return createComputeConfiguration();
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER: return createComputeExecutionManager();
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER: return createComputeExecutionRecorder();
+			case ComputePackage.COMPUTE_COMMAND_BUFFER: return createComputeCommandBuffer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -145,6 +151,18 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	{
 		ComputeExecutionRecorderImpl computeExecutionRecorder = new ComputeExecutionRecorderImpl();
 		return computeExecutionRecorder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ComputeCommandBuffer createComputeCommandBuffer()
+	{
+		ComputeCommandBufferImpl computeCommandBuffer = new ComputeCommandBufferImpl();
+		return computeCommandBuffer;
 	}
 
 	/**

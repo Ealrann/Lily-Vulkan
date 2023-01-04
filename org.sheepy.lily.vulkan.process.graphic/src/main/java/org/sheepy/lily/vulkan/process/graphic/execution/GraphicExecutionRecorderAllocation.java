@@ -3,141 +3,83 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.*;
-import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.core.execution.RecordContext;
-import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.process.execution.GenericExecutionRecorder;
+import org.sheepy.lily.vulkan.process.execution.ExecutionRecorderHelper;
+import org.sheepy.lily.vulkan.process.execution.ICommandBufferAdapter;
 import org.sheepy.lily.vulkan.process.execution.IExecutionRecorderAllocation;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
-import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.SubpassRecorder;
-import org.sheepy.lily.vulkan.process.graphic.renderpass.RenderPassAllocation;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.List;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
 @ModelExtender(scope = GraphicExecutionRecorder.class)
-@Allocation(context = ProcessContext.class, reuseDirtyAllocations = true)
+@Allocation(context = ProcessContext.class)
+@AllocationDependency(features = GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER, type = ICommandBufferAdapter.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION}, type = SwapChainAllocation.class)
-@AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__RENDER_PASS}, type = RenderPassAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS}, type = ImageViewAllocation.class)
-@AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION}, type = FramebufferAllocation.class)
-@AllocationDependency(parent = GraphicProcess.class, features = GraphicPackage.GRAPHIC_PROCESS__SUBPASSES, type = IRecordableAdapter.class)
 public final class GraphicExecutionRecorderAllocation implements IExecutionRecorderAllocation
 {
-	private static final List<ECommandStage> stages = List.of(ECommandStage.PRE_RENDER,
-															  ECommandStage.MAIN,
-															  ECommandStage.POST_RENDER);
-
-	private final GraphicCommandBuffer commandBuffer;
 	private final PresentSubmission presentSubmission;
-	private final GenericExecutionRecorder executionRecorder;
-	private final int subpassCount;
+	private final ExecutionRecorderHelper executionHelper;
+	private ICommandBufferAdapter commandBuffer;
 
-	private List<IRecordableAdapter> recordables;
-	private boolean needRecord = true;
-
-	public GraphicExecutionRecorderAllocation(GraphicExecutionRecorder recorder,
-											  ProcessContext context,
-											  IAllocationState allocationState,
-											  @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation,
-											  @InjectDependency(index = 1) SwapChainAllocation swapChainAllocation,
-											  @InjectDependency(index = 2) RenderPassAllocation renderPassAllocation,
-											  @InjectDependency(index = 4) FramebufferAllocation framebufferAllocation,
-											  @InjectDependency(index = 5) List<IRecordableAdapter> recordables)
+	private GraphicExecutionRecorderAllocation(GraphicExecutionRecorder recorder,
+											   ProcessContext context,
+											   IAllocationState allocationState,
+											   @InjectDependency(index = 0) ICommandBufferAdapter commandBuffer,
+											   @InjectDependency(index = 1) PhysicalSurfaceAllocation surfaceAllocation,
+											   @InjectDependency(index = 2) SwapChainAllocation swapChainAllocation)
 	{
-		final int index = recorder.getIndex();
-		final var framebufferPtr = framebufferAllocation.getFramebufferAddresses().get(index);
-
-		this.recordables = recordables;
-		this.commandBuffer = new GraphicCommandBuffer(context, surfaceAllocation, renderPassAllocation, framebufferPtr);
+		final int index = recorder.getCommandBuffer().getIndex();
+		assert index == recorder.getIndex();
 		final var presentQueue = surfaceAllocation.getPresentQueue().vkQueue;
-		final var process = ModelUtil.findParent(recorder, GraphicProcess.class);
 		final var manager = (GraphicExecutionManager) recorder.eContainer();
 		final var presentSemaphore = manager.adapt(GraphicExecutionManagerAllocation.class).getPresentSemaphore();
-		this.subpassCount = countSubpasses(process);
-		executionRecorder = new GenericExecutionRecorder(commandBuffer,
-														 context,
-														 allocationState,
-														 index,
-														 1,
-														 this::recordCommand);
+		this.commandBuffer = commandBuffer;
+		this.executionHelper = new ExecutionRecorderHelper(context, allocationState, 1);
+		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),
+													   presentQueue,
+													   index,
+													   presentSemaphore);
 
-		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(), presentQueue, index, presentSemaphore);
+		System.out.println("Allocate GraphicExecutionRecorder " + index);
 	}
 
-	@Free
-	public void free(ExecutionContext context)
+	@UpdateDependency(index = 0)
+	private void updateCommandBuffer(ICommandBufferAdapter commandBuffer)
 	{
-		executionRecorder.free(context.getVkDevice());
-		commandBuffer.free(context);
-		presentSubmission.free();
-	}
-
-	@UpdateDependency(index = 5)
-	private void updateRecordables(List<IRecordableAdapter> recordables)
-	{
-		this.recordables = recordables;
-		needRecord = true;
+		this.commandBuffer = commandBuffer;
 	}
 
 	@Override
 	public void prepare(final List<WaitData> waitSemaphores, List<VkSemaphore> signalSemaphores, int semaphoreCount)
 	{
-		executionRecorder.prepare(waitSemaphores, signalSemaphores, semaphoreCount);
-
-		if (needRecord)
-		{
-			executionRecorder.record(stages);
-			needRecord = false;
-		}
+		executionHelper.prepare(waitSemaphores, signalSemaphores, semaphoreCount, commandBuffer);
 	}
 
-	private void recordCommand(RecordContext recordContext)
+	@Free
+	public void free(ExecutionContext context)
 	{
-		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-		final var stage = recordContext.stage;
-		int current = 0;
-
-		while (current < subpassCount)
-		{
-			if (stage == ECommandStage.MAIN && current != 0)
-			{
-				vkCmdNextSubpass(vkCommandBuffer, VK_SUBPASS_CONTENTS_INLINE);
-			}
-
-			for (int i = 0; i < recordables.size(); i++)
-			{
-				final var subpass = (SubpassRecorder) recordables.get(i);
-				final int subpassIndex = subpass.getSubpassIndex();
-				if (stage != ECommandStage.MAIN || subpassIndex == current)
-				{
-					subpass.record(recordContext);
-				}
-			}
-
-			current++;
-		}
+		executionHelper.free(context.getVkDevice());
+		presentSubmission.free();
 	}
 
 	@Override
 	public IFenceView play()
 	{
-		final var res = executionRecorder.play();
+		final var res = executionHelper.play();
 		if (res.result() == VK_SUCCESS)
 		{
 			presentSubmission.submit();
@@ -145,35 +87,21 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 		return res.fence();
 	}
 
-	private static int countSubpasses(GraphicProcess process)
-	{
-		int res = 0;
-		for (final var subpass : process.getSubpasses())
-		{
-			final int subpassIndex = subpass.getSubpassIndex() + 1;
-			if (subpassIndex > res)
-			{
-				res = subpassIndex;
-			}
-		}
-		return res;
-	}
-
 	@Override
 	public boolean checkFence()
 	{
-		return executionRecorder.checkFence();
+		return executionHelper.checkFence();
 	}
 
 	@Override
 	public void waitIdle()
 	{
-		executionRecorder.waitIdle();
+		executionHelper.waitIdle();
 	}
 
 	@Override
 	public VkSemaphore borrowSemaphore()
 	{
-		return executionRecorder.borrowSemaphore();
+		return executionHelper.borrowSemaphore();
 	}
 }

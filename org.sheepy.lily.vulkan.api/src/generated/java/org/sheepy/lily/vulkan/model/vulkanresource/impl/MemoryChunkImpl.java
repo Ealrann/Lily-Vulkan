@@ -6,20 +6,14 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
-
 import org.sheepy.lily.vulkan.model.vulkanresource.IMemoryChunkPart;
 import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
 import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
@@ -138,7 +132,7 @@ public class MemoryChunkImpl extends LilyEObject implements MemoryChunk
 	{
 		if (parts == null)
 		{
-			parts = new EObjectContainmentEList<IMemoryChunkPart>(IMemoryChunkPart.class, this, VulkanResourcePackage.MEMORY_CHUNK__PARTS);
+			parts = new EObjectContainmentEList<>(IMemoryChunkPart.class, this, VulkanResourcePackage.MEMORY_CHUNK__PARTS);
 		}
 		return parts;
 	}

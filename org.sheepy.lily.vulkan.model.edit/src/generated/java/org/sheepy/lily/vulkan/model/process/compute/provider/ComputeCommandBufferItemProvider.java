@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.graphic.provider;
+package org.sheepy.lily.vulkan.model.process.compute.provider;
 
 
 import java.util.Collection;
@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -20,16 +19,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicExecutionRecorderItemProvider
+public class ComputeCommandBufferItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +44,7 @@ public class GraphicExecutionRecorderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphicExecutionRecorderItemProvider(AdapterFactory adapterFactory)
+	public ComputeCommandBufferItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -63,7 +63,7 @@ public class GraphicExecutionRecorderItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIndexPropertyDescriptor(object);
-			addCommandBufferPropertyDescriptor(object);
+			addSubmittedByPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -80,9 +80,9 @@ public class GraphicExecutionRecorderItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GraphicExecutionRecorder_index_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicExecutionRecorder_index_feature", "_UI_GraphicExecutionRecorder_type"),
-				 GraphicPackage.Literals.GRAPHIC_EXECUTION_RECORDER__INDEX,
+				 getString("_UI_ICommandBuffer_index_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ICommandBuffer_index_feature", "_UI_ICommandBuffer_type"),
+				 ProcessPackage.Literals.ICOMMAND_BUFFER__INDEX,
 				 true,
 				 false,
 				 false,
@@ -92,20 +92,20 @@ public class GraphicExecutionRecorderItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Command Buffer feature.
+	 * This adds a property descriptor for the Submitted By feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCommandBufferPropertyDescriptor(Object object)
+	protected void addSubmittedByPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GraphicExecutionRecorder_commandBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicExecutionRecorder_commandBuffer_feature", "_UI_GraphicExecutionRecorder_type"),
-				 GraphicPackage.Literals.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER,
+				 getString("_UI_ComputeCommandBuffer_submittedBy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ComputeCommandBuffer_submittedBy_feature", "_UI_ComputeCommandBuffer_type"),
+				 ComputePackage.Literals.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY,
 				 true,
 				 false,
 				 true,
@@ -115,7 +115,7 @@ public class GraphicExecutionRecorderItemProvider
 	}
 
 	/**
-	 * This returns GraphicExecutionRecorder.gif.
+	 * This returns ComputeCommandBuffer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -123,7 +123,7 @@ public class GraphicExecutionRecorderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GraphicExecutionRecorder"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComputeCommandBuffer"));
 	}
 
 	/**
@@ -135,8 +135,8 @@ public class GraphicExecutionRecorderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		GraphicExecutionRecorder graphicExecutionRecorder = (GraphicExecutionRecorder)object;
-		return getString("_UI_GraphicExecutionRecorder_type") + " " + graphicExecutionRecorder.getIndex();
+		ComputeCommandBuffer computeCommandBuffer = (ComputeCommandBuffer)object;
+		return getString("_UI_ComputeCommandBuffer_type") + " " + computeCommandBuffer.getIndex();
 	}
 
 
@@ -152,9 +152,9 @@ public class GraphicExecutionRecorderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GraphicExecutionRecorder.class))
+		switch (notification.getFeatureID(ComputeCommandBuffer.class))
 		{
-			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__INDEX:
+			case ComputePackage.COMPUTE_COMMAND_BUFFER__INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -183,7 +183,7 @@ public class GraphicExecutionRecorderItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return LilyVulkanEditPlugin.INSTANCE;
 	}
 
 }

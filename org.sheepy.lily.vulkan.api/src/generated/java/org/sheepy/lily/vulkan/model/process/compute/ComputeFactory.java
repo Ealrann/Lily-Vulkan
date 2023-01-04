@@ -77,6 +77,15 @@ public interface ComputeFactory extends EFactory
 	ComputeExecutionRecorder createComputeExecutionRecorder();
 
 	/**
+	 * Returns a new object of class '<em>Command Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Command Buffer</em>'.
+	 * @generated
+	 */
+	ComputeCommandBuffer createComputeCommandBuffer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

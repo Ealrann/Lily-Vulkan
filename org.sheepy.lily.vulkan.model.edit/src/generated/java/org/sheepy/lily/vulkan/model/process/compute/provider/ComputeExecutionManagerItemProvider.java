@@ -8,9 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -97,6 +95,7 @@ public class ComputeExecutionManagerItemProvider extends ProcessExecutionManager
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ComputePackage.Literals.COMPUTE_EXECUTION_MANAGER__RECORDERS);
+			childrenFeatures.add(ComputePackage.Literals.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS);
 		}
 		return childrenFeatures;
 	}
@@ -162,6 +161,7 @@ public class ComputeExecutionManagerItemProvider extends ProcessExecutionManager
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS:
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -184,6 +184,11 @@ public class ComputeExecutionManagerItemProvider extends ProcessExecutionManager
 			(createChildParameter
 				(ComputePackage.Literals.COMPUTE_EXECUTION_MANAGER__RECORDERS,
 				 ComputeFactory.eINSTANCE.createComputeExecutionRecorder()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ComputePackage.Literals.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS,
+				 ComputeFactory.eINSTANCE.createComputeCommandBuffer()));
 	}
 
 	/**

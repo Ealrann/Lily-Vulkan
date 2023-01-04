@@ -6,12 +6,45 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.model.process.graphic.*;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRefPkg;
+import org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
+import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
+import org.sheepy.lily.vulkan.model.process.graphic.Compositor;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.Draw;
+import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
+import org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType;
+import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageViews;
+import org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.PhysicalSurface;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPass;
+import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
+import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,6 +131,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.VERTEX_BINDING: return createVertexBinding();
 			case GraphicPackage.BIND_INDEX_BUFFER: return createBindIndexBuffer();
 			case GraphicPackage.COMPOSITOR: return createCompositor();
+			case GraphicPackage.GRAPHIC_COMMAND_BUFFER: return createGraphicCommandBuffer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -531,6 +565,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		CompositorImpl compositor = new CompositorImpl();
 		return compositor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GraphicCommandBuffer createGraphicCommandBuffer()
+	{
+		GraphicCommandBufferImpl graphicCommandBuffer = new GraphicCommandBufferImpl();
+		return graphicCommandBuffer;
 	}
 
 	/**

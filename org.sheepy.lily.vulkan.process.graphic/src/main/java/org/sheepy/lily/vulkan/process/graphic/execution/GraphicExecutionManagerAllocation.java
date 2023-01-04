@@ -20,6 +20,7 @@ import java.util.stream.Stream;
 
 @ModelExtender(scope = GraphicExecutionManager.class)
 @Allocation(context = ProcessContext.class)
+@AllocationChild(features = GraphicPackage.GRAPHIC_EXECUTION_MANAGER__COMMAND_BUFFERS)
 @AllocationChild(features = GraphicPackage.GRAPHIC_EXECUTION_MANAGER__RECORDERS)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION}, type = SwapChainAllocation.class)
@@ -51,25 +52,10 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 		imageAcquirer = new ImageAcquirer(vkDevice, surfaceAllocation, swapChainAllocation.getPtr());
 	}
 
-	@InjectChildren(index = 0, type = GraphicExecutionRecorderAllocation.class)
+	@InjectChildren(index = 1, type = GraphicExecutionRecorderAllocation.class)
 	private void injectRecorders(List<GraphicExecutionRecorderAllocation> recorders)
 	{
 		this.recorders = recorders;
-	}
-
-	private static void setupRecorders(GraphicExecutionManager executionManager, int count)
-	{
-		final var recorders = executionManager.getRecorders();
-		if (recorders.size() != count)
-		{
-			recorders.clear();
-			for (int i = 0; i < count; i++)
-			{
-				final var graphicExecutionRecorder = GraphicFactory.eINSTANCE.createGraphicExecutionRecorder();
-				graphicExecutionRecorder.setIndex(i);
-				recorders.add(graphicExecutionRecorder);
-			}
-		}
 	}
 
 	@UpdateDependency(index = 0)
@@ -125,5 +111,27 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 	public VkSemaphore getPresentSemaphore()
 	{
 		return presentSemaphore;
+	}
+
+	private static void setupRecorders(GraphicExecutionManager executionManager, int count)
+	{
+		final var recorders = executionManager.getRecorders();
+		if (recorders.size() != count)
+		{
+			recorders.clear();
+			executionManager.getCommandBuffers().clear();
+			for (int i = 0; i < count; i++)
+			{
+				final var commandBuffer = GraphicFactory.eINSTANCE.createGraphicCommandBuffer();
+				commandBuffer.setIndex(i);
+				executionManager.getCommandBuffers().add(commandBuffer);
+
+				final var graphicExecutionRecorder = GraphicFactory.eINSTANCE.createGraphicExecutionRecorder();
+				graphicExecutionRecorder.setIndex(i);
+				graphicExecutionRecorder.setCommandBuffer(commandBuffer);
+
+				recorders.add(graphicExecutionRecorder);
+			}
+		}
 	}
 }

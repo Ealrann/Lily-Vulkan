@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process.compute.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -53,7 +54,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -218,6 +219,31 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 		}
 
 		return computeExecutionRecorderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComputeCommandBufferItemProvider computeCommandBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComputeCommandBufferAdapter()
+	{
+		if (computeCommandBufferItemProvider == null)
+		{
+			computeCommandBufferItemProvider = new ComputeCommandBufferItemProvider(this);
+		}
+
+		return computeCommandBufferItemProvider;
 	}
 
 	/**

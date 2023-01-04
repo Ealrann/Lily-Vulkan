@@ -8,12 +8,35 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.model.vulkanresource.*;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferDescriptor;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferMemory;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferReference;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
+import org.sheepy.lily.vulkan.model.vulkanresource.CompositeImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.DataBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorPool;
+import org.sheepy.lily.vulkan.model.vulkanresource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.vulkanresource.EContextIndex;
+import org.sheepy.lily.vulkan.model.vulkanresource.EFlushMode;
+import org.sheepy.lily.vulkan.model.vulkanresource.FileImageDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.GenericConstantBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageBarrier;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageDataProvider;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageDescriptor;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageInlay;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageViewer;
+import org.sheepy.lily.vulkan.model.vulkanresource.MemoryChunk;
+import org.sheepy.lily.vulkan.model.vulkanresource.Sampler;
+import org.sheepy.lily.vulkan.model.vulkanresource.Shader;
+import org.sheepy.lily.vulkan.model.vulkanresource.StaticBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.StaticImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourceFactory;
+import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
 /**
  * <!-- begin-user-doc -->

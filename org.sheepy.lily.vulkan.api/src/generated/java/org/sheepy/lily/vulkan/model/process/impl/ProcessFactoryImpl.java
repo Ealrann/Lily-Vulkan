@@ -5,12 +5,23 @@ package org.sheepy.lily.vulkan.model.process.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.model.process.*;
+import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
+import org.sheepy.lily.vulkan.model.process.CompositePipeline;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.process.CopyBufferTask;
+import org.sheepy.lily.vulkan.model.process.FetchBuffer;
+import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
+import org.sheepy.lily.vulkan.model.process.Pipeline;
+import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
+import org.sheepy.lily.vulkan.model.process.ProcessFactory;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 /**
  * <!-- begin-user-doc -->

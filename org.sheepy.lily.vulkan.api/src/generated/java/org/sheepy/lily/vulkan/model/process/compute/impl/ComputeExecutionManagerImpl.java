@@ -3,19 +3,19 @@
 package org.sheepy.lily.vulkan.model.process.compute.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
-
 import org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl;
 
 /**
@@ -28,6 +28,7 @@ import org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionManagerImpl#getRecorders <em>Recorders</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionManagerImpl#getIndexCount <em>Index Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionManagerImpl#getCommandBuffers <em>Command Buffers</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,6 +65,16 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	protected int indexCount = INDEX_COUNT_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getCommandBuffers() <em>Command Buffers</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommandBuffers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ComputeCommandBuffer> commandBuffers;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -94,7 +105,7 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	{
 		if (recorders == null)
 		{
-			recorders = new EObjectContainmentEList<ComputeExecutionRecorder>(ComputeExecutionRecorder.class, this, ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS);
+			recorders = new EObjectContainmentEList<>(ComputeExecutionRecorder.class, this, ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS);
 		}
 		return recorders;
 	}
@@ -130,12 +141,29 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 	 * @generated
 	 */
 	@Override
+	public EList<ComputeCommandBuffer> getCommandBuffers()
+	{
+		if (commandBuffers == null)
+		{
+			commandBuffers = new EObjectContainmentEList<>(ComputeCommandBuffer.class, this, ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS);
+		}
+		return commandBuffers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS:
 				return ((InternalEList<?>)getRecorders()).basicRemove(otherEnd, msgs);
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS:
+				return ((InternalEList<?>)getCommandBuffers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -154,6 +182,8 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 				return getRecorders();
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__INDEX_COUNT:
 				return getIndexCount();
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS:
+				return getCommandBuffers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,6 +206,10 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__INDEX_COUNT:
 				setIndexCount((Integer)newValue);
 				return;
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS:
+				getCommandBuffers().clear();
+				getCommandBuffers().addAll((Collection<? extends ComputeCommandBuffer>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -196,6 +230,9 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__INDEX_COUNT:
 				setIndexCount(INDEX_COUNT_EDEFAULT);
 				return;
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS:
+				getCommandBuffers().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,6 +251,8 @@ public class ComputeExecutionManagerImpl extends ProcessExecutionManagerImpl imp
 				return recorders != null && !recorders.isEmpty();
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER__INDEX_COUNT:
 				return indexCount != INDEX_COUNT_EDEFAULT;
+			case ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS:
+				return commandBuffers != null && !commandBuffers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

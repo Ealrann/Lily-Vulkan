@@ -28,9 +28,13 @@
         <details key="property" value="None"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commandBuffers" upperBound="-1"
+        eType="#//GraphicCommandBuffer" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GraphicExecutionRecorder" eSuperTypes="process.ecore#//ExecutionRecorder">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commandBuffer" lowerBound="1"
+        eType="#//GraphicCommandBuffer" eOpposite="#//GraphicCommandBuffer/submittedBy"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ColorDomain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" unique="false"
@@ -320,5 +324,9 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descriptorPkg" eType="ecore:EClass vulkan.ecore#//DescriptorPkg"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicCommandBuffer" eSuperTypes="process.ecore#//ICommandBuffer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="submittedBy" upperBound="-1"
+        eType="#//GraphicExecutionRecorder" eOpposite="#//GraphicExecutionRecorder/commandBuffer"/>
   </eClassifiers>
 </ecore:EPackage>

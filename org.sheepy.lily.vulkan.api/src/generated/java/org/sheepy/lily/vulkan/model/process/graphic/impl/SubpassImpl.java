@@ -6,13 +6,10 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.api.model.LilyEObject;
@@ -727,7 +724,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		if (waitForAccesses == null)
 		{
-			waitForAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES);
+			waitForAccesses = new EDataTypeUniqueEList<>(EAccess.class, this, GraphicPackage.SUBPASS__WAIT_FOR_ACCESSES);
 		}
 		return waitForAccesses;
 	}
@@ -742,7 +739,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		if (syncAccesses == null)
 		{
-			syncAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__SYNC_ACCESSES);
+			syncAccesses = new EDataTypeUniqueEList<>(EAccess.class, this, GraphicPackage.SUBPASS__SYNC_ACCESSES);
 		}
 		return syncAccesses;
 	}
@@ -757,7 +754,7 @@ public class SubpassImpl extends LilyEObject implements Subpass
 	{
 		if (finishAccesses == null)
 		{
-			finishAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS__FINISH_ACCESSES);
+			finishAccesses = new EDataTypeUniqueEList<>(EAccess.class, this, GraphicPackage.SUBPASS__FINISH_ACCESSES);
 		}
 		return finishAccesses;
 	}

@@ -4,59 +4,48 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.process.execution.util.Submission;
 import org.sheepy.lily.vulkan.process.execution.util.SynchronizationManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
-public final class GenericExecutionRecorder
+public final class ExecutionRecorderHelper
 {
 	private static final String FAILED_SUBMIT = "Failed to submit command buffer";
 
-	private final AbstractCommandBuffer commandBuffer;
 	private final ProcessContext context;
 	private final IAllocationState allocationState;
-	private final int index;
 	private final SynchronizationManager synchronizationManager;
-	private final Consumer<RecordContext> doRecord;
 
 	private List<WaitData> waitSemaphores;
 	private List<VkSemaphore> signalSemaphores;
 	private SynchronizationManager.SyncUnit currentSyncUnit = null;
+	private ICommandBufferAdapter commandBuffer;
 
-	public GenericExecutionRecorder(AbstractCommandBuffer commandBuffer,
-									ProcessContext context,
-									IAllocationState allocationState,
-									int index,
-									int fenceCount,
-									Consumer<RecordContext> doRecord)
+	public ExecutionRecorderHelper(final ProcessContext context,
+								   final IAllocationState allocationState,
+								   final int fenceCount)
 	{
-		this.commandBuffer = commandBuffer;
 		this.context = context;
 		this.allocationState = allocationState;
-		this.index = index;
-		this.doRecord = doRecord;
 		this.synchronizationManager = new SynchronizationManager(fenceCount, context.getVkDevice());
 	}
 
 	public void prepare(final List<WaitData> waitSemaphores,
 						final List<VkSemaphore> signalSemaphores,
-						final int semaphoreCount)
+						final int semaphoreCount,
+						final ICommandBufferAdapter commandBuffer)
 	{
 		this.waitSemaphores = waitSemaphores;
+		this.commandBuffer = commandBuffer;
 
 		currentSyncUnit = synchronizationManager.next();
 		currentSyncUnit.prepareSemaphores(context.getVkDevice(), semaphoreCount);
@@ -71,44 +60,16 @@ public final class GenericExecutionRecorder
 		{
 			this.signalSemaphores = executionSemaphores;
 		}
-	}
 
-	public void record(List<ECommandStage> stages)
-	{
-		final List<Consumer<EExecutionStatus>> listeners = new ArrayList<>();
-		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-
-		try
-		{
-			for (int i = 0; i < stages.size(); i++)
-			{
-				final var stage = stages.get(i);
-				final var recordContext = new RecordContext(context, vkCommandBuffer, stage, index);
-
-				recordContext.stackPush();
-				commandBuffer.start(stage);
-				doRecord.accept(recordContext);
-				commandBuffer.end(stage);
-				recordContext.stackPop();
-				listeners.addAll(recordContext.getExecutionListeners());
-			}
-		}
-		catch (final Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		if (listeners.isEmpty() == false) currentSyncUnit.setListeners(listeners);
+		commandBuffer.prepare(currentSyncUnit);
 	}
 
 	public SubmitResult play()
 	{
 		try (final var stack = MemoryStack.stackPush())
 		{
-			final var submission = new Submission(stack,
-												  List.of(commandBuffer.getVkCommandBuffer()),
-												  waitSemaphores,
-												  signalSemaphores);
+			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
+			final var submission = new Submission(stack, List.of(vkCommandBuffer), waitSemaphores, signalSemaphores);
 
 			allocationState.lockAllocation();
 

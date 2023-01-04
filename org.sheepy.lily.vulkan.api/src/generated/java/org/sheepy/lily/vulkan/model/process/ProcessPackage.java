@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 /**
@@ -1543,6 +1542,43 @@ public interface ProcessPackage extends EPackage
 	int FETCH_BUFFER_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.ICommandBuffer <em>ICommand Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.ICommandBuffer
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getICommandBuffer()
+	 * @generated
+	 */
+	int ICOMMAND_BUFFER = 24;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND_BUFFER__INDEX = 0;
+
+	/**
+	 * The number of structural features of the '<em>ICommand Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND_BUFFER_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>ICommand Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND_BUFFER_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2223,6 +2259,27 @@ public interface ProcessPackage extends EPackage
 	EReference getFetchBuffer_BufferReference();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ICommandBuffer <em>ICommand Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ICommand Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ICommandBuffer
+	 * @generated
+	 */
+	EClass getICommandBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.ICommandBuffer#getIndex <em>Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ICommandBuffer#getIndex()
+	 * @see #getICommandBuffer()
+	 * @generated
+	 */
+	EAttribute getICommandBuffer_Index();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2805,6 +2862,24 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference FETCH_BUFFER__BUFFER_REFERENCE = eINSTANCE.getFetchBuffer_BufferReference();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.ICommandBuffer <em>ICommand Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.ICommandBuffer
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getICommandBuffer()
+		 * @generated
+		 */
+		EClass ICOMMAND_BUFFER = eINSTANCE.getICommandBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ICOMMAND_BUFFER__INDEX = eINSTANCE.getICommandBuffer_Index();
 
 	}
 
