@@ -127,7 +127,6 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 				executionManager.getCommandBuffers().add(commandBuffer);
 
 				final var graphicExecutionRecorder = GraphicFactory.eINSTANCE.createGraphicExecutionRecorder();
-				graphicExecutionRecorder.setIndex(i);
 				graphicExecutionRecorder.setCommandBuffer(commandBuffer);
 
 				recorders.add(graphicExecutionRecorder);

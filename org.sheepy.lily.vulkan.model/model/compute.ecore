@@ -38,7 +38,6 @@
         eType="#//ComputeCommandBuffer" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputeExecutionRecorder" eSuperTypes="process.ecore#//ExecutionRecorder">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commandBuffer" lowerBound="1"
         eType="#//ComputeCommandBuffer" eOpposite="#//ComputeCommandBuffer/submittedBy"/>
   </eClassifiers>

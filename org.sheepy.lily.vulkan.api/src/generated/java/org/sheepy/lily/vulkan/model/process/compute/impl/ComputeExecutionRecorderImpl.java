@@ -21,7 +21,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionRecorderImpl#getIndex <em>Index</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionRecorderImpl#getCommandBuffer <em>Command Buffer</em>}</li>
  * </ul>
  *
@@ -29,25 +28,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
  */
 public class ComputeExecutionRecorderImpl extends LilyEObject implements ComputeExecutionRecorder
 {
-	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int INDEX_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected int index = INDEX_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getCommandBuffer() <em>Command Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -77,31 +57,6 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	protected EClass eStaticClass()
 	{
 		return ComputePackage.Literals.COMPUTE_EXECUTION_RECORDER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getIndex()
-	{
-		return index;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIndex(int newIndex)
-	{
-		int oldIndex = index;
-		index = newIndex;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX, oldIndex, index));
 	}
 
 	/**
@@ -218,8 +173,6 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
-				return getIndex();
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
 				if (resolve) return getCommandBuffer();
 				return basicGetCommandBuffer();
@@ -237,9 +190,6 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
-				setIndex((Integer)newValue);
-				return;
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
 				setCommandBuffer((ComputeCommandBuffer)newValue);
 				return;
@@ -257,9 +207,6 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
-				setIndex(INDEX_EDEFAULT);
-				return;
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
 				setCommandBuffer((ComputeCommandBuffer)null);
 				return;
@@ -277,29 +224,10 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_EXECUTION_RECORDER__INDEX:
-				return index != INDEX_EDEFAULT;
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
 				return commandBuffer != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (index: ");
-		result.append(index);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ComputeExecutionRecorderImpl

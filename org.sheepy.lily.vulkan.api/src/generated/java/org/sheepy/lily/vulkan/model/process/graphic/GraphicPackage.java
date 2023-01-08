@@ -229,22 +229,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_EXECUTION_RECORDER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Index</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_EXECUTION_RECORDER__INDEX = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Command Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
+	int GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
@@ -253,7 +244,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 2;
+	int GRAPHIC_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Execution Recorder</em>' class.
@@ -3136,17 +3127,6 @@ public interface GraphicPackage extends EPackage
 	EClass getGraphicExecutionRecorder();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder#getIndex <em>Index</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Index</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder#getIndex()
-	 * @see #getGraphicExecutionRecorder()
-	 * @generated
-	 */
-	EAttribute getGraphicExecutionRecorder_Index();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder#getCommandBuffer <em>Command Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4680,14 +4660,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass GRAPHIC_EXECUTION_RECORDER = eINSTANCE.getGraphicExecutionRecorder();
-
-		/**
-		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPHIC_EXECUTION_RECORDER__INDEX = eINSTANCE.getGraphicExecutionRecorder_Index();
 
 		/**
 		 * The meta object literal for the '<em><b>Command Buffer</b></em>' reference feature.

@@ -551,22 +551,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_EXECUTION_RECORDER = 5;
 
 	/**
-	 * The feature id for the '<em><b>Index</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_EXECUTION_RECORDER__INDEX = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Command Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
+	int COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
@@ -575,7 +566,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 2;
+	int COMPUTE_EXECUTION_RECORDER_FEATURE_COUNT = ProcessPackage.EXECUTION_RECORDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Execution Recorder</em>' class.
@@ -803,17 +794,6 @@ public interface ComputePackage extends EPackage
 	EClass getComputeExecutionRecorder();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder#getIndex <em>Index</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Index</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder#getIndex()
-	 * @see #getComputeExecutionRecorder()
-	 * @generated
-	 */
-	EAttribute getComputeExecutionRecorder_Index();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder#getCommandBuffer <em>Command Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1008,14 +988,6 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EClass COMPUTE_EXECUTION_RECORDER = eINSTANCE.getComputeExecutionRecorder();
-
-		/**
-		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPUTE_EXECUTION_RECORDER__INDEX = eINSTANCE.getComputeExecutionRecorder_Index();
 
 		/**
 		 * The meta object literal for the '<em><b>Command Buffer</b></em>' reference feature.

@@ -17,10 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
@@ -62,33 +59,9 @@ public class GraphicExecutionRecorderItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addIndexPropertyDescriptor(object);
 			addCommandBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Index feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIndexPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicExecutionRecorder_index_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicExecutionRecorder_index_feature", "_UI_GraphicExecutionRecorder_type"),
-				 GraphicPackage.Literals.GRAPHIC_EXECUTION_RECORDER__INDEX,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -135,8 +108,7 @@ public class GraphicExecutionRecorderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		GraphicExecutionRecorder graphicExecutionRecorder = (GraphicExecutionRecorder)object;
-		return getString("_UI_GraphicExecutionRecorder_type") + " " + graphicExecutionRecorder.getIndex();
+		return getString("_UI_GraphicExecutionRecorder_type");
 	}
 
 
@@ -151,13 +123,6 @@ public class GraphicExecutionRecorderItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(GraphicExecutionRecorder.class))
-		{
-			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__INDEX:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

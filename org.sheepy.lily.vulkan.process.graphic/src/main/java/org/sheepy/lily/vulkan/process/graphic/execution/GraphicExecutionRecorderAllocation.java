@@ -43,7 +43,6 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 											   @InjectDependency(index = 2) SwapChainAllocation swapChainAllocation)
 	{
 		final int index = recorder.getCommandBuffer().getIndex();
-		assert index == recorder.getIndex();
 		final var presentQueue = surfaceAllocation.getPresentQueue().vkQueue;
 		final var manager = (GraphicExecutionManager) recorder.eContainer();
 		final var presentSemaphore = manager.adapt(GraphicExecutionManagerAllocation.class).getPresentSemaphore();

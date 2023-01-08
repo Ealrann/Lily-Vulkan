@@ -5,14 +5,13 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.*;
 import org.sheepy.lily.vulkan.process.execution.ExecutionManagerAllocation;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @ModelExtender(scope = ComputeExecutionManager.class)
@@ -65,22 +64,36 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 
 	private static void setupRecorders(ComputeExecutionManager executionManager)
 	{
-		final var recorders = executionManager.getRecorders();
-		if (recorders.size() != executionManager.getIndexCount())
+		final var recorderList = executionManager.getRecorders();
+		final int indexCount = executionManager.getIndexCount();
+		final int executionCount = Math.max(2, indexCount);
+
+		if (recorderList.size() != executionCount)
 		{
-			recorders.clear();
-			for (int i = 0; i < executionManager.getIndexCount(); i++)
-			{
-				final var commandBuffer = ComputeFactory.eINSTANCE.createComputeCommandBuffer();
-				commandBuffer.setIndex(i);
-				executionManager.getCommandBuffers().add(commandBuffer);
-
-				final var computeExecutionRecorder = ComputeFactory.eINSTANCE.createComputeExecutionRecorder();
-				computeExecutionRecorder.setIndex(i);
-				computeExecutionRecorder.setCommandBuffer(commandBuffer);
-
-				recorders.add(computeExecutionRecorder);
-			}
+			recorderList.clear();
+			final var commandBuffers = IntStream.range(0, indexCount)
+												.mapToObj(i -> createCommandBuffer(i, executionManager))
+												.toList();
+			final var recorders = IntStream.range(0, executionCount)
+										   .mapToObj(i -> createRecorder(commandBuffers.get(i % indexCount)))
+										   .toList();
+			recorderList.addAll(recorders);
 		}
+	}
+
+	private static ComputeCommandBuffer createCommandBuffer(final int index,
+															final ComputeExecutionManager executionManager)
+	{
+		final var commandBuffer = ComputeFactory.eINSTANCE.createComputeCommandBuffer();
+		commandBuffer.setIndex(index);
+		executionManager.getCommandBuffers().add(commandBuffer);
+		return commandBuffer;
+	}
+
+	private static ComputeExecutionRecorder createRecorder(ComputeCommandBuffer commandBuffer)
+	{
+		final var computeExecutionRecorder = ComputeFactory.eINSTANCE.createComputeExecutionRecorder();
+		computeExecutionRecorder.setCommandBuffer(commandBuffer);
+		return computeExecutionRecorder;
 	}
 }

@@ -568,20 +568,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicExecutionRecorder_Index()
-	{
-		return (EAttribute)graphicExecutionRecorderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getGraphicExecutionRecorder_CommandBuffer()
 	{
-		return (EReference)graphicExecutionRecorderEClass.getEStructuralFeatures().get(1);
+		return (EReference)graphicExecutionRecorderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2069,7 +2058,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicExecutionManagerEClass, GRAPHIC_EXECUTION_MANAGER__COMMAND_BUFFERS);
 
 		graphicExecutionRecorderEClass = createEClass(GRAPHIC_EXECUTION_RECORDER);
-		createEAttribute(graphicExecutionRecorderEClass, GRAPHIC_EXECUTION_RECORDER__INDEX);
 		createEReference(graphicExecutionRecorderEClass, GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER);
 
 		colorDomainEClass = createEClass(COLOR_DOMAIN);
@@ -2334,7 +2322,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getGraphicExecutionManager_CommandBuffers(), this.getGraphicCommandBuffer(), null, "commandBuffers", null, 0, -1, GraphicExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicExecutionRecorderEClass, GraphicExecutionRecorder.class, "GraphicExecutionRecorder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGraphicExecutionRecorder_Index(), ecorePackage.getEInt(), "index", null, 0, 1, GraphicExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicExecutionRecorder_CommandBuffer(), this.getGraphicCommandBuffer(), this.getGraphicCommandBuffer_SubmittedBy(), "commandBuffer", null, 1, 1, GraphicExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(colorDomainEClass, ColorDomain.class, "ColorDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -374,20 +374,9 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getComputeExecutionRecorder_Index()
-	{
-		return (EAttribute)computeExecutionRecorderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getComputeExecutionRecorder_CommandBuffer()
 	{
-		return (EReference)computeExecutionRecorderEClass.getEStructuralFeatures().get(1);
+		return (EReference)computeExecutionRecorderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -464,7 +453,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		createEReference(computeExecutionManagerEClass, COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS);
 
 		computeExecutionRecorderEClass = createEClass(COMPUTE_EXECUTION_RECORDER);
-		createEAttribute(computeExecutionRecorderEClass, COMPUTE_EXECUTION_RECORDER__INDEX);
 		createEReference(computeExecutionRecorderEClass, COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER);
 
 		computeCommandBufferEClass = createEClass(COMPUTE_COMMAND_BUFFER);
@@ -541,7 +529,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		initEReference(getComputeExecutionManager_CommandBuffers(), this.getComputeCommandBuffer(), null, "CommandBuffers", null, 0, -1, ComputeExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computeExecutionRecorderEClass, ComputeExecutionRecorder.class, "ComputeExecutionRecorder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getComputeExecutionRecorder_Index(), ecorePackage.getEInt(), "index", null, 0, 1, ComputeExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComputeExecutionRecorder_CommandBuffer(), this.getComputeCommandBuffer(), this.getComputeCommandBuffer_SubmittedBy(), "commandBuffer", null, 1, 1, ComputeExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computeCommandBufferEClass, ComputeCommandBuffer.class, "ComputeCommandBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
