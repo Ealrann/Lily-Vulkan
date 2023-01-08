@@ -11,6 +11,7 @@ import org.sheepy.lily.vulkan.process.execution.ICommandBufferAdapter;
 import org.sheepy.lily.vulkan.process.execution.IExecutionRecorderAllocation;
 import org.sheepy.lily.vulkan.process.execution.SubmissionAllocation;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
+import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
@@ -21,12 +22,15 @@ import java.util.List;
 @AllocationDependency(features = ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER, type = ICommandBufferAdapter.class)
 public final class ComputeExecutionRecorderAllocation implements IExecutionRecorderAllocation
 {
+	private final FenceManager fenceManager;
 	private SubmissionAllocation submissionAllocation;
 	private ICommandBufferAdapter commandBuffer;
 
-	private ComputeExecutionRecorderAllocation(@InjectDependency(index = 0) ICommandBufferAdapter commandBuffer)
+	private ComputeExecutionRecorderAllocation(ProcessContext context,
+											   @InjectDependency(index = 0) ICommandBufferAdapter commandBuffer)
 	{
 		this.commandBuffer = commandBuffer;
+		fenceManager = new FenceManager(context.getVkDevice());
 	}
 
 	@InjectChildren(index = 0, type = SubmissionAllocation.class)
@@ -73,5 +77,11 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 	public VkSemaphore borrowSemaphore()
 	{
 		return submissionAllocation.borrowSemaphore();
+	}
+
+	@Override
+	public FenceManager getFenceManager()
+	{
+		return fenceManager;
 	}
 }

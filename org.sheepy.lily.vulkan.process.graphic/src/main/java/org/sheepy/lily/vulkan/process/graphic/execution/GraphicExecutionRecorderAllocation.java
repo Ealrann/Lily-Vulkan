@@ -14,6 +14,7 @@ import org.sheepy.lily.vulkan.process.execution.ICommandBufferAdapter;
 import org.sheepy.lily.vulkan.process.execution.IExecutionRecorderAllocation;
 import org.sheepy.lily.vulkan.process.execution.SubmissionAllocation;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
+import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
@@ -32,11 +33,13 @@ import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS}, type = ImageViewAllocation.class)
 public final class GraphicExecutionRecorderAllocation implements IExecutionRecorderAllocation
 {
+	private final FenceManager fenceManager;
 	private final PresentSubmission presentSubmission;
 	private SubmissionAllocation submissionAllocation;
 	private ICommandBufferAdapter commandBuffer;
 
 	private GraphicExecutionRecorderAllocation(GraphicExecutionRecorder recorder,
+											   ProcessContext context,
 											   @InjectDependency(index = 0) ICommandBufferAdapter commandBuffer,
 											   @InjectDependency(index = 1) PhysicalSurfaceAllocation surfaceAllocation,
 											   @InjectDependency(index = 2) SwapChainAllocation swapChainAllocation)
@@ -46,6 +49,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 		final var manager = (GraphicExecutionManager) recorder.eContainer();
 		final var presentSemaphore = manager.adapt(GraphicExecutionManagerAllocation.class).getPresentSemaphore();
 		this.commandBuffer = commandBuffer;
+		fenceManager = new FenceManager(context.getVkDevice());
 		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),
 													   presentQueue,
 													   index,
@@ -105,5 +109,11 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	public VkSemaphore borrowSemaphore()
 	{
 		return submissionAllocation.borrowSemaphore();
+	}
+
+	@Override
+	public FenceManager getFenceManager()
+	{
+		return fenceManager;
 	}
 }

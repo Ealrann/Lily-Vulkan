@@ -12,6 +12,7 @@ import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
+import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.process.execution.util.SynchronizationManager;
 import org.sheepy.lily.vulkan.process.execution.util.VkSubmission;
@@ -36,11 +37,16 @@ public final class SubmissionAllocation implements IAdapter
 	private List<VkSemaphore> signalSemaphores;
 	private SynchronizationManager.SyncUnit currentSyncUnit = null;
 
-	private SubmissionAllocation(final ProcessContext context, final IAllocationState allocationState)
+	private SubmissionAllocation(final Submission submission,
+								 final ProcessContext context,
+								 final IAllocationState allocationState)
 	{
+		final var executionRecorder = (ExecutionRecorder) submission.eContainer();
+		final var recorderAllocation = executionRecorder.adapt(IExecutionRecorderAllocation.class);
+		final var fenceManager = recorderAllocation.getFenceManager();
 		this.context = context;
 		this.allocationState = allocationState;
-		this.synchronizationManager = new SynchronizationManager(context.getVkDevice());
+		this.synchronizationManager = new SynchronizationManager(fenceManager);
 	}
 
 	public SynchronizationManager.SyncUnit prepare(final List<WaitData> waitSemaphores,

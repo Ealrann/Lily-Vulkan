@@ -13,11 +13,8 @@ public final class SynchronizationManager
 {
 	private final SyncUnit syncUnit;
 
-	private final FenceManager fenceManager;
-
-	public SynchronizationManager(VkDevice vkDevice)
+	public SynchronizationManager(FenceManager fenceManager)
 	{
-		fenceManager = new FenceManager(vkDevice);
 		syncUnit = new SyncUnit(fenceManager);
 	}
 
@@ -29,7 +26,7 @@ public final class SynchronizationManager
 	public SyncUnit next()
 	{
 		syncUnit.waitIdle();
-		fenceManager.setUsed(true);
+		syncUnit.getFence().setUsed(true);
 		return syncUnit;
 	}
 
