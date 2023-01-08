@@ -37,11 +37,14 @@ public final class GraphicCommandBufferAllocation extends AbstractCommandBufferA
 										   @InjectDependency(index = 3) FramebufferAllocation framebufferAllocation,
 										   @InjectDependency(index = 4) List<IRecordableAdapter> recordables)
 	{
-		super(buildCommandBufferHelper(commandBuffer,
+		super(commandBuffer,
+			  buildCommandBufferHelper(commandBuffer,
 									   context,
 									   surfaceAllocation,
 									   renderPassAllocation,
-									   framebufferAllocation), context, commandBuffer.getIndex(), allocationState);
+									   framebufferAllocation),
+			  context,
+			  allocationState);
 		changeRecordables(recordables);
 	}
 

@@ -7,6 +7,7 @@ import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
+import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
 import org.sheepy.lily.vulkan.process.execution.util.SynchronizationManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
@@ -26,14 +27,14 @@ public abstract class AbstractCommandBufferAllocation implements ICommandBufferA
 	private List<IRecordableAdapter> recordables;
 	private List<Consumer<EExecutionStatus>> listeners;
 
-	public AbstractCommandBufferAllocation(AbstractProcessCommandBufferHelper commandBufferHelper,
+	public AbstractCommandBufferAllocation(ICommandBuffer commandBuffer,
+										   AbstractProcessCommandBufferHelper commandBufferHelper,
 										   final ProcessContext context,
-										   int index,
 										   IAllocationState allocationState)
 	{
 		this.commandBufferHelper = commandBufferHelper;
 		this.context = context;
-		this.index = index;
+		this.index = commandBuffer.getIndex();
 		this.allocationState = allocationState;
 		this.locker = new CountLocker(allocationState::lockAllocation, allocationState::unlockAllocation);
 	}

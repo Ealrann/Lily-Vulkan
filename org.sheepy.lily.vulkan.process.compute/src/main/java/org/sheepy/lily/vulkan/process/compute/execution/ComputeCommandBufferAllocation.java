@@ -26,7 +26,7 @@ public final class ComputeCommandBufferAllocation extends AbstractCommandBufferA
 										   ProcessContext context,
 										   @InjectDependency(index = 0) List<IRecordableAdapter> recordables)
 	{
-		super(new ComputeCommandBufferHelper(context), context, commandBuffer.getIndex(), allocationState);
+		super(commandBuffer, new ComputeCommandBufferHelper(context), context, allocationState);
 		changeRecordables(recordables);
 	}
 
