@@ -4,7 +4,6 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.core.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +11,14 @@ import java.util.function.Consumer;
 
 public final class SynchronizationManager
 {
-	private static final String FENCE_TIMEOUT = "Fence timeout";
-
 	private final SyncUnit syncUnit;
+
+	private final FenceManager fenceManager;
 
 	public SynchronizationManager(VkDevice vkDevice)
 	{
-		final var fence = new VkFence(vkDevice, true);
-		syncUnit = new SyncUnit(fence);
+		fenceManager = new FenceManager(vkDevice);
+		syncUnit = new SyncUnit(fenceManager);
 	}
 
 	public void free(VkDevice vkDevice)
@@ -30,8 +29,7 @@ public final class SynchronizationManager
 	public SyncUnit next()
 	{
 		syncUnit.waitIdle();
-		assert syncUnit.listeners == null;
-		syncUnit.fence.setUsed(true);
+		fenceManager.setUsed(true);
 		return syncUnit;
 	}
 
@@ -47,106 +45,56 @@ public final class SynchronizationManager
 
 	public static final class SyncUnit
 	{
-		public final VkFence fence;
+		public final FenceManager fenceManager;
 		private final List<VkSemaphore> executionSemaphores = new ArrayList<>();
-		private List<Consumer<EExecutionStatus>> listeners = null;
 		private int semaphoreCount;
 		private int borrowIndex = 0;
 
-		SyncUnit(VkFence fence)
+		SyncUnit(FenceManager fenceManager)
 		{
-			this.fence = fence;
+			this.fenceManager = fenceManager;
 		}
 
 		void waitIdle()
 		{
-			if (fence.isUsed() && fence.isSignaled() == false)
-			{
-				if (fence.waitForSignal() == false)
-				{
-					Logger.log(FENCE_TIMEOUT, true);
-				}
-			}
-			resetFence();
+			fenceManager.waitIdle();
 		}
 
 		boolean checkFence()
 		{
-			if (fence.isUsed())
-			{
-				if (fence.isSignaled())
-				{
-					resetFence();
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{
-				return true;
-			}
+			return fenceManager.checkFence();
 		}
 
 		void resetFence()
 		{
-			if (fence.isUsed())
-			{
-				fence.reset();
-				notify(EExecutionStatus.Done, true);
-			}
+			fenceManager.resetFence();
 		}
 
 		boolean isRunning()
 		{
-			if (fence.isUsed())
-			{
-				return !fence.isSignaled();
-			}
-			else
-			{
-				return false;
-			}
+			return fenceManager.isRunning();
 		}
 
 		void free(VkDevice vkDevice)
 		{
-			waitIdle();
-			fence.free();
+			fenceManager.free();
 			executionSemaphores.forEach(s -> s.free(vkDevice));
 		}
 
 		public void start()
 		{
 			borrowIndex = 0;
-			notify(EExecutionStatus.Started, false);
+			fenceManager.start();
 		}
 
 		public void cancel()
 		{
-			notify(EExecutionStatus.Canceled, true);
-		}
-
-		private void notify(EExecutionStatus status, boolean removeListeners)
-		{
-			if (listeners != null)
-			{
-				for (final var listener : listeners)
-				{
-					listener.accept(status);
-				}
-				if (removeListeners)
-				{
-					listeners = null;
-				}
-			}
+			fenceManager.cancel();
 		}
 
 		public void setListeners(List<Consumer<EExecutionStatus>> listeners)
 		{
-			this.listeners = listeners;
+			fenceManager.setListeners(listeners);
 		}
 
 		public void prepareSemaphores(final VkDevice vkDevice, final int semaphoreCount)
@@ -166,6 +114,11 @@ public final class SynchronizationManager
 		public VkSemaphore borrowSemaphore()
 		{
 			return getSemaphores().get(borrowIndex++);
+		}
+
+		public VkFence getFence()
+		{
+			return fenceManager.fence;
 		}
 	}
 }

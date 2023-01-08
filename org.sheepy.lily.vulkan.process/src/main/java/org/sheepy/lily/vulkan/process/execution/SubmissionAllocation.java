@@ -76,7 +76,7 @@ public final class SubmissionAllocation implements IAdapter
 
 			final var queue = context.getQueue().vkQueue;
 			currentSyncUnit.start();
-			final var res = submission.submit(queue, currentSyncUnit.fence.getPtr());
+			final var res = submission.submit(queue, currentSyncUnit.getFence().getPtr());
 
 			Logger.check(res, FAILED_SUBMIT, true);
 
@@ -91,7 +91,7 @@ public final class SubmissionAllocation implements IAdapter
 					System.err.println("[Submit] " + message);
 				}
 			}
-			return new SubmitResult(currentSyncUnit.fence, res);
+			return new SubmitResult(currentSyncUnit.getFence(), res);
 		}
 	}
 
