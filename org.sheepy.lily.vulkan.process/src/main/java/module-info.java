@@ -16,6 +16,7 @@ module org.sheepy.lily.vulkan.process {
 	opens org.sheepy.lily.vulkan.process.pipeline;
 	opens org.sheepy.lily.vulkan.process.pipeline.task;
 	opens org.sheepy.lily.vulkan.process.process;
+	opens org.sheepy.lily.vulkan.process.execution;
 
 	provides IAdapterProvider with Extenders;
 }

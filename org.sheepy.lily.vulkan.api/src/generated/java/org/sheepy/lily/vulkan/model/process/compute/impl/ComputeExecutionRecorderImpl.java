@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.model.LilyEObject;
+import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
@@ -21,6 +22,7 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionRecorderImpl#getSubmission <em>Submission</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeExecutionRecorderImpl#getCommandBuffer <em>Command Buffer</em>}</li>
  * </ul>
  *
@@ -28,6 +30,15 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
  */
 public class ComputeExecutionRecorderImpl extends LilyEObject implements ComputeExecutionRecorder
 {
+	/**
+	 * The cached value of the '{@link #getSubmission() <em>Submission</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubmission()
+	 * @generated
+	 * @ordered
+	 */
+	protected Submission submission;
 	/**
 	 * The cached value of the '{@link #getCommandBuffer() <em>Command Buffer</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -57,6 +68,56 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	protected EClass eStaticClass()
 	{
 		return ComputePackage.Literals.COMPUTE_EXECUTION_RECORDER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Submission getSubmission()
+	{
+		return submission;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSubmission(Submission newSubmission, NotificationChain msgs)
+	{
+		Submission oldSubmission = submission;
+		submission = newSubmission;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION, oldSubmission, newSubmission);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSubmission(Submission newSubmission)
+	{
+		if (newSubmission != submission)
+		{
+			NotificationChain msgs = null;
+			if (submission != null)
+				msgs = ((InternalEObject)submission).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION, null, msgs);
+			if (newSubmission != null)
+				msgs = ((InternalEObject)newSubmission).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION, null, msgs);
+			msgs = basicSetSubmission(newSubmission, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION, newSubmission, newSubmission));
 	}
 
 	/**
@@ -95,56 +156,13 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCommandBuffer(ComputeCommandBuffer newCommandBuffer, NotificationChain msgs)
+	@Override
+	public void setCommandBuffer(ComputeCommandBuffer newCommandBuffer)
 	{
 		ComputeCommandBuffer oldCommandBuffer = commandBuffer;
 		commandBuffer = newCommandBuffer;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER, oldCommandBuffer, newCommandBuffer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCommandBuffer(ComputeCommandBuffer newCommandBuffer)
-	{
-		if (newCommandBuffer != commandBuffer)
-		{
-			NotificationChain msgs = null;
-			if (commandBuffer != null)
-				msgs = ((InternalEObject)commandBuffer).eInverseRemove(this, ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY, ComputeCommandBuffer.class, msgs);
-			if (newCommandBuffer != null)
-				msgs = ((InternalEObject)newCommandBuffer).eInverseAdd(this, ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY, ComputeCommandBuffer.class, msgs);
-			msgs = basicSetCommandBuffer(newCommandBuffer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER, newCommandBuffer, newCommandBuffer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
-				if (commandBuffer != null)
-					msgs = ((InternalEObject)commandBuffer).eInverseRemove(this, ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY, ComputeCommandBuffer.class, msgs);
-				return basicSetCommandBuffer((ComputeCommandBuffer)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER, oldCommandBuffer, commandBuffer));
 	}
 
 	/**
@@ -157,8 +175,8 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
-				return basicSetCommandBuffer(null, msgs);
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION:
+				return basicSetSubmission(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -173,6 +191,8 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION:
+				return getSubmission();
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
 				if (resolve) return getCommandBuffer();
 				return basicGetCommandBuffer();
@@ -190,6 +210,9 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION:
+				setSubmission((Submission)newValue);
+				return;
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
 				setCommandBuffer((ComputeCommandBuffer)newValue);
 				return;
@@ -207,6 +230,9 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION:
+				setSubmission((Submission)null);
+				return;
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
 				setCommandBuffer((ComputeCommandBuffer)null);
 				return;
@@ -224,6 +250,8 @@ public class ComputeExecutionRecorderImpl extends LilyEObject implements Compute
 	{
 		switch (featureID)
 		{
+			case ComputePackage.COMPUTE_EXECUTION_RECORDER__SUBMISSION:
+				return submission != null;
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER:
 				return commandBuffer != null;
 		}

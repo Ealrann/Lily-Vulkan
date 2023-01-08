@@ -39,10 +39,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputeExecutionRecorder" eSuperTypes="process.ecore#//ExecutionRecorder">
     <eStructuralFeatures xsi:type="ecore:EReference" name="commandBuffer" lowerBound="1"
-        eType="#//ComputeCommandBuffer" eOpposite="#//ComputeCommandBuffer/submittedBy"/>
+        eType="#//ComputeCommandBuffer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComputeCommandBuffer" eSuperTypes="process.ecore#//ICommandBuffer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="submittedBy" upperBound="-1"
-        eType="#//ComputeExecutionRecorder" eOpposite="#//ComputeExecutionRecorder/commandBuffer"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputeCommandBuffer" eSuperTypes="process.ecore#//ICommandBuffer"/>
 </ecore:EPackage>

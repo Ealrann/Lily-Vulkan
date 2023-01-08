@@ -133,7 +133,10 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="waitStage" eType="ecore:EEnum ../../org.sheepy.vulkan.model/model/enumeration.ecore#//EPipelineStage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExecutionRecorder" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionRecorder" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="submission" lowerBound="1"
+        eType="#//Submission" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FetchBuffer" eSuperTypes="#//IPipelineTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bufferReference" lowerBound="1"
         eType="ecore:EClass vulkanresource.ecore#//BufferReference" containment="true"/>
@@ -141,4 +144,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="ICommandBuffer" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Submission"/>
 </ecore:EPackage>

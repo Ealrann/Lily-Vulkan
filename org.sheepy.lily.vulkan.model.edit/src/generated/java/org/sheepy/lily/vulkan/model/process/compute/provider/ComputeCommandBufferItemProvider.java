@@ -63,7 +63,6 @@ public class ComputeCommandBufferItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIndexPropertyDescriptor(object);
-			addSubmittedByPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -87,29 +86,6 @@ public class ComputeCommandBufferItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Submitted By feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSubmittedByPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComputeCommandBuffer_submittedBy_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComputeCommandBuffer_submittedBy_feature", "_UI_ComputeCommandBuffer_type"),
-				 ComputePackage.Literals.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

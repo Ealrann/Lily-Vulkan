@@ -42,6 +42,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
@@ -239,6 +240,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass iCommandBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass submissionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1024,6 +1032,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getExecutionRecorder_Submission()
+	{
+		return (EReference)executionRecorderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFetchBuffer()
 	{
 		return fetchBufferEClass;
@@ -1060,6 +1079,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EAttribute getICommandBuffer_Index()
 	{
 		return (EAttribute)iCommandBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSubmission()
+	{
+		return submissionEClass;
 	}
 
 	/**
@@ -1177,12 +1207,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(processExecutionManagerEClass, PROCESS_EXECUTION_MANAGER__WAIT_STAGE);
 
 		executionRecorderEClass = createEClass(EXECUTION_RECORDER);
+		createEReference(executionRecorderEClass, EXECUTION_RECORDER__SUBMISSION);
 
 		fetchBufferEClass = createEClass(FETCH_BUFFER);
 		createEReference(fetchBufferEClass, FETCH_BUFFER__BUFFER_REFERENCE);
 
 		iCommandBufferEClass = createEClass(ICOMMAND_BUFFER);
 		createEAttribute(iCommandBufferEClass, ICOMMAND_BUFFER__INDEX);
+
+		submissionEClass = createEClass(SUBMISSION);
 	}
 
 	/**
@@ -1330,12 +1363,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getProcessExecutionManager_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1, ProcessExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(executionRecorderEClass, ExecutionRecorder.class, "ExecutionRecorder", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExecutionRecorder_Submission(), this.getSubmission(), null, "submission", null, 1, 1, ExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fetchBufferEClass, FetchBuffer.class, "FetchBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFetchBuffer_BufferReference(), theVulkanResourcePackage.getBufferReference(), null, "bufferReference", null, 1, 1, FetchBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iCommandBufferEClass, ICommandBuffer.class, "ICommandBuffer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getICommandBuffer_Index(), ecorePackage.getEInt(), "index", null, 1, 1, ICommandBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(submissionEClass, Submission.class, "Submission", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

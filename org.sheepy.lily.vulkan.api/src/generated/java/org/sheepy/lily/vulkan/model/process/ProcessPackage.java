@@ -1469,13 +1469,22 @@ public interface ProcessPackage extends EPackage
 	int EXECUTION_RECORDER = 22;
 
 	/**
+	 * The feature id for the '<em><b>Submission</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_RECORDER__SUBMISSION = 0;
+
+	/**
 	 * The number of structural features of the '<em>Execution Recorder</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_RECORDER_FEATURE_COUNT = 0;
+	int EXECUTION_RECORDER_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Execution Recorder</em>' class.
@@ -1577,6 +1586,34 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int ICOMMAND_BUFFER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.SubmissionImpl <em>Submission</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.SubmissionImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSubmission()
+	 * @generated
+	 */
+	int SUBMISSION = 25;
+
+	/**
+	 * The number of structural features of the '<em>Submission</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBMISSION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Submission</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBMISSION_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
@@ -2238,6 +2275,17 @@ public interface ProcessPackage extends EPackage
 	EClass getExecutionRecorder();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder#getSubmission <em>Submission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Submission</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ExecutionRecorder#getSubmission()
+	 * @see #getExecutionRecorder()
+	 * @generated
+	 */
+	EReference getExecutionRecorder_Submission();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.FetchBuffer <em>Fetch Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2278,6 +2326,16 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getICommandBuffer_Index();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Submission <em>Submission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Submission</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.Submission
+	 * @generated
+	 */
+	EClass getSubmission();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2846,6 +2904,14 @@ public interface ProcessPackage extends EPackage
 		EClass EXECUTION_RECORDER = eINSTANCE.getExecutionRecorder();
 
 		/**
+		 * The meta object literal for the '<em><b>Submission</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXECUTION_RECORDER__SUBMISSION = eINSTANCE.getExecutionRecorder_Submission();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.FetchBufferImpl <em>Fetch Buffer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2880,6 +2946,16 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ICOMMAND_BUFFER__INDEX = eINSTANCE.getICommandBuffer_Index();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.SubmissionImpl <em>Submission</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.SubmissionImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSubmission()
+		 * @generated
+		 */
+		EClass SUBMISSION = eINSTANCE.getSubmission();
 
 	}
 

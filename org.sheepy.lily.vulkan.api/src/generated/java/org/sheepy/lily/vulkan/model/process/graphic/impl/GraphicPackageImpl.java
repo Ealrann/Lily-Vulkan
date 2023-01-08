@@ -1998,17 +1998,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getGraphicCommandBuffer_SubmittedBy()
-	{
-		return (EReference)graphicCommandBufferEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EEnum getEAttachmentType()
 	{
 		return eAttachmentTypeEEnum;
@@ -2222,7 +2211,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(compositorEClass, COMPOSITOR__DESCRIPTOR_PKG);
 
 		graphicCommandBufferEClass = createEClass(GRAPHIC_COMMAND_BUFFER);
-		createEReference(graphicCommandBufferEClass, GRAPHIC_COMMAND_BUFFER__SUBMITTED_BY);
 
 		// Create enums
 		eAttachmentTypeEEnum = createEEnum(EATTACHMENT_TYPE);
@@ -2322,7 +2310,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getGraphicExecutionManager_CommandBuffers(), this.getGraphicCommandBuffer(), null, "commandBuffers", null, 0, -1, GraphicExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicExecutionRecorderEClass, GraphicExecutionRecorder.class, "GraphicExecutionRecorder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGraphicExecutionRecorder_CommandBuffer(), this.getGraphicCommandBuffer(), this.getGraphicCommandBuffer_SubmittedBy(), "commandBuffer", null, 1, 1, GraphicExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicExecutionRecorder_CommandBuffer(), this.getGraphicCommandBuffer(), null, "commandBuffer", null, 1, 1, GraphicExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(colorDomainEClass, ColorDomain.class, "ColorDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getColorDomain_Format(), theEnumerationPackage.getEFormat(), "format", "B8G8R8A8_UNORM", 0, 1, ColorDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2486,7 +2474,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getCompositor_DescriptorPkg(), theVulkanPackage.getDescriptorPkg(), null, "descriptorPkg", null, 0, 1, Compositor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicCommandBufferEClass, GraphicCommandBuffer.class, "GraphicCommandBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGraphicCommandBuffer_SubmittedBy(), this.getGraphicExecutionRecorder(), this.getGraphicExecutionRecorder_CommandBuffer(), "submittedBy", null, 0, -1, GraphicCommandBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(eAttachmentTypeEEnum, EAttachmentType.class, "EAttachmentType");

@@ -1,15 +1,20 @@
 package org.sheepy.lily.vulkan.process.execution;
 
+import org.logoce.extender.api.IAdapter;
+import org.logoce.extender.api.ModelExtender;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkDevice;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.util.EVulkanErrorStatus;
 import org.sheepy.lily.vulkan.core.util.Logger;
-import org.sheepy.lily.vulkan.process.execution.util.Submission;
+import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.process.execution.util.SynchronizationManager;
+import org.sheepy.lily.vulkan.process.execution.util.VkSubmission;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.ArrayList;
@@ -17,7 +22,9 @@ import java.util.List;
 
 import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
-public final class ExecutionRecorderHelper
+@ModelExtender(scope = Submission.class)
+@Allocation(context = ProcessContext.class)
+public final class SubmissionAllocation implements IAdapter
 {
 	private static final String FAILED_SUBMIT = "Failed to submit command buffer";
 
@@ -28,24 +35,19 @@ public final class ExecutionRecorderHelper
 	private List<WaitData> waitSemaphores;
 	private List<VkSemaphore> signalSemaphores;
 	private SynchronizationManager.SyncUnit currentSyncUnit = null;
-	private ICommandBufferAdapter commandBuffer;
 
-	public ExecutionRecorderHelper(final ProcessContext context,
-								   final IAllocationState allocationState,
-								   final int fenceCount)
+	private SubmissionAllocation(final ProcessContext context, final IAllocationState allocationState)
 	{
 		this.context = context;
 		this.allocationState = allocationState;
-		this.synchronizationManager = new SynchronizationManager(fenceCount, context.getVkDevice());
+		this.synchronizationManager = new SynchronizationManager(1, context.getVkDevice());
 	}
 
-	public void prepare(final List<WaitData> waitSemaphores,
-						final List<VkSemaphore> signalSemaphores,
-						final int semaphoreCount,
-						final ICommandBufferAdapter commandBuffer)
+	public SynchronizationManager.SyncUnit prepare(final List<WaitData> waitSemaphores,
+												   final List<VkSemaphore> signalSemaphores,
+												   final int semaphoreCount)
 	{
 		this.waitSemaphores = waitSemaphores;
-		this.commandBuffer = commandBuffer;
 
 		currentSyncUnit = synchronizationManager.next();
 		currentSyncUnit.prepareSemaphores(context.getVkDevice(), semaphoreCount);
@@ -61,15 +63,14 @@ public final class ExecutionRecorderHelper
 			this.signalSemaphores = executionSemaphores;
 		}
 
-		commandBuffer.prepare(currentSyncUnit);
+		return currentSyncUnit;
 	}
 
-	public SubmitResult play()
+	public SubmitResult play(VkCommandBuffer vkCommandBuffer)
 	{
 		try (final var stack = MemoryStack.stackPush())
 		{
-			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-			final var submission = new Submission(stack, List.of(vkCommandBuffer), waitSemaphores, signalSemaphores);
+			final var submission = new VkSubmission(stack, List.of(vkCommandBuffer), waitSemaphores, signalSemaphores);
 
 			allocationState.lockAllocation();
 
@@ -105,9 +106,10 @@ public final class ExecutionRecorderHelper
 		return fenceIsUnlocked;
 	}
 
-	public void free(VkDevice vkDevice)
+	@Free
+	private void free(ProcessContext context)
 	{
-		synchronizationManager.free(vkDevice);
+		synchronizationManager.free(context.getVkDevice());
 	}
 
 	public void waitIdle()

@@ -48,9 +48,7 @@
     <genClasses ecoreClass="compute.ecore#//ComputeExecutionRecorder">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compute.ecore#//ComputeExecutionRecorder/commandBuffer"/>
     </genClasses>
-    <genClasses ecoreClass="compute.ecore#//ComputeCommandBuffer">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compute.ecore#//ComputeCommandBuffer/submittedBy"/>
-    </genClasses>
+    <genClasses ecoreClass="compute.ecore#//ComputeCommandBuffer"/>
   </genPackages>
   <genPackages prefix="Graphic" basePackage="org.sheepy.lily.vulkan.model.process"
       resource="XMI" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -241,9 +239,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/constantVariables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/descriptorPkg"/>
     </genClasses>
-    <genClasses ecoreClass="graphic.ecore#//GraphicCommandBuffer">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicCommandBuffer/submittedBy"/>
-    </genClasses>
+    <genClasses ecoreClass="graphic.ecore#//GraphicCommandBuffer"/>
   </genPackages>
   <genPackages prefix="Process" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
       extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="process.ecore#/">
@@ -328,13 +324,16 @@
           ecoreFeature="ecore:EReference process.ecore#//ProcessExecutionManager/waitedBy"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//ProcessExecutionManager/waitStage"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="process.ecore#//ExecutionRecorder"/>
+    <genClasses image="false" ecoreClass="process.ecore#//ExecutionRecorder">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//ExecutionRecorder/submission"/>
+    </genClasses>
     <genClasses ecoreClass="process.ecore#//FetchBuffer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//FetchBuffer/bufferReference"/>
     </genClasses>
     <genClasses image="false" ecoreClass="process.ecore#//ICommandBuffer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//ICommandBuffer/index"/>
     </genClasses>
+    <genClasses ecoreClass="process.ecore#//Submission"/>
   </genPackages>
   <genPackages prefix="Vulkan" basePackage="org.sheepy.lily.vulkan" resource="XMI"
       extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="vulkan.ecore#/">

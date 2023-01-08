@@ -2,19 +2,11 @@
  */
 package org.sheepy.lily.vulkan.model.process.compute.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
-import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 
 /**
@@ -26,7 +18,6 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeCommandBufferImpl#getIndex <em>Index</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeCommandBufferImpl#getSubmittedBy <em>Submitted By</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,16 +43,6 @@ public class ComputeCommandBufferImpl extends LilyEObject implements ComputeComm
 	 * @ordered
 	 */
 	protected int index = INDEX_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSubmittedBy() <em>Submitted By</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubmittedBy()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ComputeExecutionRecorder> submittedBy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,62 +96,12 @@ public class ComputeCommandBufferImpl extends LilyEObject implements ComputeComm
 	 * @generated
 	 */
 	@Override
-	public EList<ComputeExecutionRecorder> getSubmittedBy()
-	{
-		if (submittedBy == null)
-		{
-			submittedBy = new EObjectWithInverseResolvingEList<>(ComputeExecutionRecorder.class, this, ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY, ComputePackage.COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER);
-		}
-		return submittedBy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubmittedBy()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY:
-				return ((InternalEList<?>)getSubmittedBy()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
 			case ComputePackage.COMPUTE_COMMAND_BUFFER__INDEX:
 				return getIndex();
-			case ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY:
-				return getSubmittedBy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,10 +120,6 @@ public class ComputeCommandBufferImpl extends LilyEObject implements ComputeComm
 			case ComputePackage.COMPUTE_COMMAND_BUFFER__INDEX:
 				setIndex((Integer)newValue);
 				return;
-			case ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY:
-				getSubmittedBy().clear();
-				getSubmittedBy().addAll((Collection<? extends ComputeExecutionRecorder>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -210,9 +137,6 @@ public class ComputeCommandBufferImpl extends LilyEObject implements ComputeComm
 			case ComputePackage.COMPUTE_COMMAND_BUFFER__INDEX:
 				setIndex(INDEX_EDEFAULT);
 				return;
-			case ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY:
-				getSubmittedBy().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -229,8 +153,6 @@ public class ComputeCommandBufferImpl extends LilyEObject implements ComputeComm
 		{
 			case ComputePackage.COMPUTE_COMMAND_BUFFER__INDEX:
 				return index != INDEX_EDEFAULT;
-			case ComputePackage.COMPUTE_COMMAND_BUFFER__SUBMITTED_BY:
-				return submittedBy != null && !submittedBy.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

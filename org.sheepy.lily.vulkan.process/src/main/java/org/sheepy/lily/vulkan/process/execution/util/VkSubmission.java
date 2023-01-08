@@ -16,14 +16,14 @@ import java.util.List;
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_SUBMIT_INFO;
 import static org.lwjgl.vulkan.VK10.vkQueueSubmit;
 
-public final class Submission
+public final class VkSubmission
 {
 	private final VkSubmitInfo submitInfo;
 
-	public Submission(MemoryStack stack,
-					  List<VkCommandBuffer> commandBuffers,
-					  Collection<WaitData> waitSemaphores,
-					  Collection<VkSemaphore> signalSemaphores)
+	public VkSubmission(MemoryStack stack,
+						List<VkCommandBuffer> commandBuffers,
+						Collection<WaitData> waitSemaphores,
+						Collection<VkSemaphore> signalSemaphores)
 	{
 		final LongBuffer bWaitSemaphores;
 		final IntBuffer waitStages;

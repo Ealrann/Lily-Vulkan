@@ -33,6 +33,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
@@ -223,6 +224,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseICommandBuffer(ICommandBuffer object)
 			{
 				return createICommandBufferAdapter();
+			}
+			@Override
+			public Adapter caseSubmission(Submission object)
+			{
+				return createSubmissionAdapter();
 			}
 			@Override
 			public Adapter caseIResourceContainer(IResourceContainer object)
@@ -636,6 +642,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createICommandBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.Submission <em>Submission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.Submission
+	 * @generated
+	 */
+	public Adapter createSubmissionAdapter()
 	{
 		return null;
 	}

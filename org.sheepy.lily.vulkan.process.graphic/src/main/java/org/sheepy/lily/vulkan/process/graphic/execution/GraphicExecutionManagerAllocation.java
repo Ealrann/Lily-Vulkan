@@ -4,6 +4,7 @@ import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.annotation.*;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.IExecutionManagerAdapter;
+import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -122,14 +123,17 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 			executionManager.getCommandBuffers().clear();
 			for (int i = 0; i < count; i++)
 			{
+				final var submission = ProcessFactory.eINSTANCE.createSubmission();
+
 				final var commandBuffer = GraphicFactory.eINSTANCE.createGraphicCommandBuffer();
 				commandBuffer.setIndex(i);
 				executionManager.getCommandBuffers().add(commandBuffer);
 
-				final var graphicExecutionRecorder = GraphicFactory.eINSTANCE.createGraphicExecutionRecorder();
-				graphicExecutionRecorder.setCommandBuffer(commandBuffer);
+				final var executionRecorder = GraphicFactory.eINSTANCE.createGraphicExecutionRecorder();
+				executionRecorder.setCommandBuffer(commandBuffer);
+				executionRecorder.setSubmission(submission);
 
-				recorders.add(graphicExecutionRecorder);
+				recorders.add(executionRecorder);
 			}
 		}
 	}

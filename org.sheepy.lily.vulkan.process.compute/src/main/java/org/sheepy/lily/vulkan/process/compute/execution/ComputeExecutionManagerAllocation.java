@@ -5,6 +5,7 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.InjectChildren;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.*;
 import org.sheepy.lily.vulkan.process.execution.ExecutionManagerAllocation;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
@@ -92,8 +93,10 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 
 	private static ComputeExecutionRecorder createRecorder(ComputeCommandBuffer commandBuffer)
 	{
+		final var submission = ProcessFactory.eINSTANCE.createSubmission();
 		final var computeExecutionRecorder = ComputeFactory.eINSTANCE.createComputeExecutionRecorder();
 		computeExecutionRecorder.setCommandBuffer(commandBuffer);
+		computeExecutionRecorder.setSubmission(submission);
 		return computeExecutionRecorder;
 	}
 }

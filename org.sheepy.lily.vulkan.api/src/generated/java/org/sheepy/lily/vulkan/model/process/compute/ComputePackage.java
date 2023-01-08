@@ -551,6 +551,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_EXECUTION_RECORDER = 5;
 
 	/**
+	 * The feature id for the '<em><b>Submission</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_EXECUTION_RECORDER__SUBMISSION = ProcessPackage.EXECUTION_RECORDER__SUBMISSION;
+
+	/**
 	 * The feature id for the '<em><b>Command Buffer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -597,22 +606,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_COMMAND_BUFFER__INDEX = ProcessPackage.ICOMMAND_BUFFER__INDEX;
 
 	/**
-	 * The feature id for the '<em><b>Submitted By</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_COMMAND_BUFFER__SUBMITTED_BY = ProcessPackage.ICOMMAND_BUFFER_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Command Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_COMMAND_BUFFER_FEATURE_COUNT = ProcessPackage.ICOMMAND_BUFFER_FEATURE_COUNT + 1;
+	int COMPUTE_COMMAND_BUFFER_FEATURE_COUNT = ProcessPackage.ICOMMAND_BUFFER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Command Buffer</em>' class.
@@ -815,17 +815,6 @@ public interface ComputePackage extends EPackage
 	EClass getComputeCommandBuffer();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer#getSubmittedBy <em>Submitted By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Submitted By</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer#getSubmittedBy()
-	 * @see #getComputeCommandBuffer()
-	 * @generated
-	 */
-	EReference getComputeCommandBuffer_SubmittedBy();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1006,14 +995,6 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EClass COMPUTE_COMMAND_BUFFER = eINSTANCE.getComputeCommandBuffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Submitted By</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPUTE_COMMAND_BUFFER__SUBMITTED_BY = eINSTANCE.getComputeCommandBuffer_SubmittedBy();
 
 	}
 

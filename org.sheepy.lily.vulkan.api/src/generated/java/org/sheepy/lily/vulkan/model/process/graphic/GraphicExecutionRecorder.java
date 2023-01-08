@@ -25,14 +25,12 @@ public interface GraphicExecutionRecorder extends ExecutionRecorder
 
 	/**
 	 * Returns the value of the '<em><b>Command Buffer</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer#getSubmittedBy <em>Submitted By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Command Buffer</em>' reference.
 	 * @see #setCommandBuffer(GraphicCommandBuffer)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicExecutionRecorder_CommandBuffer()
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer#getSubmittedBy
-	 * @model opposite="submittedBy" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	GraphicCommandBuffer getCommandBuffer();

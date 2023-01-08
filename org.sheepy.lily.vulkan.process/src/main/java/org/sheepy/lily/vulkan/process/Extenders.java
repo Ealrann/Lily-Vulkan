@@ -4,6 +4,7 @@ import org.logoce.extender.api.IAdapter;
 import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.process.barrier.BufferBarrierAllocation;
 import org.sheepy.lily.vulkan.process.barrier.ImageBarrierAllocation;
+import org.sheepy.lily.vulkan.process.execution.SubmissionAllocation;
 import org.sheepy.lily.vulkan.process.pipeline.*;
 import org.sheepy.lily.vulkan.process.pipeline.task.*;
 
@@ -29,7 +30,8 @@ public class Extenders implements IAdapterProvider
 					   FlushTransferBufferTaskRecorder.class,
 					   CopyBufferTaskRecorder.class,
 					   CompositePipelineAllocation.class,
-					   CompositePipelineRecorder.class);
+					   CompositePipelineRecorder.class,
+					   SubmissionAllocation.class);
 	}
 
 	@Override

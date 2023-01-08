@@ -32,6 +32,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
@@ -307,6 +308,13 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			{
 				ICommandBuffer iCommandBuffer = (ICommandBuffer)theEObject;
 				T1 result = caseICommandBuffer(iCommandBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.SUBMISSION:
+			{
+				Submission submission = (Submission)theEObject;
+				T1 result = caseSubmission(submission);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -710,6 +718,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseICommandBuffer(ICommandBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Submission</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Submission</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSubmission(Submission object)
 	{
 		return null;
 	}

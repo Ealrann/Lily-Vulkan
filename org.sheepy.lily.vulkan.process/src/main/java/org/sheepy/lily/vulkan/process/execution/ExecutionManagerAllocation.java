@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.api.execution.IExecutionPlayer;
 import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.core.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
-import org.sheepy.lily.vulkan.process.execution.util.Submission;
+import org.sheepy.lily.vulkan.process.execution.util.VkSubmission;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public abstract class ExecutionManagerAllocation<T extends IExecutionRecorderAll
 		try (final var stack = MemoryStack.stackPush())
 		{
 			final var waitSemaphores = streamWaitData(false).toList();
-			final var dummySubmission = new Submission(stack, List.of(), waitSemaphores, List.of());
+			final var dummySubmission = new VkSubmission(stack, List.of(), waitSemaphores, List.of());
 			dummySubmission.submit(context.getQueue().vkQueue, VK10.VK_NULL_HANDLE);
 			return lastExecutedRecorder = null;
 		}

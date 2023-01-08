@@ -140,6 +140,15 @@ public interface ProcessFactory extends EFactory
 	FetchBuffer createFetchBuffer();
 
 	/**
+	 * Returns a new object of class '<em>Submission</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Submission</em>'.
+	 * @generated
+	 */
+	Submission createSubmission();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

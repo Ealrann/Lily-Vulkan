@@ -21,6 +21,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
+import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 
 /**
@@ -88,6 +89,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			case ProcessPackage.PROCESS_EXTENSION_PKG: return createProcessExtensionPkg();
 			case ProcessPackage.PIPELINE_EXTENSION_PKG: return createPipelineExtensionPkg();
 			case ProcessPackage.FETCH_BUFFER: return createFetchBuffer();
+			case ProcessPackage.SUBMISSION: return createSubmission();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -247,6 +249,18 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		FetchBufferImpl fetchBuffer = new FetchBufferImpl();
 		return fetchBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Submission createSubmission()
+	{
+		SubmissionImpl submission = new SubmissionImpl();
+		return submission;
 	}
 
 	/**

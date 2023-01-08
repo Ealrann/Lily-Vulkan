@@ -396,17 +396,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getComputeCommandBuffer_SubmittedBy()
-	{
-		return (EReference)computeCommandBufferEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ComputeFactory getComputeFactory()
 	{
 		return (ComputeFactory)getEFactoryInstance();
@@ -456,7 +445,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		createEReference(computeExecutionRecorderEClass, COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER);
 
 		computeCommandBufferEClass = createEClass(COMPUTE_COMMAND_BUFFER);
-		createEReference(computeCommandBufferEClass, COMPUTE_COMMAND_BUFFER__SUBMITTED_BY);
 	}
 
 	/**
@@ -529,10 +517,9 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		initEReference(getComputeExecutionManager_CommandBuffers(), this.getComputeCommandBuffer(), null, "CommandBuffers", null, 0, -1, ComputeExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computeExecutionRecorderEClass, ComputeExecutionRecorder.class, "ComputeExecutionRecorder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputeExecutionRecorder_CommandBuffer(), this.getComputeCommandBuffer(), this.getComputeCommandBuffer_SubmittedBy(), "commandBuffer", null, 1, 1, ComputeExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputeExecutionRecorder_CommandBuffer(), this.getComputeCommandBuffer(), null, "commandBuffer", null, 1, 1, ComputeExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computeCommandBufferEClass, ComputeCommandBuffer.class, "ComputeCommandBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputeCommandBuffer_SubmittedBy(), this.getComputeExecutionRecorder(), this.getComputeExecutionRecorder_CommandBuffer(), "submittedBy", null, 0, -1, ComputeCommandBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
