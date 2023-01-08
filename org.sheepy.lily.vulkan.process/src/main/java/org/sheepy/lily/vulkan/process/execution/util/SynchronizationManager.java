@@ -16,52 +16,35 @@ public final class SynchronizationManager
 	private static final String FENCE_TIMEOUT = "Fence timeout";
 	private static final long TIMEOUT = TimeUnit.SECONDS.toNanos(60);
 
-	private final List<SyncUnit> syncUnits;
-	private int currentIndex = -1;
+	private final SyncUnit syncUnit;
 
-	public SynchronizationManager(int count, VkDevice vkDevice)
+	public SynchronizationManager(VkDevice vkDevice)
 	{
-		final List<SyncUnit> tmp = new ArrayList<>(count);
-		for (int i = 0; i < count; i++)
-		{
-			final var fence = new VkFence(vkDevice, i == 0);
-			final var wrapper = new SyncUnit(fence);
-			tmp.add(wrapper);
-		}
-		syncUnits = List.copyOf(tmp);
+		final var fence = new VkFence(vkDevice, true);
+		syncUnit = new SyncUnit(fence);
 	}
 
 	public void free(VkDevice vkDevice)
 	{
-		for (final var syncUnit : syncUnits)
-		{
-			syncUnit.free(vkDevice);
-		}
+		syncUnit.free(vkDevice);
 	}
 
 	public SyncUnit next()
 	{
-		currentIndex = (currentIndex + 1) % syncUnits.size();
-		final var res = syncUnits.get(currentIndex);
-		res.waitIdle();
-		assert res.listeners == null;
-		res.fence.setUsed(true);
-		return res;
+		syncUnit.waitIdle();
+		assert syncUnit.listeners == null;
+		syncUnit.fence.setUsed(true);
+		return syncUnit;
 	}
 
 	public void waitIdle()
 	{
-		syncUnits.forEach(SyncUnit::waitIdle);
+		syncUnit.waitIdle();
 	}
 
 	public boolean check()
 	{
-		boolean res = true;
-		for (final var fence : syncUnits)
-		{
-			res &= fence.checkFence();
-		}
-		return res;
+		return syncUnit.checkFence();
 	}
 
 	public static final class SyncUnit

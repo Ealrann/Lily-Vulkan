@@ -40,7 +40,7 @@ public final class SubmissionAllocation implements IAdapter
 	{
 		this.context = context;
 		this.allocationState = allocationState;
-		this.synchronizationManager = new SynchronizationManager(1, context.getVkDevice());
+		this.synchronizationManager = new SynchronizationManager(context.getVkDevice());
 	}
 
 	public SynchronizationManager.SyncUnit prepare(final List<WaitData> waitSemaphores,
