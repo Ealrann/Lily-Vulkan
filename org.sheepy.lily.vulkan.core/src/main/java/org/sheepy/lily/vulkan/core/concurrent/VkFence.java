@@ -6,10 +6,13 @@ import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.concurrent.IFenceView;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.lwjgl.vulkan.VK10.*;
 
 public final class VkFence implements IFenceView, IFence
 {
+	private static final long TIMEOUT = TimeUnit.SECONDS.toNanos(60);
 	private final VkDevice vkDevice;
 	private final long ptr;
 
@@ -34,6 +37,11 @@ public final class VkFence implements IFenceView, IFence
 	public void free()
 	{
 		vkDestroyFence(vkDevice, ptr, null);
+	}
+
+	public boolean waitForSignal()
+	{
+		return waitForSignal(TIMEOUT);
 	}
 
 	public boolean waitForSignal(long timeoutNs)

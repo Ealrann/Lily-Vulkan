@@ -8,13 +8,11 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public final class SynchronizationManager
 {
 	private static final String FENCE_TIMEOUT = "Fence timeout";
-	private static final long TIMEOUT = TimeUnit.SECONDS.toNanos(60);
 
 	private final SyncUnit syncUnit;
 
@@ -64,7 +62,7 @@ public final class SynchronizationManager
 		{
 			if (fence.isUsed() && fence.isSignaled() == false)
 			{
-				if (fence.waitForSignal(TIMEOUT) == false)
+				if (fence.waitForSignal() == false)
 				{
 					Logger.log(FENCE_TIMEOUT, true);
 				}
