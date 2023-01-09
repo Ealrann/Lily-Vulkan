@@ -8,7 +8,8 @@ import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
 import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
-import org.sheepy.lily.vulkan.process.execution.util.SynchronizationManager;
+import org.sheepy.lily.vulkan.process.execution.util.CountLocker;
+import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.Collection;
@@ -47,7 +48,7 @@ public abstract class AbstractCommandBufferAllocation implements ICommandBufferA
 	}
 
 	@Override
-	public void prepare(final SynchronizationManager.SyncUnit currentSyncUnit)
+	public void prepare(final FenceManager fenceManager)
 	{
 		if (needRecord)
 		{
@@ -58,7 +59,7 @@ public abstract class AbstractCommandBufferAllocation implements ICommandBufferA
 													.flatMap(Collection::stream)).toList();
 			needRecord = false;
 		}
-		currentSyncUnit.setListeners(listeners);
+		fenceManager.addListeners(listeners);
 	}
 
 	@Free
@@ -79,41 +80,6 @@ public abstract class AbstractCommandBufferAllocation implements ICommandBufferA
 		{
 			case Started -> locker.increase();
 			case Done, Canceled -> locker.decrease();
-		}
-	}
-
-	/**
-	 * Lock when count > 0
-	 */
-	private static final class CountLocker
-	{
-		private final Runnable onLock;
-		private final Runnable onUnlock;
-		private int count = 0;
-
-		public CountLocker(Runnable onLock, Runnable onUnlock)
-		{
-			this.onLock = onLock;
-			this.onUnlock = onUnlock;
-		}
-
-		public void increase()
-		{
-			count++;
-			if (count == 1)
-			{
-				onLock.run();
-			}
-		}
-
-		public void decrease()
-		{
-			assert count > 0;
-			count--;
-			if (count == 0)
-			{
-				onUnlock.run();
-			}
 		}
 	}
 }

@@ -5,14 +5,15 @@ import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.concurrent.VkFence;
 import org.sheepy.lily.vulkan.core.util.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public final class FenceManager
 {
 	private static final String FENCE_TIMEOUT = "Fence timeout";
-	public final VkFence fence;
-	private List<Consumer<EExecutionStatus>> listeners = null;
+	private final VkFence fence;
+	private final List<Consumer<EExecutionStatus>> listeners = new ArrayList<>();
 
 	public FenceManager(VkDevice vkDevice)
 	{
@@ -83,6 +84,11 @@ public final class FenceManager
 		}
 	}
 
+	public VkFence getFence()
+	{
+		return fence;
+	}
+
 	public void start()
 	{
 		notify(EExecutionStatus.Started, false);
@@ -95,21 +101,23 @@ public final class FenceManager
 
 	private void notify(EExecutionStatus status, boolean removeListeners)
 	{
-		if (listeners != null)
+		for (final var listener : listeners)
 		{
-			for (final var listener : listeners)
-			{
-				listener.accept(status);
-			}
-			if (removeListeners)
-			{
-				listeners = null;
-			}
+			listener.accept(status);
+		}
+		if (removeListeners)
+		{
+			listeners.clear();
 		}
 	}
 
-	public void setListeners(List<Consumer<EExecutionStatus>> listeners)
+	public void addListeners(List<Consumer<EExecutionStatus>> listeners)
 	{
-		this.listeners = listeners;
+		this.listeners.addAll(listeners);
+	}
+
+	public void addListener(Consumer<EExecutionStatus> listener)
+	{
+		this.listeners.add(listener);
 	}
 }

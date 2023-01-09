@@ -22,8 +22,6 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
 
-import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
-
 @ModelExtender(scope = GraphicExecutionRecorder.class)
 @Allocation(context = ProcessContext.class)
 @AllocationChild(features = ProcessPackage.EXECUTION_RECORDER__SUBMISSION)
@@ -71,49 +69,51 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	@Override
 	public void prepare(final List<WaitData> waitSemaphores, List<VkSemaphore> signalSemaphores, int semaphoreCount)
 	{
-		final var syncUnit = submissionAllocation.prepare(waitSemaphores, signalSemaphores, semaphoreCount);
+		fenceManager.waitIdle();
+		fenceManager.setUsed(true);
+		submissionAllocation.prepare(waitSemaphores, signalSemaphores, semaphoreCount, fenceManager);
 
-		commandBuffer.prepare(syncUnit);
+		commandBuffer.prepare(fenceManager);
 	}
 
 	@Free
 	public void free(ExecutionContext context)
 	{
 		presentSubmission.free();
+		fenceManager.free();
 	}
 
 	@Override
 	public IFenceView play()
 	{
-		final var res = submissionAllocation.play(commandBuffer.getVkCommandBuffer());
-		if (res.result() == VK_SUCCESS)
+		fenceManager.start();
+		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
+		if (submissionAllocation.play(vkCommandBuffer, fenceManager))
 		{
 			presentSubmission.submit();
 		}
-		return res.fence();
+		else
+		{
+			fenceManager.cancel();
+		}
+		return fenceManager.getFence();
 	}
 
 	@Override
 	public boolean checkFence()
 	{
-		return submissionAllocation.checkFence();
+		return fenceManager.checkFence();
 	}
 
 	@Override
 	public void waitIdle()
 	{
-		submissionAllocation.waitIdle();
+		fenceManager.waitIdle();
 	}
 
 	@Override
 	public VkSemaphore borrowSemaphore()
 	{
 		return submissionAllocation.borrowSemaphore();
-	}
-
-	@Override
-	public FenceManager getFenceManager()
-	{
-		return fenceManager;
 	}
 }

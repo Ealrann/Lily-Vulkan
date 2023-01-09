@@ -39,6 +39,12 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 		this.submissionAllocation = submissionAllocation;
 	}
 
+	@Free
+	private void free()
+	{
+		fenceManager.free();
+	}
+
 	@UpdateDependency(index = 0)
 	private void updateCommandBuffer(ICommandBufferAdapter commandBuffer)
 	{
@@ -50,38 +56,40 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 						List<VkSemaphore> signalSemaphores,
 						int executionSemaphoreCount)
 	{
-		final var syncUnit = submissionAllocation.prepare(waitSemaphores, signalSemaphores, executionSemaphoreCount);
+		fenceManager.waitIdle();
+		fenceManager.setUsed(true);
+		submissionAllocation.prepare(waitSemaphores, signalSemaphores, executionSemaphoreCount, fenceManager);
 
-		commandBuffer.prepare(syncUnit);
+		commandBuffer.prepare(fenceManager);
 	}
 
 	@Override
 	public boolean checkFence()
 	{
-		return submissionAllocation.checkFence();
+		return fenceManager.checkFence();
 	}
 
 	@Override
 	public void waitIdle()
 	{
-		submissionAllocation.waitIdle();
+		fenceManager.waitIdle();
 	}
 
 	@Override
 	public IFenceView play()
 	{
-		return submissionAllocation.play(commandBuffer.getVkCommandBuffer()).fence();
+		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
+		fenceManager.start();
+		if (!submissionAllocation.play(vkCommandBuffer, fenceManager))
+		{
+			fenceManager.cancel();
+		}
+		return fenceManager.getFence();
 	}
 
 	@Override
 	public VkSemaphore borrowSemaphore()
 	{
 		return submissionAllocation.borrowSemaphore();
-	}
-
-	@Override
-	public FenceManager getFenceManager()
-	{
-		return fenceManager;
 	}
 }
