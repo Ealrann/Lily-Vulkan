@@ -6,6 +6,7 @@ import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
 import org.logoce.extender.api.ModelExtender;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.IBufferReferenceAllocation;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.core.barrier.IBufferBarrierAllocation;
@@ -39,11 +40,11 @@ public final class BufferBarrierAllocation implements IBufferBarrierAllocation
 
 	@Override
 	public void fill(final VkBufferMemoryBarrier.Buffer barriers,
-					 final int index,
+					 final RecordContext recordContext,
 					 final int srcQueueIndex,
 					 final int dstQueueIndex)
 	{
-		for (final var buffer : bufferReferenceAllocation.getBufferAllocations(index))
+		for (final var buffer : bufferReferenceAllocation.getBufferAllocations(recordContext.recordIndex))
 		{
 			final long ptr = buffer.getPtr();
 			final long bindOffset = buffer.getBindOffset();

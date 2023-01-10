@@ -30,21 +30,21 @@ public abstract class ExecutionManagerAllocation<T extends IExecutionRecorderAll
 	@Override
 	public IExecutionPlayer acquireNextPlayer()
 	{
-		final int index = acquire();
-		return preparePlayer(index);
+		final var acquisitionIndex = acquire();
+		return preparePlayer(acquisitionIndex);
 	}
 
-	private T preparePlayer(int index)
+	private T preparePlayer(final AcquisitionInfo acquisitionInfo)
 	{
-		return index == -1 ? doDummySubmission() : prepareSubmission(index);
+		return acquisitionInfo.executionID == -1 ? doDummySubmission() : prepareSubmission(acquisitionInfo);
 	}
 
-	private T prepareSubmission(final int index)
+	private T prepareSubmission(final AcquisitionInfo acquisitionInfo)
 	{
 		final int semaphoreCount = executionManager.getWaitedBy().size();
 		final var waitSemaphores = streamWaitData(true).toList();
-		final var recorder = getRecorders().get(index);
-		recorder.prepare(waitSemaphores, signalSemaphores(), semaphoreCount);
+		final var recorder = getRecorders().get(acquisitionInfo.executionID);
+		recorder.prepare(waitSemaphores, signalSemaphores(), semaphoreCount, acquisitionInfo.recordIndex);
 		return lastExecutedRecorder = recorder;
 	}
 
@@ -92,11 +92,15 @@ public abstract class ExecutionManagerAllocation<T extends IExecutionRecorderAll
 		}
 	}
 
-	protected abstract int acquire();
+	protected abstract AcquisitionInfo acquire();
 
 	protected abstract List<T> getRecorders();
 
 	protected abstract List<VkSemaphore> signalSemaphores();
 
 	protected abstract Stream<WaitData> streamAcquireSemaphores();
+
+	public record AcquisitionInfo(int executionID, int recordIndex)
+	{
+	}
 }

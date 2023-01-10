@@ -7,5 +7,5 @@ import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
 public interface ICommandBufferAdapter extends IAdapter
 {
 	VkCommandBuffer getVkCommandBuffer();
-	void prepare(final FenceManager fenceManager);
+	void prepare(FenceManager fenceManager);
 }

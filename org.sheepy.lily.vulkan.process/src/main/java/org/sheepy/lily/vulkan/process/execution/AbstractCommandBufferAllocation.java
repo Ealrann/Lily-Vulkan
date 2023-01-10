@@ -7,7 +7,6 @@ import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
-import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
 import org.sheepy.lily.vulkan.process.execution.util.CountLocker;
 import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
@@ -21,21 +20,18 @@ public abstract class AbstractCommandBufferAllocation implements ICommandBufferA
 {
 	private final AbstractProcessCommandBufferHelper commandBufferHelper;
 	private final ProcessContext context;
-	private final int index;
 	private final CountLocker locker;
 	private final IAllocationState allocationState;
 	private boolean needRecord = true;
 	private List<IRecordableAdapter> recordables;
 	private List<Consumer<EExecutionStatus>> listeners;
 
-	public AbstractCommandBufferAllocation(ICommandBuffer commandBuffer,
-										   AbstractProcessCommandBufferHelper commandBufferHelper,
+	public AbstractCommandBufferAllocation(AbstractProcessCommandBufferHelper commandBufferHelper,
 										   final ProcessContext context,
 										   IAllocationState allocationState)
 	{
 		this.commandBufferHelper = commandBufferHelper;
 		this.context = context;
-		this.index = commandBuffer.getIndex();
 		this.allocationState = allocationState;
 		this.locker = new CountLocker(allocationState::lockAllocation, allocationState::unlockAllocation);
 	}
@@ -52,7 +48,7 @@ public abstract class AbstractCommandBufferAllocation implements ICommandBufferA
 	{
 		if (needRecord)
 		{
-			final var recordContexts = commandBufferHelper.record(recordables, context, index);
+			final var recordContexts = commandBufferHelper.record(recordables, context);
 			listeners = Stream.concat(Stream.of(this::updateLock),
 									  recordContexts.stream()
 													.map(RecordContext::getExecutionListeners)

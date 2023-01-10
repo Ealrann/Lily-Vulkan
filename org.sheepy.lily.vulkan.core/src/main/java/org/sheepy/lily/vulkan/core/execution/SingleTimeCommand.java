@@ -49,7 +49,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBufferHelper
 	{
 		start(ECommandStage.MAIN);
 
-		final var recordContext = new RecordContext(executionContext, vkCommandBuffer, ECommandStage.MAIN, 0);
+		final var recordContext = new RecordContext(executionContext, vkCommandBuffer, ECommandStage.MAIN, 0, 0);
 		recordContext.stackPush();
 		doExecute(recordContext);
 		recordContext.stackPop();

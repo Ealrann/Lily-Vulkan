@@ -64,7 +64,7 @@ public final class CopyBufferTaskRecorder implements IRecordableAdapter
 	@Override
 	public void record(RecordContext context)
 	{
-		copyPasses.get(context.index).record(context);
+		copyPasses.get(context.recordIndex).record(context);
 	}
 
 	private static int gatherIndexCount(final CopyBufferTask task)

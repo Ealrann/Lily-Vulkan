@@ -53,8 +53,9 @@ public final class ComputeExecutionRecorderAllocation implements IExecutionRecor
 
 	@Override
 	public void prepare(final List<WaitData> waitSemaphores,
-						List<VkSemaphore> signalSemaphores,
-						int executionSemaphoreCount)
+						final List<VkSemaphore> signalSemaphores,
+						final int executionSemaphoreCount,
+						final int recordIndex)
 	{
 		fenceManager.waitIdle();
 		fenceManager.setUsed(true);

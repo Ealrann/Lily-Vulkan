@@ -30,13 +30,14 @@ public final class GraphicCommandBufferHelper extends AbstractProcessCommandBuff
 	private final VkCommandBufferBeginInfo beginInfo;
 	private final int subpassCount;
 
-	public GraphicCommandBufferHelper(ExecutionContext context,
-									  PhysicalSurfaceAllocation surfaceAllocation,
-									  RenderPassAllocation renderPassAllocation,
-									  long framebufferPtr,
-									  int subpassCount)
+	public GraphicCommandBufferHelper(final ExecutionContext context,
+									  final PhysicalSurfaceAllocation surfaceAllocation,
+									  final RenderPassAllocation renderPassAllocation,
+									  final long framebufferPtr,
+									  final int subpassCount,
+									  final RecordInfo recordInfo)
 	{
-		super(context, stages);
+		super(context, stages, recordInfo);
 		this.subpassCount = subpassCount;
 
 		final var clearInfos = renderPassAllocation.getClearInfos();

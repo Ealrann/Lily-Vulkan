@@ -20,9 +20,9 @@ public final class ComputeCommandBufferHelper extends AbstractProcessCommandBuff
 	private static final String FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER = "Failed to begin recording command buffer";
 	private final VkCommandBufferBeginInfo beginInfo;
 
-	public ComputeCommandBufferHelper(ProcessContext context)
+	public ComputeCommandBufferHelper(final ProcessContext context, final RecordInfo info)
 	{
-		super(context, stages);
+		super(context, stages, info);
 
 		beginInfo = VkCommandBufferBeginInfo.calloc();
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);

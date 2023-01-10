@@ -1,10 +1,11 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.logoce.extender.api.ModelExtender;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -34,8 +35,8 @@ public final class BlitToSwapImageRecorder extends AbstractBlitTaskRecorder
 	}
 
 	@Override
-	protected long getDstImagePtr(int index)
+	protected long getDstImagePtr(RecordContext context)
 	{
-		return imageViews.getImageViews().get(index).getImagePtr();
+		return imageViews.getImageViews().get(context.executionID).getImagePtr();
 	}
 }

@@ -47,8 +47,8 @@ public final class FetchBufferRecorder implements IRecordableAdapter
 	@Override
 	public void record(final RecordContext context)
 	{
-		final var srcBufferAllocation = bufferReferenceAllocation.getBufferAllocations(context.index).get(0);
-		final var srcBuffer = bufferReferenceAllocation.getBuffers(context.index).get(0);
+		final var srcBufferAllocation = bufferReferenceAllocation.getBufferAllocations(context.recordIndex).get(0);
+		final var srcBuffer = bufferReferenceAllocation.getBuffers(context.recordIndex).get(0);
 		final var dataConsumerAdapter = srcBuffer.adapt(IBufferViewerAdapter.class)
 												 .adaptDataSource(IBufferDataConsumer.class);
 		final var fetcher = new Fetcher(executionContext, srcBufferAllocation, dataConsumerAdapter);

@@ -12,6 +12,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.AbstractCommandBufferAllocation;
+import org.sheepy.lily.vulkan.process.execution.AbstractProcessCommandBufferHelper;
 import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewAllocation;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
@@ -37,14 +38,11 @@ public final class GraphicCommandBufferAllocation extends AbstractCommandBufferA
 										   @InjectDependency(index = 3) FramebufferAllocation framebufferAllocation,
 										   @InjectDependency(index = 4) List<IRecordableAdapter> recordables)
 	{
-		super(commandBuffer,
-			  buildCommandBufferHelper(commandBuffer,
+		super(buildCommandBufferHelper(commandBuffer,
 									   context,
 									   surfaceAllocation,
 									   renderPassAllocation,
-									   framebufferAllocation),
-			  context,
-			  allocationState);
+									   framebufferAllocation), context, allocationState);
 		changeRecordables(recordables);
 	}
 
@@ -62,13 +60,15 @@ public final class GraphicCommandBufferAllocation extends AbstractCommandBufferA
 	{
 		final var process = ModelUtil.findParent(commandBuffer, GraphicProcess.class);
 		final var subpassCount = countSubpasses(process);
-		final int index = commandBuffer.getIndex();
-		final var framebufferPtr = framebufferAllocation.getFramebufferAddresses().get(index);
+		final int imageID = commandBuffer.getImageID();
+		final var framebufferPtr = framebufferAllocation.getFramebufferAddresses().get(imageID);
+		final var recordInfo = new AbstractProcessCommandBufferHelper.RecordInfo(imageID, commandBuffer.getIndex());
 		return new GraphicCommandBufferHelper(context,
 											  surfaceAllocation,
 											  renderPassAllocation,
 											  framebufferPtr,
-											  subpassCount);
+											  subpassCount,
+											  recordInfo);
 	}
 
 	private static int countSubpasses(GraphicProcess process)

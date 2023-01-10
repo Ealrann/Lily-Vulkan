@@ -21,16 +21,19 @@ import java.util.stream.Stream;
 @AllocationChild(features = ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS)
 public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation<ComputeExecutionRecorderAllocation>
 {
-	private final ComputeExecutionManager executionManager;
+	private final int recordCount;
+	private final int executionCount;
 	private List<ComputeExecutionRecorderAllocation> recorders;
-	private int index = -1;
+	private int recordIndex = -1;
+	private int executionIndex = -1;
 
 	private ComputeExecutionManagerAllocation(ComputeExecutionManager executionManager, ProcessContext context)
 	{
 		super(executionManager, context);
 
-		this.executionManager = executionManager;
-		setupRecorders(executionManager);
+		recordCount = executionManager.getIndexCount();
+		executionCount = Math.max(2, recordCount);
+		setupRecorders(executionManager, recordCount, executionCount);
 	}
 
 	@InjectChildren(index = 1, type = ComputeExecutionRecorderAllocation.class)
@@ -40,9 +43,11 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 	}
 
 	@Override
-	protected int acquire()
+	protected AcquisitionInfo acquire()
 	{
-		return index = (index + 1) % executionManager.getIndexCount();
+		recordIndex = (recordIndex + 1) % recordCount;
+		executionIndex = (executionIndex + 1) % executionCount;
+		return new AcquisitionInfo(executionIndex, recordIndex);
 	}
 
 	@Override
@@ -63,11 +68,11 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 		return Stream.empty();
 	}
 
-	private static void setupRecorders(ComputeExecutionManager executionManager)
+	private static void setupRecorders(ComputeExecutionManager executionManager,
+									   final int indexCount,
+									   final int executionCount)
 	{
 		final var recorderList = executionManager.getRecorders();
-		final int indexCount = executionManager.getIndexCount();
-		final int executionCount = Math.max(2, indexCount);
 
 		if (recorderList.size() != executionCount)
 		{

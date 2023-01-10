@@ -7,23 +7,31 @@ import org.sheepy.lily.vulkan.core.device.IVulkanContext;
 import org.sheepy.lily.vulkan.core.device.VulkanContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Consumer;
 
 public final class RecordContext extends VulkanContext implements IRecordContext
 {
 	public final VkCommandBuffer commandBuffer;
 	public final ECommandStage stage;
-	public final int index;
+	public final int executionID;
+	public final int recordIndex;
 
 	private final List<Consumer<EExecutionStatus>> listeners = new ArrayList<>();
 
-	public RecordContext(IVulkanContext vulkanContext, VkCommandBuffer commandBuffer, ECommandStage stage, int index)
+	public RecordContext(final IVulkanContext vulkanContext,
+						 final VkCommandBuffer commandBuffer,
+						 final ECommandStage stage,
+						 final int executionID,
+						 final int recordIndex)
 	{
 		super(vulkanContext);
 		this.commandBuffer = commandBuffer;
 		this.stage = stage;
-		this.index = index;
+		this.executionID = executionID;
+		this.recordIndex = recordIndex;
 	}
 
 	@Override
@@ -54,12 +62,6 @@ public final class RecordContext extends VulkanContext implements IRecordContext
 	public ECommandStage stage()
 	{
 		return stage;
-	}
-
-	@Override
-	public int index()
-	{
-		return index;
 	}
 
 	private static final class RecordLocker

@@ -2,12 +2,15 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
@@ -23,7 +26,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicExecutionRecorderImpl#getSubmission <em>Submission</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicExecutionRecorderImpl#getCommandBuffer <em>Command Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicExecutionRecorderImpl#getCommandBuffers <em>Command Buffers</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,15 +43,14 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 	 */
 	protected Submission submission;
 	/**
-	 * The cached value of the '{@link #getCommandBuffer() <em>Command Buffer</em>}' reference.
+	 * The cached value of the '{@link #getCommandBuffers() <em>Command Buffers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCommandBuffer()
+	 * @see #getCommandBuffers()
 	 * @generated
 	 * @ordered
 	 */
-	protected GraphicCommandBuffer commandBuffer;
-
+	protected EList<GraphicCommandBuffer> commandBuffers;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,43 +128,13 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 	 * @generated
 	 */
 	@Override
-	public GraphicCommandBuffer getCommandBuffer()
+	public EList<GraphicCommandBuffer> getCommandBuffers()
 	{
-		if (commandBuffer != null && ((EObject)commandBuffer).eIsProxy())
+		if (commandBuffers == null)
 		{
-			InternalEObject oldCommandBuffer = commandBuffer;
-			commandBuffer = (GraphicCommandBuffer)eResolveProxy(oldCommandBuffer);
-			if (commandBuffer != oldCommandBuffer)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER, oldCommandBuffer, commandBuffer));
-			}
+			commandBuffers = new EObjectResolvingEList<>(GraphicCommandBuffer.class, this, GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFERS);
 		}
-		return commandBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GraphicCommandBuffer basicGetCommandBuffer()
-	{
-		return commandBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCommandBuffer(GraphicCommandBuffer newCommandBuffer)
-	{
-		GraphicCommandBuffer oldCommandBuffer = commandBuffer;
-		commandBuffer = newCommandBuffer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER, oldCommandBuffer, commandBuffer));
+		return commandBuffers;
 	}
 
 	/**
@@ -193,9 +165,8 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 		{
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__SUBMISSION:
 				return getSubmission();
-			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER:
-				if (resolve) return getCommandBuffer();
-				return basicGetCommandBuffer();
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFERS:
+				return getCommandBuffers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -205,6 +176,7 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -213,8 +185,9 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__SUBMISSION:
 				setSubmission((Submission)newValue);
 				return;
-			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER:
-				setCommandBuffer((GraphicCommandBuffer)newValue);
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFERS:
+				getCommandBuffers().clear();
+				getCommandBuffers().addAll((Collection<? extends GraphicCommandBuffer>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -233,8 +206,8 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__SUBMISSION:
 				setSubmission((Submission)null);
 				return;
-			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER:
-				setCommandBuffer((GraphicCommandBuffer)null);
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFERS:
+				getCommandBuffers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -252,8 +225,8 @@ public class GraphicExecutionRecorderImpl extends LilyEObject implements Graphic
 		{
 			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__SUBMISSION:
 				return submission != null;
-			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER:
-				return commandBuffer != null;
+			case GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFERS:
+				return commandBuffers != null && !commandBuffers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

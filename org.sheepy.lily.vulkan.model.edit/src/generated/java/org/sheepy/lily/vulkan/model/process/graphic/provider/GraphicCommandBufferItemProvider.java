@@ -64,6 +64,7 @@ public class GraphicCommandBufferItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIndexPropertyDescriptor(object);
+			addImageIDPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,6 +84,29 @@ public class GraphicCommandBufferItemProvider
 				 getString("_UI_ICommandBuffer_index_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ICommandBuffer_index_feature", "_UI_ICommandBuffer_type"),
 				 ProcessPackage.Literals.ICOMMAND_BUFFER__INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Image ID feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addImageIDPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphicCommandBuffer_imageID_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicCommandBuffer_imageID_feature", "_UI_GraphicCommandBuffer_type"),
+				 GraphicPackage.Literals.GRAPHIC_COMMAND_BUFFER__IMAGE_ID,
 				 true,
 				 false,
 				 false,
@@ -132,6 +156,7 @@ public class GraphicCommandBufferItemProvider
 		switch (notification.getFeatureID(GraphicCommandBuffer.class))
 		{
 			case GraphicPackage.GRAPHIC_COMMAND_BUFFER__INDEX:
+			case GraphicPackage.GRAPHIC_COMMAND_BUFFER__IMAGE_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

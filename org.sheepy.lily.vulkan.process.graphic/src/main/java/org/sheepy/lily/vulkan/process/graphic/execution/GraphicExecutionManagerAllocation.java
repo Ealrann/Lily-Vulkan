@@ -34,6 +34,7 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 	private final int executionCount;
 	private final EPipelineStage acquireWaitStage;
 
+	private int recordIndex = -1;
 	private List<GraphicExecutionRecorderAllocation> recorders;
 
 	private GraphicExecutionManagerAllocation(GraphicExecutionManager executionManager,
@@ -87,9 +88,11 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 	}
 
 	@Override
-	protected int acquire()
+	protected AcquisitionInfo acquire()
 	{
-		return imageAcquirer.acquireNextImage(imageAvailableSemaphore.getPtr());
+		recordIndex = (recordIndex + 1) % executionCount;
+		final int imageIndex = imageAcquirer.acquireNextImage(imageAvailableSemaphore.getPtr());
+		return new AcquisitionInfo(imageIndex, recordIndex);
 	}
 
 	@Override
@@ -121,17 +124,21 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 		{
 			recorders.clear();
 			executionManager.getCommandBuffers().clear();
-			for (int i = 0; i < count; i++)
+			for (int imageID = 0; imageID < count; imageID++)
 			{
 				final var submission = ProcessFactory.eINSTANCE.createSubmission();
 
-				final var commandBuffer = GraphicFactory.eINSTANCE.createGraphicCommandBuffer();
-				commandBuffer.setIndex(i);
-				executionManager.getCommandBuffers().add(commandBuffer);
-
 				final var executionRecorder = GraphicFactory.eINSTANCE.createGraphicExecutionRecorder();
-				executionRecorder.setCommandBuffer(commandBuffer);
 				executionRecorder.setSubmission(submission);
+
+				for (int index = 0; index < count; index++)
+				{
+					final var commandBuffer = GraphicFactory.eINSTANCE.createGraphicCommandBuffer();
+					commandBuffer.setIndex(index);
+					commandBuffer.setImageID(imageID);
+					executionManager.getCommandBuffers().add(commandBuffer);
+					executionRecorder.getCommandBuffers().add(commandBuffer);
+				}
 
 				recorders.add(executionRecorder);
 			}

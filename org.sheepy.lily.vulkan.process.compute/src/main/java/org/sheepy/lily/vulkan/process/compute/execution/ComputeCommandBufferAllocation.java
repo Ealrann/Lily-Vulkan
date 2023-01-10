@@ -12,6 +12,7 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.execution.AbstractCommandBufferAllocation;
+import org.sheepy.lily.vulkan.process.execution.AbstractProcessCommandBufferHelper;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public final class ComputeCommandBufferAllocation extends AbstractCommandBufferA
 										   ProcessContext context,
 										   @InjectDependency(index = 0) List<IRecordableAdapter> recordables)
 	{
-		super(commandBuffer, new ComputeCommandBufferHelper(context), context, allocationState);
+		super(new ComputeCommandBufferHelper(context, buildRecordInfo(commandBuffer)), context, allocationState);
 		changeRecordables(recordables);
 	}
 
@@ -34,5 +35,10 @@ public final class ComputeCommandBufferAllocation extends AbstractCommandBufferA
 	private void updateRecorders(List<IRecordableAdapter> recordables)
 	{
 		changeRecordables(recordables);
+	}
+
+	private static AbstractProcessCommandBufferHelper.RecordInfo buildRecordInfo(final ComputeCommandBuffer commandBuffer)
+	{
+		return new AbstractProcessCommandBufferHelper.RecordInfo(commandBuffer.getIndex(), commandBuffer.getIndex());
 	}
 }

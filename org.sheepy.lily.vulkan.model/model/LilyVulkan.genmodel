@@ -72,7 +72,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicExecutionManager/commandBuffers"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//GraphicExecutionRecorder">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicExecutionRecorder/commandBuffer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphic.ecore#//GraphicExecutionRecorder/commandBuffers"/>
     </genClasses>
     <genClasses ecoreClass="graphic.ecore#//ColorDomain">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//ColorDomain/format"/>
@@ -239,7 +239,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/constantVariables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphic.ecore#//Compositor/descriptorPkg"/>
     </genClasses>
-    <genClasses ecoreClass="graphic.ecore#//GraphicCommandBuffer"/>
+    <genClasses ecoreClass="graphic.ecore#//GraphicCommandBuffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphic.ecore#//GraphicCommandBuffer/imageID"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Process" basePackage="org.sheepy.lily.vulkan.model" resource="XMI"
       extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="process.ecore#/">

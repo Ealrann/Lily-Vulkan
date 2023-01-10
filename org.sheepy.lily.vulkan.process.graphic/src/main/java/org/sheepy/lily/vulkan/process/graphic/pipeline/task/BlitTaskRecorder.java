@@ -2,11 +2,12 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
+import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.allocation.IAllocationState;
 import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.logoce.extender.api.ModelExtender;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
 import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
 import org.sheepy.lily.vulkan.core.resource.image.VkImage;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitTask;
@@ -32,7 +33,7 @@ public final class BlitTaskRecorder extends AbstractBlitTaskRecorder
 	}
 
 	@Override
-	protected long getDstImagePtr(int index)
+	protected long getDstImagePtr(RecordContext recordContext)
 	{
 		return dstImage.getImagePtr();
 	}

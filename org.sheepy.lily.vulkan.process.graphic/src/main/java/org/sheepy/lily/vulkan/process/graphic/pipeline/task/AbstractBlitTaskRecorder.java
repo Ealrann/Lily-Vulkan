@@ -137,7 +137,7 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableAdapter
 	@Override
 	public void record(RecordContext context)
 	{
-		final var dstImagePtr = getDstImagePtr(context.index());
+		final var dstImagePtr = getDstImagePtr(context);
 		final var transfertSrc = EImageLayout.TRANSFER_SRC_OPTIMAL_VALUE;
 		final var transfertDst = EImageLayout.TRANSFER_DST_OPTIMAL_VALUE;
 		final int filter = blitTask.getFilter().getValue();
@@ -159,7 +159,7 @@ public abstract class AbstractBlitTaskRecorder implements IRecordableAdapter
 		context.lockAllocationDuringExecution(allocationState);
 	}
 
-	protected abstract long getDstImagePtr(int index);
+	protected abstract long getDstImagePtr(RecordContext context);
 
 	protected static void fillRegion(VkImageBlit region,
 									 final int srcWidth,

@@ -68,10 +68,7 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 	private static <T extends IBarrierAllocation<?>> List<T> filterBarriers(final List<IBarrierAllocation<?>> barrierAllocations,
 																			final Class<T> barrierType)
 	{
-		return barrierAllocations.stream()
-								 .filter(barrierType::isInstance)
-								 .map(barrierType::cast)
-								 .toList();
+		return barrierAllocations.stream().filter(barrierType::isInstance).map(barrierType::cast).toList();
 	}
 
 	@Override
@@ -80,28 +77,27 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 		if (pipelineBarrier.isEnabled())
 		{
 			final var stack = context.stack();
-			final int index = context.index;
-			final var bufferInfo = allocateBufferInfo(stack, index);
-			final var imageInfo = allocateImageInfo(stack, index);
+			final var bufferInfo = allocateBufferInfo(stack, context);
+			final var imageInfo = allocateImageInfo(stack, context);
 
 			vkCmdPipelineBarrier(context.commandBuffer, srcStage, dstStage, 0, null, bufferInfo, imageInfo);
 		}
 	}
 
-	public VkBufferMemoryBarrier.Buffer allocateBufferInfo(MemoryStack stack, int index)
+	public VkBufferMemoryBarrier.Buffer allocateBufferInfo(MemoryStack stack, RecordContext context)
 	{
 		final var res = VkBufferMemoryBarrier.calloc(bufferBarrierAllocSize, stack);
 		for (int i = 0; i < bufferBarriers.size(); i++)
 		{
 			final var bufferBarrier = bufferBarriers.get(i);
-			bufferBarrier.fill(res, index, srcQueueIndex, dstQueueIndex);
+			bufferBarrier.fill(res, context, srcQueueIndex, dstQueueIndex);
 		}
 		res.flip();
 
 		return res;
 	}
 
-	public VkImageMemoryBarrier.Buffer allocateImageInfo(MemoryStack stack, int index)
+	public VkImageMemoryBarrier.Buffer allocateImageInfo(MemoryStack stack, RecordContext recordContext)
 	{
 		final int size = imageBarriers.size();
 		final var res = VkImageMemoryBarrier.calloc(size, stack);
@@ -109,7 +105,7 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 		for (final var imageBarrier : imageBarriers)
 		{
 			final var info = res.get();
-			imageBarrier.fill(info, index, srcQueueIndex, dstQueueIndex);
+			imageBarrier.fill(info, recordContext, srcQueueIndex, dstQueueIndex);
 		}
 		res.flip();
 

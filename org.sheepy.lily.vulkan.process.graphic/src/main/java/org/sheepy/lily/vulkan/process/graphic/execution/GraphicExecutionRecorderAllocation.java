@@ -25,7 +25,7 @@ import java.util.List;
 @ModelExtender(scope = GraphicExecutionRecorder.class)
 @Allocation(context = ProcessContext.class)
 @AllocationChild(features = ProcessPackage.EXECUTION_RECORDER__SUBMISSION)
-@AllocationDependency(features = GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER, type = ICommandBufferAdapter.class)
+@AllocationDependency(features = GraphicPackage.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFERS, type = ICommandBufferAdapter.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SURFACE}, type = PhysicalSurfaceAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION}, type = SwapChainAllocation.class)
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, GraphicPackage.GRAPHIC_CONFIGURATION__IMAGE_VIEWS}, type = ImageViewAllocation.class)
@@ -34,23 +34,25 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	private final FenceManager fenceManager;
 	private final PresentSubmission presentSubmission;
 	private SubmissionAllocation submissionAllocation;
-	private ICommandBufferAdapter commandBuffer;
+	private List<ICommandBufferAdapter> commandBuffers;
+	private int currentIndex;
 
 	private GraphicExecutionRecorderAllocation(GraphicExecutionRecorder recorder,
 											   ProcessContext context,
-											   @InjectDependency(index = 0) ICommandBufferAdapter commandBuffer,
+											   @InjectDependency(index = 0) List<ICommandBufferAdapter> commandBuffers,
 											   @InjectDependency(index = 1) PhysicalSurfaceAllocation surfaceAllocation,
 											   @InjectDependency(index = 2) SwapChainAllocation swapChainAllocation)
 	{
-		final int index = recorder.getCommandBuffer().getIndex();
+		final int imageID = recorder.getCommandBuffers().get(0).getImageID();
+		assert recorder.getCommandBuffers().stream().filter(cb -> cb.getImageID() != imageID).findAny().isEmpty();
 		final var presentQueue = surfaceAllocation.getPresentQueue().vkQueue;
 		final var manager = (GraphicExecutionManager) recorder.eContainer();
 		final var presentSemaphore = manager.adapt(GraphicExecutionManagerAllocation.class).getPresentSemaphore();
-		this.commandBuffer = commandBuffer;
+		this.commandBuffers = commandBuffers;
 		fenceManager = new FenceManager(context.getVkDevice());
 		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),
 													   presentQueue,
-													   index,
+													   imageID,
 													   presentSemaphore);
 	}
 
@@ -61,19 +63,24 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	}
 
 	@UpdateDependency(index = 0)
-	private void updateCommandBuffer(ICommandBufferAdapter commandBuffer)
+	private void updateCommandBuffer(List<ICommandBufferAdapter> commandBuffers)
 	{
-		this.commandBuffer = commandBuffer;
+		this.commandBuffers = commandBuffers;
 	}
 
 	@Override
-	public void prepare(final List<WaitData> waitSemaphores, List<VkSemaphore> signalSemaphores, int semaphoreCount)
+	public void prepare(final List<WaitData> waitSemaphores,
+						final List<VkSemaphore> signalSemaphores,
+						final int semaphoreCount,
+						final int recordIndex)
 	{
+		currentIndex = recordIndex;
 		fenceManager.waitIdle();
 		fenceManager.setUsed(true);
 		submissionAllocation.prepare(waitSemaphores, signalSemaphores, semaphoreCount, fenceManager);
 
-		commandBuffer.prepare(fenceManager);
+		final var commandBufferAdapter = commandBuffers.get(currentIndex);
+		commandBufferAdapter.prepare(fenceManager);
 	}
 
 	@Free
@@ -87,7 +94,7 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 	public IFenceView play()
 	{
 		fenceManager.start();
-		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
+		final var vkCommandBuffer = commandBuffers.get(currentIndex).getVkCommandBuffer();
 		if (submissionAllocation.play(vkCommandBuffer, fenceManager))
 		{
 			presentSubmission.submit();

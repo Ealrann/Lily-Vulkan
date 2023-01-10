@@ -12,7 +12,6 @@ public interface IRecordContext extends IVulkanContext
 {
 	VkCommandBuffer vkCommandBuffer();
 	ECommandStage stage();
-	int index();
 	void listenExecution(Consumer<EExecutionStatus> listener);
 	void lockAllocationDuringExecution(IAllocationState allocationState);
 }

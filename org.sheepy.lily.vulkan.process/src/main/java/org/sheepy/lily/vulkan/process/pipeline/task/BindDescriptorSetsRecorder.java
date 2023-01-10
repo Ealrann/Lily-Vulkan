@@ -43,7 +43,7 @@ public final class BindDescriptorSetsRecorder implements IRecordableAdapter
 	@Override
 	public void record(RecordContext context)
 	{
-		final var descriptorSetsToBind = getDSToBind(context.index, task.getStride());
+		final var descriptorSetsToBind = getDSToBind(context.recordIndex, task.getStride());
 		final var pipelineAdapter = pipeline.adapt(IPipelineAllocation.class);
 		final var pipelineLayout = pipelineAdapter.getVkPipelineLayout();
 		final var pipelineLayoutPtr = pipelineLayout.getPtr();

@@ -64,26 +64,26 @@ public class GraphicExecutionRecorderItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addCommandBufferPropertyDescriptor(object);
+			addCommandBuffersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Command Buffer feature.
+	 * This adds a property descriptor for the Command Buffers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCommandBufferPropertyDescriptor(Object object)
+	protected void addCommandBuffersPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GraphicExecutionRecorder_commandBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicExecutionRecorder_commandBuffer_feature", "_UI_GraphicExecutionRecorder_type"),
-				 GraphicPackage.Literals.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFER,
+				 getString("_UI_GraphicExecutionRecorder_commandBuffers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicExecutionRecorder_commandBuffers_feature", "_UI_GraphicExecutionRecorder_type"),
+				 GraphicPackage.Literals.GRAPHIC_EXECUTION_RECORDER__COMMAND_BUFFERS,
 				 true,
 				 false,
 				 true,
