@@ -30,21 +30,22 @@ public abstract class ExecutionManagerAllocation<T extends IExecutionRecorderAll
 	@Override
 	public IExecutionPlayer acquireNextPlayer()
 	{
-		final var acquisitionIndex = acquire();
+		final var acquirerAdapter = executionManager.getAcquirer().adapt(IExecutionAcquirerAdapter.class);
+		final var acquisitionIndex = acquirerAdapter.acquire();
 		return preparePlayer(acquisitionIndex);
 	}
 
-	private T preparePlayer(final AcquisitionInfo acquisitionInfo)
+	private T preparePlayer(final IExecutionAcquirerAdapter.AcquisitionInfo acquisitionInfo)
 	{
-		return acquisitionInfo.executionID == -1 ? doDummySubmission() : prepareSubmission(acquisitionInfo);
+		return acquisitionInfo.executionID() == -1 ? doDummySubmission() : prepareSubmission(acquisitionInfo);
 	}
 
-	private T prepareSubmission(final AcquisitionInfo acquisitionInfo)
+	private T prepareSubmission(final IExecutionAcquirerAdapter.AcquisitionInfo acquisitionInfo)
 	{
 		final int semaphoreCount = executionManager.getWaitedBy().size();
 		final var waitSemaphores = streamWaitData(true).toList();
-		final var recorder = getRecorders().get(acquisitionInfo.executionID);
-		recorder.prepare(waitSemaphores, signalSemaphores(), semaphoreCount, acquisitionInfo.recordIndex);
+		final var recorder = getRecorders().get(acquisitionInfo.executionID());
+		recorder.prepare(waitSemaphores, signalSemaphores(), semaphoreCount, acquisitionInfo.recordIndex());
 		return lastExecutedRecorder = recorder;
 	}
 
@@ -84,7 +85,8 @@ public abstract class ExecutionManagerAllocation<T extends IExecutionRecorderAll
 
 		if (withAcquireSemaphores)
 		{
-			return Stream.concat(res, streamAcquireSemaphores());
+			final var acquirerAdapter = executionManager.getAcquirer().adapt(IExecutionAcquirerAdapter.class);
+			return Stream.concat(res, acquirerAdapter.streamAcquireSemaphores());
 		}
 		else
 		{
@@ -92,15 +94,7 @@ public abstract class ExecutionManagerAllocation<T extends IExecutionRecorderAll
 		}
 	}
 
-	protected abstract AcquisitionInfo acquire();
-
 	protected abstract List<T> getRecorders();
 
 	protected abstract List<VkSemaphore> signalSemaphores();
-
-	protected abstract Stream<WaitData> streamAcquireSemaphores();
-
-	public record AcquisitionInfo(int executionID, int recordIndex)
-	{
-	}
 }

@@ -8,46 +8,31 @@ import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.compute.*;
 import org.sheepy.lily.vulkan.process.execution.ExecutionManagerAllocation;
-import org.sheepy.lily.vulkan.process.execution.WaitData;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 @ModelExtender(scope = ComputeExecutionManager.class)
 @Allocation(context = ProcessContext.class)
 @AllocationChild(features = ComputePackage.COMPUTE_EXECUTION_MANAGER__COMMAND_BUFFERS)
+@AllocationChild(features = ComputePackage.COMPUTE_EXECUTION_MANAGER__ACQUIRER)
 @AllocationChild(features = ComputePackage.COMPUTE_EXECUTION_MANAGER__RECORDERS)
 public final class ComputeExecutionManagerAllocation extends ExecutionManagerAllocation<ComputeExecutionRecorderAllocation>
 {
-	private final int recordCount;
-	private final int executionCount;
 	private List<ComputeExecutionRecorderAllocation> recorders;
-	private int recordIndex = -1;
-	private int executionIndex = -1;
 
 	private ComputeExecutionManagerAllocation(ComputeExecutionManager executionManager, ProcessContext context)
 	{
 		super(executionManager, context);
 
-		recordCount = executionManager.getIndexCount();
-		executionCount = Math.max(2, recordCount);
-		setupRecorders(executionManager, recordCount, executionCount);
+		setupRecorders(executionManager);
 	}
 
-	@InjectChildren(index = 1, type = ComputeExecutionRecorderAllocation.class)
+	@InjectChildren(index = 2, type = ComputeExecutionRecorderAllocation.class)
 	private void updateRecorders(List<ComputeExecutionRecorderAllocation> recorders)
 	{
 		this.recorders = recorders;
-	}
-
-	@Override
-	protected AcquisitionInfo acquire()
-	{
-		recordIndex = (recordIndex + 1) % recordCount;
-		executionIndex = (executionIndex + 1) % executionCount;
-		return new AcquisitionInfo(executionIndex, recordIndex);
 	}
 
 	@Override
@@ -62,26 +47,24 @@ public final class ComputeExecutionManagerAllocation extends ExecutionManagerAll
 		return List.of();
 	}
 
-	@Override
-	protected Stream<WaitData> streamAcquireSemaphores()
+	private static void setupRecorders(ComputeExecutionManager executionManager)
 	{
-		return Stream.empty();
-	}
 
-	private static void setupRecorders(ComputeExecutionManager executionManager,
-									   final int indexCount,
-									   final int executionCount)
-	{
+		final var recordCount = executionManager.getIndexCount();
+		final var executionCount = Math.max(2, recordCount);
+
 		final var recorderList = executionManager.getRecorders();
 
 		if (recorderList.size() != executionCount)
 		{
+			executionManager.setAcquirer(ComputeFactory.eINSTANCE.createComputeAcquirer());
+
 			recorderList.clear();
-			final var commandBuffers = IntStream.range(0, indexCount)
+			final var commandBuffers = IntStream.range(0, recordCount)
 												.mapToObj(i -> createCommandBuffer(i, executionManager))
 												.toList();
 			final var recorders = IntStream.range(0, executionCount)
-										   .mapToObj(i -> createRecorder(commandBuffers.get(i % indexCount)))
+										   .mapToObj(i -> createRecorder(commandBuffers.get(i % recordCount)))
 										   .toList();
 			recorderList.addAll(recorders);
 		}

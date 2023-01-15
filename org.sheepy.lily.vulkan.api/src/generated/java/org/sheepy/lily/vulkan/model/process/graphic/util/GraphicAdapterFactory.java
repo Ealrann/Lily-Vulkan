@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
+import org.sheepy.lily.vulkan.model.process.IExecutionAcquirer;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
@@ -40,6 +41,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Draw;
 import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicAcquirer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
@@ -312,6 +314,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createGraphicCommandBufferAdapter();
 			}
 			@Override
+			public Adapter caseGraphicAcquirer(GraphicAcquirer object)
+			{
+				return createGraphicAcquirerAdapter();
+			}
+			@Override
 			public Adapter caseProcessConfiguration(ProcessConfiguration object)
 			{
 				return createProcessConfigurationAdapter();
@@ -405,6 +412,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseICommandBuffer(ICommandBuffer object)
 			{
 				return createICommandBufferAdapter();
+			}
+			@Override
+			public Adapter caseIExecutionAcquirer(IExecutionAcquirer object)
+			{
+				return createIExecutionAcquirerAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -983,6 +995,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicAcquirer <em>Acquirer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicAcquirer
+	 * @generated
+	 */
+	public Adapter createGraphicAcquirerAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1263,6 +1290,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createICommandBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IExecutionAcquirer <em>IExecution Acquirer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IExecutionAcquirer
+	 * @generated
+	 */
+	public Adapter createIExecutionAcquirerAdapter()
 	{
 		return null;
 	}

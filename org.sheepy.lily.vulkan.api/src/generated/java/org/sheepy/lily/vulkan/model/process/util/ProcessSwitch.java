@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
+import org.sheepy.lily.vulkan.model.process.IExecutionAcquirer;
 import org.sheepy.lily.vulkan.model.process.IPipelineExtension;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessExtension;
@@ -308,6 +309,13 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			{
 				ICommandBuffer iCommandBuffer = (ICommandBuffer)theEObject;
 				T1 result = caseICommandBuffer(iCommandBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.IEXECUTION_ACQUIRER:
+			{
+				IExecutionAcquirer iExecutionAcquirer = (IExecutionAcquirer)theEObject;
+				T1 result = caseIExecutionAcquirer(iExecutionAcquirer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -718,6 +726,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseICommandBuffer(ICommandBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IExecution Acquirer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IExecution Acquirer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIExecutionAcquirer(IExecutionAcquirer object)
 	{
 		return null;
 	}

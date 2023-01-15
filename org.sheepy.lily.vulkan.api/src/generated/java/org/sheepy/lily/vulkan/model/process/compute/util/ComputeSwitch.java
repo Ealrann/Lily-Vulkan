@@ -13,11 +13,13 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
+import org.sheepy.lily.vulkan.model.process.IExecutionAcquirer;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessConfiguration;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeAcquirer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
@@ -155,6 +157,14 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ComputePackage.COMPUTE_ACQUIRER:
+			{
+				ComputeAcquirer computeAcquirer = (ComputeAcquirer)theEObject;
+				T1 result = caseComputeAcquirer(computeAcquirer);
+				if (result == null) result = caseIExecutionAcquirer(computeAcquirer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -267,6 +277,22 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseComputeCommandBuffer(ComputeCommandBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Acquirer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Acquirer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseComputeAcquirer(ComputeAcquirer object)
 	{
 		return null;
 	}
@@ -475,6 +501,22 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseICommandBuffer(ICommandBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IExecution Acquirer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IExecution Acquirer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIExecutionAcquirer(IExecutionAcquirer object)
 	{
 		return null;
 	}

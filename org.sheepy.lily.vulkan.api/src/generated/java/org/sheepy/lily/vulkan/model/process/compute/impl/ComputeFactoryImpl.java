@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeAcquirer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
@@ -76,6 +77,7 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 			case ComputePackage.COMPUTE_EXECUTION_MANAGER: return createComputeExecutionManager();
 			case ComputePackage.COMPUTE_EXECUTION_RECORDER: return createComputeExecutionRecorder();
 			case ComputePackage.COMPUTE_COMMAND_BUFFER: return createComputeCommandBuffer();
+			case ComputePackage.COMPUTE_ACQUIRER: return createComputeAcquirer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -163,6 +165,18 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	{
 		ComputeCommandBufferImpl computeCommandBuffer = new ComputeCommandBufferImpl();
 		return computeCommandBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ComputeAcquirer createComputeAcquirer()
+	{
+		ComputeAcquirerImpl computeAcquirer = new ComputeAcquirerImpl();
+		return computeAcquirer;
 	}
 
 	/**

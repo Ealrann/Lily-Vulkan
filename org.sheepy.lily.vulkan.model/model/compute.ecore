@@ -42,4 +42,5 @@
         eType="#//ComputeCommandBuffer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputeCommandBuffer" eSuperTypes="process.ecore#//ICommandBuffer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputeAcquirer" eSuperTypes="process.ecore#//IExecutionAcquirer"/>
 </ecore:EPackage>

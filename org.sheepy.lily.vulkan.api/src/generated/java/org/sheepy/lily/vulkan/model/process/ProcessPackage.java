@@ -1441,13 +1441,22 @@ public interface ProcessPackage extends EPackage
 	int PROCESS_EXECUTION_MANAGER__WAIT_STAGE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Acquirer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_EXECUTION_MANAGER__ACQUIRER = 3;
+
+	/**
 	 * The number of structural features of the '<em>Execution Manager</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_EXECUTION_MANAGER_FEATURE_COUNT = 3;
+	int PROCESS_EXECUTION_MANAGER_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Execution Manager</em>' class.
@@ -1588,6 +1597,34 @@ public interface ProcessPackage extends EPackage
 	int ICOMMAND_BUFFER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IExecutionAcquirer <em>IExecution Acquirer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.IExecutionAcquirer
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIExecutionAcquirer()
+	 * @generated
+	 */
+	int IEXECUTION_ACQUIRER = 25;
+
+	/**
+	 * The number of structural features of the '<em>IExecution Acquirer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IEXECUTION_ACQUIRER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IExecution Acquirer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IEXECUTION_ACQUIRER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.SubmissionImpl <em>Submission</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1595,7 +1632,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getSubmission()
 	 * @generated
 	 */
-	int SUBMISSION = 25;
+	int SUBMISSION = 26;
 
 	/**
 	 * The number of structural features of the '<em>Submission</em>' class.
@@ -2265,6 +2302,17 @@ public interface ProcessPackage extends EPackage
 	EAttribute getProcessExecutionManager_WaitStage();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getAcquirer <em>Acquirer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Acquirer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getAcquirer()
+	 * @see #getProcessExecutionManager()
+	 * @generated
+	 */
+	EReference getProcessExecutionManager_Acquirer();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2326,6 +2374,16 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getICommandBuffer_Index();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IExecutionAcquirer <em>IExecution Acquirer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IExecution Acquirer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IExecutionAcquirer
+	 * @generated
+	 */
+	EClass getIExecutionAcquirer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Submission <em>Submission</em>}'.
@@ -2894,6 +2952,14 @@ public interface ProcessPackage extends EPackage
 		EAttribute PROCESS_EXECUTION_MANAGER__WAIT_STAGE = eINSTANCE.getProcessExecutionManager_WaitStage();
 
 		/**
+		 * The meta object literal for the '<em><b>Acquirer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_EXECUTION_MANAGER__ACQUIRER = eINSTANCE.getProcessExecutionManager_Acquirer();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.ExecutionRecorder <em>Execution Recorder</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2946,6 +3012,16 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ICOMMAND_BUFFER__INDEX = eINSTANCE.getICommandBuffer_Index();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IExecutionAcquirer <em>IExecution Acquirer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.IExecutionAcquirer
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIExecutionAcquirer()
+		 * @generated
+		 */
+		EClass IEXECUTION_ACQUIRER = eINSTANCE.getIExecutionAcquirer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.SubmissionImpl <em>Submission</em>}' class.

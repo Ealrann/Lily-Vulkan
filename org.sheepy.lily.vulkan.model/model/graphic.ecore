@@ -328,4 +328,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageID" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicAcquirer" eSuperTypes="process.ecore#//IExecutionAcquirer"/>
 </ecore:EPackage>

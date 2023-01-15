@@ -28,6 +28,7 @@ import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
+import org.sheepy.lily.vulkan.model.process.IExecutionAcquirer;
 import org.sheepy.lily.vulkan.model.process.IPipelineExtension;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessExtension;
@@ -240,6 +241,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass iCommandBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iExecutionAcquirerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1021,6 +1029,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getProcessExecutionManager_Acquirer()
+	{
+		return (EReference)processExecutionManagerEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getExecutionRecorder()
 	{
 		return executionRecorderEClass;
@@ -1079,6 +1098,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EAttribute getICommandBuffer_Index()
 	{
 		return (EAttribute)iCommandBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIExecutionAcquirer()
+	{
+		return iExecutionAcquirerEClass;
 	}
 
 	/**
@@ -1205,6 +1235,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(processExecutionManagerEClass, PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION);
 		createEReference(processExecutionManagerEClass, PROCESS_EXECUTION_MANAGER__WAITED_BY);
 		createEAttribute(processExecutionManagerEClass, PROCESS_EXECUTION_MANAGER__WAIT_STAGE);
+		createEReference(processExecutionManagerEClass, PROCESS_EXECUTION_MANAGER__ACQUIRER);
 
 		executionRecorderEClass = createEClass(EXECUTION_RECORDER);
 		createEReference(executionRecorderEClass, EXECUTION_RECORDER__SUBMISSION);
@@ -1214,6 +1245,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		iCommandBufferEClass = createEClass(ICOMMAND_BUFFER);
 		createEAttribute(iCommandBufferEClass, ICOMMAND_BUFFER__INDEX);
+
+		iExecutionAcquirerEClass = createEClass(IEXECUTION_ACQUIRER);
 
 		submissionEClass = createEClass(SUBMISSION);
 	}
@@ -1361,6 +1394,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getProcessExecutionManager_WaitForExecution(), this.getProcessExecutionManager(), this.getProcessExecutionManager_WaitedBy(), "waitForExecution", null, 0, -1, ProcessExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcessExecutionManager_WaitedBy(), this.getProcessExecutionManager(), this.getProcessExecutionManager_WaitForExecution(), "waitedBy", null, 0, -1, ProcessExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProcessExecutionManager_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1, ProcessExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessExecutionManager_Acquirer(), this.getIExecutionAcquirer(), null, "acquirer", null, 0, 1, ProcessExecutionManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(executionRecorderEClass, ExecutionRecorder.class, "ExecutionRecorder", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExecutionRecorder_Submission(), this.getSubmission(), null, "submission", null, 1, 1, ExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1370,6 +1404,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(iCommandBufferEClass, ICommandBuffer.class, "ICommandBuffer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getICommandBuffer_Index(), ecorePackage.getEInt(), "index", null, 1, 1, ICommandBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iExecutionAcquirerEClass, IExecutionAcquirer.class, "IExecutionAcquirer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(submissionEClass, Submission.class, "Submission", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

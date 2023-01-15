@@ -3,17 +3,17 @@
 package org.sheepy.lily.vulkan.model.process.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.model.LilyEObject;
-
+import org.sheepy.lily.vulkan.model.process.IExecutionAcquirer;
 import org.sheepy.lily.vulkan.model.process.ProcessExecutionManager;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -29,6 +29,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl#getWaitForExecution <em>Wait For Execution</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl#getWaitedBy <em>Waited By</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl#getWaitStage <em>Wait Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.ProcessExecutionManagerImpl#getAcquirer <em>Acquirer</em>}</li>
  * </ul>
  *
  * @generated
@@ -76,6 +77,16 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	protected EPipelineStage waitStage = WAIT_STAGE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getAcquirer() <em>Acquirer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAcquirer()
+	 * @generated
+	 * @ordered
+	 */
+	protected IExecutionAcquirer acquirer;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -106,7 +117,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	{
 		if (waitForExecution == null)
 		{
-			waitForExecution = new EObjectWithInverseResolvingEList.ManyInverse<ProcessExecutionManager>(ProcessExecutionManager.class, this, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY);
+			waitForExecution = new EObjectWithInverseResolvingEList.ManyInverse<>(ProcessExecutionManager.class, this, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY);
 		}
 		return waitForExecution;
 	}
@@ -121,7 +132,7 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 	{
 		if (waitedBy == null)
 		{
-			waitedBy = new EObjectWithInverseResolvingEList.ManyInverse<ProcessExecutionManager>(ProcessExecutionManager.class, this, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION);
+			waitedBy = new EObjectWithInverseResolvingEList.ManyInverse<>(ProcessExecutionManager.class, this, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_FOR_EXECUTION);
 		}
 		return waitedBy;
 	}
@@ -149,6 +160,56 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 		waitStage = newWaitStage == null ? WAIT_STAGE_EDEFAULT : newWaitStage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE, oldWaitStage, waitStage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IExecutionAcquirer getAcquirer()
+	{
+		return acquirer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAcquirer(IExecutionAcquirer newAcquirer, NotificationChain msgs)
+	{
+		IExecutionAcquirer oldAcquirer = acquirer;
+		acquirer = newAcquirer;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER, oldAcquirer, newAcquirer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAcquirer(IExecutionAcquirer newAcquirer)
+	{
+		if (newAcquirer != acquirer)
+		{
+			NotificationChain msgs = null;
+			if (acquirer != null)
+				msgs = ((InternalEObject)acquirer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER, null, msgs);
+			if (newAcquirer != null)
+				msgs = ((InternalEObject)newAcquirer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER, null, msgs);
+			msgs = basicSetAcquirer(newAcquirer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER, newAcquirer, newAcquirer));
 	}
 
 	/**
@@ -184,6 +245,8 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 				return ((InternalEList<?>)getWaitForExecution()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAITED_BY:
 				return ((InternalEList<?>)getWaitedBy()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER:
+				return basicSetAcquirer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -204,6 +267,8 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 				return getWaitedBy();
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE:
 				return getWaitStage();
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER:
+				return getAcquirer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -230,6 +295,9 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE:
 				setWaitStage((EPipelineStage)newValue);
 				return;
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER:
+				setAcquirer((IExecutionAcquirer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -253,6 +321,9 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE:
 				setWaitStage(WAIT_STAGE_EDEFAULT);
 				return;
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER:
+				setAcquirer((IExecutionAcquirer)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -273,6 +344,8 @@ public abstract class ProcessExecutionManagerImpl extends LilyEObject implements
 				return waitedBy != null && !waitedBy.isEmpty();
 			case ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE:
 				return waitStage != WAIT_STAGE_EDEFAULT;
+			case ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER:
+				return acquirer != null;
 		}
 		return super.eIsSet(featureID);
 	}

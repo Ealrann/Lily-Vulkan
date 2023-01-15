@@ -24,6 +24,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Draw;
 import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 import org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicAcquirer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
@@ -132,6 +133,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.BIND_INDEX_BUFFER: return createBindIndexBuffer();
 			case GraphicPackage.COMPOSITOR: return createCompositor();
 			case GraphicPackage.GRAPHIC_COMMAND_BUFFER: return createGraphicCommandBuffer();
+			case GraphicPackage.GRAPHIC_ACQUIRER: return createGraphicAcquirer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -577,6 +579,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicCommandBufferImpl graphicCommandBuffer = new GraphicCommandBufferImpl();
 		return graphicCommandBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GraphicAcquirer createGraphicAcquirer()
+	{
+		GraphicAcquirerImpl graphicAcquirer = new GraphicAcquirerImpl();
+		return graphicAcquirer;
 	}
 
 	/**

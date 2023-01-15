@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.compute;
 
 import org.logoce.extender.api.IAdapter;
 import org.logoce.extender.api.IAdapterProvider;
+import org.sheepy.lily.vulkan.process.compute.execution.ComputeAcquirerAllocation;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBufferAllocation;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeExecutionManagerAllocation;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeExecutionRecorderAllocation;
@@ -28,7 +29,8 @@ public class Extenders implements IAdapterProvider
 					   ComputePipelineAllocation.class,
 					   ComputePipelineRecorder.class,
 					   DispatchTaskAdapter.class,
-					   ComputeCommandBufferAllocation.class);
+					   ComputeCommandBufferAllocation.class,
+					   ComputeAcquirerAllocation.class);
 	}
 
 	@Override

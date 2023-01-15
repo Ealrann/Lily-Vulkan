@@ -19,6 +19,7 @@ import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeAcquirer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeConfiguration;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeExecutionManager;
@@ -95,6 +96,13 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	private EClass computeCommandBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass computeAcquirerEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -396,6 +404,17 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getComputeAcquirer()
+	{
+		return computeAcquirerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ComputeFactory getComputeFactory()
 	{
 		return (ComputeFactory)getEFactoryInstance();
@@ -445,6 +464,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		createEReference(computeExecutionRecorderEClass, COMPUTE_EXECUTION_RECORDER__COMMAND_BUFFER);
 
 		computeCommandBufferEClass = createEClass(COMPUTE_COMMAND_BUFFER);
+
+		computeAcquirerEClass = createEClass(COMPUTE_ACQUIRER);
 	}
 
 	/**
@@ -494,6 +515,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computeExecutionManagerEClass.getESuperTypes().add(theProcessPackage.getProcessExecutionManager());
 		computeExecutionRecorderEClass.getESuperTypes().add(theProcessPackage.getExecutionRecorder());
 		computeCommandBufferEClass.getESuperTypes().add(theProcessPackage.getICommandBuffer());
+		computeAcquirerEClass.getESuperTypes().add(theProcessPackage.getIExecutionAcquirer());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -520,6 +542,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		initEReference(getComputeExecutionRecorder_CommandBuffer(), this.getComputeCommandBuffer(), null, "commandBuffer", null, 1, 1, ComputeExecutionRecorder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computeCommandBufferEClass, ComputeCommandBuffer.class, "ComputeCommandBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(computeAcquirerEClass, ComputeAcquirer.class, "ComputeAcquirer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

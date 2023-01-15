@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.model.process.ExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.ICommandBuffer;
+import org.sheepy.lily.vulkan.model.process.IExecutionAcquirer;
 import org.sheepy.lily.vulkan.model.process.IPipelineExtension;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessExtension;
@@ -224,6 +225,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseICommandBuffer(ICommandBuffer object)
 			{
 				return createICommandBufferAdapter();
+			}
+			@Override
+			public Adapter caseIExecutionAcquirer(IExecutionAcquirer object)
+			{
+				return createIExecutionAcquirerAdapter();
 			}
 			@Override
 			public Adapter caseSubmission(Submission object)
@@ -642,6 +648,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createICommandBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IExecutionAcquirer <em>IExecution Acquirer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IExecutionAcquirer
+	 * @generated
+	 */
+	public Adapter createIExecutionAcquirerAdapter()
 	{
 		return null;
 	}

@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic;
 import org.logoce.extender.api.IAdapter;
 import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.process.graphic.barrier.SwapImageBarrierAllocation;
+import org.sheepy.lily.vulkan.process.graphic.execution.GraphicAcquirerAllocation;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBufferAllocation;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionManagerAllocation;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecorderAllocation;
@@ -61,7 +62,8 @@ public class Extenders implements IAdapterProvider
 					   GraphicConfigurationAllocation.class,
 					   SubpassAllocation.class,
 					   SubpassRecorder.class,
-					   GraphicCommandBufferAllocation.class);
+					   GraphicCommandBufferAllocation.class,
+					   GraphicAcquirerAllocation.class);
 	}
 
 	@Override

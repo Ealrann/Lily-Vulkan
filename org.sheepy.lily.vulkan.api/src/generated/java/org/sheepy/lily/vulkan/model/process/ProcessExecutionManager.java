@@ -18,6 +18,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitForExecution <em>Wait For Execution</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitedBy <em>Waited By</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getWaitStage <em>Wait Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getAcquirer <em>Acquirer</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getProcessExecutionManager()
@@ -80,4 +81,26 @@ public interface ProcessExecutionManager extends ILilyEObject
 	 * @generated
 	 */
 	void setWaitStage(EPipelineStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Acquirer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Acquirer</em>' containment reference.
+	 * @see #setAcquirer(IExecutionAcquirer)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getProcessExecutionManager_Acquirer()
+	 * @model containment="true"
+	 * @generated
+	 */
+	IExecutionAcquirer getAcquirer();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.ProcessExecutionManager#getAcquirer <em>Acquirer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Acquirer</em>' containment reference.
+	 * @see #getAcquirer()
+	 * @generated
+	 */
+	void setAcquirer(IExecutionAcquirer value);
 } // ProcessExecutionManager

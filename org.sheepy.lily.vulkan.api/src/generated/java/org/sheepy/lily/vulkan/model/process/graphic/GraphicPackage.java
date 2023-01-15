@@ -183,6 +183,15 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_EXECUTION_MANAGER__WAIT_STAGE = ProcessPackage.PROCESS_EXECUTION_MANAGER__WAIT_STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Acquirer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_EXECUTION_MANAGER__ACQUIRER = ProcessPackage.PROCESS_EXECUTION_MANAGER__ACQUIRER;
+
+	/**
 	 * The feature id for the '<em><b>Recorders</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3008,6 +3017,34 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_COMMAND_BUFFER_OPERATION_COUNT = ProcessPackage.ICOMMAND_BUFFER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicAcquirerImpl <em>Acquirer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicAcquirerImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicAcquirer()
+	 * @generated
+	 */
+	int GRAPHIC_ACQUIRER = 37;
+
+	/**
+	 * The number of structural features of the '<em>Acquirer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_ACQUIRER_FEATURE_COUNT = ProcessPackage.IEXECUTION_ACQUIRER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Acquirer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_ACQUIRER_OPERATION_COUNT = ProcessPackage.IEXECUTION_ACQUIRER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3015,7 +3052,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getEAttachmentType()
 	 * @generated
 	 */
-	int EATTACHMENT_TYPE = 37;
+	int EATTACHMENT_TYPE = 38;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
@@ -4543,6 +4580,16 @@ public interface GraphicPackage extends EPackage
 	EAttribute getGraphicCommandBuffer_ImageID();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicAcquirer <em>Acquirer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Acquirer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicAcquirer
+	 * @generated
+	 */
+	EClass getGraphicAcquirer();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5785,6 +5832,16 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute GRAPHIC_COMMAND_BUFFER__IMAGE_ID = eINSTANCE.getGraphicCommandBuffer_ImageID();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicAcquirerImpl <em>Acquirer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicAcquirerImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicAcquirer()
+		 * @generated
+		 */
+		EClass GRAPHIC_ACQUIRER = eINSTANCE.getGraphicAcquirer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType <em>EAttachment Type</em>}' enum.

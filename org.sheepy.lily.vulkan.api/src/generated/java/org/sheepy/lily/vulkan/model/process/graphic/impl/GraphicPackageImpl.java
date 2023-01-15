@@ -41,6 +41,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 import org.sheepy.lily.vulkan.model.process.graphic.EAttachmentType;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicAcquirer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionManager;
@@ -337,6 +338,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass graphicCommandBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass graphicAcquirerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2009,6 +2017,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getGraphicAcquirer()
+	{
+		return graphicAcquirerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEAttachmentType()
 	{
 		return eAttachmentTypeEEnum;
@@ -2224,6 +2243,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		graphicCommandBufferEClass = createEClass(GRAPHIC_COMMAND_BUFFER);
 		createEAttribute(graphicCommandBufferEClass, GRAPHIC_COMMAND_BUFFER__IMAGE_ID);
 
+		graphicAcquirerEClass = createEClass(GRAPHIC_ACQUIRER);
+
 		// Create enums
 		eAttachmentTypeEEnum = createEEnum(EATTACHMENT_TYPE);
 	}
@@ -2307,6 +2328,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		compositorEClass.getESuperTypes().add(theApplicationPackage.getICompositor());
 		compositorEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		graphicCommandBufferEClass.getESuperTypes().add(theProcessPackage.getICommandBuffer());
+		graphicAcquirerEClass.getESuperTypes().add(theProcessPackage.getIExecutionAcquirer());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphicConfigurationEClass, GraphicConfiguration.class, "GraphicConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2487,6 +2509,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(graphicCommandBufferEClass, GraphicCommandBuffer.class, "GraphicCommandBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGraphicCommandBuffer_ImageID(), ecorePackage.getEInt(), "imageID", null, 1, 1, GraphicCommandBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(graphicAcquirerEClass, GraphicAcquirer.class, "GraphicAcquirer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(eAttachmentTypeEEnum, EAttachmentType.class, "EAttachmentType");
