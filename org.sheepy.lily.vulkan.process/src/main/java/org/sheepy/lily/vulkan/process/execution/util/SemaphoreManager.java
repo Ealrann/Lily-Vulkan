@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.core.concurrent.VkSemaphore;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class SynchronizationUnit
+public final class SemaphoreManager
 {
 	private final List<VkSemaphore> executionSemaphores = new ArrayList<>();
 	private int semaphoreCount;

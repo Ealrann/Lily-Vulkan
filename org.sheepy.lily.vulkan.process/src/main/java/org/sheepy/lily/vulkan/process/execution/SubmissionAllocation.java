@@ -15,7 +15,7 @@ import org.sheepy.lily.vulkan.core.util.Logger;
 import org.sheepy.lily.vulkan.model.process.Submission;
 import org.sheepy.lily.vulkan.process.execution.util.CountLocker;
 import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
-import org.sheepy.lily.vulkan.process.execution.util.SynchronizationUnit;
+import org.sheepy.lily.vulkan.process.execution.util.SemaphoreManager;
 import org.sheepy.lily.vulkan.process.execution.util.VkSubmission;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
@@ -31,7 +31,7 @@ public final class SubmissionAllocation implements IAdapter
 	private static final String FAILED_SUBMIT = "Failed to submit command buffer";
 
 	private final ProcessContext context;
-	private final SynchronizationUnit synchronizationUnit;
+	private final SemaphoreManager semaphoreManager;
 	private final CountLocker locker;
 
 	private List<WaitData> waitSemaphores;
@@ -40,7 +40,7 @@ public final class SubmissionAllocation implements IAdapter
 	private SubmissionAllocation(final ProcessContext context, final IAllocationState allocationState)
 	{
 		this.context = context;
-		this.synchronizationUnit = new SynchronizationUnit();
+		this.semaphoreManager = new SemaphoreManager();
 		this.locker = new CountLocker(allocationState::lockAllocation, allocationState::unlockAllocation);
 	}
 
@@ -60,10 +60,10 @@ public final class SubmissionAllocation implements IAdapter
 	{
 		this.waitSemaphores = waitSemaphores;
 
-		synchronizationUnit.next();
-		synchronizationUnit.prepareSemaphores(context.getVkDevice(), semaphoreCount);
+		semaphoreManager.next();
+		semaphoreManager.prepareSemaphores(context.getVkDevice(), semaphoreCount);
 		fenceManager.addListener(this::updateLock);
-		final var executionSemaphores = synchronizationUnit.getSemaphores();
+		final var executionSemaphores = semaphoreManager.getSemaphores();
 		if (signalSemaphores.isEmpty() == false)
 		{
 			this.signalSemaphores = new ArrayList<>(signalSemaphores.size() + semaphoreCount);
@@ -102,11 +102,11 @@ public final class SubmissionAllocation implements IAdapter
 	@Free
 	private void free(ProcessContext context)
 	{
-		synchronizationUnit.free(context.getVkDevice());
+		semaphoreManager.free(context.getVkDevice());
 	}
 
 	public VkSemaphore borrowSemaphore()
 	{
-		return synchronizationUnit.borrowSemaphore();
+		return semaphoreManager.borrowSemaphore();
 	}
 }
