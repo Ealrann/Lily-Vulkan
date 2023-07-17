@@ -159,7 +159,6 @@ public class GraphicCommandBufferImpl extends LilyEObject implements GraphicComm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{

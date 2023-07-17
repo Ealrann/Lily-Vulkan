@@ -111,7 +111,6 @@ public class ComputeCommandBufferImpl extends LilyEObject implements ComputeComm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
