@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.nuklear.ui;
 
-import org.lwjgl.system.MemoryUtil;
 import org.logoce.adapter.api.Adapter;
-import org.sheepy.lily.core.api.adapter.Dispose;
 import org.logoce.extender.api.ModelExtender;
 import org.logoce.notification.api.Notifier;
+import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.adapter.Dispose;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.model.ui.Font;
 import org.sheepy.lily.core.model.ui.IUIElement;
@@ -32,13 +32,12 @@ public class VariableLabelAdapter extends Notifier<ITextWidgetAdapter.Features> 
 
 	private boolean dirty = true;
 
-	@SuppressWarnings("unchecked")
 	public VariableLabelAdapter(VariableLabel label)
 	{
 		super(List.of(Features.Text));
 		this.label = label;
 		final var variableResolver = label.getVariableResolver();
-		resolver = variableResolver.adaptNotNull(IVariableResolverAdapter.class);
+		resolver = variableResolver.adaptNotNullGeneric(IVariableResolverAdapter.class);
 
 		updateText(resolver.getValue(variableResolver));
 
@@ -58,11 +57,11 @@ public class VariableLabelAdapter extends Notifier<ITextWidgetAdapter.Features> 
 		final boolean res = dirty;
 		final var label = (VariableLabel) control;
 		final int align = switch (label.getHorizontalRelative())
-				{
-					case MIDDLE -> NK_TEXT_CENTERED;
-					case RIGHT -> NK_TEXT_RIGHT;
-					default -> NK_TEXT_LEFT;
-				};
+		{
+			case MIDDLE -> NK_TEXT_CENTERED;
+			case RIGHT -> NK_TEXT_RIGHT;
+			default -> NK_TEXT_LEFT;
+		};
 
 		context.setFont(label.getFont());
 		nk_label(context.nkContext, textBuffer, align);
