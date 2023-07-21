@@ -5,12 +5,11 @@ package org.sheepy.lily.vulkan.extra.model.sprite.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.extra.model.sprite.*;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 
 /**
  * <!-- begin-user-doc -->

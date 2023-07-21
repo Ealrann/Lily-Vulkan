@@ -5,12 +5,16 @@ package org.sheepy.lily.vulkan.extra.model.mesh.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.extra.model.mesh.*;
+import org.sheepy.lily.vulkan.extra.model.mesh.GeometricMesh;
+import org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure;
+import org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere;
+import org.sheepy.lily.vulkan.extra.model.mesh.Icosahedron;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
+import org.sheepy.lily.vulkan.extra.model.mesh.Sphere;
 
 /**
  * <!-- begin-user-doc -->

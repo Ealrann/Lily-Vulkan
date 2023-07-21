@@ -6,12 +6,26 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.extra.model.rendering.*;
+import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
+import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
+import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
+import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 /**
  * <!-- begin-user-doc -->
@@ -162,7 +176,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> DataProviderPkg<T> createDataProviderPkg()
 	{
-		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<T>();
+		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<>();
 		return dataProviderPkg;
 	}
 
@@ -174,7 +188,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> DataProvider<T> createDataProvider()
 	{
-		DataProviderImpl<T> dataProvider = new DataProviderImpl<T>();
+		DataProviderImpl<T> dataProvider = new DataProviderImpl<>();
 		return dataProvider;
 	}
 
@@ -186,7 +200,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> IndexedDataDescription<T> createIndexedDataDescription()
 	{
-		IndexedDataDescriptionImpl<T> indexedDataDescription = new IndexedDataDescriptionImpl<T>();
+		IndexedDataDescriptionImpl<T> indexedDataDescription = new IndexedDataDescriptionImpl<>();
 		return indexedDataDescription;
 	}
 
@@ -198,7 +212,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> RenderableDataSource<T> createRenderableDataSource()
 	{
-		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<T>();
+		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<>();
 		return renderableDataSource;
 	}
 

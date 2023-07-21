@@ -6,21 +6,15 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
-
 import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
@@ -154,7 +148,7 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, RenderingPackage.DATA_PROVIDER__USAGES);
+			usages = new EDataTypeUniqueEList<>(EBufferUsage.class, this, RenderingPackage.DATA_PROVIDER__USAGES);
 		}
 		return usages;
 	}

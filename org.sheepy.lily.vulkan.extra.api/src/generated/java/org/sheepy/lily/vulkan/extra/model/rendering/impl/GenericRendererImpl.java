@@ -6,23 +6,17 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
@@ -31,7 +25,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPk
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.process.FlushTransferBufferTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
 import org.sheepy.lily.vulkan.model.vulkanresource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.vulkanresource.TransferBuffer;
@@ -211,7 +204,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		if (maintained == null)
 		{
-			maintained = new EObjectWithInverseResolvingEList<Maintainable<GraphicsPipeline>>(Maintainable.class, this, RenderingPackage.GENERIC_RENDERER__MAINTAINED, MaintainerPackage.MAINTAINABLE__MAINTAINER);
+			maintained = new EObjectWithInverseResolvingEList<>(Maintainable.class, this, RenderingPackage.GENERIC_RENDERER__MAINTAINED, MaintainerPackage.MAINTAINABLE__MAINTAINER);
 		}
 		return maintained;
 	}
@@ -276,7 +269,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		if (renderedStructures == null)
 		{
-			renderedStructures = new EObjectResolvingEList<T>(Structure.class, this, RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES);
+			renderedStructures = new EObjectResolvingEList<>(Structure.class, this, RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES);
 		}
 		return renderedStructures;
 	}
