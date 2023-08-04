@@ -68,7 +68,7 @@ public class FontImageProviderImpl extends ImageDataProviderImpl implements Font
 	{
 		if (nuklearFont != null && ((EObject)nuklearFont).eIsProxy())
 		{
-			InternalEObject oldNuklearFont = nuklearFont;
+			InternalEObject oldNuklearFont = (InternalEObject)nuklearFont;
 			nuklearFont = (NuklearFont)eResolveProxy(oldNuklearFont);
 			if (nuklearFont != oldNuklearFont)
 			{

@@ -68,12 +68,12 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS: return createNuklearPushConstants();
-			case NuklearPackage.NUKLEAR_CONTEXT: return createNuklearContext();
-			case NuklearPackage.NUKLEAR_FONT: return createNuklearFont();
-			case NuklearPackage.SELECTOR_PANEL: return createSelectorPanel();
-			case NuklearPackage.PANEL_VIEWER: return createPanelViewer();
-			case NuklearPackage.FONT_IMAGE_PROVIDER: return createFontImageProvider();
+			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS: return (EObject)createNuklearPushConstants();
+			case NuklearPackage.NUKLEAR_CONTEXT: return (EObject)createNuklearContext();
+			case NuklearPackage.NUKLEAR_FONT: return (EObject)createNuklearFont();
+			case NuklearPackage.SELECTOR_PANEL: return (EObject)createSelectorPanel();
+			case NuklearPackage.PANEL_VIEWER: return (EObject)createPanelViewer();
+			case NuklearPackage.FONT_IMAGE_PROVIDER: return (EObject)createFontImageProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

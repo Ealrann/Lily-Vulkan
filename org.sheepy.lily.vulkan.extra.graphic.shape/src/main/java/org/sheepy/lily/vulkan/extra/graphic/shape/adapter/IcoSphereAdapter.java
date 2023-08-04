@@ -4,7 +4,7 @@ import org.lwjgl.util.par.ParShapes;
 import org.lwjgl.util.par.ParShapesMesh;
 import org.logoce.adapter.api.Adapter;
 import org.logoce.extender.api.ModelExtender;
-import org.sheepy.lily.vulkan.extra.model.mesh.IcoSphere;
+import org.sheepy.lily.vulkan.extra.model.shape.IcoSphere;
 
 @ModelExtender(scope = IcoSphere.class)
 @Adapter

@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.extra.graphic.shape.adapter;
 
-import org.lwjgl.util.par.ParShapes;
-import org.lwjgl.util.par.ParShapesMesh;
 import org.logoce.adapter.api.Adapter;
 import org.logoce.extender.api.ModelExtender;
-import org.sheepy.lily.vulkan.extra.model.mesh.Sphere;
+import org.lwjgl.util.par.ParShapes;
+import org.lwjgl.util.par.ParShapesMesh;
+import org.sheepy.lily.vulkan.extra.model.shape.Sphere;
 
 @ModelExtender(scope = Sphere.class)
 @Adapter

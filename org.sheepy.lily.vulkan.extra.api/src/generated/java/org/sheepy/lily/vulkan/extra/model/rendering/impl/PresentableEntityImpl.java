@@ -89,7 +89,7 @@ public class PresentableEntityImpl extends PhysicalEntityImpl implements Present
 	{
 		if (presentation != null && ((EObject)presentation).eIsProxy())
 		{
-			InternalEObject oldPresentation = presentation;
+			InternalEObject oldPresentation = (InternalEObject)presentation;
 			presentation = (Presentation)eResolveProxy(oldPresentation);
 			if (presentation != oldPresentation)
 			{

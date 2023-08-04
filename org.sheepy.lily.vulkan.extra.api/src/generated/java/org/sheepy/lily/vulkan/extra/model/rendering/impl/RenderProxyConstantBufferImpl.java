@@ -88,7 +88,7 @@ public class RenderProxyConstantBufferImpl extends ConstantBufferImpl implements
 	{
 		if (constantBuffer != null && ((EObject)constantBuffer).eIsProxy())
 		{
-			InternalEObject oldConstantBuffer = constantBuffer;
+			InternalEObject oldConstantBuffer = (InternalEObject)constantBuffer;
 			constantBuffer = (ConstantBuffer)eResolveProxy(oldConstantBuffer);
 			if (constantBuffer != oldConstantBuffer)
 			{

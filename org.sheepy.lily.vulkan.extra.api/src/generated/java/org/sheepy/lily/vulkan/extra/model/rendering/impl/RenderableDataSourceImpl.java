@@ -151,7 +151,7 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	{
 		if (structure != null && ((EObject)structure).eIsProxy())
 		{
-			InternalEObject oldStructure = structure;
+			InternalEObject oldStructure = (InternalEObject)structure;
 			structure = (T)eResolveProxy(oldStructure);
 			if (structure != oldStructure)
 			{
@@ -221,7 +221,7 @@ public class RenderableDataSourceImpl<T extends Structure> extends LilyEObject i
 	{
 		if (dataSource != null && ((EObject)dataSource).eIsProxy())
 		{
-			InternalEObject oldDataSource = dataSource;
+			InternalEObject oldDataSource = (InternalEObject)dataSource;
 			dataSource = (IBufferDataSource)eResolveProxy(oldDataSource);
 			if (dataSource != oldDataSource)
 			{

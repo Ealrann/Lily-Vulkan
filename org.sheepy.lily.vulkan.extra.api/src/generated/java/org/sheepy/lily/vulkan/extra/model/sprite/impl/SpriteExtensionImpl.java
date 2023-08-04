@@ -135,7 +135,7 @@ public class SpriteExtensionImpl extends LilyEObject implements SpriteExtension
 	{
 		if (drawTask != null && ((EObject)drawTask).eIsProxy())
 		{
-			InternalEObject oldDrawTask = drawTask;
+			InternalEObject oldDrawTask = (InternalEObject)drawTask;
 			drawTask = (DrawIndexed)eResolveProxy(oldDrawTask);
 			if (drawTask != oldDrawTask)
 			{
@@ -180,7 +180,7 @@ public class SpriteExtensionImpl extends LilyEObject implements SpriteExtension
 	{
 		if (indexBufferViewer != null && ((EObject)indexBufferViewer).eIsProxy())
 		{
-			InternalEObject oldIndexBufferViewer = indexBufferViewer;
+			InternalEObject oldIndexBufferViewer = (InternalEObject)indexBufferViewer;
 			indexBufferViewer = (BufferViewer)eResolveProxy(oldIndexBufferViewer);
 			if (indexBufferViewer != oldIndexBufferViewer)
 			{
@@ -225,7 +225,7 @@ public class SpriteExtensionImpl extends LilyEObject implements SpriteExtension
 	{
 		if (vertexBufferViewer != null && ((EObject)vertexBufferViewer).eIsProxy())
 		{
-			InternalEObject oldVertexBufferViewer = vertexBufferViewer;
+			InternalEObject oldVertexBufferViewer = (InternalEObject)vertexBufferViewer;
 			vertexBufferViewer = (BufferViewer)eResolveProxy(oldVertexBufferViewer);
 			if (vertexBufferViewer != oldVertexBufferViewer)
 			{
@@ -270,7 +270,7 @@ public class SpriteExtensionImpl extends LilyEObject implements SpriteExtension
 	{
 		if (spritesDescriptor != null && ((EObject)spritesDescriptor).eIsProxy())
 		{
-			InternalEObject oldSpritesDescriptor = spritesDescriptor;
+			InternalEObject oldSpritesDescriptor = (InternalEObject)spritesDescriptor;
 			spritesDescriptor = (ImageDescriptor)eResolveProxy(oldSpritesDescriptor);
 			if (spritesDescriptor != oldSpritesDescriptor)
 			{
@@ -315,7 +315,7 @@ public class SpriteExtensionImpl extends LilyEObject implements SpriteExtension
 	{
 		if (spriteDataSource != null && ((EObject)spriteDataSource).eIsProxy())
 		{
-			InternalEObject oldSpriteDataSource = spriteDataSource;
+			InternalEObject oldSpriteDataSource = (InternalEObject)spriteDataSource;
 			spriteDataSource = (ISpriteDataSource)eResolveProxy(oldSpriteDataSource);
 			if (spriteDataSource != oldSpriteDataSource)
 			{
@@ -360,7 +360,7 @@ public class SpriteExtensionImpl extends LilyEObject implements SpriteExtension
 	{
 		if (spritePipelineSpecialization != null && ((EObject)spritePipelineSpecialization).eIsProxy())
 		{
-			InternalEObject oldSpritePipelineSpecialization = spritePipelineSpecialization;
+			InternalEObject oldSpritePipelineSpecialization = (InternalEObject)spritePipelineSpecialization;
 			spritePipelineSpecialization = (ConstantBuffer)eResolveProxy(oldSpritePipelineSpecialization);
 			if (spritePipelineSpecialization != oldSpritePipelineSpecialization)
 			{
@@ -405,7 +405,7 @@ public class SpriteExtensionImpl extends LilyEObject implements SpriteExtension
 	{
 		if (spriteImageMemory != null && ((EObject)spriteImageMemory).eIsProxy())
 		{
-			InternalEObject oldSpriteImageMemory = spriteImageMemory;
+			InternalEObject oldSpriteImageMemory = (InternalEObject)spriteImageMemory;
 			spriteImageMemory = (MemoryChunk)eResolveProxy(oldSpriteImageMemory);
 			if (spriteImageMemory != oldSpriteImageMemory)
 			{

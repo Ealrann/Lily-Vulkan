@@ -1,12 +1,12 @@
 package org.sheepy.lily.vulkan.extra.graphic.shape.adapter;
 
 import org.joml.Vector3d;
+import org.logoce.notification.api.DummyNotifier;
 import org.lwjgl.util.par.ParShapesMesh;
 import org.sheepy.lily.core.api.adapter.Dispose;
-import org.logoce.notification.api.DummyNotifier;
 import org.sheepy.lily.vulkan.extra.api.mesh.IMeshStructureAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
-import org.sheepy.lily.vulkan.extra.model.mesh.GeometricStructure;
+import org.sheepy.lily.vulkan.extra.model.shape.GeometricStructure;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 import java.nio.FloatBuffer;

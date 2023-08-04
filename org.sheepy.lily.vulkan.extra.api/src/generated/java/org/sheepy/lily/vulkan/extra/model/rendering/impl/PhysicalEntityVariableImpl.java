@@ -136,7 +136,7 @@ public class PhysicalEntityVariableImpl extends LilyEObject implements PhysicalE
 	{
 		if (entity != null && ((EObject)entity).eIsProxy())
 		{
-			InternalEObject oldEntity = entity;
+			InternalEObject oldEntity = (InternalEObject)entity;
 			entity = (PhysicalEntity)eResolveProxy(oldEntity);
 			if (entity != oldEntity)
 			{

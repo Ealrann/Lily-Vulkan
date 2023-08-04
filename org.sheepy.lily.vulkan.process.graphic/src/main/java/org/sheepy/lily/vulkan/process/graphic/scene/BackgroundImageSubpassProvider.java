@@ -46,6 +46,7 @@ public final class BackgroundImageSubpassProvider implements ICompositor_Subpass
 	@Override
 	public Subpass build(BackgroundImage part, GraphicProcess process, IVulkanApiContext context)
 	{
+		assert part.getSrcImage() != null;
 		final var subpass = loadSubpass();
 		vulkanResourcePkg = subpass.getResourcePkg();
 

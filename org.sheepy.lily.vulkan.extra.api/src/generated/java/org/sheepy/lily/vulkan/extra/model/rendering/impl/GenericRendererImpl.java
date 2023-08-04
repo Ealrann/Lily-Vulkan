@@ -204,7 +204,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		if (maintained == null)
 		{
-			maintained = new EObjectWithInverseResolvingEList<>(Maintainable.class, this, RenderingPackage.GENERIC_RENDERER__MAINTAINED, MaintainerPackage.MAINTAINABLE__MAINTAINER);
+			maintained = new EObjectWithInverseResolvingEList<Maintainable<GraphicsPipeline>>(Maintainable.class, this, RenderingPackage.GENERIC_RENDERER__MAINTAINED, MaintainerPackage.MAINTAINABLE__MAINTAINER);
 		}
 		return maintained;
 	}
@@ -269,7 +269,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		if (renderedStructures == null)
 		{
-			renderedStructures = new EObjectResolvingEList<>(Structure.class, this, RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES);
+			renderedStructures = new EObjectResolvingEList<T>(Structure.class, this, RenderingPackage.GENERIC_RENDERER__RENDERED_STRUCTURES);
 		}
 		return renderedStructures;
 	}
@@ -284,7 +284,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		if (constantBuffer != null && ((EObject)constantBuffer).eIsProxy())
 		{
-			InternalEObject oldConstantBuffer = constantBuffer;
+			InternalEObject oldConstantBuffer = (InternalEObject)constantBuffer;
 			constantBuffer = (ConstantBuffer)eResolveProxy(oldConstantBuffer);
 			if (constantBuffer != oldConstantBuffer)
 			{
@@ -329,7 +329,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		if (transferBuffer != null && ((EObject)transferBuffer).eIsProxy())
 		{
-			InternalEObject oldTransferBuffer = transferBuffer;
+			InternalEObject oldTransferBuffer = (InternalEObject)transferBuffer;
 			transferBuffer = (TransferBuffer)eResolveProxy(oldTransferBuffer);
 			if (transferBuffer != oldTransferBuffer)
 			{
@@ -474,7 +474,7 @@ public abstract class GenericRendererImpl<T extends Structure> extends GraphicsP
 	{
 		if (flushTransferBufferTask != null && ((EObject)flushTransferBufferTask).eIsProxy())
 		{
-			InternalEObject oldFlushTransferBufferTask = flushTransferBufferTask;
+			InternalEObject oldFlushTransferBufferTask = (InternalEObject)flushTransferBufferTask;
 			flushTransferBufferTask = (FlushTransferBufferTask)eResolveProxy(oldFlushTransferBufferTask);
 			if (flushTransferBufferTask != oldFlushTransferBufferTask)
 			{

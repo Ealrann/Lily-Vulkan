@@ -79,20 +79,20 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		switch (eClass.getClassifierID())
 		{
-			case RenderingPackage.AXIS: return createAxis();
-			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
-			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
-			case RenderingPackage.DATA_PROVIDER_PKG: return createDataProviderPkg();
-			case RenderingPackage.DATA_PROVIDER: return createDataProvider();
-			case RenderingPackage.INDEXED_DATA_DESCRIPTION: return createIndexedDataDescription();
-			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
-			case RenderingPackage.DESCRIPTORS_PROVIDER: return createDescriptorsProvider();
-			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER: return createDataDescriptorsProvider();
-			case RenderingPackage.DATA_DESCRIPTOR: return createDataDescriptor();
-			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG: return createResourceDescriptorProviderPkg();
-			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER: return createRenderProxyConstantBuffer();
-			case RenderingPackage.ISPECIALIZATION: return createISpecialization();
-			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE: return createPhysicalEntityVariable();
+			case RenderingPackage.AXIS: return (EObject)createAxis();
+			case RenderingPackage.PRESENTATION_PKG: return (EObject)createPresentationPkg();
+			case RenderingPackage.PRESENTABLE_ENTITY: return (EObject)createPresentableEntity();
+			case RenderingPackage.DATA_PROVIDER_PKG: return (EObject)createDataProviderPkg();
+			case RenderingPackage.DATA_PROVIDER: return (EObject)createDataProvider();
+			case RenderingPackage.INDEXED_DATA_DESCRIPTION: return (EObject)createIndexedDataDescription();
+			case RenderingPackage.RENDERABLE_DATA_SOURCE: return (EObject)createRenderableDataSource();
+			case RenderingPackage.DESCRIPTORS_PROVIDER: return (EObject)createDescriptorsProvider();
+			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER: return (EObject)createDataDescriptorsProvider();
+			case RenderingPackage.DATA_DESCRIPTOR: return (EObject)createDataDescriptor();
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG: return (EObject)createResourceDescriptorProviderPkg();
+			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER: return (EObject)createRenderProxyConstantBuffer();
+			case RenderingPackage.ISPECIALIZATION: return (EObject)createISpecialization();
+			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE: return (EObject)createPhysicalEntityVariable();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -176,7 +176,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> DataProviderPkg<T> createDataProviderPkg()
 	{
-		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<>();
+		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<T>();
 		return dataProviderPkg;
 	}
 
@@ -188,7 +188,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> DataProvider<T> createDataProvider()
 	{
-		DataProviderImpl<T> dataProvider = new DataProviderImpl<>();
+		DataProviderImpl<T> dataProvider = new DataProviderImpl<T>();
 		return dataProvider;
 	}
 
@@ -200,7 +200,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> IndexedDataDescription<T> createIndexedDataDescription()
 	{
-		IndexedDataDescriptionImpl<T> indexedDataDescription = new IndexedDataDescriptionImpl<>();
+		IndexedDataDescriptionImpl<T> indexedDataDescription = new IndexedDataDescriptionImpl<T>();
 		return indexedDataDescription;
 	}
 
@@ -212,7 +212,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> RenderableDataSource<T> createRenderableDataSource()
 	{
-		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<>();
+		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<T>();
 		return renderableDataSource;
 	}
 

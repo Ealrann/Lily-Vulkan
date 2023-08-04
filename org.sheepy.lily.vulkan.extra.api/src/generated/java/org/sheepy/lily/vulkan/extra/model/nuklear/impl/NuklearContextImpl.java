@@ -185,7 +185,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		if (font != null && ((EObject)font).eIsProxy())
 		{
-			InternalEObject oldFont = font;
+			InternalEObject oldFont = (InternalEObject)font;
 			font = (NuklearFont)eResolveProxy(oldFont);
 			if (font != oldFont)
 			{
@@ -230,7 +230,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		if (nullTexture != null && ((EObject)nullTexture).eIsProxy())
 		{
-			InternalEObject oldNullTexture = nullTexture;
+			InternalEObject oldNullTexture = (InternalEObject)nullTexture;
 			nullTexture = (StaticImage)eResolveProxy(oldNullTexture);
 			if (nullTexture != oldNullTexture)
 			{
@@ -275,7 +275,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		if (imageArrayDescriptor != null && ((EObject)imageArrayDescriptor).eIsProxy())
 		{
-			InternalEObject oldImageArrayDescriptor = imageArrayDescriptor;
+			InternalEObject oldImageArrayDescriptor = (InternalEObject)imageArrayDescriptor;
 			imageArrayDescriptor = (ImageDescriptor)eResolveProxy(oldImageArrayDescriptor);
 			if (imageArrayDescriptor != oldImageArrayDescriptor)
 			{
@@ -320,7 +320,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		if (vertexBuffer != null && ((EObject)vertexBuffer).eIsProxy())
 		{
-			InternalEObject oldVertexBuffer = vertexBuffer;
+			InternalEObject oldVertexBuffer = (InternalEObject)vertexBuffer;
 			vertexBuffer = (IBuffer)eResolveProxy(oldVertexBuffer);
 			if (vertexBuffer != oldVertexBuffer)
 			{
@@ -365,7 +365,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		if (indexBuffer != null && ((EObject)indexBuffer).eIsProxy())
 		{
-			InternalEObject oldIndexBuffer = indexBuffer;
+			InternalEObject oldIndexBuffer = (InternalEObject)indexBuffer;
 			indexBuffer = (IBuffer)eResolveProxy(oldIndexBuffer);
 			if (indexBuffer != oldIndexBuffer)
 			{
@@ -410,7 +410,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		if (vertexBufferMemory != null && ((EObject)vertexBufferMemory).eIsProxy())
 		{
-			InternalEObject oldVertexBufferMemory = vertexBufferMemory;
+			InternalEObject oldVertexBufferMemory = (InternalEObject)vertexBufferMemory;
 			vertexBufferMemory = (BufferMemory)eResolveProxy(oldVertexBufferMemory);
 			if (vertexBufferMemory != oldVertexBufferMemory)
 			{
@@ -455,7 +455,7 @@ public class NuklearContextImpl extends LilyEObject implements NuklearContext
 	{
 		if (compositeDrawTask != null && ((EObject)compositeDrawTask).eIsProxy())
 		{
-			InternalEObject oldCompositeDrawTask = compositeDrawTask;
+			InternalEObject oldCompositeDrawTask = (InternalEObject)compositeDrawTask;
 			compositeDrawTask = (CompositeTask)eResolveProxy(oldCompositeDrawTask);
 			if (compositeDrawTask != oldCompositeDrawTask)
 			{

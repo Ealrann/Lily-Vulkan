@@ -6,29 +6,10 @@
     rootExtendsClass="org.sheepy.lily.core.api.model.LilyEObject" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="14.0" copyrightFields="false" usedGenPackages="../../org.sheepy.lily.core.model/model/Lily.genmodel#//ui ../../org.sheepy.lily.core.model/model/Lily.genmodel#//presentation ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//variable ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.core.model/model/Lily.genmodel#//cadence ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//image ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline ../../org.sheepy.lily.core.model/model/Lily.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//vulkanresource"
     operationReflection="true" importOrganizing="true" cleanup="true">
-  <foreignModel>Mesh.ecore</foreignModel>
   <foreignModel>Nuklear.ecore</foreignModel>
   <foreignModel>Rendering.ecore</foreignModel>
+  <foreignModel>Shape.ecore</foreignModel>
   <foreignModel>Sprite.ecore</foreignModel>
-  <genPackages prefix="Mesh" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
-      childCreationExtenders="true" ecorePackage="Mesh.ecore#/">
-    <genClasses ecoreClass="Mesh.ecore#//Mesh"/>
-    <genClasses ecoreClass="Mesh.ecore#//MeshRenderer"/>
-    <genClasses ecoreClass="Mesh.ecore#//MeshStructure">
-      <genTypeParameters ecoreTypeParameter="Mesh.ecore#//MeshStructure/T"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mesh.ecore#//MeshStructure/meshes"/>
-    </genClasses>
-    <genClasses ecoreClass="Mesh.ecore#//IMeshStructure"/>
-    <genClasses ecoreClass="Mesh.ecore#//GeometricStructure"/>
-    <genClasses ecoreClass="Mesh.ecore#//GeometricMesh"/>
-    <genClasses ecoreClass="Mesh.ecore#//Icosahedron"/>
-    <genClasses ecoreClass="Mesh.ecore#//Sphere">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mesh.ecore#//Sphere/sliceCount"/>
-    </genClasses>
-    <genClasses ecoreClass="Mesh.ecore#//IcoSphere">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mesh.ecore#//IcoSphere/subdivisionCount"/>
-    </genClasses>
-  </genPackages>
   <genPackages prefix="Nuklear" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="Nuklear.ecore#/">
     <genClasses ecoreClass="Nuklear.ecore#//NuklearPushConstants">
@@ -160,6 +141,25 @@
     <genClasses ecoreClass="Rendering.ecore#//PhysicalEntityVariable">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//PhysicalEntityVariable/entity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntityVariable/feature"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Shape" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
+      ecorePackage="Shape.ecore#/">
+    <genClasses image="false" ecoreClass="Shape.ecore#//Mesh"/>
+    <genClasses ecoreClass="Shape.ecore#//MeshRenderer"/>
+    <genClasses image="false" ecoreClass="Shape.ecore#//MeshStructure">
+      <genTypeParameters ecoreTypeParameter="Shape.ecore#//MeshStructure/T"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Shape.ecore#//MeshStructure/meshes"/>
+    </genClasses>
+    <genClasses ecoreClass="Shape.ecore#//IMeshStructure"/>
+    <genClasses image="false" ecoreClass="Shape.ecore#//GeometricStructure"/>
+    <genClasses ecoreClass="Shape.ecore#//GeometricMesh"/>
+    <genClasses ecoreClass="Shape.ecore#//Icosahedron"/>
+    <genClasses ecoreClass="Shape.ecore#//Sphere">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Shape.ecore#//Sphere/sliceCount"/>
+    </genClasses>
+    <genClasses ecoreClass="Shape.ecore#//IcoSphere">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Shape.ecore#//IcoSphere/subdivisionCount"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Sprite" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"

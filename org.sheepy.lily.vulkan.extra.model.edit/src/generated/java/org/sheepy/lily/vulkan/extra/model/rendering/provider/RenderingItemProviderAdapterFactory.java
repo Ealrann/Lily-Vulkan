@@ -9,15 +9,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -34,13 +29,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.core.model.variable.ModelVariablePkg;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.core.model.variable.util.VariableSwitch;
-import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
-
+import org.sheepy.lily.vulkan.extra.model.nuklear.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.util.RenderingAdapterFactory;
-
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.VulkanResourcePkg;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
@@ -656,7 +648,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
@@ -676,7 +668,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 
 				return null;
 			}
- 
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -752,7 +744,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
@@ -777,7 +769,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 
 				return null;
 			}
- 
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

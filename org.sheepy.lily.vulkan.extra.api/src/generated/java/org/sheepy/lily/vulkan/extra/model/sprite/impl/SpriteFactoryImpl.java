@@ -63,7 +63,7 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case SpritePackage.SPRITE_EXTENSION: return createSpriteExtension();
+			case SpritePackage.SPRITE_EXTENSION: return (EObject)createSpriteExtension();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

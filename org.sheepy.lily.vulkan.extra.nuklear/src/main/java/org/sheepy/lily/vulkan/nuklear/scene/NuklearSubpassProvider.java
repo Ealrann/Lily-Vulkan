@@ -28,6 +28,8 @@ public final class NuklearSubpassProvider implements ICompositor_SubpassProvider
 	@Override
 	public Subpass build(UI part, GraphicProcess process, IVulkanApiContext context)
 	{
+		assert part.getDstImage() != null;
+
 		final var colorAttachment = (Attachment) part.getDstImage();
 		final var subpass = loadSubpass();
 		final var attachmentRefPkg = subpass.getAttachmentRefPkg();

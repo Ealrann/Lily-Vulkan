@@ -148,7 +148,7 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeUniqueEList<>(EBufferUsage.class, this, RenderingPackage.DATA_PROVIDER__USAGES);
+			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this, RenderingPackage.DATA_PROVIDER__USAGES);
 		}
 		return usages;
 	}
@@ -213,7 +213,7 @@ public class DataProviderImpl<T extends Structure> extends LilyEObject implement
 	{
 		if (dataSource != null && ((EObject)dataSource).eIsProxy())
 		{
-			InternalEObject oldDataSource = dataSource;
+			InternalEObject oldDataSource = (InternalEObject)dataSource;
 			dataSource = (IBufferDataSource)eResolveProxy(oldDataSource);
 			if (dataSource != oldDataSource)
 			{

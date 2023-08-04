@@ -7,24 +7,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.sheepy.lily.core.model.action.ActionPackage;
-
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-
 import org.sheepy.lily.core.model.cadence.CadencePackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
-
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
-
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
-import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
-import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.FontImageProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.IInputProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
@@ -36,18 +28,16 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.PanelViewer;
 import org.sheepy.lily.vulkan.extra.model.nuklear.SelectorPanel;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
+import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
+import org.sheepy.lily.vulkan.extra.model.shape.impl.ShapePackageImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 import org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
-
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
-
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.image.ImagePackage;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
@@ -180,23 +170,23 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		VulkanResourcePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
-		MeshPackageImpl theMeshPackage = (MeshPackageImpl)(registeredPackage instanceof MeshPackageImpl ? registeredPackage : MeshPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
 		RenderingPackageImpl theRenderingPackage = (RenderingPackageImpl)(registeredPackage instanceof RenderingPackageImpl ? registeredPackage : RenderingPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ShapePackage.eNS_URI);
+		ShapePackageImpl theShapePackage = (ShapePackageImpl)(registeredPackage instanceof ShapePackageImpl ? registeredPackage : ShapePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SpritePackage.eNS_URI);
 		SpritePackageImpl theSpritePackage = (SpritePackageImpl)(registeredPackage instanceof SpritePackageImpl ? registeredPackage : SpritePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNuklearPackage.createPackageContents();
-		theMeshPackage.createPackageContents();
 		theRenderingPackage.createPackageContents();
+		theShapePackage.createPackageContents();
 		theSpritePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNuklearPackage.initializePackageContents();
-		theMeshPackage.initializePackageContents();
 		theRenderingPackage.initializePackageContents();
+		theShapePackage.initializePackageContents();
 		theSpritePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
