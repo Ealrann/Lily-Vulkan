@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.shape;
+package org.sheepy.lily.vulkan.extra.model.mesh;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 
@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.lily.vulkan.extra.model.shape.ShapePackage#getMesh()
+ * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage#getMesh()
  * @model interface="true" abstract="true"
  * @generated
  */

@@ -15,6 +15,10 @@ module org.sheepy.lily.vulkan.extra.api
 	exports org.sheepy.lily.vulkan.extra.model.nuklear.impl;
 	exports org.sheepy.lily.vulkan.extra.model.nuklear.util;
 
+	exports org.sheepy.lily.vulkan.extra.model.mesh;
+	exports org.sheepy.lily.vulkan.extra.model.mesh.impl;
+	exports org.sheepy.lily.vulkan.extra.model.mesh.util;
+
 	exports org.sheepy.lily.vulkan.extra.model.shape;
 	exports org.sheepy.lily.vulkan.extra.model.shape.impl;
 	exports org.sheepy.lily.vulkan.extra.model.shape.util;

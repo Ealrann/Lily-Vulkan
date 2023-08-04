@@ -1,10 +1,12 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.sprite.impl;
+package org.sheepy.lily.vulkan.extra.model.mesh.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.sheepy.lily.core.model.action.ActionPackage;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
@@ -16,18 +18,20 @@ import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
+import org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure;
+import org.sheepy.lily.vulkan.extra.model.mesh.Mesh;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
-import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
 import org.sheepy.lily.vulkan.extra.model.shape.impl.ShapePackageImpl;
-import org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension;
-import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -44,21 +48,35 @@ import org.sheepy.vulkan.model.pipeline.PipelinePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SpritePackageImpl extends EPackageImpl implements SpritePackage
+public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass spriteExtensionEClass = null;
+	private EClass meshEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iSpriteDataSourceEClass = null;
+	private EClass meshRendererEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass meshStructureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iMeshStructureEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -71,15 +89,14 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage#eNS_URI
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private SpritePackageImpl()
+	private MeshPackageImpl()
 	{
-		super(eNS_URI, SpriteFactory.eINSTANCE);
+		super(eNS_URI, MeshFactory.eINSTANCE);
 	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +107,7 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
-	 * <p>This method is used to initialize {@link SpritePackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link MeshPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -99,13 +116,13 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static SpritePackage init()
+	public static MeshPackage init()
 	{
-		if (isInited) return (SpritePackage)EPackage.Registry.INSTANCE.getEPackage(SpritePackage.eNS_URI);
+		if (isInited) return (MeshPackage)EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredSpritePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		SpritePackageImpl theSpritePackage = registeredSpritePackage instanceof SpritePackageImpl ? (SpritePackageImpl)registeredSpritePackage : new SpritePackageImpl();
+		Object registeredMeshPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		MeshPackageImpl theMeshPackage = registeredMeshPackage instanceof MeshPackageImpl ? (MeshPackageImpl)registeredMeshPackage : new MeshPackageImpl();
 
 		isInited = true;
 
@@ -137,29 +154,29 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		RenderingPackageImpl theRenderingPackage = (RenderingPackageImpl)(registeredPackage instanceof RenderingPackageImpl ? registeredPackage : RenderingPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ShapePackage.eNS_URI);
 		ShapePackageImpl theShapePackage = (ShapePackageImpl)(registeredPackage instanceof ShapePackageImpl ? registeredPackage : ShapePackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
-		MeshPackageImpl theMeshPackage = (MeshPackageImpl)(registeredPackage instanceof MeshPackageImpl ? registeredPackage : MeshPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SpritePackage.eNS_URI);
+		SpritePackageImpl theSpritePackage = (SpritePackageImpl)(registeredPackage instanceof SpritePackageImpl ? registeredPackage : SpritePackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theSpritePackage.createPackageContents();
+		theMeshPackage.createPackageContents();
 		theNuklearPackage.createPackageContents();
 		theRenderingPackage.createPackageContents();
 		theShapePackage.createPackageContents();
-		theMeshPackage.createPackageContents();
+		theSpritePackage.createPackageContents();
 
 		// Initialize created meta-data
-		theSpritePackage.initializePackageContents();
+		theMeshPackage.initializePackageContents();
 		theNuklearPackage.initializePackageContents();
 		theRenderingPackage.initializePackageContents();
 		theShapePackage.initializePackageContents();
-		theMeshPackage.initializePackageContents();
+		theSpritePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theSpritePackage.freeze();
+		theMeshPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(SpritePackage.eNS_URI, theSpritePackage);
-		return theSpritePackage;
+		EPackage.Registry.INSTANCE.put(MeshPackage.eNS_URI, theMeshPackage);
+		return theMeshPackage;
 	}
 
 	/**
@@ -168,9 +185,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSpriteExtension()
+	public EClass getMesh()
 	{
-		return spriteExtensionEClass;
+		return meshEClass;
 	}
 
 	/**
@@ -179,9 +196,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSpriteExtension_DrawTask()
+	public EClass getMeshRenderer()
 	{
-		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(0);
+		return meshRendererEClass;
 	}
 
 	/**
@@ -190,9 +207,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSpriteExtension_IndexBufferViewer()
+	public EClass getMeshStructure()
 	{
-		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(1);
+		return meshStructureEClass;
 	}
 
 	/**
@@ -201,9 +218,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSpriteExtension_VertexBufferViewer()
+	public EReference getMeshStructure_Meshes()
 	{
-		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(2);
+		return (EReference)meshStructureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -212,9 +229,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSpriteExtension_SpritesDescriptor()
+	public EClass getIMeshStructure()
 	{
-		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(3);
+		return iMeshStructureEClass;
 	}
 
 	/**
@@ -223,53 +240,9 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSpriteExtension_SpriteDataSource()
+	public MeshFactory getMeshFactory()
 	{
-		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSpriteExtension_SpritePipelineSpecialization()
-	{
-		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSpriteExtension_SpriteImageMemory()
-	{
-		return (EReference)spriteExtensionEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getISpriteDataSource()
-	{
-		return iSpriteDataSourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SpriteFactory getSpriteFactory()
-	{
-		return (SpriteFactory)getEFactoryInstance();
+		return (MeshFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -292,16 +265,14 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		isCreated = true;
 
 		// Create classes and their features
-		spriteExtensionEClass = createEClass(SPRITE_EXTENSION);
-		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__DRAW_TASK);
-		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__INDEX_BUFFER_VIEWER);
-		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__VERTEX_BUFFER_VIEWER);
-		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITES_DESCRIPTOR);
-		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITE_DATA_SOURCE);
-		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITE_PIPELINE_SPECIALIZATION);
-		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITE_IMAGE_MEMORY);
+		meshEClass = createEClass(MESH);
 
-		iSpriteDataSourceEClass = createEClass(ISPRITE_DATA_SOURCE);
+		meshRendererEClass = createEClass(MESH_RENDERER);
+
+		meshStructureEClass = createEClass(MESH_STRUCTURE);
+		createEReference(meshStructureEClass, MESH_STRUCTURE__MESHES);
+
+		iMeshStructureEClass = createEClass(IMESH_STRUCTURE);
 	}
 
 	/**
@@ -329,33 +300,37 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
-		VulkanResourcePackage theVulkanResourcePackage = (VulkanResourcePackage)EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
-		GraphicPackage theGraphicPackage = (GraphicPackage)EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
+		RenderingPackage theRenderingPackage = (RenderingPackage)EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
 
 		// Create type parameters
+		ETypeParameter meshStructureEClass_T = addETypeParameter(meshStructureEClass, "T");
 
 		// Set bounds for type parameters
+		EGenericType g1 = createEGenericType(this.getMesh());
+		meshStructureEClass_T.getEBounds().add(g1);
 
 		// Add supertypes to classes
-		spriteExtensionEClass.getESuperTypes().add(theProcessPackage.getIPipelineExtension());
-		spriteExtensionEClass.getESuperTypes().add(theVulkanResourcePackage.getIBufferDataSource());
-		iSpriteDataSourceEClass.getESuperTypes().add(theVulkanResourcePackage.getIBufferDataSource());
+		meshEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
+		g1 = createEGenericType(theRenderingPackage.getGenericRenderer());
+		EGenericType g2 = createEGenericType(this.getIMeshStructure());
+		g1.getETypeArguments().add(g2);
+		meshRendererEClass.getEGenericSuperTypes().add(g1);
+		meshStructureEClass.getESuperTypes().add(this.getIMeshStructure());
+		iMeshStructureEClass.getESuperTypes().add(theRenderingPackage.getStructure());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(spriteExtensionEClass, SpriteExtension.class, "SpriteExtension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpriteExtension_DrawTask(), theGraphicPackage.getDrawIndexed(), null, "drawTask", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpriteExtension_IndexBufferViewer(), theVulkanResourcePackage.getBufferViewer(), null, "indexBufferViewer", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpriteExtension_VertexBufferViewer(), theVulkanResourcePackage.getBufferViewer(), null, "vertexBufferViewer", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpriteExtension_SpritesDescriptor(), theVulkanResourcePackage.getImageDescriptor(), null, "spritesDescriptor", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpriteExtension_SpriteDataSource(), this.getISpriteDataSource(), null, "spriteDataSource", null, 0, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpriteExtension_SpritePipelineSpecialization(), theVulkanResourcePackage.getConstantBuffer(), null, "spritePipelineSpecialization", null, 0, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpriteExtension_SpriteImageMemory(), theVulkanResourcePackage.getMemoryChunk(), null, "spriteImageMemory", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(meshEClass, Mesh.class, "Mesh", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(iSpriteDataSourceEClass, ISpriteDataSource.class, "ISpriteDataSource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(meshRendererEClass, MeshRenderer.class, "MeshRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(meshStructureEClass, MeshStructure.class, "MeshStructure", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(meshStructureEClass_T);
+		initEReference(getMeshStructure_Meshes(), g1, null, "meshes", null, 1, -1, MeshStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iMeshStructureEClass, IMeshStructure.class, "IMeshStructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //SpritePackageImpl
+} //MeshPackageImpl

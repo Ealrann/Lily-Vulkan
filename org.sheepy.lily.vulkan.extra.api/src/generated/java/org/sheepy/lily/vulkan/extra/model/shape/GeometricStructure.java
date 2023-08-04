@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.extra.model.shape;
 
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure;
 
 /**
  * <!-- begin-user-doc -->

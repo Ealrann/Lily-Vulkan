@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.shape.provider;
+package org.sheepy.lily.vulkan.extra.model.mesh.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,14 +12,13 @@ import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.sheepy.lily.vulkan.extra.model.shape.util.ShapeAdapterFactory;
+import org.sheepy.lily.vulkan.extra.model.mesh.util.MeshAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -30,7 +29,7 @@ import org.sheepy.lily.vulkan.extra.model.shape.util.ShapeAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ShapeItemProviderAdapterFactory extends ShapeAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable
+public class MeshItemProviderAdapterFactory extends MeshAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -62,7 +61,7 @@ public class ShapeItemProviderAdapterFactory extends ShapeAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ShapeItemProviderAdapterFactory()
+	public MeshItemProviderAdapterFactory()
 	{
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
@@ -72,103 +71,53 @@ public class ShapeItemProviderAdapterFactory extends ShapeAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.shape.GeometricMesh} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GeometricMeshItemProvider geometricMeshItemProvider;
+	protected MeshRendererItemProvider meshRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.shape.GeometricMesh}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGeometricMeshAdapter()
+	public Adapter createMeshRendererAdapter()
 	{
-		if (geometricMeshItemProvider == null)
+		if (meshRendererItemProvider == null)
 		{
-			geometricMeshItemProvider = new GeometricMeshItemProvider(this);
+			meshRendererItemProvider = new MeshRendererItemProvider(this);
 		}
 
-		return geometricMeshItemProvider;
+		return meshRendererItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.shape.Icosahedron} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IcosahedronItemProvider icosahedronItemProvider;
+	protected IMeshStructureItemProvider iMeshStructureItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.shape.Icosahedron}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createIcosahedronAdapter()
+	public Adapter createIMeshStructureAdapter()
 	{
-		if (icosahedronItemProvider == null)
+		if (iMeshStructureItemProvider == null)
 		{
-			icosahedronItemProvider = new IcosahedronItemProvider(this);
+			iMeshStructureItemProvider = new IMeshStructureItemProvider(this);
 		}
 
-		return icosahedronItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.shape.Sphere} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SphereItemProvider sphereItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.shape.Sphere}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSphereAdapter()
-	{
-		if (sphereItemProvider == null)
-		{
-			sphereItemProvider = new SphereItemProvider(this);
-		}
-
-		return sphereItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.shape.IcoSphere} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IcoSphereItemProvider icoSphereItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.shape.IcoSphere}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIcoSphereAdapter()
-	{
-		if (icoSphereItemProvider == null)
-		{
-			icoSphereItemProvider = new IcoSphereItemProvider(this);
-		}
-
-		return icoSphereItemProvider;
+		return iMeshStructureItemProvider;
 	}
 
 	/**
@@ -277,21 +226,6 @@ public class ShapeItemProviderAdapterFactory extends ShapeAdapterFactory impleme
 		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
-	}
-
-	/**
-	 * This disposes all of the item providers created by this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void dispose()
-	{
-		if (geometricMeshItemProvider != null) geometricMeshItemProvider.dispose();
-		if (icosahedronItemProvider != null) icosahedronItemProvider.dispose();
-		if (sphereItemProvider != null) sphereItemProvider.dispose();
-		if (icoSphereItemProvider != null) icoSphereItemProvider.dispose();
 	}
 
 }

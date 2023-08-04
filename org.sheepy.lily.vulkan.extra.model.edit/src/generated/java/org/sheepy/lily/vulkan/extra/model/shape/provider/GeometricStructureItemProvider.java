@@ -8,12 +8,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
+import org.sheepy.lily.vulkan.extra.model.mesh.provider.IMeshStructureItemProvider;
+import org.sheepy.lily.vulkan.extra.model.nuklear.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.shape.GeometricStructure;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapeFactory;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
@@ -68,7 +69,7 @@ public class GeometricStructureItemProvider extends IMeshStructureItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ShapePackage.Literals.MESH_STRUCTURE__MESHES);
+			childrenFeatures.add(MeshPackage.Literals.MESH_STRUCTURE__MESHES);
 		}
 		return childrenFeatures;
 	}
@@ -135,8 +136,20 @@ public class GeometricStructureItemProvider extends IMeshStructureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ShapePackage.Literals.MESH_STRUCTURE__MESHES,
+				(MeshPackage.Literals.MESH_STRUCTURE__MESHES,
 				 ShapeFactory.eINSTANCE.createGeometricMesh()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator()
+	{
+		return ExtraEditPlugin.INSTANCE;
 	}
 
 }

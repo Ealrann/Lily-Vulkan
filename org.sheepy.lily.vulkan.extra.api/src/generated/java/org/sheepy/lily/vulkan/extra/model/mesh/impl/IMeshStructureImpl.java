@@ -1,13 +1,11 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.shape.impl;
+package org.sheepy.lily.vulkan.extra.model.mesh.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
-
-import org.sheepy.lily.vulkan.extra.model.shape.IMeshStructure;
-import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
+import org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +34,7 @@ public class IMeshStructureImpl extends LilyEObject implements IMeshStructure
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ShapePackage.Literals.IMESH_STRUCTURE;
+		return MeshPackage.Literals.IMESH_STRUCTURE;
 	}
 
 } //IMeshStructureImpl

@@ -23,24 +23,6 @@ public interface ShapeFactory extends EFactory
 	ShapeFactory eINSTANCE = org.sheepy.lily.vulkan.extra.model.shape.impl.ShapeFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Mesh Renderer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mesh Renderer</em>'.
-	 * @generated
-	 */
-	MeshRenderer createMeshRenderer();
-
-	/**
-	 * Returns a new object of class '<em>IMesh Structure</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>IMesh Structure</em>'.
-	 * @generated
-	 */
-	IMeshStructure createIMeshStructure();
-
-	/**
 	 * Returns a new object of class '<em>Geometric Mesh</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

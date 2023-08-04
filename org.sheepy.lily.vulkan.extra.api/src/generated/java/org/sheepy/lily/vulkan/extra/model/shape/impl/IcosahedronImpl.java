@@ -3,7 +3,6 @@
 package org.sheepy.lily.vulkan.extra.model.shape.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.sheepy.lily.vulkan.extra.model.shape.Icosahedron;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
 

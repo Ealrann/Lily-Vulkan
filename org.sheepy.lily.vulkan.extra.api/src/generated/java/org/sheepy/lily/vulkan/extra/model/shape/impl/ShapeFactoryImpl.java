@@ -5,12 +5,14 @@ package org.sheepy.lily.vulkan.extra.model.shape.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.sheepy.lily.vulkan.extra.model.shape.*;
+import org.sheepy.lily.vulkan.extra.model.shape.GeometricMesh;
+import org.sheepy.lily.vulkan.extra.model.shape.IcoSphere;
+import org.sheepy.lily.vulkan.extra.model.shape.Icosahedron;
+import org.sheepy.lily.vulkan.extra.model.shape.ShapeFactory;
+import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
+import org.sheepy.lily.vulkan.extra.model.shape.Sphere;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,39 +66,13 @@ public class ShapeFactoryImpl extends EFactoryImpl implements ShapeFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ShapePackage.MESH_RENDERER: return (EObject)createMeshRenderer();
-			case ShapePackage.IMESH_STRUCTURE: return (EObject)createIMeshStructure();
-			case ShapePackage.GEOMETRIC_MESH: return (EObject)createGeometricMesh();
-			case ShapePackage.ICOSAHEDRON: return (EObject)createIcosahedron();
-			case ShapePackage.SPHERE: return (EObject)createSphere();
-			case ShapePackage.ICO_SPHERE: return (EObject)createIcoSphere();
+			case ShapePackage.GEOMETRIC_MESH: return createGeometricMesh();
+			case ShapePackage.ICOSAHEDRON: return createIcosahedron();
+			case ShapePackage.SPHERE: return createSphere();
+			case ShapePackage.ICO_SPHERE: return createIcoSphere();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public MeshRenderer createMeshRenderer()
-	{
-		MeshRendererImpl meshRenderer = new MeshRendererImpl();
-		return meshRenderer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IMeshStructure createIMeshStructure()
-	{
-		IMeshStructureImpl iMeshStructure = new IMeshStructureImpl();
-		return iMeshStructure;
 	}
 
 	/**

@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapeFactory;
@@ -160,11 +161,6 @@ public class PresentationPkgItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
-				 ShapeFactory.eINSTANCE.createIMeshStructure()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
 				 ShapeFactory.eINSTANCE.createIcosahedron()));
 
 		newChildDescriptors.add
@@ -176,6 +172,35 @@ public class PresentationPkgItemProvider
 			(createChildParameter
 				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
 				 ShapeFactory.eINSTANCE.createIcoSphere()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
+				 MeshFactory.eINSTANCE.createIMeshStructure()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
+	{
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES;
+
+		if (qualify)
+		{
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

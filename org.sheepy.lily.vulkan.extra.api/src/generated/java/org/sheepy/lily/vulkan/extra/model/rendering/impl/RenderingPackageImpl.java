@@ -20,6 +20,8 @@ import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
+import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
@@ -299,18 +301,22 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		ShapePackageImpl theShapePackage = (ShapePackageImpl)(registeredPackage instanceof ShapePackageImpl ? registeredPackage : ShapePackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SpritePackage.eNS_URI);
 		SpritePackageImpl theSpritePackage = (SpritePackageImpl)(registeredPackage instanceof SpritePackageImpl ? registeredPackage : SpritePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
+		MeshPackageImpl theMeshPackage = (MeshPackageImpl)(registeredPackage instanceof MeshPackageImpl ? registeredPackage : MeshPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRenderingPackage.createPackageContents();
 		theNuklearPackage.createPackageContents();
 		theShapePackage.createPackageContents();
 		theSpritePackage.createPackageContents();
+		theMeshPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRenderingPackage.initializePackageContents();
 		theNuklearPackage.initializePackageContents();
 		theShapePackage.initializePackageContents();
 		theSpritePackage.initializePackageContents();
+		theMeshPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRenderingPackage.freeze();

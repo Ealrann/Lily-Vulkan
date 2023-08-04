@@ -5,20 +5,14 @@ package org.sheepy.lily.vulkan.extra.model.shape.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-
 import org.sheepy.lily.vulkan.extra.model.shape.GeometricMesh;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
 
@@ -78,7 +72,7 @@ public class GeometricMeshImpl extends LilyEObject implements GeometricMesh
 	{
 		if (presentedEntities == null)
 		{
-			presentedEntities = new EObjectWithInverseResolvingEList<PresentableEntity>(PresentableEntity.class, this, ShapePackage.GEOMETRIC_MESH__PRESENTED_ENTITIES, RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION);
+			presentedEntities = new EObjectWithInverseResolvingEList<>(PresentableEntity.class, this, ShapePackage.GEOMETRIC_MESH__PRESENTED_ENTITIES, RenderingPackage.PRESENTABLE_ENTITY__PRESENTATION);
 		}
 		return presentedEntities;
 	}

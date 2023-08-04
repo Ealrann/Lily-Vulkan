@@ -7,7 +7,10 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.sheepy.lily.vulkan.extra.model.nuklear,
+Export-Package: org.sheepy.lily.vulkan.extra.model.mesh,
+ org.sheepy.lily.vulkan.extra.model.mesh.impl,
+ org.sheepy.lily.vulkan.extra.model.mesh.util,
+ org.sheepy.lily.vulkan.extra.model.nuklear,
  org.sheepy.lily.vulkan.extra.model.nuklear.impl,
  org.sheepy.lily.vulkan.extra.model.nuklear.util,
  org.sheepy.lily.vulkan.extra.model.rendering,

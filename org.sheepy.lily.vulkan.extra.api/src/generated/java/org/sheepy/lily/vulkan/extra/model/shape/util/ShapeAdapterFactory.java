@@ -4,29 +4,19 @@ package org.sheepy.lily.vulkan.extra.model.shape.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.sheepy.lily.core.model.maintainer.Maintainable;
-import org.sheepy.lily.core.model.maintainer.Maintainer;
-
-import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure;
+import org.sheepy.lily.vulkan.extra.model.mesh.Mesh;
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
-
-import org.sheepy.lily.vulkan.extra.model.shape.*;
-
-import org.sheepy.lily.vulkan.model.IResourceContainer;
-
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
-import org.sheepy.lily.vulkan.model.process.TaskPipeline;
-import org.sheepy.lily.vulkan.model.process.VkPipeline;
-
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.extra.model.shape.GeometricMesh;
+import org.sheepy.lily.vulkan.extra.model.shape.GeometricStructure;
+import org.sheepy.lily.vulkan.extra.model.shape.IcoSphere;
+import org.sheepy.lily.vulkan.extra.model.shape.Icosahedron;
+import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
+import org.sheepy.lily.vulkan.extra.model.shape.Sphere;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,28 +79,8 @@ public class ShapeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected ShapeSwitch<Adapter> modelSwitch =
-		new ShapeSwitch<Adapter>()
+		new ShapeSwitch<>()
 		{
-			@Override
-			public Adapter caseMesh(Mesh object)
-			{
-				return createMeshAdapter();
-			}
-			@Override
-			public Adapter caseMeshRenderer(MeshRenderer object)
-			{
-				return createMeshRendererAdapter();
-			}
-			@Override
-			public <T extends Mesh> Adapter caseMeshStructure(MeshStructure<T> object)
-			{
-				return createMeshStructureAdapter();
-			}
-			@Override
-			public Adapter caseIMeshStructure(IMeshStructure object)
-			{
-				return createIMeshStructureAdapter();
-			}
 			@Override
 			public Adapter caseGeometricStructure(GeometricStructure object)
 			{
@@ -137,59 +107,29 @@ public class ShapeAdapterFactory extends AdapterFactoryImpl
 				return createIcoSphereAdapter();
 			}
 			@Override
+			public Adapter caseStructure(Structure object)
+			{
+				return createStructureAdapter();
+			}
+			@Override
+			public Adapter caseIMeshStructure(IMeshStructure object)
+			{
+				return createIMeshStructureAdapter();
+			}
+			@Override
+			public <T extends Mesh> Adapter caseMeshStructure(MeshStructure<T> object)
+			{
+				return createMeshStructureAdapter();
+			}
+			@Override
 			public Adapter casePresentation(Presentation object)
 			{
 				return createPresentationAdapter();
 			}
 			@Override
-			public Adapter caseLNamedElement(LNamedElement object)
+			public Adapter caseMesh(Mesh object)
 			{
-				return createLNamedElementAdapter();
-			}
-			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object)
-			{
-				return createAbstractPipelineAdapter();
-			}
-			@Override
-			public Adapter caseIResourceContainer(IResourceContainer object)
-			{
-				return createIResourceContainerAdapter();
-			}
-			@Override
-			public Adapter caseTaskPipeline(TaskPipeline object)
-			{
-				return createTaskPipelineAdapter();
-			}
-			@Override
-			public Adapter caseVkPipeline(VkPipeline object)
-			{
-				return createVkPipelineAdapter();
-			}
-			@Override
-			public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
-			{
-				return createMaintainableAdapter();
-			}
-			@Override
-			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
-			{
-				return createGraphicsPipelineAdapter();
-			}
-			@Override
-			public <T extends Maintainable<T>> Adapter caseMaintainer(Maintainer<T> object)
-			{
-				return createMaintainerAdapter();
-			}
-			@Override
-			public <T extends Structure> Adapter caseGenericRenderer(GenericRenderer<T> object)
-			{
-				return createGenericRendererAdapter();
-			}
-			@Override
-			public Adapter caseStructure(Structure object)
-			{
-				return createStructureAdapter();
+				return createMeshAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -212,66 +152,6 @@ public class ShapeAdapterFactory extends AdapterFactoryImpl
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.shape.Mesh <em>Mesh</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.shape.Mesh
-	 * @generated
-	 */
-	public Adapter createMeshAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.shape.MeshRenderer <em>Mesh Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.shape.MeshRenderer
-	 * @generated
-	 */
-	public Adapter createMeshRendererAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.shape.MeshStructure <em>Mesh Structure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.shape.MeshStructure
-	 * @generated
-	 */
-	public Adapter createMeshStructureAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.shape.IMeshStructure <em>IMesh Structure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.shape.IMeshStructure
-	 * @generated
-	 */
-	public Adapter createIMeshStructureAdapter()
-	{
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.shape.GeometricStructure <em>Geometric Structure</em>}'.
@@ -349,6 +229,51 @@ public class ShapeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Structure <em>Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Structure
+	 * @generated
+	 */
+	public Adapter createStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure <em>IMesh Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.IMeshStructure
+	 * @generated
+	 */
+	public Adapter createIMeshStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure <em>Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure
+	 * @generated
+	 */
+	public Adapter createMeshStructureAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Presentation <em>Presentation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -364,151 +289,16 @@ public class ShapeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.types.LNamedElement <em>LNamed Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.mesh.Mesh <em>Mesh</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.types.LNamedElement
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.Mesh
 	 * @generated
 	 */
-	public Adapter createLNamedElementAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline
-	 * @generated
-	 */
-	public Adapter createAbstractPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.IResourceContainer
-	 * @generated
-	 */
-	public Adapter createIResourceContainerAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.TaskPipeline <em>Task Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.TaskPipeline
-	 * @generated
-	 */
-	public Adapter createTaskPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.VkPipeline <em>Vk Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.VkPipeline
-	 * @generated
-	 */
-	public Adapter createVkPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.maintainer.Maintainable <em>Maintainable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.maintainer.Maintainable
-	 * @generated
-	 */
-	public Adapter createMaintainableAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline
-	 * @generated
-	 */
-	public Adapter createGraphicsPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.maintainer.Maintainer <em>Maintainer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.maintainer.Maintainer
-	 * @generated
-	 */
-	public Adapter createMaintainerAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer <em>Generic Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer
-	 * @generated
-	 */
-	public Adapter createGenericRendererAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Structure <em>Structure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Structure
-	 * @generated
-	 */
-	public Adapter createStructureAdapter()
+	public Adapter createMeshAdapter()
 	{
 		return null;
 	}

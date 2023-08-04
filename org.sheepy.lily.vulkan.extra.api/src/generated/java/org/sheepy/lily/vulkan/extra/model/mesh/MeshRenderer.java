@@ -1,16 +1,16 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.shape;
+package org.sheepy.lily.vulkan.extra.model.mesh;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Mesh Renderer</b></em>'.
+ * A representation of the model object '<em><b>Renderer</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.lily.vulkan.extra.model.shape.ShapePackage#getMeshRenderer()
+ * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage#getMeshRenderer()
  * @model
  * @generated
  */

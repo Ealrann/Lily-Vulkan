@@ -6,71 +6,40 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.sheepy.lily.core.model.action.ActionPackage;
-
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-
 import org.sheepy.lily.core.model.cadence.CadencePackage;
-
 import org.sheepy.lily.core.model.inference.InferencePackage;
-
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
-
 import org.sheepy.lily.core.model.presentation.PresentationPackage;
-
 import org.sheepy.lily.core.model.resource.ResourcePackage;
-
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.core.model.ui.UiPackage;
-
 import org.sheepy.lily.core.model.variable.VariablePackage;
-
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
+import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
-
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-
 import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
-
 import org.sheepy.lily.vulkan.extra.model.shape.GeometricMesh;
 import org.sheepy.lily.vulkan.extra.model.shape.GeometricStructure;
-import org.sheepy.lily.vulkan.extra.model.shape.IMeshStructure;
 import org.sheepy.lily.vulkan.extra.model.shape.IcoSphere;
 import org.sheepy.lily.vulkan.extra.model.shape.Icosahedron;
-import org.sheepy.lily.vulkan.extra.model.shape.Mesh;
-import org.sheepy.lily.vulkan.extra.model.shape.MeshRenderer;
-import org.sheepy.lily.vulkan.extra.model.shape.MeshStructure;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapeFactory;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
 import org.sheepy.lily.vulkan.extra.model.shape.Sphere;
-
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
-
 import org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl;
-
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
-
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
-
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
-
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
-
 import org.sheepy.vulkan.model.image.ImagePackage;
-
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -81,34 +50,6 @@ import org.sheepy.vulkan.model.pipeline.PipelinePackage;
  */
 public class ShapePackageImpl extends EPackageImpl implements ShapePackage
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass meshEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass meshRendererEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass meshStructureEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iMeshStructureEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,18 +161,22 @@ public class ShapePackageImpl extends EPackageImpl implements ShapePackage
 		RenderingPackageImpl theRenderingPackage = (RenderingPackageImpl)(registeredPackage instanceof RenderingPackageImpl ? registeredPackage : RenderingPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SpritePackage.eNS_URI);
 		SpritePackageImpl theSpritePackage = (SpritePackageImpl)(registeredPackage instanceof SpritePackageImpl ? registeredPackage : SpritePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
+		MeshPackageImpl theMeshPackage = (MeshPackageImpl)(registeredPackage instanceof MeshPackageImpl ? registeredPackage : MeshPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theShapePackage.createPackageContents();
 		theNuklearPackage.createPackageContents();
 		theRenderingPackage.createPackageContents();
 		theSpritePackage.createPackageContents();
+		theMeshPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theShapePackage.initializePackageContents();
 		theNuklearPackage.initializePackageContents();
 		theRenderingPackage.initializePackageContents();
 		theSpritePackage.initializePackageContents();
+		theMeshPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theShapePackage.freeze();
@@ -239,61 +184,6 @@ public class ShapePackageImpl extends EPackageImpl implements ShapePackage
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ShapePackage.eNS_URI, theShapePackage);
 		return theShapePackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getMesh()
-	{
-		return meshEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getMeshRenderer()
-	{
-		return meshRendererEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getMeshStructure()
-	{
-		return meshStructureEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMeshStructure_Meshes()
-	{
-		return (EReference)meshStructureEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIMeshStructure()
-	{
-		return iMeshStructureEClass;
 	}
 
 	/**
@@ -404,15 +294,6 @@ public class ShapePackageImpl extends EPackageImpl implements ShapePackage
 		isCreated = true;
 
 		// Create classes and their features
-		meshEClass = createEClass(MESH);
-
-		meshRendererEClass = createEClass(MESH_RENDERER);
-
-		meshStructureEClass = createEClass(MESH_STRUCTURE);
-		createEReference(meshStructureEClass, MESH_STRUCTURE__MESHES);
-
-		iMeshStructureEClass = createEClass(IMESH_STRUCTURE);
-
 		geometricStructureEClass = createEClass(GEOMETRIC_STRUCTURE);
 
 		geometricMeshEClass = createEClass(GEOMETRIC_MESH);
@@ -451,43 +332,23 @@ public class ShapePackageImpl extends EPackageImpl implements ShapePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		RenderingPackage theRenderingPackage = (RenderingPackage)EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
+		MeshPackage theMeshPackage = (MeshPackage)EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
 
 		// Create type parameters
-		ETypeParameter meshStructureEClass_T = addETypeParameter(meshStructureEClass, "T");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(this.getMesh());
-		meshStructureEClass_T.getEBounds().add(g1);
 
 		// Add supertypes to classes
-		meshEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
-		g1 = createEGenericType(theRenderingPackage.getGenericRenderer());
-		EGenericType g2 = createEGenericType(this.getIMeshStructure());
-		g1.getETypeArguments().add(g2);
-		meshRendererEClass.getEGenericSuperTypes().add(g1);
-		meshStructureEClass.getESuperTypes().add(this.getIMeshStructure());
-		iMeshStructureEClass.getESuperTypes().add(theRenderingPackage.getStructure());
-		g1 = createEGenericType(this.getMeshStructure());
-		g2 = createEGenericType(this.getGeometricMesh());
+		EGenericType g1 = createEGenericType(theMeshPackage.getMeshStructure());
+		EGenericType g2 = createEGenericType(this.getGeometricMesh());
 		g1.getETypeArguments().add(g2);
 		geometricStructureEClass.getEGenericSuperTypes().add(g1);
-		geometricMeshEClass.getESuperTypes().add(this.getMesh());
+		geometricMeshEClass.getESuperTypes().add(theMeshPackage.getMesh());
 		icosahedronEClass.getESuperTypes().add(this.getGeometricStructure());
 		sphereEClass.getESuperTypes().add(this.getGeometricStructure());
 		icoSphereEClass.getESuperTypes().add(this.getGeometricStructure());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(meshEClass, Mesh.class, "Mesh", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(meshRendererEClass, MeshRenderer.class, "MeshRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(meshStructureEClass, MeshStructure.class, "MeshStructure", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(meshStructureEClass_T);
-		initEReference(getMeshStructure_Meshes(), g1, null, "meshes", null, 1, -1, MeshStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(iMeshStructureEClass, IMeshStructure.class, "IMeshStructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(geometricStructureEClass, GeometricStructure.class, "GeometricStructure", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(geometricMeshEClass, GeometricMesh.class, "GeometricMesh", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

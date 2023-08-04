@@ -5,15 +5,12 @@ package org.sheepy.lily.vulkan.extra.model.shape.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.sheepy.lily.vulkan.extra.model.mesh.impl.IMeshStructureImpl;
 import org.sheepy.lily.vulkan.extra.model.shape.GeometricMesh;
 import org.sheepy.lily.vulkan.extra.model.shape.GeometricStructure;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
@@ -74,7 +71,7 @@ public abstract class GeometricStructureImpl extends IMeshStructureImpl implemen
 	{
 		if (meshes == null)
 		{
-			meshes = new EObjectContainmentEList<GeometricMesh>(GeometricMesh.class, this, ShapePackage.GEOMETRIC_STRUCTURE__MESHES);
+			meshes = new EObjectContainmentEList<>(GeometricMesh.class, this, ShapePackage.GEOMETRIC_STRUCTURE__MESHES);
 		}
 		return meshes;
 	}

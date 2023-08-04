@@ -41,11 +41,12 @@ public final class ExtraEditPlugin extends EMFPlugin
 	public ExtraEditPlugin()
 	{
 		super
-		  (new ResourceLocator [] 
+		  (new ResourceLocator []
 		   {
 		     LilyEditPlugin.INSTANCE,
 		     LilyVulkanEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
+		     ExtraEditPlugin.INSTANCE,
 		   });
 	}
 

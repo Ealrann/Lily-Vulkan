@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.shape;
+package org.sheepy.lily.vulkan.extra.model.mesh;
 
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.lily.vulkan.extra.model.shape.ShapePackage#getIMeshStructure()
+ * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage#getIMeshStructure()
  * @model
  * @generated
  */

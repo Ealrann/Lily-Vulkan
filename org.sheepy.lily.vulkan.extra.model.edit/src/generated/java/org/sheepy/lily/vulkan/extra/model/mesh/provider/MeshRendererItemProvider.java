@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.shape.provider;
+package org.sheepy.lily.vulkan.extra.model.mesh.provider;
 
 
 import java.util.Collection;
@@ -8,33 +8,19 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
 import org.sheepy.lily.vulkan.extra.model.nuklear.provider.ExtraEditPlugin;
+import org.sheepy.lily.vulkan.extra.model.rendering.provider.GenericRendererItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.shape.IMeshStructure} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class IMeshStructureItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class MeshRendererItemProvider extends GenericRendererItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -42,7 +28,7 @@ public class IMeshStructureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IMeshStructureItemProvider(AdapterFactory adapterFactory)
+	public MeshRendererItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -65,7 +51,7 @@ public class IMeshStructureItemProvider
 	}
 
 	/**
-	 * This returns IMeshStructure.gif.
+	 * This returns MeshRenderer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -73,7 +59,7 @@ public class IMeshStructureItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/IMeshStructure"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MeshRenderer"));
 	}
 
 	/**
@@ -85,7 +71,10 @@ public class IMeshStructureItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_IMeshStructure_type");
+		String label = ((MeshRenderer)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_MeshRenderer_type") :
+			getString("_UI_MeshRenderer_type") + " " + label;
 	}
 
 

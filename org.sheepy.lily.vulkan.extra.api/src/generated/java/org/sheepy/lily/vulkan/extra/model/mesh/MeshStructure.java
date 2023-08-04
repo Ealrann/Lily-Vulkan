@@ -1,22 +1,22 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.shape;
+package org.sheepy.lily.vulkan.extra.model.mesh;
 
 import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Mesh Structure</b></em>'.
+ * A representation of the model object '<em><b>Structure</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.shape.MeshStructure#getMeshes <em>Meshes</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.mesh.MeshStructure#getMeshes <em>Meshes</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.extra.model.shape.ShapePackage#getMeshStructure()
+ * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage#getMeshStructure()
  * @model interface="true" abstract="true"
  * @generated
  */
@@ -27,7 +27,7 @@ public interface MeshStructure<T extends Mesh> extends IMeshStructure
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Meshes</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.extra.model.shape.ShapePackage#getMeshStructure_Meshes()
+	 * @see org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage#getMeshStructure_Meshes()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
