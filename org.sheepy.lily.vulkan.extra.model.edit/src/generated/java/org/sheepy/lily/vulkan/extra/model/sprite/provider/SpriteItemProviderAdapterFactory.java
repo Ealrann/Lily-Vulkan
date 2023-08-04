@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
+import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -27,6 +27,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.extra.model.nuklear.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
 import org.sheepy.lily.vulkan.extra.model.sprite.util.SpriteAdapterFactory;
 import org.sheepy.lily.vulkan.model.process.PipelineExtensionPkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -41,7 +42,7 @@ import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable
+public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -60,12 +61,20 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
 	/**
+	 * This helps manage the child creation extenders.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(ExtraEditPlugin.INSTANCE, SpritePackage.eNS_URI);
+
+	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -175,6 +184,38 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<IChildCreationExtender> getChildCreationExtenders()
+	{
+		return childCreationExtenderManager.getChildCreationExtenders();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+	{
+		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator()
+	{
+		return childCreationExtenderManager;
+	}
+
+	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,18 +254,6 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
-	}
-
-	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void dispose()
-	{
-		if (spriteExtensionItemProvider != null) spriteExtensionItemProvider.dispose();
 	}
 
 	/**
@@ -305,7 +334,7 @@ public class SpriteItemProviderAdapterFactory extends SpriteAdapterFactory imple
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
 			return result;
 		}

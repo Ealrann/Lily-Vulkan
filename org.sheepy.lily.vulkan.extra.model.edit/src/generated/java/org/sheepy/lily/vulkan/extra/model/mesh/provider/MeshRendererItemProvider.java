@@ -8,10 +8,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.extra.model.mesh.MeshRenderer;
-import org.sheepy.lily.vulkan.extra.model.nuklear.provider.ExtraEditPlugin;
 import org.sheepy.lily.vulkan.extra.model.rendering.provider.GenericRendererItemProvider;
 
 /**
@@ -103,18 +101,6 @@ public class MeshRendererItemProvider extends GenericRendererItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator()
-	{
-		return ExtraEditPlugin.INSTANCE;
 	}
 
 }

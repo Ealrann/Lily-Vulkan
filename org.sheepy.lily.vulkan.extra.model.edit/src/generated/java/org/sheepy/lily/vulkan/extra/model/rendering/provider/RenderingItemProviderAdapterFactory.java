@@ -19,13 +19,15 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.sheepy.lily.core.model.resource.ResourcePackage;
+import org.sheepy.lily.core.model.resource.ResourcePkg;
+import org.sheepy.lily.core.model.resource.util.ResourceSwitch;
 import org.sheepy.lily.core.model.variable.ModelVariablePkg;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.core.model.variable.util.VariableSwitch;
@@ -46,7 +48,7 @@ import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -78,7 +80,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -446,6 +448,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.Camera} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CameraItemProvider cameraItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.Camera}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCameraAdapter()
+	{
+		if (cameraItemProvider == null)
+		{
+			cameraItemProvider = new CameraItemProvider(this);
+		}
+
+		return cameraItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -586,31 +613,6 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void dispose()
-	{
-		if (axisItemProvider != null) axisItemProvider.dispose();
-		if (presentationPkgItemProvider != null) presentationPkgItemProvider.dispose();
-		if (presentableEntityItemProvider != null) presentableEntityItemProvider.dispose();
-		if (dataProviderPkgItemProvider != null) dataProviderPkgItemProvider.dispose();
-		if (dataProviderItemProvider != null) dataProviderItemProvider.dispose();
-		if (indexedDataDescriptionItemProvider != null) indexedDataDescriptionItemProvider.dispose();
-		if (renderableDataSourceItemProvider != null) renderableDataSourceItemProvider.dispose();
-		if (descriptorsProviderItemProvider != null) descriptorsProviderItemProvider.dispose();
-		if (dataDescriptorsProviderItemProvider != null) dataDescriptorsProviderItemProvider.dispose();
-		if (dataDescriptorItemProvider != null) dataDescriptorItemProvider.dispose();
-		if (resourceDescriptorProviderPkgItemProvider != null) resourceDescriptorProviderPkgItemProvider.dispose();
-		if (renderProxyConstantBufferItemProvider != null) renderProxyConstantBufferItemProvider.dispose();
-		if (iSpecializationItemProvider != null) iSpecializationItemProvider.dispose();
-		if (physicalEntityVariableItemProvider != null) physicalEntityVariableItemProvider.dispose();
-	}
-
-	/**
 	 * A child creation extender for the {@link VariablePackage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -689,7 +691,7 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
 			return result;
 		}
@@ -790,7 +792,103 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public ResourceLocator getResourceLocator()
+		{
+			return ExtraEditPlugin.INSTANCE;
+		}
+	}
+
+	/**
+	 * A child creation extender for the {@link ResourcePackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ResourceChildCreationExtender implements IChildCreationExtender
+	{
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ResourceSwitch<Object>
+		{
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
+			{
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseResourcePkg(ResourcePkg object)
+			{
+				newChildDescriptors.add
+					(createChildParameter
+						(ResourcePackage.Literals.RESOURCE_PKG__RESOURCES,
+						 RenderingFactory.eINSTANCE.createCamera()));
+
+				return null;
+			}
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child)
+			{
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		@Override
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
+		{
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
 			return result;
 		}

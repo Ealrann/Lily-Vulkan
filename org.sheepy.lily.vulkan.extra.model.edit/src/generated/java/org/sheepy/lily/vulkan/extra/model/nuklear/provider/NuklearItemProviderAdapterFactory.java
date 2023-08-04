@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -52,7 +51,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.util.VulkanResourceSwitch;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -84,7 +83,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -392,23 +391,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void dispose()
-	{
-		if (nuklearPushConstantsItemProvider != null) nuklearPushConstantsItemProvider.dispose();
-		if (nuklearContextItemProvider != null) nuklearContextItemProvider.dispose();
-		if (nuklearFontItemProvider != null) nuklearFontItemProvider.dispose();
-		if (selectorPanelItemProvider != null) selectorPanelItemProvider.dispose();
-		if (panelViewerItemProvider != null) panelViewerItemProvider.dispose();
-		if (fontImageProviderItemProvider != null) fontImageProviderItemProvider.dispose();
-	}
-
-	/**
 	 * A child creation extender for the {@link UiPackage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -492,7 +474,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
 			return result;
 		}
@@ -604,7 +586,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
 			return result;
 		}
@@ -699,7 +681,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
 			return result;
 		}
@@ -800,7 +782,7 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
 			return result;
 		}

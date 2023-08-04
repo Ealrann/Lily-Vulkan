@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
+import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -1367,6 +1367,97 @@ public interface RenderingPackage extends EPackage
 	int PHYSICAL_ENTITY_VARIABLE_OPERATION_COUNT = VariablePackage.IMODEL_VARIABLE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl <em>Camera</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCamera()
+	 * @generated
+	 */
+	int CAMERA = 21;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA__NAME = ResourcePackage.IROOT_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Field Of View</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA__FIELD_OF_VIEW = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>ZNear</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA__ZNEAR = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>ZFar</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA__ZFAR = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA__POSITION = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Axis</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA__AXIS = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Look Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA__LOOK_DIRECTION = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>Camera</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_FEATURE_COUNT = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>Camera</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_OPERATION_COUNT = ResourcePackage.IROOT_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1374,7 +1465,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
 	 * @generated
 	 */
-	int EPHYSICAL_ENTITY_FEATURE = 21;
+	int EPHYSICAL_ENTITY_FEATURE = 22;
 
 
 	/**
@@ -2050,6 +2141,82 @@ public interface RenderingPackage extends EPackage
 	EAttribute getPhysicalEntityVariable_Feature();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera <em>Camera</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Camera</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera
+	 * @generated
+	 */
+	EClass getCamera();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getFieldOfView <em>Field Of View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Field Of View</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera#getFieldOfView()
+	 * @see #getCamera()
+	 * @generated
+	 */
+	EAttribute getCamera_FieldOfView();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getZNear <em>ZNear</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ZNear</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera#getZNear()
+	 * @see #getCamera()
+	 * @generated
+	 */
+	EAttribute getCamera_ZNear();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getZFar <em>ZFar</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ZFar</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera#getZFar()
+	 * @see #getCamera()
+	 * @generated
+	 */
+	EAttribute getCamera_ZFar();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getPosition <em>Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Position</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera#getPosition()
+	 * @see #getCamera()
+	 * @generated
+	 */
+	EAttribute getCamera_Position();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getAxis <em>Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Axis</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera#getAxis()
+	 * @see #getCamera()
+	 * @generated
+	 */
+	EReference getCamera_Axis();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getLookDirection <em>Look Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Look Direction</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera#getLookDirection()
+	 * @see #getCamera()
+	 * @generated
+	 */
+	EAttribute getCamera_LookDirection();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2627,6 +2794,64 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute PHYSICAL_ENTITY_VARIABLE__FEATURE = eINSTANCE.getPhysicalEntityVariable_Feature();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl <em>Camera</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCamera()
+		 * @generated
+		 */
+		EClass CAMERA = eINSTANCE.getCamera();
+
+		/**
+		 * The meta object literal for the '<em><b>Field Of View</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMERA__FIELD_OF_VIEW = eINSTANCE.getCamera_FieldOfView();
+
+		/**
+		 * The meta object literal for the '<em><b>ZNear</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMERA__ZNEAR = eINSTANCE.getCamera_ZNear();
+
+		/**
+		 * The meta object literal for the '<em><b>ZFar</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMERA__ZFAR = eINSTANCE.getCamera_ZFar();
+
+		/**
+		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMERA__POSITION = eINSTANCE.getCamera_Position();
+
+		/**
+		 * The meta object literal for the '<em><b>Axis</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAMERA__AXIS = eINSTANCE.getCamera_Axis();
+
+		/**
+		 * The meta object literal for the '<em><b>Look Direction</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMERA__LOOK_DIRECTION = eINSTANCE.getCamera_LookDirection();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.

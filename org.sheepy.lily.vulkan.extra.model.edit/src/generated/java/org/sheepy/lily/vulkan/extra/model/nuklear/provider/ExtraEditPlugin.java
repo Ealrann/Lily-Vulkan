@@ -46,7 +46,6 @@ public final class ExtraEditPlugin extends EMFPlugin
 		     LilyEditPlugin.INSTANCE,
 		     LilyVulkanEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
-		     ExtraEditPlugin.INSTANCE,
 		   });
 	}
 

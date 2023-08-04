@@ -5,6 +5,7 @@ import org.logoce.extender.api.IAdapterProvider;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.GenericRendererMaintainerAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.RenderPipelineAllocator;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.buffer.RenderProxyConstantBufferAdapter;
+import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.CameraAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.DataDescriptorsProviderAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.DescriptorProviderAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.sprite.*;
@@ -18,6 +19,7 @@ public final class Extenders implements IAdapterProvider
 	public List<Class<? extends IAdapter>> classifiers()
 	{
 		return List.of(GenericRendererMaintainerAdapter.class,
+					   CameraAdapter.class,
 					   DescriptorProviderAdapter.class,
 					   RenderProxyConstantBufferAdapter.class,
 					   DataDescriptorsProviderAdapter.class,

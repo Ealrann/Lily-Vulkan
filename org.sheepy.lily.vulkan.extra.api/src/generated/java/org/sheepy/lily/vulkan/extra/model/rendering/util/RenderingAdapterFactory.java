@@ -4,16 +4,36 @@ package org.sheepy.lily.vulkan.extra.model.rendering.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
+import org.sheepy.lily.core.model.resource.IRootResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
-
 import org.sheepy.lily.core.model.variable.IModelVariable;
-import org.sheepy.lily.vulkan.extra.model.rendering.*;
+import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
+import org.sheepy.lily.vulkan.extra.model.rendering.Camera;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
+import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
+import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
+import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
+import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -84,7 +104,7 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected RenderingSwitch<Adapter> modelSwitch =
-		new RenderingSwitch<Adapter>()
+		new RenderingSwitch<>()
 		{
 			@Override
 			public Adapter caseEntity(Entity object)
@@ -192,6 +212,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createPhysicalEntityVariableAdapter();
 			}
 			@Override
+			public Adapter caseCamera(Camera object)
+			{
+				return createCameraAdapter();
+			}
+			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
 			{
 				return createLNamedElementAdapter();
@@ -250,6 +275,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIModelVariable(IModelVariable object)
 			{
 				return createIModelVariableAdapter();
+			}
+			@Override
+			public Adapter caseIRootResource(IRootResource object)
+			{
+				return createIRootResourceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -589,6 +619,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera <em>Camera</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera
+	 * @generated
+	 */
+	public Adapter createCameraAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.types.LNamedElement <em>LNamed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -764,6 +809,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIModelVariableAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.resource.IRootResource <em>IRoot Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.resource.IRootResource
+	 * @generated
+	 */
+	public Adapter createIRootResourceAdapter()
 	{
 		return null;
 	}

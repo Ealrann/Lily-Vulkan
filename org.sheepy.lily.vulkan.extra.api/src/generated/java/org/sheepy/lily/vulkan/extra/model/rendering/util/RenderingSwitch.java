@@ -4,14 +4,35 @@ package org.sheepy.lily.vulkan.extra.model.rendering.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
+import org.sheepy.lily.core.model.resource.IRootResource;
 import org.sheepy.lily.core.model.types.LNamedElement;
-
 import org.sheepy.lily.core.model.variable.IModelVariable;
-import org.sheepy.lily.vulkan.extra.model.rendering.*;
+import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
+import org.sheepy.lily.vulkan.extra.model.rendering.Camera;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
+import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
+import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
+import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
+import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -253,6 +274,15 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				T1 result = casePhysicalEntityVariable(physicalEntityVariable);
 				if (result == null) result = caseIModelVariable(physicalEntityVariable);
 				if (result == null) result = caseLNamedElement(physicalEntityVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.CAMERA:
+			{
+				Camera camera = (Camera)theEObject;
+				T1 result = caseCamera(camera);
+				if (result == null) result = caseIRootResource(camera);
+				if (result == null) result = caseLNamedElement(camera);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -597,6 +627,22 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Camera</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Camera</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCamera(Camera object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -784,6 +830,22 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIModelVariable(IModelVariable object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IRoot Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IRoot Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIRootResource(IRootResource object)
 	{
 		return null;
 	}

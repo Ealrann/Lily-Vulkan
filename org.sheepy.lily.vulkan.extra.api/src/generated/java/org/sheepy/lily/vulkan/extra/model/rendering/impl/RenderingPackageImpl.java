@@ -25,6 +25,7 @@ import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
+import org.sheepy.lily.vulkan.extra.model.rendering.Camera;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
@@ -222,6 +223,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass cameraEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum ePhysicalEntityFeatureEEnum = null;
 
 	/**
@@ -274,25 +282,25 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		isInited = true;
 
 		// Initialize simple dependencies
+		ResourcePackage.eINSTANCE.eClass();
 		UiPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		ApplicationPackage.eINSTANCE.eClass();
 		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
-		InferencePackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
+		InferencePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 		GraphicPackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
+		VulkanResourcePackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
-		VulkanResourcePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(NuklearPackage.eNS_URI);
@@ -1025,6 +1033,83 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getCamera()
+	{
+		return cameraEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCamera_FieldOfView()
+	{
+		return (EAttribute)cameraEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCamera_ZNear()
+	{
+		return (EAttribute)cameraEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCamera_ZFar()
+	{
+		return (EAttribute)cameraEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCamera_Position()
+	{
+		return (EAttribute)cameraEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCamera_Axis()
+	{
+		return (EReference)cameraEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCamera_LookDirection()
+	{
+		return (EAttribute)cameraEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEPhysicalEntityFeature()
 	{
 		return ePhysicalEntityFeatureEEnum;
@@ -1145,6 +1230,14 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEReference(physicalEntityVariableEClass, PHYSICAL_ENTITY_VARIABLE__ENTITY);
 		createEAttribute(physicalEntityVariableEClass, PHYSICAL_ENTITY_VARIABLE__FEATURE);
 
+		cameraEClass = createEClass(CAMERA);
+		createEAttribute(cameraEClass, CAMERA__FIELD_OF_VIEW);
+		createEAttribute(cameraEClass, CAMERA__ZNEAR);
+		createEAttribute(cameraEClass, CAMERA__ZFAR);
+		createEAttribute(cameraEClass, CAMERA__POSITION);
+		createEReference(cameraEClass, CAMERA__AXIS);
+		createEAttribute(cameraEClass, CAMERA__LOOK_DIRECTION);
+
 		// Create enums
 		ePhysicalEntityFeatureEEnum = createEEnum(EPHYSICAL_ENTITY_FEATURE);
 	}
@@ -1182,6 +1275,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		VariablePackage theVariablePackage = (VariablePackage)EPackage.Registry.INSTANCE.getEPackage(VariablePackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter genericRendererEClass_T = addETypeParameter(genericRendererEClass, "T");
@@ -1226,6 +1320,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		dataDescriptorsProviderEClass.getESuperTypes().add(this.getResourceDescriptorProvider());
 		renderProxyConstantBufferEClass.getESuperTypes().add(theVulkanResourcePackage.getConstantBuffer());
 		physicalEntityVariableEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
+		cameraEClass.getESuperTypes().add(theResourcePackage.getIRootResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1320,6 +1415,14 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEClass(physicalEntityVariableEClass, PhysicalEntityVariable.class, "PhysicalEntityVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPhysicalEntityVariable_Entity(), this.getPhysicalEntity(), null, "entity", null, 0, 1, PhysicalEntityVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPhysicalEntityVariable_Feature(), this.getEPhysicalEntityFeature(), "feature", null, 1, 1, PhysicalEntityVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cameraEClass, Camera.class, "Camera", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCamera_FieldOfView(), ecorePackage.getEFloat(), "fieldOfView", "45", 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCamera_ZNear(), ecorePackage.getEFloat(), "zNear", null, 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCamera_ZFar(), ecorePackage.getEFloat(), "zFar", null, 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCamera_Position(), theTypesPackage.getVector3d(), "position", "0;0;0", 0, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCamera_Axis(), this.getAxis(), null, "axis", null, 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCamera_LookDirection(), theTypesPackage.getVector3d(), "lookDirection", "1;0;0", 0, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(ePhysicalEntityFeatureEEnum, EPhysicalEntityFeature.class, "EPhysicalEntityFeature");

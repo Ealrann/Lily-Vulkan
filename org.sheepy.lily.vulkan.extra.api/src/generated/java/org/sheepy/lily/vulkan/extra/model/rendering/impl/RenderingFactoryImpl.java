@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
+import org.sheepy.lily.vulkan.extra.model.rendering.Camera;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
@@ -79,20 +80,21 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		switch (eClass.getClassifierID())
 		{
-			case RenderingPackage.AXIS: return (EObject)createAxis();
-			case RenderingPackage.PRESENTATION_PKG: return (EObject)createPresentationPkg();
-			case RenderingPackage.PRESENTABLE_ENTITY: return (EObject)createPresentableEntity();
-			case RenderingPackage.DATA_PROVIDER_PKG: return (EObject)createDataProviderPkg();
-			case RenderingPackage.DATA_PROVIDER: return (EObject)createDataProvider();
-			case RenderingPackage.INDEXED_DATA_DESCRIPTION: return (EObject)createIndexedDataDescription();
-			case RenderingPackage.RENDERABLE_DATA_SOURCE: return (EObject)createRenderableDataSource();
-			case RenderingPackage.DESCRIPTORS_PROVIDER: return (EObject)createDescriptorsProvider();
-			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER: return (EObject)createDataDescriptorsProvider();
-			case RenderingPackage.DATA_DESCRIPTOR: return (EObject)createDataDescriptor();
-			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG: return (EObject)createResourceDescriptorProviderPkg();
-			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER: return (EObject)createRenderProxyConstantBuffer();
-			case RenderingPackage.ISPECIALIZATION: return (EObject)createISpecialization();
-			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE: return (EObject)createPhysicalEntityVariable();
+			case RenderingPackage.AXIS: return createAxis();
+			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
+			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
+			case RenderingPackage.DATA_PROVIDER_PKG: return createDataProviderPkg();
+			case RenderingPackage.DATA_PROVIDER: return createDataProvider();
+			case RenderingPackage.INDEXED_DATA_DESCRIPTION: return createIndexedDataDescription();
+			case RenderingPackage.RENDERABLE_DATA_SOURCE: return createRenderableDataSource();
+			case RenderingPackage.DESCRIPTORS_PROVIDER: return createDescriptorsProvider();
+			case RenderingPackage.DATA_DESCRIPTORS_PROVIDER: return createDataDescriptorsProvider();
+			case RenderingPackage.DATA_DESCRIPTOR: return createDataDescriptor();
+			case RenderingPackage.RESOURCE_DESCRIPTOR_PROVIDER_PKG: return createResourceDescriptorProviderPkg();
+			case RenderingPackage.RENDER_PROXY_CONSTANT_BUFFER: return createRenderProxyConstantBuffer();
+			case RenderingPackage.ISPECIALIZATION: return createISpecialization();
+			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE: return createPhysicalEntityVariable();
+			case RenderingPackage.CAMERA: return createCamera();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -176,7 +178,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> DataProviderPkg<T> createDataProviderPkg()
 	{
-		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<T>();
+		DataProviderPkgImpl<T> dataProviderPkg = new DataProviderPkgImpl<>();
 		return dataProviderPkg;
 	}
 
@@ -188,7 +190,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> DataProvider<T> createDataProvider()
 	{
-		DataProviderImpl<T> dataProvider = new DataProviderImpl<T>();
+		DataProviderImpl<T> dataProvider = new DataProviderImpl<>();
 		return dataProvider;
 	}
 
@@ -200,7 +202,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> IndexedDataDescription<T> createIndexedDataDescription()
 	{
-		IndexedDataDescriptionImpl<T> indexedDataDescription = new IndexedDataDescriptionImpl<T>();
+		IndexedDataDescriptionImpl<T> indexedDataDescription = new IndexedDataDescriptionImpl<>();
 		return indexedDataDescription;
 	}
 
@@ -212,7 +214,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	@Override
 	public <T extends Structure> RenderableDataSource<T> createRenderableDataSource()
 	{
-		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<T>();
+		RenderableDataSourceImpl<T> renderableDataSource = new RenderableDataSourceImpl<>();
 		return renderableDataSource;
 	}
 
@@ -298,6 +300,18 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		PhysicalEntityVariableImpl physicalEntityVariable = new PhysicalEntityVariableImpl();
 		return physicalEntityVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Camera createCamera()
+	{
+		CameraImpl camera = new CameraImpl();
+		return camera;
 	}
 
 	/**

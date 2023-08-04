@@ -127,25 +127,25 @@ public class MeshPackageImpl extends EPackageImpl implements MeshPackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		ResourcePackage.eINSTANCE.eClass();
 		UiPackage.eINSTANCE.eClass();
-		PresentationPackage.eINSTANCE.eClass();
-		ApplicationPackage.eINSTANCE.eClass();
 		VariablePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
-		InferencePackage.eINSTANCE.eClass();
+		PresentationPackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
+		InferencePackage.eINSTANCE.eClass();
 		CadencePackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 		GraphicPackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
+		VulkanResourcePackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ImagePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
-		VulkanResourcePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(NuklearPackage.eNS_URI);
