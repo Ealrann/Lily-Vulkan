@@ -13,6 +13,10 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
 import org.sheepy.lily.vulkan.extra.model.rendering.Camera;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
@@ -215,6 +219,26 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseCamera(Camera object)
 			{
 				return createCameraAdapter();
+			}
+			@Override
+			public Adapter caseCameraMatrix(CameraMatrix object)
+			{
+				return createCameraMatrixAdapter();
+			}
+			@Override
+			public Adapter caseCameraPosition(CameraPosition object)
+			{
+				return createCameraPositionAdapter();
+			}
+			@Override
+			public Adapter caseCameraScreenWorldPosition(CameraScreenWorldPosition object)
+			{
+				return createCameraScreenWorldPositionAdapter();
+			}
+			@Override
+			public Adapter caseCameraVariable(CameraVariable object)
+			{
+				return createCameraVariableAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -629,6 +653,66 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createCameraAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix <em>Camera Matrix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix
+	 * @generated
+	 */
+	public Adapter createCameraMatrixAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition <em>Camera Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition
+	 * @generated
+	 */
+	public Adapter createCameraPositionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition <em>Camera Screen World Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition
+	 * @generated
+	 */
+	public Adapter createCameraScreenWorldPositionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable <em>Camera Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable
+	 * @generated
+	 */
+	public Adapter createCameraVariableAdapter()
 	{
 		return null;
 	}

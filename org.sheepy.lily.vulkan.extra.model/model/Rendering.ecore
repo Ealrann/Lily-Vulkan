@@ -172,5 +172,27 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lookDirection" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3d"
         defaultValueLiteral="1;0;0"/>
+  </eClassifiers>  <eClassifiers xsi:type="ecore:EClass" name="CameraMatrix" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camera" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.extra.model/model/Rendering.ecore#//Camera"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraPosition" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camera" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.extra.model/model/Rendering.ecore#//Camera"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraScreenWorldPosition" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camera" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.extra.model/model/Rendering.ecore#//Camera"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraVariable" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camera" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.extra.model/model/Rendering.ecore#//Camera"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="field" lowerBound="1" eType="#//ECameraField"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ECameraField">
+    <eLiterals name="ZNear"/>
+    <eLiterals name="ZFar" value="1"/>
+    <eLiterals name="FieldOfViewX" value="2"/>
+    <eLiterals name="FieldOfViewY" value="3"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -12,6 +12,10 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.variable.IModelVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
 import org.sheepy.lily.vulkan.extra.model.rendering.Camera;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
@@ -283,6 +287,42 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				T1 result = caseCamera(camera);
 				if (result == null) result = caseIRootResource(camera);
 				if (result == null) result = caseLNamedElement(camera);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.CAMERA_MATRIX:
+			{
+				CameraMatrix cameraMatrix = (CameraMatrix)theEObject;
+				T1 result = caseCameraMatrix(cameraMatrix);
+				if (result == null) result = caseIModelVariable(cameraMatrix);
+				if (result == null) result = caseLNamedElement(cameraMatrix);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.CAMERA_POSITION:
+			{
+				CameraPosition cameraPosition = (CameraPosition)theEObject;
+				T1 result = caseCameraPosition(cameraPosition);
+				if (result == null) result = caseIModelVariable(cameraPosition);
+				if (result == null) result = caseLNamedElement(cameraPosition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.CAMERA_SCREEN_WORLD_POSITION:
+			{
+				CameraScreenWorldPosition cameraScreenWorldPosition = (CameraScreenWorldPosition)theEObject;
+				T1 result = caseCameraScreenWorldPosition(cameraScreenWorldPosition);
+				if (result == null) result = caseIModelVariable(cameraScreenWorldPosition);
+				if (result == null) result = caseLNamedElement(cameraScreenWorldPosition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.CAMERA_VARIABLE:
+			{
+				CameraVariable cameraVariable = (CameraVariable)theEObject;
+				T1 result = caseCameraVariable(cameraVariable);
+				if (result == null) result = caseIModelVariable(cameraVariable);
+				if (result == null) result = caseLNamedElement(cameraVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -638,6 +678,70 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseCamera(Camera object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Camera Matrix</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Camera Matrix</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCameraMatrix(CameraMatrix object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Camera Position</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Camera Position</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCameraPosition(CameraPosition object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Camera Screen World Position</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Camera Screen World Position</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCameraScreenWorldPosition(CameraScreenWorldPosition object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Camera Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Camera Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseCameraVariable(CameraVariable object)
 	{
 		return null;
 	}

@@ -26,11 +26,16 @@ import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.impl.NuklearPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
 import org.sheepy.lily.vulkan.extra.model.rendering.Camera;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ECameraField;
 import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
@@ -230,7 +235,42 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass cameraMatrixEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cameraPositionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cameraScreenWorldPositionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cameraVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum ePhysicalEntityFeatureEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eCameraFieldEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1110,9 +1150,119 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getCameraMatrix()
+	{
+		return cameraMatrixEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCameraMatrix_Camera()
+	{
+		return (EReference)cameraMatrixEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCameraPosition()
+	{
+		return cameraPositionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCameraPosition_Camera()
+	{
+		return (EReference)cameraPositionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCameraScreenWorldPosition()
+	{
+		return cameraScreenWorldPositionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCameraScreenWorldPosition_Camera()
+	{
+		return (EReference)cameraScreenWorldPositionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCameraVariable()
+	{
+		return cameraVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCameraVariable_Camera()
+	{
+		return (EReference)cameraVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCameraVariable_Field()
+	{
+		return (EAttribute)cameraVariableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEPhysicalEntityFeature()
 	{
 		return ePhysicalEntityFeatureEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getECameraField()
+	{
+		return eCameraFieldEEnum;
 	}
 
 	/**
@@ -1238,8 +1388,22 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEReference(cameraEClass, CAMERA__AXIS);
 		createEAttribute(cameraEClass, CAMERA__LOOK_DIRECTION);
 
+		cameraMatrixEClass = createEClass(CAMERA_MATRIX);
+		createEReference(cameraMatrixEClass, CAMERA_MATRIX__CAMERA);
+
+		cameraPositionEClass = createEClass(CAMERA_POSITION);
+		createEReference(cameraPositionEClass, CAMERA_POSITION__CAMERA);
+
+		cameraScreenWorldPositionEClass = createEClass(CAMERA_SCREEN_WORLD_POSITION);
+		createEReference(cameraScreenWorldPositionEClass, CAMERA_SCREEN_WORLD_POSITION__CAMERA);
+
+		cameraVariableEClass = createEClass(CAMERA_VARIABLE);
+		createEReference(cameraVariableEClass, CAMERA_VARIABLE__CAMERA);
+		createEAttribute(cameraVariableEClass, CAMERA_VARIABLE__FIELD);
+
 		// Create enums
 		ePhysicalEntityFeatureEEnum = createEEnum(EPHYSICAL_ENTITY_FEATURE);
+		eCameraFieldEEnum = createEEnum(ECAMERA_FIELD);
 	}
 
 	/**
@@ -1321,6 +1485,10 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		renderProxyConstantBufferEClass.getESuperTypes().add(theVulkanResourcePackage.getConstantBuffer());
 		physicalEntityVariableEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
 		cameraEClass.getESuperTypes().add(theResourcePackage.getIRootResource());
+		cameraMatrixEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
+		cameraPositionEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
+		cameraScreenWorldPositionEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
+		cameraVariableEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1424,9 +1592,28 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEReference(getCamera_Axis(), this.getAxis(), null, "axis", null, 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCamera_LookDirection(), theTypesPackage.getVector3d(), "lookDirection", "1;0;0", 0, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(cameraMatrixEClass, CameraMatrix.class, "CameraMatrix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCameraMatrix_Camera(), this.getCamera(), null, "camera", null, 1, 1, CameraMatrix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cameraPositionEClass, CameraPosition.class, "CameraPosition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCameraPosition_Camera(), this.getCamera(), null, "camera", null, 1, 1, CameraPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cameraScreenWorldPositionEClass, CameraScreenWorldPosition.class, "CameraScreenWorldPosition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCameraScreenWorldPosition_Camera(), this.getCamera(), null, "camera", null, 1, 1, CameraScreenWorldPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cameraVariableEClass, CameraVariable.class, "CameraVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCameraVariable_Camera(), this.getCamera(), null, "camera", null, 1, 1, CameraVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCameraVariable_Field(), this.getECameraField(), "field", null, 1, 1, CameraVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(ePhysicalEntityFeatureEEnum, EPhysicalEntityFeature.class, "EPhysicalEntityFeature");
 		addEEnumLiteral(ePhysicalEntityFeatureEEnum, EPhysicalEntityFeature.LOCATION);
+
+		initEEnum(eCameraFieldEEnum, ECameraField.class, "ECameraField");
+		addEEnumLiteral(eCameraFieldEEnum, ECameraField.ZNEAR);
+		addEEnumLiteral(eCameraFieldEEnum, ECameraField.ZFAR);
+		addEEnumLiteral(eCameraFieldEEnum, ECameraField.FIELD_OF_VIEW_X);
+		addEEnumLiteral(eCameraFieldEEnum, ECameraField.FIELD_OF_VIEW_Y);
 
 		// Create resource
 		createResource(eNS_URI);

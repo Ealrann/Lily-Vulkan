@@ -473,6 +473,106 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CameraMatrixItemProvider cameraMatrixItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCameraMatrixAdapter()
+	{
+		if (cameraMatrixItemProvider == null)
+		{
+			cameraMatrixItemProvider = new CameraMatrixItemProvider(this);
+		}
+
+		return cameraMatrixItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CameraPositionItemProvider cameraPositionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCameraPositionAdapter()
+	{
+		if (cameraPositionItemProvider == null)
+		{
+			cameraPositionItemProvider = new CameraPositionItemProvider(this);
+		}
+
+		return cameraPositionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CameraScreenWorldPositionItemProvider cameraScreenWorldPositionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCameraScreenWorldPositionAdapter()
+	{
+		if (cameraScreenWorldPositionItemProvider == null)
+		{
+			cameraScreenWorldPositionItemProvider = new CameraScreenWorldPositionItemProvider(this);
+		}
+
+		return cameraScreenWorldPositionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CameraVariableItemProvider cameraVariableItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCameraVariableAdapter()
+	{
+		if (cameraVariableItemProvider == null)
+		{
+			cameraVariableItemProvider = new CameraVariableItemProvider(this);
+		}
+
+		return cameraVariableItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -667,6 +767,26 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 					(createChildParameter
 						(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES,
 						 RenderingFactory.eINSTANCE.createPhysicalEntityVariable()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES,
+						 RenderingFactory.eINSTANCE.createCameraMatrix()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES,
+						 RenderingFactory.eINSTANCE.createCameraPosition()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES,
+						 RenderingFactory.eINSTANCE.createCameraScreenWorldPosition()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VariablePackage.Literals.MODEL_VARIABLE_PKG__VARIABLES,
+						 RenderingFactory.eINSTANCE.createCameraVariable()));
 
 				return null;
 			}

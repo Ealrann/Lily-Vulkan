@@ -10,11 +10,16 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
 import org.sheepy.lily.vulkan.extra.model.rendering.Camera;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition;
+import org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptor;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataDescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
+import org.sheepy.lily.vulkan.extra.model.rendering.ECameraField;
 import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
@@ -95,6 +100,10 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.ISPECIALIZATION: return createISpecialization();
 			case RenderingPackage.PHYSICAL_ENTITY_VARIABLE: return createPhysicalEntityVariable();
 			case RenderingPackage.CAMERA: return createCamera();
+			case RenderingPackage.CAMERA_MATRIX: return createCameraMatrix();
+			case RenderingPackage.CAMERA_POSITION: return createCameraPosition();
+			case RenderingPackage.CAMERA_SCREEN_WORLD_POSITION: return createCameraScreenWorldPosition();
+			case RenderingPackage.CAMERA_VARIABLE: return createCameraVariable();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -112,6 +121,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 		{
 			case RenderingPackage.EPHYSICAL_ENTITY_FEATURE:
 				return createEPhysicalEntityFeatureFromString(eDataType, initialValue);
+			case RenderingPackage.ECAMERA_FIELD:
+				return createECameraFieldFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -129,6 +140,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 		{
 			case RenderingPackage.EPHYSICAL_ENTITY_FEATURE:
 				return convertEPhysicalEntityFeatureToString(eDataType, instanceValue);
+			case RenderingPackage.ECAMERA_FIELD:
+				return convertECameraFieldToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -319,6 +332,54 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public CameraMatrix createCameraMatrix()
+	{
+		CameraMatrixImpl cameraMatrix = new CameraMatrixImpl();
+		return cameraMatrix;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CameraPosition createCameraPosition()
+	{
+		CameraPositionImpl cameraPosition = new CameraPositionImpl();
+		return cameraPosition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CameraScreenWorldPosition createCameraScreenWorldPosition()
+	{
+		CameraScreenWorldPositionImpl cameraScreenWorldPosition = new CameraScreenWorldPositionImpl();
+		return cameraScreenWorldPosition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CameraVariable createCameraVariable()
+	{
+		CameraVariableImpl cameraVariable = new CameraVariableImpl();
+		return cameraVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EPhysicalEntityFeature createEPhysicalEntityFeatureFromString(EDataType eDataType, String initialValue)
 	{
 		EPhysicalEntityFeature result = EPhysicalEntityFeature.get(initialValue);
@@ -332,6 +393,28 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	public String convertEPhysicalEntityFeatureToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ECameraField createECameraFieldFromString(EDataType eDataType, String initialValue)
+	{
+		ECameraField result = ECameraField.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertECameraFieldToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

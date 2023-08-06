@@ -1458,6 +1458,199 @@ public interface RenderingPackage extends EPackage
 	int CAMERA_OPERATION_COUNT = ResourcePackage.IROOT_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraMatrixImpl <em>Camera Matrix</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraMatrixImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraMatrix()
+	 * @generated
+	 */
+	int CAMERA_MATRIX = 22;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_MATRIX__NAME = VariablePackage.IMODEL_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Camera</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_MATRIX__CAMERA = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Camera Matrix</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_MATRIX_FEATURE_COUNT = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Camera Matrix</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_MATRIX_OPERATION_COUNT = VariablePackage.IMODEL_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraPositionImpl <em>Camera Position</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraPositionImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraPosition()
+	 * @generated
+	 */
+	int CAMERA_POSITION = 23;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_POSITION__NAME = VariablePackage.IMODEL_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Camera</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_POSITION__CAMERA = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Camera Position</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_POSITION_FEATURE_COUNT = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Camera Position</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_POSITION_OPERATION_COUNT = VariablePackage.IMODEL_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraScreenWorldPositionImpl <em>Camera Screen World Position</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraScreenWorldPositionImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraScreenWorldPosition()
+	 * @generated
+	 */
+	int CAMERA_SCREEN_WORLD_POSITION = 24;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_SCREEN_WORLD_POSITION__NAME = VariablePackage.IMODEL_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Camera</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_SCREEN_WORLD_POSITION__CAMERA = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Camera Screen World Position</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_SCREEN_WORLD_POSITION_FEATURE_COUNT = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Camera Screen World Position</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_SCREEN_WORLD_POSITION_OPERATION_COUNT = VariablePackage.IMODEL_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraVariableImpl <em>Camera Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraVariableImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraVariable()
+	 * @generated
+	 */
+	int CAMERA_VARIABLE = 25;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_VARIABLE__NAME = VariablePackage.IMODEL_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Camera</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_VARIABLE__CAMERA = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Field</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_VARIABLE__FIELD = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Camera Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_VARIABLE_FEATURE_COUNT = VariablePackage.IMODEL_VARIABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Camera Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_VARIABLE_OPERATION_COUNT = VariablePackage.IMODEL_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1465,7 +1658,18 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
 	 * @generated
 	 */
-	int EPHYSICAL_ENTITY_FEATURE = 22;
+	int EPHYSICAL_ENTITY_FEATURE = 26;
+
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.ECameraField <em>ECamera Field</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ECameraField
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getECameraField()
+	 * @generated
+	 */
+	int ECAMERA_FIELD = 27;
 
 
 	/**
@@ -2217,6 +2421,101 @@ public interface RenderingPackage extends EPackage
 	EAttribute getCamera_LookDirection();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix <em>Camera Matrix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Camera Matrix</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix
+	 * @generated
+	 */
+	EClass getCameraMatrix();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix#getCamera <em>Camera</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Camera</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraMatrix#getCamera()
+	 * @see #getCameraMatrix()
+	 * @generated
+	 */
+	EReference getCameraMatrix_Camera();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition <em>Camera Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Camera Position</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition
+	 * @generated
+	 */
+	EClass getCameraPosition();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition#getCamera <em>Camera</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Camera</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraPosition#getCamera()
+	 * @see #getCameraPosition()
+	 * @generated
+	 */
+	EReference getCameraPosition_Camera();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition <em>Camera Screen World Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Camera Screen World Position</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition
+	 * @generated
+	 */
+	EClass getCameraScreenWorldPosition();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition#getCamera <em>Camera</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Camera</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraScreenWorldPosition#getCamera()
+	 * @see #getCameraScreenWorldPosition()
+	 * @generated
+	 */
+	EReference getCameraScreenWorldPosition_Camera();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable <em>Camera Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Camera Variable</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable
+	 * @generated
+	 */
+	EClass getCameraVariable();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable#getCamera <em>Camera</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Camera</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable#getCamera()
+	 * @see #getCameraVariable()
+	 * @generated
+	 */
+	EReference getCameraVariable_Camera();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable#getField <em>Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Field</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.CameraVariable#getField()
+	 * @see #getCameraVariable()
+	 * @generated
+	 */
+	EAttribute getCameraVariable_Field();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2225,6 +2524,16 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getEPhysicalEntityFeature();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.rendering.ECameraField <em>ECamera Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>ECamera Field</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.ECameraField
+	 * @generated
+	 */
+	EEnum getECameraField();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2854,6 +3163,86 @@ public interface RenderingPackage extends EPackage
 		EAttribute CAMERA__LOOK_DIRECTION = eINSTANCE.getCamera_LookDirection();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraMatrixImpl <em>Camera Matrix</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraMatrixImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraMatrix()
+		 * @generated
+		 */
+		EClass CAMERA_MATRIX = eINSTANCE.getCameraMatrix();
+
+		/**
+		 * The meta object literal for the '<em><b>Camera</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAMERA_MATRIX__CAMERA = eINSTANCE.getCameraMatrix_Camera();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraPositionImpl <em>Camera Position</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraPositionImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraPosition()
+		 * @generated
+		 */
+		EClass CAMERA_POSITION = eINSTANCE.getCameraPosition();
+
+		/**
+		 * The meta object literal for the '<em><b>Camera</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAMERA_POSITION__CAMERA = eINSTANCE.getCameraPosition_Camera();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraScreenWorldPositionImpl <em>Camera Screen World Position</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraScreenWorldPositionImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraScreenWorldPosition()
+		 * @generated
+		 */
+		EClass CAMERA_SCREEN_WORLD_POSITION = eINSTANCE.getCameraScreenWorldPosition();
+
+		/**
+		 * The meta object literal for the '<em><b>Camera</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAMERA_SCREEN_WORLD_POSITION__CAMERA = eINSTANCE.getCameraScreenWorldPosition_Camera();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraVariableImpl <em>Camera Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraVariableImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraVariable()
+		 * @generated
+		 */
+		EClass CAMERA_VARIABLE = eINSTANCE.getCameraVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Camera</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAMERA_VARIABLE__CAMERA = eINSTANCE.getCameraVariable_Camera();
+
+		/**
+		 * The meta object literal for the '<em><b>Field</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMERA_VARIABLE__FIELD = eINSTANCE.getCameraVariable_Field();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2862,6 +3251,16 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EEnum EPHYSICAL_ENTITY_FEATURE = eINSTANCE.getEPhysicalEntityFeature();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.ECameraField <em>ECamera Field</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.ECameraField
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getECameraField()
+		 * @generated
+		 */
+		EEnum ECAMERA_FIELD = eINSTANCE.getECameraField();
 
 	}
 

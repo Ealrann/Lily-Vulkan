@@ -158,6 +158,42 @@ public interface RenderingFactory extends EFactory
 	Camera createCamera();
 
 	/**
+	 * Returns a new object of class '<em>Camera Matrix</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Camera Matrix</em>'.
+	 * @generated
+	 */
+	CameraMatrix createCameraMatrix();
+
+	/**
+	 * Returns a new object of class '<em>Camera Position</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Camera Position</em>'.
+	 * @generated
+	 */
+	CameraPosition createCameraPosition();
+
+	/**
+	 * Returns a new object of class '<em>Camera Screen World Position</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Camera Screen World Position</em>'.
+	 * @generated
+	 */
+	CameraScreenWorldPosition createCameraScreenWorldPosition();
+
+	/**
+	 * Returns a new object of class '<em>Camera Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Camera Variable</em>'.
+	 * @generated
+	 */
+	CameraVariable createCameraVariable();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

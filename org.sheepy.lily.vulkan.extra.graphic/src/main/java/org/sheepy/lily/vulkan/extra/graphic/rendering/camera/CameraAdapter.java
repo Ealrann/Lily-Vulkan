@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.extra.graphic.rendering.resource;
+package org.sheepy.lily.vulkan.extra.graphic.rendering.camera;
 
 import org.sheepy.lily.vulkan.extra.api.rendering.ICameraAdapter;
 import org.joml.Matrix4d;
