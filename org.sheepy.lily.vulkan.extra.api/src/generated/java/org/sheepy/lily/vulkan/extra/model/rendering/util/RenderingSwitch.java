@@ -24,8 +24,11 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
+import org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants;
+import org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
@@ -40,6 +43,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.IProcessExtension;
 import org.sheepy.lily.vulkan.model.process.TaskPipeline;
 import org.sheepy.lily.vulkan.model.process.VkPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -323,6 +327,31 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				T1 result = caseCameraVariable(cameraVariable);
 				if (result == null) result = caseIModelVariable(cameraVariable);
 				if (result == null) result = caseLNamedElement(cameraVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.MOUSE_PICK_CONSTANTS:
+			{
+				MousePickConstants mousePickConstants = (MousePickConstants)theEObject;
+				T1 result = caseMousePickConstants(mousePickConstants);
+				if (result == null) result = caseConstantBuffer(mousePickConstants);
+				if (result == null) result = caseIVulkanResource(mousePickConstants);
+				if (result == null) result = caseLNamedElement(mousePickConstants);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.MOUSE_PICK_EXTENSION:
+			{
+				MousePickExtension mousePickExtension = (MousePickExtension)theEObject;
+				T1 result = caseMousePickExtension(mousePickExtension);
+				if (result == null) result = caseIProcessExtension(mousePickExtension);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.IENTITY_SELECTION:
+			{
+				IEntitySelection iEntitySelection = (IEntitySelection)theEObject;
+				T1 result = caseIEntitySelection(iEntitySelection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -747,6 +776,54 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mouse Pick Constants</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mouse Pick Constants</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseMousePickConstants(MousePickConstants object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mouse Pick Extension</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mouse Pick Extension</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseMousePickExtension(MousePickExtension object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IEntity Selection</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IEntity Selection</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIEntitySelection(IEntitySelection object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -950,6 +1027,22 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIRootResource(IRootResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess Extension</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess Extension</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIProcessExtension(IProcessExtension object)
 	{
 		return null;
 	}

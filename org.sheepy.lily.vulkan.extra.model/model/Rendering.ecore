@@ -172,21 +172,22 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lookDirection" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3d"
         defaultValueLiteral="1;0;0"/>
-  </eClassifiers>  <eClassifiers xsi:type="ecore:EClass" name="CameraMatrix" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraMatrix" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="camera" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.extra.model/model/Rendering.ecore#//Camera"/>
+        eType="#//Camera"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CameraPosition" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="camera" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.extra.model/model/Rendering.ecore#//Camera"/>
+        eType="#//Camera"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CameraScreenWorldPosition" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="camera" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.extra.model/model/Rendering.ecore#//Camera"/>
+        eType="#//Camera"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CameraVariable" eSuperTypes="../../org.sheepy.lily.core.model/model/variable.ecore#//IModelVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="camera" lowerBound="1"
-        eType="ecore:EClass ../../org.sheepy.lily.vulkan.extra.model/model/Rendering.ecore#//Camera"/>
+        eType="#//Camera"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="field" lowerBound="1" eType="#//ECameraField"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ECameraField">
@@ -195,4 +196,24 @@
     <eLiterals name="FieldOfViewX" value="2"/>
     <eLiterals name="FieldOfViewY" value="3"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EMousePickMode">
+    <eLiterals name="Enabled"/>
+    <eLiterals name="Lock" value="1"/>
+    <eLiterals name="Disabled" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MousePickConstants" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//ConstantBuffer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mousePickExtension" lowerBound="1"
+        eType="#//MousePickExtension"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MousePickExtension" eSuperTypes="../../org.sheepy.lily.vulkan.model/model/process.ecore#//IProcessExtension">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mousePickBuffer" lowerBound="1"
+        eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//StaticBuffer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pickMode" lowerBound="1"
+        eType="#//EMousePickMode" defaultValueLiteral="Enabled"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selection" eType="#//IEntitySelection"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="focus" eType="#//IEntitySelection"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IEntitySelection" abstract="true" interface="true"/>
 </ecore:EPackage>

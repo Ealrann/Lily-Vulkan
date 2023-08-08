@@ -20,9 +20,12 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ECameraField;
+import org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode;
 import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
+import org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants;
+import org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
@@ -104,6 +107,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.CAMERA_POSITION: return createCameraPosition();
 			case RenderingPackage.CAMERA_SCREEN_WORLD_POSITION: return createCameraScreenWorldPosition();
 			case RenderingPackage.CAMERA_VARIABLE: return createCameraVariable();
+			case RenderingPackage.MOUSE_PICK_CONSTANTS: return createMousePickConstants();
+			case RenderingPackage.MOUSE_PICK_EXTENSION: return createMousePickExtension();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -123,6 +128,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 				return createEPhysicalEntityFeatureFromString(eDataType, initialValue);
 			case RenderingPackage.ECAMERA_FIELD:
 				return createECameraFieldFromString(eDataType, initialValue);
+			case RenderingPackage.EMOUSE_PICK_MODE:
+				return createEMousePickModeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -142,6 +149,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 				return convertEPhysicalEntityFeatureToString(eDataType, instanceValue);
 			case RenderingPackage.ECAMERA_FIELD:
 				return convertECameraFieldToString(eDataType, instanceValue);
+			case RenderingPackage.EMOUSE_PICK_MODE:
+				return convertEMousePickModeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -380,6 +389,30 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public MousePickConstants createMousePickConstants()
+	{
+		MousePickConstantsImpl mousePickConstants = new MousePickConstantsImpl();
+		return mousePickConstants;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MousePickExtension createMousePickExtension()
+	{
+		MousePickExtensionImpl mousePickExtension = new MousePickExtensionImpl();
+		return mousePickExtension;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EPhysicalEntityFeature createEPhysicalEntityFeatureFromString(EDataType eDataType, String initialValue)
 	{
 		EPhysicalEntityFeature result = EPhysicalEntityFeature.get(initialValue);
@@ -415,6 +448,28 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	public String convertECameraFieldToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EMousePickMode createEMousePickModeFromString(EDataType eDataType, String initialValue)
+	{
+		EMousePickMode result = EMousePickMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEMousePickModeToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

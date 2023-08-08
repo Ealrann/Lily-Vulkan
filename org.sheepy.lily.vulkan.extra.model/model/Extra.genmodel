@@ -60,6 +60,11 @@
       <genEnumLiterals ecoreEnumLiteral="Rendering.ecore#//ECameraField/FieldOfViewX"/>
       <genEnumLiterals ecoreEnumLiteral="Rendering.ecore#//ECameraField/FieldOfViewY"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rendering.ecore#//EMousePickMode">
+      <genEnumLiterals ecoreEnumLiteral="Rendering.ecore#//EMousePickMode/Enabled"/>
+      <genEnumLiterals ecoreEnumLiteral="Rendering.ecore#//EMousePickMode/Lock"/>
+      <genEnumLiterals ecoreEnumLiteral="Rendering.ecore#//EMousePickMode/Disabled"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="Rendering.ecore#//Entity"/>
     <genClasses ecoreClass="Rendering.ecore#//PhysicalEntity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/geoLocation"/>
@@ -168,6 +173,16 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//CameraVariable/camera"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//CameraVariable/field"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//MousePickConstants">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickConstants/mousePickExtension"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//MousePickExtension">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/mousePickBuffer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//MousePickExtension/pickMode"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/selection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/focus"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Rendering.ecore#//IEntitySelection"/>
   </genPackages>
   <genPackages prefix="Shape" basePackage="org.sheepy.lily.vulkan.extra.model" extensibleProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Shape.ecore#/">

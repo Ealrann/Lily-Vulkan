@@ -9,6 +9,7 @@ module org.sheepy.lily.vulkan.extra.graphic {
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering.buffer;
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering.camera;
 	opens org.sheepy.lily.vulkan.extra.graphic.rendering.resource;
+	opens org.sheepy.lily.vulkan.extra.graphic.rendering.mousepick;
 	opens org.sheepy.lily.vulkan.extra.graphic.sprite;
 
 	provides IAdapterProvider with Extenders;

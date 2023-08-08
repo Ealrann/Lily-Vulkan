@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.resource.ResourcePackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.core.model.variable.VariablePackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
@@ -1651,6 +1652,153 @@ public interface RenderingPackage extends EPackage
 	int CAMERA_VARIABLE_OPERATION_COUNT = VariablePackage.IMODEL_VARIABLE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickConstantsImpl <em>Mouse Pick Constants</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickConstantsImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getMousePickConstants()
+	 * @generated
+	 */
+	int MOUSE_PICK_CONSTANTS = 26;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_CONSTANTS__NAME = VulkanResourcePackage.CONSTANT_BUFFER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_CONSTANTS__DATA = VulkanResourcePackage.CONSTANT_BUFFER__DATA;
+
+	/**
+	 * The feature id for the '<em><b>Mouse Pick Extension</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_CONSTANTS__MOUSE_PICK_EXTENSION = VulkanResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Mouse Pick Constants</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_CONSTANTS_FEATURE_COUNT = VulkanResourcePackage.CONSTANT_BUFFER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Mouse Pick Constants</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_CONSTANTS_OPERATION_COUNT = VulkanResourcePackage.CONSTANT_BUFFER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl <em>Mouse Pick Extension</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getMousePickExtension()
+	 * @generated
+	 */
+	int MOUSE_PICK_EXTENSION = 27;
+
+	/**
+	 * The feature id for the '<em><b>Mouse Pick Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Pick Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_EXTENSION__PICK_MODE = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Selection</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_EXTENSION__SELECTION = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Focus</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_EXTENSION__FOCUS = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Mouse Pick Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_EXTENSION_FEATURE_COUNT = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Mouse Pick Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_EXTENSION_OPERATION_COUNT = ProcessPackage.IPROCESS_EXTENSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection <em>IEntity Selection</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIEntitySelection()
+	 * @generated
+	 */
+	int IENTITY_SELECTION = 28;
+
+	/**
+	 * The number of structural features of the '<em>IEntity Selection</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENTITY_SELECTION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IEntity Selection</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENTITY_SELECTION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1658,7 +1806,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
 	 * @generated
 	 */
-	int EPHYSICAL_ENTITY_FEATURE = 26;
+	int EPHYSICAL_ENTITY_FEATURE = 29;
 
 
 	/**
@@ -1669,7 +1817,18 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getECameraField()
 	 * @generated
 	 */
-	int ECAMERA_FIELD = 27;
+	int ECAMERA_FIELD = 30;
+
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode <em>EMouse Pick Mode</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEMousePickMode()
+	 * @generated
+	 */
+	int EMOUSE_PICK_MODE = 31;
 
 
 	/**
@@ -2516,6 +2675,91 @@ public interface RenderingPackage extends EPackage
 	EAttribute getCameraVariable_Field();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants <em>Mouse Pick Constants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mouse Pick Constants</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants
+	 * @generated
+	 */
+	EClass getMousePickConstants();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants#getMousePickExtension <em>Mouse Pick Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Mouse Pick Extension</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants#getMousePickExtension()
+	 * @see #getMousePickConstants()
+	 * @generated
+	 */
+	EReference getMousePickConstants_MousePickExtension();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension <em>Mouse Pick Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mouse Pick Extension</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension
+	 * @generated
+	 */
+	EClass getMousePickExtension();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getMousePickBuffer <em>Mouse Pick Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Mouse Pick Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getMousePickBuffer()
+	 * @see #getMousePickExtension()
+	 * @generated
+	 */
+	EReference getMousePickExtension_MousePickBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getPickMode <em>Pick Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Pick Mode</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getPickMode()
+	 * @see #getMousePickExtension()
+	 * @generated
+	 */
+	EAttribute getMousePickExtension_PickMode();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getSelection <em>Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Selection</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getSelection()
+	 * @see #getMousePickExtension()
+	 * @generated
+	 */
+	EReference getMousePickExtension_Selection();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getFocus <em>Focus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Focus</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getFocus()
+	 * @see #getMousePickExtension()
+	 * @generated
+	 */
+	EReference getMousePickExtension_Focus();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection <em>IEntity Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IEntity Selection</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection
+	 * @generated
+	 */
+	EClass getIEntitySelection();
+
+	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2534,6 +2778,16 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getECameraField();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode <em>EMouse Pick Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EMouse Pick Mode</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode
+	 * @generated
+	 */
+	EEnum getEMousePickMode();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3243,6 +3497,76 @@ public interface RenderingPackage extends EPackage
 		EAttribute CAMERA_VARIABLE__FIELD = eINSTANCE.getCameraVariable_Field();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickConstantsImpl <em>Mouse Pick Constants</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickConstantsImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getMousePickConstants()
+		 * @generated
+		 */
+		EClass MOUSE_PICK_CONSTANTS = eINSTANCE.getMousePickConstants();
+
+		/**
+		 * The meta object literal for the '<em><b>Mouse Pick Extension</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MOUSE_PICK_CONSTANTS__MOUSE_PICK_EXTENSION = eINSTANCE.getMousePickConstants_MousePickExtension();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl <em>Mouse Pick Extension</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getMousePickExtension()
+		 * @generated
+		 */
+		EClass MOUSE_PICK_EXTENSION = eINSTANCE.getMousePickExtension();
+
+		/**
+		 * The meta object literal for the '<em><b>Mouse Pick Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER = eINSTANCE.getMousePickExtension_MousePickBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Pick Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MOUSE_PICK_EXTENSION__PICK_MODE = eINSTANCE.getMousePickExtension_PickMode();
+
+		/**
+		 * The meta object literal for the '<em><b>Selection</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MOUSE_PICK_EXTENSION__SELECTION = eINSTANCE.getMousePickExtension_Selection();
+
+		/**
+		 * The meta object literal for the '<em><b>Focus</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MOUSE_PICK_EXTENSION__FOCUS = eINSTANCE.getMousePickExtension_Focus();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection <em>IEntity Selection</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIEntitySelection()
+		 * @generated
+		 */
+		EClass IENTITY_SELECTION = eINSTANCE.getIEntitySelection();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3261,6 +3585,16 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EEnum ECAMERA_FIELD = eINSTANCE.getECameraField();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode <em>EMouse Pick Mode</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEMousePickMode()
+		 * @generated
+		 */
+		EEnum EMOUSE_PICK_MODE = eINSTANCE.getEMousePickMode();
 
 	}
 

@@ -1,0 +1,69 @@
+#version 450 core
+
+layout (local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+
+#define ENABLED 0
+#define LOCK 1
+#define DISABLED 2 
+
+struct PickingInfo {
+    uint pipeline;
+    uint triangle;
+    uint instance;
+    uint drawcall;
+    uint layer;
+};
+
+layout (push_constant) uniform PushConstants
+{
+	int mode;
+
+} pushConstants;
+
+layout(set = 0, binding = 0) buffer MousePicking {
+    PickingInfo layer[5];
+} mousePicking;
+
+
+void main()
+{
+  bool found = false;
+  for(int i = 4; i > 1; i--)
+  {
+    if(mousePicking.layer[i].pipeline != -1 && found == false)
+    {
+      mousePicking.layer[0].pipeline = mousePicking.layer[i].pipeline;
+      mousePicking.layer[0].triangle = mousePicking.layer[i].triangle;
+      mousePicking.layer[0].instance = mousePicking.layer[i].instance;
+      mousePicking.layer[0].drawcall = mousePicking.layer[i].drawcall;
+      mousePicking.layer[0].layer = i;
+      
+      found = true;
+    }
+
+    mousePicking.layer[i].pipeline = -1;
+  }
+  if(found == false)
+  {
+    mousePicking.layer[0].pipeline = -1;
+  }
+
+  if (pushConstants.mode == DISABLED)
+  {
+	// Disable
+    mousePicking.layer[1].pipeline = 0;
+    mousePicking.layer[1].triangle = 0;
+    mousePicking.layer[1].instance = 0;
+    mousePicking.layer[1].drawcall = 0;
+    mousePicking.layer[1].layer = 0;
+  }
+  else if (pushConstants.mode == ENABLED)
+  {
+	// Make pick visible to other shaders
+	mousePicking.layer[1].pipeline = mousePicking.layer[0].pipeline;
+	mousePicking.layer[1].triangle = mousePicking.layer[0].triangle;
+	mousePicking.layer[1].instance = mousePicking.layer[0].instance;
+	mousePicking.layer[1].drawcall = mousePicking.layer[0].drawcall;
+	mousePicking.layer[1].layer = mousePicking.layer[0].layer;
+  }
+}

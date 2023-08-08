@@ -194,6 +194,24 @@ public interface RenderingFactory extends EFactory
 	CameraVariable createCameraVariable();
 
 	/**
+	 * Returns a new object of class '<em>Mouse Pick Constants</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mouse Pick Constants</em>'.
+	 * @generated
+	 */
+	MousePickConstants createMousePickConstants();
+
+	/**
+	 * Returns a new object of class '<em>Mouse Pick Extension</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mouse Pick Extension</em>'.
+	 * @generated
+	 */
+	MousePickExtension createMousePickExtension();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

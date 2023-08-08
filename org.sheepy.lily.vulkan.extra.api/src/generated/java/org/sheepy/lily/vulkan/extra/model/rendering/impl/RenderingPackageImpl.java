@@ -36,12 +36,16 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DataProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ECameraField;
+import org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode;
 import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
+import org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants;
+import org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
@@ -263,6 +267,27 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass mousePickConstantsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mousePickExtensionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iEntitySelectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum ePhysicalEntityFeatureEEnum = null;
 
 	/**
@@ -271,6 +296,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EEnum eCameraFieldEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eMousePickModeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1249,6 +1281,94 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getMousePickConstants()
+	{
+		return mousePickConstantsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMousePickConstants_MousePickExtension()
+	{
+		return (EReference)mousePickConstantsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMousePickExtension()
+	{
+		return mousePickExtensionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMousePickExtension_MousePickBuffer()
+	{
+		return (EReference)mousePickExtensionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMousePickExtension_PickMode()
+	{
+		return (EAttribute)mousePickExtensionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMousePickExtension_Selection()
+	{
+		return (EReference)mousePickExtensionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMousePickExtension_Focus()
+	{
+		return (EReference)mousePickExtensionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIEntitySelection()
+	{
+		return iEntitySelectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEPhysicalEntityFeature()
 	{
 		return ePhysicalEntityFeatureEEnum;
@@ -1263,6 +1383,17 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	public EEnum getECameraField()
 	{
 		return eCameraFieldEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getEMousePickMode()
+	{
+		return eMousePickModeEEnum;
 	}
 
 	/**
@@ -1401,9 +1532,21 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEReference(cameraVariableEClass, CAMERA_VARIABLE__CAMERA);
 		createEAttribute(cameraVariableEClass, CAMERA_VARIABLE__FIELD);
 
+		mousePickConstantsEClass = createEClass(MOUSE_PICK_CONSTANTS);
+		createEReference(mousePickConstantsEClass, MOUSE_PICK_CONSTANTS__MOUSE_PICK_EXTENSION);
+
+		mousePickExtensionEClass = createEClass(MOUSE_PICK_EXTENSION);
+		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER);
+		createEAttribute(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__PICK_MODE);
+		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__SELECTION);
+		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__FOCUS);
+
+		iEntitySelectionEClass = createEClass(IENTITY_SELECTION);
+
 		// Create enums
 		ePhysicalEntityFeatureEEnum = createEEnum(EPHYSICAL_ENTITY_FEATURE);
 		eCameraFieldEEnum = createEEnum(ECAMERA_FIELD);
+		eMousePickModeEEnum = createEEnum(EMOUSE_PICK_MODE);
 	}
 
 	/**
@@ -1489,6 +1632,8 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		cameraPositionEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
 		cameraScreenWorldPositionEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
 		cameraVariableEClass.getESuperTypes().add(theVariablePackage.getIModelVariable());
+		mousePickConstantsEClass.getESuperTypes().add(theVulkanResourcePackage.getConstantBuffer());
+		mousePickExtensionEClass.getESuperTypes().add(theProcessPackage.getIProcessExtension());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1605,6 +1750,17 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEReference(getCameraVariable_Camera(), this.getCamera(), null, "camera", null, 1, 1, CameraVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCameraVariable_Field(), this.getECameraField(), "field", null, 1, 1, CameraVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(mousePickConstantsEClass, MousePickConstants.class, "MousePickConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMousePickConstants_MousePickExtension(), this.getMousePickExtension(), null, "mousePickExtension", null, 1, 1, MousePickConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mousePickExtensionEClass, MousePickExtension.class, "MousePickExtension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMousePickExtension_MousePickBuffer(), theVulkanResourcePackage.getStaticBuffer(), null, "mousePickBuffer", null, 1, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMousePickExtension_PickMode(), this.getEMousePickMode(), "pickMode", "Enabled", 1, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMousePickExtension_Selection(), this.getIEntitySelection(), null, "selection", null, 0, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMousePickExtension_Focus(), this.getIEntitySelection(), null, "focus", null, 0, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iEntitySelectionEClass, IEntitySelection.class, "IEntitySelection", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		// Initialize enums and add enum literals
 		initEEnum(ePhysicalEntityFeatureEEnum, EPhysicalEntityFeature.class, "EPhysicalEntityFeature");
 		addEEnumLiteral(ePhysicalEntityFeatureEEnum, EPhysicalEntityFeature.LOCATION);
@@ -1614,6 +1770,11 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		addEEnumLiteral(eCameraFieldEEnum, ECameraField.ZFAR);
 		addEEnumLiteral(eCameraFieldEEnum, ECameraField.FIELD_OF_VIEW_X);
 		addEEnumLiteral(eCameraFieldEEnum, ECameraField.FIELD_OF_VIEW_Y);
+
+		initEEnum(eMousePickModeEEnum, EMousePickMode.class, "EMousePickMode");
+		addEEnumLiteral(eMousePickModeEEnum, EMousePickMode.ENABLED);
+		addEEnumLiteral(eMousePickModeEEnum, EMousePickMode.LOCK);
+		addEEnumLiteral(eMousePickModeEEnum, EMousePickMode.DISABLED);
 
 		// Create resource
 		createResource(eNS_URI);
