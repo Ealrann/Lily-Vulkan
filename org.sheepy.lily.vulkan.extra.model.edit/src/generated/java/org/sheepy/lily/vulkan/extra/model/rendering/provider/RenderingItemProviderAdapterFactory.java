@@ -626,6 +626,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SelectionProxyItemProvider selectionProxyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSelectionProxyAdapter()
+	{
+		if (selectionProxyItemProvider == null)
+		{
+			selectionProxyItemProvider = new SelectionProxyItemProvider(this);
+		}
+
+		return selectionProxyItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

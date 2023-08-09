@@ -178,11 +178,14 @@
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//MousePickExtension">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/mousePickBuffer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//MousePickExtension/pickMode"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/selection"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/focus"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/selectionProxy"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Rendering.ecore#//IEntitySelection"/>
+    <genClasses ecoreClass="Rendering.ecore#//SelectionProxy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//SelectionProxy/pickMode"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//SelectionProxy/selection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//SelectionProxy/focus"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Shape" basePackage="org.sheepy.lily.vulkan.extra.model" extensibleProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Shape.ecore#/">

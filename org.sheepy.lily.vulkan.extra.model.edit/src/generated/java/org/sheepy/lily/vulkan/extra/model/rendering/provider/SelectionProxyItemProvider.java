@@ -9,6 +9,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -17,16 +18,20 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MousePickExtensionItemProvider
+public class SelectionProxyItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -41,7 +46,7 @@ public class MousePickExtensionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MousePickExtensionItemProvider(AdapterFactory adapterFactory)
+	public SelectionProxyItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -59,60 +64,70 @@ public class MousePickExtensionItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addMousePickBufferPropertyDescriptor(object);
-			addSelectionProxyPropertyDescriptor(object);
+			addPickModePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Mouse Pick Buffer feature.
+	 * This adds a property descriptor for the Pick Mode feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMousePickBufferPropertyDescriptor(Object object)
+	protected void addPickModePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MousePickExtension_mousePickBuffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MousePickExtension_mousePickBuffer_feature", "_UI_MousePickExtension_type"),
-				 RenderingPackage.Literals.MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER,
+				 getString("_UI_SelectionProxy_pickMode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SelectionProxy_pickMode_feature", "_UI_SelectionProxy_type"),
+				 RenderingPackage.Literals.SELECTION_PROXY__PICK_MODE,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Selection Proxy feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSelectionProxyPropertyDescriptor(Object object)
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MousePickExtension_selectionProxy_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MousePickExtension_selectionProxy_feature", "_UI_MousePickExtension_type"),
-				 RenderingPackage.Literals.MOUSE_PICK_EXTENSION__SELECTION_PROXY,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		if (childrenFeatures == null)
+		{
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(RenderingPackage.Literals.SELECTION_PROXY__SELECTION);
+			childrenFeatures.add(RenderingPackage.Literals.SELECTION_PROXY__FOCUS);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This returns MousePickExtension.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns SelectionProxy.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -120,7 +135,7 @@ public class MousePickExtensionItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MousePickExtension"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SelectionProxy"));
 	}
 
 	/**
@@ -132,7 +147,11 @@ public class MousePickExtensionItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_MousePickExtension_type");
+		EMousePickMode labelValue = ((SelectionProxy)object).getPickMode();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SelectionProxy_type") :
+			getString("_UI_SelectionProxy_type") + " " + label;
 	}
 
 
@@ -147,6 +166,17 @@ public class MousePickExtensionItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(SelectionProxy.class))
+		{
+			case RenderingPackage.SELECTION_PROXY__PICK_MODE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case RenderingPackage.SELECTION_PROXY__SELECTION:
+			case RenderingPackage.SELECTION_PROXY__FOCUS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

@@ -3,16 +3,14 @@
 package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sheepy.lily.core.api.model.LilyEObject;
-import org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode;
-import org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection;
 import org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticBuffer;
 
 /**
@@ -24,9 +22,7 @@ import org.sheepy.lily.vulkan.model.vulkanresource.StaticBuffer;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getMousePickBuffer <em>Mouse Pick Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getPickMode <em>Pick Mode</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getSelection <em>Selection</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getFocus <em>Focus</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getSelectionProxy <em>Selection Proxy</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,42 +40,14 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 	protected StaticBuffer mousePickBuffer;
 
 	/**
-	 * The default value of the '{@link #getPickMode() <em>Pick Mode</em>}' attribute.
+	 * The cached value of the '{@link #getSelectionProxy() <em>Selection Proxy</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPickMode()
+	 * @see #getSelectionProxy()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EMousePickMode PICK_MODE_EDEFAULT = EMousePickMode.ENABLED;
-	/**
-	 * The cached value of the '{@link #getPickMode() <em>Pick Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPickMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected EMousePickMode pickMode = PICK_MODE_EDEFAULT;
-	/**
-	 * The cached value of the '{@link #getSelection() <em>Selection</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSelection()
-	 * @generated
-	 * @ordered
-	 */
-	protected IEntitySelection selection;
-
-	/**
-	 * The cached value of the '{@link #getFocus() <em>Focus</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFocus()
-	 * @generated
-	 * @ordered
-	 */
-	protected IEntitySelection focus;
+	protected SelectionProxy selectionProxy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,9 +121,29 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 	 * @generated
 	 */
 	@Override
-	public EMousePickMode getPickMode()
+	public SelectionProxy getSelectionProxy()
 	{
-		return pickMode;
+		if (selectionProxy != null && ((EObject)selectionProxy).eIsProxy())
+		{
+			InternalEObject oldSelectionProxy = selectionProxy;
+			selectionProxy = (SelectionProxy)eResolveProxy(oldSelectionProxy);
+			if (selectionProxy != oldSelectionProxy)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY, oldSelectionProxy, selectionProxy));
+			}
+		}
+		return selectionProxy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SelectionProxy basicGetSelectionProxy()
+	{
+		return selectionProxy;
 	}
 
 	/**
@@ -164,130 +152,12 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 	 * @generated
 	 */
 	@Override
-	public void setPickMode(EMousePickMode newPickMode)
+	public void setSelectionProxy(SelectionProxy newSelectionProxy)
 	{
-		EMousePickMode oldPickMode = pickMode;
-		pickMode = newPickMode == null ? PICK_MODE_EDEFAULT : newPickMode;
+		SelectionProxy oldSelectionProxy = selectionProxy;
+		selectionProxy = newSelectionProxy;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.MOUSE_PICK_EXTENSION__PICK_MODE, oldPickMode, pickMode));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IEntitySelection getSelection()
-	{
-		return selection;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSelection(IEntitySelection newSelection, NotificationChain msgs)
-	{
-		IEntitySelection oldSelection = selection;
-		selection = newSelection;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION, oldSelection, newSelection);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSelection(IEntitySelection newSelection)
-	{
-		if (newSelection != selection)
-		{
-			NotificationChain msgs = null;
-			if (selection != null)
-				msgs = ((InternalEObject)selection).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION, null, msgs);
-			if (newSelection != null)
-				msgs = ((InternalEObject)newSelection).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION, null, msgs);
-			msgs = basicSetSelection(newSelection, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION, newSelection, newSelection));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IEntitySelection getFocus()
-	{
-		return focus;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetFocus(IEntitySelection newFocus, NotificationChain msgs)
-	{
-		IEntitySelection oldFocus = focus;
-		focus = newFocus;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS, oldFocus, newFocus);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setFocus(IEntitySelection newFocus)
-	{
-		if (newFocus != focus)
-		{
-			NotificationChain msgs = null;
-			if (focus != null)
-				msgs = ((InternalEObject)focus).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS, null, msgs);
-			if (newFocus != null)
-				msgs = ((InternalEObject)newFocus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS, null, msgs);
-			msgs = basicSetFocus(newFocus, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS, newFocus, newFocus));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION:
-				return basicSetSelection(null, msgs);
-			case RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS:
-				return basicSetFocus(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY, oldSelectionProxy, selectionProxy));
 	}
 
 	/**
@@ -303,12 +173,9 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 			case RenderingPackage.MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER:
 				if (resolve) return getMousePickBuffer();
 				return basicGetMousePickBuffer();
-			case RenderingPackage.MOUSE_PICK_EXTENSION__PICK_MODE:
-				return getPickMode();
-			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION:
-				return getSelection();
-			case RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS:
-				return getFocus();
+			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY:
+				if (resolve) return getSelectionProxy();
+				return basicGetSelectionProxy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -326,14 +193,8 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 			case RenderingPackage.MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER:
 				setMousePickBuffer((StaticBuffer)newValue);
 				return;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__PICK_MODE:
-				setPickMode((EMousePickMode)newValue);
-				return;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION:
-				setSelection((IEntitySelection)newValue);
-				return;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS:
-				setFocus((IEntitySelection)newValue);
+			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY:
+				setSelectionProxy((SelectionProxy)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -352,14 +213,8 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 			case RenderingPackage.MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER:
 				setMousePickBuffer((StaticBuffer)null);
 				return;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__PICK_MODE:
-				setPickMode(PICK_MODE_EDEFAULT);
-				return;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION:
-				setSelection((IEntitySelection)null);
-				return;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS:
-				setFocus((IEntitySelection)null);
+			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY:
+				setSelectionProxy((SelectionProxy)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -377,31 +232,10 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 		{
 			case RenderingPackage.MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER:
 				return mousePickBuffer != null;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__PICK_MODE:
-				return pickMode != PICK_MODE_EDEFAULT;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION:
-				return selection != null;
-			case RenderingPackage.MOUSE_PICK_EXTENSION__FOCUS:
-				return focus != null;
+			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY:
+				return selectionProxy != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (pickMode: ");
-		result.append(pickMode);
-		result.append(')');
-		return result.toString();
 	}
 
 } //MousePickExtensionImpl

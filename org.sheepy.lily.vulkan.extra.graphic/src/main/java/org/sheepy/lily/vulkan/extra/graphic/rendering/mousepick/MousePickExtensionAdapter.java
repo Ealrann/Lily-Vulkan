@@ -39,7 +39,7 @@ public final class MousePickExtensionAdapter implements IAdapter
 	@Tick
 	private void updatePick()
 	{
-		if (pickExtension.getPickMode() == EMousePickMode.DISABLED) return;
+		if (pickExtension.getSelectionProxy().getPickMode() == EMousePickMode.DISABLED) return;
 
 		final var fetchAdapter = buffer.adapt(IMousePickDataConsumer.class);
 		final int pipeline = fetchAdapter.getPipeline();
@@ -90,10 +90,10 @@ public final class MousePickExtensionAdapter implements IAdapter
 	private void setSelection(final PresentableEntity newPickedEntity, final IEntitySelection newSelection)
 	{
 		pickedEntity = newPickedEntity;
-		pickExtension.setFocus(newSelection);
-		if (pickExtension.getPickMode() != EMousePickMode.LOCK)
+		pickExtension.getSelectionProxy().setFocus(newSelection);
+		if (pickExtension.getSelectionProxy().getPickMode() != EMousePickMode.LOCK)
 		{
-			pickExtension.setSelection(EcoreUtil.copy(newSelection));
+			pickExtension.getSelectionProxy().setSelection(EcoreUtil.copy(newSelection));
 		}
 	}
 }

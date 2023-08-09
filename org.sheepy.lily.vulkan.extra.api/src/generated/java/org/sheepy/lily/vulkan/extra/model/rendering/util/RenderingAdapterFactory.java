@@ -40,6 +40,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
@@ -258,6 +259,11 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIEntitySelection(IEntitySelection object)
 			{
 				return createIEntitySelectionAdapter();
+			}
+			@Override
+			public Adapter caseSelectionProxy(SelectionProxy object)
+			{
+				return createSelectionProxyAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -782,6 +788,21 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIEntitySelectionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy <em>Selection Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy
+	 * @generated
+	 */
+	public Adapter createSelectionProxyAdapter()
 	{
 		return null;
 	}

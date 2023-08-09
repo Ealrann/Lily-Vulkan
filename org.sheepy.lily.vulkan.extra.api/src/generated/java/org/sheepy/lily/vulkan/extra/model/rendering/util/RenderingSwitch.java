@@ -39,6 +39,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
@@ -352,6 +353,13 @@ public class RenderingSwitch<T1> extends Switch<T1>
 			{
 				IEntitySelection iEntitySelection = (IEntitySelection)theEObject;
 				T1 result = caseIEntitySelection(iEntitySelection);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.SELECTION_PROXY:
+			{
+				SelectionProxy selectionProxy = (SelectionProxy)theEObject;
+				T1 result = caseSelectionProxy(selectionProxy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -819,6 +827,22 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIEntitySelection(IEntitySelection object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Selection Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Selection Proxy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSelectionProxy(SelectionProxy object)
 	{
 		return null;
 	}

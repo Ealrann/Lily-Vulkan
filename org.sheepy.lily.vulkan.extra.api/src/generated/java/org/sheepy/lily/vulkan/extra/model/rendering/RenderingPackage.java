@@ -1726,31 +1726,13 @@ public interface RenderingPackage extends EPackage
 	int MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Pick Mode</b></em>' attribute.
+	 * The feature id for the '<em><b>Selection Proxy</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MOUSE_PICK_EXTENSION__PICK_MODE = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Selection</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MOUSE_PICK_EXTENSION__SELECTION = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Focus</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MOUSE_PICK_EXTENSION__FOCUS = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 3;
+	int MOUSE_PICK_EXTENSION__SELECTION_PROXY = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Mouse Pick Extension</em>' class.
@@ -1759,7 +1741,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MOUSE_PICK_EXTENSION_FEATURE_COUNT = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 4;
+	int MOUSE_PICK_EXTENSION_FEATURE_COUNT = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Mouse Pick Extension</em>' class.
@@ -1799,6 +1781,61 @@ public interface RenderingPackage extends EPackage
 	int IENTITY_SELECTION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.SelectionProxyImpl <em>Selection Proxy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.SelectionProxyImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getSelectionProxy()
+	 * @generated
+	 */
+	int SELECTION_PROXY = 29;
+
+	/**
+	 * The feature id for the '<em><b>Pick Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROXY__PICK_MODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Selection</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROXY__SELECTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Focus</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROXY__FOCUS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Selection Proxy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROXY_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Selection Proxy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROXY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1806,7 +1843,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
 	 * @generated
 	 */
-	int EPHYSICAL_ENTITY_FEATURE = 29;
+	int EPHYSICAL_ENTITY_FEATURE = 30;
 
 
 	/**
@@ -1817,7 +1854,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getECameraField()
 	 * @generated
 	 */
-	int ECAMERA_FIELD = 30;
+	int ECAMERA_FIELD = 31;
 
 
 	/**
@@ -1828,7 +1865,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEMousePickMode()
 	 * @generated
 	 */
-	int EMOUSE_PICK_MODE = 31;
+	int EMOUSE_PICK_MODE = 32;
 
 
 	/**
@@ -2717,37 +2754,15 @@ public interface RenderingPackage extends EPackage
 	EReference getMousePickExtension_MousePickBuffer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getPickMode <em>Pick Mode</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getSelectionProxy <em>Selection Proxy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Pick Mode</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getPickMode()
+	 * @return the meta object for the reference '<em>Selection Proxy</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getSelectionProxy()
 	 * @see #getMousePickExtension()
 	 * @generated
 	 */
-	EAttribute getMousePickExtension_PickMode();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getSelection <em>Selection</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Selection</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getSelection()
-	 * @see #getMousePickExtension()
-	 * @generated
-	 */
-	EReference getMousePickExtension_Selection();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getFocus <em>Focus</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Focus</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getFocus()
-	 * @see #getMousePickExtension()
-	 * @generated
-	 */
-	EReference getMousePickExtension_Focus();
+	EReference getMousePickExtension_SelectionProxy();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection <em>IEntity Selection</em>}'.
@@ -2758,6 +2773,49 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 */
 	EClass getIEntitySelection();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy <em>Selection Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Selection Proxy</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy
+	 * @generated
+	 */
+	EClass getSelectionProxy();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy#getPickMode <em>Pick Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Pick Mode</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy#getPickMode()
+	 * @see #getSelectionProxy()
+	 * @generated
+	 */
+	EAttribute getSelectionProxy_PickMode();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy#getSelection <em>Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Selection</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy#getSelection()
+	 * @see #getSelectionProxy()
+	 * @generated
+	 */
+	EReference getSelectionProxy_Selection();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy#getFocus <em>Focus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Focus</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy#getFocus()
+	 * @see #getSelectionProxy()
+	 * @generated
+	 */
+	EReference getSelectionProxy_Focus();
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}'.
@@ -3533,28 +3591,12 @@ public interface RenderingPackage extends EPackage
 		EReference MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER = eINSTANCE.getMousePickExtension_MousePickBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Pick Mode</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Selection Proxy</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MOUSE_PICK_EXTENSION__PICK_MODE = eINSTANCE.getMousePickExtension_PickMode();
-
-		/**
-		 * The meta object literal for the '<em><b>Selection</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MOUSE_PICK_EXTENSION__SELECTION = eINSTANCE.getMousePickExtension_Selection();
-
-		/**
-		 * The meta object literal for the '<em><b>Focus</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MOUSE_PICK_EXTENSION__FOCUS = eINSTANCE.getMousePickExtension_Focus();
+		EReference MOUSE_PICK_EXTENSION__SELECTION_PROXY = eINSTANCE.getMousePickExtension_SelectionProxy();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection <em>IEntity Selection</em>}' class.
@@ -3565,6 +3607,40 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EClass IENTITY_SELECTION = eINSTANCE.getIEntitySelection();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.SelectionProxyImpl <em>Selection Proxy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.SelectionProxyImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getSelectionProxy()
+		 * @generated
+		 */
+		EClass SELECTION_PROXY = eINSTANCE.getSelectionProxy();
+
+		/**
+		 * The meta object literal for the '<em><b>Pick Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTION_PROXY__PICK_MODE = eINSTANCE.getSelectionProxy_PickMode();
+
+		/**
+		 * The meta object literal for the '<em><b>Selection</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SELECTION_PROXY__SELECTION = eINSTANCE.getSelectionProxy_Selection();
+
+		/**
+		 * The meta object literal for the '<em><b>Focus</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SELECTION_PROXY__FOCUS = eINSTANCE.getSelectionProxy_Focus();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature <em>EPhysical Entity Feature</em>}' enum.

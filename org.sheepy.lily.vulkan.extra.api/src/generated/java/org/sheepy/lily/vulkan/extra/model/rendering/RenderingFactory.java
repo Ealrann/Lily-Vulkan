@@ -212,6 +212,15 @@ public interface RenderingFactory extends EFactory
 	MousePickExtension createMousePickExtension();
 
 	/**
+	 * Returns a new object of class '<em>Selection Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Selection Proxy</em>'.
+	 * @generated
+	 */
+	SelectionProxy createSelectionProxy();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

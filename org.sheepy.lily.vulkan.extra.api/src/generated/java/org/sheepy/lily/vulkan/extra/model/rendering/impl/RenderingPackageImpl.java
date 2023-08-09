@@ -57,6 +57,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
 import org.sheepy.lily.vulkan.extra.model.shape.impl.ShapePackageImpl;
@@ -282,6 +283,13 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	private EClass iEntitySelectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass selectionProxyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1325,31 +1333,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getMousePickExtension_PickMode()
+	public EReference getMousePickExtension_SelectionProxy()
 	{
-		return (EAttribute)mousePickExtensionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMousePickExtension_Selection()
-	{
-		return (EReference)mousePickExtensionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMousePickExtension_Focus()
-	{
-		return (EReference)mousePickExtensionEClass.getEStructuralFeatures().get(3);
+		return (EReference)mousePickExtensionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1361,6 +1347,50 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	public EClass getIEntitySelection()
 	{
 		return iEntitySelectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSelectionProxy()
+	{
+		return selectionProxyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSelectionProxy_PickMode()
+	{
+		return (EAttribute)selectionProxyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSelectionProxy_Selection()
+	{
+		return (EReference)selectionProxyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSelectionProxy_Focus()
+	{
+		return (EReference)selectionProxyEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1537,11 +1567,14 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 
 		mousePickExtensionEClass = createEClass(MOUSE_PICK_EXTENSION);
 		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER);
-		createEAttribute(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__PICK_MODE);
-		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__SELECTION);
-		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__FOCUS);
+		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__SELECTION_PROXY);
 
 		iEntitySelectionEClass = createEClass(IENTITY_SELECTION);
+
+		selectionProxyEClass = createEClass(SELECTION_PROXY);
+		createEAttribute(selectionProxyEClass, SELECTION_PROXY__PICK_MODE);
+		createEReference(selectionProxyEClass, SELECTION_PROXY__SELECTION);
+		createEReference(selectionProxyEClass, SELECTION_PROXY__FOCUS);
 
 		// Create enums
 		ePhysicalEntityFeatureEEnum = createEEnum(EPHYSICAL_ENTITY_FEATURE);
@@ -1755,11 +1788,14 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 
 		initEClass(mousePickExtensionEClass, MousePickExtension.class, "MousePickExtension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMousePickExtension_MousePickBuffer(), theVulkanResourcePackage.getStaticBuffer(), null, "mousePickBuffer", null, 1, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMousePickExtension_PickMode(), this.getEMousePickMode(), "pickMode", "Enabled", 1, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMousePickExtension_Selection(), this.getIEntitySelection(), null, "selection", null, 0, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMousePickExtension_Focus(), this.getIEntitySelection(), null, "focus", null, 0, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMousePickExtension_SelectionProxy(), this.getSelectionProxy(), null, "selectionProxy", null, 0, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iEntitySelectionEClass, IEntitySelection.class, "IEntitySelection", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(selectionProxyEClass, SelectionProxy.class, "SelectionProxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSelectionProxy_PickMode(), this.getEMousePickMode(), "pickMode", "Enabled", 1, 1, SelectionProxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSelectionProxy_Selection(), this.getIEntitySelection(), null, "selection", null, 0, 1, SelectionProxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSelectionProxy_Focus(), this.getIEntitySelection(), null, "focus", null, 0, 1, SelectionProxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(ePhysicalEntityFeatureEEnum, EPhysicalEntityFeature.class, "EPhysicalEntityFeature");

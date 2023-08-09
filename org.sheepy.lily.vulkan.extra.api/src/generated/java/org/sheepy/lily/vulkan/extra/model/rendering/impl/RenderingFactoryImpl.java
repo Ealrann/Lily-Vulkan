@@ -34,6 +34,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
 /**
@@ -109,6 +110,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.CAMERA_VARIABLE: return createCameraVariable();
 			case RenderingPackage.MOUSE_PICK_CONSTANTS: return createMousePickConstants();
 			case RenderingPackage.MOUSE_PICK_EXTENSION: return createMousePickExtension();
+			case RenderingPackage.SELECTION_PROXY: return createSelectionProxy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -406,6 +408,18 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		MousePickExtensionImpl mousePickExtension = new MousePickExtensionImpl();
 		return mousePickExtension;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SelectionProxy createSelectionProxy()
+	{
+		SelectionProxyImpl selectionProxy = new SelectionProxyImpl();
+		return selectionProxy;
 	}
 
 	/**

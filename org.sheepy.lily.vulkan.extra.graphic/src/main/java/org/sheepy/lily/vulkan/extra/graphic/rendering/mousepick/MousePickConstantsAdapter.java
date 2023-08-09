@@ -9,10 +9,7 @@ import org.sheepy.lily.core.api.adapter.Dispose;
 import org.sheepy.lily.core.api.adapter.Load;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.cadence.Tick;
-import org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode;
-import org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants;
-import org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.*;
 
 import java.nio.ByteBuffer;
 import java.util.function.Consumer;
@@ -25,8 +22,8 @@ public class MousePickConstantsAdapter implements IAdapter
 	private static final int BYTES = 4;
 
 	private final MousePickConstants constants;
-	private final Consumer<Notification> pickModeListener = this::playerNotification;
-	private final MousePickExtension mousePickExtension;
+	private final Consumer<Notification> selectionListener = this::playerNotification;
+	private final SelectionProxy selectionProxy;
 
 	private ByteBuffer stagingBuffer;
 	private boolean forceUpdate = false;
@@ -35,25 +32,26 @@ public class MousePickConstantsAdapter implements IAdapter
 	public MousePickConstantsAdapter(final MousePickConstants constants)
 	{
 		this.constants = constants;
-		mousePickExtension = constants.getMousePickExtension();
+		selectionProxy = constants.getMousePickExtension()
+								  .getSelectionProxy();
 	}
 
 	@Load
 	public void load()
 	{
-		mousePickExtension.listen(pickModeListener,
-								  RenderingPackage.MOUSE_PICK_EXTENSION__PICK_MODE,
-								  RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION);
+		selectionProxy.listen(selectionListener,
+							  RenderingPackage.SELECTION_PROXY__PICK_MODE,
+							  RenderingPackage.SELECTION_PROXY__SELECTION);
 		stagingBuffer = MemoryUtil.memAlloc(BYTES);
-		updateBuffer(mousePickExtension.getPickMode());
+		updateBuffer(selectionProxy.getPickMode());
 	}
 
 	@Dispose
 	public void dispose()
 	{
-		mousePickExtension.sulk(pickModeListener,
-								RenderingPackage.MOUSE_PICK_EXTENSION__PICK_MODE,
-								RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION);
+		selectionProxy.sulk(selectionListener,
+							RenderingPackage.SELECTION_PROXY__PICK_MODE,
+							RenderingPackage.SELECTION_PROXY__SELECTION);
 		MemoryUtil.memFree(stagingBuffer);
 	}
 
@@ -61,10 +59,10 @@ public class MousePickConstantsAdapter implements IAdapter
 	{
 		switch (notification.getFeatureID(MousePickExtension.class))
 		{
-			case RenderingPackage.MOUSE_PICK_EXTENSION__PICK_MODE -> updateBuffer(mousePickExtension.getPickMode());
-			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION ->
+			case RenderingPackage.SELECTION_PROXY__PICK_MODE -> updateBuffer(selectionProxy.getPickMode());
+			case RenderingPackage.SELECTION_PROXY__SELECTION ->
 			{
-				if (mousePickExtension.getPickMode() == EMousePickMode.LOCK)
+				if (selectionProxy.getPickMode() == EMousePickMode.LOCK)
 				{
 					forceUpdate = true;
 				}
@@ -77,7 +75,7 @@ public class MousePickConstantsAdapter implements IAdapter
 	{
 		if (wasForcedUpdate)
 		{
-			updateBuffer(mousePickExtension.getPickMode());
+			updateBuffer(selectionProxy.getPickMode());
 			wasForcedUpdate = false;
 		}
 		if (forceUpdate)
