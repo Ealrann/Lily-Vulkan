@@ -1,4 +1,4 @@
-#version 450 core
+#version 450
 
 layout (local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
 
@@ -7,7 +7,7 @@ layout (local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
 #define DISABLED 2 
 
 struct PickingInfo {
-    uint pipeline;
+    int pipeline;
     uint triangle;
     uint instance;
     uint drawcall;
@@ -28,7 +28,8 @@ layout(set = 0, binding = 0) buffer MousePicking {
 void main()
 {
   bool found = false;
-  for(int i = 4; i > 1; i--)
+
+  for(uint i = 4; i > 1; i--)
   {
     if(mousePicking.layer[i].pipeline != -1 && found == false)
     {
@@ -42,10 +43,6 @@ void main()
     }
 
     mousePicking.layer[i].pipeline = -1;
-  }
-  if(found == false)
-  {
-    mousePicking.layer[0].pipeline = -1;
   }
 
   if (pushConstants.mode == DISABLED)
