@@ -212,6 +212,15 @@ public interface RenderingFactory extends EFactory
 	MousePickExtension createMousePickExtension();
 
 	/**
+	 * Returns a new object of class '<em>Entity Resolver Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Entity Resolver Pipeline</em>'.
+	 * @generated
+	 */
+	EntityResolverPipeline createEntityResolverPipeline();
+
+	/**
 	 * Returns a new object of class '<em>Selection Proxy</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

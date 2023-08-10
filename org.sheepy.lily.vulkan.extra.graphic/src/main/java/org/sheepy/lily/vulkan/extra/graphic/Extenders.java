@@ -9,6 +9,7 @@ import org.sheepy.lily.vulkan.extra.graphic.rendering.camera.CameraAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.camera.CameraMatrixVariableAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.camera.CameraPositionVariableAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.camera.CameraScreenWorldPositionVariableAdapter;
+import org.sheepy.lily.vulkan.extra.graphic.rendering.mousepick.MousePickConstantsAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.mousepick.MousePickDataConsumer;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.mousepick.MousePickExtensionAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.resource.DataDescriptorsProviderAdapter;
@@ -32,6 +33,7 @@ public final class Extenders implements IAdapterProvider
 					   RenderProxyConstantBufferAdapter.class,
 					   DataDescriptorsProviderAdapter.class,
 					   RenderPipelineAllocator.class,
+					   MousePickConstantsAdapter.class,
 					   MousePickDataConsumer.class,
 					   MousePickExtensionAdapter.class,
 					   SpriteIndexConfigurator.class,

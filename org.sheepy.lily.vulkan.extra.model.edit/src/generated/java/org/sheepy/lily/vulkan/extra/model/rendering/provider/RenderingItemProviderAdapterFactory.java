@@ -626,6 +626,31 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EntityResolverPipelineItemProvider entityResolverPipelineItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEntityResolverPipelineAdapter()
+	{
+		if (entityResolverPipelineItemProvider == null)
+		{
+			entityResolverPipelineItemProvider = new EntityResolverPipelineItemProvider(this);
+		}
+
+		return entityResolverPipelineItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

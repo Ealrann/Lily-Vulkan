@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl#getFieldOfView <em>Field Of View</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl#getZNear <em>ZNear</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl#getZFar <em>ZFar</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl#getPosition <em>Position</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl#getAxis <em>Axis</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.CameraImpl#getLookDirection <em>Look Direction</em>}</li>
  * </ul>
@@ -117,24 +117,24 @@ public class CameraImpl extends LilyEObject implements Camera
 	protected float zFar = ZFAR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
+	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPosition()
+	 * @see #getLocation()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Vector3dc POSITION_EDEFAULT = (Vector3dc)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getVector3d(), "0;0;0");
+	protected static final Vector3dc LOCATION_EDEFAULT = (Vector3dc)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getVector3d(), "0;0;0");
 
 	/**
-	 * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute.
+	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPosition()
+	 * @see #getLocation()
 	 * @generated
 	 * @ordered
 	 */
-	protected Vector3dc position = POSITION_EDEFAULT;
+	protected Vector3dc location = LOCATION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getAxis() <em>Axis</em>}' containment reference.
@@ -293,9 +293,9 @@ public class CameraImpl extends LilyEObject implements Camera
 	 * @generated
 	 */
 	@Override
-	public Vector3dc getPosition()
+	public Vector3dc getLocation()
 	{
-		return position;
+		return location;
 	}
 
 	/**
@@ -304,12 +304,12 @@ public class CameraImpl extends LilyEObject implements Camera
 	 * @generated
 	 */
 	@Override
-	public void setPosition(Vector3dc newPosition)
+	public void setLocation(Vector3dc newLocation)
 	{
-		Vector3dc oldPosition = position;
-		position = newPosition;
+		Vector3dc oldLocation = location;
+		location = newLocation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.CAMERA__POSITION, oldPosition, position));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.CAMERA__LOCATION, oldLocation, location));
 	}
 
 	/**
@@ -421,8 +421,8 @@ public class CameraImpl extends LilyEObject implements Camera
 				return getZNear();
 			case RenderingPackage.CAMERA__ZFAR:
 				return getZFar();
-			case RenderingPackage.CAMERA__POSITION:
-				return getPosition();
+			case RenderingPackage.CAMERA__LOCATION:
+				return getLocation();
 			case RenderingPackage.CAMERA__AXIS:
 				return getAxis();
 			case RenderingPackage.CAMERA__LOOK_DIRECTION:
@@ -453,8 +453,8 @@ public class CameraImpl extends LilyEObject implements Camera
 			case RenderingPackage.CAMERA__ZFAR:
 				setZFar((Float)newValue);
 				return;
-			case RenderingPackage.CAMERA__POSITION:
-				setPosition((Vector3dc)newValue);
+			case RenderingPackage.CAMERA__LOCATION:
+				setLocation((Vector3dc)newValue);
 				return;
 			case RenderingPackage.CAMERA__AXIS:
 				setAxis((Axis)newValue);
@@ -488,8 +488,8 @@ public class CameraImpl extends LilyEObject implements Camera
 			case RenderingPackage.CAMERA__ZFAR:
 				setZFar(ZFAR_EDEFAULT);
 				return;
-			case RenderingPackage.CAMERA__POSITION:
-				setPosition(POSITION_EDEFAULT);
+			case RenderingPackage.CAMERA__LOCATION:
+				setLocation(LOCATION_EDEFAULT);
 				return;
 			case RenderingPackage.CAMERA__AXIS:
 				setAxis((Axis)null);
@@ -519,8 +519,8 @@ public class CameraImpl extends LilyEObject implements Camera
 				return zNear != ZNEAR_EDEFAULT;
 			case RenderingPackage.CAMERA__ZFAR:
 				return zFar != ZFAR_EDEFAULT;
-			case RenderingPackage.CAMERA__POSITION:
-				return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
+			case RenderingPackage.CAMERA__LOCATION:
+				return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
 			case RenderingPackage.CAMERA__AXIS:
 				return axis != null;
 			case RenderingPackage.CAMERA__LOOK_DIRECTION:
@@ -548,8 +548,8 @@ public class CameraImpl extends LilyEObject implements Camera
 		result.append(zNear);
 		result.append(", zFar: ");
 		result.append(zFar);
-		result.append(", position: ");
-		result.append(position);
+		result.append(", location: ");
+		result.append(location);
 		result.append(", lookDirection: ");
 		result.append(lookDirection);
 		result.append(')');

@@ -22,7 +22,7 @@ public class MousePickConstantsAdapter implements IAdapter
 	private static final int BYTES = 4;
 
 	private final MousePickConstants constants;
-	private final Consumer<Notification> selectionListener = this::playerNotification;
+	private final Consumer<Notification> selectionListener = this::onSelectionNotification;
 	private final SelectionProxy selectionProxy;
 
 	private ByteBuffer stagingBuffer;
@@ -55,7 +55,7 @@ public class MousePickConstantsAdapter implements IAdapter
 		MemoryUtil.memFree(stagingBuffer);
 	}
 
-	private void playerNotification(Notification notification)
+	private void onSelectionNotification(Notification notification)
 	{
 		switch (notification.getFeatureID(MousePickExtension.class))
 		{

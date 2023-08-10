@@ -6,16 +6,13 @@ import org.logoce.extender.api.IAdapter;
 import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.cadence.Tick;
-import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IEntityResolverAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IEntitySelectionBuilder;
-import org.sheepy.lily.vulkan.extra.api.rendering.IGenericRendererAdapter;
-import org.sheepy.lily.vulkan.extra.api.rendering.IMousePickDataConsumer;
 import org.sheepy.lily.vulkan.extra.api.rendering.RenderPointer;
 import org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode;
 import org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection;
 import org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
-import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.vulkanresource.StaticBuffer;
 
 @ModelExtender(scope = MousePickExtension.class)
@@ -24,7 +21,6 @@ import org.sheepy.lily.vulkan.model.vulkanresource.StaticBuffer;
 public final class MousePickExtensionAdapter implements IAdapter
 {
 	private final StaticBuffer buffer;
-	private final Subpass subpass;
 	private final MousePickExtension pickExtension;
 
 	private PresentableEntity pickedEntity = null;
@@ -33,15 +29,15 @@ public final class MousePickExtensionAdapter implements IAdapter
 	{
 		this.pickExtension = pickExtension;
 		this.buffer = pickExtension.getMousePickBuffer();
-		subpass = ModelUtil.findParent(pickExtension, Subpass.class);
 	}
 
 	@Tick
 	private void updatePick()
 	{
-		if (pickExtension.getSelectionProxy().getPickMode() == EMousePickMode.DISABLED) return;
+		if (pickExtension.getSelectionProxy()
+						 .getPickMode() == EMousePickMode.DISABLED) return;
 
-		final var fetchAdapter = buffer.adapt(IMousePickDataConsumer.class);
+		final var fetchAdapter = buffer.adapt(MousePickDataConsumer.class);
 		final int pipeline = fetchAdapter.getPipeline();
 		final var renderPointer = fetchAdapter.getRenderPointer();
 
@@ -58,13 +54,15 @@ public final class MousePickExtensionAdapter implements IAdapter
 
 	private void retrievePick(final int pipeline, final RenderPointer renderPointer)
 	{
-		final var pipelines = subpass.getPipelinePkg()
-									 .getPipelines();
-		final var renderer = pipelines.get(pipeline);
-		final var rendererAdapter = renderer.adaptNotNull(IGenericRendererAdapter.class);
-		final var newPickedEntity = rendererAdapter.resolvePresentedEntity(renderPointer);
-
-		final int newAddress;
+		final var offset = pickExtension.getResolverPipelineOffset();
+		final var index = pipeline - offset;
+		final var resolverPipeline = pickExtension.getEntityResolverPipelines()
+												  .get(index);
+		final var resolverIndex = resolverPipeline.isTakeFirst() ? 0 : renderPointer.drawcall;
+		final var resolver = resolverPipeline.getEntityResolvers()
+											 .get(resolverIndex);
+		final var resolverAdapter = resolver.adapt(IEntityResolverAdapter.class);
+		final var newPickedEntity = resolverAdapter.resolveEntity(renderPointer);
 
 		if (newPickedEntity != pickedEntity)
 		{
@@ -90,10 +88,13 @@ public final class MousePickExtensionAdapter implements IAdapter
 	private void setSelection(final PresentableEntity newPickedEntity, final IEntitySelection newSelection)
 	{
 		pickedEntity = newPickedEntity;
-		pickExtension.getSelectionProxy().setFocus(newSelection);
-		if (pickExtension.getSelectionProxy().getPickMode() != EMousePickMode.LOCK)
+		pickExtension.getSelectionProxy()
+					 .setFocus(newSelection);
+		if (pickExtension.getSelectionProxy()
+						 .getPickMode() != EMousePickMode.LOCK)
 		{
-			pickExtension.getSelectionProxy().setSelection(EcoreUtil.copy(newSelection));
+			pickExtension.getSelectionProxy()
+						 .setSelection(EcoreUtil.copy(newSelection));
 		}
 	}
 }

@@ -17,7 +17,7 @@ import org.sheepy.lily.core.model.resource.IRootResource;
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getFieldOfView <em>Field Of View</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getZNear <em>ZNear</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getZFar <em>ZFar</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getPosition <em>Position</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getLocation <em>Location</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getAxis <em>Axis</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getLookDirection <em>Look Direction</em>}</li>
  * </ul>
@@ -96,27 +96,27 @@ public interface Camera extends IRootResource
 	void setZFar(float value);
 
 	/**
-	 * Returns the value of the '<em><b>Position</b></em>' attribute.
+	 * Returns the value of the '<em><b>Location</b></em>' attribute.
 	 * The default value is <code>"0;0;0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Position</em>' attribute.
-	 * @see #setPosition(Vector3dc)
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getCamera_Position()
+	 * @return the value of the '<em>Location</em>' attribute.
+	 * @see #setLocation(Vector3dc)
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage#getCamera_Location()
 	 * @model default="0;0;0" dataType="org.sheepy.lily.core.model.types.Vector3d"
 	 * @generated
 	 */
-	Vector3dc getPosition();
+	Vector3dc getLocation();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getPosition <em>Position</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getLocation <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Position</em>' attribute.
-	 * @see #getPosition()
+	 * @param value the new value of the '<em>Location</em>' attribute.
+	 * @see #getLocation()
 	 * @generated
 	 */
-	void setPosition(Vector3dc value);
+	void setLocation(Vector3dc value);
 
 	/**
 	 * Returns the value of the '<em><b>Axis</b></em>' containment reference.

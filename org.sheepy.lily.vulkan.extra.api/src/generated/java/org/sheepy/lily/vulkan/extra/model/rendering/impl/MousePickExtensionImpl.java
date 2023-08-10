@@ -2,12 +2,19 @@
  */
 package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.model.LilyEObject;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline;
 import org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
@@ -23,6 +30,8 @@ import org.sheepy.lily.vulkan.model.vulkanresource.StaticBuffer;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getMousePickBuffer <em>Mouse Pick Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getSelectionProxy <em>Selection Proxy</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getEntityResolverPipelines <em>Entity Resolver Pipelines</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.MousePickExtensionImpl#getResolverPipelineOffset <em>Resolver Pipeline Offset</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,6 +57,36 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 	 * @ordered
 	 */
 	protected SelectionProxy selectionProxy;
+
+	/**
+	 * The cached value of the '{@link #getEntityResolverPipelines() <em>Entity Resolver Pipelines</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEntityResolverPipelines()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EntityResolverPipeline> entityResolverPipelines;
+
+	/**
+	 * The default value of the '{@link #getResolverPipelineOffset() <em>Resolver Pipeline Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResolverPipelineOffset()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int RESOLVER_PIPELINE_OFFSET_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getResolverPipelineOffset() <em>Resolver Pipeline Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResolverPipelineOffset()
+	 * @generated
+	 * @ordered
+	 */
+	protected int resolverPipelineOffset = RESOLVER_PIPELINE_OFFSET_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,6 +205,62 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 	 * @generated
 	 */
 	@Override
+	public EList<EntityResolverPipeline> getEntityResolverPipelines()
+	{
+		if (entityResolverPipelines == null)
+		{
+			entityResolverPipelines = new EObjectContainmentEList<>(EntityResolverPipeline.class, this, RenderingPackage.MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES);
+		}
+		return entityResolverPipelines;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getResolverPipelineOffset()
+	{
+		return resolverPipelineOffset;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setResolverPipelineOffset(int newResolverPipelineOffset)
+	{
+		int oldResolverPipelineOffset = resolverPipelineOffset;
+		resolverPipelineOffset = newResolverPipelineOffset;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.MOUSE_PICK_EXTENSION__RESOLVER_PIPELINE_OFFSET, oldResolverPipelineOffset, resolverPipelineOffset));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case RenderingPackage.MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES:
+				return ((InternalEList<?>)getEntityResolverPipelines()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -176,6 +271,10 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY:
 				if (resolve) return getSelectionProxy();
 				return basicGetSelectionProxy();
+			case RenderingPackage.MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES:
+				return getEntityResolverPipelines();
+			case RenderingPackage.MOUSE_PICK_EXTENSION__RESOLVER_PIPELINE_OFFSET:
+				return getResolverPipelineOffset();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -185,6 +284,7 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -195,6 +295,13 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 				return;
 			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY:
 				setSelectionProxy((SelectionProxy)newValue);
+				return;
+			case RenderingPackage.MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES:
+				getEntityResolverPipelines().clear();
+				getEntityResolverPipelines().addAll((Collection<? extends EntityResolverPipeline>)newValue);
+				return;
+			case RenderingPackage.MOUSE_PICK_EXTENSION__RESOLVER_PIPELINE_OFFSET:
+				setResolverPipelineOffset((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -216,6 +323,12 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY:
 				setSelectionProxy((SelectionProxy)null);
 				return;
+			case RenderingPackage.MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES:
+				getEntityResolverPipelines().clear();
+				return;
+			case RenderingPackage.MOUSE_PICK_EXTENSION__RESOLVER_PIPELINE_OFFSET:
+				setResolverPipelineOffset(RESOLVER_PIPELINE_OFFSET_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -234,8 +347,29 @@ public class MousePickExtensionImpl extends LilyEObject implements MousePickExte
 				return mousePickBuffer != null;
 			case RenderingPackage.MOUSE_PICK_EXTENSION__SELECTION_PROXY:
 				return selectionProxy != null;
+			case RenderingPackage.MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES:
+				return entityResolverPipelines != null && !entityResolverPipelines.isEmpty();
+			case RenderingPackage.MOUSE_PICK_EXTENSION__RESOLVER_PIPELINE_OFFSET:
+				return resolverPipelineOffset != RESOLVER_PIPELINE_OFFSET_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (resolverPipelineOffset: ");
+		result.append(resolverPipelineOffset);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MousePickExtensionImpl

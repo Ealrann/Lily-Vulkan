@@ -22,6 +22,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ECameraField;
 import org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode;
 import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
 import org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants;
@@ -110,6 +111,7 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 			case RenderingPackage.CAMERA_VARIABLE: return createCameraVariable();
 			case RenderingPackage.MOUSE_PICK_CONSTANTS: return createMousePickConstants();
 			case RenderingPackage.MOUSE_PICK_EXTENSION: return createMousePickExtension();
+			case RenderingPackage.ENTITY_RESOLVER_PIPELINE: return createEntityResolverPipeline();
 			case RenderingPackage.SELECTION_PROXY: return createSelectionProxy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -408,6 +410,18 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	{
 		MousePickExtensionImpl mousePickExtension = new MousePickExtensionImpl();
 		return mousePickExtension;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EntityResolverPipeline createEntityResolverPipeline()
+	{
+		EntityResolverPipelineImpl entityResolverPipeline = new EntityResolverPipelineImpl();
+		return entityResolverPipeline;
 	}
 
 	/**

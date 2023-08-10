@@ -40,7 +40,9 @@ import org.sheepy.lily.vulkan.extra.model.rendering.EMousePickMode;
 import org.sheepy.lily.vulkan.extra.model.rendering.EPhysicalEntityFeature;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver;
 import org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
@@ -282,6 +284,20 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass entityResolverPipelineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iEntityResolverEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass iEntitySelectionEClass = null;
 
 	/**
@@ -442,7 +458,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPhysicalEntity_GeoLocation()
+	public EAttribute getPhysicalEntity_Location()
 	{
 		return (EAttribute)physicalEntityEClass.getEStructuralFeatures().get(0);
 	}
@@ -453,31 +469,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPhysicalEntity_GeoOrientation()
-	{
-		return (EAttribute)physicalEntityEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getPhysicalEntity_AxisLocation()
-	{
-		return (EAttribute)physicalEntityEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getPhysicalEntity_Axis()
 	{
-		return (EReference)physicalEntityEClass.getEStructuralFeatures().get(3);
+		return (EReference)physicalEntityEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1157,7 +1151,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCamera_Position()
+	public EAttribute getCamera_Location()
 	{
 		return (EAttribute)cameraEClass.getEStructuralFeatures().get(3);
 	}
@@ -1344,6 +1338,72 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
+	public EReference getMousePickExtension_EntityResolverPipelines()
+	{
+		return (EReference)mousePickExtensionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMousePickExtension_ResolverPipelineOffset()
+	{
+		return (EAttribute)mousePickExtensionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getEntityResolverPipeline()
+	{
+		return entityResolverPipelineEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getEntityResolverPipeline_EntityResolvers()
+	{
+		return (EReference)entityResolverPipelineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getEntityResolverPipeline_TakeFirst()
+	{
+		return (EAttribute)entityResolverPipelineEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIEntityResolver()
+	{
+		return iEntityResolverEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIEntitySelection()
 	{
 		return iEntitySelectionEClass;
@@ -1460,9 +1520,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		entityEClass = createEClass(ENTITY);
 
 		physicalEntityEClass = createEClass(PHYSICAL_ENTITY);
-		createEAttribute(physicalEntityEClass, PHYSICAL_ENTITY__GEO_LOCATION);
-		createEAttribute(physicalEntityEClass, PHYSICAL_ENTITY__GEO_ORIENTATION);
-		createEAttribute(physicalEntityEClass, PHYSICAL_ENTITY__AXIS_LOCATION);
+		createEAttribute(physicalEntityEClass, PHYSICAL_ENTITY__LOCATION);
 		createEReference(physicalEntityEClass, PHYSICAL_ENTITY__AXIS);
 
 		axisEClass = createEClass(AXIS);
@@ -1545,7 +1603,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		createEAttribute(cameraEClass, CAMERA__FIELD_OF_VIEW);
 		createEAttribute(cameraEClass, CAMERA__ZNEAR);
 		createEAttribute(cameraEClass, CAMERA__ZFAR);
-		createEAttribute(cameraEClass, CAMERA__POSITION);
+		createEAttribute(cameraEClass, CAMERA__LOCATION);
 		createEReference(cameraEClass, CAMERA__AXIS);
 		createEAttribute(cameraEClass, CAMERA__LOOK_DIRECTION);
 
@@ -1568,6 +1626,14 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		mousePickExtensionEClass = createEClass(MOUSE_PICK_EXTENSION);
 		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__MOUSE_PICK_BUFFER);
 		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__SELECTION_PROXY);
+		createEReference(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES);
+		createEAttribute(mousePickExtensionEClass, MOUSE_PICK_EXTENSION__RESOLVER_PIPELINE_OFFSET);
+
+		entityResolverPipelineEClass = createEClass(ENTITY_RESOLVER_PIPELINE);
+		createEReference(entityResolverPipelineEClass, ENTITY_RESOLVER_PIPELINE__ENTITY_RESOLVERS);
+		createEAttribute(entityResolverPipelineEClass, ENTITY_RESOLVER_PIPELINE__TAKE_FIRST);
+
+		iEntityResolverEClass = createEClass(IENTITY_RESOLVER);
 
 		iEntitySelectionEClass = createEClass(IENTITY_SELECTION);
 
@@ -1672,9 +1738,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(physicalEntityEClass, PhysicalEntity.class, "PhysicalEntity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPhysicalEntity_GeoLocation(), theTypesPackage.getVector3d(), "geoLocation", "0;0;0", 0, 1, PhysicalEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPhysicalEntity_GeoOrientation(), theTypesPackage.getVector2f(), "geoOrientation", "0;0;0", 0, 1, PhysicalEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPhysicalEntity_AxisLocation(), theTypesPackage.getVector3d(), "axisLocation", "0;0;0", 0, 1, PhysicalEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhysicalEntity_Location(), theTypesPackage.getVector3d(), "location", "0;0;0", 0, 1, PhysicalEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPhysicalEntity_Axis(), this.getAxis(), null, "axis", null, 0, 1, PhysicalEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(axisEClass, Axis.class, "Axis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1766,7 +1830,7 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEAttribute(getCamera_FieldOfView(), ecorePackage.getEFloat(), "fieldOfView", "45", 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCamera_ZNear(), ecorePackage.getEFloat(), "zNear", null, 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCamera_ZFar(), ecorePackage.getEFloat(), "zFar", null, 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCamera_Position(), theTypesPackage.getVector3d(), "position", "0;0;0", 0, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCamera_Location(), theTypesPackage.getVector3d(), "location", "0;0;0", 0, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCamera_Axis(), this.getAxis(), null, "axis", null, 1, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCamera_LookDirection(), theTypesPackage.getVector3d(), "lookDirection", "1;0;0", 0, 1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1789,6 +1853,14 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEClass(mousePickExtensionEClass, MousePickExtension.class, "MousePickExtension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMousePickExtension_MousePickBuffer(), theVulkanResourcePackage.getStaticBuffer(), null, "mousePickBuffer", null, 1, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMousePickExtension_SelectionProxy(), this.getSelectionProxy(), null, "selectionProxy", null, 0, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMousePickExtension_EntityResolverPipelines(), this.getEntityResolverPipeline(), null, "entityResolverPipelines", null, 0, -1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMousePickExtension_ResolverPipelineOffset(), ecorePackage.getEInt(), "resolverPipelineOffset", "0", 1, 1, MousePickExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(entityResolverPipelineEClass, EntityResolverPipeline.class, "EntityResolverPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEntityResolverPipeline_EntityResolvers(), this.getIEntityResolver(), null, "entityResolvers", null, 0, -1, EntityResolverPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntityResolverPipeline_TakeFirst(), ecorePackage.getEBoolean(), "takeFirst", "false", 0, 1, EntityResolverPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iEntityResolverEClass, IEntityResolver.class, "IEntityResolver", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iEntitySelectionEClass, IEntitySelection.class, "IEntitySelection", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -4,7 +4,7 @@ import org.logoce.extender.api.IAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.RenderPointer;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 
-public interface IEntityResolver extends IAdapter
+public interface IEntityResolverAdapter extends IAdapter
 {
 	PresentableEntity resolveEntity(RenderPointer pointer);
 }

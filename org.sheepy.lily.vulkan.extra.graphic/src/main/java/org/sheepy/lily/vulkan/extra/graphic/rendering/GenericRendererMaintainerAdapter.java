@@ -7,15 +7,12 @@ import org.sheepy.lily.core.api.adapter.Load;
 import org.sheepy.lily.core.api.cadence.AutoLoad;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
-import org.sheepy.lily.vulkan.extra.api.mesh.data.IEntityResolver;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IEntityResolverAdapter;
 import org.sheepy.lily.vulkan.extra.api.rendering.IGenericRendererAdapter;
-import org.sheepy.lily.vulkan.extra.api.rendering.IStructureAdapter;
-import org.sheepy.lily.vulkan.extra.api.rendering.RenderPointer;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.builder.DeactivationConfigurator;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.builder.RenderPipelinesInstaller;
 import org.sheepy.lily.vulkan.extra.graphic.rendering.data.RenderPipelineSetup;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
 
@@ -43,10 +40,6 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 		if (maintainer.isMaintaining())
 		{
 			buildPipelines();
-
-//			final var fileURI = URI.createFileURI("/home/ealrann/test.xmi");
-//			final var root = EcoreUtil.copy(EcoreUtil.getRootContainer(maintainer));
-//			IResourceService.INSTANCE.saveResource(root, fileURI);
 		}
 	}
 
@@ -73,46 +66,6 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 		}
 	}
 
-	@Override
-	public PresentableEntity resolvePresentedEntity(final RenderPointer renderPointer)
-	{
-		final int drawCall = renderPointer.drawcall;
-		final var renderSetup = renderPipelineSetups.get(drawCall);
-		final var structure = renderSetup.structure();
-		final var structureAdapter = structure.adaptNotNull(IStructureAdapter.class);
-		final var resolver = findEntityResolver(renderSetup, structureAdapter);
-
-		return resolver.resolveEntity(renderPointer);
-	}
-
-	private IEntityResolver findEntityResolver(final RenderPipelineSetup renderSetup,
-											   final IStructureAdapter structureAdapter) throws AssertionError
-	{
-		IEntityResolver resolver = null;
-		if (structureAdapter instanceof IEntityResolver)
-		{
-			resolver = (IEntityResolver) structureAdapter;
-		}
-		else
-		{
-			final var buffers = renderSetup.buffers();
-			for (int i = 0; i < buffers.size(); i++)
-			{
-				resolver = buffers.get(i)
-								  .adapt(IEntityResolver.class);
-				if (resolver != null)
-				{
-					break;
-				}
-			}
-		}
-		if (resolver == null)
-		{
-			throwResolverNotFoundError();
-		}
-		return resolver;
-	}
-
 	private void printDebugInfo()
 	{
 		final var presentedEClass = ModelUtil.resolveGenericType(maintainer, RENDERER_ECLASS);
@@ -126,6 +79,6 @@ public final class GenericRendererMaintainerAdapter<T extends Structure> impleme
 	private void throwResolverNotFoundError() throws AssertionError
 	{
 		throw new AssertionError("The StructureAdapter or one DataProviderAdapter of " + maintainer.eClass()
-																								   .getName() + " must implements " + IEntityResolver.class.getSimpleName());
+																								   .getName() + " must implements " + IEntityResolverAdapter.class.getSimpleName());
 	}
 }

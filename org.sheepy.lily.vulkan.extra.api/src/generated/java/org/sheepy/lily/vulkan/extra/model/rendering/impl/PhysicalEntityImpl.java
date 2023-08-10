@@ -4,14 +4,10 @@ package org.sheepy.lily.vulkan.extra.model.rendering.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.joml.Vector2fc;
 import org.joml.Vector3dc;
-
 import org.sheepy.lily.core.api.model.LilyEObject;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -28,9 +24,7 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityImpl#getGeoLocation <em>Geo Location</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityImpl#getGeoOrientation <em>Geo Orientation</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityImpl#getAxisLocation <em>Axis Location</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PhysicalEntityImpl#getAxis <em>Axis</em>}</li>
  * </ul>
  *
@@ -59,64 +53,24 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getGeoLocation() <em>Geo Location</em>}' attribute.
+	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGeoLocation()
+	 * @see #getLocation()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Vector3dc GEO_LOCATION_EDEFAULT = (Vector3dc)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getVector3d(), "0;0;0");
+	protected static final Vector3dc LOCATION_EDEFAULT = (Vector3dc)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getVector3d(), "0;0;0");
 
 	/**
-	 * The cached value of the '{@link #getGeoLocation() <em>Geo Location</em>}' attribute.
+	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGeoLocation()
+	 * @see #getLocation()
 	 * @generated
 	 * @ordered
 	 */
-	protected Vector3dc geoLocation = GEO_LOCATION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getGeoOrientation() <em>Geo Orientation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGeoOrientation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Vector2fc GEO_ORIENTATION_EDEFAULT = (Vector2fc)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getVector2f(), "0;0;0");
-
-	/**
-	 * The cached value of the '{@link #getGeoOrientation() <em>Geo Orientation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGeoOrientation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Vector2fc geoOrientation = GEO_ORIENTATION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getAxisLocation() <em>Axis Location</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAxisLocation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Vector3dc AXIS_LOCATION_EDEFAULT = (Vector3dc)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getVector3d(), "0;0;0");
-
-	/**
-	 * The cached value of the '{@link #getAxisLocation() <em>Axis Location</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAxisLocation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Vector3dc axisLocation = AXIS_LOCATION_EDEFAULT;
+	protected Vector3dc location = LOCATION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getAxis() <em>Axis</em>}' containment reference.
@@ -180,9 +134,9 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	 * @generated
 	 */
 	@Override
-	public Vector3dc getGeoLocation()
+	public Vector3dc getLocation()
 	{
-		return geoLocation;
+		return location;
 	}
 
 	/**
@@ -191,62 +145,12 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 	 * @generated
 	 */
 	@Override
-	public void setGeoLocation(Vector3dc newGeoLocation)
+	public void setLocation(Vector3dc newLocation)
 	{
-		Vector3dc oldGeoLocation = geoLocation;
-		geoLocation = newGeoLocation;
+		Vector3dc oldLocation = location;
+		location = newLocation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION, oldGeoLocation, geoLocation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Vector2fc getGeoOrientation()
-	{
-		return geoOrientation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setGeoOrientation(Vector2fc newGeoOrientation)
-	{
-		Vector2fc oldGeoOrientation = geoOrientation;
-		geoOrientation = newGeoOrientation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.PHYSICAL_ENTITY__GEO_ORIENTATION, oldGeoOrientation, geoOrientation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Vector3dc getAxisLocation()
-	{
-		return axisLocation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setAxisLocation(Vector3dc newAxisLocation)
-	{
-		Vector3dc oldAxisLocation = axisLocation;
-		axisLocation = newAxisLocation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.PHYSICAL_ENTITY__AXIS_LOCATION, oldAxisLocation, axisLocation));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderingPackage.PHYSICAL_ENTITY__LOCATION, oldLocation, location));
 	}
 
 	/**
@@ -327,12 +231,8 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 		{
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 				return getName();
-			case RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION:
-				return getGeoLocation();
-			case RenderingPackage.PHYSICAL_ENTITY__GEO_ORIENTATION:
-				return getGeoOrientation();
-			case RenderingPackage.PHYSICAL_ENTITY__AXIS_LOCATION:
-				return getAxisLocation();
+			case RenderingPackage.PHYSICAL_ENTITY__LOCATION:
+				return getLocation();
 			case RenderingPackage.PHYSICAL_ENTITY__AXIS:
 				return getAxis();
 		}
@@ -352,14 +252,8 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 				setName((String)newValue);
 				return;
-			case RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION:
-				setGeoLocation((Vector3dc)newValue);
-				return;
-			case RenderingPackage.PHYSICAL_ENTITY__GEO_ORIENTATION:
-				setGeoOrientation((Vector2fc)newValue);
-				return;
-			case RenderingPackage.PHYSICAL_ENTITY__AXIS_LOCATION:
-				setAxisLocation((Vector3dc)newValue);
+			case RenderingPackage.PHYSICAL_ENTITY__LOCATION:
+				setLocation((Vector3dc)newValue);
 				return;
 			case RenderingPackage.PHYSICAL_ENTITY__AXIS:
 				setAxis((Axis)newValue);
@@ -381,14 +275,8 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION:
-				setGeoLocation(GEO_LOCATION_EDEFAULT);
-				return;
-			case RenderingPackage.PHYSICAL_ENTITY__GEO_ORIENTATION:
-				setGeoOrientation(GEO_ORIENTATION_EDEFAULT);
-				return;
-			case RenderingPackage.PHYSICAL_ENTITY__AXIS_LOCATION:
-				setAxisLocation(AXIS_LOCATION_EDEFAULT);
+			case RenderingPackage.PHYSICAL_ENTITY__LOCATION:
+				setLocation(LOCATION_EDEFAULT);
 				return;
 			case RenderingPackage.PHYSICAL_ENTITY__AXIS:
 				setAxis((Axis)null);
@@ -409,12 +297,8 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 		{
 			case RenderingPackage.PHYSICAL_ENTITY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION:
-				return GEO_LOCATION_EDEFAULT == null ? geoLocation != null : !GEO_LOCATION_EDEFAULT.equals(geoLocation);
-			case RenderingPackage.PHYSICAL_ENTITY__GEO_ORIENTATION:
-				return GEO_ORIENTATION_EDEFAULT == null ? geoOrientation != null : !GEO_ORIENTATION_EDEFAULT.equals(geoOrientation);
-			case RenderingPackage.PHYSICAL_ENTITY__AXIS_LOCATION:
-				return AXIS_LOCATION_EDEFAULT == null ? axisLocation != null : !AXIS_LOCATION_EDEFAULT.equals(axisLocation);
+			case RenderingPackage.PHYSICAL_ENTITY__LOCATION:
+				return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
 			case RenderingPackage.PHYSICAL_ENTITY__AXIS:
 				return axis != null;
 		}
@@ -434,12 +318,8 @@ public abstract class PhysicalEntityImpl extends LilyEObject implements Physical
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", geoLocation: ");
-		result.append(geoLocation);
-		result.append(", geoOrientation: ");
-		result.append(geoOrientation);
-		result.append(", axisLocation: ");
-		result.append(axisLocation);
+		result.append(", location: ");
+		result.append(location);
 		result.append(')');
 		return result.toString();
 	}

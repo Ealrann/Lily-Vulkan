@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
+import org.logoce.extender.api.ModelExtender;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
@@ -8,7 +9,6 @@ import org.sheepy.lily.core.api.allocation.annotation.Allocation;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationChild;
 import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
 import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
-import org.logoce.extender.api.ModelExtender;
 import org.sheepy.lily.game.api.execution.EExecutionStatus;
 import org.sheepy.lily.game.api.resource.buffer.IBufferDataConsumer;
 import org.sheepy.lily.vulkan.api.resource.buffer.IBufferAllocation;
@@ -22,6 +22,8 @@ import org.sheepy.lily.vulkan.core.resource.buffer.HostVisibleBufferBackend;
 import org.sheepy.lily.vulkan.core.resource.buffer.IBufferViewerAdapter;
 import org.sheepy.lily.vulkan.model.process.FetchBuffer;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.vulkanresource.BufferViewer;
+import org.sheepy.lily.vulkan.model.vulkanresource.IBuffer;
 
 import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 
@@ -47,10 +49,11 @@ public final class FetchBufferRecorder implements IRecordableAdapter
 	@Override
 	public void record(final RecordContext context)
 	{
-		final var srcBufferAllocation = bufferReferenceAllocation.getBufferAllocations(context.recordIndex).get(0);
-		final var srcBuffer = bufferReferenceAllocation.getBuffers(context.recordIndex).get(0);
-		final var dataConsumerAdapter = srcBuffer.adapt(IBufferViewerAdapter.class)
-												 .adaptDataSource(IBufferDataConsumer.class);
+		final var srcBufferAllocation = bufferReferenceAllocation.getBufferAllocations(context.recordIndex)
+																 .get(0);
+		final var srcBuffer = bufferReferenceAllocation.getBuffers(context.recordIndex)
+													   .get(0);
+		final var dataConsumerAdapter = getDataConsumerAdapter(srcBuffer);
 		final var fetcher = new Fetcher(executionContext, srcBufferAllocation, dataConsumerAdapter);
 
 		srcBufferAllocation.attach(context);
@@ -58,6 +61,19 @@ public final class FetchBufferRecorder implements IRecordableAdapter
 		fetcher.record(context.commandBuffer);
 		context.listenExecution(fetcher::fetch);
 		allocationState.setAllocationObsolete();
+	}
+
+	private static IBufferDataConsumer getDataConsumerAdapter(final IBuffer srcBuffer)
+	{
+		if (srcBuffer instanceof BufferViewer)
+		{
+			return srcBuffer.adapt(IBufferViewerAdapter.class)
+							.adaptDataSource(IBufferDataConsumer.class);
+		}
+		else
+		{
+			return srcBuffer.adapt(IBufferDataConsumer.class);
+		}
 	}
 
 	private static final class Fetcher

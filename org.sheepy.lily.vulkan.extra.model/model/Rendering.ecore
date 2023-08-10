@@ -5,11 +5,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Entity" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="PhysicalEntity" abstract="true" eSuperTypes="#//Entity">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="geoLocation" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3d"
-        defaultValueLiteral="0;0;0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="geoOrientation" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector2f"
-        defaultValueLiteral="0;0;0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="axisLocation" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3d"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3d"
         defaultValueLiteral="0;0;0"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="axis" eType="#//Axis" containment="true"/>
   </eClassifiers>
@@ -166,7 +162,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="45"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="zNear" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="zFar" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3d"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType ../../org.sheepy.lily.core.model/model/types.ecore#//Vector3d"
         defaultValueLiteral="0;0;0"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="axis" lowerBound="1" eType="#//Axis"
         containment="true"/>
@@ -209,7 +205,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mousePickBuffer" lowerBound="1"
         eType="ecore:EClass ../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//StaticBuffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="selectionProxy" eType="#//SelectionProxy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entityResolverPipelines"
+        upperBound="-1" eType="#//EntityResolverPipeline" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolverPipelineOffset"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityResolverPipeline">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entityResolvers" upperBound="-1"
+        eType="#//IEntityResolver"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="takeFirst" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IEntityResolver" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IEntitySelection" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="SelectionProxy">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pickMode" lowerBound="1"

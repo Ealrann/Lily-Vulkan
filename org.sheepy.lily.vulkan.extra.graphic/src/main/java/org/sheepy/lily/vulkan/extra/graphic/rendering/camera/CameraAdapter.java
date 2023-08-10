@@ -44,7 +44,7 @@ public final class CameraAdapter extends Notifier<ICameraAdapter.Features> imple
 				   .listenNoParam(this::updateProjection, RenderingPackage.CAMERA__ZFAR);
 		observatory.focus(scene)
 				   .listenNoParam(this::updateProjection, ApplicationPackage.SCENE__SIZE);
-		observatory.listenNoParam(this::updateLocation, RenderingPackage.CAMERA__POSITION)
+		observatory.listenNoParam(this::updateLocation, RenderingPackage.CAMERA__LOCATION)
 				   .listenNoParam(this::updateLocation, RenderingPackage.CAMERA__AXIS)
 				   .listenNoParam(this::updateLocation, RenderingPackage.CAMERA__LOOK_DIRECTION);
 	}
@@ -63,7 +63,7 @@ public final class CameraAdapter extends Notifier<ICameraAdapter.Features> imple
 
 	private void updatePosition()
 	{
-		position = new Vector3d(camera.getPosition());
+		position = new Vector3d(camera.getLocation());
 		lookDirection = camera.getLookDirection();
 		final var axis = camera.getAxis();
 		if (axis != null)

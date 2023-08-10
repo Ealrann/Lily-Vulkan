@@ -67,9 +67,7 @@
     </genEnums>
     <genClasses image="false" ecoreClass="Rendering.ecore#//Entity"/>
     <genClasses ecoreClass="Rendering.ecore#//PhysicalEntity">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/geoLocation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/geoOrientation"/>
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/axisLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/location"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//PhysicalEntity/axis"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//Axis">
@@ -156,7 +154,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Camera/fieldOfView"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Camera/zNear"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Camera/zFar"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Camera/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Camera/location"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//Camera/axis"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Camera/lookDirection"/>
     </genClasses>
@@ -179,7 +177,14 @@
     <genClasses ecoreClass="Rendering.ecore#//MousePickExtension">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/mousePickBuffer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/selectionProxy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//MousePickExtension/entityResolverPipelines"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//MousePickExtension/resolverPipelineOffset"/>
     </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//EntityResolverPipeline">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//EntityResolverPipeline/entityResolvers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//EntityResolverPipeline/takeFirst"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Rendering.ecore#//IEntityResolver"/>
     <genClasses image="false" ecoreClass="Rendering.ecore#//IEntitySelection"/>
     <genClasses ecoreClass="Rendering.ecore#//SelectionProxy">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//SelectionProxy/pickMode"/>

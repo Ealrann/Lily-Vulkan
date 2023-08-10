@@ -120,31 +120,13 @@ public interface RenderingPackage extends EPackage
 	int PHYSICAL_ENTITY__NAME = ENTITY__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Geo Location</b></em>' attribute.
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_ENTITY__GEO_LOCATION = ENTITY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Geo Orientation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_ENTITY__GEO_ORIENTATION = ENTITY_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Axis Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_ENTITY__AXIS_LOCATION = ENTITY_FEATURE_COUNT + 2;
+	int PHYSICAL_ENTITY__LOCATION = ENTITY_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference.
@@ -153,7 +135,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_ENTITY__AXIS = ENTITY_FEATURE_COUNT + 3;
+	int PHYSICAL_ENTITY__AXIS = ENTITY_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Physical Entity</em>' class.
@@ -162,7 +144,7 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 4;
+	int PHYSICAL_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Physical Entity</em>' class.
@@ -350,31 +332,13 @@ public interface RenderingPackage extends EPackage
 	int PRESENTABLE_ENTITY__NAME = PHYSICAL_ENTITY__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Geo Location</b></em>' attribute.
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRESENTABLE_ENTITY__GEO_LOCATION = PHYSICAL_ENTITY__GEO_LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Geo Orientation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRESENTABLE_ENTITY__GEO_ORIENTATION = PHYSICAL_ENTITY__GEO_ORIENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Axis Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRESENTABLE_ENTITY__AXIS_LOCATION = PHYSICAL_ENTITY__AXIS_LOCATION;
+	int PRESENTABLE_ENTITY__LOCATION = PHYSICAL_ENTITY__LOCATION;
 
 	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference.
@@ -1414,13 +1378,13 @@ public interface RenderingPackage extends EPackage
 	int CAMERA__ZFAR = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Position</b></em>' attribute.
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CAMERA__POSITION = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 3;
+	int CAMERA__LOCATION = ResourcePackage.IROOT_RESOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference.
@@ -1735,13 +1699,31 @@ public interface RenderingPackage extends EPackage
 	int MOUSE_PICK_EXTENSION__SELECTION_PROXY = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Entity Resolver Pipelines</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Resolver Pipeline Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOUSE_PICK_EXTENSION__RESOLVER_PIPELINE_OFFSET = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Mouse Pick Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MOUSE_PICK_EXTENSION_FEATURE_COUNT = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 2;
+	int MOUSE_PICK_EXTENSION_FEATURE_COUNT = ProcessPackage.IPROCESS_EXTENSION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Mouse Pick Extension</em>' class.
@@ -1753,6 +1735,80 @@ public interface RenderingPackage extends EPackage
 	int MOUSE_PICK_EXTENSION_OPERATION_COUNT = ProcessPackage.IPROCESS_EXTENSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.EntityResolverPipelineImpl <em>Entity Resolver Pipeline</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.EntityResolverPipelineImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityResolverPipeline()
+	 * @generated
+	 */
+	int ENTITY_RESOLVER_PIPELINE = 28;
+
+	/**
+	 * The feature id for the '<em><b>Entity Resolvers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_RESOLVER_PIPELINE__ENTITY_RESOLVERS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Take First</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_RESOLVER_PIPELINE__TAKE_FIRST = 1;
+
+	/**
+	 * The number of structural features of the '<em>Entity Resolver Pipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_RESOLVER_PIPELINE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Entity Resolver Pipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_RESOLVER_PIPELINE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver <em>IEntity Resolver</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIEntityResolver()
+	 * @generated
+	 */
+	int IENTITY_RESOLVER = 29;
+
+	/**
+	 * The number of structural features of the '<em>IEntity Resolver</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENTITY_RESOLVER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IEntity Resolver</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENTITY_RESOLVER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection <em>IEntity Selection</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1760,7 +1816,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIEntitySelection()
 	 * @generated
 	 */
-	int IENTITY_SELECTION = 28;
+	int IENTITY_SELECTION = 30;
 
 	/**
 	 * The number of structural features of the '<em>IEntity Selection</em>' class.
@@ -1788,7 +1844,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getSelectionProxy()
 	 * @generated
 	 */
-	int SELECTION_PROXY = 29;
+	int SELECTION_PROXY = 31;
 
 	/**
 	 * The feature id for the '<em><b>Pick Mode</b></em>' attribute.
@@ -1843,7 +1899,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
 	 * @generated
 	 */
-	int EPHYSICAL_ENTITY_FEATURE = 30;
+	int EPHYSICAL_ENTITY_FEATURE = 32;
 
 
 	/**
@@ -1854,7 +1910,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getECameraField()
 	 * @generated
 	 */
-	int ECAMERA_FIELD = 31;
+	int ECAMERA_FIELD = 33;
 
 
 	/**
@@ -1865,7 +1921,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEMousePickMode()
 	 * @generated
 	 */
-	int EMOUSE_PICK_MODE = 32;
+	int EMOUSE_PICK_MODE = 34;
 
 
 	/**
@@ -1889,37 +1945,15 @@ public interface RenderingPackage extends EPackage
 	EClass getPhysicalEntity();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getGeoLocation <em>Geo Location</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getLocation <em>Location</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Geo Location</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getGeoLocation()
+	 * @return the meta object for the attribute '<em>Location</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getLocation()
 	 * @see #getPhysicalEntity()
 	 * @generated
 	 */
-	EAttribute getPhysicalEntity_GeoLocation();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getGeoOrientation <em>Geo Orientation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Geo Orientation</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getGeoOrientation()
-	 * @see #getPhysicalEntity()
-	 * @generated
-	 */
-	EAttribute getPhysicalEntity_GeoOrientation();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getAxisLocation <em>Axis Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Axis Location</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getAxisLocation()
-	 * @see #getPhysicalEntity()
-	 * @generated
-	 */
-	EAttribute getPhysicalEntity_AxisLocation();
+	EAttribute getPhysicalEntity_Location();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity#getAxis <em>Axis</em>}'.
@@ -2584,15 +2618,15 @@ public interface RenderingPackage extends EPackage
 	EAttribute getCamera_ZFar();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getPosition <em>Position</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getLocation <em>Location</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Position</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera#getPosition()
+	 * @return the meta object for the attribute '<em>Location</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Camera#getLocation()
 	 * @see #getCamera()
 	 * @generated
 	 */
-	EAttribute getCamera_Position();
+	EAttribute getCamera_Location();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.rendering.Camera#getAxis <em>Axis</em>}'.
@@ -2765,6 +2799,70 @@ public interface RenderingPackage extends EPackage
 	EReference getMousePickExtension_SelectionProxy();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getEntityResolverPipelines <em>Entity Resolver Pipelines</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Entity Resolver Pipelines</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getEntityResolverPipelines()
+	 * @see #getMousePickExtension()
+	 * @generated
+	 */
+	EReference getMousePickExtension_EntityResolverPipelines();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getResolverPipelineOffset <em>Resolver Pipeline Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resolver Pipeline Offset</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension#getResolverPipelineOffset()
+	 * @see #getMousePickExtension()
+	 * @generated
+	 */
+	EAttribute getMousePickExtension_ResolverPipelineOffset();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline <em>Entity Resolver Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Entity Resolver Pipeline</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline
+	 * @generated
+	 */
+	EClass getEntityResolverPipeline();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline#getEntityResolvers <em>Entity Resolvers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Entity Resolvers</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline#getEntityResolvers()
+	 * @see #getEntityResolverPipeline()
+	 * @generated
+	 */
+	EReference getEntityResolverPipeline_EntityResolvers();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline#isTakeFirst <em>Take First</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Take First</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline#isTakeFirst()
+	 * @see #getEntityResolverPipeline()
+	 * @generated
+	 */
+	EAttribute getEntityResolverPipeline_TakeFirst();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver <em>IEntity Resolver</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IEntity Resolver</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver
+	 * @generated
+	 */
+	EClass getIEntityResolver();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection <em>IEntity Selection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2891,28 +2989,12 @@ public interface RenderingPackage extends EPackage
 		EClass PHYSICAL_ENTITY = eINSTANCE.getPhysicalEntity();
 
 		/**
-		 * The meta object literal for the '<em><b>Geo Location</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PHYSICAL_ENTITY__GEO_LOCATION = eINSTANCE.getPhysicalEntity_GeoLocation();
-
-		/**
-		 * The meta object literal for the '<em><b>Geo Orientation</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PHYSICAL_ENTITY__GEO_ORIENTATION = eINSTANCE.getPhysicalEntity_GeoOrientation();
-
-		/**
-		 * The meta object literal for the '<em><b>Axis Location</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PHYSICAL_ENTITY__AXIS_LOCATION = eINSTANCE.getPhysicalEntity_AxisLocation();
+		EAttribute PHYSICAL_ENTITY__LOCATION = eINSTANCE.getPhysicalEntity_Location();
 
 		/**
 		 * The meta object literal for the '<em><b>Axis</b></em>' containment reference feature.
@@ -3451,12 +3533,12 @@ public interface RenderingPackage extends EPackage
 		EAttribute CAMERA__ZFAR = eINSTANCE.getCamera_ZFar();
 
 		/**
-		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CAMERA__POSITION = eINSTANCE.getCamera_Position();
+		EAttribute CAMERA__LOCATION = eINSTANCE.getCamera_Location();
 
 		/**
 		 * The meta object literal for the '<em><b>Axis</b></em>' containment reference feature.
@@ -3597,6 +3679,58 @@ public interface RenderingPackage extends EPackage
 		 * @generated
 		 */
 		EReference MOUSE_PICK_EXTENSION__SELECTION_PROXY = eINSTANCE.getMousePickExtension_SelectionProxy();
+
+		/**
+		 * The meta object literal for the '<em><b>Entity Resolver Pipelines</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MOUSE_PICK_EXTENSION__ENTITY_RESOLVER_PIPELINES = eINSTANCE.getMousePickExtension_EntityResolverPipelines();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolver Pipeline Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MOUSE_PICK_EXTENSION__RESOLVER_PIPELINE_OFFSET = eINSTANCE.getMousePickExtension_ResolverPipelineOffset();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.EntityResolverPipelineImpl <em>Entity Resolver Pipeline</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.EntityResolverPipelineImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityResolverPipeline()
+		 * @generated
+		 */
+		EClass ENTITY_RESOLVER_PIPELINE = eINSTANCE.getEntityResolverPipeline();
+
+		/**
+		 * The meta object literal for the '<em><b>Entity Resolvers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTITY_RESOLVER_PIPELINE__ENTITY_RESOLVERS = eINSTANCE.getEntityResolverPipeline_EntityResolvers();
+
+		/**
+		 * The meta object literal for the '<em><b>Take First</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTITY_RESOLVER_PIPELINE__TAKE_FIRST = eINSTANCE.getEntityResolverPipeline_TakeFirst();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver <em>IEntity Resolver</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIEntityResolver()
+		 * @generated
+		 */
+		EClass IENTITY_RESOLVER = eINSTANCE.getIEntityResolver();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection <em>IEntity Selection</em>}' class.

@@ -23,7 +23,9 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver;
 import org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
@@ -346,6 +348,20 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				MousePickExtension mousePickExtension = (MousePickExtension)theEObject;
 				T1 result = caseMousePickExtension(mousePickExtension);
 				if (result == null) result = caseIProcessExtension(mousePickExtension);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.ENTITY_RESOLVER_PIPELINE:
+			{
+				EntityResolverPipeline entityResolverPipeline = (EntityResolverPipeline)theEObject;
+				T1 result = caseEntityResolverPipeline(entityResolverPipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.IENTITY_RESOLVER:
+			{
+				IEntityResolver iEntityResolver = (IEntityResolver)theEObject;
+				T1 result = caseIEntityResolver(iEntityResolver);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -811,6 +827,38 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseMousePickExtension(MousePickExtension object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Entity Resolver Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Entity Resolver Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseEntityResolverPipeline(EntityResolverPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IEntity Resolver</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IEntity Resolver</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIEntityResolver(IEntityResolver object)
 	{
 		return null;
 	}

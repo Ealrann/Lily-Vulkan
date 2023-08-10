@@ -24,7 +24,9 @@ import org.sheepy.lily.vulkan.extra.model.rendering.DataProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.DescriptorsProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.Entity;
 import org.sheepy.lily.vulkan.extra.model.rendering.EntityPkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline;
 import org.sheepy.lily.vulkan.extra.model.rendering.GenericRenderer;
+import org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver;
 import org.sheepy.lily.vulkan.extra.model.rendering.IEntitySelection;
 import org.sheepy.lily.vulkan.extra.model.rendering.ISpecialization;
 import org.sheepy.lily.vulkan.extra.model.rendering.IndexedDataDescription;
@@ -254,6 +256,16 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseMousePickExtension(MousePickExtension object)
 			{
 				return createMousePickExtensionAdapter();
+			}
+			@Override
+			public Adapter caseEntityResolverPipeline(EntityResolverPipeline object)
+			{
+				return createEntityResolverPipelineAdapter();
+			}
+			@Override
+			public Adapter caseIEntityResolver(IEntityResolver object)
+			{
+				return createIEntityResolverAdapter();
 			}
 			@Override
 			public Adapter caseIEntitySelection(IEntitySelection object)
@@ -773,6 +785,36 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createMousePickExtensionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline <em>Entity Resolver Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline
+	 * @generated
+	 */
+	public Adapter createEntityResolverPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver <em>IEntity Resolver</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver
+	 * @generated
+	 */
+	public Adapter createIEntityResolverAdapter()
 	{
 		return null;
 	}

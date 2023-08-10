@@ -69,7 +69,7 @@ public class CameraItemProvider
 			addFieldOfViewPropertyDescriptor(object);
 			addZNearPropertyDescriptor(object);
 			addZFarPropertyDescriptor(object);
-			addPositionPropertyDescriptor(object);
+			addLocationPropertyDescriptor(object);
 			addLookDirectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -168,20 +168,20 @@ public class CameraItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Position feature.
+	 * This adds a property descriptor for the Location feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPositionPropertyDescriptor(Object object)
+	protected void addLocationPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Camera_position_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Camera_position_feature", "_UI_Camera_type"),
-				 RenderingPackage.Literals.CAMERA__POSITION,
+				 getString("_UI_Camera_location_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Camera_location_feature", "_UI_Camera_type"),
+				 RenderingPackage.Literals.CAMERA__LOCATION,
 				 true,
 				 false,
 				 false,
@@ -292,7 +292,7 @@ public class CameraItemProvider
 			case RenderingPackage.CAMERA__FIELD_OF_VIEW:
 			case RenderingPackage.CAMERA__ZNEAR:
 			case RenderingPackage.CAMERA__ZFAR:
-			case RenderingPackage.CAMERA__POSITION:
+			case RenderingPackage.CAMERA__LOCATION:
 			case RenderingPackage.CAMERA__LOOK_DIRECTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

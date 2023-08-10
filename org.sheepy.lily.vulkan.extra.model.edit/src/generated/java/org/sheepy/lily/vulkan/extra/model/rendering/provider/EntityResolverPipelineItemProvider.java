@@ -9,7 +9,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -21,18 +20,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
+import org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.EntityResolverPipeline} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PhysicalEntityItemProvider
+public class EntityResolverPipelineItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +44,7 @@ public class PhysicalEntityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PhysicalEntityItemProvider(AdapterFactory adapterFactory)
+	public EntityResolverPipelineItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -65,93 +62,60 @@ public class PhysicalEntityItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addLocationPropertyDescriptor(object);
+			addEntityResolversPropertyDescriptor(object);
+			addTakeFirstPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Entity Resolvers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
+	protected void addEntityResolversPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 getString("_UI_EntityResolverPipeline_entityResolvers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EntityResolverPipeline_entityResolvers_feature", "_UI_EntityResolverPipeline_type"),
+				 RenderingPackage.Literals.ENTITY_RESOLVER_PIPELINE__ENTITY_RESOLVERS,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Location feature.
+	 * This adds a property descriptor for the Take First feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLocationPropertyDescriptor(Object object)
+	protected void addTakeFirstPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PhysicalEntity_location_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PhysicalEntity_location_feature", "_UI_PhysicalEntity_type"),
-				 RenderingPackage.Literals.PHYSICAL_ENTITY__LOCATION,
+				 getString("_UI_EntityResolverPipeline_takeFirst_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EntityResolverPipeline_takeFirst_feature", "_UI_EntityResolverPipeline_type"),
+				 RenderingPackage.Literals.ENTITY_RESOLVER_PIPELINE__TAKE_FIRST,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.PHYSICAL_ENTITY__AXIS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns PhysicalEntity.gif.
+	 * This returns EntityResolverPipeline.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -159,7 +123,7 @@ public class PhysicalEntityItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PhysicalEntity"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EntityResolverPipeline"));
 	}
 
 	/**
@@ -171,10 +135,8 @@ public class PhysicalEntityItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((PhysicalEntity)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PhysicalEntity_type") :
-			getString("_UI_PhysicalEntity_type") + " " + label;
+		EntityResolverPipeline entityResolverPipeline = (EntityResolverPipeline)object;
+		return getString("_UI_EntityResolverPipeline_type") + " " + entityResolverPipeline.isTakeFirst();
 	}
 
 
@@ -190,14 +152,10 @@ public class PhysicalEntityItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PhysicalEntity.class))
+		switch (notification.getFeatureID(EntityResolverPipeline.class))
 		{
-			case RenderingPackage.PHYSICAL_ENTITY__NAME:
-			case RenderingPackage.PHYSICAL_ENTITY__LOCATION:
+			case RenderingPackage.ENTITY_RESOLVER_PIPELINE__TAKE_FIRST:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case RenderingPackage.PHYSICAL_ENTITY__AXIS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -214,11 +172,6 @@ public class PhysicalEntityItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.PHYSICAL_ENTITY__AXIS,
-				 RenderingFactory.eINSTANCE.createAxis()));
 	}
 
 	/**
