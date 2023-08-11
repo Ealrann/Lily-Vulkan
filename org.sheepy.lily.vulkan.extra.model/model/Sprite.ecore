@@ -18,4 +18,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ISpriteDataSource" abstract="true" interface="true"
       eSuperTypes="../../org.sheepy.lily.vulkan.model/model/vulkanresource.ecore#//IBufferDataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SpritePkg" eSuperTypes="#//ISpriteDataSource Rendering.ecore#//IEntityResolver ../../org.sheepy.lily.core.model/model/presentation.ecore#//IPresentationPkg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sprites" upperBound="-1"
+        eType="#//Sprite" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sprite" eSuperTypes="Rendering.ecore#//Presentation ../../org.sheepy.lily.core.model/model/types.ecore#//LNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="ecore:EClass ../../org.sheepy.lily.core.model/model/resource.ecore#//FileImage"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

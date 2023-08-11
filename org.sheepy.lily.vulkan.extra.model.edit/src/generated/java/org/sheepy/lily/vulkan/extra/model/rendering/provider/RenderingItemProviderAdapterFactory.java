@@ -126,28 +126,53 @@ public class RenderingItemProviderAdapterFactory extends RenderingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PresentationPkgItemProvider presentationPkgItemProvider;
+	protected StructurePkgItemProvider structurePkgItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPresentationPkgAdapter()
+	public Adapter createStructurePkgAdapter()
 	{
-		if (presentationPkgItemProvider == null)
+		if (structurePkgItemProvider == null)
 		{
-			presentationPkgItemProvider = new PresentationPkgItemProvider(this);
+			structurePkgItemProvider = new StructurePkgItemProvider(this);
 		}
 
-		return presentationPkgItemProvider;
+		return structurePkgItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.model.rendering.Structures} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StructuresItemProvider structuresItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.Structures}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStructuresAdapter()
+	{
+		if (structuresItemProvider == null)
+		{
+			structuresItemProvider = new StructuresItemProvider(this);
+		}
+
+		return structuresItemProvider;
 	}
 
 	/**

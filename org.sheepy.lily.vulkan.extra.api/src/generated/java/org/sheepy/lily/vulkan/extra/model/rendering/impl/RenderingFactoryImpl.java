@@ -29,7 +29,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.MousePickConstants;
 import org.sheepy.lily.vulkan.extra.model.rendering.MousePickExtension;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
@@ -37,6 +36,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structures;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,7 +92,8 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 		switch (eClass.getClassifierID())
 		{
 			case RenderingPackage.AXIS: return createAxis();
-			case RenderingPackage.PRESENTATION_PKG: return createPresentationPkg();
+			case RenderingPackage.STRUCTURE_PKG: return createStructurePkg();
+			case RenderingPackage.STRUCTURES: return createStructures();
 			case RenderingPackage.PRESENTABLE_ENTITY: return createPresentableEntity();
 			case RenderingPackage.DATA_PROVIDER_PKG: return createDataProviderPkg();
 			case RenderingPackage.DATA_PROVIDER: return createDataProvider();
@@ -178,10 +180,22 @@ public class RenderingFactoryImpl extends EFactoryImpl implements RenderingFacto
 	 * @generated
 	 */
 	@Override
-	public PresentationPkg createPresentationPkg()
+	public StructurePkg createStructurePkg()
 	{
-		PresentationPkgImpl presentationPkg = new PresentationPkgImpl();
-		return presentationPkg;
+		StructurePkgImpl structurePkg = new StructurePkgImpl();
+		return structurePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Structures createStructures()
+	{
+		StructuresImpl structures = new StructuresImpl();
+		return structures;
 	}
 
 	/**

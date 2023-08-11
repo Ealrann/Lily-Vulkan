@@ -52,7 +52,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
@@ -61,6 +60,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structures;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
 import org.sheepy.lily.vulkan.extra.model.shape.impl.ShapePackageImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
@@ -123,7 +124,14 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass presentationPkgEClass = null;
+	private EClass structurePkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structuresEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -557,9 +565,9 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getPresentationPkg()
+	public EClass getStructurePkg()
 	{
-		return presentationPkgEClass;
+		return structurePkgEClass;
 	}
 
 	/**
@@ -568,9 +576,31 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getPresentationPkg_Structures()
+	public EReference getStructurePkg_Structures()
 	{
-		return (EReference)presentationPkgEClass.getEStructuralFeatures().get(0);
+		return (EReference)structurePkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStructures()
+	{
+		return structuresEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStructures_StructurePkgs()
+	{
+		return (EReference)structuresEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1533,8 +1563,11 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		presentationEClass = createEClass(PRESENTATION);
 		createEReference(presentationEClass, PRESENTATION__PRESENTED_ENTITIES);
 
-		presentationPkgEClass = createEClass(PRESENTATION_PKG);
-		createEReference(presentationPkgEClass, PRESENTATION_PKG__STRUCTURES);
+		structurePkgEClass = createEClass(STRUCTURE_PKG);
+		createEReference(structurePkgEClass, STRUCTURE_PKG__STRUCTURES);
+
+		structuresEClass = createEClass(STRUCTURES);
+		createEReference(structuresEClass, STRUCTURES__STRUCTURE_PKGS);
 
 		presentableEntityEClass = createEClass(PRESENTABLE_ENTITY);
 		createEReference(presentableEntityEClass, PRESENTABLE_ENTITY__PRESENTATION);
@@ -1751,8 +1784,11 @@ public class RenderingPackageImpl extends EPackageImpl implements RenderingPacka
 		initEClass(presentationEClass, Presentation.class, "Presentation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPresentation_PresentedEntities(), this.getPresentableEntity(), this.getPresentableEntity_Presentation(), "presentedEntities", null, 0, -1, Presentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(presentationPkgEClass, PresentationPkg.class, "PresentationPkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPresentationPkg_Structures(), this.getStructure(), null, "structures", null, 0, -1, PresentationPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(structurePkgEClass, StructurePkg.class, "StructurePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStructurePkg_Structures(), this.getStructure(), null, "structures", null, 0, -1, StructurePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(structuresEClass, Structures.class, "Structures", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStructures_StructurePkgs(), this.getStructurePkg(), null, "structurePkgs", null, 0, -1, Structures.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(presentableEntityEClass, PresentableEntity.class, "PresentableEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPresentableEntity_Presentation(), this.getPresentation(), this.getPresentation_PresentedEntities(), "presentation", null, 0, 1, PresentableEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

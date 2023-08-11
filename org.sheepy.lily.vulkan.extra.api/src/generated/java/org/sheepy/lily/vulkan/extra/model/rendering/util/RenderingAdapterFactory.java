@@ -36,7 +36,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
@@ -44,6 +43,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structures;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -143,9 +144,14 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 				return createPresentationAdapter();
 			}
 			@Override
-			public Adapter casePresentationPkg(PresentationPkg object)
+			public Adapter caseStructurePkg(StructurePkg object)
 			{
-				return createPresentationPkgAdapter();
+				return createStructurePkgAdapter();
+			}
+			@Override
+			public Adapter caseStructures(Structures object)
+			{
+				return createStructuresAdapter();
 			}
 			@Override
 			public Adapter casePresentableEntity(PresentableEntity object)
@@ -445,16 +451,31 @@ public class RenderingAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg <em>Presentation Pkg</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg <em>Structure Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg
 	 * @generated
 	 */
-	public Adapter createPresentationPkgAdapter()
+	public Adapter createStructurePkgAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Structures <em>Structures</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Structures
+	 * @generated
+	 */
+	public Adapter createStructuresAdapter()
 	{
 		return null;
 	}

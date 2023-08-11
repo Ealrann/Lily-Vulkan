@@ -35,7 +35,6 @@ import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntityVariable;
 import org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity;
 import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderProxyConstantBuffer;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderableDataSource;
 import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
@@ -43,6 +42,8 @@ import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProvider;
 import org.sheepy.lily.vulkan.extra.model.rendering.ResourceDescriptorProviderPkg;
 import org.sheepy.lily.vulkan.extra.model.rendering.SelectionProxy;
 import org.sheepy.lily.vulkan.extra.model.rendering.Structure;
+import org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg;
+import org.sheepy.lily.vulkan.extra.model.rendering.Structures;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.IVulkanResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -154,10 +155,17 @@ public class RenderingSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RenderingPackage.PRESENTATION_PKG:
+			case RenderingPackage.STRUCTURE_PKG:
 			{
-				PresentationPkg presentationPkg = (PresentationPkg)theEObject;
-				T1 result = casePresentationPkg(presentationPkg);
+				StructurePkg structurePkg = (StructurePkg)theEObject;
+				T1 result = caseStructurePkg(structurePkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RenderingPackage.STRUCTURES:
+			{
+				Structures structures = (Structures)theEObject;
+				T1 result = caseStructures(structures);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -464,17 +472,33 @@ public class RenderingSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Presentation Pkg</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Structure Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Presentation Pkg</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Structure Pkg</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePresentationPkg(PresentationPkg object)
+	public T1 caseStructurePkg(StructurePkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Structures</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Structures</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseStructures(Structures object)
 	{
 		return null;
 	}

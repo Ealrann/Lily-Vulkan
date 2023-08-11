@@ -4,9 +4,16 @@ package org.sheepy.lily.vulkan.extra.model.sprite.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-import org.sheepy.lily.vulkan.extra.model.sprite.*;
+import org.sheepy.lily.core.model.presentation.IPresentationPkg;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.vulkan.extra.model.rendering.IEntityResolver;
+import org.sheepy.lily.vulkan.extra.model.rendering.Presentation;
+import org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource;
+import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg;
 import org.sheepy.lily.vulkan.model.process.IPipelineExtension;
 import org.sheepy.lily.vulkan.model.vulkanresource.IBufferDataSource;
 
@@ -90,6 +97,27 @@ public class SpriteSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SpritePackage.SPRITE_PKG:
+			{
+				SpritePkg spritePkg = (SpritePkg)theEObject;
+				T result = caseSpritePkg(spritePkg);
+				if (result == null) result = caseISpriteDataSource(spritePkg);
+				if (result == null) result = caseIEntityResolver(spritePkg);
+				if (result == null) result = caseIPresentationPkg(spritePkg);
+				if (result == null) result = caseIBufferDataSource(spritePkg);
+				if (result == null) result = caseLNamedElement(spritePkg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpritePackage.SPRITE:
+			{
+				Sprite sprite = (Sprite)theEObject;
+				T result = caseSprite(sprite);
+				if (result == null) result = casePresentation(sprite);
+				if (result == null) result = caseLNamedElement(sprite);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -127,6 +155,38 @@ public class SpriteSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSpritePkg(SpritePkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sprite</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sprite</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSprite(Sprite object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IBuffer Data Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -138,6 +198,70 @@ public class SpriteSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIBufferDataSource(IBufferDataSource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IEntity Resolver</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IEntity Resolver</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIEntityResolver(IEntityResolver object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLNamedElement(LNamedElement object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPresentation Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPresentation Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIPresentationPkg(IPresentationPkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Presentation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Presentation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePresentation(Presentation object)
 	{
 		return null;
 	}

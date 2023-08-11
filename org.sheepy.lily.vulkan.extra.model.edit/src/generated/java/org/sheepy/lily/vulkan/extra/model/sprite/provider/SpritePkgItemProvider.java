@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.rendering.provider;
+package org.sheepy.lily.vulkan.extra.model.sprite.provider;
 
 
 import java.util.Collection;
@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -17,20 +18,21 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.extra.model.mesh.MeshFactory;
-import org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg;
-import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
-import org.sheepy.lily.vulkan.extra.model.shape.ShapeFactory;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PresentationPkgItemProvider
+public class SpritePkgItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -45,7 +47,7 @@ public class PresentationPkgItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PresentationPkgItemProvider(AdapterFactory adapterFactory)
+	public SpritePkgItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -63,8 +65,32 @@ public class PresentationPkgItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -81,7 +107,7 @@ public class PresentationPkgItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES);
+			childrenFeatures.add(SpritePackage.Literals.SPRITE_PKG__SPRITES);
 		}
 		return childrenFeatures;
 	}
@@ -101,7 +127,7 @@ public class PresentationPkgItemProvider
 	}
 
 	/**
-	 * This returns PresentationPkg.gif.
+	 * This returns SpritePkg.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -109,7 +135,7 @@ public class PresentationPkgItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PresentationPkg"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SpritePkg"));
 	}
 
 	/**
@@ -121,7 +147,10 @@ public class PresentationPkgItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_PresentationPkg_type");
+		String label = ((SpritePkg)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SpritePkg_type") :
+			getString("_UI_SpritePkg_type") + " " + label;
 	}
 
 
@@ -137,9 +166,12 @@ public class PresentationPkgItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PresentationPkg.class))
+		switch (notification.getFeatureID(SpritePkg.class))
 		{
-			case RenderingPackage.PRESENTATION_PKG__STRUCTURES:
+			case SpritePackage.SPRITE_PKG__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case SpritePackage.SPRITE_PKG__SPRITES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -160,23 +192,8 @@ public class PresentationPkgItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
-				 ShapeFactory.eINSTANCE.createIcosahedron()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
-				 ShapeFactory.eINSTANCE.createSphere()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
-				 ShapeFactory.eINSTANCE.createIcoSphere()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderingPackage.Literals.PRESENTATION_PKG__STRUCTURES,
-				 MeshFactory.eINSTANCE.createIMeshStructure()));
+				(SpritePackage.Literals.SPRITE_PKG__SPRITES,
+				 SpriteFactory.eINSTANCE.createSprite()));
 	}
 
 	/**

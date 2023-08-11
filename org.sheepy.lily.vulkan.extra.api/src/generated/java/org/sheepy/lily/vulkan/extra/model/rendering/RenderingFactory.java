@@ -32,13 +32,22 @@ public interface RenderingFactory extends EFactory
 	Axis createAxis();
 
 	/**
-	 * Returns a new object of class '<em>Presentation Pkg</em>'.
+	 * Returns a new object of class '<em>Structure Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Presentation Pkg</em>'.
+	 * @return a new object of class '<em>Structure Pkg</em>'.
 	 * @generated
 	 */
-	PresentationPkg createPresentationPkg();
+	StructurePkg createStructurePkg();
+
+	/**
+	 * Returns a new object of class '<em>Structures</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structures</em>'.
+	 * @generated
+	 */
+	Structures createStructures();
 
 	/**
 	 * Returns a new object of class '<em>Presentable Entity</em>'.

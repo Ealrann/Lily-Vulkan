@@ -7,9 +7,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,7 +65,9 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case SpritePackage.SPRITE_EXTENSION: return (EObject)createSpriteExtension();
+			case SpritePackage.SPRITE_EXTENSION: return createSpriteExtension();
+			case SpritePackage.SPRITE_PKG: return createSpritePkg();
+			case SpritePackage.SPRITE: return createSprite();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -79,6 +83,30 @@ public class SpriteFactoryImpl extends EFactoryImpl implements SpriteFactory
 	{
 		SpriteExtensionImpl spriteExtension = new SpriteExtensionImpl();
 		return spriteExtension;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SpritePkg createSpritePkg()
+	{
+		SpritePkgImpl spritePkg = new SpritePkgImpl();
+		return spritePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Sprite createSprite()
+	{
+		SpriteImpl sprite = new SpriteImpl();
+		return sprite;
 	}
 
 	/**

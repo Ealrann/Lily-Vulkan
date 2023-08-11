@@ -4,8 +4,8 @@ package org.sheepy.lily.vulkan.extra.model.sprite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.vulkanresource.VulkanResourcePackage;
 
@@ -178,6 +178,107 @@ public interface SpritePackage extends EPackage
 	int ISPRITE_DATA_SOURCE_OPERATION_COUNT = VulkanResourcePackage.IBUFFER_DATA_SOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePkgImpl <em>Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePkgImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpritePkg()
+	 * @generated
+	 */
+	int SPRITE_PKG = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_PKG__NAME = ISPRITE_DATA_SOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Sprites</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_PKG__SPRITES = ISPRITE_DATA_SOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_PKG_FEATURE_COUNT = ISPRITE_DATA_SOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_PKG_OPERATION_COUNT = ISPRITE_DATA_SOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl <em>Sprite</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSprite()
+	 * @generated
+	 */
+	int SPRITE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Presented Entities</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE__PRESENTED_ENTITIES = RenderingPackage.PRESENTATION__PRESENTED_ENTITIES;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE__NAME = RenderingPackage.PRESENTATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE__IMAGE = RenderingPackage.PRESENTATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Sprite</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_FEATURE_COUNT = RenderingPackage.PRESENTATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Sprite</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRITE_OPERATION_COUNT = RenderingPackage.PRESENTATION_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -275,6 +376,48 @@ public interface SpritePackage extends EPackage
 	EClass getISpriteDataSource();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg <em>Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg
+	 * @generated
+	 */
+	EClass getSpritePkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg#getSprites <em>Sprites</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sprites</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg#getSprites()
+	 * @see #getSpritePkg()
+	 * @generated
+	 */
+	EReference getSpritePkg_Sprites();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite <em>Sprite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sprite</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.Sprite
+	 * @generated
+	 */
+	EClass getSprite();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getImage <em>Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Image</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.sprite.Sprite#getImage()
+	 * @see #getSprite()
+	 * @generated
+	 */
+	EReference getSprite_Image();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,6 +507,38 @@ public interface SpritePackage extends EPackage
 		 * @generated
 		 */
 		EClass ISPRITE_DATA_SOURCE = eINSTANCE.getISpriteDataSource();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePkgImpl <em>Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePkgImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSpritePkg()
+		 * @generated
+		 */
+		EClass SPRITE_PKG = eINSTANCE.getSpritePkg();
+		/**
+		 * The meta object literal for the '<em><b>Sprites</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPRITE_PKG__SPRITES = eINSTANCE.getSpritePkg_Sprites();
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl <em>Sprite</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpriteImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.sprite.impl.SpritePackageImpl#getSprite()
+		 * @generated
+		 */
+		EClass SPRITE = eINSTANCE.getSprite();
+		/**
+		 * The meta object literal for the '<em><b>Image</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPRITE__IMAGE = eINSTANCE.getSprite_Image();
 
 	}
 

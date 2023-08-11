@@ -25,9 +25,11 @@ import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.shape.ShapePackage;
 import org.sheepy.lily.vulkan.extra.model.shape.impl.ShapePackageImpl;
 import org.sheepy.lily.vulkan.extra.model.sprite.ISpriteDataSource;
+import org.sheepy.lily.vulkan.extra.model.sprite.Sprite;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteExtension;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpriteFactory;
 import org.sheepy.lily.vulkan.extra.model.sprite.SpritePackage;
+import org.sheepy.lily.vulkan.extra.model.sprite.SpritePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -59,6 +61,20 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	private EClass iSpriteDataSourceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass spritePkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass spriteEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -267,6 +283,50 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getSpritePkg()
+	{
+		return spritePkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSpritePkg_Sprites()
+	{
+		return (EReference)spritePkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSprite()
+	{
+		return spriteEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSprite_Image()
+	{
+		return (EReference)spriteEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SpriteFactory getSpriteFactory()
 	{
 		return (SpriteFactory)getEFactoryInstance();
@@ -302,6 +362,12 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		createEReference(spriteExtensionEClass, SPRITE_EXTENSION__SPRITE_IMAGE_MEMORY);
 
 		iSpriteDataSourceEClass = createEClass(ISPRITE_DATA_SOURCE);
+
+		spritePkgEClass = createEClass(SPRITE_PKG);
+		createEReference(spritePkgEClass, SPRITE_PKG__SPRITES);
+
+		spriteEClass = createEClass(SPRITE);
+		createEReference(spriteEClass, SPRITE__IMAGE);
 	}
 
 	/**
@@ -332,6 +398,10 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		VulkanResourcePackage theVulkanResourcePackage = (VulkanResourcePackage)EPackage.Registry.INSTANCE.getEPackage(VulkanResourcePackage.eNS_URI);
 		GraphicPackage theGraphicPackage = (GraphicPackage)EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
+		RenderingPackage theRenderingPackage = (RenderingPackage)EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
+		PresentationPackage thePresentationPackage = (PresentationPackage)EPackage.Registry.INSTANCE.getEPackage(PresentationPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -341,6 +411,11 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		spriteExtensionEClass.getESuperTypes().add(theProcessPackage.getIPipelineExtension());
 		spriteExtensionEClass.getESuperTypes().add(theVulkanResourcePackage.getIBufferDataSource());
 		iSpriteDataSourceEClass.getESuperTypes().add(theVulkanResourcePackage.getIBufferDataSource());
+		spritePkgEClass.getESuperTypes().add(this.getISpriteDataSource());
+		spritePkgEClass.getESuperTypes().add(theRenderingPackage.getIEntityResolver());
+		spritePkgEClass.getESuperTypes().add(thePresentationPackage.getIPresentationPkg());
+		spriteEClass.getESuperTypes().add(theRenderingPackage.getPresentation());
+		spriteEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(spriteExtensionEClass, SpriteExtension.class, "SpriteExtension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -353,6 +428,12 @@ public class SpritePackageImpl extends EPackageImpl implements SpritePackage
 		initEReference(getSpriteExtension_SpriteImageMemory(), theVulkanResourcePackage.getMemoryChunk(), null, "spriteImageMemory", null, 1, 1, SpriteExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iSpriteDataSourceEClass, ISpriteDataSource.class, "ISpriteDataSource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(spritePkgEClass, SpritePkg.class, "SpritePkg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSpritePkg_Sprites(), this.getSprite(), null, "sprites", null, 0, -1, SpritePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(spriteEClass, Sprite.class, "Sprite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSprite_Image(), theResourcePackage.getFileImage(), null, "image", null, 1, 1, Sprite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

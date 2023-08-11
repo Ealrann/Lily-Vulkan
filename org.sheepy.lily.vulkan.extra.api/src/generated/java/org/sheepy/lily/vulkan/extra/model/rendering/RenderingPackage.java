@@ -276,14 +276,14 @@ public interface RenderingPackage extends EPackage
 	int PRESENTATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl <em>Presentation Pkg</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StructurePkgImpl <em>Structure Pkg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPresentationPkg()
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.StructurePkgImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStructurePkg()
 	 * @generated
 	 */
-	int PRESENTATION_PKG = 5;
+	int STRUCTURE_PKG = 5;
 
 	/**
 	 * The feature id for the '<em><b>Structures</b></em>' containment reference list.
@@ -292,25 +292,62 @@ public interface RenderingPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRESENTATION_PKG__STRUCTURES = 0;
+	int STRUCTURE_PKG__STRUCTURES = 0;
 
 	/**
-	 * The number of structural features of the '<em>Presentation Pkg</em>' class.
+	 * The number of structural features of the '<em>Structure Pkg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRESENTATION_PKG_FEATURE_COUNT = 1;
+	int STRUCTURE_PKG_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Presentation Pkg</em>' class.
+	 * The number of operations of the '<em>Structure Pkg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRESENTATION_PKG_OPERATION_COUNT = 0;
+	int STRUCTURE_PKG_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StructuresImpl <em>Structures</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.StructuresImpl
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStructures()
+	 * @generated
+	 */
+	int STRUCTURES = 6;
+
+	/**
+	 * The feature id for the '<em><b>Structure Pkgs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURES__STRUCTURE_PKGS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Structures</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Structures</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURES_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentableEntityImpl <em>Presentable Entity</em>}' class.
@@ -320,7 +357,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPresentableEntity()
 	 * @generated
 	 */
-	int PRESENTABLE_ENTITY = 6;
+	int PRESENTABLE_ENTITY = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -394,7 +431,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getGenericRenderer()
 	 * @generated
 	 */
-	int GENERIC_RENDERER = 7;
+	int GENERIC_RENDERER = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -692,7 +729,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataProviderPkg()
 	 * @generated
 	 */
-	int DATA_PROVIDER_PKG = 8;
+	int DATA_PROVIDER_PKG = 9;
 
 	/**
 	 * The feature id for the '<em><b>Data Providers</b></em>' containment reference list.
@@ -729,7 +766,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataProvider()
 	 * @generated
 	 */
-	int DATA_PROVIDER = 9;
+	int DATA_PROVIDER = 10;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -802,7 +839,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIndexedDataDescription()
 	 * @generated
 	 */
-	int INDEXED_DATA_DESCRIPTION = 10;
+	int INDEXED_DATA_DESCRIPTION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -884,7 +921,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderableDataSource()
 	 * @generated
 	 */
-	int RENDERABLE_DATA_SOURCE = 11;
+	int RENDERABLE_DATA_SOURCE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -949,7 +986,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceDescriptorProvider()
 	 * @generated
 	 */
-	int RESOURCE_DESCRIPTOR_PROVIDER = 12;
+	int RESOURCE_DESCRIPTOR_PROVIDER = 13;
 
 	/**
 	 * The number of structural features of the '<em>Resource Descriptor Provider</em>' class.
@@ -977,7 +1014,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDescriptorsProvider()
 	 * @generated
 	 */
-	int DESCRIPTORS_PROVIDER = 13;
+	int DESCRIPTORS_PROVIDER = 14;
 
 	/**
 	 * The feature id for the '<em><b>Descriptors</b></em>' reference list.
@@ -1014,7 +1051,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataDescriptorsProvider()
 	 * @generated
 	 */
-	int DATA_DESCRIPTORS_PROVIDER = 14;
+	int DATA_DESCRIPTORS_PROVIDER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Data Descriptors</b></em>' containment reference list.
@@ -1051,7 +1088,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getDataDescriptor()
 	 * @generated
 	 */
-	int DATA_DESCRIPTOR = 15;
+	int DATA_DESCRIPTOR = 16;
 
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' attribute.
@@ -1115,7 +1152,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getResourceDescriptorProviderPkg()
 	 * @generated
 	 */
-	int RESOURCE_DESCRIPTOR_PROVIDER_PKG = 16;
+	int RESOURCE_DESCRIPTOR_PROVIDER_PKG = 17;
 
 	/**
 	 * The feature id for the '<em><b>Resource Descriptor Providers</b></em>' containment reference list.
@@ -1152,7 +1189,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getRenderProxyConstantBuffer()
 	 * @generated
 	 */
-	int RENDER_PROXY_CONSTANT_BUFFER = 17;
+	int RENDER_PROXY_CONSTANT_BUFFER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1217,7 +1254,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getISpecialization()
 	 * @generated
 	 */
-	int ISPECIALIZATION = 18;
+	int ISPECIALIZATION = 19;
 
 	/**
 	 * The number of structural features of the '<em>ISpecialization</em>' class.
@@ -1246,7 +1283,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityPkg()
 	 * @generated
 	 */
-	int ENTITY_PKG = 19;
+	int ENTITY_PKG = 20;
 
 	/**
 	 * The feature id for the '<em><b>Entities</b></em>' containment reference list.
@@ -1284,7 +1321,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPhysicalEntityVariable()
 	 * @generated
 	 */
-	int PHYSICAL_ENTITY_VARIABLE = 20;
+	int PHYSICAL_ENTITY_VARIABLE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1339,7 +1376,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCamera()
 	 * @generated
 	 */
-	int CAMERA = 21;
+	int CAMERA = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1430,7 +1467,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraMatrix()
 	 * @generated
 	 */
-	int CAMERA_MATRIX = 22;
+	int CAMERA_MATRIX = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1476,7 +1513,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraPosition()
 	 * @generated
 	 */
-	int CAMERA_POSITION = 23;
+	int CAMERA_POSITION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1522,7 +1559,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraScreenWorldPosition()
 	 * @generated
 	 */
-	int CAMERA_SCREEN_WORLD_POSITION = 24;
+	int CAMERA_SCREEN_WORLD_POSITION = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1568,7 +1605,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getCameraVariable()
 	 * @generated
 	 */
-	int CAMERA_VARIABLE = 25;
+	int CAMERA_VARIABLE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1623,7 +1660,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getMousePickConstants()
 	 * @generated
 	 */
-	int MOUSE_PICK_CONSTANTS = 26;
+	int MOUSE_PICK_CONSTANTS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1678,7 +1715,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getMousePickExtension()
 	 * @generated
 	 */
-	int MOUSE_PICK_EXTENSION = 27;
+	int MOUSE_PICK_EXTENSION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Mouse Pick Buffer</b></em>' reference.
@@ -1742,7 +1779,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEntityResolverPipeline()
 	 * @generated
 	 */
-	int ENTITY_RESOLVER_PIPELINE = 28;
+	int ENTITY_RESOLVER_PIPELINE = 29;
 
 	/**
 	 * The feature id for the '<em><b>Entity Resolvers</b></em>' reference list.
@@ -1788,7 +1825,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIEntityResolver()
 	 * @generated
 	 */
-	int IENTITY_RESOLVER = 29;
+	int IENTITY_RESOLVER = 30;
 
 	/**
 	 * The number of structural features of the '<em>IEntity Resolver</em>' class.
@@ -1816,7 +1853,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getIEntitySelection()
 	 * @generated
 	 */
-	int IENTITY_SELECTION = 30;
+	int IENTITY_SELECTION = 31;
 
 	/**
 	 * The number of structural features of the '<em>IEntity Selection</em>' class.
@@ -1844,7 +1881,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getSelectionProxy()
 	 * @generated
 	 */
-	int SELECTION_PROXY = 31;
+	int SELECTION_PROXY = 32;
 
 	/**
 	 * The feature id for the '<em><b>Pick Mode</b></em>' attribute.
@@ -1899,7 +1936,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEPhysicalEntityFeature()
 	 * @generated
 	 */
-	int EPHYSICAL_ENTITY_FEATURE = 32;
+	int EPHYSICAL_ENTITY_FEATURE = 33;
 
 
 	/**
@@ -1910,7 +1947,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getECameraField()
 	 * @generated
 	 */
-	int ECAMERA_FIELD = 33;
+	int ECAMERA_FIELD = 34;
 
 
 	/**
@@ -1921,7 +1958,7 @@ public interface RenderingPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getEMousePickMode()
 	 * @generated
 	 */
-	int EMOUSE_PICK_MODE = 34;
+	int EMOUSE_PICK_MODE = 35;
 
 
 	/**
@@ -2041,25 +2078,46 @@ public interface RenderingPackage extends EPackage
 	EReference getPresentation_PresentedEntities();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg <em>Presentation Pkg</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg <em>Structure Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Presentation Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg
+	 * @return the meta object for class '<em>Structure Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg
 	 * @generated
 	 */
-	EClass getPresentationPkg();
+	EClass getStructurePkg();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg#getStructures <em>Structures</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg#getStructures <em>Structures</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Structures</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.model.rendering.PresentationPkg#getStructures()
-	 * @see #getPresentationPkg()
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.StructurePkg#getStructures()
+	 * @see #getStructurePkg()
 	 * @generated
 	 */
-	EReference getPresentationPkg_Structures();
+	EReference getStructurePkg_Structures();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.Structures <em>Structures</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Structures</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Structures
+	 * @generated
+	 */
+	EClass getStructures();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.extra.model.rendering.Structures#getStructurePkgs <em>Structure Pkgs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Structure Pkgs</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.model.rendering.Structures#getStructurePkgs()
+	 * @see #getStructures()
+	 * @generated
+	 */
+	EReference getStructures_StructurePkgs();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.model.rendering.PresentableEntity <em>Presentable Entity</em>}'.
@@ -3067,14 +3125,14 @@ public interface RenderingPackage extends EPackage
 		EReference PRESENTATION__PRESENTED_ENTITIES = eINSTANCE.getPresentation_PresentedEntities();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl <em>Presentation Pkg</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StructurePkgImpl <em>Structure Pkg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentationPkgImpl
-		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getPresentationPkg()
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.StructurePkgImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStructurePkg()
 		 * @generated
 		 */
-		EClass PRESENTATION_PKG = eINSTANCE.getPresentationPkg();
+		EClass STRUCTURE_PKG = eINSTANCE.getStructurePkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Structures</b></em>' containment reference list feature.
@@ -3082,7 +3140,25 @@ public interface RenderingPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PRESENTATION_PKG__STRUCTURES = eINSTANCE.getPresentationPkg_Structures();
+		EReference STRUCTURE_PKG__STRUCTURES = eINSTANCE.getStructurePkg_Structures();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.StructuresImpl <em>Structures</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.StructuresImpl
+		 * @see org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl#getStructures()
+		 * @generated
+		 */
+		EClass STRUCTURES = eINSTANCE.getStructures();
+
+		/**
+		 * The meta object literal for the '<em><b>Structure Pkgs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURES__STRUCTURE_PKGS = eINSTANCE.getStructures_StructurePkgs();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.model.rendering.impl.PresentableEntityImpl <em>Presentable Entity</em>}' class.

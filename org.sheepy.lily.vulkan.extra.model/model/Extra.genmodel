@@ -80,8 +80,11 @@
       <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference Rendering.ecore#//Presentation/presentedEntities"/>
     </genClasses>
-    <genClasses ecoreClass="Rendering.ecore#//PresentationPkg">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//PresentationPkg/structures"/>
+    <genClasses ecoreClass="Rendering.ecore#//StructurePkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//StructurePkg/structures"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//Structures">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//Structures/structurePkgs"/>
     </genClasses>
     <genClasses ecoreClass="Rendering.ecore#//PresentableEntity">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//PresentableEntity/presentation"/>
@@ -216,6 +219,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpriteExtension/spriteImageMemory"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Sprite.ecore#//ISpriteDataSource"/>
+    <genClasses ecoreClass="Sprite.ecore#//SpritePkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//SpritePkg/sprites"/>
+    </genClasses>
+    <genClasses ecoreClass="Sprite.ecore#//Sprite">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sprite.ecore#//Sprite/image"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Mesh" basePackage="org.sheepy.lily.vulkan.extra.model" extensibleProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Mesh.ecore#/">
