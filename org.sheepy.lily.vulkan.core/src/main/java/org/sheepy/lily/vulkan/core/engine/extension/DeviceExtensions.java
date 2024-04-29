@@ -91,28 +91,23 @@ public final class DeviceExtensions
 		public DeviceExtensions build()
 		{
 			final var extensions = retainedExtensions.isEmpty()
-					? Set.<EDeviceExtension>of()
-					: EnumSet.copyOf(retainedExtensions);
+								   ? Set.<EDeviceExtension>of()
+								   : EnumSet.copyOf(retainedExtensions);
 			return new DeviceExtensions(extensions);
 		}
 
 		private static List<String> gatherAvailableExtensions(final VkPhysicalDevice vkPhysicalDevice)
 		{
 			final int[] extensionCount = new int[1];
-
 			vkEnumerateDeviceExtensionProperties(vkPhysicalDevice, (ByteBuffer) null, extensionCount, null);
-
-			try (final var subStack = MemoryStack.stackPush())
-			{
-				final var availableExtensions = VkExtensionProperties.calloc(extensionCount[0], subStack);
-
-				vkEnumerateDeviceExtensionProperties(vkPhysicalDevice,
-													 (ByteBuffer) null,
-													 extensionCount,
-													 availableExtensions);
-
-				return availableExtensions.stream().map(VkExtensionProperties::extensionNameString).toList();
-			}
+			final var availableExtensions = VkExtensionProperties.calloc(extensionCount[0]);
+			vkEnumerateDeviceExtensionProperties(vkPhysicalDevice,
+												 (ByteBuffer) null,
+												 extensionCount,
+												 availableExtensions);
+			final var res = availableExtensions.stream().map(VkExtensionProperties::extensionNameString).toList();
+			availableExtensions.free();
+			return res;
 		}
 	}
 }

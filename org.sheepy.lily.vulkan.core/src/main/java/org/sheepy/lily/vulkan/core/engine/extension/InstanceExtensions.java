@@ -44,9 +44,9 @@ public final class InstanceExtensions
 		private final List<String> requiredExtensions = new ArrayList<>();
 		private final List<String> availableExtensions;
 
-		public Builder(MemoryStack stack)
+		public Builder()
 		{
-			availableExtensions = gatherAvailableInstanceExtensions(stack);
+			availableExtensions = gatherAvailableInstanceExtensions();
 		}
 
 		public Builder requiresWindow()
@@ -102,7 +102,7 @@ public final class InstanceExtensions
 			return new InstanceExtensions(requiredExtensions);
 		}
 
-		private static List<String> gatherAvailableInstanceExtensions(MemoryStack stack)
+		private static List<String> gatherAvailableInstanceExtensions()
 		{
 			final List<String> extensions = new ArrayList<>();
 
@@ -112,14 +112,14 @@ public final class InstanceExtensions
 
 			if (count != 0)
 			{
-				final var instanceExtensions = VkExtensionProperties.malloc(count, stack);
+				final var instanceExtensions = VkExtensionProperties.malloc(count);
 				vkEnumerateInstanceExtensionProperties((String) null, ip, instanceExtensions);
-
 				for (int i = 0; i < count; i++)
 				{
 					final String extensionName = instanceExtensions.get(i).extensionNameString();
 					extensions.add(extensionName);
 				}
+				instanceExtensions.free();
 			}
 
 			return extensions;

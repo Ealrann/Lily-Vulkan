@@ -106,7 +106,7 @@ public final class VulkanContextAllocation extends GameAllocationContext impleme
 											 Collection<EPhysicalDeviceFeature> features)
 		{
 			final boolean headless = window == null;
-			final var extRequirementBuilder = new InstanceExtensions.Builder(stack);
+			final var extRequirementBuilder = new InstanceExtensions.Builder();
 			if (!headless) extRequirementBuilder.requiresWindow();
 			if (DebugUtil.DEBUG_ENABLED)
 			{
