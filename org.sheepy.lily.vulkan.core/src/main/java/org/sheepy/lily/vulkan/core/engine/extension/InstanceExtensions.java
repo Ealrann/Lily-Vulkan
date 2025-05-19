@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.core.engine.extension;
 
 import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.sheepy.lily.vulkan.core.window.Window;
@@ -20,15 +19,14 @@ public final class InstanceExtensions
 		this.extensions = List.copyOf(extensions);
 	}
 
-	public PointerBuffer allocBuffer(MemoryStack stack)
+	public PointerBuffer callocBuffer()
 	{
-		final var res = stack.mallocPointer(extensions.size());
+		final var res = MemoryUtil.memCallocPointer(extensions.size());
 		for (int i = 0; i < extensions.size(); i++)
 		{
 			final var name = extensions.get(i);
-			final var strBuffer = stack.UTF8Safe(name);
-			if (strBuffer != null) res.put(strBuffer);
-			else res.get();
+			final var strBuffer = MemoryUtil.memUTF8(name);
+			res.put(strBuffer);
 		}
 		res.flip();
 		return res;

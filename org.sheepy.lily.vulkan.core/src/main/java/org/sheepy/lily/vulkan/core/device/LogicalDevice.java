@@ -37,7 +37,7 @@ public final class LogicalDevice implements ILogicalDevice
 	public void allocate(MemoryStack stack)
 	{
 		final var queueCreateInfos = queueManager.allocQueueInfos(stack);
-		final var extensionsBuffer = physicalDevice.deviceExtensions.allocBuffer(stack);
+		final var extensionsBuffer = physicalDevice.deviceExtensions.callocBuffer();
 		final var deviceFeatures = allocPhysicalFeatures(stack);
 		final var createInfo = VkDeviceCreateInfo.malloc(stack)
 												 .set(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
@@ -54,6 +54,8 @@ public final class LogicalDevice implements ILogicalDevice
 
 		final long deviceId = pDevice.get(0);
 		vkDevice = new VkDevice(deviceId, physicalDevice.vkPhysicalDevice, createInfo);
+
+		extensionsBuffer.free();
 
 		queueManager.allocate(stack, vkDevice);
 	}

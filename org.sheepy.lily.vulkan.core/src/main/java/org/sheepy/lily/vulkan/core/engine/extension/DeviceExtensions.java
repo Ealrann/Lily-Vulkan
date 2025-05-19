@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.core.engine.extension;
 
 import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 
@@ -22,13 +22,13 @@ public final class DeviceExtensions
 		this.extensions = Set.copyOf(extensions);
 	}
 
-	public PointerBuffer allocBuffer(MemoryStack stack)
+	public PointerBuffer callocBuffer()
 	{
 		final int extensionCount = extensions.size();
-		final var extensionsBuffer = stack.mallocPointer(extensionCount);
+		final var extensionsBuffer = MemoryUtil.memCallocPointer(extensionCount);
 		for (var deviceExtension : extensions)
 		{
-			extensionsBuffer.put(stack.UTF8(deviceExtension.name));
+			extensionsBuffer.put(MemoryUtil.memUTF8(deviceExtension.name));
 		}
 		extensionsBuffer.flip();
 		return extensionsBuffer;

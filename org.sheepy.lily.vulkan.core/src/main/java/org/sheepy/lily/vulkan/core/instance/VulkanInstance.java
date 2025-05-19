@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.core.instance;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
 import org.lwjgl.vulkan.VkInstance;
@@ -39,18 +40,21 @@ public final class VulkanInstance
 
 	public void allocate(MemoryStack stack)
 	{
+		final var allocTitle = MemoryUtil.memUTF8(title);
+		final var allocEngineName = MemoryUtil.memUTF8(ENGINE_NAME);
+
 		final var appInfo = VkApplicationInfo.malloc(stack)
 											 .set(VK_STRUCTURE_TYPE_APPLICATION_INFO,
 												  VK_NULL_HANDLE,
-												  stack.UTF8(title),
+												  allocTitle,
 												  VK_MAKE_VERSION(1, 0, 0),
-												  stack.UTF8(ENGINE_NAME),
+												  allocEngineName,
 												  VK_MAKE_VERSION(1, 0, 0),
 												  VK_MAKE_VERSION(1, 0, 0));
 
-		final var requiredExtensions = instanceExtensions.allocBuffer(stack);
-		final var layersBuffer = layers.allocateBuffer(stack);
-		final var createInfo = VkInstanceCreateInfo.malloc(stack)
+		final var requiredExtensions = instanceExtensions.callocBuffer();
+		final var layersBuffer = layers.callocBuffer();
+		final var createInfo = VkInstanceCreateInfo.calloc()
 												   .set(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
 														VK_NULL_HANDLE,
 														0,
@@ -61,6 +65,10 @@ public final class VulkanInstance
 		final var pInstancePtr = stack.mallocPointer(1);
 		Logger.check(CREATION_FAILED, () -> vkCreateInstance(createInfo, null, pInstancePtr));
 		vkInstance = new VkInstance(pInstancePtr.get(0), createInfo);
+
+		requiredExtensions.free();
+		layersBuffer.free();
+		createInfo.free();
 
 		if (debugCallback && instanceExtensions.supportDebug())
 		{

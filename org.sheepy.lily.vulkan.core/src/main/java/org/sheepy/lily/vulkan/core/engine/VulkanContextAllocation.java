@@ -129,7 +129,7 @@ public final class VulkanContextAllocation extends GameAllocationContext impleme
 													 InstanceExtensions extensionRequirement,
 													 MemoryStack stack)
 		{
-			final var layersBuilder = new Layers.Builder(stack);
+			final var layersBuilder = new Layers.Builder();
 			if (DebugUtil.DEBUG_ENABLED)
 			{
 				layersBuilder.requiresDebug();
@@ -149,7 +149,9 @@ public final class VulkanContextAllocation extends GameAllocationContext impleme
 														 VulkanInstance vulkanInstance,
 														 VkSurface dummySurface)
 		{
-			final var extensions = headless ? EnumSet.noneOf(EDeviceExtension.class) : EnumSet.of(EDeviceExtension.VK_KHR_swapchain);
+			final var extensions = headless
+								   ? EnumSet.noneOf(EDeviceExtension.class)
+								   : EnumSet.of(EDeviceExtension.VK_KHR_swapchain);
 			final var deviceSelector = new PhysicalDeviceSelector(vulkanInstance, extensions, dummySurface);
 			return deviceSelector.findBestPhysicalDevice(stack);
 		}

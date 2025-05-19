@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.core.instance.loader;
 
 import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkLayerProperties;
 
@@ -28,14 +27,14 @@ public class Layers
 		this.layers = List.copyOf(layers);
 	}
 
-	public PointerBuffer allocateBuffer(MemoryStack stack)
+	public PointerBuffer callocBuffer()
 	{
 		final int size = layers.size();
-		final var res = stack.mallocPointer(size);
+
+		final var res = MemoryUtil.memCallocPointer(size);
 		for (int i = 0; i < size; i++)
 		{
-			MemoryUtil.memUTF8("");
-			res.put(stack.UTF8(layers.get(i)));
+			res.put(MemoryUtil.memUTF8(layers.get(i)));
 		}
 		res.flip();
 		return res;
@@ -46,9 +45,9 @@ public class Layers
 		private final List<String> retainedLayers = new ArrayList<>();
 		private final Set<String> availableLayers;
 
-		public Builder(MemoryStack stack)
+		public Builder()
 		{
-			availableLayers = getAvailableLayers(stack);
+			availableLayers = getAvailableLayers();
 		}
 
 		public Builder requiresDebug()
@@ -95,7 +94,7 @@ public class Layers
 			return new Layers(retainedLayers);
 		}
 
-		private static Set<String> getAvailableLayers(MemoryStack stack)
+		private static Set<String> getAvailableLayers()
 		{
 			final Set<String> res = new HashSet<>();
 			final int[] ip = new int[1];
@@ -104,7 +103,7 @@ public class Layers
 
 			if (count > 0)
 			{
-				final var instanceLayers = VkLayerProperties.malloc(count, stack);
+				final var instanceLayers = VkLayerProperties.malloc(count);
 				vkEnumerateInstanceLayerProperties(ip, instanceLayers);
 
 				for (int i = 0; i < count; i++)
@@ -112,6 +111,8 @@ public class Layers
 					final String layerName = instanceLayers.get(i).layerNameString();
 					res.add(layerName);
 				}
+
+				instanceLayers.free();
 			}
 
 			return res;
