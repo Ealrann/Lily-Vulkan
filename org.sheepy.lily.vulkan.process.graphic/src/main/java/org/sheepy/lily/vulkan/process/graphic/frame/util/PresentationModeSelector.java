@@ -78,12 +78,15 @@ public class PresentationModeSelector
 		{
 			final int modeValue = pPresentModes.get(i);
 			final var mode = EPresentMode.get(modeValue);
-			final var rank = presentModeRanks.indexOf(mode);
-
-			if (rank < rankFound)
+			if(mode != null)
 			{
-				rankFound = rank;
-				swapchainPresentMode = mode;
+				final var rank = presentModeRanks.indexOf(mode);
+
+				if (rank < rankFound)
+				{
+					rankFound = rank;
+					swapchainPresentMode = mode;
+				}
 			}
 		}
 
