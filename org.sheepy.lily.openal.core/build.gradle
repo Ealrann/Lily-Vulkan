@@ -1,0 +1,8 @@
+dependencies {
+	implementation project(':org.sheepy.lily.openal.api')
+	implementation project(':org.sheepy.lily.game.core')
+
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+}

@@ -1,0 +1,22 @@
+(MetaModel domain=org.sheepy.lily.vulkan.extra.model name=Shape
+	imports=org.sheepy.lily.vulkan.extra.model.Mesh
+
+	(Group GeometricStructure
+		(includes group=#Mesh@MeshStructure
+			(parameters type=@GeometricMesh)))
+
+	(Definition GeometricMesh
+		(includes group=#Mesh@Mesh))
+
+	(Definition Icosahedron
+		(includes group=@GeometricStructure))
+
+	(Definition Sphere
+		(includes group=@GeometricStructure)
+		(+att name=sliceCount datatype=#LMCore@int [0..1] defaultValue=12))
+
+	(Definition IcoSphere
+		(includes group=@GeometricStructure)
+		(+att name=subdivisionCount datatype=#LMCore@int [0..1] defaultValue=2))
+)
+

@@ -1,0 +1,7 @@
+dependencies {
+	implementation project(":org.sheepy.lily.vulkan.base")
+
+	runtimeOnly project(":org.sheepy.lily.vulkan.extra.graphic")
+	runtimeOnly project(":org.sheepy.lily.vulkan.extra.graphic.shape")
+	runtimeOnly project(":org.sheepy.lily.vulkan.extra.nuklear")
+}

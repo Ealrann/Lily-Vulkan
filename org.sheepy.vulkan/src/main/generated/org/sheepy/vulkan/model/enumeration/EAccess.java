@@ -1,0 +1,32 @@
+package org.sheepy.vulkan.model.enumeration;
+
+public enum EAccess {
+  UNDEFINED(0),
+  INDIRECT_COMMAND_READ_BIT(1),
+  INDEX_READ_BIT(2),
+  VERTEX_ATTRIBUTE_READ_BIT(4),
+  UNIFORM_READ_BIT(8),
+  INPUT_ATTACHMENT_READ_BIT(16),
+  SHADER_READ_BIT(32),
+  SHADER_WRITE_BIT(64),
+  COLOR_ATTACHMENT_READ_BIT(128),
+  COLOR_ATTACHMENT_WRITE_BIT(256),
+  DEPTH_STENCIL_ATTACHMENT_READ_BIT(512),
+  DEPTH_STENCIL_ATTACHMENT_WRITE_BIT(1024),
+  TRANSFER_READ_BIT(2048),
+  TRANSFER_WRITE_BIT(4096),
+  HOST_READ_BIT(8192),
+  HOST_WRITE_BIT(16384),
+  MEMORY_READ_BIT(32768),
+  MEMORY_WRITE_BIT(65536);
+
+  private final int value;
+
+  EAccess(final int value) {
+    this.value = value;
+  }
+
+  public int value() {
+    return value;
+  }
+}

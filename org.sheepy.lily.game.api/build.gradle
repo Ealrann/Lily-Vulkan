@@ -1,0 +1,5 @@
+dependencies {
+	api 'org.sheepy.lily.core:lily.core.api'
+
+	api "org.lwjgl:lwjgl:$lwjglVersion"
+}

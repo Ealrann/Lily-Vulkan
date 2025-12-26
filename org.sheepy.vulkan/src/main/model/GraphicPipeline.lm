@@ -1,0 +1,83 @@
+(MetaModel domain=org.sheepy.vulkan.model name=GraphicPipeline
+	imports=org.sheepy.lily.core.model.Types,org.sheepy.vulkan.model.Enumeration
+
+	(Definition ColorBlend
+		(+contains name=attachments @ColorBlendAttachment [0..*])
+		(+att name=logicOpEnable datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=logicOp datatype=#Enumeration@ELogicOp [0..1] defaultValue=COPY)
+		(+att name=blendConstant0 datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=blendConstant1 datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=blendConstant2 datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=blendConstant3 datatype=#LMCore@int [0..1] defaultValue=1))
+
+	(Definition ColorBlendAttachment
+		(+att name=blendEnable datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=srcColor datatype=#Enumeration@EBlendFactor [0..1] defaultValue=ONE)
+		(+att name=dstColor datatype=#Enumeration@EBlendFactor [0..1] defaultValue=ZERO)
+		(+att name=srcAlpha datatype=#Enumeration@EBlendFactor [0..1] defaultValue=ONE)
+		(+att name=dstAlpha datatype=#Enumeration@EBlendFactor [0..1] defaultValue=ZERO)
+		(+att name=colorBlendOp datatype=#Enumeration@EBlendOp [0..1] defaultValue=ADD)
+		(+att name=alphaBlendOp datatype=#Enumeration@EBlendOp [0..1] defaultValue=ADD)
+		(+att name=redComponentEnable datatype=#LMCore@boolean [0..1] defaultValue=true)
+		(+att name=greenComponentEnable datatype=#LMCore@boolean [0..1] defaultValue=true)
+		(+att name=blueComponentEnable datatype=#LMCore@boolean [0..1] defaultValue=true)
+		(+att name=alphaComponentEnable datatype=#LMCore@boolean [0..1] defaultValue=true))
+
+	(Definition InputAssembly
+		(+att name=primitiveRestartEnabled datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=primitiveTopology datatype=#Enumeration@EPrimitiveTopology [0..1] defaultValue=TRIANGLE_LIST))
+
+	(Definition Rasterizer
+		(+att name=cullMode datatype=#Enumeration@ECullMode [0..1] defaultValue=BACK_BIT)
+		(+att name=frontFace datatype=#Enumeration@EFrontFace [0..1] defaultValue=CLOCKWISE)
+		(+att name=polygonMode datatype=#Enumeration@EPolygonMode [0..1] defaultValue=FILL)
+		(+att name=lineWidth datatype=#LMCore@int [0..1] defaultValue=1)
+		(+att name=depthClampEnable datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=discardEnable datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=depthBiasEnable datatype=#LMCore@boolean [0..1] defaultValue=false))
+
+	(Definition DynamicState
+		(+att name=states datatype=#Enumeration@EDynamicState [0..*]))
+
+	(Group ViewportState)
+
+	(Definition StaticViewportState
+		(includes group=@ViewportState)
+		(+contains name=viewports @IViewport [1..*])
+		(+contains name=scissors @Scissor [1..*]))
+
+	(Definition DynamicViewportState
+		(includes group=@ViewportState)
+		(+att name=viewportCount datatype=#LMCore@int [0..1])
+		(+att name=scissorCount datatype=#LMCore@int [0..1]))
+
+	(Group IViewport)
+
+	(Definition Viewport
+		(includes group=@IViewport)
+		(+att name=offsetX datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=offsetY datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=minDepth datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=maxDepth datatype=#LMCore@int [0..1] defaultValue=1)
+		(+att name=extent datatype=#Types@Vector2i [0..1]))
+
+	(Definition CinemaViewport
+		(includes group=@IViewport)
+		(+att name=aspectRatio datatype=#LMCore@float [1..1] defaultValue=1f)
+		(+att name=minDepth datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=maxDepth datatype=#LMCore@int [0..1] defaultValue=1))
+
+	(Definition Scissor
+		(+att name=offsetX datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=offsetY datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=extent datatype=#Types@Vector2i [0..1] defaultValue="0;0"))
+
+	(Definition DepthStencilState
+		(+att name=depthTest datatype=#LMCore@boolean [1..1] defaultValue=true)
+		(+att name=depthWrite datatype=#LMCore@boolean [1..1] defaultValue=true)
+		(+att name=depthBoundTest datatype=#LMCore@boolean [1..1] defaultValue=false)
+		(+att name=stencilTest datatype=#LMCore@boolean [1..1] defaultValue=false)
+		(+att name=depthCompareOp datatype=#Enumeration@ECompareOp [1..1] defaultValue=LESS)
+		(+att name=minDepthBounds datatype=#LMCore@float [1..1] defaultValue=0f)
+		(+att name=maxDepthBounds datatype=#LMCore@float [1..1] defaultValue=1f))
+)

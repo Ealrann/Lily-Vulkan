@@ -1,0 +1,54 @@
+plugins {
+	id 'application'
+}
+
+application {
+	mainModule = 'org.sheepy.lily.vulkan.demo.gameoflife'
+	mainClass = 'org.sheepy.lily.vulkan.demo.gameoflife.MainGameOfLife'
+}
+
+dependencies {
+	implementation project(':org.sheepy.lily.vulkan.api')
+
+	// Runtime (providers for ServiceLoader / adapters / allocations)
+	runtimeOnly project(':org.sheepy.lily.vulkan.core')
+	runtimeOnly project(':org.sheepy.lily.vulkan.resource')
+	runtimeOnly project(':org.sheepy.lily.vulkan.process')
+	runtimeOnly project(':org.sheepy.lily.vulkan.process.compute')
+	runtimeOnly project(':org.sheepy.lily.vulkan.process.graphic')
+
+	runtimeOnly 'org.sheepy.lily.core:lily.core.allocation'
+	runtimeOnly 'org.sheepy.lily.core:lily.core.impl'
+
+	// Test
+	// Temporary: https://github.com/gradle/gradle/issues/890#issuecomment-613427968
+	testImplementation project(path)
+
+	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+	testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
+
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher:$junitPlatformVersion"
+}
+
+run {
+	enableAssertions = true
+	// LWJGL 3.4+ uses FFM internals that require explicit module exports.
+	jvmArgs "--add-exports=org.lwjgl/org.lwjgl.system.ffm=org.lwjgl.glfw"
+	jvmArgs "--add-exports=org.lwjgl/org.lwjgl.system.ffm=org.lwjgl.vulkan"
+	jvmArgs "--enable-native-access=org.lwjgl"
+}
+
+test {
+	enableAssertions = true
+	// Temporary: https://github.com/gradle/gradle/issues/890#issuecomment-613427968
+	classpath = configurations[sourceSets.test.runtimeClasspathConfigurationName] + files(compileTestJava)
+
+	useJUnitPlatform()
+}
+
+sourceSets {
+	main {
+		resources.srcDirs += 'src/main/shader'
+	}
+}

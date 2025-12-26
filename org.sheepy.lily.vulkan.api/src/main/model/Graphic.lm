@@ -1,0 +1,223 @@
+(MetaModel domain=org.sheepy.lily.vulkan.model.process name=Graphic
+	imports=org.sheepy.lily.core.model.Application,org.sheepy.lily.core.model.Maintainer,org.sheepy.lily.core.model.Types,org.sheepy.lily.core.model.Variable,org.sheepy.lily.vulkan.model.Process,org.sheepy.lily.vulkan.model.Vulkan,org.sheepy.lily.vulkan.model.VulkanResource,org.sheepy.vulkan.model.Barrier,org.sheepy.vulkan.model.Enumeration,org.sheepy.vulkan.model.GraphicPipeline
+
+	(Enum EAttachmentType
+		Color : 0 ,
+		Depth : 1 ,
+		Input : 2
+		(EnumAttribute value #LMCore@int))
+
+	(Definition GraphicConfiguration
+		(includes group=#Process@ProcessConfiguration)
+		(+contains name=swapchainConfiguration @SwapchainConfiguration [1..1])
+		(+contains name=framebufferConfiguration @FramebufferConfiguration [1..1])
+		(+att name=acquireWaitStage datatype=#Enumeration@EPipelineStage [0..1] defaultValue=COLOR_ATTACHMENT_OUTPUT_BIT)
+		(+contains name=surface @PhysicalSurface [1..1])
+		(+contains name=renderPass @RenderPass [1..1])
+		(+contains name=imageViews @ImageViews [0..1]))
+
+	(Definition GraphicExecutionManager
+		(includes group=#Process@ProcessExecutionManager)
+		(+contains name=recorders @GraphicExecutionRecorder [0..*])
+		(+contains name=commandBuffers @GraphicCommandBuffer [0..*]))
+
+	(Definition GraphicExecutionRecorder
+		(includes group=#Process@ExecutionRecorder)
+		(+refers name=commandBuffers @GraphicCommandBuffer [1..*]))
+
+	(Definition ColorDomain
+		(+att name=format datatype=#Enumeration@EFormat [0..1] defaultValue=B8G8R8A8_UNORM)
+		(+att name=colorSpace datatype=#Enumeration@EColorSpace [0..1] defaultValue=SRGB_NONLINEAR_KHR))
+
+	(Definition PhysicalSurface
+		(+contains name=colorDomain @ColorDomain [1..1]))
+
+	(Definition SwapchainConfiguration
+		(+att name=requiredSwapImageCount datatype=#LMCore@int [0..1] defaultValue=3)
+		(+att name=swapImageUsages datatype=#Enumeration@EImageUsage [0..*])
+		(+att name=presentWhenVBlank datatype=#LMCore@boolean [1..1] defaultValue=true)
+		(+att name=acquireWaitForVBlank datatype=#LMCore@boolean [1..1] defaultValue=true)
+		(+att name=allowingAccessFromCompute datatype=#LMCore@boolean [1..1] defaultValue=false)
+		(+contains name=colorAttachment @SwapImageAttachment [1..1]))
+
+	(Definition FramebufferConfiguration)
+
+	(Definition ImageViews)
+
+	(Definition RenderPass
+		(+refers name=attachments @ExtraAttachment [0..*]))
+
+	(Group Attachment
+		(includes group=#Types@LNamedElement)
+		(includes group=#VulkanResource@IVulkanImage)
+		(+att name=samples datatype=#Enumeration@ESampleCount [0..1])
+		(+att name=loadOp datatype=#Enumeration@EAttachmentLoadOp [0..1])
+		(+att name=storeOp datatype=#Enumeration@EAttachmentStoreOp [0..1])
+		(+att name=stencilLoadOp datatype=#Enumeration@EAttachmentLoadOp [0..1])
+		(+att name=stencilStoreOp datatype=#Enumeration@EAttachmentStoreOp [0..1])
+		(+att name=initialLayout datatype=#Enumeration@EImageLayout [0..1])
+		(+att name=finalLayout datatype=#Enumeration@EImageLayout [0..1]))
+
+	(Definition SwapImageAttachment
+		(includes group=@Attachment)
+		(+att name=clearValue datatype=#Types@Color4f [0..1] defaultValue="0;0;0;0"))
+
+	(Group ExtraAttachment
+		(includes group=@Attachment))
+
+	(Definition ImageAttachment
+		(includes group=@ExtraAttachment)
+		(+att name=clearValue datatype=#Types@Color4f [0..1] defaultValue="0;0;0;0")
+		(+refers name=imageRef #Vulkan@VulkanEngine [0..1]))
+
+	(Definition DepthAttachment
+		(includes group=@ExtraAttachment)
+		(+att name=clear datatype=#LMCore@boolean [0..1] defaultValue=true)
+		(+att name=usages datatype=#Enumeration@EImageUsage [0..*]))
+
+	(Definition ColorAttachment
+		(includes group=@ExtraAttachment)
+		(+att name=clearValue datatype=#Types@Color4f [0..1] defaultValue="0;0;0;0")
+		(+att name=usages datatype=#Enumeration@EImageUsage [0..*])
+		(+att name=format datatype=#Enumeration@EFormat [0..1]))
+
+	(Definition AttachmentPkg
+		(+contains name=extraAttachments @ExtraAttachment [0..*]))
+
+	(Definition AttachmentRefPkg
+		(+contains name=attachmentRefs @AttachmentRef [0..*]))
+
+	(Definition AttachmentRef
+		(+refers name=attachment @Attachment [0..1])
+		(+att name=layout datatype=#Enumeration@EImageLayout [0..1])
+		(+att name=type datatype=@EAttachmentType [1..1] defaultValue=Color))
+
+	(Definition Subpass
+		(includes group=#Vulkan@IResourceContainer)
+		(includes group=#Types@LNamedElement)
+		(+contains name=attachmentRefPkg @AttachmentRefPkg [0..1])
+		(+contains name=attachmentPkg @AttachmentPkg [0..1])
+		(+att name=subpassIndex datatype=#LMCore@int [1..1] defaultValue=0)
+		(+contains name=pipelinePkg #Process@PipelinePkg [0..1])
+		(+att name=bindPoint datatype=#LMCore@int [1..1] defaultValue=0)
+		(+refers name=compositor #Application@ICompositor [0..1])
+		(+att name=waitForStage datatype=#Enumeration@EPipelineStage [1..1] defaultValue=BOTTOM_OF_PIPE_BIT)
+		(+att name=syncStage datatype=#Enumeration@EPipelineStage [1..1])
+		(+att name=finishStage datatype=#Enumeration@EPipelineStage [1..1] defaultValue=BOTTOM_OF_PIPE_BIT)
+		(+att name=waitForAccesses datatype=#Enumeration@EAccess [0..*])
+		(+att name=syncAccesses datatype=#Enumeration@EAccess [0..*])
+		(+att name=finishAccesses datatype=#Enumeration@EAccess [0..*])
+		(+contains name=extensionPkg #Process@ProcessExtensionPkg [0..1])
+		(+att name=enabled datatype=#LMCore@boolean [1..1] defaultValue=true))
+
+	(Definition GraphicProcess
+		(includes group=#Process@AbstractProcess)
+		(includes group=#Maintainer@Maintainable
+			(parameters type=@GraphicProcess))
+		(+contains name=configuration @GraphicConfiguration [1..1])
+		(+contains name=attachmentPkg @AttachmentPkg [1..1])
+		(+contains name=subpasses @Subpass [0..*]))
+
+	(Definition GraphicsPipeline
+		(includes group=#Process@VkPipeline)
+		(includes group=#Maintainer@Maintainable
+			(parameters type=@GraphicsPipeline))
+		(+refers name=shaders #VulkanResource@Shader [1..*])
+		(+contains name=viewportState #GraphicPipeline@ViewportState [1..1])
+		(+contains name=inputAssembly #GraphicPipeline@InputAssembly [1..1])
+		(+contains name=rasterizer #GraphicPipeline@Rasterizer [1..1])
+		(+contains name=colorBlend #GraphicPipeline@ColorBlend [1..1])
+		(+contains name=dynamicState #GraphicPipeline@DynamicState [0..1])
+		(+contains name=vertexInputState @VertexInputState [1..1])
+		(+contains name=depthStencilState #GraphicPipeline@DepthStencilState [0..1]))
+
+	(Definition SwapImageBarrier
+		(includes group=#Barrier@AbstractImageBarrier))
+
+	(Group AbstractBlitTask
+		(includes group=#Process@IPipelineTask)
+		(+att name=filter datatype=#Enumeration@EFilter [0..1] defaultValue=NEAREST)
+		(+att name=clearColor datatype=#Types@Vector3i [1..1] defaultValue="0;0;0")
+		(+refers name=srcImage #VulkanResource@IVulkanImage [0..1]))
+
+	(Definition BlitToSwapImage
+		(includes group=@AbstractBlitTask))
+
+	(Definition BlitTask
+		(includes group=@AbstractBlitTask)
+		(+refers name=dstImage #VulkanResource@IVulkanImage [0..1]))
+
+	(Definition DrawIndexed
+		(includes group=#Process@IPipelineTask)
+		(+att name=indexCount datatype=#LMCore@int [1..1])
+		(+att name=instanceCount datatype=#LMCore@int [0..1] defaultValue=1)
+		(+att name=firstIndex datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=vertexOffset datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=firstInstance datatype=#LMCore@int [0..1] defaultValue=0))
+
+	(Definition Draw
+		(includes group=#Process@IPipelineTask)
+		(+att name=vertexCount datatype=#LMCore@int [1..1])
+		(+att name=instanceCount datatype=#LMCore@int [0..1] defaultValue=1)
+		(+att name=firstVertex datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=firstInstance datatype=#LMCore@int [0..1] defaultValue=0))
+
+	(Definition VertexInputState
+		(+contains name=inputDescriptor @InputDescriptor [0..*]))
+
+	(Definition InputDescriptor
+		(+att name=inputRate datatype=#Enumeration@EInputRate [0..1] defaultValue=VERTEX)
+		(+att name=strideLength datatype=#LMCore@int [0..1])
+		(+contains name=attributes @AttributeDescription [1..*]))
+
+	(Definition AttributeDescription
+		(includes group=#Types@LNamedElement)
+		(+att name=format datatype=#Enumeration@EFormat [0..1])
+		(+att name=offset datatype=#LMCore@int [0..1]))
+
+	(Definition BindVertexBuffer
+		(includes group=#Process@IPipelineTask)
+		(+att name=firstBinding datatype=#LMCore@int [0..1] defaultValue=0)
+		(+contains name=vertexBindings @VertexBinding [1..*]))
+
+	(Definition SetScissor
+		(includes group=#Process@IPipelineTask)
+		(+att name=offsetX datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=offsetY datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=width datatype=#LMCore@int [0..1])
+		(+att name=height datatype=#LMCore@int [0..1]))
+
+	(Definition SetViewport
+		(includes group=#Process@IPipelineTask)
+		(+att name=x datatype=#LMCore@float [0..1] defaultValue=0f)
+		(+att name=y datatype=#LMCore@float [0..1] defaultValue=0f)
+		(+att name=width datatype=#LMCore@float [0..1])
+		(+att name=height datatype=#LMCore@float [0..1])
+		(+att name=minDepth datatype=#LMCore@float [0..1] defaultValue=1f)
+		(+att name=maxDepth datatype=#LMCore@float [0..1] defaultValue=1f))
+
+	(Definition VertexBinding
+		(+refers name=buffer #VulkanResource@IBuffer [0..1]))
+
+	(Definition BindIndexBuffer
+		(includes group=#Process@IPipelineTask)
+		(+att name=indexType datatype=#Enumeration@EIndexType [0..1] defaultValue=UINT32)
+		(+refers name=buffer #VulkanResource@IBuffer [0..1]))
+
+	(Definition Compositor
+		(includes group=#Application@ICompositor)
+		(includes group=#Types@LNamedElement)
+		(+refers name=vertexShader #VulkanResource@Shader [1..1])
+		(+refers name=fragmentShader #VulkanResource@Shader [1..1])
+		(+refers name=colorAttachments @Attachment [1..*])
+		(+refers name=inputAttachments @ExtraAttachment [0..*])
+		(+contains name=constantVariables #Variable@ModelVariablePkg [0..1])
+		(+contains name=descriptorPkg #Vulkan@DescriptorPkg [0..1]))
+
+	(Definition GraphicCommandBuffer
+		(includes group=#Process@ICommandBuffer)
+		(+att name=imageID datatype=#LMCore@int [1..1]))
+
+	(Definition GraphicAcquirer
+		(includes group=#Process@IExecutionAcquirer))
+)

@@ -1,0 +1,42 @@
+(ModelPart domain=org.sheepy.lily.vulkan.process.graphic.subpass name=ScreenEffect metamodels=org.sheepy.lily.core.model.Types,org.sheepy.lily.core.model.Resource,org.sheepy.lily.vulkan.model.process.Graphic,org.sheepy.lily.vulkan.model.Process,org.sheepy.lily.vulkan.model.Vulkan,org.sheepy.lily.vulkan.model.VulkanResource,org.sheepy.vulkan.model.GraphicPipeline,org.sheepy.vulkan.model.Pipeline,org.sheepy.vulkan.model.Enumeration
+	(Subpass name=ScreenEffect waitForStage=COLOR_ATTACHMENT_OUTPUT_BIT syncStage=FRAGMENT_SHADER_BIT finishStage=COLOR_ATTACHMENT_OUTPUT_BIT
+		(resourcePkg
+			(Shader name=ScreenVertex stage=VERTEX_BIT
+				(StringModuleResource name=screen_effect.vert path=screen_effect.vert.spv moduleName=org.sheepy.lily.vulkan.process.graphic))
+			(Shader name=ScreenFragment stage=FRAGMENT_BIT
+				(StringModuleResource name=screen_effect.frag path=screen_effect.frag.spv moduleName=org.sheepy.lily.vulkan.process.graphic))
+			(GenericConstantBuffer name="Fragment Constants"))
+
+		(descriptorPkg
+			(ImageDescriptor name=Scene type=INPUT_ATTACHMENT layout=SHADER_READ_ONLY_OPTIMAL shaderStages=FRAGMENT_BIT))
+
+		(attachmentRefPkg
+			(AttachmentRef layout=COLOR_ATTACHMENT_OPTIMAL)
+			(AttachmentRef layout=SHADER_READ_ONLY_OPTIMAL type=Input))
+
+		(pipelinePkg
+			(GraphicsPipeline layout=@SwapDS shaders=@ScreenVertex,@ScreenFragment
+				(taskPkgs
+					(BindDescriptorSets bindPoint=GRAPHICS descriptorSets=@SwapDS)
+					(PushConstantBuffer buffer="@Fragment Constants" stages=FRAGMENT_BIT)
+					(Draw vertexCount=3))
+
+				(descriptorPool
+					(descriptorSets name=SwapDS descriptors=@Scene))
+
+				(pushConstantRanges size=128 stages=FRAGMENT_BIT)
+
+				(StaticViewportState
+					(Viewport)
+					(scissors))
+
+				(inputAssembly)
+				(rasterizer)
+				(colorBlend
+					(attachments))
+				(vertexInputState)))
+
+		waitForAccesses=COLOR_ATTACHMENT_WRITE_BIT
+		syncAccesses=INPUT_ATTACHMENT_READ_BIT
+		finishAccesses=COLOR_ATTACHMENT_WRITE_BIT)
+)

@@ -1,0 +1,149 @@
+package org.sheepy.lily.vulkan.process.graphic.process;
+
+import org.sheepy.lily.core.api.util.ModelUtil;
+import org.sheepy.lily.core.model.application.ICompositor;
+import org.sheepy.lily.core.model.application.Scene;
+import org.logoce.lmf.core.api.notification.observatory.IObservatory;
+import org.logoce.lmf.core.api.notification.observatory.IObservatoryBuilder;
+import org.sheepy.lily.vulkan.api.device.IVulkanApiContext;
+import org.sheepy.lily.vulkan.api.view.ICompositor_SubpassProvider;
+import org.sheepy.lily.vulkan.model.process.graphic.*;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.util.SubpassUtil;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+public class SubpassManager
+{
+	private final IObservatory observatory;
+	private final Map<ICompositor, Subpass> subpassMap = new HashMap<>();
+	private final GraphicProcess process;
+	private IVulkanApiContext context;
+	private final Scene scene;
+
+	public SubpassManager(GraphicProcess process)
+	{
+		this.process = process;
+		final var application = ModelUtil.getApplication(process);
+		scene = application.scene();
+
+		final var observatoryBuilder = IObservatoryBuilder.newObservatoryBuilder();
+		observatoryBuilder.explore(Scene.FeatureIDs.COMPOSITORS, ICompositor.class)
+						  .gatherBulk(this::installCompositors, this::uninstallCompositors);
+		observatory = observatoryBuilder.build();
+	}
+
+	public void start(final IVulkanApiContext context)
+	{
+		this.context = context;
+		observatory.observe(scene);
+	}
+
+	public void stop()
+	{
+		observatory.shut(scene);
+		this.context = null;
+	}
+
+	private void installCompositors(List<ICompositor> compositors)
+	{
+		for (int i = 0; i < compositors.size(); i++)
+		{
+			final var compositor = compositors.get(i);
+			if (compositor.enabled())
+			{
+				setupScenePart(compositor);
+			}
+		}
+		resolveAttachments();
+	}
+
+	private void uninstallCompositors(List<ICompositor> compositors)
+	{
+		for (int i = 0; i < compositors.size(); i++)
+		{
+			final var compositor = compositors.get(i);
+			if (compositor.enabled())
+			{
+				uninstallScenePart(compositor);
+			}
+		}
+		resolveAttachments();
+	}
+
+	private void resolveAttachments()
+	{
+		final var renderPass = process.configuration().renderPass();
+		final var newAttachments = process.subpasses()
+										  .stream()
+										  .map(Subpass::attachmentRefPkg)
+										  .filter(Objects::nonNull)
+										  .map(AttachmentRefPkg::attachmentRefs)
+										  .flatMap(List::stream)
+										  .map(AttachmentRef::attachment)
+										  .filter(ExtraAttachment.class::isInstance)
+										  .map(ExtraAttachment.class::cast)
+										  .distinct()
+										  .toList();
+
+		final var passAttachments = renderPass.attachments();
+		if (!newAttachments.equals(passAttachments))
+		{
+			passAttachments.clear();
+			passAttachments.addAll(newAttachments);
+		}
+	}
+
+	private void setupScenePart(ICompositor part)
+	{
+		final var subpass = buildSubpass(part);
+		final int index = findAvailableIndex(process);
+
+		subpass.compositor(part);
+		subpass.subpassIndex(index);
+		process.subpasses().add(subpass);
+
+		subpassMap.put(part, subpass);
+	}
+
+	private void uninstallScenePart(final ICompositor compositor)
+	{
+		final var subpass = subpassMap.get(compositor);
+		org.logoce.lmf.core.api.util.ModelUtil.delete(subpass);
+		subpassMap.remove(compositor);
+	}
+
+	private static int findAvailableIndex(GraphicProcess process)
+	{
+		final var subpasses = process.subpasses();
+		final int size = subpasses.size();
+		final int maxIndex = SubpassUtil.maxGraphicIndex(subpasses);
+
+		final boolean[] reservedIndices = new boolean[Math.max(size, maxIndex) + 1];
+		for (int i = 0; i < size; i++)
+		{
+			final var subpass = subpasses.get(i);
+			if (SubpassUtil.isGraphic(subpass))
+			{
+				reservedIndices[subpass.subpassIndex()] = true;
+			}
+		}
+
+		for (int i = 0; i < reservedIndices.length; i++)
+		{
+			if (reservedIndices[i] == false)
+			{
+				return i;
+			}
+		}
+		return 0;
+	}
+
+	private <T extends ICompositor> Subpass buildSubpass(T scenePart)
+	{
+		final var subpassProvider = scenePart.<ICompositor_SubpassProvider<T>>adaptGeneric(ICompositor_SubpassProvider.class);
+		return subpassProvider.build(scenePart, process, context);
+	}
+}

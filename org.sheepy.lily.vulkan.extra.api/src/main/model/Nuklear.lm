@@ -1,0 +1,47 @@
+(MetaModel domain=org.sheepy.lily.vulkan.extra.model name=Nuklear
+	imports=org.sheepy.lily.vulkan.model.Process,org.sheepy.lily.vulkan.model.Vulkan,org.sheepy.lily.vulkan.model.VulkanResource,org.sheepy.lily.core.model.UI,org.sheepy.lily.core.model.Variable
+
+	(Definition NuklearPushConstants
+		(includes group=#Process@PushConstant)
+		(+att name=width datatype=#LMCore@int [0..1])
+		(+att name=height datatype=#LMCore@int [0..1])
+		(+att name=currentDescriptor datatype=#LMCore@int [0..1]))
+
+	(Definition NuklearContext
+		(includes group=#Vulkan@IVulkanResource)
+		(+refers name=font @NuklearFont [1..1])
+		(+refers name=nullTexture #VulkanResource@StaticImage [0..1])
+		(+refers name=imageArrayDescriptor #VulkanResource@ImageDescriptor [0..1])
+		(+refers name=vertexBuffer #VulkanResource@IBuffer [1..1])
+		(+refers name=indexBuffer #VulkanResource@IBuffer [1..1])
+		(+refers name=vertexBufferMemory #VulkanResource@BufferMemory [1..1])
+		(+refers name=compositeDrawTask #Process@CompositeTask [1..1]))
+
+	(Definition NuklearFont
+		(includes group=#Vulkan@IVulkanResource))
+
+	(Definition SelectorPanel
+		(includes group=#UI@IPanel)
+		(+att name=buttonSizePx datatype=#LMCore@int [1..1] defaultValue=32)
+		(+att name=selectionR datatype=#LMCore@int [1..1] defaultValue=0)
+		(+att name=selectionG datatype=#LMCore@int [1..1] defaultValue=135)
+		(+att name=selectionB datatype=#LMCore@int [1..1] defaultValue=255)
+		(+att name=printLabels datatype=#LMCore@boolean [1..1])
+		(+contains name=variableResolver #Variable@DirectVariableResolver [1..1])
+		(+contains name=inputProvider @IInputProvider [1..1])
+		(+att name=vertical datatype=#LMCore@boolean [1..1] defaultValue=true)
+		(+att name=autoHideLabels datatype=#LMCore@boolean [1..1] defaultValue=true)
+		(+att name=fadeOutMs datatype=#LMCore@int [1..1] defaultValue=500)
+		(+att name=unsettable datatype=#LMCore@boolean [1..1] defaultValue=false)
+		(+att name=detectHoverOnLabels datatype=#LMCore@boolean [1..1] defaultValue=false))
+
+	(Group IInputProvider)
+
+	(Definition PanelViewer
+		(includes group=#UI@Panel)
+		(+contains name=variableResolver #Variable@DirectVariableResolver [1..1]))
+
+	(Definition FontImageProvider
+		(includes group=#VulkanResource@ImageDataProvider)
+		(+refers name=nuklearFont @NuklearFont [1..1]))
+)

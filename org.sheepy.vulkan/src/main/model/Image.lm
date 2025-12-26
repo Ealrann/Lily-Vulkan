@@ -1,0 +1,29 @@
+(MetaModel domain=org.sheepy.vulkan.model name=Image
+	imports=org.sheepy.vulkan.model.Enumeration
+
+	(Definition SamplerInfo
+		(+att name=minFilter datatype=#Enumeration@EFilter [0..1] defaultValue=NEAREST)
+		(+att name=magFilter datatype=#Enumeration@EFilter [0..1] defaultValue=NEAREST)
+		(+att name=mipmapMode datatype=#Enumeration@ESamplerMipmapMode [0..1] defaultValue=NEAREST)
+		(+att name=addressMode datatype=#Enumeration@ESamplerAddressMode [0..1] defaultValue=REPEAT)
+		(+att name=borderColor datatype=#Enumeration@EBorderColor [0..1] defaultValue=INT_OPAQUE_BLACK)
+		(+att name=anisotropyEnabled datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=unnormalizedCoordinates datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=compareEnable datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=lodBias datatype=#LMCore@float [0..1] defaultValue=0f)
+		(+att name=minLod datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=maxLod datatype=#LMCore@int [0..1] defaultValue=1)
+		(+att name=maxAnisotropy datatype=#LMCore@float [0..1] defaultValue=1f))
+
+	(Definition ImageInfo
+		(+att name=format datatype=#Enumeration@EFormat [1..1] defaultValue=R8G8B8A8_UNORM)
+		(+att name=usages datatype=#Enumeration@EImageUsage [1..*])
+		(+att name=tiling datatype=#LMCore@int [1..1] defaultValue=0)
+		(+att name=mipLevels datatype=#LMCore@int [1..1] defaultValue=1)
+		(+att name=initialLayout datatype=#Enumeration@EImageLayout [0..1] defaultValue=SHADER_READ_ONLY_OPTIMAL))
+
+	(Definition ImageLayout
+		(+att name=stage datatype=#Enumeration@EPipelineStage [0..1])
+		(+att name=layout datatype=#Enumeration@EImageLayout [0..1] defaultValue=SHADER_READ_ONLY_OPTIMAL)
+		(+att name=accessMask datatype=#Enumeration@EAccess [0..*]))
+)

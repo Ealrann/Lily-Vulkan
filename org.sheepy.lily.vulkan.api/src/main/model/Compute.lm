@@ -1,0 +1,40 @@
+(MetaModel domain=org.sheepy.lily.vulkan.model.process name=Compute
+	imports=org.sheepy.lily.core.model.Application,org.sheepy.lily.core.model.Maintainer,org.sheepy.lily.vulkan.model.Process,org.sheepy.lily.vulkan.model.VulkanResource
+
+	(Definition ComputeProcess
+		(includes group=#Process@AbstractProcess)
+		(+contains name=pipelinePkg #Process@PipelinePkg [0..1])
+		(+refers name=sourceEngine #Application@IEngine [0..1])
+		(+contains name=configuration @ComputeConfiguration [1..1]))
+
+	(Definition ComputePipeline
+		(includes group=#Process@VkPipeline)
+		(includes group=#Maintainer@Maintainable
+			(parameters type=@ComputePipeline))
+		(+refers name=shader #VulkanResource@Shader [0..1]))
+
+	(Definition DispatchTask
+		(includes group=#Process@IPipelineTask)
+		(+att name=workgroupCountX datatype=#LMCore@int [0..1] defaultValue=1)
+		(+att name=workgroupCountY datatype=#LMCore@int [0..1] defaultValue=1)
+		(+att name=workgroupCountZ datatype=#LMCore@int [0..1] defaultValue=1))
+
+	(Definition ComputeConfiguration
+		(includes group=#Process@ProcessConfiguration))
+
+	(Definition ComputeExecutionManager
+		(includes group=#Process@ProcessExecutionManager)
+		(+contains name=recorders @ComputeExecutionRecorder [0..*])
+		(+att name=indexCount datatype=#LMCore@int [1..1] defaultValue=1)
+		(+contains name=CommandBuffers @ComputeCommandBuffer [0..*]))
+
+	(Definition ComputeExecutionRecorder
+		(includes group=#Process@ExecutionRecorder)
+		(+refers name=commandBuffer @ComputeCommandBuffer [1..1]))
+
+	(Definition ComputeCommandBuffer
+		(includes group=#Process@ICommandBuffer))
+
+	(Definition ComputeAcquirer
+		(includes group=#Process@IExecutionAcquirer))
+)

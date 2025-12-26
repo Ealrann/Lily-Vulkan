@@ -1,0 +1,63 @@
+package org.sheepy.lily.vulkan.process.barrier;
+
+import org.logoce.lmf.core.api.extender.ModelExtender;
+import org.lwjgl.vulkan.VkImageMemoryBarrier;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.core.barrier.IImageBarrierAllocation;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
+import org.sheepy.lily.vulkan.core.resource.image.IVkImageAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.model.vulkanresource.ImageBarrier;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+
+@ModelExtender(scope = ImageBarrier.class)
+@Allocation
+@AllocationDependency(features = ImageBarrier.FeatureIDs.IMAGE, type = IVkImageAllocation.class)
+public class ImageBarrierAllocation implements IImageBarrierAllocation
+{
+	private final EImageLayout srcLayout;
+	private final EImageLayout dstLayout;
+	private final VkImage vkImage;
+	private final int srcAccessMask;
+	private final int dstAccessMask;
+
+	public ImageBarrierAllocation(final ImageBarrier imageBarrier,
+								  @InjectDependency(index = 0) final IVkImageAllocation image)
+	{
+		vkImage = image.getVkImage();
+		srcLayout = imageBarrier.srcLayout();
+		dstLayout = imageBarrier.dstLayout();
+		srcAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.srcAccessMask(), EAccess::value);
+		dstAccessMask = VulkanModelUtil.getEnumeratedFlag(imageBarrier.dstAccessMask(), EAccess::value);
+	}
+
+	@Override
+	public void fill(final VkImageMemoryBarrier info,
+					 final RecordContext recordContext,
+					 final int srcQueueIndex,
+					 final int dstQueueIndex)
+	{
+		final var aspectMask = vkImage.aspect();
+
+		info.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
+		info.oldLayout(srcLayout.value());
+		info.newLayout(dstLayout.value());
+		info.image(vkImage.ptr());
+		info.subresourceRange().baseMipLevel(0);
+		info.subresourceRange().levelCount(vkImage.mipLevels());
+		info.subresourceRange().baseArrayLayer(0);
+		info.subresourceRange().layerCount(1);
+		info.subresourceRange().aspectMask(aspectMask);
+		info.srcAccessMask(srcAccessMask);
+		info.dstAccessMask(dstAccessMask);
+		info.srcQueueFamilyIndex(srcQueueIndex);
+		info.dstQueueFamilyIndex(dstQueueIndex);
+	}
+}
+

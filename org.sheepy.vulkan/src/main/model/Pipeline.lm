@@ -1,0 +1,13 @@
+(MetaModel domain=org.sheepy.vulkan.model name=Pipeline
+	imports=org.sheepy.vulkan.model.Enumeration
+
+	(Definition PushConstantRange
+		(+att name=stages datatype=#Enumeration@EShaderStage [1..*])
+		(+att name=offset datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=size datatype=#LMCore@int [0..1]))
+
+	(Definition SpecializationConstant
+		(+att name=name datatype=#LMCore@string [0..1])
+		(+att name=constantId datatype=#LMCore@int [0..1])
+		(+att name=size datatype=#LMCore@int [0..1]))
+)

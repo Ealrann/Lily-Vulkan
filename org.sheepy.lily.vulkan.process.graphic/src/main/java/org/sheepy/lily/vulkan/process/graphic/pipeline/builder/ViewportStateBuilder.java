@@ -1,0 +1,87 @@
+package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
+
+import org.joml.Vector2ic;
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkPipelineViewportStateCreateInfo;
+import org.lwjgl.vulkan.VkRect2D;
+import org.lwjgl.vulkan.VkViewport;
+import org.sheepy.lily.game.api.graphic.IViewportAdapter;
+import org.sheepy.vulkan.model.graphicpipeline.DynamicViewportState;
+import org.sheepy.vulkan.model.graphicpipeline.Scissor;
+import org.sheepy.vulkan.model.graphicpipeline.StaticViewportState;
+import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
+
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+
+public class ViewportStateBuilder
+{
+	private VkPipelineViewportStateCreateInfo viewportState;
+
+	public VkPipelineViewportStateCreateInfo allocCreateInfo(MemoryStack stack,
+															 Vector2ic swapExtent,
+															 ViewportState vState)
+	{
+		viewportState = VkPipelineViewportStateCreateInfo.calloc(stack);
+		viewportState.sType(VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO);
+
+		if (vState instanceof StaticViewportState state)
+		{
+			fillStaticStateInfo(stack, swapExtent, state);
+		}
+		else if (vState instanceof DynamicViewportState state)
+		{
+			fillDynamicStateInfo(state);
+		}
+
+		return viewportState;
+	}
+
+	private void fillDynamicStateInfo(DynamicViewportState state)
+	{
+		viewportState.scissorCount(state.scissorCount());
+		viewportState.viewportCount(state.viewportCount());
+	}
+
+	private void fillStaticStateInfo(MemoryStack stack, Vector2ic swapExtent, StaticViewportState state)
+	{
+		// Viewports and scissors
+		final VkViewport.Buffer viewports = VkViewport.calloc(state.viewports().size(), stack);
+		for (final var viewport : state.viewports())
+		{
+			final var adapter = viewport.adaptNotNull(IViewportAdapter.class);
+			final var viewportInfo = adapter.getInfo(swapExtent);
+			viewports.x(viewportInfo.xOffset);
+			viewports.y(viewportInfo.yOffset);
+			viewports.width(viewportInfo.width);
+			viewports.height(viewportInfo.height);
+			viewports.minDepth(viewportInfo.minDepth);
+			viewports.maxDepth(viewportInfo.maxDepth);
+			viewports.get();
+		}
+		viewports.flip();
+
+		final VkRect2D.Buffer scissors = VkRect2D.calloc(state.scissors().size(), stack);
+		for (final Scissor scissor : state.scissors())
+		{
+			final int offsetX = scissor.offsetX();
+			final int offsetY = scissor.offsetX();
+			scissors.offset().set(offsetX, offsetY);
+
+			final var extent = scissor.extent();
+			if (extent == null || extent.equals(0, 0))
+			{
+				scissors.extent().set(swapExtent.x(), swapExtent.y());
+			}
+			else
+			{
+				scissors.extent().set(extent.x(), extent.x());
+			}
+
+			scissors.get();
+		}
+		scissors.flip();
+
+		viewportState.pViewports(viewports);
+		viewportState.pScissors(scissors);
+	}
+}

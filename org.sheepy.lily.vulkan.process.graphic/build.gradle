@@ -1,0 +1,26 @@
+dependencies {
+	api project(':org.sheepy.lily.vulkan.api')
+
+	implementation project(':org.sheepy.lily.vulkan.core')
+	implementation project(':org.sheepy.lily.vulkan.process')
+
+	testRuntimeOnly 'org.sheepy.lily.core:lily.core.allocation'
+	testRuntimeOnly 'org.sheepy.lily.core:lily.core.impl'
+
+	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+	testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
+
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher:$junitPlatformVersion"
+}
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/main/java',
+						'src/main/shader']
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

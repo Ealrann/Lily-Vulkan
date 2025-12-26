@@ -1,0 +1,184 @@
+(MetaModel domain=org.sheepy.lily.vulkan.extra.model name=Rendering
+	imports=org.sheepy.lily.core.model.Types,org.sheepy.lily.core.model.Resource,org.sheepy.lily.core.model.Variable,org.sheepy.lily.core.model.Maintainer,org.sheepy.lily.vulkan.model.process.Graphic,org.sheepy.lily.vulkan.model.Process,org.sheepy.lily.vulkan.model.Vulkan,org.sheepy.lily.vulkan.model.VulkanResource,org.sheepy.vulkan.model.Enumeration
+
+	(Group Entity
+		(includes group=#Types@LNamedElement))
+
+	(Group PhysicalEntity
+		(includes group=@Entity)
+		(+att name=location datatype=#Types@Vector3d [0..1] defaultValue="0;0;0")
+		(+contains name=axis @Axis [0..1]))
+
+	(Definition Axis
+		(+att name=frontDirection datatype=#Types@Vector3d [0..1] defaultValue="0;0;0")
+		(+att name=upDirection datatype=#Types@Vector3d [0..1] defaultValue="0;0;0")
+		(+att name=rightDirection datatype=#Types@Vector3d [0..1] defaultValue="0;0;0"))
+
+	(Group Structure)
+
+	(Group Presentation
+		(+refers name=presentedEntities @PresentableEntity [0..*]))
+
+	(Definition StructurePkg
+		(+contains name=structures @Structure [0..*]))
+
+	(Definition Structures
+		(+contains name=structurePkgs @StructurePkg [0..*]))
+
+	(Definition PresentableEntity
+		(includes group=@PhysicalEntity)
+		(+refers name=presentation @Presentation [0..1])
+		(+att name=scale datatype=#LMCore@double [0..1] defaultValue=1))
+
+	(Group GenericRenderer
+		(Generic T
+			(extension boundType=extends type=@Structure))
+		(includes group=#Graphic@GraphicsPipeline)
+		(includes group=#Maintainer@Maintainer
+			(parameters type=#Graphic@GraphicsPipeline))
+		(+contains name=dataProviderPkg @DataProviderPkg [1..1]
+			(parameters type=^T))
+		(+refers name=renderedStructures ^T [1..*])
+		(+refers name=constantBuffer #VulkanResource@ConstantBuffer [0..1])
+		(+refers name=transferBuffer #VulkanResource@TransferBuffer [1..1])
+		(+contains name=descriptorProviderPkg @ResourceDescriptorProviderPkg [0..1])
+		(+contains name=specialization @ISpecialization [0..1])
+		(+refers name=flushTransferBufferTask #Process@FlushTransferBufferTask [1..1])
+		(+att name=onePipelinePerPart datatype=#LMCore@boolean [1..1] defaultValue=false)
+		(+att name=maintaining datatype=#LMCore@boolean [0..1] defaultValue=true))
+
+	(Definition DataProviderPkg
+		(Generic T
+			(extension boundType=extends type=@Structure))
+		(+contains name=dataProviders @DataProvider [1..*]
+			(parameters type=^T)))
+
+	(Definition DataProvider
+		(Generic T
+			(extension boundType=extends type=@Structure))
+		(+att name=usages datatype=#Enumeration@EBufferUsage [1..*])
+		(+att name=growFactor datatype=#LMCore@float [1..1] defaultValue=1.5f)
+		(+att name=minSize datatype=#LMCore@long [0..1] defaultValue=0)
+		(+refers name=dataSource #VulkanResource@IBufferDataSource [0..1])
+		(+att name=dataSourceName datatype=#LMCore@string [1..1]))
+
+	(Definition IndexedDataDescription
+		(Generic T
+			(extension boundType=extends type=@Structure))
+		(includes group=@DataProvider
+			(parameters type=^T))
+		(+att name=indexType datatype=#Enumeration@EIndexType [1..1] defaultValue=UINT32))
+
+	(Definition RenderableDataSource
+		(Generic T
+			(extension boundType=extends type=@Structure))
+		(includes group=#VulkanResource@IBufferDataSource)
+		(includes group=#Types@LNamedElement)
+		(includes group=#Vulkan@IVulkanResource)
+		(+refers name=structure ^T [1..1])
+		(+att name=part datatype=#LMCore@int [1..1])
+		(+refers name=dataSource #VulkanResource@IBufferDataSource [0..1]))
+
+	(Group ResourceDescriptorProvider)
+
+	(Definition DescriptorsProvider
+		(includes group=@ResourceDescriptorProvider)
+		(+refers name=descriptors #Vulkan@IDescriptor [1..*]))
+
+	(Definition DataDescriptorsProvider
+		(includes group=@ResourceDescriptorProvider)
+		(+contains name=dataDescriptors @DataDescriptor [1..*]))
+
+	(Definition DataDescriptor
+		(+att name=part datatype=#LMCore@int [1..1])
+		(+att name=instance datatype=#LMCore@int [1..1])
+		(+att name=descriptorType datatype=#Enumeration@EDescriptorType [1..1])
+		(+att name=stages datatype=#Enumeration@EShaderStage [1..*]))
+
+	(Definition ResourceDescriptorProviderPkg
+		(+contains name=resourceDescriptorProviders @ResourceDescriptorProvider [0..*]))
+
+	(Definition RenderProxyConstantBuffer
+		(includes group=#VulkanResource@ConstantBuffer)
+		(+refers name=constantBuffer #VulkanResource@ConstantBuffer [1..1])
+		(+att name=partIndex datatype=#LMCore@int [1..1]))
+
+	(Group ISpecialization)
+
+	(Group EntityPkg
+		(Generic T
+			(extension boundType=extends type=@Entity))
+		(+contains name=entities ^T [0..*]))
+
+	(Definition PhysicalEntityVariable
+		(includes group=#Variable@IModelVariable)
+		(+refers name=entity @PhysicalEntity [0..1])
+		(+att name=feature datatype=@EPhysicalEntityFeature [1..1]))
+
+	(Enum EPhysicalEntityFeature
+		Location : 0
+		(EnumAttribute value #LMCore@int))
+
+	(Definition Camera
+		(includes group=#Resource@IRootResource)
+		(+att name=fieldOfView datatype=#LMCore@float [1..1] defaultValue=45f)
+		(+att name=zNear datatype=#LMCore@float [1..1])
+		(+att name=zFar datatype=#LMCore@float [1..1])
+		(+att name=location datatype=#Types@Vector3d [0..1] defaultValue="0;0;0")
+		(+contains name=axis @Axis [1..1])
+		(+att name=lookDirection datatype=#Types@Vector3d [0..1] defaultValue="1;0;0"))
+
+	(Definition CameraMatrix
+		(includes group=#Variable@IModelVariable)
+		(+refers name=camera @Camera [1..1]))
+
+	(Definition CameraPosition
+		(includes group=#Variable@IModelVariable)
+		(+refers name=camera @Camera [1..1]))
+
+	(Definition CameraScreenWorldPosition
+		(includes group=#Variable@IModelVariable)
+		(+refers name=camera @Camera [1..1]))
+
+	(Definition CameraVariable
+		(includes group=#Variable@IModelVariable)
+		(+refers name=camera @Camera [1..1])
+		(+att name=field datatype=@ECameraField [1..1]))
+
+	(Enum ECameraField
+		ZNear : 0 ,
+		ZFar : 1 ,
+		FieldOfViewX : 2 ,
+		FieldOfViewY : 3
+		(EnumAttribute value #LMCore@int))
+
+	(Enum EMousePickMode
+		Enabled : 0 ,
+		Lock : 1 ,
+		Disabled : 2
+		(EnumAttribute value #LMCore@int))
+
+	(Definition MousePickConstants
+		(includes group=#VulkanResource@ConstantBuffer)
+		(+refers name=mousePickExtension @MousePickExtension [1..1]))
+
+	(Definition MousePickExtension
+		(includes group=#Process@IProcessExtension)
+		(+refers name=mousePickBuffer #VulkanResource@StaticBuffer [1..1])
+		(+refers name=selectionProxy @SelectionProxy [0..1])
+		(+contains name=entityResolverPipelines @EntityResolverPipeline [0..*])
+		(+att name=resolverPipelineOffset datatype=#LMCore@int [1..1] defaultValue=0))
+
+	(Definition EntityResolverPipeline
+		(+refers name=entityResolvers @IEntityResolver [0..*])
+		(+att name=takeFirst datatype=#LMCore@boolean [0..1] defaultValue=false))
+
+	(Group IEntityResolver)
+
+	(Group IEntitySelection)
+
+	(Definition SelectionProxy
+		(+att name=pickMode datatype=@EMousePickMode [1..1] defaultValue=Enabled)
+		(+contains name=selection @IEntitySelection [0..1])
+		(+contains name=focus @IEntitySelection [0..1]))
+)

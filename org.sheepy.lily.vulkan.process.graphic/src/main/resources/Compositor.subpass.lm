@@ -1,0 +1,35 @@
+(ModelPart domain=org.sheepy.lily.vulkan.process.graphic.subpass name=Compositor metamodels=org.sheepy.lily.core.model.Types,org.sheepy.lily.vulkan.model.process.Graphic,org.sheepy.lily.vulkan.model.Process,org.sheepy.lily.vulkan.model.Vulkan,org.sheepy.lily.vulkan.model.VulkanResource,org.sheepy.vulkan.model.GraphicPipeline,org.sheepy.vulkan.model.Pipeline,org.sheepy.vulkan.model.Enumeration
+	(Subpass name=Compositor waitForStage=COLOR_ATTACHMENT_OUTPUT_BIT syncStage=FRAGMENT_SHADER_BIT finishStage=COLOR_ATTACHMENT_OUTPUT_BIT
+		(resourcePkg
+			(GenericConstantBuffer name="Fragment Constants"))
+
+		(descriptorPkg)
+		(attachmentRefPkg)
+
+		(pipelinePkg
+			(GraphicsPipeline layout=@DS
+				(taskPkgs
+					(BindDescriptorSets bindPoint=GRAPHICS descriptorSets=@DS)
+					(PushConstantBuffer buffer="@Fragment Constants" stages=FRAGMENT_BIT)
+					(Draw vertexCount=4))
+
+				(descriptorPool
+					(descriptorSets name=DS))
+
+				(pushConstantRanges size=128 stages=FRAGMENT_BIT)
+
+				(StaticViewportState
+					(Viewport)
+					(scissors))
+
+				(inputAssembly)
+				(rasterizer)
+				(colorBlend
+					(attachments))
+				(vertexInputState))
+			)
+
+		waitForAccesses=COLOR_ATTACHMENT_WRITE_BIT
+		syncAccesses=INPUT_ATTACHMENT_READ_BIT
+		finishAccesses=COLOR_ATTACHMENT_WRITE_BIT)
+)

@@ -1,0 +1,174 @@
+package org.sheepy.lily.vulkan.process.graphic.resource;
+
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
+import org.lwjgl.vulkan.VkImageMemoryBarrier;
+import org.sheepy.lily.core.api.allocation.IAllocationState;
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.Free;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.logoce.lmf.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.core.device.LogicalDevice;
+import org.sheepy.lily.vulkan.core.device.PhysicalDevice;
+import org.sheepy.lily.vulkan.core.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.core.execution.IRecordContext;
+import org.sheepy.lily.vulkan.core.resource.attachment.IDepthAttachmentAllocation;
+import org.sheepy.lily.vulkan.core.resource.image.ImageBackend;
+import org.sheepy.lily.vulkan.core.resource.image.VkImage;
+import org.sheepy.lily.vulkan.core.resource.image.VkImageView;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalSurfaceAllocation;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+
+import static org.lwjgl.vulkan.VK10.*;
+
+@ModelExtender(scope = DepthAttachment.class)
+@Allocation(context = ProcessContext.class)
+@AllocationDependency(parent = GraphicProcess.class, features = {GraphicProcess.FeatureIDs.CONFIGURATION, GraphicConfiguration.FeatureIDs.SURFACE}, type = PhysicalSurfaceAllocation.class)
+public final class DepthAttachmentAllocation implements IDepthAttachmentAllocation
+{
+	private final DepthAttachment depthAttachment;
+	private final int depthFormat;
+	private final IAllocationState allocationState;
+	private final ImageBackend depthImageBackend;
+	private final VkImageView depthImageView;
+
+	public DepthAttachmentAllocation(DepthAttachment depthAttachment,
+									 ProcessContext context,
+									 IAllocationState allocationState,
+									 @InjectDependency(index = 0) PhysicalSurfaceAllocation surfaceAllocation)
+	{
+		this.depthAttachment = depthAttachment;
+
+		depthFormat = findDepthFormat(context.getPhysicalDevice());
+		this.allocationState = allocationState;
+		depthImageBackend = createDepthImage(context, surfaceAllocation);
+		depthImageView = createAndAllocateImageView(context.getLogicalDevice());
+		layoutTransitionOfDepthImage(context);
+	}
+
+	@Override
+	public void attach(final IRecordContext recordContext)
+	{
+		recordContext.lockAllocationDuringExecution(allocationState);
+	}
+
+	private ImageBackend createDepthImage(ProcessContext context, final PhysicalSurfaceAllocation surfaceAllocation)
+	{
+		final var extent = surfaceAllocation.getExtent();
+		final int width = extent.x();
+		final int height = extent.y();
+		final int usages = VulkanModelUtil.getEnumeratedFlag(depthAttachment.usages(), EImageUsage::value)
+								  | VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+
+		final var depthImageBuilder = VkImage.newBuilder(depthAttachment.name(), width, height, depthFormat);
+		depthImageBuilder.usage(usages);
+		depthImageBuilder.aspect(VK_IMAGE_ASPECT_DEPTH_BIT);
+
+		return context.executeFunction(depthImageBuilder::build);
+	}
+
+	private VkImageView createAndAllocateImageView(LogicalDevice logicalDevice)
+	{
+		final var device = logicalDevice.getVkDevice();
+		final var depthImageView = new VkImageView(device,
+												   depthAttachment.name(),
+												   depthImageBackend.vkImage(),
+												   VK_IMAGE_ASPECT_DEPTH_BIT);
+
+		return depthImageView;
+	}
+
+	private void layoutTransitionOfDepthImage(ExecutionContext context)
+	{
+		final var dstLayout = depthAttachment.initialLayout();
+		if (dstLayout != EImageLayout.UNDEFINED)
+		{
+			final var stack = context.stack();
+			final var barrierInfo = VkImageMemoryBarrier.calloc(1, stack);
+			final var srcStage = EPipelineStage.TOP_OF_PIPE_BIT.value();
+			final var dstStage = EPipelineStage.EARLY_FRAGMENT_TESTS_BIT.value();
+			final var srcLayout = EImageLayout.UNDEFINED;
+
+			barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
+			barrierInfo.oldLayout(srcLayout.value());
+			barrierInfo.newLayout(dstLayout.value());
+			barrierInfo.image(depthImageBackend.getPtr());
+			barrierInfo.subresourceRange().baseMipLevel(0);
+			barrierInfo.subresourceRange().levelCount(1);
+			barrierInfo.subresourceRange().baseArrayLayer(0);
+			barrierInfo.subresourceRange().layerCount(1);
+			barrierInfo.subresourceRange().aspectMask(VK_IMAGE_ASPECT_DEPTH_BIT);
+			barrierInfo.dstAccessMask(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT.value()
+											  | EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT.value());
+
+			context.executeCommand(recordContext -> vkCmdPipelineBarrier(recordContext.vkCommandBuffer(),
+																		 srcStage,
+																		 dstStage,
+																		 0,
+																		 null,
+																		 null,
+																		 barrierInfo));
+		}
+	}
+
+	private static int findDepthFormat(PhysicalDevice physicalDevice)
+	{
+		return physicalDevice.findSupportedFormat(new int[]{VK_FORMAT_D32_SFLOAT},
+												  VK_IMAGE_TILING_OPTIMAL,
+												  VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT);
+	}
+
+	@Free
+	public void free(ProcessContext context)
+	{
+		final var device = context.getVkDevice();
+		depthImageView.free(device);
+		depthImageBackend.free(context);
+	}
+
+	@Override
+	public long getImagePtr()
+	{
+		return depthImageBackend.getPtr();
+	}
+
+	@Override
+	public long getViewPtr()
+	{
+		return depthImageView.getPtr();
+	}
+
+	@Override
+	public VkImage getVkImage()
+	{
+		return depthImageBackend.vkImage();
+	}
+
+	@Override
+	public ImageBackend getImageBackend()
+	{
+		return depthImageBackend;
+	}
+
+	@Override
+	public int getImageFormat()
+	{
+		return depthFormat;
+	}
+
+	@Override
+	public Vector2ic getSize()
+	{
+		final var vkImage = depthImageBackend.vkImage();
+		return new Vector2i(vkImage.width(), vkImage.height());
+	}
+}

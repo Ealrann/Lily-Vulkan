@@ -1,0 +1,28 @@
+(MetaModel domain=org.sheepy.lily.vulkan.extra.model name=Sprite
+	imports=org.sheepy.lily.core.model.Presentation,org.sheepy.lily.core.model.Resource,org.sheepy.lily.core.model.Types,org.sheepy.lily.vulkan.extra.model.Rendering,org.sheepy.lily.vulkan.model.process.Graphic,org.sheepy.lily.vulkan.model.Process,org.sheepy.lily.vulkan.model.VulkanResource
+
+	(Definition SpriteExtension
+		(includes group=#Process@IPipelineExtension)
+		(includes group=#VulkanResource@IBufferDataSource)
+		(+refers name=drawTask #Graphic@DrawIndexed [1..1])
+		(+refers name=indexBufferViewer #VulkanResource@BufferViewer [1..1])
+		(+refers name=vertexBufferViewer #VulkanResource@BufferViewer [1..1])
+		(+refers name=spritesDescriptor #VulkanResource@ImageDescriptor [1..1])
+		(+refers name=spriteDataSource @ISpriteDataSource [0..1])
+		(+refers name=spritePipelineSpecialization #VulkanResource@ConstantBuffer [0..1])
+		(+refers name=spriteImageMemory #VulkanResource@MemoryChunk [1..1]))
+
+	(Group ISpriteDataSource
+		(includes group=#VulkanResource@IBufferDataSource))
+
+	(Definition SpritePkg
+		(includes group=@ISpriteDataSource)
+		(includes group=#Rendering@IEntityResolver)
+		(includes group=#Presentation@IPresentationPkg)
+		(+contains name=sprites @Sprite [0..*]))
+
+	(Definition Sprite
+		(includes group=#Rendering@Presentation)
+		(includes group=#Types@LNamedElement)
+		(+contains name=image #Resource@FileImage [1..1]))
+)

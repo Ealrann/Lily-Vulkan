@@ -1,0 +1,61 @@
+(ModelPart domain=org.sheepy.lily.vulkan.extra.nuklear.subpass name=Nuklear metamodels=org.sheepy.lily.core.model.Types,org.sheepy.lily.core.model.Resource,org.sheepy.lily.vulkan.extra.model.Nuklear,org.sheepy.lily.vulkan.model.process.Graphic,org.sheepy.lily.vulkan.model.Process,org.sheepy.lily.vulkan.model.Vulkan,org.sheepy.lily.vulkan.model.VulkanResource,org.sheepy.vulkan.model.Barrier,org.sheepy.vulkan.model.GraphicPipeline,org.sheepy.vulkan.model.Pipeline,org.sheepy.vulkan.model.Enumeration
+	(Subpass name=Nuklear waitForStage=COLOR_ATTACHMENT_OUTPUT_BIT syncStage=COLOR_ATTACHMENT_OUTPUT_BIT finishStage=COLOR_ATTACHMENT_OUTPUT_BIT
+		(resourcePkg)
+		(attachmentRefPkg)
+		(pipelinePkg
+			(GraphicsPipeline name=GUI specializationData=@NuklearSpecializationData layout=@UI shaders=@NkVertex,@NkFrag
+				(resourcePkg
+					(TransferBuffer name=NuklearTransferBuffer size=4000000L)
+					(Shader name=NkVertex stage=VERTEX_BIT
+						(StringModuleResource name=Vertex path=ui.vert.spv moduleName=org.sheepy.lily.vulkan.extra.nuklear))
+					(Shader name=NkFrag stage=FRAGMENT_BIT
+						(StringModuleResource name=Frag path=ui.frag.spv moduleName=org.sheepy.lily.vulkan.extra.nuklear)
+						(constants name=ImageCount constantId=0 size=4))
+					(Sampler name=FontSampler)
+					(Sampler name=NullTextureSampler)
+					(Sampler name=ImageSampler minFilter=LINEAR magFilter=LINEAR)
+					(ConstantBuffer name=NuklearSpecializationData)
+					(NuklearFont name=NuklearFont)
+					(NuklearContext name=NuklearContext font=@NuklearFont nullTexture=@NullImage imageArrayDescriptor=@ImageArrayDescriptor vertexBuffer=@NkVertex indexBuffer=@NkIndex vertexBufferMemory="@Nuklear Vertex" compositeDrawTask="@Nk draw")
+					(MemoryChunk name=NuklearVertexAndFontMemory transferBuffer=@NuklearTransferBuffer
+						(ImageViewer name=FontImage format=R8_UNORM usages=SAMPLED,TRANSFER_DST
+							(FontImageProvider nuklearFont=@NuklearFont))
+						(BufferMemory name="Nuklear Vertex"
+							(BufferViewer name=NkVertex usages=VERTEX_BUFFER_BIT,TRANSFER_DST_BIT)
+							(BufferViewer name=NkIndex usages=INDEX_BUFFER_BIT,TRANSFER_DST_BIT)))
+					(MemoryChunk name="Static Resources"
+						(StaticImage name=NullImage size="1;1" usages=SAMPLED,TRANSFER_DST)))
+				(descriptorPkg
+					(ImageDescriptor name=NullTexture type=COMBINED_IMAGE_SAMPLER images=@NullImage sampler=@NullTextureSampler layout=SHADER_READ_ONLY_OPTIMAL shaderStages=FRAGMENT_BIT)
+					(ImageDescriptor name=FontSampler type=SAMPLER sampler=@FontSampler shaderStages=FRAGMENT_BIT)
+					(ImageDescriptor name=ImageSampler type=SAMPLER sampler=@ImageSampler shaderStages=FRAGMENT_BIT)
+					(ImageDescriptor name=ImageArrayDescriptor type=SAMPLED_IMAGE images=@FontImage layout=SHADER_READ_ONLY_OPTIMAL shaderStages=FRAGMENT_BIT))
+				(taskPkgs stage=PRE_RENDER
+					(FlushTransferBufferTask transferBuffer=@NuklearTransferBuffer)
+					(PipelineBarrier name="Nuklear Transfer" srcStage=TRANSFER_BIT dstStage=VERTEX_INPUT_BIT
+						(BufferBarrier name=Index srcAccessMask=TRANSFER_WRITE_BIT dstAccessMask=INDEX_READ_BIT
+							(BufferReference indexType=ContextInstance buffers=@NkIndex))
+						(BufferBarrier name=Vertex srcAccessMask=TRANSFER_WRITE_BIT dstAccessMask=VERTEX_ATTRIBUTE_READ_BIT
+							(BufferReference indexType=ContextInstance buffers=@NkVertex))))
+				(taskPkgs
+					(BindDescriptorSets bindPoint=GRAPHICS descriptorSets=@UI)
+					(CompositeTask name="Nk draw"))
+				(descriptorPool
+					(descriptorSets name=UI descriptors=@NullTexture,@FontSampler,@ImageSampler,@ImageArrayDescriptor))
+				(pushConstantRanges size=68 stages=VERTEX_BIT,FRAGMENT_BIT)
+				(DynamicViewportState viewportCount=1 scissorCount=1)
+				(inputAssembly)
+				(rasterizer cullMode=NONE frontFace=COUNTER_CLOCKWISE)
+				(colorBlend
+					(attachments blendEnable=true srcColor=SRC_ALPHA dstColor=ONE_MINUS_SRC_ALPHA))
+				(dynamicState states=VIEWPORT,SCISSOR)
+				(vertexInputState
+					(inputDescriptor strideLength=20
+						(AttributeDescription name=Position format=R32G32_SFLOAT)
+						(AttributeDescription name=UV format=R32G32_SFLOAT offset=8)
+						(AttributeDescription name=Color format=R8G8B8A8_UNORM offset=16)))))
+
+		waitForAccesses=COLOR_ATTACHMENT_WRITE_BIT
+		syncAccesses=COLOR_ATTACHMENT_WRITE_BIT
+		finishAccesses=COLOR_ATTACHMENT_WRITE_BIT)
+)

@@ -1,0 +1,47 @@
+(MetaModel domain=org.sheepy.lily.vulkan.model name=Vulkan
+	imports=org.sheepy.lily.core.model.Application,org.sheepy.lily.core.model.Cadence,org.sheepy.lily.core.model.Types,org.sheepy.lily.core.model.Variable,org.sheepy.vulkan.model.Enumeration
+
+	(Definition VulkanEngine
+		(includes group=#Application@IEngine)
+		(includes group=@IResourceContainer)
+		(+att name=enabled datatype=#LMCore@boolean [0..1] defaultValue=true)
+		(+contains name=processes @IProcess [0..*])
+		(+att name=features datatype=#Enumeration@EPhysicalDeviceFeature [0..*]))
+
+	(Group IResourceContainer
+		(+contains name=resourcePkg @VulkanResourcePkg [0..1])
+		(+contains name=descriptorPkg @DescriptorPkg [0..1]))
+
+	(Definition VulkanResourcePkg
+		(+contains name=resources @IVulkanResource [0..*]))
+
+	(Group IVulkanResource
+		(includes group=#Types@LNamedElement))
+
+	(Group IProcess
+		(includes group=@IResourceContainer)
+		(includes group=#Types@LNamedElement)
+		(+att name=enabled datatype=#LMCore@boolean [0..1] defaultValue=true)
+		(+att name=queuePriority datatype=#LMCore@float [1..1] defaultValue=1f)
+		(+contains name=cadence #Application@ICadence [0..1]))
+
+	(Definition RunProcess
+		(includes group=#Cadence@ICadenceTask)
+		(-refers name=process lazy @IProcess [1..1]))
+
+	(Definition WaitProcessIdle
+		(includes group=#Cadence@ICadenceTask)
+		(-refers name=process lazy @IProcess [1..1]))
+
+	(Definition DescriptorPkg
+		(+contains name=descriptors @IDescriptor [0..*]))
+
+	(Group IDescriptor
+		(includes group=#Types@LNamedElement)
+		(+att name=type datatype=#Enumeration@EDescriptorType [1..1])
+		(+att name=shaderStages datatype=#Enumeration@EShaderStage [1..*]))
+
+	(Definition MouseLocation
+		(includes group=#Variable@IModelVariable)
+		(+refers name=vulkanEngine @VulkanEngine [1..1]))
+)

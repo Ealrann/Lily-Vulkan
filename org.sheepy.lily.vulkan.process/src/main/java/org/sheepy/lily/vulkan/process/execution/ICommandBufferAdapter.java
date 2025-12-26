@@ -1,0 +1,13 @@
+package org.sheepy.lily.vulkan.process.execution;
+
+import org.logoce.lmf.core.api.extender.IAdapter;
+import org.lwjgl.vulkan.VkCommandBuffer;
+import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
+
+public interface ICommandBufferAdapter extends IAdapter
+{
+	VkCommandBuffer getVkCommandBuffer();
+
+	void prepare(FenceManager fenceManager);
+}
+

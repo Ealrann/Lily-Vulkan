@@ -1,0 +1,145 @@
+(MetaModel domain=org.sheepy.lily.vulkan.model name=VulkanResource
+	imports=org.sheepy.lily.core.model.Resource,org.sheepy.lily.core.model.Types,org.sheepy.lily.core.model.Variable,org.sheepy.lily.vulkan.model.Vulkan,org.sheepy.vulkan.model.Barrier,org.sheepy.vulkan.model.Enumeration,org.sheepy.vulkan.model.Image,org.sheepy.vulkan.model.Pipeline
+
+	(JavaWrapper name=ByteBuffer qualifiedClassName=java.nio.ByteBuffer)
+
+	(Enum EContextIndex
+		ContextInstance : 0 ,
+		ContextInstance_PlusOne : 1 ,
+		ContextInstance_MinusOne : 2
+		(EnumAttribute value #LMCore@int))
+	(Enum EFlushMode
+		PUSH : 0 ,
+		FETCH : 1
+		(EnumAttribute value #LMCore@int))
+
+	(Definition TransferBuffer
+		(includes group=#Vulkan@IVulkanResource)
+		(+att name=size datatype=#LMCore@long [0..1])
+		(+att name=usedToPush datatype=#LMCore@boolean [1..1] defaultValue=true)
+		(+att name=usedToFetch datatype=#LMCore@boolean [1..1] defaultValue=false))
+
+	(Definition DescriptorPool
+		(+contains name=descriptorSets @DescriptorSet [0..*]))
+
+	(Definition ConstantBuffer
+		(includes group=#Vulkan@IVulkanResource)
+		(+att name=data datatype=@ByteBuffer [0..1]))
+
+	(Definition GenericConstantBuffer
+		(includes group=@ConstantBuffer)
+		(+refers name=referencedVariables #Variable@IModelVariable [0..*])
+		(+contains name=VariablePkg #Variable@ModelVariablePkg [0..1]))
+
+	(Group IBuffer
+		(includes group=#Types@LNamedElement)
+		(+att name=usages datatype=#Enumeration@EBufferUsage [0..*]))
+
+	(Definition BufferReference
+		(+refers name=buffers @IBuffer [0..*])
+		(+att name=stride datatype=#LMCore@int [0..1] defaultValue=0)
+		(+att name=indexType datatype=@EContextIndex [1..1]))
+
+	(Group IBufferDataSource)
+
+	(Definition ImageDataProvider
+		(includes group=#Types@LNamedElement))
+
+	(Definition FileImageDataProvider
+		(includes group=@ImageDataProvider)
+		(+refers name=fileImageReference #Resource@FileImage [0..1])
+		(+contains name=fileImageContainment #Resource@FileImage [0..1]))
+
+	(Definition ImageInlay
+		(+refers name=image @IVulkanImage [1..1])
+		(+att name=position datatype=#Types@Vector2i [1..1] defaultValue="0;0")
+		(+att name=size datatype=#LMCore@float [1..1] defaultValue=1f)
+		(+att name=horizontalRelative datatype=#Types@EHorizontalRelative [1..1] defaultValue=LEFT)
+		(+att name=verticalRelative datatype=#Types@EVerticalRelative [1..1] defaultValue=TOP))
+
+	(Definition Sampler
+		(includes group=#Image@SamplerInfo)
+		(includes group=#Vulkan@IVulkanResource)
+		(+refers name=image @IVulkanImage [0..1]))
+
+	(Definition BufferDescriptor
+		(includes group=#Vulkan@IDescriptor)
+		(+refers name=buffer @IBuffer [1..1]))
+
+	(Definition ImageDescriptor
+		(includes group=#Vulkan@IDescriptor)
+		(+refers name=images @IVulkanImage [0..*])
+		(+refers name=sampler @Sampler [0..1])
+		(+att name=layout datatype=#Enumeration@EImageLayout [0..1] defaultValue=GENERAL))
+
+	(Definition DescriptorSet
+		(includes group=#Types@LNamedElement)
+		(+refers name=descriptors #Vulkan@IDescriptor [1..*]))
+
+	(Definition BufferBarrier
+		(includes group=#Barrier@AbstractBufferBarrier)
+		(+contains name=buffers @BufferReference [1..1]))
+
+	(Definition ImageBarrier
+		(includes group=#Barrier@AbstractImageBarrier)
+		(+refers name=image @IVulkanImage [0..1]))
+
+	(Definition Shader
+		(includes group=#Vulkan@IVulkanResource)
+		(+contains name=file #Resource@FileResource [0..1])
+		(+att name=stage datatype=#Enumeration@EShaderStage [0..1])
+		(+contains name=constants #Pipeline@SpecializationConstant [0..*]))
+
+	(Definition MemoryChunk
+		(includes group=#Vulkan@IVulkanResource)
+		(+contains name=parts @IMemoryChunkPart [0..*])
+		(+refers name=transferBuffer @TransferBuffer [0..1]))
+
+	(Group IMemoryChunkPart)
+
+	(Definition BufferMemory
+		(includes group=@IMemoryChunkPart)
+		(includes group=#Types@LNamedElement)
+		(+contains name=buffers @IBuffer [0..*]))
+
+	(Definition StaticBuffer
+		(includes group=@IBuffer)
+		(+att name=size datatype=#LMCore@long [0..1])
+		(+att name=initWithZero datatype=#LMCore@boolean [0..1] defaultValue=false))
+
+	(Definition DataBuffer
+		(includes group=@IBuffer)
+		(+att name=data datatype=@ByteBuffer [0..1]))
+
+	(Definition BufferViewer
+		(includes group=@IBuffer)
+		(+att name=growFactor datatype=#LMCore@float [1..1] defaultValue=1f)
+		(+att name=growThreshold datatype=#LMCore@float [1..1] defaultValue=1f)
+		(+att name=size datatype=#LMCore@long [0..1] defaultValue=0)
+		(+refers name=dataSource @IBufferDataSource [0..1])
+		(+att name=dataSourceIdentifier datatype=#LMCore@string [0..1]))
+
+	(Group IVulkanImage
+		(includes group=#Resource@IImage))
+
+	(Definition CompositeImage
+		(includes group=@IVulkanImage)
+		(includes group=#Image@ImageInfo)
+		(+contains name=inlays @ImageInlay [0..*])
+		(+refers name=background @IVulkanImage [1..1]))
+
+	(Definition StaticImage
+		(includes group=@IMemoryChunkPart)
+		(includes group=@IVulkanImage)
+		(includes group=#Image@ImageInfo)
+		(+att name=fillWithZero datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=fillWith datatype=@ByteBuffer [0..1])
+		(+att name=size datatype=#Types@Vector2i [1..1] defaultValue="1;1"))
+
+	(Definition ImageViewer
+		(includes group=@IMemoryChunkPart)
+		(includes group=@IVulkanImage)
+		(includes group=#Image@ImageInfo)
+		(+contains name=dataProvider @ImageDataProvider [1..1])
+		(+att name=mipmapEnabled datatype=#LMCore@boolean [1..1] defaultValue=false))
+)

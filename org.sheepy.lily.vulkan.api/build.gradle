@@ -1,0 +1,18 @@
+plugins {
+	id 'org.logoce.lmf.gradle-plugin' version "$logoceVersion"
+}
+
+dependencies {
+	api project(':org.sheepy.lily.game.api')
+	api project(':org.sheepy.vulkan')
+
+	api "org.logoce.lmf:logoce.lmf.core.api"
+}
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/main/model',
+						'src/main/generated',
+						'src/main/java']
+	}
+}

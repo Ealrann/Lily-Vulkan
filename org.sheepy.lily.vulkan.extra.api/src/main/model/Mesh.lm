@@ -1,0 +1,20 @@
+(MetaModel domain=org.sheepy.lily.vulkan.extra.model name=Mesh
+	imports=org.sheepy.lily.vulkan.extra.model.Rendering
+
+	(Group Mesh
+		(includes group=#Rendering@Presentation))
+
+	(Definition MeshRenderer
+		(includes group=#Rendering@GenericRenderer
+			(parameters type=@IMeshStructure)))
+
+	(Group MeshStructure
+		(includes group=@IMeshStructure)
+		(Generic T
+			(extension boundType=extends type=@Mesh))
+		(+contains name=meshes ^T [1..*]))
+
+	(Group IMeshStructure
+		(includes group=#Rendering@Structure))
+)
+

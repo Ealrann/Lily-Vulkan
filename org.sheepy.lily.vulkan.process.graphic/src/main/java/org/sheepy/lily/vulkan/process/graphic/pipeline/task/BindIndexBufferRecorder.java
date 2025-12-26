@@ -1,0 +1,40 @@
+package org.sheepy.lily.vulkan.process.graphic.pipeline.task;
+
+import org.sheepy.lily.core.api.allocation.annotation.Allocation;
+import org.sheepy.lily.core.api.allocation.annotation.AllocationDependency;
+import org.sheepy.lily.core.api.allocation.annotation.InjectDependency;
+import org.logoce.lmf.core.api.extender.ModelExtender;
+import org.sheepy.lily.vulkan.core.execution.RecordContext;
+import org.sheepy.lily.vulkan.core.pipeline.IRecordableAdapter;
+import org.sheepy.lily.vulkan.core.resource.buffer.IVulkanBufferAllocation;
+import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
+
+import static org.lwjgl.vulkan.VK10.vkCmdBindIndexBuffer;
+
+@ModelExtender(scope = BindIndexBuffer.class)
+@Allocation
+@AllocationDependency(features = BindIndexBuffer.FeatureIDs.BUFFER, type = IVulkanBufferAllocation.class)
+public final class BindIndexBufferRecorder implements IRecordableAdapter
+{
+	private final BindIndexBuffer task;
+	private final IVulkanBufferAllocation buffer;
+
+	private BindIndexBufferRecorder(BindIndexBuffer task, @InjectDependency(index = 0) IVulkanBufferAllocation buffer)
+	{
+		this.task = task;
+		this.buffer = buffer;
+	}
+
+	@Override
+	public void record(RecordContext context)
+	{
+		final var indexPtr = buffer.getPtr();
+		final var indexOffset = buffer.getBindOffset();
+		final var indexType = task.indexType().value();
+		final var commandBuffer = context.commandBuffer;
+
+		buffer.attach(context);
+
+		vkCmdBindIndexBuffer(commandBuffer, indexPtr, indexOffset, indexType);
+	}
+}

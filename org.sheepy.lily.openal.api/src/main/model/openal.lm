@@ -1,0 +1,7 @@
+(MetaModel domain=org.sheepy.lily.openal.model name=OpenAL
+    imports=org.sheepy.lily.core.model.Application,org.sheepy.lily.core.model.Resource
+
+    (Definition OpenALEngine
+        (includes group=#Application@IEngine)
+        (+contains name=resourcePkg #Resource@ResourcePkg [0..1]))
+)

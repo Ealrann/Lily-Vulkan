@@ -1,0 +1,118 @@
+(MetaModel domain=org.sheepy.lily.vulkan.model name=Process
+	imports=org.sheepy.lily.core.model.Maintainer,org.sheepy.lily.core.model.Types,org.sheepy.lily.vulkan.model.Vulkan,org.sheepy.lily.vulkan.model.VulkanResource,org.sheepy.vulkan.model.Barrier,org.sheepy.vulkan.model.Enumeration,org.sheepy.vulkan.model.Pipeline
+
+	(Group IProcessExtension)
+
+	(Definition ProcessExtensionPkg
+		(+contains name=extensions @IProcessExtension [0..*]))
+
+	(Group IPipelineExtension)
+
+	(Definition PipelineExtensionPkg
+		(+contains name=extensions @IPipelineExtension [0..*]))
+
+	(Group ProcessConfiguration)
+
+	(Group IExecutionAcquirer)
+
+	(Group ProcessExecutionManager
+		(-refers name=waitForExecution lazy @ProcessExecutionManager [0..*])
+		(-refers name=waitedBy lazy @ProcessExecutionManager [0..*])
+		(+att name=waitStage datatype=#Enumeration@EPipelineStage [0..1])
+		(+contains name=acquirer @IExecutionAcquirer [0..1]))
+
+	(Group Submission concrete=true)
+
+	(Group ExecutionRecorder
+		(+contains name=submission @Submission [1..1]))
+
+	(Group ICommandBuffer
+		(+att name=index datatype=#LMCore@int [1..1]))
+
+	(Group IPipelineTask
+		(includes group=#Types@LNamedElement)
+		(+att name=enabled datatype=#LMCore@boolean [0..1] defaultValue=true))
+
+	(Group AbstractPipeline
+		(includes group=#Types@LNamedElement)
+		(+att name=allocate datatype=#LMCore@boolean [0..1] defaultValue=true)
+		(+att name=record datatype=#LMCore@boolean [0..1] defaultValue=true)
+		(+contains name=extensionPkg @PipelineExtensionPkg [0..1]))
+
+	(Group TaskPipeline
+		(includes group=@AbstractPipeline)
+		(includes group=#Vulkan@IResourceContainer)
+		(+contains name=taskPkgs @TaskPkg [0..*]))
+
+	(Group VkPipeline
+		(includes group=@TaskPipeline)
+		(+contains name=descriptorPool #VulkanResource@DescriptorPool [0..1])
+		(+refers name=specializationData #VulkanResource@ConstantBuffer [0..1])
+		(+contains name=pushConstantRanges #Pipeline@PushConstantRange [0..*])
+		(+refers name=layout #VulkanResource@DescriptorSet [0..*]))
+
+	(Definition PipelinePkg
+		(+contains name=pipelines @AbstractPipeline [0..*]))
+
+	(Definition TaskPkg
+		(+contains name=tasks @IPipelineTask [0..*])
+		(+att name=stage datatype=#Enumeration@ECommandStage [1..1] defaultValue=MAIN))
+
+	(Definition Pipeline
+		(includes group=@TaskPipeline))
+
+	(Definition CompositePipeline
+		(includes group=@AbstractPipeline)
+		(+contains name=pipelines @TaskPipeline [0..*])
+		(+att name=repeat datatype=#LMCore@int [1..1] defaultValue=1))
+
+	(Definition CompositeTask
+		(includes group=@IPipelineTask)
+		(includes group=#Maintainer@Maintainable
+			(parameters type=@CompositeTask))
+		(+att name=repeatCount datatype=#LMCore@int [0..1] defaultValue=1)
+		(+contains name=tasks @IPipelineTask [0..*]))
+
+	(Definition PipelineBarrier
+		(includes group=@IPipelineTask)
+		(+contains name=barriers #Barrier@Barrier [1..*])
+		(+att name=srcStage datatype=#Enumeration@EPipelineStage [0..1])
+		(+att name=dstStage datatype=#Enumeration@EPipelineStage [0..1])
+		(+refers name=srcQueue @AbstractProcess [0..1])
+		(+refers name=dstQueue @AbstractProcess [0..1]))
+
+	(Definition BindDescriptorSets
+		(includes group=@IPipelineTask)
+		(+refers name=descriptorSets #VulkanResource@DescriptorSet [0..*])
+		(+att name=bindPoint datatype=#Enumeration@EBindPoint [1..1])
+		(+att name=stride datatype=#LMCore@int [0..1] defaultValue=0))
+
+	(Group PushConstant
+		(includes group=@IPipelineTask)
+		(+att name=stages datatype=#Enumeration@EShaderStage [1..*]))
+
+	(Definition PushConstantBuffer
+		(includes group=@PushConstant)
+		(+refers name=buffer #VulkanResource@ConstantBuffer [1..1]))
+
+	(Definition FlushTransferBufferTask
+		(includes group=@IPipelineTask)
+		(+refers name=transferBuffer #VulkanResource@TransferBuffer [1..1]))
+
+	(Definition CopyBufferTask
+		(includes group=@IPipelineTask)
+		(+contains name=srcBuffer #VulkanResource@BufferReference [1..1])
+		(+contains name=dstBuffer #VulkanResource@BufferReference [1..1]))
+
+	(Definition FetchBuffer
+		(includes group=@IPipelineTask)
+		(+contains name=bufferReference #VulkanResource@BufferReference [1..1]))
+
+	(Group AbstractProcess
+		(includes group=#Vulkan@IProcess)
+		(+contains name=descriptorPool #VulkanResource@DescriptorPool [0..1])
+		(+att name=waitingFenceDuringAcquire datatype=#LMCore@boolean [0..1] defaultValue=false)
+		(+att name=resetAllowed datatype=#LMCore@boolean [0..1])
+		(+contains name=extensionPkg @ProcessExtensionPkg [0..1])
+		(+contains name=executionManager @ProcessExecutionManager [1..1]))
+)

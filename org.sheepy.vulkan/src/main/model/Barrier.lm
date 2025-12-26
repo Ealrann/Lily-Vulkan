@@ -1,0 +1,22 @@
+(MetaModel domain=org.sheepy.vulkan.model name=Barrier
+	imports=org.sheepy.lily.core.model.Types,org.sheepy.vulkan.model.Enumeration
+
+	(Group Barrier
+		(includes group=#Types@LNamedElement)
+		(+att name=srcAccessMask datatype=#Enumeration@EAccess [0..*])
+		(+att name=dstAccessMask datatype=#Enumeration@EAccess [0..*]))
+
+	(Group AbstractBufferBarrier
+		(includes group=@Barrier))
+
+	(Group AbstractImageBarrier
+		(includes group=@Barrier)
+		(+att name=srcLayout datatype=#Enumeration@EImageLayout [0..1])
+		(+att name=dstLayout datatype=#Enumeration@EImageLayout [0..1]))
+
+	(Definition ImageTransition
+		(+att name=srcLayout datatype=#Enumeration@EImageLayout [0..1])
+		(+att name=dstLayout datatype=#Enumeration@EImageLayout [0..1])
+		(+att name=srcAccessMask datatype=#Enumeration@EAccess [0..*])
+		(+att name=dstAccessMask datatype=#Enumeration@EAccess [0..*]))
+)

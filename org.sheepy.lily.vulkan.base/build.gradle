@@ -1,0 +1,9 @@
+dependencies {
+	implementation 'org.sheepy.lily.core:lily.core.base'
+
+	runtimeOnly project(':org.sheepy.lily.vulkan.core')
+	runtimeOnly project(':org.sheepy.lily.vulkan.process')
+	runtimeOnly project(':org.sheepy.lily.vulkan.process.compute')
+	runtimeOnly project(':org.sheepy.lily.vulkan.process.graphic')
+	runtimeOnly project(':org.sheepy.lily.vulkan.resource')
+}
