@@ -75,11 +75,13 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 	{
 		if (pipelineBarrier.enabled())
 		{
-			final var stack = context.stack();
-			final var bufferInfo = allocateBufferInfo(stack, context);
-			final var imageInfo = allocateImageInfo(stack, context);
+			try (final var stack = MemoryStack.stackPush())
+			{
+				final var bufferInfo = allocateBufferInfo(stack, context);
+				final var imageInfo = allocateImageInfo(stack, context);
 
-			vkCmdPipelineBarrier(context.commandBuffer, srcStage, dstStage, 0, null, bufferInfo, imageInfo);
+				vkCmdPipelineBarrier(context.commandBuffer, srcStage, dstStage, 0, null, bufferInfo, imageInfo);
+			}
 		}
 	}
 
@@ -123,4 +125,3 @@ public final class PipelineBarrierRecorder implements IRecordableAdapter
 		return res;
 	}
 }
-
