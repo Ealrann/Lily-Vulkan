@@ -16,6 +16,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicExecutionRecorder;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.process.execution.ExecutionManagerAllocation;
+import org.sheepy.lily.vulkan.process.execution.util.FenceManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainAllocation;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
@@ -32,6 +33,7 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 																															IExecutionManagerAdapter
 {
 	private final List<VkSemaphore> presentSemaphores;
+	private final List<FenceManager> frameFences;
 	private final int executionCount;
 	private final IAllocationState allocationState;
 
@@ -49,6 +51,9 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 		this.presentSemaphores = IntStream.range(0, executionCount)
 										  .mapToObj(index -> new VkSemaphore(context.getVkDevice(), "GraphicExecutionRecorderAllocation"))
 										  .toList();
+		this.frameFences = IntStream.range(0, executionCount)
+									.mapToObj(index -> new FenceManager(context.getVkDevice()))
+									.toList();
 		setupRecorders(executionManager, executionCount);
 
 		if (DebugUtil.DEBUG_VERBOSE_ENABLED)
@@ -79,12 +84,18 @@ public final class GraphicExecutionManagerAllocation extends ExecutionManagerAll
 	{
 		final var vkDevice = context.getVkDevice();
 		presentSemaphores.forEach(semaphore -> semaphore.free(vkDevice));
+		frameFences.forEach(FenceManager::free);
 	}
 
 	@Override
 	protected List<VkSemaphore> signalSemaphores(final int executionID, final int recordIndex)
 	{
 		return List.of(presentSemaphores.get(executionID));
+	}
+
+	public FenceManager getFrameFence(final int recordIndex)
+	{
+		return frameFences.get(recordIndex);
 	}
 
 	@Override

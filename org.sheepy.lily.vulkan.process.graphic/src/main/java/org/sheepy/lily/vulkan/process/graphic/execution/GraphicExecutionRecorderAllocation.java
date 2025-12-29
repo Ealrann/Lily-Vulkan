@@ -31,11 +31,12 @@ import java.util.List;
 @AllocationDependency(parent = GraphicProcess.class, features = {GraphicProcess.FeatureIDs.CONFIGURATION, GraphicConfiguration.FeatureIDs.IMAGE_VIEWS}, type = ImageViewAllocation.class)
 public final class GraphicExecutionRecorderAllocation implements IExecutionRecorderAllocation
 {
-	private final FenceManager fenceManager;
 	private final PresentSubmission presentSubmission;
+	private final GraphicExecutionManagerAllocation managerAllocation;
 	private SubmissionAllocation submissionAllocation;
 	private List<ICommandBufferAdapter> commandBuffers;
 	private int currentIndex;
+	private FenceManager currentFenceManager;
 
 	private GraphicExecutionRecorderAllocation(GraphicExecutionRecorder recorder,
 											   ProcessContext context,
@@ -47,10 +48,9 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 		assert recorder.commandBuffers().stream().filter(cb -> cb.imageID() != imageID).findAny().isEmpty();
 		final var presentQueue = surfaceAllocation.getPresentQueue().vkQueue;
 		final var manager = (GraphicExecutionManager) recorder.lmContainer();
-		final var presentSemaphore = manager.adapt(GraphicExecutionManagerAllocation.class)
-											.getPresentSemaphore(imageID);
+		managerAllocation = manager.adaptNotNull(GraphicExecutionManagerAllocation.class);
+		final var presentSemaphore = managerAllocation.getPresentSemaphore(imageID);
 		this.commandBuffers = commandBuffers;
-		fenceManager = new FenceManager(context.getVkDevice());
 		this.presentSubmission = new PresentSubmission(swapChainAllocation.getPtr(),
 													   presentQueue,
 													   imageID,
@@ -76,47 +76,50 @@ public final class GraphicExecutionRecorderAllocation implements IExecutionRecor
 						final int recordIndex)
 	{
 		currentIndex = recordIndex;
-		fenceManager.waitIdle();
-		fenceManager.setUsed(true);
-		submissionAllocation.prepare(waitSemaphores, signalSemaphores, semaphoreCount, fenceManager);
+		currentFenceManager = managerAllocation.getFrameFence(recordIndex);
+		currentFenceManager.waitIdle();
+		currentFenceManager.setUsed(true);
+		submissionAllocation.prepare(waitSemaphores, signalSemaphores, semaphoreCount, currentFenceManager);
 
 		final var commandBufferAdapter = commandBuffers.get(currentIndex);
-		commandBufferAdapter.prepare(fenceManager);
+		commandBufferAdapter.prepare(currentFenceManager);
 	}
 
 	@Free
 	public void free(ExecutionContext context)
 	{
 		presentSubmission.free();
-		fenceManager.free();
 	}
 
 	@Override
 	public IFenceView play()
 	{
-		fenceManager.start();
+		currentFenceManager.start();
 		final var vkCommandBuffer = commandBuffers.get(currentIndex).getVkCommandBuffer();
-		if (submissionAllocation.play(vkCommandBuffer, fenceManager))
+		if (submissionAllocation.play(vkCommandBuffer, currentFenceManager))
 		{
 			presentSubmission.submit();
 		}
 		else
 		{
-			fenceManager.cancel();
+			currentFenceManager.cancel();
 		}
-		return fenceManager.getFence();
+		return currentFenceManager.getFence();
 	}
 
 	@Override
 	public boolean checkFence()
 	{
-		return fenceManager.checkFence();
+		return currentFenceManager != null && currentFenceManager.checkFence();
 	}
 
 	@Override
 	public void waitIdle()
 	{
-		fenceManager.waitIdle();
+		if (currentFenceManager != null)
+		{
+			currentFenceManager.waitIdle();
+		}
 	}
 
 	@Override

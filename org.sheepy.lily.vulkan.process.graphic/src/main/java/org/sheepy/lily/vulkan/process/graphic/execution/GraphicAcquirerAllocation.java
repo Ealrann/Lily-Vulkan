@@ -40,6 +40,7 @@ public final class GraphicAcquirerAllocation implements IExecutionAcquirerAdapte
 	private final int[] nextImageArray = new int[1];
 	private final VkDevice vkDevice;
 	private final List<VkSemaphore> imageAvailableSemaphores;
+	private final GraphicExecutionManagerAllocation executionManagerAllocation;
 	private final EPipelineStage acquireWaitStage;
 
 	private int recordIndex = -1;
@@ -55,6 +56,7 @@ public final class GraphicAcquirerAllocation implements IExecutionAcquirerAdapte
 		final var executionManager = (GraphicExecutionManager) acquirer.lmContainer();
 		final var process = (GraphicProcess) executionManager.lmContainer();
 
+		this.executionManagerAllocation = executionManager.adaptNotNull(GraphicExecutionManagerAllocation.class);
 		this.vkDevice = context.getVkDevice();
 		this.executionCount = swapChainAllocation.getImageCount();
 		this.acquireWaitStage = process.configuration().acquireWaitStage();
@@ -89,8 +91,15 @@ public final class GraphicAcquirerAllocation implements IExecutionAcquirerAdapte
 	public AcquisitionInfo acquire()
 	{
 		recordIndex = (recordIndex + 1) % executionCount;
+		final var fenceManager = executionManagerAllocation.getFrameFence(recordIndex);
+		fenceManager.waitIdle();
+
 		currentAcquireSemaphore = imageAvailableSemaphores.get(recordIndex);
 		final int imageIndex = acquireNextImage(currentAcquireSemaphore.getPtr());
+		if (imageIndex == -1)
+		{
+			fenceManager.setUsed(false);
+		}
 		return new AcquisitionInfo(imageIndex, recordIndex);
 	}
 
