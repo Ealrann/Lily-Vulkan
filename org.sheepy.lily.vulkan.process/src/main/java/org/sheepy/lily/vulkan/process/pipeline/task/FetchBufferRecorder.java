@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.process.pipeline.task;
 
 import org.logoce.lmf.core.api.extender.ModelExtender;
+import org.logoce.lmf.core.api.notification.observatory.IObservatoryBuilder;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
@@ -32,24 +33,35 @@ import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 @AllocationDependency(features = FetchBuffer.FeatureIDs.BUFFER_REFERENCE, type = IBufferReferenceAllocation.class)
 public final class FetchBufferRecorder implements IRecordableAdapter
 {
+	private final FetchBuffer fetchBuffer;
 	private final ExecutionContext executionContext;
 	private final IAllocationState allocationState;
 	private final IBufferReferenceAllocation bufferReferenceAllocation;
 
-	private FetchBufferRecorder(ExecutionContext executionContext,
+	private FetchBufferRecorder(FetchBuffer fetchBuffer,
+								ExecutionContext executionContext,
 								IAllocationState allocationState,
+								IObservatoryBuilder observatory,
 								@InjectDependency(index = 0) IBufferReferenceAllocation bufferReferenceAllocation)
 	{
+		this.fetchBuffer = fetchBuffer;
 		this.executionContext = executionContext;
 		this.allocationState = allocationState;
 		this.bufferReferenceAllocation = bufferReferenceAllocation;
+
+		observatory.listenNoParam(allocationState::setAllocationObsolete, FetchBuffer.FeatureIDs.ENABLED);
 	}
 
 	@Override
 	public void record(final RecordContext context)
 	{
+		if (fetchBuffer.enabled() == false)
+		{
+			return;
+		}
+
 		final var srcBufferAllocation = bufferReferenceAllocation.getBufferAllocations(context.recordIndex)
-																.get(0);
+																 .get(0);
 		final var srcBuffer = bufferReferenceAllocation.getBuffers(context.recordIndex)
 													   .get(0);
 		final var dataConsumerAdapter = getDataConsumerAdapter(srcBuffer);
@@ -141,4 +153,3 @@ public final class FetchBufferRecorder implements IRecordableAdapter
 		}
 	}
 }
-
