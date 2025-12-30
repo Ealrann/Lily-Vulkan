@@ -7,11 +7,3 @@ dependencies {
 
 	api "org.logoce.lmf:logoce.lmf.core.api"
 }
-
-sourceSets {
-	main {
-		java.srcDirs = ['src/main/model',
-						'src/main/generated',
-						'src/main/java']
-	}
-}
