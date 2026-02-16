@@ -3,11 +3,23 @@
 Lily-vulkan is the rendering and runtime backend layer of the Lily ecosystem.
 It extends Lily-core with concrete graphics, compute, window, and audio capabilities built on Vulkan and LWJGL.
 
-## What this project does
-- Provides a model-driven Vulkan engine implementation for Lily applications.
-- Adds GPU process abstractions (compute and graphic pipelines, resources, descriptors, synchronization).
-- Integrates input, windowing, and execution services for real-time interactive applications.
-- Includes OpenAL support for audio through dedicated model and runtime modules.
+## MDE perspective
+Lily-vulkan is, first and foremost, a Model-Driven Engineering (MDE) modeling of Vulkan (and more).
+Core Vulkan notions like descriptors, descriptor sets, pipelines, buffers, barriers, and processes are represented as LMF model elements.
+In practice, each of these notions is defined as an LMF `Group` (the LMF equivalent of an `EClass` in EMF).
+
+This gives a structured and typed way to build Vulkan configurations as models instead of writing everything as low-level imperative code.
+As a result, common Vulkan usage becomes drastically easier to express, understand, and maintain.
+
+## Why this matters
+Because Vulkan is modeled explicitly, higher-complexity rendering or compute setups can also be described at a high level.
+Those high-level models are then materialized at runtime through adapters.
+This keeps advanced behavior extensible without losing control over low-level execution details.
+
+## Key LMF features used here
+The two most important LMF capabilities used by Lily-vulkan are:
+- modelization (explicit domain modeling of Vulkan concepts),
+- adapter pattern (binding model elements to executable runtime behavior).
 
 ## Position in the ecosystem
 Lily-vulkan is not a standalone framework; it is designed to sit on top of Lily-core.
